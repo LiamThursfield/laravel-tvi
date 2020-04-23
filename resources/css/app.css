@@ -1,0 +1,12 @@
+@import './app/fonts.css';
+
+@import "tailwindcss/base";
+@import './core/base.css';
+@import './app/base.css';
+
+@import "tailwindcss/components";
+
+@import "./core/custom-includes.css";
+@import "./app/custom-includes.css";
+
+@import "tailwindcss/utilities";

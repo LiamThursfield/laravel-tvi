@@ -1,0 +1,20 @@
+/**
+ * Core - Base Styles
+ */
+
+ html {
+    @apply bg-gray-100;
+    @apply font-sans;
+    @apply text-gray-900;
+}
+
+::selection {
+    /* WebKit/Blink Browsers */
+    background: theme('colors.gray.900');
+    color: theme('colors.gray.100');
+}
+::-moz-selection {
+    /* Gecko Browsers */
+    background: theme('colors.gray.900');
+    color: theme('colors.gray.100');
+}
