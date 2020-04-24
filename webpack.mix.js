@@ -14,3 +14,17 @@ mix.postCss('resources/css/app.css', 'public/css')
         ]
     })
     .version();
+
+
+/** Babel **/
+mix.babelConfig({
+    plugins: ['@babel/plugin-syntax-dynamic-import'],
+});
+
+
+/** Webpack **/
+mix.webpackConfig({
+    output: {
+        chunkFilename: 'js/[name].js?id=[chunkhash]',
+    }
+});

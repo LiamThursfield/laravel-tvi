@@ -6,7 +6,10 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import { InertiaApp } from '@inertiajs/inertia-vue';
+import Vue from 'vue';
+
+Vue.use(InertiaApp);
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +30,13 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+const app = document.getElementById('app');
+
+new Vue({
+    render: h => h(InertiaApp, {
+        props: {
+            initialPage: JSON.parse(app.dataset.page),
+            resolveComponent: name => import(`./pages/${name}`).then(module => module.default),
+        },
+    }),
+}).$mount(app);
