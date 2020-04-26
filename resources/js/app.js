@@ -11,6 +11,9 @@ import Vue from 'vue';
 
 Vue.use(InertiaApp);
 
+// Add ziggy route helper
+Vue.prototype.$route = (...args) => route(...args).url();
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,7 +25,15 @@ Vue.use(InertiaApp);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+/**
+ * Global component imports
+ */
+
+// App Components
+Vue.component('app-layout', require('./layouts/app/AppLayout.vue').default);
+
+// Admin Components
+Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
