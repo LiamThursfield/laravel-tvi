@@ -35,7 +35,7 @@
                     :input_required="true"
                     input_type="password"
                     label_text="Password"
-                    v-model="form.email"
+                    v-model="form.password"
                 />
 
                 <div class="mt-6">
