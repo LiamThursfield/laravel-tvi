@@ -53,9 +53,11 @@ class InertiaServiceProvider extends ServiceProvider
             'auth' => function () {
                 return [
                     'user' => Auth::user() ? [
-                        'email' => Auth::user()->email,
-                        'id'    => Auth::user()->id,
-                        'name'  => Auth::user()->name
+                        'email'         => Auth::user()->email,
+                        'first_name'    => Auth::user()->first_name,
+                        'id'            => Auth::user()->id,
+                        'last_name'     => Auth::user()->last_name,
+                        'name'          => Auth::user()->name
                     ] : null
                 ];
             },
