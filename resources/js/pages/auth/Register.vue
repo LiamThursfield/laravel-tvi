@@ -95,16 +95,16 @@
                         Register
                     </button>
 
-                    <a
+                    <inertia-link
                         class="
                             text-gray-900
                             hover:text-indigo-600
                             transition-all ease-in-out duration-300
                         "
-                        href="/login"
+                        :href="$route('login')"
                     >
                         Already registered?
-                    </a>
+                    </inertia-link>
                 </div>
             </form>
         </div>

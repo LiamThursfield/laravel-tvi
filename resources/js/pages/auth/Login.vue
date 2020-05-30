@@ -69,30 +69,30 @@
                         Sign In
                     </button>
 
-                    <a
+                    <inertia-link
                         class="
                             text-gray-900
                             hover:text-indigo-600
                             transition-all ease-in-out duration-300
                         "
-                        href="/password/reset"
+                        :href="$route('password.request')"
                     >
                         Forgot Password?
-                    </a>
+                    </inertia-link>
                 </div>
             </form>
         </div>
 
         <div class="flex justify-end mt-4">
-            <a
+            <inertia-link
                 class="
                     text-gray-300 text-sm tracking-wide
                     hover:text-gray-500
                 "
-                href="/register"
+                :href="$route('register')"
             >
                 Create a new account
-            </a>
+            </inertia-link>
         </div>
     </div>
 </template>
