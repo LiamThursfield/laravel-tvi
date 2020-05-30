@@ -20,33 +20,30 @@
                         md:flex-row md:space-x-2
                     "
                 >
+                    <input-group
+                        class="mt-4"
+                        :error_message="$page.errors.first_name ? $page.errors.first_name[0] : ''"
+                        input_autocomplete="given-name"
+                        :input_autofocus="true"
+                        input_id="first_name"
+                        input_name="first_name"
+                        :input_required="true"
+                        input_type="first_name"
+                        label_text="First Name"
+                        v-model="form.first_name"
+                    />
 
-
-                <input-group
-                    class="mt-4"
-                    :error_message="$page.errors.first_name ? $page.errors.first_name[0] : ''"
-                    input_autocomplete="given-name"
-                    :input_autofocus="true"
-                    input_id="first_name"
-                    input_name="first_name"
-                    :input_required="true"
-                    input_type="first_name"
-                    label_text="First Name"
-                    v-model="form.first_name"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error_message="$page.errors.last_name ? $page.errors.last_name[0] : ''"
-                    input_autocomplete="family-name"
-                    input_id="last_name"
-                    input_name="last_name"
-                    :input_required="true"
-                    input_type="last_name"
-                    label_text="Last Name"
-                    v-model="form.last_name"
-                />
-
+                    <input-group
+                        class="mt-4"
+                        :error_message="$page.errors.last_name ? $page.errors.last_name[0] : ''"
+                        input_autocomplete="family-name"
+                        input_id="last_name"
+                        input_name="last_name"
+                        :input_required="true"
+                        input_type="last_name"
+                        label_text="Last Name"
+                        v-model="form.last_name"
+                    />
                 </div>
 
                 <input-group
