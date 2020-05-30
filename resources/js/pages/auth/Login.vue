@@ -113,7 +113,6 @@
         },
         methods: {
             submit() {
-                console.log('hey');
                 this.$inertia.post(
                     this.$route('login'),
                     this.form
