@@ -10,11 +10,11 @@
 
 ::selection {
     /* WebKit/Blink Browsers */
-    background: theme('colors.gray.900');
+    background: theme('colors.indigo.700');
     color: theme('colors.gray.100');
 }
 ::-moz-selection {
     /* Gecko Browsers */
-    background: theme('colors.gray.900');
+    background: theme('colors.indigo.700');
     color: theme('colors.gray.100');
 }
