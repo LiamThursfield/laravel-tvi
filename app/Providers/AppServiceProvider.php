@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
@@ -58,7 +59,12 @@ class AppServiceProvider extends ServiceProvider
                         'name'  => Auth::user()->name
                     ] : null
                 ];
-            }
+            },
+            'errors' => function () {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object) [];
+            },
         ]);
     }
 }
