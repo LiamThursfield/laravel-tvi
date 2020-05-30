@@ -16,6 +16,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'outline-green': '0 0 0 3px rgba(31, 152, 63, 0.5)',
+        'outline-indigo': '0 0 0 3px rgba(90, 103, 216, 0.5)',
         'outline-white': '0 0 0 3px rgba(255, 255, 255, 0.5)',
       },
       borderRadius: {
