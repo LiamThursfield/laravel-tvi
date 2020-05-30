@@ -66,7 +66,7 @@
                 type: Boolean
             },
             input_class: {
-                default: 'rounded shadow mt-2 px-3 py-2 focus:outline-none focus:shadow-outline-indigo',
+                default: 'rounded shadow mt-2 px-3 py-2 w-full focus:outline-none focus:shadow-outline-indigo',
                 type: String
             },
             input_disabled: {
