@@ -19,7 +19,7 @@
             </svg>
         </div>
 
-        <div class="flex items-center justify-center min-h-screen min-w-full px-4 relative">
+        <div class="flex items-center justify-center min-h-screen min-w-full p-4 relative">
             <slot />
         </div>
     </main>
