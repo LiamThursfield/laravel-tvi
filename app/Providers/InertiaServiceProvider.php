@@ -66,6 +66,12 @@ class InertiaServiceProvider extends ServiceProvider
                     ? Session::get('errors')->getBag('default')->getMessages()
                     : (object) [];
             },
+            'flash' => function () {
+                return [
+                    'status'    => Session::get('status'),
+                    'success'   => Session::get('success'),
+                ];
+            },
         ]);
     }
 
