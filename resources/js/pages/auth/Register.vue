@@ -115,7 +115,7 @@
     import InputGroup from "../../components/core/forms/InputGroup";
 
     export default {
-        name: "Login",
+        name: "AuthRegister",
         components: {InputGroup},
         layout: 'auth-layout',
         data() {

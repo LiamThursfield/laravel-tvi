@@ -96,7 +96,7 @@
     import InputGroup from "../../../components/core/forms/InputGroup";
 
     export default {
-        name: "Login",
+        name: "AuthPasswordReset",
         components: {InputGroup},
         layout: 'auth-layout',
         props: {

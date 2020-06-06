@@ -53,7 +53,7 @@
 
 <script>
     export default {
-        name: "Verify",
+        name: "AuthVerify",
         layout: 'auth-layout',
         props: {
             resent: {

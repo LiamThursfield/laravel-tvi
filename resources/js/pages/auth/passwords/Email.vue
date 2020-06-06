@@ -79,7 +79,7 @@
     import InputGroup from "../../../components/core/forms/InputGroup";
 
     export default {
-        name: "Login",
+        name: "AuthPassowrdEmail",
         components: {InputGroup},
         layout: 'auth-layout',
         data() {
