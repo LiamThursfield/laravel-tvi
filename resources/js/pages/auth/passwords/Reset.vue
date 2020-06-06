@@ -30,6 +30,7 @@
                     class="mt-4"
                     :error_message="$page.errors.password ? $page.errors.password[0] : ''"
                     input_autocomplete="new-password"
+                    :input_autofocus="true"
                     input_id="password"
                     input_name="password"
                     :input_required="true"
