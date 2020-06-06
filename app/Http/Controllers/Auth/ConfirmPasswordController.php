@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ConfirmPasswordController extends Controller
 {
@@ -36,5 +38,15 @@ class ConfirmPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * Display the password confirmation view.
+     *
+     * @return Response
+     */
+    public function showConfirmForm()
+    {
+        return Inertia::render('auth/passwords/Confirm');
     }
 }

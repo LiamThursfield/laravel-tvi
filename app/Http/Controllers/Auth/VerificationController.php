@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class VerificationController extends Controller
 {
@@ -38,5 +43,27 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    /**
+     * Show the email verification notice.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Response|Redirector
+     */
+    public function show(Request $request)
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect($this->redirectPath());
+        }
+
+        return Inertia::render(
+            'auth/Verify',
+            [
+                'resent' => function () use ($request) {
+                    return session('resent') ? true : false;
+                },
+            ]
+        );
     }
 }

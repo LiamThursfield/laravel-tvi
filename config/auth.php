@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -113,5 +113,19 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Verification
+    |--------------------------------------------------------------------------
+    |
+    |
+    | Here you may enable / disable user verification, if true then the
+    | verification route is enabled and the middleware can be applied to
+    | required routes
+    |
+    */
+
+    'user_verification' => true
 
 ];

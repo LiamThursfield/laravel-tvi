@@ -13,6 +13,7 @@ Vue.use(InertiaApp);
 
 // Add ziggy route helper
 Vue.prototype.$route = (...args) => route(...args).url();
+Vue.prototype.$routeCheck = (...args) => route().check(...args);
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,11 +30,10 @@ Vue.prototype.$route = (...args) => route(...args).url();
  * Global component imports
  */
 
-// App Components
+// Layouts
 Vue.component('app-layout', require('./layouts/app/AppLayout.vue').default);
-
-// Admin Components
 Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
+Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

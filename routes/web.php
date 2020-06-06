@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'verify' => config('auth.user_verification')
+]);
 
 
 // App Routes
