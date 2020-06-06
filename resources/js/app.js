@@ -13,6 +13,7 @@ Vue.use(InertiaApp);
 
 // Add ziggy route helper
 Vue.prototype.$route = (...args) => route(...args).url();
+Vue.prototype.$routeCheck = (...args) => route().check(...args);
 
 /**
  * The following block of code may be used to automatically register your
