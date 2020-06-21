@@ -14,21 +14,21 @@
                     </li>
                 </template>
                 <template v-else>
-                    <li>
-                        <a
+                    <li v-if="$routeCheck('login')">
+                        <inertia-link
                             class="hover:text-blue-700"
                             :href="$route('login')"
                         >
                             Login
-                        </a>
+                        </inertia-link>
                     </li>
-                    <li>
-                        <a
+                    <li v-if="$routeCheck('register')">
+                        <inertia-link
                             class="hover:text-blue-700"
                             :href="$route('register')"
                         >
                             Register
-                        </a>
+                        </inertia-link>
                     </li>
                 </template>
             </ul>
