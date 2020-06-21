@@ -18,6 +18,7 @@
                     class="mt-4"
                     :error_message="$page.errors.email ? $page.errors.email[0] : ''"
                     input_autocomplete="email"
+                    :input_autofocus="true"
                     input_id="email"
                     input_name="email"
                     :input_required="true"
