@@ -6,10 +6,10 @@
 
         <title>Admin | Laravel TVI</title>
 
-        <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
+        <link href="{{ mix('/css/admin.css') }}" rel="stylesheet" />
 
         @routes
-        <script src="{{ mix('/js/app.js') }}" defer></script>
+        <script src="{{ mix('/js/app.js' ) }}" defer></script>
     </head>
 
     <body>

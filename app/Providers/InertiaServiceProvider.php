@@ -28,7 +28,7 @@ class InertiaServiceProvider extends ServiceProvider
      */
     protected function setView()
     {
-        if(request()->is('admin/*')){
+        if(request()->is(['admin', 'admin/*'])){
             Inertia::setRootView('admin');
         } elseif (request()->is(['login', 'register', 'password/*'])) {
             Inertia::setRootView('auth');

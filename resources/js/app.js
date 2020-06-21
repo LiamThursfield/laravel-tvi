@@ -9,6 +9,8 @@ require('./bootstrap');
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import Vue from 'vue';
 
+import { store } from './store/admin'
+
 Vue.use(InertiaApp);
 
 // Add ziggy route helper
@@ -35,6 +37,16 @@ Vue.component('app-layout', require('./layouts/app/AppLayout.vue').default);
 Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
 Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);
 
+// Admin
+Vue.component('side-menu', require('./components/admin/menus/SideMenu.vue').default);
+Vue.component('top-menu', require('./components/admin/menus/TopMenu.vue').default);
+
+// Icons
+Vue.component('icon-close', require('./components/core/icons/IconClose.vue').default);
+Vue.component('icon-hamburger-menu', require('./components/core/icons/IconHamburgerMenu.vue').default);
+Vue.component('icon-home', require('./components/core/icons/IconHome.vue').default);
+Vue.component('icon-settings', require('./components/core/icons/IconSettings.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -44,6 +56,7 @@ Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);
 const app = document.getElementById('app');
 
 new Vue({
+    store,
     render: h => h(InertiaApp, {
         props: {
             initialPage: JSON.parse(app.dataset.page),

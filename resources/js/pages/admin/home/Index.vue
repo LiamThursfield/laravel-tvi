@@ -1,8 +1,12 @@
 <template>
-    <div>
-        <p>Admin</p>
-        <p>{{ $page.auth.user.name }}</p>
-        <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white" :href="$route('logout')" method="post">Logout</inertia-link>
+    <div class="bg-white p-6 shadow-sm rounded-lg">
+        <h1 class="font-semibold text-gray-850">
+            Welcome
+        </h1>
+
+        <p class="mt-2">
+            Lorem ipsum dolar amet...
+        </p>
     </div>
 </template>
 

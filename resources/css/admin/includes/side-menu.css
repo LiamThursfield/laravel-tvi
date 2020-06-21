@@ -1,0 +1,49 @@
+/*
+ * Admin - Side Menu
+ */
+
+.side-menu {
+    /** Mobile View **/
+    @apply absolute inset-0 overflow-y-auto z-10;
+
+
+    @apply bg-indigo-900 min-h-full pb-8 px-4 shadow-sm w-full;
+    @apply duration-300 ease-in-out transition-transform;
+
+    &:not(.side-menu-open) {
+        transform: translateX(-100%);
+    }
+
+    .menu-link {
+        @apply flex flex-row items-center px-4 py-2 rounded text-gray-500;
+        @apply transition-all ease-in-out duration-150;
+
+        &:hover {
+            @apply bg-indigo-800 text-gray-400;
+        }
+
+        &.menu-link-active,
+        &.menu-link-active:hover {
+            @apply bg-white text-indigo-900
+        }
+    }
+
+    .menu-separator {
+        @apply border-b border-indigo-200 mx-4 my-6 opacity-25;
+    }
+
+    .menu-subheading {
+        @apply opacity-75 px-4 text-gray-500 text-xs tracking-widest uppercase;
+    }
+}
+
+/** Desktop View **/
+@screen lg {
+    .side-menu {
+        @apply inset-auto overflow-hidden pb-2 px-2 relative w-64;
+
+        &:not(.side-menu-open) {
+            transform: translateX(0);
+        }
+    }
+}
