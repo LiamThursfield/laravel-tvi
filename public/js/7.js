@@ -90,16 +90,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "max-w-md w-full" }, [
-    _c("div", { staticClass: "bg-gray-200 py-8 rounded-md shadow-md" }, [
-      _c(
-        "h1",
-        {
-          staticClass:
-            "font-bold pb-6 px-6 text-center text-gray-700 text-2xl tracking-wide"
-        },
-        [_vm._v("\n            Verify Your Email Address\n        ")]
-      ),
+  return _c("div", { staticClass: "auth-card-container" }, [
+    _c("div", { staticClass: "auth-card pb-8" }, [
+      _c("h1", { staticClass: "auth-header" }, [
+        _vm._v("\n            Verify Your Email Address\n        ")
+      ]),
       _vm._v(" "),
       _vm.resent
         ? _c("p", { staticClass: "pb-8 px-6 text-center text-green-700" }, [

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"72e337d55b3c5d396916","1":"06c7c3848233c1b13387","2":"520da248cd4fdc9d5e21","3":"f6ab5580b6f5981d6d02","4":"8ae966ea91ef08710e88","5":"6ee2bf11c748c77ae4db","6":"497eba89e068a8e427b4","7":"55c39d1786c385f5b1c3"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"4c52914bca65c4754bd4","1":"8eea50696f4b94d292c1","2":"602baf0d5233c9a8c4ad","3":"b827e1d341c8d7ec46f9","4":"4522727d26b623705662","5":"6ee2bf11c748c77ae4db","6":"497eba89e068a8e427b4","7":"311eae9d6d8cba4704d4"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2423,7 +2423,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -22245,43 +22244,29 @@ var render = function() {
     "main",
     { staticClass: "bg-gray-800", attrs: { id: "auth-layout" } },
     [
-      _c(
-        "div",
-        {
-          staticStyle: {
-            width: "100%",
-            position: "absolute",
-            top: "0",
-            left: "0"
-          }
-        },
-        [
-          _c("div", {
-            staticClass: "bg-indigo-600",
-            staticStyle: { height: "35vh" }
-          }),
-          _vm._v(" "),
-          _c(
-            "svg",
-            {
-              staticClass: "text-indigo-600 fill-current",
+      _c("div", { staticClass: "absolute w-full inset-0" }, [
+        _c("div", { staticClass: "auth-background-container bg-indigo-600" }),
+        _vm._v(" "),
+        _c(
+          "svg",
+          {
+            staticClass: "text-indigo-600 fill-current",
+            attrs: {
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 1440 320"
+            }
+          },
+          [
+            _c("path", {
               attrs: {
-                xmlns: "http://www.w3.org/2000/svg",
-                viewBox: "0 0 1440 320"
+                "fill-opacity": "1",
+                d:
+                  "M0,64L120,69.3C240,75,480,85,720,85.3C960,85,1200,75,1320,69.3L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
               }
-            },
-            [
-              _c("path", {
-                attrs: {
-                  "fill-opacity": "1",
-                  d:
-                    "M0,64L120,69.3C240,75,480,85,720,85.3C960,85,1200,75,1320,69.3L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
-                }
-              })
-            ]
-          )
-        ]
-      ),
+            })
+          ]
+        )
+      ]),
       _vm._v(" "),
       _c(
         "div",

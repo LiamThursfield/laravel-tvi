@@ -3,10 +3,9 @@
         id="auth-layout"
         class="bg-gray-800"
     >
-        <div style="width: 100%; position: absolute; top: 0; left: 0;">
+        <div class="absolute w-full inset-0">
             <div
-                class="bg-indigo-600"
-                style="height: 35vh;"
+                class="auth-background-container bg-indigo-600"
             />
             <svg
                 class="text-indigo-600 fill-current"

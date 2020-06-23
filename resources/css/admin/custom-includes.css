@@ -2,4 +2,5 @@
  * Admin - Custom Includes
  */
 
+@import "./includes/auth.css";
 @import "./includes/side-menu.css";

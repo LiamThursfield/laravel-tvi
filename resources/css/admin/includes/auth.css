@@ -1,0 +1,21 @@
+/**
+ * Admin - Auth pages
+ */
+
+#auth-layout {
+    .auth-background-container {
+        height: 35vh;
+    }
+
+    .auth-card {
+        @apply bg-gray-200 rounded-md shadow-md;
+    }
+
+    .auth-card-container {
+        @apply max-w-md w-full;
+    }
+
+    .auth-header {
+        @apply font-bold pb-6 pt-8 px-6 text-center text-gray-700 text-2xl tracking-wide;
+    }
+}

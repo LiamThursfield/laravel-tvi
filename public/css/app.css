@@ -749,6 +749,41 @@ html {
  * Admin - Custom Includes
  */
 
+/**
+ * Admin - Auth pages
+ */
+
+#auth-layout .auth-background-container {
+  height: 35vh;
+}
+
+#auth-layout .auth-card {
+  --bg-opacity: 1;
+  background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-opacity));
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#auth-layout .auth-card-container {
+  max-width: 28rem;
+  width: 100%;
+}
+
+#auth-layout .auth-header {
+  font-weight: 700;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  text-align: center;
+  --text-opacity: 1;
+  color: #4a5568;
+  color: rgba(74, 85, 104, var(--text-opacity));
+  font-size: 1.5rem;
+  letter-spacing: 0.025em;
+}
+
 /*
  * Admin - Side Menu
  */

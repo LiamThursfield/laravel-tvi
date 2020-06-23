@@ -1,10 +1,10 @@
 <template>
-    <div class="max-w-md w-full">
+    <div class="auth-card-container">
         <div
-            class="bg-gray-200 rounded-md shadow-md"
+            class="auth-card"
         >
             <h1
-                class="font-bold pb-6 pt-8 px-6 text-center text-gray-700 text-2xl tracking-wide"
+                class="auth-header"
             >
                 Welcome
             </h1>

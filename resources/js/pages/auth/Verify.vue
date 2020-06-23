@@ -1,10 +1,10 @@
 <template>
-    <div class="max-w-md w-full">
+    <div class="auth-card-container">
         <div
-            class="bg-gray-200 py-8 rounded-md shadow-md"
+            class="auth-card pb-8"
         >
             <h1
-                class="font-bold pb-6 px-6 text-center text-gray-700 text-2xl tracking-wide"
+                class="auth-header"
             >
                 Verify Your Email Address
             </h1>
