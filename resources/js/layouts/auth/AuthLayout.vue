@@ -1,5 +1,6 @@
 <template>
     <main
+        id="auth-layout"
         class="bg-gray-800"
     >
         <div style="width: 100%; position: absolute; top: 0; left: 0;">

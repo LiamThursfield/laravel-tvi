@@ -1,5 +1,6 @@
 <template>
     <main
+        id="admin-layout"
         class="flex min-h-screen"
     >
         <side-menu/>

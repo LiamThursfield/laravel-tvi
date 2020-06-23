@@ -4,19 +4,7 @@ const tailwindcss = require('tailwindcss');
 /** JS **/
 mix.js('resources/js/app.js', 'public/js').version();
 
-/** CSS - Admin **/
-mix.postCss('resources/css/admin.css', 'public/css')
-    .options({
-        postCss: [
-            require('postcss-import'),
-            require('postcss-nested'),
-            tailwindcss('./tailwind.config.js'),
-            require('autoprefixer')
-        ]
-    })
-    .version();
-
-/** CSS - App **/
+/** CSS **/
 mix.postCss('resources/css/app.css', 'public/css')
     .options({
         postCss: [
@@ -28,17 +16,6 @@ mix.postCss('resources/css/app.css', 'public/css')
     })
     .version();
 
-/** CSS - Auth **/
-mix.postCss('resources/css/auth.css', 'public/css')
-    .options({
-        postCss: [
-            require('postcss-import'),
-            require('postcss-nested'),
-            tailwindcss('./tailwind.config.js'),
-            require('autoprefixer')
-        ]
-    })
-    .version();
 
 /** Babel **/
 mix.babelConfig({

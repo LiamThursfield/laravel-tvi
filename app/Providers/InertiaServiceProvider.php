@@ -24,17 +24,11 @@ class InertiaServiceProvider extends ServiceProvider
 
 
     /**
-     * Set the root view based on whether the route is for app, auth or admin
+     * Set the root view
      */
     protected function setView()
     {
-        if(request()->is(['admin', 'admin/*'])){
-            Inertia::setRootView('admin');
-        } elseif (request()->is(['login', 'register', 'password/*'])) {
-            Inertia::setRootView('auth');
-        } else {
-            Inertia::setRootView('app');
-        }
+        Inertia::setRootView('app');
     }
 
 

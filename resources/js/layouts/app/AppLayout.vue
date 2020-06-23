@@ -1,5 +1,7 @@
 <template>
-    <main>
+    <main
+        id="app-layout"
+    >
         <slot />
     </main>
 </template>
