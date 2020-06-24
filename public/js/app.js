@@ -21925,7 +21925,7 @@ var render = function() {
         "button",
         {
           staticClass:
-            "\n                    text-indigo-900\n                    lg:hidden\n                    focus:outline-none focus:text-indigo-700\n                    hover:text-indigo-700\n                ",
+            "\n            text-indigo-900\n            lg:hidden\n            focus:outline-none focus:text-indigo-700\n            hover:text-indigo-700\n        ",
           attrs: { type: "button" },
           on: { click: _vm.showMobileSideMenu }
         },
@@ -21943,7 +21943,7 @@ var render = function() {
         "inertia-link",
         {
           staticClass:
-            "\n            text-indigo-600\n            hover:text-indigo-400\n        ",
+            "\n            text-gray-600\n            hover:text-indigo-600\n        ",
           attrs: { href: _vm.$route("logout"), method: "post" }
         },
         [_vm._v("\n        Logout\n    ")]

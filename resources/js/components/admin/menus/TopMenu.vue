@@ -2,11 +2,11 @@
     <nav class="bg-white flex flex-row h-14 items-center px-4 relative shadow-sm">
         <button
             class="
-                        text-indigo-900
-                        lg:hidden
-                        focus:outline-none focus:text-indigo-700
-                        hover:text-indigo-700
-                    "
+                text-indigo-900
+                lg:hidden
+                focus:outline-none focus:text-indigo-700
+                hover:text-indigo-700
+            "
             type="button"
             @click="showMobileSideMenu"
         >
@@ -21,8 +21,8 @@
 
         <inertia-link
             class="
-                text-indigo-600
-                hover:text-indigo-400
+                text-gray-600
+                hover:text-indigo-600
             "
             :href="$route('logout')"
             method="post"
