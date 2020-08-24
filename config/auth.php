@@ -126,6 +126,6 @@ return [
     |
     */
 
-    'user_verification' => true
+    'user_verification' => false
 
 ];

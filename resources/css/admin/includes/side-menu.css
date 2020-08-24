@@ -8,33 +8,64 @@
         @apply absolute inset-0 overflow-y-auto z-10;
 
 
-        @apply bg-indigo-900 min-h-full pb-8 px-4 shadow-sm w-full;
+        @apply min-h-full pb-8 px-4 shadow-subtle w-full;
         @apply duration-300 ease-in-out transition-transform;
+
+        background: var(--side-menu-color-base);
 
         &:not(.side-menu-open) {
             transform: translateX(-100%);
         }
 
+        .logo {
+            @apply flex font-bold h-14 items-center justify-center text-xl;
+            color: var(--side-menu-color-logo);
+        }
+
         .menu-link {
-            @apply flex flex-row items-center px-4 py-2 rounded text-gray-500;
+            @apply flex flex-row items-center px-4 py-2 rounded;
             @apply transition-all ease-in-out duration-150;
 
+            background: var(--side-menu-color-base);
+            color: var(--side-menu-color-base-contrast);
+
+            &:not(:last-of-type) {
+                @apply mb-1;
+            }
+
             &:hover {
-                @apply bg-indigo-800 text-gray-400;
+                background: var(--side-menu-color-hover);
+                color: var(--side-menu-color-hover-contrast);
             }
 
             &.menu-link-active,
             &.menu-link-active:hover {
-                @apply bg-white text-indigo-900
+                background: var(--side-menu-color-active);
+                color: var(--side-menu-color-active-contrast);
             }
         }
 
         .menu-separator {
-            @apply border-b border-indigo-200 mx-4 my-6 opacity-25;
+            @apply border-b mx-4 my-6;
+            border-color: var(--side-menu-color-separator);
         }
 
         .menu-subheading {
-            @apply opacity-75 px-4 text-gray-500 text-xs tracking-widest uppercase;
+            @apply px-4 text-xs tracking-widest uppercase;
+            color: var(--side-menu-color-subheading);
+        }
+
+        .menu-toggle {
+            color: var(--side-menu-color-toggle);
+
+            &:focus {
+                @apply outline-none;
+            }
+
+            &:focus,
+            &:hover {
+                color: var(--side-menu-color-toggle-active);
+            }
         }
     }
 }

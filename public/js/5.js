@@ -50,7 +50,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-white p-6 shadow-sm rounded-lg" }, [
+    return _c("div", { staticClass: "bg-white p-6 shadow-subtle rounded-lg" }, [
       _c("h1", { staticClass: "font-semibold text-gray-850" }, [
         _vm._v("\n        Welcome\n    ")
       ]),

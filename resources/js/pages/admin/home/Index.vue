@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-6 shadow-sm rounded-lg">
+    <div class="bg-white p-6 shadow-subtle rounded-lg">
         <h1 class="font-semibold text-gray-850">
             Welcome
         </h1>

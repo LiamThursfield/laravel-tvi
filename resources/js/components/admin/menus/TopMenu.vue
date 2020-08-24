@@ -1,11 +1,12 @@
 <template>
-    <nav class="bg-white flex flex-row h-14 items-center px-4 relative shadow-sm">
+    <nav
+        class="top-menu"
+    >
         <button
             class="
-                text-indigo-900
+                menu-link
                 lg:hidden
-                focus:outline-none focus:text-indigo-700
-                hover:text-indigo-700
+                focus:outline-none
             "
             type="button"
             @click="showMobileSideMenu"
@@ -13,17 +14,14 @@
             <icon-hamburger-menu />
         </button>
 
-        <p class="ml-auto text-indigo-900">
+        <p class="ml-auto">
             {{ $page.auth.user.first_name }}
         </p>
 
-        <span class="text-indigo-300 px-2">|</span>
+        <span class="text-gray-300 px-2">|</span>
 
         <inertia-link
-            class="
-                text-gray-600
-                hover:text-indigo-600
-            "
+            class="menu-link"
             :href="$route('logout')"
             method="post"
         >

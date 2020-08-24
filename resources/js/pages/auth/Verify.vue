@@ -25,7 +25,7 @@
                 <br>
                 <inertia-link
                     class="
-                        cursor-pointer text-indigo-600
+                        cursor-pointer text-cyan-500
                         hover:underline
                     "
                     :href="$route('verification.resend')"

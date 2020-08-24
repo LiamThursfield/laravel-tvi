@@ -2,3 +2,5 @@
  * Core - Custom Includes
  */
 @import "./npprogress.css";
+@import "./pagination.css";
+@import "./table.css";

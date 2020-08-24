@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
+use App\Interfaces\RoleInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\UrlWindow;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -20,6 +25,93 @@ class InertiaServiceProvider extends ServiceProvider
         $this->setView();
         $this->versionAssets();
         $this->shareData();
+        $this->registerLengthAwarePaginator();
+    }
+
+    protected function registerLengthAwarePaginator()
+    {
+        $this->app->bind(LengthAwarePaginator::class, function ($app, $values) {
+            return new class(...array_values($values)) extends LengthAwarePaginator {
+                public function only(...$attributes)
+                {
+                    return $this->transform(function ($item) use ($attributes) {
+                        return $item->only($attributes);
+                    });
+                }
+
+                public function transform($callback)
+                {
+                    $this->items->transform($callback);
+
+                    return $this;
+                }
+
+                public function toArray()
+                {
+                    return [
+                        'data' => $this->items->toArray(),
+                        'pagination' => [
+                            'current_page'  => $this->currentPage(),
+                            'last_page'     => $this->lastPage(),
+                            'links'         => $this->links(),
+                            'per_page'      => $this->perPage(),
+                            'total'         => $this->total(),
+                        ]
+                    ];
+                }
+
+                public function links($view = null, $data = [])
+                {
+                    $this->appends(Request::all());
+
+                    $window = UrlWindow::make($this);
+
+                    $elements = array_filter([
+                        $window['first'],
+                        is_array($window['slider']) ? '...' : null,
+                        $window['slider'],
+                        is_array($window['last']) ? '...' : null,
+                        $window['last'],
+                    ]);
+
+                    return Collection::make($elements)->flatMap(function ($item) {
+                        if (is_array($item)) {
+                            return Collection::make($item)->map(function ($url, $page) {
+                                return [
+                                    'url' => $url,
+                                    'label' => $page,
+                                    'active' => $this->currentPage() === $page,
+                                ];
+                            });
+                        } else {
+                            return [
+                                [
+                                    'url' => null,
+                                    'label' => '...',
+                                    'active' => false,
+                                ],
+                            ];
+                        }
+                    })->prepend([
+                        'url' => $this->previousPageUrl(),
+                        'label' => 'Previous',
+                        'active' => false,
+                    ])->push([
+                        'url' => $this->nextPageUrl(),
+                        'label' => 'Next',
+                        'active' => false,
+                    ])->prepend([
+                        'url' => $this->currentPage() === 1 ? null : $this->url(1),
+                        'label' => 'First',
+                        'active' => false,
+                    ])->push([
+                        'url' => $this->currentPage() === $this->lastPage() ? null : $this->url($this->lastPage()),
+                        'label' => 'Last',
+                        'active' => false,
+                    ]);
+                }
+            };
+        });
     }
 
 
@@ -51,7 +143,9 @@ class InertiaServiceProvider extends ServiceProvider
                         'first_name'    => Auth::user()->first_name,
                         'id'            => Auth::user()->id,
                         'last_name'     => Auth::user()->last_name,
-                        'name'          => Auth::user()->name
+                        'name'          => Auth::user()->name,
+                        'permissions'   => Auth::user()->permissions_array,
+                        'super'         => Auth::user()->hasRole(RoleInterface::SUPER),
                     ] : null
                 ];
             },

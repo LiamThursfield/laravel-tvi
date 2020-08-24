@@ -29,9 +29,9 @@
                 <div class="flex flex-row items-center justify-between mt-4 py-6">
                     <button
                         class="
-                            bg-indigo-600 px-4 py-2 rounded shadow text-white
-                            focus:outline-none focus:shadow-outline-indigo
-                            hover:bg-indigo-700 hover:shadow-lg
+                            bg-theme-primary px-4 py-2 rounded shadow text-theme-primary-contrast
+                            focus:outline-none focus:shadow-outline-primary
+                            hover:bg-cyan-800 hover:shadow-lg
                             transition-all ease-in-out duration-300
                         "
                         type="submit"

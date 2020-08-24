@@ -1,6 +1,6 @@
 <template>
     <main
-        id="app-layout"
+        id="website-layout"
     >
         <slot />
     </main>
@@ -8,6 +8,6 @@
 
 <script>
     export default {
-        name: "AppLayout",
+        name: "WebsiteLayout",
     }
 </script>

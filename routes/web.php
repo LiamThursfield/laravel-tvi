@@ -20,8 +20,8 @@ Auth::routes([
 
 // App Routes
 Route::group([
-    'as'          => 'app.',
-    'namespace'     => 'App',
+    'as'        => 'website.',
+    'namespace' => 'Website',
 ], function() {
 
     Route::get('/', 'HomeController@index')->name('index');
@@ -38,5 +38,9 @@ Route::group([
 ], function () {
 
     Route::get('/', 'HomeController@index')->name('index');
+
+    Route::resource('users', 'UserController')->only([
+        'index'
+    ])->middleware('can:view users');
 
 });

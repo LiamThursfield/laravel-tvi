@@ -1,14 +1,14 @@
 <template>
     <main
         id="auth-layout"
-        class="bg-gray-800"
+        class="bg-theme-base-contrast"
     >
-        <div class="absolute w-full inset-0">
+        <div class="absolute inset-0  w-full">
             <div
-                class="auth-background-container bg-indigo-600"
+                class="auth-background-container bg-theme-primary"
             />
             <svg
-                class="text-indigo-600 fill-current"
+                class="text-cyan-500 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1440 320"
             >

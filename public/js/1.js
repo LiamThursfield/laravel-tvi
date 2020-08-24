@@ -76,7 +76,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Boolean
     },
     input_class: {
-      "default": 'rounded shadow mt-2 px-3 py-2 w-full focus:outline-none focus:shadow-outline-indigo',
+      "default": 'rounded shadow mt-2 px-3 py-2 w-full focus:outline-none focus:shadow-outline-primary',
       type: String
     },
     input_disabled: {
@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String
     },
     label_class: {
-      "default": 'font-bold text-gray-700 text-sm tracking-wider',
+      "default": 'font-bold text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
     label_text: {
@@ -543,7 +543,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "\n                        bg-indigo-600 px-4 py-2 rounded shadow text-white\n                        focus:outline-none focus:shadow-outline-indigo\n                        hover:bg-indigo-700 hover:shadow-lg\n                        transition-all ease-in-out duration-300\n                    ",
+                    "\n                        bg-theme-primary px-4 py-2 rounded shadow text-theme-primary-contrast\n                        focus:outline-none focus:shadow-outline-primary\n                        hover:bg-cyan-800 hover:shadow-lg\n                        transition-all ease-in-out duration-300\n                    ",
                   attrs: { type: "submit" }
                 },
                 [_vm._v("\n                    Register\n                ")]
@@ -553,7 +553,7 @@ var render = function() {
                 "inertia-link",
                 {
                   staticClass:
-                    "\n                        text-gray-900\n                        hover:text-indigo-600\n                        transition-all ease-in-out duration-300\n                    ",
+                    "\n                        text-gray-900\n                        hover:text-cyan-500\n                        transition-all ease-in-out duration-300\n                    ",
                   attrs: { href: _vm.$route("login") }
                 },
                 [

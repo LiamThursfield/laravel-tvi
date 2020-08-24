@@ -40,12 +40,12 @@
                 />
 
                 <div class="mt-6">
-                    <label class="cursor-pointer flex font-bold inline-block items-center text-gray-700">
+                    <label class="cursor-pointer flex font-bold inline-block items-center text-theme-base-contrast">
                         <input
                             id="remember"
                             class="
                                 leading-tight mr-2
-                                focus:outline-none focus:shadow-outline-indigo
+                                focus:outline-none focus:shadow-outline-primary
                             "
                             name="remember"
                             type="checkbox"
@@ -60,9 +60,9 @@
                 <div class="flex flex-row items-center justify-between mt-4 py-6">
                     <button
                         class="
-                            bg-indigo-600 px-4 py-2 rounded shadow text-white
-                            focus:outline-none focus:shadow-outline-indigo
-                            hover:bg-indigo-700 hover:shadow-lg
+                            bg-theme-primary px-4 py-2 rounded shadow text-theme-primary-contrast
+                            focus:outline-none focus:shadow-outline-primary
+                            hover:bg-cyan-800 hover:shadow-lg
                             transition-all ease-in-out duration-300
                         "
                         type="submit"
@@ -73,7 +73,7 @@
                     <inertia-link
                         class="
                             text-gray-900
-                            hover:text-indigo-600
+                            hover:text-cyan-500
                             transition-all ease-in-out duration-300
                         "
                         :href="$route('password.request')"

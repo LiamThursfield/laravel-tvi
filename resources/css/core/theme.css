@@ -1,8 +1,105 @@
 /**
  * Core - Theme
- * Define colors etc.
+ * Define colors, shadows etc.
  */
 
 :root {
-    --nprogress-color: theme('colors.indigo.600');
+    /**
+     * Colors (Tailwind config)
+     */
+    --color-base                    : theme('colors.gray.200');
+    --color-base-contrast           : theme('colors.navy.850');
+    --color-card                    : theme('colors.white');
+    --color-card-contrast           : theme('colors.navy.850');
+    --color-danger                  : theme('colors.red.600');
+    --color-danger-contrast         : theme('colors.white');
+    --color-danger-hover            : theme('colors.red.700');
+    --color-danger-hover-contrast   : theme('colors.white');
+    --color-info                    : theme('colors.yellow.300');
+    --color-info-contrast           : theme('colors.white');
+    --color-info-hover              : theme('colors.cyan.800');
+    --color-info-hover-contrast     : theme('colors.yellow-400');
+    --color-primary                 : theme('colors.cyan.500');
+    --color-primary-contrast        : theme('colors.white');
+    --color-primary-hover           : theme('colors.cyan.800');
+    --color-primary-hover-contrast  : theme('colors.white');
+    --color-success                 : theme('colors.green.500');
+    --color-success-contrast        : theme('colors.white');
+    --color-success-hover           : theme('colors.green.600');
+    --color-success-hover-contrast  : theme('colors.white');
+    --color-warning                 : theme('colors.orange.500');
+    --color-warning-contrast        : theme('colors.white');
+    --color-warning-hover           : theme('colors.orange.600');
+    --color-warning-hover-contrast  : theme('colors.white');
+
+    /**
+     * Menu - Side
+     */
+    --side-menu-color-active            : theme('colors.navy.600');
+    --side-menu-color-active-contrast   : theme('colors.navy.100');
+    --side-menu-color-base              : theme('colors.navy.850');
+    --side-menu-color-base-contrast     : theme('colors.navy.300');
+    --side-menu-color-hover             : theme('colors.navy.600');
+    --side-menu-color-hover-contrast    : theme('colors.navy.100');
+    --side-menu-color-logo              : theme('colors.white');
+    --side-menu-color-separator         : theme('colors.navy.600');
+    --side-menu-color-subheading        : theme('colors.navy.400');
+    --side-menu-color-toggle            : theme('colors.white');
+    --side-menu-color-toggle-active     : theme('colors.theme.primary');
+
+    /**
+     * Menu - Top
+     */
+    --top-menu-color-base            : theme('colors.white');
+    --top-menu-color-base-contrast   : theme('colors.theme.base-contrast');
+    --top-menu-color-active          : theme('colors.theme.primary');
+
+
+    /**
+     * NProgress
+     */
+    --nprogress-color: theme('colors.theme.primary');
+
+    /**
+     * Pagination
+     */
+    --pagination-color-active            : theme('colors.theme.primary');
+    --pagination-color-active-border     : theme('colors.theme.primary');
+    --pagination-color-active-contrast   : theme('colors.theme.primary-contrast');
+    --pagination-color-base              : theme('colors.white');
+    --pagination-color-base-border       : theme('colors.navy.100');
+    --pagination-color-base-contrast     : theme('colors.navy.300');
+    --pagination-color-hover             : theme('colors.cyan.200');
+    --pagination-color-hover-border      : theme('colors.cyan.300');
+    --pagination-color-hover-contrast    : theme('colors.white');
+
+    /**
+     * Table
+     */
+    --table-color-alt-body              : theme('colors.gray.100');
+    --table-color-alt-body-contrast     : theme('colors.theme.base-contrast');
+    --table-color-body                  : none;
+    --table-color-body-border           : theme('colors.gray.200');
+    --table-color-body-contrast         : theme('colors.theme.base-contrast');
+    --table-color-body-hover            : theme('colors.gray.200');
+    --table-color-body-hover-contrast   : theme('colors.theme.base-contrast');
+    --table-color-header                : theme('colors.gray.100');
+    --table-color-header-border         : theme('colors.gray.200');
+    --table-color-header-contrast       : theme('colors.gray.600');
+    --table-padding-body-x              : theme('spacing.6');
+    --table-padding-body-y              : theme('spacing.3');
+    --table-padding-header-x            : theme('spacing.6');
+    --table-padding-header-y            : 0.375rem; /** theme('spacing.1.5'); **/
+
+    /**
+     * Selection
+     */
+    --selection-color               : theme('colors.cyan.600');
+    --selection-color-contrast      : theme('colors.gray.100');
+
+    /**
+     * Shadows
+     */
+    --shadow-outline-primary : theme('boxShadow.outline-cyan');
+
 }

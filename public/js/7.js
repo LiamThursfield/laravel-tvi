@@ -123,7 +123,7 @@ var render = function() {
             "inertia-link",
             {
               staticClass:
-                "\n                    cursor-pointer text-indigo-600\n                    hover:underline\n                ",
+                "\n                    cursor-pointer text-cyan-500\n                    hover:underline\n                ",
               attrs: { href: _vm.$route("verification.resend"), method: "post" }
             },
             [

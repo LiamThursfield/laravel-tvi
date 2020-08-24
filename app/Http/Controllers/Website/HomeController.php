@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -15,6 +15,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('app/home/Index');
+        return Inertia::render('website/home/Index');
     }
 }

@@ -66,7 +66,7 @@
                 type: Boolean
             },
             input_class: {
-                default: 'rounded shadow mt-2 px-3 py-2 w-full focus:outline-none focus:shadow-outline-indigo',
+                default: 'rounded shadow mt-2 px-3 py-2 w-full focus:outline-none focus:shadow-outline-primary',
                 type: String
             },
             input_disabled: {
@@ -98,7 +98,7 @@
                 type: String
             },
             label_class: {
-                default: 'font-bold text-gray-700 text-sm tracking-wider',
+                default: 'font-bold text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
             label_text: {

@@ -16,6 +16,34 @@ Vue.use(InertiaApp);
 // Add ziggy route helper
 Vue.prototype.$route = (...args) => route(...args).url();
 Vue.prototype.$routeCheck = (...args) => route().check(...args);
+Vue.prototype.$routeCurrent = (...args) => route().current(...args);
+
+Vue.mixin({
+    methods: {
+        /**
+         * Check whether a user has a given permission
+         * @param permission - dot notation permission e.g. users.view
+         * @returns {boolean}
+         */
+        userCan(permission = '') {
+            try {
+                if (this.$page.auth.user.super) {
+                    return true;
+                }
+
+                // Get the value of the permission - if set
+                let result =  permission.split('.').reduce(function(prev, curr) {
+                    return prev ? prev[curr] : null
+                }, this.$page.auth.user.permissions || self);
+
+                // Parse the result as a bool
+                return !!result;
+            } catch (e) {
+                return false;
+            }
+        }
+    }
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -33,19 +61,21 @@ Vue.prototype.$routeCheck = (...args) => route().check(...args);
  */
 
 // Layouts
-Vue.component('app-layout', require('./layouts/app/AppLayout.vue').default);
 Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
 Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);
+Vue.component('website-layout', require('./layouts/website/WebsiteLayout.vue').default);
 
 // Admin
 Vue.component('side-menu', require('./components/admin/menus/SideMenu.vue').default);
 Vue.component('top-menu', require('./components/admin/menus/TopMenu.vue').default);
 
 // Icons
-Vue.component('icon-close', require('./components/core/icons/IconClose.vue').default);
-Vue.component('icon-hamburger-menu', require('./components/core/icons/IconHamburgerMenu.vue').default);
-Vue.component('icon-home', require('./components/core/icons/IconHome.vue').default);
-Vue.component('icon-settings', require('./components/core/icons/IconSettings.vue').default);
+// Autoload any icons inside /components/core/icons
+const iconFiles = require.context('./components/core/icons', true, /\.vue$/i);
+iconFiles.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], iconFiles(key).default));
+
+// Core
+Vue.component('pagination', require('./components/core/pagination/Pagination.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

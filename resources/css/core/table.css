@@ -1,0 +1,55 @@
+/*
+ * Table
+ */
+
+.table {
+    &.table-striped {
+        tbody {
+            tr:nth-child(even) {
+                background-color: var(--table-color-alt-body);
+                color: var(--table-color-alt-body-contrast);
+            }
+        }
+    }
+
+    &.table-hover {
+        tbody {
+            tr {
+                &:hover {
+                    background-color: var(--table-color-body-hover);
+                    color: var(--table-color-body-hover-contrast);
+                }
+            }
+        }
+    }
+
+    tbody {
+        td {
+            padding: var(--table-padding-body-y)  var(--table-padding-body-x);
+        }
+
+        tr {
+            @apply border-b;
+            background-color: var(--table-color-body);
+            border-color: var(--table-color-body-border);
+            color: var(--table-color-body-contrast);
+        }
+    }
+
+    thead {
+        @apply border-b border-t;
+        background-color: var(--table-color-header);
+        border-color: var(--table-color-header-border);
+        color: var(--table-color-header-contrast);
+
+
+        th {
+            @apply font-normal;
+            padding: var(--table-padding-header-y)  var(--table-padding-header-x);
+        }
+
+        tr {
+            @apply text-left text-sm tracking-wide;
+        }
+    }
+}

@@ -1,12 +1,12 @@
 <template>
-    <div class="bg-gray-200 flex flex-col min-h-screen min-w-screen">
+    <div class="bg-theme-base flex flex-col min-h-screen min-w-screen">
 
         <nav class="flex flex-row justify-end px-6 py-4">
-            <ul class="flex flex-row space-x-4 text-gray-600">
+            <ul class="flex flex-row space-x-4 text-theme-base-contrast">
                 <template v-if="$page.auth.user">
                     <li>
                         <a
-                            class="hover:text-blue-700"
+                            class="hover:text-theme-primary"
                             :href="$route('admin.index')"
                         >
                             Admin
@@ -16,7 +16,7 @@
                 <template v-else>
                     <li v-if="$routeCheck('login')">
                         <inertia-link
-                            class="hover:text-blue-700"
+                            class="hover:text-theme-primary"
                             :href="$route('login')"
                         >
                             Login
@@ -24,7 +24,7 @@
                     </li>
                     <li v-if="$routeCheck('register')">
                         <inertia-link
-                            class="hover:text-blue-700"
+                            class="hover:text-theme-primary"
                             :href="$route('register')"
                         >
                             Register
@@ -35,14 +35,19 @@
         </nav>
 
         <!-- Content Section -->
-        <section class="flex flex-1 flex-col items-center justify-center">
-            <h1 class="font-black text-6xl">
+        <section class="flex flex-1 flex-col items-center justify-center p-4">
+            <h1
+                class="
+                    font-black text-center text-3xl
+                    md:leading-snug md:text-6xl
+                "
+            >
                 {{ $page.app.name || 'Laravel TVI' }}
             </h1>
-            <ul class="border-gray-400 border-t flex flex-row pt-4 space-x-6 text-gray-600 text-lg">
+            <ul class="border-theme-base-contrast border-t flex flex-row mt-4 pt-4 space-x-6 text-theme-base-contrast md:text-lg">
                 <li>
                     <a
-                        class="hover:text-blue-700"
+                        class="hover:text-theme-primary"
                         href="https://laravel.com/docs/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -52,7 +57,7 @@
                 </li>
                 <li>
                     <a
-                        class="hover:text-blue-700"
+                        class="hover:text-theme-primary"
                         href="https://tailwindcss.com/docs/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -62,7 +67,7 @@
                 </li>
                 <li>
                     <a
-                        class="hover:text-blue-700"
+                        class="hover:text-theme-primary"
                         href="https://vuejs.org/v2/guide/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -72,7 +77,7 @@
                 </li>
                 <li>
                     <a
-                        class="hover:text-blue-700"
+                        class="hover:text-theme-primary"
                         href="https://inertiajs.com/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -88,6 +93,6 @@
 <script>
     export default {
         name: "Index",
-        layout: 'app-layout'
+        layout: 'website-layout'
     }
 </script>

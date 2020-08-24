@@ -8,7 +8,7 @@
     }
 
     .auth-card {
-        @apply bg-gray-200 rounded-md shadow-md;
+        @apply bg-theme-base rounded-md shadow-md;
     }
 
     .auth-card-container {
@@ -16,6 +16,6 @@
     }
 
     .auth-header {
-        @apply font-bold pb-6 pt-8 px-6 text-center text-gray-700 text-2xl tracking-wide;
+        @apply font-bold pb-6 pt-8 px-6 text-center text-theme-base-contrast text-2xl tracking-wide;
     }
 }
