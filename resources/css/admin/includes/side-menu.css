@@ -5,7 +5,7 @@
 #admin-layout {
     .side-menu {
         /** Mobile View **/
-        @apply absolute inset-0 overflow-y-auto z-10;
+        @apply fixed inset-0 overflow-y-auto z-10;
 
 
         @apply min-h-full pb-8 px-4 shadow-subtle w-full;
