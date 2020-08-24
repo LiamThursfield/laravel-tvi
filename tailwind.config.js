@@ -5,7 +5,7 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 
-// load default theme settings
+// Load default theme settings
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
