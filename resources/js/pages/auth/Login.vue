@@ -73,7 +73,7 @@
                     <inertia-link
                         class="
                             text-gray-900
-                            hover:text-cyan-500
+                            hover:text-theme-primary
                             transition-all ease-in-out duration-300
                         "
                         :href="$route('password.request')"
