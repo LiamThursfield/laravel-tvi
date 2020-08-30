@@ -17,11 +17,11 @@
     --color-danger-hover-contrast   : theme('colors.white');
     --color-info                    : theme('colors.yellow.300');
     --color-info-contrast           : theme('colors.white');
-    --color-info-hover              : theme('colors.cyan.800');
-    --color-info-hover-contrast     : theme('colors.yellow-400');
-    --color-primary                 : theme('colors.cyan.500');
+    --color-info-hover              : theme('colors.yellow.400');
+    --color-info-hover-contrast     : theme('colors.white');
+    --color-primary                 : theme('colors.indigo.500');
     --color-primary-contrast        : theme('colors.white');
-    --color-primary-hover           : theme('colors.cyan.800');
+    --color-primary-hover           : theme('colors.indigo.800');
     --color-primary-hover-contrast  : theme('colors.white');
     --color-success                 : theme('colors.green.500');
     --color-success-contrast        : theme('colors.white');
@@ -69,8 +69,8 @@
     --pagination-color-base              : theme('colors.white');
     --pagination-color-base-border       : theme('colors.navy.100');
     --pagination-color-base-contrast     : theme('colors.navy.300');
-    --pagination-color-hover             : theme('colors.cyan.200');
-    --pagination-color-hover-border      : theme('colors.cyan.300');
+    --pagination-color-hover             : theme('colors.indigo.200');
+    --pagination-color-hover-border      : theme('colors.indigo.300');
     --pagination-color-hover-contrast    : theme('colors.white');
 
     /**
@@ -94,12 +94,12 @@
     /**
      * Selection
      */
-    --selection-color               : theme('colors.cyan.600');
+    --selection-color               : theme('colors.indigo.700');
     --selection-color-contrast      : theme('colors.gray.100');
 
     /**
      * Shadows
      */
-    --shadow-outline-primary : theme('boxShadow.outline-cyan');
+    --shadow-outline-primary : theme('boxShadow.outline-indigo');
 
 }
