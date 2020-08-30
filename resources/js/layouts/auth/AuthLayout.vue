@@ -8,7 +8,7 @@
                 class="auth-background-container bg-theme-primary"
             />
             <svg
-                class="text-cyan-500 fill-current"
+                class="text-theme-primary fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1440 320"
             >

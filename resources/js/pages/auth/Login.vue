@@ -62,7 +62,7 @@
                         class="
                             bg-theme-primary px-4 py-2 rounded shadow text-theme-primary-contrast
                             focus:outline-none focus:shadow-outline-primary
-                            hover:bg-cyan-800 hover:shadow-lg
+                            hover:bg-theme-primary-hover hover:shadow-lg
                             transition-all ease-in-out duration-300
                         "
                         type="submit"
