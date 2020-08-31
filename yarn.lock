@@ -859,6 +859,11 @@
     axios "^0.19.0"
     nprogress "^0.2.0"
 
+"@ivanv/vue-collapse-transition@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@ivanv/vue-collapse-transition/-/vue-collapse-transition-0.2.1.tgz#a74ecb456d15bfc024f8b6b2661392c13de3f0a9"
+  integrity sha512-O6TndzPtli1G1aH4KpXFtGTlHhNgQ2EDU2o8oV/PqTpkLBNE2BVe3Jv7XEtBIFBWKDz+hs2lUhKqH85+DxhwOA==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
