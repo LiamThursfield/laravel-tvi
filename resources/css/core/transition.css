@@ -1,0 +1,87 @@
+/*! purgecss start ignore */
+
+/********
+ * Fade *
+ ********/
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0
+}
+
+
+/**************
+ * Slide Down *
+ **************/
+.slide-down-enter-active {
+    transition: transform .3s ease;
+}
+.slide-down-leave-active {
+    transition: transform .2s ease;
+}
+.slide-down-enter, .slide-down-leave-to {
+    transform: translateY(-100%);
+}
+
+
+/***********************
+ * Slide Down and Fade *
+ ***********************/
+.slide-down-fade-enter-active {
+    transition: opacity .3s ease,
+    transform .3s ease;
+}
+.slide-down-fade-leave-active {
+    transition: opacity .2s ease,
+    transform .2s ease;
+}
+.slide-down-fade-enter, .slide-down-fade-leave-to {
+    opacity: 0;
+    margin-top: 0;
+    transform: translateY(-100%);
+}
+
+
+/**************
+ * Slide Left *
+ **************/
+.slide-left-enter-active {
+    transition: transform .3s ease;
+}
+.slide-left-leave-active {
+    transition: transform .2s ease;
+}
+.slide-left-enter, .slide-left-leave-to {
+    transform: translateX(-100%);
+}
+
+
+/***************
+ * Slide Right *
+ ***************/
+.slide-right-enter-active {
+    transition: transform .3s ease;
+}
+.slide-right-leave-active {
+    transition: transform .2s ease;
+}
+.slide-right-enter, .slide-right-leave-to {
+    transform: translateX(100%);
+}
+
+
+/************
+ * Slide Up *
+ ************/
+.slide-up-enter-active {
+    transition: transform .3s ease;
+}
+.slide-up-leave-active {
+    transition: transform .2s ease;
+}
+.slide-up-enter, .slide-up-leave-to {
+    transform: translateY(100%);
+}
+
+/*! purgecss end ignore */
