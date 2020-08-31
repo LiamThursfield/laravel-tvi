@@ -23,9 +23,12 @@
                 </button>
             </div>
 
-            <div class="logo">
+            <inertia-link
+                class="logo"
+                :href="$route('admin.index')"
+            >
                 TVI
-            </div>
+            </inertia-link>
         </div>
 
         <div

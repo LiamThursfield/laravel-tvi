@@ -20,6 +20,10 @@
         .logo {
             @apply flex font-bold h-14 items-center justify-center text-xl;
             color: var(--side-menu-color-logo);
+
+            &:hover {
+                color: var(--side-menu-color-logo-active);
+            }
         }
 
         .menu-link-parent {

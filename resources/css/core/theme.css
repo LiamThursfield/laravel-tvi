@@ -41,8 +41,9 @@
     --side-menu-color-base-contrast             : theme('colors.navy.400');
     --side-menu-color-hover                     : theme('colors.indigo.100');
     --side-menu-color-hover-contrast            : theme('colors.theme.primary');
-    --side-menu-color-logo                      : theme('colors.navy.300');
-    --side-menu-color-separator                 : theme('colors.navy.200');
+    --side-menu-color-logo                      : theme('colors.navy.400');
+    --side-menu-color-logo-active               : theme('colors.theme.primary');
+    --side-menu-color-separator                 : theme('colors.gray.200');
     --side-menu-color-sub-menu-active           : theme('colors.white');
     --side-menu-color-sub-menu-active-contrast  : theme('colors.theme.primary');
     --side-menu-color-sub-menu-base             : theme('colors.white');
