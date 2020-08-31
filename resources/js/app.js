@@ -41,6 +41,56 @@ Vue.mixin({
             } catch (e) {
                 return false;
             }
+        },
+
+        /**
+         * Check whether a user has all of the given permissions
+         * @param {array} permissions - array of dot notation permissions e.g. [users.view]
+         * @returns {boolean}
+         */
+        userCanAll(permissions= []) {
+            try {
+                if (permissions.length === 0) {
+                    return true;
+                }
+
+                let hasAllPermissions = true;
+
+                permissions.forEach(permission => {
+                    if (!this.userCan(permission)) {
+                        hasAllPermissions = false;
+                    }
+                });
+
+                return hasAllPermissions;
+            } catch (e) {
+                return false;
+            }
+        },
+
+        /**
+         * Check whether a user has any of the given permissions
+         * @param {array} permissions - array of dot notation permissions e.g. [users.view]
+         * @returns {boolean}
+         */
+        userCanAny(permissions= []) {
+            try {
+                if (permissions.length === 0) {
+                    return true;
+                }
+
+                let hasAnyPermission = false;
+
+                permissions.forEach(permission => {
+                    if (this.userCan(permission)) {
+                        hasAnyPermission = true;
+                    }
+                });
+
+                return hasAnyPermission;
+            } catch (e) {
+                return false;
+            }
         }
     }
 })
