@@ -28,85 +28,173 @@
             </div>
         </div>
 
-        <!-- TODO: Use current route for active item -->
-
-        <!-- Main Nav -->
-        <ul class="mt-2">
-            <li>
-                <inertia-link
-                    class="menu-link"
-                    :class="{'menu-link-active': $routeCurrent('admin.index')}"
-                    :href="$route('admin.index')"
-                >
-                    <icon-home class="w-5"/>
-
-                    <span class="ml-2">Home</span>
-                </inertia-link>
-
-                <inertia-link
-                    class="menu-link"
-                    :href="$route('admin.index')"
-                >
-                    <icon-home class="w-5"/>
-
-                    <span class="ml-2">Link 1</span>
-                </inertia-link>
-
-                <inertia-link
-                    class="menu-link"
-                    :href="$route('admin.index')"
-                >
-                    <icon-home class="w-5"/>
-
-                    <span class="ml-2">Link 1</span>
-                </inertia-link>
-            </li>
-        </ul>
-
-        <template v-if="showSettingsMenu">
-            <div class="menu-separator"></div>
-
-            <!-- Settings -->
-            <p class="menu-subheading">
-                Settings
+        <div
+            v-for="(menuSection, menuSectionKey) in visibleMenu"
+            :key="menuSectionKey"
+            class="menu-section"
+        >
+            <p
+                v-if="menuSection.showLabel"
+                class="menu-subheading"
+            >
+                {{ menuSection.label }}
             </p>
 
-            <ul class="mt-2">
-                <li>
-                    <inertia-link
-                        v-if="userCan('users.view')"
-                        class="menu-link"
-                        :class="{'menu-link-active': $routeCurrent('admin.users.*')}"
-                        :href="$route('admin.users.index')"
-                    >
-                        <icon-users class="w-5"/>
-
-                        <span class="ml-2">Users</span>
-                    </inertia-link>
-                </li>
+            <ul class="root-menu">
+                <side-menu-item
+                    v-for="(menuItem, menuItemKey) in menuSection.children"
+                    :key="`${menuSectionKey}.${menuItemKey}`"
+                    class="root-menu-item"
+                    :menuItem="menuItem"
+                    :menuItemKey="`${menuSectionKey}.${menuItemKey}`"
+                    :toggledItems="toggledItems"
+                    @openItem="onMenuItemOpened"
+                    @toggleItem="onMenuItemToggled"
+                />
             </ul>
-        </template>
 
+            <div
+                v-if="menuSectionKey !== lastMenuSection"
+                 class="menu-separator"
+            ></div>
+        </div>
     </nav>
 </template>
 
 <script>
+
+    import _ from 'lodash';
+    import SideMenuItem from "./SideMenuItem";
+
     export default {
         name: "SideMenu",
+        components: {SideMenuItem},
         props: {
             url: String,
+        },
+        data() {
+            return {
+                menu: {
+                    main: {
+                        children: {
+                            dashboard: {
+                                children: false,
+                                icon: "icon-home",
+                                label: "Dashboard",
+                                requiresAnyPermissions: [],
+                                requiresAllPermissions: [],
+                                route: "admin.index",
+                            },
+                        },
+                        label: "Main",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: [],
+                        showLabel: false,
+                    },
+                    settings: {
+                        children : {
+                            users: {
+                                activeRoutes: ["admin.users.index", "admin.users.create"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Users",
+                                        requiresAllPermissions: ["users.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.users.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create User",
+                                        requiresAllPermissions: ["users.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.users.create",
+                                    },
+                                },
+                                icon: "icon-home",
+                                label: "Users",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["users.view", "users.create"],
+                                route: false,
+                            }
+                        },
+                        label: "Settings",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["users.view", "users.create"],
+                        showLabel: true,
+                    },
+                },
+                mountedItems: {},
+                toggledItems: {}
+            }
         },
         computed: {
             isMobileSideMenuOpen() {
                 return this.$store.getters.isMobileSideMenuOpen;
             },
-            showSettingsMenu() {
-                return this.userCan('users.view');
+            lastMenuSection() {
+                let keys = Object.keys(this.visibleMenu);
+                return keys[keys.length - 1];
+            },
+            visibleMenu() {
+                let visibleMenu = {};
+
+                _.forEach(this.menu, (menuItem, key) => {
+                    let item = this.getVisibleMenuWithChildren(menuItem);
+                    if (item) {
+                        visibleMenu[key] = item;
+                    }
+                });
+
+                return visibleMenu;
             }
         },
         methods: {
+            canViewMenu(menu) {
+                return this.userCanAny(menu.requiresAnyPermissions) && this.userCanAll(menu.requiresAllPermissions);
+            },
+            getVisibleMenuWithChildren(menu) {
+                if (!menu) {
+                    return false;
+                }
+
+                // Ensure the user has permission to view the current menu
+                if (!this.canViewMenu(menu)) {
+                    return false;
+                }
+
+                // If the menu has no children and the user has permission to view it, then show it
+                if (!menu.children) {
+                    return menu;
+                }
+
+                // Menu has children so only show visible children
+                let visibleMenu = _.cloneDeep(menu);
+                visibleMenu.children = {};
+
+                _.forEach(menu.children, (child, key) => {
+                    child = this.getVisibleMenuWithChildren(child);
+
+                    if (child) {
+                        visibleMenu.children[key] = child;
+                    }
+                });
+
+                return visibleMenu;
+            },
             hideMobileSideMenu() {
                 this.$store.commit('hideMobileSideMenu');
+            },
+            onMenuItemOpened(itemKey) {
+                this.$set(this.toggledItems, itemKey, true);
+            },
+            onMenuItemToggled(itemKey) {
+                if (this.toggledItems[itemKey]) {
+                    this.$set(this.toggledItems, itemKey, false);
+                } else {
+                    this.$set(this.toggledItems, itemKey, true);
+                }
             },
         }
     }
