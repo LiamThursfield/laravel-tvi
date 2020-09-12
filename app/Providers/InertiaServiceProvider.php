@@ -62,6 +62,7 @@ class InertiaServiceProvider extends ServiceProvider
 
                 public function links($view = null, $data = [])
                 {
+                    $this->onEachSide(1);
                     $this->appends(Request::all());
 
                     $window = UrlWindow::make($this);

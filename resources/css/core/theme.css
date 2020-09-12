@@ -74,11 +74,11 @@
     --pagination-color-active-border     : theme('colors.theme.primary');
     --pagination-color-active-contrast   : theme('colors.theme.primary-contrast');
     --pagination-color-base              : theme('colors.white');
-    --pagination-color-base-border       : theme('colors.navy.100');
+    --pagination-color-base-border       : theme('colors.white');
     --pagination-color-base-contrast     : theme('colors.navy.300');
     --pagination-color-hover             : theme('colors.indigo.200');
-    --pagination-color-hover-border      : theme('colors.indigo.300');
-    --pagination-color-hover-contrast    : theme('colors.white');
+    --pagination-color-hover-border      : theme('colors.indigo.200');
+    --pagination-color-hover-contrast    : theme('colors.theme.primary');
 
     /**
      * Table

@@ -44,6 +44,14 @@
                 default: true,
                 type: Boolean
             },
+            showIcons: {
+                default: true,
+                type: Boolean
+            },
+            showInactiveLinks: {
+                default: true,
+                type: Boolean
+            },
             showNumberLinks: {
                 default: true,
                 type: Boolean
@@ -52,11 +60,7 @@
                 default: true,
                 type: Boolean
             },
-            showIcons: {
-                default: true,
-                type: Boolean
-            },
-            showInactiveLinks: {
+            showSliders: {
                 default: true,
                 type: Boolean
             },
@@ -88,6 +92,11 @@
                 // Add First and Last Links if the setting is enabled
                 if (this.showFirstLastLinks) {
                     allowedTextLinks.push('First', 'Last');
+                }
+
+                // Add Sliders if the setting is enabled
+                if (this.showSliders) {
+                    allowedTextLinks.push('...');
                 }
 
                 return allowedTextLinks;
@@ -137,7 +146,9 @@
             getLinkClass(link) {
                 let linkClass = ['pagination-link'];
 
-                if (link.url === null) {
+                if (link.label === '...') {
+                    linkClass.push('pagination-link-slider');
+                } else if (link.url === null) {
                     linkClass.push('pagination-link-disabled');
                 } else {
                     linkClass.push('pagination-link-enabled');
