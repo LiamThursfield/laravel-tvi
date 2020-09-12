@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,29 +19,11 @@ Auth::routes([
 ]);
 
 
-// App Routes
+// Website Routes
 Route::group([
     'as'        => 'website.',
-    'namespace' => 'Website',
 ], function() {
 
-    Route::get('/', 'HomeController@index')->name('index');
-
-});
-
-
-// Admin Routes
-Route::group([
-    'middleware'    => 'auth',
-    'as'            => 'admin.',
-    'namespace'     => 'Admin',
-    'prefix'        => 'admin',
-], function () {
-
-    Route::get('/', 'HomeController@index')->name('index');
-
-    Route::resource('users', 'UserController')->only([
-        'index'
-    ])->middleware('can:view users');
+    Route::get('/', [HomeController::class, 'index'])->name('index');
 
 });

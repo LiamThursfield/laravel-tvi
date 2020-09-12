@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Interfaces\RoleInterface;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,7 +18,7 @@ class UserRoleSeeder extends Seeder
     public function run()
     {
 
-        $user = Factory(User::class)->create([
+        $user = User::factory()->create([
             'first_name'    => 'Admin',
             'last_name'     => 'Account',
             'email'         => 'admin@example.com',
@@ -24,7 +26,7 @@ class UserRoleSeeder extends Seeder
         ]);
         $user->assignRole(Role::whereName(RoleInterface::ADMIN)->first());
 
-        $user = Factory(User::class)->create([
+        $user = $user = User::factory()->create([
             'first_name'    => 'Super',
             'last_name'     => 'Account',
             'email'         => 'super@example.com',
@@ -32,7 +34,7 @@ class UserRoleSeeder extends Seeder
         ]);
         $user->assignRole(Role::whereName(RoleInterface::SUPER)->first());
 
-        $user = Factory(User::class)->create([
+        $user = $user = User::factory()->create([
             'first_name'    => 'User',
             'last_name'     => 'Account',
             'email'         => 'user@example.com',
