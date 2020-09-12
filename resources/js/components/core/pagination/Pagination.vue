@@ -41,7 +41,7 @@
                 type: Object,
             },
             showFirstLastLinks: {
-                default: true,
+                default: false,
                 type: Boolean
             },
             showIcons: {
