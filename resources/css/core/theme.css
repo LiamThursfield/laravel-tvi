@@ -19,9 +19,9 @@
     --color-info-contrast           : theme('colors.white');
     --color-info-hover              : theme('colors.yellow.400');
     --color-info-hover-contrast     : theme('colors.white');
-    --color-primary                 : theme('colors.indigo.500');
+    --color-primary                 : theme('colors.blue.500');
     --color-primary-contrast        : theme('colors.white');
-    --color-primary-hover           : theme('colors.indigo.800');
+    --color-primary-hover           : theme('colors.blue.800');
     --color-primary-hover-contrast  : theme('colors.white');
     --color-success                 : theme('colors.green.500');
     --color-success-contrast        : theme('colors.white');
@@ -33,13 +33,24 @@
     --color-warning-hover-contrast  : theme('colors.white');
 
     /**
+     * Dropdown
+     */
+    --dropdown-color-base                   : theme('colors.white');
+    --dropdown-color-base-contrast          : theme('colors.theme.base-contrast');
+    --dropdown-color-hover                  : theme('colors.blue.100');
+    --dropdown-color-hover-contrast         : theme('colors.theme.primary');
+    --dropdown-color-separator              : theme('colors.gray.200');
+    --dropdown-color-subheading             : theme('colors.white');
+    --dropdown-color-subheading-contrast    : theme('colors.navy.300');
+
+    /**
      * Menu - Side
      */
-    --side-menu-color-active                    : theme('colors.indigo.100');
+    --side-menu-color-active                    : theme('colors.blue.100');
     --side-menu-color-active-contrast           : theme('colors.theme.primary');
     --side-menu-color-base                      : theme('colors.white');
     --side-menu-color-base-contrast             : theme('colors.navy.400');
-    --side-menu-color-hover                     : theme('colors.indigo.100');
+    --side-menu-color-hover                     : theme('colors.blue.100');
     --side-menu-color-hover-contrast            : theme('colors.theme.primary');
     --side-menu-color-logo                      : theme('colors.navy.400');
     --side-menu-color-logo-active               : theme('colors.theme.primary');
@@ -59,7 +70,8 @@
      */
     --top-menu-color-base            : theme('colors.white');
     --top-menu-color-base-contrast   : theme('colors.theme.base-contrast');
-    --top-menu-color-active          : theme('colors.theme.primary');
+    --top-menu-color-hover           : theme('colors.white');
+    --top-menu-color-hover-contrast  : theme('colors.theme.primary');
 
 
     /**
@@ -76,8 +88,8 @@
     --pagination-color-base              : theme('colors.white');
     --pagination-color-base-border       : theme('colors.white');
     --pagination-color-base-contrast     : theme('colors.navy.300');
-    --pagination-color-hover             : theme('colors.indigo.200');
-    --pagination-color-hover-border      : theme('colors.indigo.200');
+    --pagination-color-hover             : theme('colors.blue.200');
+    --pagination-color-hover-border      : theme('colors.blue.200');
     --pagination-color-hover-contrast    : theme('colors.theme.primary');
 
     /**
@@ -101,12 +113,12 @@
     /**
      * Selection
      */
-    --selection-color               : theme('colors.indigo.700');
+    --selection-color               : theme('colors.blue.700');
     --selection-color-contrast      : theme('colors.gray.100');
 
     /**
      * Shadows
      */
-    --shadow-outline-primary : theme('boxShadow.outline-indigo');
+    --shadow-outline-primary : theme('boxShadow.outline-blue');
 
 }
