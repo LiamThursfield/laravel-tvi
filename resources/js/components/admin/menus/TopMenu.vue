@@ -32,9 +32,24 @@
             "
         >
 
-            <p class="dropdown-subheading">
+            <p class="dropdown-subheading mb-2">
                 Hello, {{ $page.auth.user.first_name }}
             </p>
+
+            <inertia-link
+                class="dropdown-link"
+                :href="$route('website.index')"
+            >
+                Homepage
+            </inertia-link>
+
+            <inertia-link
+                v-if="userCan('profile.view')"
+                class="dropdown-link"
+                :href="$route('admin.profile.index')"
+            >
+                Profile
+            </inertia-link>
 
             <div class="dropdown-separator"></div>
 
