@@ -22,6 +22,7 @@
         "postcss-nested": "^4.2.1",
         "resolve-url-loader": "^2.3.1",
         "tailwindcss": "^1.8",
+        "tippy.js": "^6.2.6",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10",
         "vuex": "^3.4.0"

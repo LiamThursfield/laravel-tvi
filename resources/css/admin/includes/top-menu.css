@@ -13,7 +13,9 @@
 
             &:focus,
             &:hover {
-                color: var(--top-menu-color-active);
+                background: var(--top-menu-color-hover);
+                color: var(--top-menu-color-hover-contrast);
+                outline: none;
             }
         }
     }
