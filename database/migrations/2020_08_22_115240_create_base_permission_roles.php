@@ -56,6 +56,10 @@ class CreateBasePermissionRoles extends Migration
     protected function getNewPermissions()
     {
         return [
+            // Profile
+            PermissionInterface::EDIT_PROFILE,
+            PermissionInterface::VIEW_PROFILE,
+            // Users
             PermissionInterface::CREATE_USERS,
             PermissionInterface::DELETE_USERS,
             PermissionInterface::EDIT_USERS,
@@ -72,13 +76,20 @@ class CreateBasePermissionRoles extends Migration
     {
         return [
             RoleInterface::ADMIN => [
+                // Profile
+                PermissionInterface::EDIT_PROFILE,
+                PermissionInterface::VIEW_PROFILE,
+                // Users
                 PermissionInterface::CREATE_USERS,
                 PermissionInterface::DELETE_USERS,
                 PermissionInterface::EDIT_USERS,
                 PermissionInterface::VIEW_USERS,
             ],
             RoleInterface::SUPER => [],
-            RoleInterface::USER => [],
+            RoleInterface::USER => [
+                // Profile
+                PermissionInterface::VIEW_PROFILE,
+            ],
         ];
     }
 

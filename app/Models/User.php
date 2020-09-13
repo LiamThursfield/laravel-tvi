@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Interfaces\PermissionInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -59,20 +60,21 @@ class User extends Authenticatable
     }
 
     /**
-     * TODO: This needs a better name.
-     * Return the permissions that a user has in array format
-     * To allow for dot notation access
+     * Return all permissions and whether or not the user has them, in array format
+     * Allowing for dot notation access e.g. users.create
      * @return array[]
      */
-    public function getPermissionsArrayAttribute()
+    public function getAllPermissionsAttribute()
     {
-        return [
-            'users' => [
-                'view'      => $this->hasPermissionTo('view users'),
-                'create'    => $this->hasPermissionTo('create users'),
-                'edit'      => $this->hasPermissionTo('edit users'),
-                'delete'    => $this->hasPermissionTo('delete users'),
-            ]
-        ];
+        $permissions_array = [];
+
+        foreach (PermissionInterface::ALL_PERMISSIONS as $group => $permissions) {
+            $permissions_array[$group] = [];
+            foreach ($permissions as $action => $permission) {
+                $permissions_array[$group][$action] = $this->hasPermissionTo($permission);
+            }
+        }
+
+        return $permissions_array;
     }
 }
