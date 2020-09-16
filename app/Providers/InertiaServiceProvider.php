@@ -145,7 +145,7 @@ class InertiaServiceProvider extends ServiceProvider
                         'id'            => Auth::user()->id,
                         'last_name'     => Auth::user()->last_name,
                         'name'          => Auth::user()->name,
-                        'permissions'   => Auth::user()->permissions_array,
+                        'permissions'   => Auth::user()->all_permissions,
                         'super'         => Auth::user()->hasRole(RoleInterface::SUPER),
                     ] : null
                 ];

@@ -19,7 +19,7 @@
     --color-info-contrast           : theme('colors.white');
     --color-info-hover              : theme('colors.yellow.400');
     --color-info-hover-contrast     : theme('colors.white');
-    --color-primary                 : theme('colors.blue.500');
+    --color-primary                 : theme('colors.blue.600');
     --color-primary-contrast        : theme('colors.white');
     --color-primary-hover           : theme('colors.blue.800');
     --color-primary-hover-contrast  : theme('colors.white');

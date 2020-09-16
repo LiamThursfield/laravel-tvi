@@ -10,7 +10,7 @@
         <div class="flex flex-1 flex-col max-w-full">
             <top-menu />
 
-            <div class="bg-theme-base flex-1 p-4">
+            <div class="bg-theme-base flex-1 p-8">
                 <slot/>
             </div>
         </div>

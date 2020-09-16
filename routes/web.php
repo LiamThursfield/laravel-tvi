@@ -24,14 +24,5 @@ Auth::routes([
 Route::group([
     'as'        => 'website.',
 ], function() {
-
     Route::get('/', [HomeController::class, 'index'])->name('index');
-
-});
-
-Route::get('/mail', function() {
-    Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-    {
-        $message->to('liam3006@hotmail.co.uk')->from('test@liamthursfield.com');
-    });
 });
