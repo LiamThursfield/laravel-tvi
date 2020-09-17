@@ -5,7 +5,7 @@
         </h1>
 
         <p class="mt-2">
-            Lorem ipsum dolar amet...
+            Let's build something great.
         </p>
     </div>
 </template>
