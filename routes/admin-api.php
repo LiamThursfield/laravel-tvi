@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminApi\FileManager\FileManagerDirectoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,7 +10,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// TODO: This is just a test route, remove once actual admin api routes are added
-Route::get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'as' => 'file-manager.',
+    'prefix' => 'file-manager'
+], function() {
+    Route::get('/directories', [FileManagerDirectoryController::class, 'index'])->name('directories.index');
 });
