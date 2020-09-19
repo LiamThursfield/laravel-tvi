@@ -84,8 +84,8 @@
                                 children: false,
                                 icon: "icon-home",
                                 label: "Dashboard",
-                                requiresAnyPermissions: [],
                                 requiresAllPermissions: [],
+                                requiresAnyPermissions: [],
                                 route: "admin.index",
                             },
                         },
@@ -93,6 +93,22 @@
                         requiresAllPermissions: [],
                         requiresAnyPermissions: [],
                         showLabel: false,
+                    },
+                    utilities: {
+                        children : {
+                            file_manager: {
+                                children: false,
+                                icon: "icon-folders",
+                                label: "File Manager",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["file_manager.view"],
+                                route: 'admin.file_manager.index',
+                            }
+                        },
+                        label: "Utilities",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["file_manager.view"],
+                        showLabel: true,
                     },
                     settings: {
                         children : {
