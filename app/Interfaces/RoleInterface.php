@@ -2,6 +2,9 @@
 
 namespace App\Interfaces;
 
+/**
+ * Interface to define core system Roles
+ */
 class RoleInterface
 {
     const ADMIN = 'admin';

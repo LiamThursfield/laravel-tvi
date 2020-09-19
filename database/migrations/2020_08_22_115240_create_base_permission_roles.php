@@ -7,6 +7,19 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
+/**
+ * Migration to create the base Permissions and Roles
+ *
+ * When adding a new Permission:
+ *      - Add it to the PermissionInterface class
+ *      - Add it to the getNewPermissions() function in this migration
+ *      - Add it to any applicable Roles in the getNewRoles() function in this migration
+ *
+ * When adding a new Role
+ *      - Add it to the RoleInterface class
+ *      - Add it to the getNewPRoles() function in this migration, along with any Permissions
+ *
+ */
 class CreateBasePermissionRoles extends Migration
 {
 
@@ -56,6 +69,9 @@ class CreateBasePermissionRoles extends Migration
     protected function getNewPermissions()
     {
         return [
+            // File Manager
+            PermissionInterface::EDIT_FILE_MANAGER,
+            PermissionInterface::VIEW_FILE_MANAGER,
             // Profile
             PermissionInterface::EDIT_PROFILE,
             PermissionInterface::VIEW_PROFILE,
@@ -76,6 +92,9 @@ class CreateBasePermissionRoles extends Migration
     {
         return [
             RoleInterface::ADMIN => [
+                // File Manager
+                PermissionInterface::EDIT_FILE_MANAGER,
+                PermissionInterface::VIEW_FILE_MANAGER,
                 // Profile
                 PermissionInterface::EDIT_PROFILE,
                 PermissionInterface::VIEW_PROFILE,
@@ -87,6 +106,8 @@ class CreateBasePermissionRoles extends Migration
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [
+                // File Manager
+                PermissionInterface::VIEW_FILE_MANAGER,
                 // Profile
                 PermissionInterface::VIEW_PROFILE,
             ],
