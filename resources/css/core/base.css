@@ -16,3 +16,8 @@
     background: var(--selection-color);
     color: var(--selection-color-contrast);
 }
+
+:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

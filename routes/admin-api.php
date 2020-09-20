@@ -15,4 +15,5 @@ Route::group([
     'prefix' => 'file-manager'
 ], function() {
     Route::get('/directories', [FileManagerDirectoryController::class, 'index'])->name('directories.index');
+    Route::post('/directories', [FileManagerDirectoryController::class, 'store'])->name('directories.store');
 });

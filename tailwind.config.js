@@ -35,6 +35,9 @@ module.exports = {
             'sans': ['Poppins', ...defaultTheme.fontFamily.sans],
         },
         extend: {
+            animation: {
+                'spin-slow': 'spin 1.5s linear infinite',
+            },
             boxShadow: {
                 'outline-blue'      : '0 0 0 3px rgba(63, 141, 248, 0.5)',
                 'outline-cyan'      : '0 0 0 3px rgba(0, 188, 212, 0.5)',
