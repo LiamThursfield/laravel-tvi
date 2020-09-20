@@ -20,6 +20,6 @@
 
 <script>
     export default {
-        name: "IconUsers",
+        name: "IconTrash",
     }
 </script>
