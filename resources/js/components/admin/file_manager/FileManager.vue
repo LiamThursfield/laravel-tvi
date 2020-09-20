@@ -39,6 +39,7 @@
                                         focus:outline-none focus:text-theme-primary
                                         hover:text-theme-primary
                                     "
+                                    type="button"
                                     @click="changeDirectory(parentDirectory)"
                                 >
                                     <icon-arrow-bar-up class="mr-2"/>
@@ -61,6 +62,7 @@
                                         focus:outline-none focus:text-theme-primary
                                         hover:text-theme-primary
                                     "
+                                    type="button"
                                     @click="changeDirectory(directory.directory)"
                                 >
                                     <icon-folder class="mr-2"/>
@@ -73,12 +75,53 @@
             </div>
 
             <div class="bg-white flex-1 p-6 shadow-subtle rounded-lg">
-                <h2 class="flex flex-row justify-between">
+                <h2 class="flex flex-row items-center justify-between">
                     <span class="text-gray-500">
                         Files
                     </span>
-                    <span>
-                        TODO: BREADCRUMBS
+                    <span
+                        v-if="showBreadcrumbs"
+                        class="flex flex-row space-x-2 text-sm"
+                    >
+                        <span
+                            v-for="(breadcrumb, index) in currentDirectoryList"
+                            :key="`breadcrumb_${index}`"
+                            class="flex flex-row"
+                        >
+                            <template v-if="index < (currentDirectoryList.length - 1)">
+                                <button
+                                    class="
+                                    cursor-pointer text-gray-500
+                                    focus:outline-none focus:text-theme-primary
+                                    hover:text-theme-primary
+                                "
+                                    type="button"
+                                    @click="changeDirectoryViaBreadcrumb(index)"
+                                >
+                                    <template v-if="index === 0">
+                                        root
+                                    </template>
+                                    <template v-else>
+                                        {{ breadcrumb }}
+                                    </template>
+                                </button>
+
+                                <span
+
+                                    class="ml-2 text-gray-300"
+                                >
+                                    /
+                                </span>
+                            </template>
+
+                            <template
+                                v-else
+                            >
+                                <span class="text-gray-500">
+                                    {{ breadcrumb}}
+                                </span>
+                            </template>
+                        </span>
                     </span>
                 </h2>
             </div>
@@ -137,6 +180,9 @@
                 let list = _.clone(this.currentDirectoryList);
 
                 return '/' + list.splice(1, this.currentDirectoryList.length - 2).join('/');
+            },
+            showBreadcrumbs() {
+                return this.currentDirectoryList.length > 1;
             }
         },
 
@@ -149,6 +195,26 @@
             changeDirectory(newDirectory = '/') {
                 this.currentDirectory = newDirectory;
                 this.loadDirectories();
+            },
+            changeDirectoryViaBreadcrumb(index) {
+                if (index > (this.currentDirectoryList.length - 1)) {
+                    return;
+                }
+
+                let directory = this.getDirectoryViaBreadcrumb(index);
+                if (directory) {
+                    this.changeDirectory(directory);
+                }
+            },
+            getDirectoryViaBreadcrumb(index) {
+                if (index === 0) {
+                    return "/"
+                }
+
+                let breadcrumbs = _.clone(this.currentDirectoryList);
+                breadcrumbs = breadcrumbs.splice(1, index);
+
+                return '/' + breadcrumbs.join('/');
             },
             initialiseFileManager() {
                 if (!this.isInitialised) {
