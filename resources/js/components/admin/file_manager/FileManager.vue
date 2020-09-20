@@ -237,11 +237,11 @@
                     this.$route('admin.api.file-manager.directories.index'),
                     { params }
                 ).then(response => {
-                    console.log(response);
                     if (response.data.hasOwnProperty('directories')) {
                         this.directories = response.data.directories;
                     }
                 }).catch(e => {
+                    // TODO: Error toast
                     console.log(e);
                 }).finally(() => {
                     this.isLoadingDirectories = false;
