@@ -26,7 +26,6 @@
         <div
             ref="userDropdownMenu"
             class="
-                dropdown
                 flex flex-col py-2
                 focus:outline-none
             "
@@ -92,16 +91,3 @@
         },
     }
 </script>
-
-<style>
-    .tippy-box[data-theme~='dropdown'] {
-        background-color: #FFF;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 -2px 6px -2px rgba(0, 0, 0, 0.05);
-        border-radius: 10px;
-        min-width: 250px;
-    }
-
-    .tippy-box[data-theme~='dropdown']:focus {
-        outline: none;
-    }
-</style>
