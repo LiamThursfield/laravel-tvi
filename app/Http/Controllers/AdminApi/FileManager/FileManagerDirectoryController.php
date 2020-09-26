@@ -8,18 +8,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class FileManagerDirectoryController extends Controller
+class FileManagerDirectoryController extends AbstractFileManagerController
 {
-    /** @var string The file system disk to use for Directory management */
-    protected $storage_disk;
-
-
-    public function __construct()
-    {
-        // TODO: Allow this to be defined via user.
-        $this->storage_disk = 'file_manager';
-    }
-
 
     /**
      * Get a list of directories based on the (optional) base directory

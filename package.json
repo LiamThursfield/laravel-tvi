@@ -20,6 +20,7 @@
         "lodash": "^4.17.13",
         "postcss-import": "^12.0.1",
         "postcss-nested": "^4.2.1",
+        "pretty-bytes": "^5.4.1",
         "resolve-url-loader": "^2.3.1",
         "tailwindcss": "^1.8",
         "tippy.js": "^6.2.6",

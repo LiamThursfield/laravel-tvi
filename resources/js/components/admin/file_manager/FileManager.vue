@@ -21,53 +21,13 @@
                 </h2>
 
                 <div class="mt-2">
-                    <ul>
-                        <template v-if="isLoadingDirectories">
-                            <li
-                                class="flex flex-row items-start text-gray-500 py-1 w-full"
-                            >
-                                <icon-loader-circle class="animate-spin-slow mr-2 w-5"/>
-                                <span>Loading</span>
-                            </li>
-                        </template>
-                        <template v-else>
-                            <li
-                                v-if="parentDirectory !== null"
-                            >
-                                <button
-                                    class="
-                                        flex flex-row items-start py-1 w-full
-                                        focus:outline-none focus:text-theme-primary
-                                        hover:text-theme-primary
-                                    "
-                                    :disabled="!canChangeDirectory"
-                                    type="button"
-                                    @click="changeDirectory(parentDirectory)"
-                                >
-                                    <icon-arrow-bar-up class="mr-2 w-5"/>
-                                    <span>Parent Directory</span>
-                                </button>
-                            </li>
-                            <li
-                                v-for="directory in directories"
-                                :key="directory.directory"
-                            >
-                                <button
-                                    class="
-                                        flex flex-row items-start py-1 w-full
-                                        focus:outline-none focus:text-theme-primary
-                                        hover:text-theme-primary
-                                    "
-                                    type="button"
-                                    :disabled="!canChangeDirectory"
-                                    @click="changeDirectory(directory.directory)"
-                                >
-                                    <icon-folder class="mr-2 w-5"/>
-                                    <span>{{ directory.label }}</span>
-                                </button>
-                            </li>
-                        </template>
-                    </ul>
+                    <file-manager-directory-list
+                        :canChangeDirectory="canChangeDirectory"
+                        :directories="directories"
+                        :isLoadingDirectories="isLoadingDirectories"
+                        :parentDirectory="parentDirectory"
+                        @changeDirectory="changeDirectory"
+                    />
 
                     <div
                         v-if="showCreateDirectoryButton"
@@ -153,62 +113,19 @@
             </div>
 
             <div class="bg-white flex-1 p-6 shadow-subtle rounded-lg">
-                <h2 class="flex flex-row items-center justify-between">
-                    <span class="text-gray-500">
-                        Files
-                    </span>
-                    <span
-                        v-if="showBreadcrumbs"
-                        class="flex flex-row space-x-2 text-sm"
-                    >
-                        <span
-                            v-for="(breadcrumb, index) in currentDirectoryList"
-                            :key="`breadcrumb_${index}`"
-                            class="flex flex-row"
-                        >
-                            <template v-if="index < (currentDirectoryList.length - 1)">
-                                <button
-                                    class="
-                                    text-gray-500
-                                    focus:outline-none focus:text-theme-primary
-                                    hover:text-theme-primary
-                                "
-                                    type="button"
-                                    :disabled="!canChangeDirectory"
-                                    @click="changeDirectoryViaBreadcrumb(index)"
-                                >
-                                    <template v-if="index === 0">
-                                        root
-                                    </template>
-                                    <template v-else>
-                                        {{ breadcrumb }}
-                                    </template>
-                                </button>
 
-                                <span class="ml-2 text-gray-300">
-                                    /
-                                </span>
-                            </template>
+                <file-manager-files-header
+                    :canChangeDirectory="canChangeDirectory"
+                    :currentDirectoryList="currentDirectoryList"
+                    :showBreadcrumbs="showBreadcrumbs"
+                    @changeDirectoryViaBreadcrumb="changeDirectoryViaBreadcrumb"
+                />
 
-                            <template
-                                v-else
-                            >
-                                <span
-                                    class="text-gray-500"
-                                    :class="{
-                                        'opacity-50': !canChangeDirectory
-                                    }"
-                                >
-                                    {{ breadcrumb}}
-                                </span>
-                            </template>
-                        </span>
-                    </span>
-                </h2>
-
-                <div class="mt-2">
-
-                </div>
+                <file-manager-files-list
+                    class="mt-2"
+                    :files="files"
+                    :showFilesLoader="showFilesLoader"
+                />
             </div>
 
         </div>
@@ -218,9 +135,16 @@
 
 <script>
     import _ from 'lodash';
+    import FileManagerDirectoryList from "./partials/FileManagerDirectoryList";
+    import FileManagerFilesHeader from "./partials/FileManagerFilesHeader";
+    import FileManagerFilesList from "./partials/FileManagerFilesList";
+
+    let CancelToken = axios.CancelToken;
+    let filesCancelToken = CancelToken.source();
 
     export default {
         name: "FileManager",
+        components: {FileManagerFilesList, FileManagerFilesHeader, FileManagerDirectoryList},
         props: {
             initialise: {
                 default: false,
@@ -231,6 +155,7 @@
             return {
                 currentDirectory: '/',
                 directories: [],
+                files: [],
                 isInitialised: false,
                 isCreatingDirectory: false,
                 isLoadingDirectories: false,
@@ -304,6 +229,9 @@
             showCreateDirectoryButton() {
                 return !this.isLoadingDirectories && this.userCan('file_manager.edit');
             },
+            showFilesLoader() {
+                return this.isLoadingDirectories || this.isLoadingFiles;
+            }
         },
 
         mounted() {
@@ -322,12 +250,12 @@
                 this.currentDirectory = newDirectory;
                 this.loadDirectories();
             },
-            changeDirectoryViaBreadcrumb(index) {
-                if (index > (this.currentDirectoryList.length - 1)) {
+            changeDirectoryViaBreadcrumb(breadcrumbIndex) {
+                if (breadcrumbIndex > (this.currentDirectoryList.length - 1)) {
                     return;
                 }
 
-                let directory = this.getDirectoryViaBreadcrumb(index);
+                let directory = this.getDirectoryViaBreadcrumb(breadcrumbIndex);
                 if (directory) {
                     this.changeDirectory(directory);
                 }
@@ -379,6 +307,8 @@
                 }
 
                 this.isLoadingDirectories = true;
+                this.directories = [];
+                filesCancelToken.cancel('Files load cancelled');
 
                 let params = {
                     directory: this.currentDirectory
@@ -391,19 +321,47 @@
                     if (response.data.hasOwnProperty('directories')) {
                         this.directories = response.data.directories;
                     }
+
+                    this.loadFiles();
                 }).catch(e => {
                     // TODO: Error toast
-                    console.log(e);
+                    console.error(e);
                 }).finally(() => {
                     this.isLoadingDirectories = false;
                 });
             },
             loadFileManager() {
                 this.loadDirectories();
-                this.loadFiles();
             },
             loadFiles() {
+                if (this.isLoadingFiles) {
+                    return;
+                }
 
+                this.isLoadingFiles = true;
+                this.files = [];
+
+                let params = {
+                    directory: this.currentDirectory
+                };
+
+                axios.get(
+                    this.$route('admin.api.file-manager.files.index'),
+                    { params }
+                ).then(response => {
+                    if (response.data.hasOwnProperty('files')) {
+                        this.files = response.data.files;
+                    }
+                }).catch(e => {
+                    if (!axios.isCancel(e)) {
+                        // TODO: Error toast
+                        console.error(e);
+                    } else {
+                        console.log('cancel', e)
+                    }
+                }).finally(() => {
+                    this.isLoadingFiles = false;
+                });
             },
             onInitialise() {
                 if (this.initialise) {
