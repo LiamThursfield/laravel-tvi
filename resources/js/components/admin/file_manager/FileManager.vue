@@ -240,10 +240,16 @@
             }
         },
         methods: {
+            cancelLoadFiles() {
+                if (this.isLoadingFiles) {
+                    filesCancelToken.cancel('Files load cancelled');
+                    filesCancelToken = CancelToken.source();
+                }
+            },
             changeDirectory(newDirectory = '/') {
                 if (!this.canChangeDirectory) {
                     // TODO: Error Toast
-                    console.log('Unable to change directory.')
+                    console.error('Unable to change directory.')
                     return;
                 }
 
@@ -282,7 +288,7 @@
                 }).catch(e => {
                     // TODO: Error toast
                     this.isLoadingNewDirectory = false;
-                    console.log(e);
+                    console.error(e);
                 });
             },
             getDirectoryViaBreadcrumb(index) {
@@ -308,7 +314,7 @@
 
                 this.isLoadingDirectories = true;
                 this.directories = [];
-                filesCancelToken.cancel('Files load cancelled');
+                this.cancelLoadFiles();
 
                 let params = {
                     directory: this.currentDirectory
@@ -347,7 +353,10 @@
 
                 axios.get(
                     this.$route('admin.api.file-manager.files.index'),
-                    { params }
+                    {
+                        params,
+                        cancelToken: filesCancelToken.token
+                    }
                 ).then(response => {
                     if (response.data.hasOwnProperty('files')) {
                         this.files = response.data.files;
@@ -356,12 +365,11 @@
                     if (!axios.isCancel(e)) {
                         // TODO: Error toast
                         console.error(e);
-                    } else {
-                        console.log('cancel', e)
                     }
                 }).finally(() => {
                     this.isLoadingFiles = false;
                 });
+
             },
             onInitialise() {
                 if (this.initialise) {
