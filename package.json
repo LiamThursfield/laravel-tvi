@@ -26,6 +26,7 @@
         "tippy.js": "^6.2.6",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10",
+        "vue-toasted": "^1.1.28",
         "vuex": "^3.5.1"
     }
 }

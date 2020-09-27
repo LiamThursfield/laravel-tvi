@@ -1,0 +1,21 @@
+/* purgecss start ignore */
+
+.toasted-container {
+    &.top-right {
+        right: theme('spacing.8') !important;
+        top: theme('spacing.8') !important;
+    }
+
+    .toasted {
+        border-radius: theme('borderRadius.default') !important;
+
+        &.toasted-primary {
+            &.error {
+                background: var(--color-danger);
+                color: var(--color-danger-contrast);
+            }
+        }
+    }
+}
+
+/* purgecss end ignore */

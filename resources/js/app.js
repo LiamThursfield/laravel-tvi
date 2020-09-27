@@ -13,6 +13,8 @@ import { store } from './store/admin'
 
 Vue.use(InertiaApp);
 
+require('./plugins/toasted')
+
 // Add ziggy route helper
 Vue.prototype.$route = (...args) => route(...args).url();
 Vue.prototype.$routeCheck = (...args) => route().check(...args);

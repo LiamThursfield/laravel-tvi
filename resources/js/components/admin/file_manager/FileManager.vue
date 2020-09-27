@@ -1,7 +1,5 @@
 <template>
-
     <section>
-
         <div
             class="
                 flex flex-col mt-4 space-y-4
@@ -129,7 +127,6 @@
             </div>
 
         </div>
-
     </section>
 </template>
 
@@ -248,8 +245,7 @@
             },
             changeDirectory(newDirectory = '/') {
                 if (!this.canChangeDirectory) {
-                    // TODO: Error Toast
-                    console.error('Unable to change directory.')
+                    this.$errorToast('Unable to change directory');
                     return;
                 }
 
@@ -268,8 +264,7 @@
             },
             createDirectory() {
                 if (!this.canCreateDirectory) {
-                    // TODO: Error toast
-                    console.error('Please enter a valid directory name');
+                    this.$errorToast('Please enter a valid directory name');
                     return;
                 }
 
@@ -286,9 +281,8 @@
                     this.changeDirectory(this.newDirectoryNameFormatted)
                     this.stopCreatingDirectory();
                 }).catch(e => {
-                    // TODO: Error toast
+                    this.$errorToast('Failed to create directory');
                     this.isLoadingNewDirectory = false;
-                    console.error(e);
                 });
             },
             getDirectoryViaBreadcrumb(index) {
@@ -330,8 +324,7 @@
 
                     this.loadFiles();
                 }).catch(e => {
-                    // TODO: Error toast
-                    console.error(e);
+                    this.$errorToast('Failed to load directories');
                 }).finally(() => {
                     this.isLoadingDirectories = false;
                 });
@@ -363,8 +356,7 @@
                     }
                 }).catch(e => {
                     if (!axios.isCancel(e)) {
-                        // TODO: Error toast
-                        console.error(e);
+                        this.$errorToast('Failed to load files');
                     }
                 }).finally(() => {
                     this.isLoadingFiles = false;

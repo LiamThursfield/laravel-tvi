@@ -3,6 +3,7 @@
  */
 @import "./npprogress.css";
 @import "./transition.css";
+@import "./toasted.css";
 @import "./tippy.css";
 @import "./pagination.css";
 @import "./table.css";
