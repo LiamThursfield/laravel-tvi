@@ -1,4 +1,5 @@
 <template>
+    <!-- Part of the tabler icon set: https://github.com/tabler/tabler-icons -->
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

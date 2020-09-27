@@ -3,4 +3,26 @@
 
 ## About Laravel TVI
 
-Laravel TVI is a base project to allow rapid creation of a **Laravel** app using **Tailwind CSS**, **Vue.js**, and **Inertia.js**.
+Laravel TVI is a base CMS for creating & managing websites.
+
+## Core Stack
+- [Laravel](https://laravel.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vue.js](https://vuejs.org/)
+- [Inertia](https://inertiajs.com/)
+
+
+---------
+
+
+## Acknowledgements
+
+### Icons
+- [Tabler icons](https://github.com/tabler/tabler-icons)
+- [Tailwind icons](https://tailwindcss.com/docs)
+
+### Design inspiration
+- [Argon](https://demos.creative-tim.com/argon-dashboard-pro/pages/dashboards/dashboard.html)
+- [Bootstrap Themes](https://themes.getbootstrap.com/)
+- [Front](https://htmlstream.com/front-dashboard/index.html)
+- [Keen](https://preview.keenthemes.com/keen/demo1/index.html)
