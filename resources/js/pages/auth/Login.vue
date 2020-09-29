@@ -9,14 +9,6 @@
                 Welcome back
             </h1>
 
-            <div
-                v-if="$page.flash && $page.flash.warning"
-                class="bg-theme-warning mb-8 mx-6 p-4 rounded text-center text-sm text-theme-warning-contrast"
-            >
-                {{ $page.flash.warning }}
-            </div>
-
-
             <form
                 class="px-6"
                 @submit.prevent="submit"
