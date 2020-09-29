@@ -42,7 +42,7 @@ Vue.toasted.register('error',
     },
     {
         type : 'error',
-        duration : 30000,
+         duration : 3000,
     }
 );
 
