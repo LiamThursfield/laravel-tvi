@@ -159,6 +159,7 @@ class InertiaServiceProvider extends ServiceProvider
                 return [
                     'status'    => Session::get('status'),
                     'success'   => Session::get('success'),
+                    'warning'   => Session::get('warning'),
                 ];
             },
         ]);
