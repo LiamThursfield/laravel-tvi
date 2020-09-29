@@ -110,19 +110,29 @@
                 </div>
             </div>
 
-            <div class="bg-white flex-1 p-6 shadow-subtle rounded-lg">
+            <div class="flex-1">
+                <div class="bg-white shadow-subtle p-6 rounded-lg">
+                    <file-manager-files-header
+                        :canChangeDirectory="canChangeDirectory"
+                        :currentDirectoryList="currentDirectoryList"
+                        :showBreadcrumbs="showBreadcrumbs"
+                        @changeDirectoryViaBreadcrumb="changeDirectoryViaBreadcrumb"
+                    />
 
-                <file-manager-files-header
-                    :canChangeDirectory="canChangeDirectory"
-                    :currentDirectoryList="currentDirectoryList"
-                    :showBreadcrumbs="showBreadcrumbs"
-                    @changeDirectoryViaBreadcrumb="changeDirectoryViaBreadcrumb"
-                />
+                    <file-manager-files-list
+                        class="mt-2"
+                        :files="files"
+                        :showFilesLoader="showFilesLoader"
+                    />
+                </div>
 
-                <file-manager-files-list
-                    class="mt-2"
-                    :files="files"
-                    :showFilesLoader="showFilesLoader"
+                <file-manager-file-uploader
+                    v-show="canUploadFiles"
+                    class="mt-4"
+                    :directory="uploaderDirectory"
+                    :url="$route('admin.api.file-manager.files.store')"
+                    @filesAdded="onFileUploaderFilesAdded"
+                    @queueCompleted="onFileUploaderCompleted"
                 />
             </div>
 
@@ -135,13 +145,19 @@
     import FileManagerDirectoryList from "./partials/FileManagerDirectoryList";
     import FileManagerFilesHeader from "./partials/FileManagerFilesHeader";
     import FileManagerFilesList from "./partials/FileManagerFilesList";
+    import FileManagerFileUploader from "./partials/FileManagerFileUploader";
 
     let CancelToken = axios.CancelToken;
     let filesCancelToken = CancelToken.source();
 
     export default {
         name: "FileManager",
-        components: {FileManagerFilesList, FileManagerFilesHeader, FileManagerDirectoryList},
+        components: {
+            FileManagerFileUploader,
+            FileManagerDirectoryList,
+            FileManagerFilesHeader,
+            FileManagerFilesList,
+        },
         props: {
             initialise: {
                 default: false,
@@ -158,12 +174,13 @@
                 isLoadingDirectories: false,
                 isLoadingFiles: false,
                 isLoadingNewDirectory: false,
+                isLoadingFileUpload: false,
                 newDirectoryName: '',
             }
         },
         computed: {
             canChangeDirectory() {
-                return !this.isLoadingNewDirectory && !this.isLoadingDirectories;
+                return !this.isLoadingNewDirectory && !this.isLoadingDirectories && !this.isLoadingFileUpload;
             },
             canCreateDirectory() {
                 if (!this.isCreatingDirectory) {
@@ -174,12 +191,19 @@
                     return false;
                 }
 
+                if (this.isLoadingFileUpload) {
+                    return false;
+                }
+
                 let name = _.trim(this.newDirectoryName);
                 if (!name.length) {
                     return false;
                 }
 
                 return true;
+            },
+            canUploadFiles() {
+                return !this.isLoadingDirectories;
             },
             currentDirectoryList() {
                 let directory = _.trim(this.currentDirectory, '/');
@@ -224,10 +248,19 @@
                 return this.currentDirectoryList.length > 1;
             },
             showCreateDirectoryButton() {
-                return !this.isLoadingDirectories && this.userCan('file_manager.edit');
+                return !this.isLoadingDirectories && !this.isLoadingFileUpload && this.userCan('file_manager.edit');
             },
             showFilesLoader() {
                 return this.isLoadingDirectories || this.isLoadingFiles;
+            },
+            uploaderDirectory() {
+                let url = '/';
+
+                if (this.currentDirectory !== '/') {
+                    url += this.currentDirectory;
+                }
+
+                return url;
             }
         },
 
@@ -362,6 +395,13 @@
                     this.isLoadingFiles = false;
                 });
 
+            },
+            onFileUploaderFilesAdded() {
+                this.isLoadingFileUpload = true;
+            },
+            onFileUploaderCompleted() {
+                this.isLoadingFileUpload = false;
+                this.loadFiles();
             },
             onInitialise() {
                 if (this.initialise) {

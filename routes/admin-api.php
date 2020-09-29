@@ -18,4 +18,5 @@ Route::group([
     Route::post('/directories', [FileManagerDirectoryController::class, 'store'])->name('directories.store');
 
     Route::get('/files', [FileManagerFileController::class, 'index'])->name('files.index');
+    Route::post('/files', [FileManagerFileController::class, 'store'])->name('files.store');
 });

@@ -68,7 +68,8 @@
 </template>
 
 <script>
-    import prettyBytes from 'pretty-bytes'
+    import prettyBytes from 'pretty-bytes';
+    import slugify from 'slugify';
     import tippy from 'tippy.js';
     import 'tippy.js/animations/shift-away-extreme.css';
 
@@ -132,6 +133,11 @@
                     return 'icon-file';
                 }
             },
+            fileNameSlug() {
+                return slugify(this.file.meta.basename, {
+                    remove: '.'
+                });
+            },
             fileSize() {
                 try {
                     return prettyBytes(this.file.meta.size);
@@ -148,7 +154,7 @@
                 }
             },
             infoButtonId() {
-                return 'info-button-' + this.etag;
+                return 'info-button-' + this.fileNameSlug ;
             },
             isFileDropdownMeta() {
                 try {

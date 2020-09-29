@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminApi\FileManager;
 
+use App\Actions\FileManager\FileManagerFileStoreAction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,4 +28,12 @@ class FileManagerFileController extends AbstractFileManagerController
         return response()->json(compact('files'));
     }
 
+    public function store(Request $request)
+    {
+        $directory = $request->get('directory', "");
+        $file = $request->file('file');
+
+        $action = new FileManagerFileStoreAction($this->storage_disk);
+        return $action->handle($directory, $file);
+    }
 }

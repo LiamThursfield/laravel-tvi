@@ -22,11 +22,14 @@
         "postcss-nested": "^4.2.1",
         "pretty-bytes": "^5.4.1",
         "resolve-url-loader": "^2.3.1",
+        "slugify": "^1.4.5",
         "tailwindcss": "^1.8",
         "tippy.js": "^6.2.6",
         "vue": "^2.5.17",
+        "vue-cookies": "^1.7.4",
         "vue-template-compiler": "^2.6.10",
         "vue-toasted": "^1.1.28",
+        "vue2-dropzone": "^3.6.0",
         "vuex": "^3.5.1"
     }
 }

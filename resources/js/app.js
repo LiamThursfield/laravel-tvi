@@ -12,6 +12,7 @@ import Vue from 'vue';
 import { store } from './store/admin'
 
 Vue.use(InertiaApp);
+Vue.use(require('vue-cookies'));
 
 require('./plugins/toasted')
 
