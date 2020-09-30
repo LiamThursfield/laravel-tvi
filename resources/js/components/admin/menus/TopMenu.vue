@@ -46,6 +46,7 @@
                 v-if="userCan('profile.view')"
                 class="dropdown-link"
                 :href="$route('admin.profile.index')"
+                @click="closeUserDropdown"
             >
                 Profile
             </inertia-link>
@@ -69,15 +70,33 @@
 
     export default {
         name: "TopMenu",
+        data() {
+            return {
+                userDropDown: null,
+            }
+        },
         mounted() {
             this.initialiseUserDropdown();
         },
         methods: {
+            closeUserDropdown() {
+                try {
+                    if (Array.isArray(this.userDropDown)) {
+                        this.userDropDown.forEach(item => {
+                            item.hide();
+                        })
+                    } else {
+                        this.userDropDown.hide();
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
+            },
             initialiseUserDropdown() {
                 let userDropdownMenu = this.$refs.userDropdownMenu;
                 userDropdownMenu.style.display = 'block';
 
-                tippy('#userDropdownButton',{
+                this.userDropDown = tippy('#userDropdownButton',{
                     animation: 'shift-away-extreme',
                     content: userDropdownMenu,
                     interactive: true,
