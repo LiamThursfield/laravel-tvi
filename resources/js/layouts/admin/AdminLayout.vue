@@ -19,11 +19,23 @@
 
 <script>
 
+    import { Inertia } from '@inertiajs/inertia'
+
     export default {
         name: "AdminLayout",
+        mounted() {
+            Inertia.on('success', event => {
+                this.hideMobileSideMenu();
+            })
+        },
         methods: {
             url() {
                 return location.pathname.substr(1)
+            },
+            hideMobileSideMenu() {
+                if (this.$store.state.isMobileSideMenuOpen) {
+                    this.$store.commit('hideMobileSideMenu');
+                }
             },
         }
     }
