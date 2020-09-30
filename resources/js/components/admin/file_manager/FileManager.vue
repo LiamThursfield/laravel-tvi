@@ -127,7 +127,7 @@
                 </div>
 
                 <file-manager-file-uploader
-                    v-show="canUploadFiles"
+                    v-show="showFileUploader"
                     class="mt-4"
                     :directory="uploaderDirectory"
                     :url="$route('admin.api.file-manager.files.store')"
@@ -252,6 +252,9 @@
             },
             showFilesLoader() {
                 return this.isLoadingDirectories || this.isLoadingFiles;
+            },
+            showFileUploader() {
+                return this.canUploadFiles && this.userCan('file_manager.edit');
             },
             uploaderDirectory() {
                 let url = '/';
