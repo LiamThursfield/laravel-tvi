@@ -14,7 +14,8 @@ import { store } from './store/admin'
 Vue.use(InertiaApp);
 Vue.use(require('vue-cookies'));
 
-require('./plugins/toasted')
+require('./plugins/inertia-progress');
+require('./plugins/toasted');
 
 // Add ziggy route helper
 Vue.prototype.$route = (...args) => route(...args).url();

@@ -846,17 +846,23 @@
     postcss "7.0.32"
     purgecss "^2.3.0"
 
-"@inertiajs/inertia-vue@^0.1.2":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@inertiajs/inertia-vue/-/inertia-vue-0.1.4.tgz#d9d0e845d731176fa8ccdcf6879f53206737b669"
-  integrity sha512-n10fqZ3MyH/fypR2J3ej6edXn6BfCxfr7wqNeJrkCXiNF21uXhb4FeWX0qF3l2K6WB1Gr3YRT/RLdESlAMcGAw==
+"@inertiajs/inertia-vue@^0.2":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@inertiajs/inertia-vue/-/inertia-vue-0.2.4.tgz#187fd455ffd1105f759cc752bb242e68ac86a1e4"
+  integrity sha512-q5CfxAzNg12qsvI75h+bh5RlvKViNu7zmWbpnb6D0VUA2asbxjlJcMXpaMKXZt1U5fP6ti8NiTJgFy35vs2vOQ==
 
-"@inertiajs/inertia@^0.1.7":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@inertiajs/inertia/-/inertia-0.1.9.tgz#29862f3f61fc07b7b9433f4b005355fbf6e0fe7c"
-  integrity sha512-xqVdr+UxVUn7LC7uwzFMJ7t5HOrAZJ7uZzYlpvN/hwuO6y+rYMTAWobvkHnUyu+LaRspwqqZitBdXGs0JIZbyA==
+"@inertiajs/inertia@^0.3":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@inertiajs/inertia/-/inertia-0.3.6.tgz#7e87ee21da568ac1230d3034c1bd86122e5dad99"
+  integrity sha512-4Hr5dU0iQCO2qc+1b0FWH7reFYve2HnsTgQWaFPSS3JCPGYSGuyxkP2efVghzl3O05RZpsoHuR3dcch2RMfQOw==
   dependencies:
-    axios "^0.19.0"
+    axios "^0.19.0 || ^0.20.0"
+
+"@inertiajs/progress@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@inertiajs/progress/-/progress-0.1.2.tgz#4a52d75c45d818a469384bd4ffd632c5c38a1889"
+  integrity sha512-XazXCp9ezY2GLfS37O+LUf6Ni1xYLtrQg+svUi+videi3Aby28d4xRCtrqLvyo3HIWQE5DvNqCPQ8BFbaPZTOA==
+  dependencies:
     nprogress "^0.2.0"
 
 "@ivanv/vue-collapse-transition@^0.2.1":
@@ -1352,12 +1358,19 @@ autoprefixer@^9.4.2, autoprefixer@^9.4.5:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-axios@^0.19, axios@^0.19.0:
+axios@^0.19:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
+
+"axios@^0.19.0 || ^0.20.0":
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -3122,7 +3135,7 @@ follow-redirects@1.5.10:
   dependencies:
     debug "=3.1.0"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
