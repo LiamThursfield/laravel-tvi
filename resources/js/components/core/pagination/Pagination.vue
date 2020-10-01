@@ -7,7 +7,13 @@
              v-for="(link, key) in visibleLinks"
              :key="`pagination-link-${key}`"
              class="pagination-link-container"
-             :class="{'pagination-link-container-numeric': isNumberLink(link)}"
+             :class="{
+                 'pagination-link-container-active': isActiveLink(link),
+                 'pagination-link-container-first': isFirstLink(link),
+                 'pagination-link-container-ellipsis': isEllipsisLink(link),
+                 'pagination-link-container-last': isLastLink(link),
+                 'pagination-link-container-numeric': isNumberLink(link),
+             }"
         >
              <pagination-link
                  :link="link"
@@ -168,6 +174,18 @@
                 }
 
                 return this.iconMap.hasOwnProperty(link.label) ? this.iconMap[link.label] : false;
+            },
+            isActiveLink(link) {
+                return link.active;
+            },
+            isEllipsisLink(link) {
+                return link.label === '...';
+            },
+            isFirstLink(link) {
+                return link.label === 1;
+            },
+            isLastLink(link) {
+                return link.label === this.pagination.last_page;
             },
             isNumberLink(link) {
                 return parseInt(link.label) > 0;

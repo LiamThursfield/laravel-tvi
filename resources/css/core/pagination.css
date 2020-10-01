@@ -61,15 +61,23 @@
         }
     }
 
+    .pagination-link-container-ellipsis,
     .pagination-link-container-numeric {
         @apply hidden;
+    }
+
+    .pagination-link-container-active,
+    .pagination-link-container-first,
+    .pagination-link-container-last {
+        @apply block;
     }
 }
 
 @screen md {
     .pagination {
+        .pagination-link-container-ellipsis,
         .pagination-link-container-numeric {
-            @apply block;
+                @apply block;
         }
     }
 }
