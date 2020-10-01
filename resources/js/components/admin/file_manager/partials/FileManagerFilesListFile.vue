@@ -14,6 +14,7 @@
             <span>{{ file.meta.basename }}</span>
         </div>
         <div class="flex flex-row items-center space-x-2">
+            <!-- Open file in new tab -->
             <a
                 v-if="file.url"
                 class="
@@ -29,39 +30,46 @@
                 <icon-external-link class="w-5" />
             </a>
 
-            <button
-                v-if="isFileDropdownMeta"
-                :id="infoButtonId"
-                class="
-                    flex flex-row items-center justify-center rounded text-gray-500
-                    ease-in-out duration-300 transition-colors
-                    focus:outline-none
-                    hover:text-theme-primary
-                "
-                type="button"
-            >
-                <icon-info-square class="w-5" />
-            </button>
-
-            <div
-                v-if="isFileDropdownMeta"
-                ref="infoDropdownMenu"
-                class="
-                    flex flex-col px-4 py-4 space-y-3
-                    focus:outline-none
-                "
-            >
-                <p
-                    v-for="(value, label) in fileDropdownMeta"
-                    :key="label"
+            <!-- Info dropdown button -->
+            <div>
+                <button
+                    v-if="isFileDropdownMeta"
+                    :id="infoButtonId"
+                    class="
+                        flex flex-row items-center justify-center rounded text-gray-500
+                        ease-in-out duration-300 transition-colors
+                        focus:outline-none
+                        hover:text-theme-primary
+                    "
+                    type="button"
+                    @click="onDropdownButtonClick"
                 >
-                    <span class="block text-gray-500 text-xs">
-                        {{  label }}
-                    </span>
-                    <span class="block break-all text-gray-700 text-sm">
-                        {{  value }}
-                    </span>
-                </p>
+                    <icon-info-square class="w-5" />
+                </button>
+
+                <div
+                    v-if="isFileDropdownMeta"
+                    ref="infoDropdownMenu"
+                    class="
+                        flex flex-col px-4 py-4 space-y-3
+                        focus:outline-none
+                    "
+                >
+                    <div v-if="showDropdownPreview">
+                        <img class="max-w-full" :src="file.url" alt="">
+                    </div>
+                    <p
+                        v-for="(value, label) in fileDropdownMeta"
+                        :key="label"
+                    >
+                        <span class="block text-gray-500 text-xs">
+                            {{  label }}
+                        </span>
+                        <span class="block break-all text-gray-700 text-sm">
+                            {{  value }}
+                        </span>
+                    </p>
+                </div>
             </div>
         </div>
     </li>
@@ -83,6 +91,11 @@
             file: {
                 required: true,
                 type: Object
+            }
+        },
+        data() {
+            return {
+                isDropdownPreviewLoaded: false, // default to false so previews only download when required
             }
         },
         computed: {
@@ -162,7 +175,17 @@
                 } catch(e) {
                     return false;
                 }
-            }
+            },
+            isFileImage() {
+                try {
+                    return this.file.meta.mimetype.indexOf('image') === 0;
+                } catch (e) {
+                    return false;
+                }
+            },
+            showDropdownPreview() {
+                return this.isDropdownPreviewLoaded && this.isFileImage;
+            },
         },
         mounted() {
             this.initialiseFileDropdown();
@@ -185,6 +208,9 @@
                     trigger: 'click',
                 });
             },
+            onDropdownButtonClick() {
+                this.isDropdownPreviewLoaded = true;
+            }
         },
     }
 </script>
