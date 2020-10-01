@@ -418,7 +418,7 @@
                 try {
                     setTimeout(() => {
                         this.$refs['new_directory'].focus();
-                    }, 350);
+                    }, 450);
                 } catch (e) {}
             },
             stopCreatingDirectory() {
