@@ -157,7 +157,8 @@ class InertiaServiceProvider extends ServiceProvider
             },
             'flash' => function () {
                 return [
-                    'status'    => Session::get('status'),
+                    'error'     => Session::get('error'),
+                    'status'    => Session::get('status'), // @deprecated - ise the error, success, warning, etc.
                     'success'   => Session::get('success'),
                     'warning'   => Session::get('warning'),
                 ];

@@ -1,0 +1,139 @@
+<template>
+    <section
+        v-if="isVisibleAlerts"
+        class="pt-8 px-8"
+    >
+        <transition-group
+            class="flex flex-col space-y-4"
+            name="fade"
+            tag="div"
+        >
+            <div
+                v-if="isVisibleSuccess"
+                class="bg-theme-success flex flex-row items-center px-4 py-4 rounded text-theme-success-contrast"
+                key="alert-success"
+            >
+                <span class="flex-1">
+                    {{ alertSuccess }}
+                </span>
+                <button
+                    class="ml-2"
+                    type="button"
+                    @click="closeSuccess"
+                >
+                    <icon-close class="w-5" />
+                </button>
+            </div>
+
+            <div
+                v-if="isVisibleWarning"
+                class="bg-theme-warning flex flex-row items-center px-4 py-4 rounded text-theme-warning-contrast"
+                key="alert-warning"
+            >
+                <span class="flex-1">
+                    {{ alertWarning }}
+                </span>
+                <button
+                    class="ml-2"
+                    type="button"
+                    @click="isClosedWarning = true"
+                >
+                    <icon-close class="w-5" />
+                </button>
+            </div>
+
+            <div
+                v-if="isVisibleError"
+                class="bg-theme-danger flex flex-row items-center px-4 py-4 rounded text-theme-danger-contrast"
+                key="alert-error"
+            >
+                <span class="flex-1">
+                    {{ alertError }}
+                </span>
+                <button
+                    class="ml-2"
+                    type="button"
+                    @click="isClosedError = true"
+                >
+                    <icon-close class="w-5" />
+                </button>
+            </div>
+        </transition-group>
+    </section>
+</template>
+
+<script>
+    export default {
+        name: "PageAlerts",
+        data() {
+            return {
+                isClosedError: false,
+                isClosedSuccess: false,
+                isClosedWarning: false,
+            }
+        },
+        computed: {
+            alertError() {
+                try {
+                    return this.$page.flash.error;
+                } catch (e) {
+                    return false;
+                }
+            },
+            alertSuccess() {
+                try {
+                    return this.$page.flash.success;
+                } catch (e) {
+                    return false;
+                }
+            },
+            alertWarning() {
+                try {
+                    return this.$page.flash.warning;
+                } catch (e) {
+                    return false;
+                }
+            },
+            isVisibleAlerts() {
+                try {
+                    return this.isVisibleError || this.isVisibleSuccess || this.isVisibleWarning;
+                } catch (e) {
+                    return false;
+                }
+            },
+            isVisibleError() {
+                return this.alertError && !this.isClosedError;
+            },
+            isVisibleSuccess() {
+                return this.alertSuccess && !this.isClosedSuccess;
+            },
+            isVisibleWarning() {
+                return this.alertWarning && !this.isClosedWarning;
+            }
+        },
+        methods: {
+            onAlertsChange() {
+                this.isClosedError = false;
+                this.isClosedSuccess = false;
+                this.isClosedWarning = false;
+            },
+            closeError() {
+                this.isClosedError = true;
+                this.$page.flash.error = null;
+            },
+            closeSuccess() {
+                this.isClosedSuccess = true;
+                this.$page.flash.success = null;
+            },
+            closeWarning() {
+                this.isClosedWarning = true;
+                this.$page.flash.warning = null;
+            },
+        },
+        watch: {
+            alertError() { this.isClosedError = false },
+            alertSuccess() { this.isClosedSuccess = false },
+            alertWarning() { this.isClosedWarning = false },
+        }
+    }
+</script>

@@ -10,6 +10,8 @@
         <div class="flex flex-1 flex-col max-w-full">
             <top-menu />
 
+            <page-alerts />
+
             <div class="bg-theme-base flex-1 p-8">
                 <slot/>
             </div>
@@ -18,11 +20,13 @@
 </template>
 
 <script>
-
     import { Inertia } from '@inertiajs/inertia'
+
+    import PageAlerts from "../../components/core/alerts/PageAlerts";
 
     export default {
         name: "AdminLayout",
+        components: {PageAlerts},
         mounted() {
             Inertia.on('success', event => {
                 this.hideMobileSideMenu();
