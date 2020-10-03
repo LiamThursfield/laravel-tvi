@@ -23,5 +23,6 @@ Route::get('/profile', [ProfileController::class, 'index'])
     ->middleware('can:view profile');
 
 Route::resource('users', UserController::class)->only([
+    'destroy',
     'index'
-])->middleware('can:view users');
+]);
