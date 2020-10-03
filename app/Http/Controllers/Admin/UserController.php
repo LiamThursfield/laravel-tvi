@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:delete users')->only('delete');
+        $this->middleware('can:delete users')->only('destroy');
         $this->middleware('can:view users')->only('index');
     }
 
@@ -29,7 +29,7 @@ class UserController extends Controller
         if (auth()->user()->id === $user->id) {
             return Redirect::back(303)->with(
                 'error',
-                'Deleting own user is not allowed.'
+                'Deleting your own user is not allowed.'
             );
         }
 
