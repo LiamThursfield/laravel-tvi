@@ -50,6 +50,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // TODO: Implement Inertia Error Handling - https://inertiajs.com/error-handling
         return parent::render($request, $exception);
     }
 }
