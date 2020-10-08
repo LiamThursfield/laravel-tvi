@@ -1,8 +1,7 @@
 <template>
-    <div class="bg-theme-base flex flex-col min-h-screen min-w-screen">
-
+    <div class="bg-gray-100 flex flex-col min-h-screen min-w-screen">
         <nav class="flex flex-row justify-end px-6 py-4">
-            <ul class="flex flex-row space-x-4 text-theme-base-contrast">
+            <ul class="flex flex-row font-bold space-x-4 text-theme-base-contrast">
                 <template v-if="$page.auth.user">
                     <li>
                         <a
@@ -35,16 +34,29 @@
         </nav>
 
         <!-- Content Section -->
-        <section class="flex flex-1 flex-col items-center justify-center p-4">
-            <h1
-                class="
-                    font-black text-center text-3xl
-                    md:leading-snug md:text-6xl
-                "
-            >
-                {{ $page.app.name || 'Laravel TVI' }}
-            </h1>
-            <ul class="border-theme-base-contrast border-t flex flex-row mt-4 pt-4 space-x-6 text-theme-base-contrast md:text-lg">
+        <section class="flex flex-1 flex-col items-center justify-center p-8">
+            <div class="relative" >
+                <div
+                    class="
+                        skewed-logo-bg
+                        absolute bg-gradient-to-r from-blue-700 inset-0 to-blue-600 rounded shadow-lg transform
+                    "
+                />
+                <h1
+                    class="
+                        bg-gray-900 font-black px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
+                        sm:text-6xl
+                    "
+                >
+                    <span class="text-white">
+                        Laravel
+                    </span>
+                    <span class="text-white">
+                        TVI
+                    </span>
+                </h1>
+            </div>
+            <ul class="flex flex-row flex-wrap font-bold justify-center mt-8 pt-4 px-4 space-x-6 text-theme-base-contrast md:text-lg">
                 <li>
                     <a
                         class="hover:text-theme-primary"
@@ -96,3 +108,10 @@
         layout: 'website-layout'
     }
 </script>
+
+<style scoped>
+    .skewed-logo-bg {
+        --transform-rotate: -18deg;
+        --transform-skew-y: 12deg
+    }
+</style>
