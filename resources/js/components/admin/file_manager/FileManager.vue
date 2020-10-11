@@ -32,22 +32,26 @@
                         class="mt-8 w-full"
                     >
                         <transition
-                            name="slide-left" mode="out-in"
+                            name="slide-left-multiple"
+                            mode="out-in"
                         >
-                            <button
+                            <div
                                 v-if="!isCreatingDirectory"
                                 key="intial"
-                                class="
-                                    bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-full
-                                    ease-in-out duration-300 transition-colors
-                                    focus:outline-none focus:shadow-outline-primary
-                                    hover:bg-theme-primary hover:text-theme-primary-contrast
-                                "
-                                type="button"
-                                @click="startCreatingDirectory"
                             >
-                                Create Directory
-                            </button>
+                                <button
+                                    class="
+                                        bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-full
+                                        ease-in-out duration-300 transition-colors
+                                        focus:outline-none focus:shadow-outline-primary
+                                        hover:bg-theme-primary hover:text-theme-primary-contrast
+                                    "
+                                    type="button"
+                                    @click="startCreatingDirectory"
+                                >
+                                    Create Directory
+                                </button>
+                            </div>
 
                             <div
                                 v-else

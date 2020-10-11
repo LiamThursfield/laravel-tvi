@@ -84,4 +84,20 @@
     transform: translateY(100%);
 }
 
+/**************
+ * Slide Left Multiple *
+ **************/
+.slide-left-multiple-enter-active {
+    transition: transform .3s ease;
+}
+.slide-left-multiple-leave-active {
+    transition: transform .3s ease;
+}
+.slide-left-multiple-enter {
+    transform: translateX(-150%);
+}
+.slide-left-multiple-leave-to {
+    transform: translateX(-150%);
+}
+
 /*! purgecss end ignore */
