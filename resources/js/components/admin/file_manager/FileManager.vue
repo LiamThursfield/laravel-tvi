@@ -66,7 +66,7 @@
                                 </label>
                                 <input
                                     id="new_directory"
-                                    class="border border-theme-base-subtle-contrast px-4 py-1 rounded"
+                                    class="bg-white border border-theme-base-subtle-contrast px-4 py-1 rounded"
                                     placeholder="Directory Name"
                                     ref="new_directory"
                                     type="text"
