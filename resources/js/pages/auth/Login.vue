@@ -39,7 +39,7 @@
                 />
 
                 <div class="mt-6">
-                    <label class="cursor-pointer flex font-semibold inline-block items-center text-theme-base-contrast">
+                    <label class="cursor-pointer flex font-medium inline-block items-center text-theme-base-contrast">
                         <input
                             id="remember"
                             class="

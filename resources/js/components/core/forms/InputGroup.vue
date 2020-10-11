@@ -98,7 +98,7 @@
                 type: String
             },
             label_class: {
-                default: 'font-semibold text-theme-base-contrast text-sm tracking-wider',
+                default: 'font-medium text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
             label_text: {
