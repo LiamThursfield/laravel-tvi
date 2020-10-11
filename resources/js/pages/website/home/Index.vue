@@ -44,7 +44,7 @@
                 />
                 <h1
                     class="
-                        bg-gray-900 font-semibold px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
+                        bg-theme-base-contrast font-semibold px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
                         sm:text-6xl
                     "
                 >
