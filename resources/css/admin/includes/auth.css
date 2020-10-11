@@ -16,6 +16,6 @@
     }
 
     .auth-header {
-        @apply font-bold pb-6 pt-8 px-6 text-center text-theme-base-contrast text-2xl tracking-wide;
+        @apply font-semibold pb-6 pt-8 px-6 text-center text-theme-base-contrast text-2xl tracking-wide;
     }
 }
