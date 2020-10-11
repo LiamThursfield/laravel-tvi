@@ -13,7 +13,7 @@
                 "
             >
                 <h2 class="flex flex-row justify-between">
-                    <span class="text-gray-500">
+                    <span class="text-theme-base-subtle-contrast">
                         Directories
                     </span>
                 </h2>
@@ -38,10 +38,10 @@
                                 v-if="!isCreatingDirectory"
                                 key="intial"
                                 class="
-                                    border border-gray-500 flex flex-row items-center justify-center px-2 py-1 rounded text-gray-500 w-full
+                                    bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-full
                                     ease-in-out duration-300 transition-colors
-                                    focus:border-theme-primary focus:outline-none
-                                    hover:bg-theme-primary hover:border-theme-primary hover:text-theme-primary-contrast
+                                    focus:outline-none focus:shadow-outline-primary
+                                    hover:bg-theme-primary hover:text-theme-primary-contrast
                                 "
                                 type="button"
                                 @click="startCreatingDirectory"
@@ -62,7 +62,7 @@
                                 </label>
                                 <input
                                     id="new_directory"
-                                    class="border border-gray-500 px-4 py-1 rounded"
+                                    class="border border-theme-base-subtle-contrast px-4 py-1 rounded"
                                     placeholder="Directory Name"
                                     ref="new_directory"
                                     type="text"
@@ -73,10 +73,10 @@
                                     <button
                                         type="button"
                                         class="
-                                            border border-gray-500 flex flex-row items-center justify-center px-2 py-1 rounded text-gray-500 w-1/2
+                                            bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-1/2
                                             ease-in-out duration-300 transition-colors
-                                            focus:bg-theme-danger focus:border-theme-danger focus:outline-none focus:text-theme-danger-contrast
-                                            hover:bg-theme-danger hover:border-theme-danger hover:text-theme-danger-contrast
+                                            focus:bg-theme-danger focus:outline-none focus:text-theme-danger-contrast
+                                            hover:bg-theme-danger hover:text-theme-danger-contrast
                                         "
                                         :disabled="isLoadingNewDirectory"
                                         @click="stopCreatingDirectory"
@@ -86,9 +86,9 @@
                                     <button
                                         type="button"
                                         class="
-                                            border border-theme-success flex flex-row items-center justify-center px-2 py-1 rounded text-theme-success w-1/2
+                                            bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-1/2
                                             ease-in-out duration-300 transition-colors
-                                            focus:outline-none focus:bg-theme-success focus:text-theme-success-contrast
+                                            focus:bg-theme-success focus:outline-none focus:text-theme-success-contrast
                                             hover:bg-theme-success hover:border-theme-success hover:text-theme-success-contrast
                                         "
                                         :disabled="!canCreateDirectory"

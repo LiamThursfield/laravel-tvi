@@ -54,7 +54,7 @@
             <inertia-link
                 class="
                     text-gray-300 text-sm tracking-wide
-                    hover:text-gray-500
+                    hover:text-theme-base-subtle-contrast
                 "
                 :href="$route('login')"
             >
@@ -64,7 +64,7 @@
             <inertia-link
                 class="
                     text-gray-300 text-sm tracking-wide
-                    hover:text-gray-500
+                    hover:text-theme-base-subtle-contrast
                 "
                 :href="$route('register')"
             >

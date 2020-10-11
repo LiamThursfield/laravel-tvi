@@ -1,6 +1,6 @@
 <template>
     <h2 class="flex flex-row items-center justify-between">
-        <span class="text-gray-500">
+        <span class="text-theme-base-subtle-contrast">
             Files
         </span>
 
@@ -16,7 +16,7 @@
                 <template v-if="index < (currentDirectoryList.length - 1)">
                     <button
                         class="
-                            text-gray-500
+                            text-theme-base-subtle-contrast
                             focus:outline-none focus:text-theme-primary
                             hover:text-theme-primary
                         "
@@ -41,7 +41,7 @@
                     v-else
                 >
                     <span
-                        class="text-gray-500"
+                        class="text-theme-base-subtle-contrast"
                         :class="{
                             'opacity-50': !canChangeDirectory
                         }"

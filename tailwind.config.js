@@ -55,6 +55,8 @@ module.exports = {
                 theme: {
                     'base'                      : 'var(--color-base)',
                     'base-contrast'             : 'var(--color-base-contrast)',
+                    'base-subtle'               : 'var(--color-base-subtle)',
+                    'base-subtle-contrast'      : 'var(--color-base-subtle-contrast)',
                     'card'                      : 'var(--color-card)',
                     'card-contrast'             : 'var(--color-card-contrast)',
                     'danger'                    : 'var(--color-danger)',
@@ -69,6 +71,8 @@ module.exports = {
                     'primary-contrast'          : 'var(--color-primary-contrast)',
                     'primary-hover'             : 'var(--color-primary-hover)',
                     'primary-hover-contrast'    : 'var(--color-primary-hover-contrast)',
+                    'primary-subtle'            : 'var(--color-primary-subtle)',
+                    'primary-subtle-contrast'   : 'var(--color-primary-subtle-contrast)',
                     'success'                   : 'var(--color-success)',
                     'success-contrast'          : 'var(--color-success-contrast)',
                     'success-hover'             : 'var(--color-success-hover)',

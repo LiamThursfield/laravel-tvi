@@ -9,36 +9,40 @@
      */
     --color-base                    : theme('colors.gray.200');
     --color-base-contrast           : theme('colors.navy.850');
+    --color-base-subtle             : theme('colors.gray.200');
+    --color-base-subtle-contrast    : theme('colors.gray.500');
     --color-card                    : theme('colors.white');
     --color-card-contrast           : theme('colors.navy.850');
-    --color-danger                  : theme('colors.red.600');
-    --color-danger-contrast         : theme('colors.white');
-    --color-danger-hover            : theme('colors.red.700');
-    --color-danger-hover-contrast   : theme('colors.white');
-    --color-info                    : theme('colors.yellow.300');
-    --color-info-contrast           : theme('colors.white');
-    --color-info-hover              : theme('colors.yellow.400');
-    --color-info-hover-contrast     : theme('colors.white');
+    --color-danger                  : theme('colors.red.100');
+    --color-danger-contrast         : theme('colors.red.500');
+    --color-danger-hover            : theme('colors.red.200');
+    --color-danger-hover-contrast   : theme('colors.red.600');
+    --color-info                    : theme('colors.yellow.100');
+    --color-info-contrast           : theme('colors.yellow.500');
+    --color-info-hover              : theme('colors.yellow.200');
+    --color-info-hover-contrast     : theme('colors.yellow.600');
     --color-primary                 : theme('colors.blue.600');
     --color-primary-contrast        : theme('colors.white');
     --color-primary-hover           : theme('colors.blue.800');
     --color-primary-hover-contrast  : theme('colors.white');
-    --color-success                 : theme('colors.green.500');
-    --color-success-contrast        : theme('colors.white');
-    --color-success-hover           : theme('colors.green.600');
-    --color-success-hover-contrast  : theme('colors.white');
-    --color-warning                 : theme('colors.orange.500');
-    --color-warning-contrast        : theme('colors.white');
-    --color-warning-hover           : theme('colors.orange.600');
-    --color-warning-hover-contrast  : theme('colors.white');
+    --color-primary-subtle          : theme('colors.blue.100');
+    --color-primary-subtle-contrast : theme('colors.blue.600');
+    --color-success                 : theme('colors.green.100');
+    --color-success-contrast        : theme('colors.green.500');
+    --color-success-hover           : theme('colors.green.200');
+    --color-success-hover-contrast  : theme('colors.green.600');
+    --color-warning                 : theme('colors.orange.100');
+    --color-warning-contrast        : theme('colors.orange.500');
+    --color-warning-hover           : theme('colors.orange.200');
+    --color-warning-hover-contrast  : theme('colors.orange.600');
 
     /**
      * Dropdown
      */
     --dropdown-color-base                   : theme('colors.white');
     --dropdown-color-base-contrast          : theme('colors.theme.base-contrast');
-    --dropdown-color-hover                  : theme('colors.blue.100');
-    --dropdown-color-hover-contrast         : theme('colors.theme.primary');
+    --dropdown-color-hover                  : theme('colors.theme.primary-subtle');
+    --dropdown-color-hover-contrast         : theme('colors.theme.primary-subtle-contrast');
     --dropdown-color-separator              : theme('colors.gray.200');
     --dropdown-color-subheading             : theme('colors.white');
     --dropdown-color-subheading-contrast    : theme('colors.navy.300');
@@ -54,7 +58,7 @@
     --side-menu-color-hover-contrast            : theme('colors.theme.primary');
     --side-menu-color-logo                      : theme('colors.navy.400');
     --side-menu-color-logo-active               : theme('colors.theme.primary');
-    --side-menu-color-separator                 : theme('colors.gray.200');
+    --side-menu-color-separator                 : theme('colors.theme.base');
     --side-menu-color-sub-menu-active           : theme('colors.white');
     --side-menu-color-sub-menu-active-contrast  : theme('colors.theme.primary');
     --side-menu-color-sub-menu-base             : theme('colors.white');
@@ -87,10 +91,10 @@
     --pagination-color-active-contrast   : theme('colors.theme.primary-contrast');
     --pagination-color-base              : theme('colors.white');
     --pagination-color-base-border       : theme('colors.white');
-    --pagination-color-base-contrast     : theme('colors.navy.300');
-    --pagination-color-hover             : theme('colors.blue.200');
-    --pagination-color-hover-border      : theme('colors.blue.200');
-    --pagination-color-hover-contrast    : theme('colors.theme.primary');
+    --pagination-color-base-contrast     : theme('colors.theme.base-subtle-contrast');
+    --pagination-color-hover             : theme('colors.theme.primary-subtle');
+    --pagination-color-hover-border      : theme('colors.theme.primary-subtle');
+    --pagination-color-hover-contrast    : theme('colors.theme.primary-subtle-contrast');
 
     /**
      * Table

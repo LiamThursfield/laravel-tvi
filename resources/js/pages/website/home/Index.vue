@@ -1,7 +1,7 @@
 <template>
     <div class="bg-gray-100 flex flex-col min-h-screen min-w-screen">
         <nav class="flex flex-row justify-end px-6 py-4">
-            <ul class="flex flex-row font-bold space-x-4 text-theme-base-contrast">
+            <ul class="flex flex-row font-medium space-x-4 text-theme-base-contrast">
                 <template v-if="$page.auth.user">
                     <li>
                         <a
@@ -44,7 +44,7 @@
                 />
                 <h1
                     class="
-                        bg-gray-900 font-black px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
+                        bg-gray-900 font-semibold px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
                         sm:text-6xl
                     "
                 >
@@ -56,7 +56,7 @@
                     </span>
                 </h1>
             </div>
-            <ul class="flex flex-row flex-wrap font-bold justify-center mt-8 pt-4 px-4 space-x-6 text-theme-base-contrast md:text-lg">
+            <ul class="flex flex-row flex-wrap font-medium justify-center mt-8 pt-4 px-4 space-x-6 text-theme-base-contrast md:text-lg">
                 <li>
                     <a
                         class="hover:text-theme-primary"

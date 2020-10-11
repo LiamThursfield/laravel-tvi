@@ -47,7 +47,7 @@
                 v-if="$routeCheck('password.request')"
                 class="
                     text-gray-300 text-sm tracking-wide
-                    hover:text-gray-500
+                    hover:text-theme-base-subtle-contrast
                 "
                 :href="$route('password.request')"
             >

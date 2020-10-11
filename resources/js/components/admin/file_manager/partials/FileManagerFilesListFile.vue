@@ -18,9 +18,9 @@
             <a
                 v-if="file.url"
                 class="
-                    flex flex-row items-center justify-center rounded text-gray-500
+                    flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
                     ease-in-out duration-300 transition-colors
-                    focus:outline-none
+                    focus:text-theme-primary focus:outline-none
                     hover:text-theme-primary
                 "
                 :href="file.url"
@@ -36,9 +36,9 @@
                     v-if="isFileDropdownMeta"
                     :id="infoButtonId"
                     class="
-                        flex flex-row items-center justify-center rounded text-gray-500
+                        flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
                         ease-in-out duration-300 transition-colors
-                        focus:outline-none
+                        focus:text-theme-primary focus:outline-none
                         hover:text-theme-primary
                     "
                     type="button"
@@ -62,7 +62,7 @@
                         v-for="(value, label) in fileDropdownMeta"
                         :key="label"
                     >
-                        <span class="block text-gray-500 text-xs">
+                        <span class="block text-theme-base-subtle-contrast text-xs">
                             {{  label }}
                         </span>
                         <span class="block break-all text-gray-700 text-sm">

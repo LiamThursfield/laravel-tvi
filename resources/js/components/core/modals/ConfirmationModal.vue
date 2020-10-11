@@ -14,10 +14,10 @@
                 <div class="flex flex-row justify-end p-2">
                     <button
                         class="
-                            flex h-5 items-center justify-center rounded text-gray-500 w-5
+                            flex h-5 items-center justify-center rounded text-theme-base-subtle-contrast w-5
                             ease-in-out duration-300 transition-colors
                             focus:outline-none focus:shadow-outline-primary
-                            hover:text-theme-primary
+                            hover:bg-theme-base-subtle
                         "
                         :disabled="isActionLoading"
                         @click="closeModal"
@@ -54,11 +54,11 @@
                 >
                     <button
                         class="
-                            border border-gray-500 min-w-24 px-4 py-2 rounded text-center text-gray-500 w-full
+                            bg-theme-base-subtle min-w-24 px-4 py-2 rounded text-center text-theme-base-subtle-contrast w-full
                             ease-in-out duration-300 transition-colors
                             sm:w-auto
                             focus:outline-none focus:shadow-outline-primary
-                            hover:bg-gray-500 hover:text-white
+                            hover:bg-theme-base-subtle-contrast hover:text-theme-base-subtle
                         "
                         :disabled="isActionLoading"
                         type="button"

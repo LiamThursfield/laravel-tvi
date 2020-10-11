@@ -2,7 +2,7 @@
     <ul>
         <template v-if="isLoadingDirectories">
             <li
-                class="flex flex-row items-start text-gray-500 py-1 w-full"
+                class="flex flex-row items-start text-theme-base-subtle-contrast py-1 w-full"
             >
                 <icon-loader-circle class="animate-spin-slow mr-2 w-5"/>
                 <span>Loading</span>

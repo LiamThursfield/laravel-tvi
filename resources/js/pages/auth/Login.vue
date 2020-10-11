@@ -39,7 +39,7 @@
                 />
 
                 <div class="mt-6">
-                    <label class="cursor-pointer flex font-bold inline-block items-center text-theme-base-contrast">
+                    <label class="cursor-pointer flex font-semibold inline-block items-center text-theme-base-contrast">
                         <input
                             id="remember"
                             class="
@@ -87,7 +87,7 @@
             <inertia-link
                 class="
                     text-gray-300 text-sm tracking-wide
-                    hover:text-gray-500
+                    hover:text-theme-base-subtle-contrast
                 "
                 :href="$route('register')"
             >

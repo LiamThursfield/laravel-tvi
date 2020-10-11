@@ -31,35 +31,31 @@
                                 <button
                                     v-if="userCan('users.edit')"
                                     class="
-                                        border border-navy-300 flex-row items-center inline-flex mx-1 px-2 rounded text-navy-300 text-sm tracking-wide
+                                        flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                         focus:outline-none focus:shadow-outline
-                                        hover:bg-theme-info hover:border-theme-info hover:text-theme-info-contrast
+                                        hover:bg-theme-info hover:text-theme-info-contrast
                                     "
+                                    title="Edit User"
                                 >
                                     <icon-edit
-                                        class="h-4 w-4"
+                                        class="w-4"
                                     />
-                                    <span class="ml-1">
-                                        Edit
-                                    </span>
                                 </button>
 
                                 <button
                                     v-if="userCan('users.delete')"
                                     class="
-                                        border border-navy-300 flex-row items-center inline-flex mx-1 px-2 rounded text-navy-300 text-sm tracking-wide
+                                        flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                         focus:outline-none focus:shadow-outline
-                                        hover:bg-theme-danger hover:border-theme-danger hover:text-theme-danger-contrast
+                                        hover:bg-theme-danger hover:text-theme-danger-contrast
                                     "
                                     :disabled="isUserCurrent(user)"
+                                    title="Delete User"
                                     @click="checkUserDelete(user)"
                                 >
                                     <icon-trash
-                                        class="h-4 w-4"
+                                        class="w-4"
                                     />
-                                    <span class="ml-1">
-                                        Delete
-                                    </span>
                                 </button>
                             </div>
                         </td>

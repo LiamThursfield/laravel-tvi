@@ -2,7 +2,7 @@
     <ul>
         <template v-if="showFilesLoader">
             <li
-                class="flex flex-row items-center justify-center text-gray-500 text-sm py-4 w-full"
+                class="flex flex-row items-center justify-center text-theme-base-subtle-contrast text-sm py-4 w-full"
             >
                 <span class="flex items-center">
                     <icon-loader-circle class="animate-spin-slow mr-2 w-5"/>
@@ -12,7 +12,7 @@
         </template>
         <template v-else-if="!isFiles">
             <li
-                class="flex flex-row items-center justify-center text-gray-500 text-sm py-4 w-full"
+                class="flex flex-row items-center justify-center text-theme-base-subtle-contrast text-sm py-4 w-full"
             >
                 <span>No files</span>
             </li>
