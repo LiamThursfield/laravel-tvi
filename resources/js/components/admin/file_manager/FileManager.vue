@@ -67,7 +67,7 @@
                                 <input
                                     id="new_directory"
                                     class="
-                                        border border-theme-base-subtle-contrast px-4 py-1 rounded shadow-none
+                                        appearance-none border border-theme-base-subtle-contrast px-4 py-1 rounded shadow-none
                                         focus:outline-none focus:shadow-outline-primary
                                     "
                                     placeholder="Directory Name"
