@@ -9,19 +9,19 @@
                 <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
                     First Name
                 </span>
-                {{ user.first_name }}
+                {{ profile.first_name }}
             </p>
             <p class="mt-2">
                 <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
                     Last Name
                 </span>
-                {{ user.last_name }}
+                {{ profile.last_name }}
             </p>
             <p class="mt-2">
                 <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
                     Email
                 </span>
-                {{ user.email }}
+                {{ profile.email }}
             </p>
         </div>
 
@@ -34,12 +34,8 @@
         name: "AdminProfileIndex",
         layout: 'admin-layout',
         props: {
-            auth: Object
-        },
-        computed: {
-            user() {
-                return this.auth.user;
-            }
+            auth: Object,
+            profile: Object,
         }
     }
 </script>
