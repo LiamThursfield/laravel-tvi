@@ -9,6 +9,8 @@
         color: var(--top-menu-color-base-contrast);
 
         .menu-link {
+            @apply font-medium;
+
             color: var(--top-menu-color-base-contrast);
 
             &:focus,
