@@ -39,20 +39,23 @@
                 <div
                     class="
                         skewed-logo-bg
-                        absolute bg-gradient-to-r from-blue-700 inset-0 to-blue-600 rounded shadow-lg transform
+                        absolute bg-gradient-to-r from-blue-700 inset-0 to-blue-600 rounded-lg shadow-lg transform
                     "
                 />
                 <h1
                     class="
-                        bg-theme-base-contrast font-semibold px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
+                        bg-theme-base-contrast flex flex-row font-semibold items-center px-8 py-4 relative rounded-lg text-center text-3xl tracking-wide
                         sm:text-6xl
                     "
                 >
-                    <span class="text-white">
-                        Laravel
-                    </span>
-                    <span class="text-white">
-                        TVI
+                    <icon-logo-dark class="w-9 sm:w-16" />
+                    <span
+                        class="
+                            ml-3 text-white
+                            sm:ml-6
+                        "
+                    >
+                        Laravel TVI
                     </span>
                 </h1>
             </div>
