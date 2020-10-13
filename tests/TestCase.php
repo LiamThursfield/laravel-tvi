@@ -75,6 +75,11 @@ abstract class TestCase extends BaseTestCase
     }
 
 
+    /**
+     * Sign in with a user
+     * @param User|null $user
+     * @return $this
+     */
     protected function signIn(User $user = null)
     {
         $user = $user ?: User::factory()->create();
@@ -84,28 +89,62 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
-    protected function signInWithRole(string $role)
+    /**
+     * Sign in with a user and give the provided permission(s).
+     * @param string|array $permissions
+     * @param User|null $user
+     * @return $this
+     */
+    protected function signInWithPermissions($permissions, User $user = null)
     {
-        $user = User::factory()->create();
+        $user = $user ?: User::factory()->create();
+        $user->givePermissionTo($permissions);
+
+        return $this->signIn($user);
+    }
+
+
+    /**
+     * Sign in with a user and assign the provided role.
+     * @param string $role
+     * @param User|null $user
+     * @return $this
+     */
+    protected function signInWithRole(string $role, User $user = null)
+    {
+        $user = $user ?: User::factory()->create();
         $user->assignRole($role);
 
-        $this->signIn($user)->actingAs($user);
-
-        return $this;
+        return $this->signIn($user);
     }
 
-    protected function signInWithSuperRole()
+    /**
+     * Sign in with a user and assign the Super role.
+     * @param User|null $user
+     * @return $this
+     */
+    protected function signInWithSuperRole(User $user = null)
     {
-        return $this->signInWithRole(RoleInterface::SUPER);
+        return $this->signInWithRole(RoleInterface::SUPER, $user);
     }
 
-    protected function signInWithAdminRole()
+    /**
+     * Sign in with a user and assign the Admin role.
+     * @param User|null $user
+     * @return $this
+     */
+    protected function signInWithAdminRole(User $user = null)
     {
-        return $this->signInWithRole(RoleInterface::ADMIN);
+        return $this->signInWithRole(RoleInterface::ADMIN, $user);
     }
 
-    protected function signInWithUserRole()
+    /**
+     * Sign in with a user and assign the Super role.
+     * @param User|null $user
+     * @return $this
+     */
+    protected function signInWithUserRole(User $user = null)
     {
-        return $this->signInWithRole(RoleInterface::USER);
+        return $this->signInWithRole(RoleInterface::USER, $user);
     }
 }
