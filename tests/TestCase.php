@@ -12,6 +12,16 @@ use Illuminate\Support\Arr;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
 
+/**
+ * Class TestCase
+ * @package Tests
+ *
+ * Inertia specific assertion methods
+ * @method $this assertHasProp($key)
+ * @method $this assertPropCount($key, $count)
+ * @method $this assertPropValue($key, $value)
+ * @method array props($key)
+ */
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication,
@@ -36,6 +46,10 @@ abstract class TestCase extends BaseTestCase
         parent::tearDown();
     }
 
+    /**
+     * Define the Inertia specific assertions.
+     * Taken from: https://github.com/inertiajs/pingcrm/blob/master/tests/TestCase.php
+     */
     protected function inertiaSetup(): void {
         TestResponse::macro('props', function ($key = null) {
             $props = json_decode(json_encode($this->original->getData()['page']['props']), JSON_OBJECT_AS_ARRAY);

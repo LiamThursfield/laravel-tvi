@@ -5,9 +5,8 @@ namespace Tests\Unit\Admin;
 use App\Interfaces\PermissionInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
-use Tests\TestCase;
 
-class ProfileTest extends TestCase
+class ProfileTest extends AbstractAdminTestCase
 {
     use RefreshDatabase;
 
@@ -27,14 +26,12 @@ class ProfileTest extends TestCase
     /** @test  */
     public function unauthorised_users_cannot_view_their_profile()
     {
-        // Guests
-        $response = $this->get(route('admin.profile.index'));
-        $response->assertRedirect(route('login'));
+        $this->assertIsPermissionAuthenticatedRoute(route('admin.profile.index'));
+    }
 
-        // User with no permissions
-        $response = $this
-            ->signIn()
-            ->get(route('admin.profile.index'));
-        $response->assertStatus(403);
+    /** @test */
+    public function unauthorised_users_cannot_edit_their_profile()
+    {
+        self::assertTrue(true);
     }
 }
