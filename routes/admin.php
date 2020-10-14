@@ -18,11 +18,17 @@ Route::get('/file-manager', [FileManagerController::class, 'index'])
     ->name('file_manager.index')
     ->middleware(['can:view file_manager']);
 
-Route::get('/profile', [ProfileController::class, 'index'])
-    ->name('profile.index')
-    ->middleware('can:view profile');
+Route::group([
+    'as' => 'profile.',
+    'prefix' => 'profile'
+], function() {
+    Route::get('/', [ProfileController::class, 'index'])->name('index');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/', [ProfileController::class, 'update'])->name('update');
+});
 
 Route::resource('users', UserController::class)->only([
     'destroy',
-    'index'
+    'index',
+    'update'
 ]);

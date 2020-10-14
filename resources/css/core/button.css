@@ -1,0 +1,38 @@
+/*
+ * Button
+ */
+
+.button {
+    @apply rounded;
+    @apply ease-in-out duration-300 transition-colors;
+
+    &:not(:disabled) {
+        @apply cursor-pointer;
+    }
+
+    &:not(.outline-override) {
+        &:focus {
+            @apply outline-none shadow-outline
+        }
+    }
+
+    &.button-default-responsive {
+        @apply px-2 py-1 md:px-4 md:py-2;
+    }
+
+    &.button-primary {
+        @apply bg-theme-primary text-theme-primary-subtle;
+
+        &:hover {
+            @apply bg-theme-primary-hover text-theme-primary-hover-contrast;
+        }
+    }
+
+    &.button-primary-subtle {
+        @apply bg-theme-primary-subtle text-theme-primary-subtle-contrast;
+
+        &:hover {
+            @apply bg-theme-primary-subtle-hover text-theme-primary-subtle-hover-contrast;
+        }
+    }
+}

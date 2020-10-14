@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Inertia\Middleware as InertiaMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -47,6 +48,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Authenticate::class,
+            InertiaMiddleware::class
         ],
 
         'api' => [

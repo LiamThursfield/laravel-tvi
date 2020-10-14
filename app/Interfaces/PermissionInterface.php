@@ -49,4 +49,13 @@ class PermissionInterface
             'view'      => self::VIEW_USERS,
         ]
     ];
+
+    static function getMiddlewareString($permissions)
+    {
+        if (is_array($permissions)) {
+            $permissions = implode(',', $permissions);
+        }
+
+        return 'can:' . $permissions;
+    }
 }

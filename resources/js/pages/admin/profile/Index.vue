@@ -1,31 +1,57 @@
 <template>
-    <div class="bg-white max-w-5xl mx-auto py-6 shadow-subtle rounded-lg">
-        <h1 class="font-semibold px-6 text-gray-850">
-            My Profile
-        </h1>
+    <section class="max-w-5xl mx-auto">
+        <div
+            v-if="userCan('profile.edit')"
+            class="flex flex-row items-center mb-6"
+        >
+            <h1 class="mr-auto text-lg">
+                My Profile
+            </h1>
 
-        <div class="block mt-4 px-6 w-full">
-            <p>
-                <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                    First Name
+            <inertia-link
+                class="
+                    button button-default-responsive button-primary-subtle
+                    flex flex-row items-center
+                "
+                :href="$route('admin.profile.edit')"
+            >
+                <icon-edit
+                    class="
+                        w-5
+                        md:mr-2
+                    "
+                />
+                <span
+                    class="hidden md:inline"
+                >
+                    Edit Profile
                 </span>
-                {{ profile.first_name }}
-            </p>
-            <p class="mt-2">
-                <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                    Last Name
-                </span>
-                {{ profile.last_name }}
-            </p>
-            <p class="mt-2">
-                <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                    Email
-                </span>
-                {{ profile.email }}
-            </p>
+            </inertia-link>
         </div>
 
-    </div>
+        <div class="bg-white py-6 shadow-subtle rounded-lg">
+            <div class="block px-6 w-full">
+                <p>
+                    <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
+                        First Name
+                    </span>
+                    {{ profile.first_name }}
+                </p>
+                <p class="mt-2">
+                    <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
+                        Last Name
+                    </span>
+                    {{ profile.last_name }}
+                </p>
+                <p class="mt-2">
+                    <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
+                        Email
+                    </span>
+                    {{ profile.email }}
+                </p>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>

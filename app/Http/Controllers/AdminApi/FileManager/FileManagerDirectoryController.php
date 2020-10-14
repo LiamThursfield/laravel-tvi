@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\AdminApi\FileManager;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\FileManager\FileManagerDirectoryStoreRequest;
+use App\Http\Requests\Admin\FileManager\FileManagerDirectoryStoreRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
