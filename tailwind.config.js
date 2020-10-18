@@ -16,14 +16,15 @@ const additionalSpacing = {
 module.exports = {
     experimental: {
         applyComplexClasses: true,
-        defaultLineHeights: true,
         extendedFontSizeScale: true,
         extendedSpacingScale: true,
         uniformColorPalette: true,
     },
     future: {
+        defaultLineHeights: true,
         purgeLayersByDefault: true,
         removeDeprecatedGapUtilities: true,
+        standardFontWeights: true,
     },
     purge: [
         './resources/**/*.blade.php',
