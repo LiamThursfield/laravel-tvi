@@ -87,9 +87,9 @@ class ProfileTest extends AbstractAdminTestCase
 
         $user = User::factory()->create();
         $updates = [
-            'email' => $user->email,
+            'email'      => $user->email,
             'first_name' => 'NEW_FIRST_NAME',
-            'last_name' => 'NEW_LAST_NAME',
+            'last_name'  => 'NEW_LAST_NAME',
         ];
 
         $response = $this->signInWithPermissions(PermissionInterface::EDIT_PROFILE, $user)
@@ -104,10 +104,10 @@ class ProfileTest extends AbstractAdminTestCase
         $user = User::factory()->create();
         $user_id = $user->id;
         $updates = [
-            'email' => 'NEW@EMAIL.COM',
+            'email'      => 'NEW@EMAIL.COM',
             'first_name' => 'NEW_FIRST_NAME',
-            'id' => $user_id + 10,
-            'last_name' => 'NEW_LAST_NAME',
+            'id'         => $user_id + 10,
+            'last_name'  => 'NEW_LAST_NAME',
         ];
 
         $this->signInWithPermissions(PermissionInterface::EDIT_PROFILE, $user)
@@ -131,9 +131,9 @@ class ProfileTest extends AbstractAdminTestCase
         $existing_user = User::factory()->create();
 
         $updates = [
-            'email' => $existing_user->email,
+            'email'      => $existing_user->email,
             'first_name' => 'NEW_FIRST_NAME',
-            'last_name' => 'NEW_LAST_NAME',
+            'last_name'  => 'NEW_LAST_NAME',
         ];
 
         $this->signInWithPermissions(PermissionInterface::EDIT_PROFILE, $user)
