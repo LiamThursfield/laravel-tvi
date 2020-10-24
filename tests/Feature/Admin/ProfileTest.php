@@ -32,9 +32,9 @@ class ProfileTest extends AbstractAdminTestCase
 
         $user = User::factory()->create();
         $updates = [
-            'email' => 'NEW@EMAIL.COM',
+            'email'      => 'NEW@EMAIL.COM',
             'first_name' => 'NEW_FIRST_NAME',
-            'last_name' => 'NEW_LAST_NAME',
+            'last_name'  => 'NEW_LAST_NAME',
         ];
 
         $response = $this->signInWithPermissions(PermissionInterface::EDIT_PROFILE, $user)
