@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Interfaces\PermissionInterface;
+use App\Interfaces\RoleInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,7 +52,7 @@ class User extends Authenticatable
 
 
     /**
-     * Helper to return first + last name
+     * Helper to return first + last name.
      * @return string
      */
     public function getNameAttribute()
@@ -60,11 +61,30 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all the roles that this user can select / assign to other users (or themselves).
+     * @param bool $force_load
+     * @return array
+     */
+    public function getSelectableRoles(bool $force_load = false) : array
+    {
+        $roles = [];
+
+        if (!$this->relationLoaded('roles') && !$force_load) {
+            return $roles;
+        }
+
+        foreach ($this->roles as $role) {
+            $roles = array_merge($roles, RoleInterface::getSelectableRoles($role->name));
+        }
+        return array_unique($roles);
+    }
+
+    /**
      * Return all permissions and whether or not the user has them, in array format
-     * Allowing for dot notation access e.g. users.create
+     * Allowing for dot notation access e.g. users.create.
      * @return array[]
      */
-    public function getAllPermissionsAttribute()
+    public function getAllPermissionsAttribute() : array
     {
         $permissions_array = [];
 
