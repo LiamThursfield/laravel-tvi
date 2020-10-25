@@ -19,6 +19,7 @@
             :type="input_type"
             :value="input_value"
             @input="onInputKeyPress"
+            @keyup.esc="blurInput"
         />
 
         <div>
@@ -130,6 +131,13 @@
                 if (this.input_autofocus && this.$refs[this.input_id]) {
                     this.$nextTick(() => {
                         this.$refs[this.input_id].focus();
+                    });
+                }
+            },
+            blurInput() {
+                if (this.$refs[this.input_id]) {
+                    this.$nextTick(() => {
+                        this.$refs[this.input_id].blur();
                     });
                 }
             },
