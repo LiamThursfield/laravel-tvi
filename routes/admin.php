@@ -29,6 +29,7 @@ Route::group([
 
 Route::resource('users', UserController::class)->only([
     'destroy',
+    'edit',
     'index',
     'update'
 ]);

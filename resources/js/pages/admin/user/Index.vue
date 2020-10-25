@@ -28,19 +28,20 @@
                         </td>
                         <td v-if="showUsersActions">
                             <div class="flex flex-row items-center justify-end -mx-1">
-                                <button
+                                <inertia-link
                                     v-if="userCan('users.edit')"
                                     class="
                                         flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                         focus:outline-none focus:shadow-outline
                                         hover:bg-theme-info hover:text-theme-info-contrast
                                     "
+                                    :href="$route('admin.users.edit', user.id)"
                                     title="Edit User"
                                 >
                                     <icon-edit
                                         class="w-4"
                                     />
-                                </button>
+                                </inertia-link>
 
                                 <button
                                     v-if="userCan('users.delete')"

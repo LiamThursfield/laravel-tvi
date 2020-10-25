@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\UserUpdateRequest;
+use App\Interfaces\PermissionInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -14,8 +16,17 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:delete users')->only('destroy');
-        $this->middleware('can:view users')->only('index');
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_USERS)
+        )->only('destroy');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_USERS)
+        )->only(['edit', 'update']);
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_USERS)
+        )->only('index');
     }
 
 
@@ -39,6 +50,23 @@ class UserController extends Controller
             'success',
             'User deleted.'
         );
+    }
+
+    public function edit(User $user)
+    {
+        return Inertia::render('admin/user/Edit', [
+            'user' => function () use ($user) {
+                return $user;
+            }
+        ]);
+    }
+
+    public function update(UserUpdateRequest $request, User $user)
+    {
+        // @TODO - Move this to an action so that Roles can be edited in the same endpoint
+        $user->update($request->validated());
+        return Redirect::to(route('admin.users.edit', $user))
+            ->with('success', 'User updated.');
     }
 
     /**

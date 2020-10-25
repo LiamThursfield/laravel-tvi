@@ -6,10 +6,38 @@ use App\Interfaces\PermissionInterface;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Validation\ValidationException;
 
 class UserTest extends AbstractAdminTestCase
 {
     use RefreshDatabase;
+
+    /** @test */
+    public function a_user_cannot_be_updated_with_an_email_belonging_to_another_user()
+    {
+        // Ensure validation errors are thrown
+        $this->withoutExceptionHandling();
+
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->create();
+        $original_user_email = $user->email;
+        $existing_user = User::factory()->create();
+
+        $updates = [
+            'email'      => $existing_user->email,
+            'first_name' => 'NEW_FIRST_NAME',
+            'last_name'  => 'NEW_LAST_NAME',
+        ];
+
+        $this->signInWithPermissions(PermissionInterface::EDIT_USERS)
+            ->put(route('admin.users.update', $user), $updates);
+
+        // Ensure the user email has not changed
+        $user->refresh();
+        $this->assertEquals($original_user_email, $user->email);
+        $this->assertNotEquals($existing_user->email, $user->email);
+    }
 
     /** @test */
     public function authorised_users_can_delete_users()
@@ -24,6 +52,45 @@ class UserTest extends AbstractAdminTestCase
 
         $this->expectException(ModelNotFoundException::class);
         User::findOrFail($user->id);
+    }
+
+    /** @test */
+    public function authorised_users_can_edit_users()
+    {
+        $user_to_edit = User::factory()->create();
+
+        $response = $this
+            ->signInWithPermissions(PermissionInterface::EDIT_USERS)
+            ->get(route('admin.users.edit', $user_to_edit));
+
+        $response
+            ->assertStatus(200)
+            ->assertSee($user_to_edit->name);
+    }
+
+    /** @test */
+    public function authorised_users_can_update_users()
+    {
+        // Ensure validation errors are thrown
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->create();
+        $updates = [
+            'email'      => 'NEW@EMAIL.COM',
+            'first_name' => 'NEW_FIRST_NAME',
+            'last_name'  => 'NEW_LAST_NAME',
+        ];
+
+        $response = $this
+            ->signInWithPermissions(PermissionInterface::EDIT_USERS)
+            ->put(route('admin.users.update', $user), $updates);
+
+        $response->assertStatus(302);
+
+        $user->refresh();
+        foreach ($updates as $key => $value) {
+            $this->assertEquals($value, $user->getAttribute($key));
+        }
     }
 
     /** @test */
@@ -51,6 +118,20 @@ class UserTest extends AbstractAdminTestCase
     }
 
     /** @test */
+    public function unauthorised_users_cannot_edit_users()
+    {
+        $user = User::factory()->create();
+        $this->assertIsPermissionAuthenticatedRoute(route('admin.users.edit', $user));
+    }
+
+    /** @test */
+    public function unauthorised_users_can_update_users()
+    {
+        $user = User::factory()->create();
+        $this->assertIsPermissionAuthenticatedRoute(route('admin.users.update', $user), 'put');
+    }
+
+    /** @test */
     public function unauthorised_users_cannot_view_users()
     {
         $this->assertIsPermissionAuthenticatedRoute(route('admin.users.index'));
@@ -71,5 +152,4 @@ class UserTest extends AbstractAdminTestCase
 
         $this->assertEquals($user->email, User::findOrFail($user->id)->email);
     }
-
 }
