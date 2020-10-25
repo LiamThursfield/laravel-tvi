@@ -171,6 +171,11 @@
         },
         methods: {
             canViewMenu(menu) {
+                // If there is a route, ensure it exists
+                if (menu.route && menu.route.length && !this.$routeCheck(menu.route)) {
+                    return false;
+                }
+
                 return this.userCanAny(menu.requiresAnyPermissions) && this.userCanAll(menu.requiresAllPermissions);
             },
             getVisibleMenuWithChildren(menu) {
@@ -178,7 +183,7 @@
                     return false;
                 }
 
-                // Ensure the user has permission to view the current menu
+                // Ensure the menu is valid and the user has permission to view it
                 if (!this.canViewMenu(menu)) {
                     return false;
                 }
