@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\User\UserUpdateRequest;
 use App\Interfaces\PermissionInterface;
 use App\Models\User;
@@ -11,11 +11,14 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends AdminController
 {
 
     public function __construct()
     {
+        parent::__construct();
+        $this->addMetaTitleSection('Users');
+
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_USERS)
         )->only('destroy');
@@ -54,6 +57,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        $this->addMetaTitleSection('Edit - ' . $user->name);
+        $this->shareMeta();
+
         return Inertia::render('admin/user/Edit', [
             'user' => function () use ($user) {
                 return $user;
@@ -77,6 +83,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->shareMeta();
         return Inertia::render('admin/user/Index', [
             'users' => function () use ($request) {
                 return User::orderBy('first_name')

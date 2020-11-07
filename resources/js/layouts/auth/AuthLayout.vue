@@ -28,5 +28,16 @@
 <script>
     export default {
         name: "AuthLayout",
+        metaInfo() {
+            return {
+                title: 'Laravel TVI',
+                meta: [
+                    {
+                        name: 'description',
+                        content: 'Laravel TVI',
+                    }
+                ]
+            }
+        },
     }
 </script>

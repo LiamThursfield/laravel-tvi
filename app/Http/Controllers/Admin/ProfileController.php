@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
  use App\Http\Requests\Admin\Profile\ProfileUpdateRequest;
 use App\Interfaces\PermissionInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Inertia\Response;
-use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ProfileController extends AdminController
 {
     public function __construct()
     {
+        parent::__construct();
+        $this->addMetaTitleSection('Profile');
+
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_PROFILE)
         )->only(['edit', 'update']);
@@ -26,6 +27,9 @@ class ProfileController extends Controller
 
     public function edit()
     {
+        $this->addMetaTitleSection('Edit');
+        $this->shareMeta();
+
         return Inertia::render('admin/profile/Edit', [
             'profile' => function () {
                 return Auth::user();
@@ -35,6 +39,7 @@ class ProfileController extends Controller
 
     public function index()
     {
+        $this->shareMeta();
         return Inertia::render('admin/profile/Index', [
             'profile' => function () {
                 return Auth::user();

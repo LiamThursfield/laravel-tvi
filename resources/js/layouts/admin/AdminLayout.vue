@@ -27,12 +27,45 @@
     export default {
         name: "AdminLayout",
         components: {PageAlerts},
+        metaInfo() {
+            return {
+                title: this.metaTitle,
+                meta: [
+                    {
+                        name: 'description',
+                        content: this.metaDescription,
+                    }
+                ]
+            }
+        },
+        computed: {
+            metaDescription() {
+                return this.getMetaDataField(
+                    'description',
+                    'Laravel TVI - A CMS powered by Laravel, Tailwind, Vue, and Inertia'
+                );
+            },
+            metaTitle() {
+                return this.getMetaDataField(
+                    'title',
+                    'Laravel TVI'
+                );
+            }
+        },
         mounted() {
             Inertia.on('success', event => {
                 this.hideMobileSideMenu();
             })
         },
         methods: {
+            getMetaDataField(slug, fallback = '') {
+                try {
+                    return this.$page.props.meta[slug] ?? fallback;
+                } catch (e) {
+                    console.log(e);
+                    return fallback;
+                }
+            },
             url() {
                 return location.pathname.substr(1)
             },

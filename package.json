@@ -29,6 +29,7 @@
         "vue": "^2.5.17",
         "vue-clickaway": "^2.2.2",
         "vue-cookies": "^1.7.4",
+        "vue-meta": "^2.4.0",
         "vue-template-compiler": "^2.6.10",
         "vue-toasted": "^1.1.28",
         "vue2-dropzone": "^3.6.0",
