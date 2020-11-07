@@ -31,14 +31,14 @@ Vue.mixin({
          */
         userCan(permission = '') {
             try {
-                if (this.$page.auth.user.super) {
+                if (this.$page.props.auth.user.super) {
                     return true;
                 }
 
                 // Get the value of the permission - if set
                 let result =  permission.split('.').reduce(function(prev, curr) {
                     return prev ? prev[curr] : null
-                }, this.$page.auth.user.permissions || self);
+                }, this.$page.props.auth.user.permissions || self);
 
                 // Parse the result as a bool
                 return !!result;
