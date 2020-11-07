@@ -57,7 +57,7 @@
             <div class="block px-6 w-full">
 
                 <input-group
-                    :error_message="$page.errors.first_name ? $page.errors.first_name[0] : ''"
+                    :error_message="getPageErrorMessage('first_name')"
                     input_autocomplete="first_name"
                     :input_autofocus="true"
                     input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
@@ -71,7 +71,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.last_name ? $page.errors.last_name[0] : ''"
+                    :error_message="getPageErrorMessage('last_name')"
                     input_autocomplete="last_name"
                     input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
                     input_id="last_name"
@@ -84,7 +84,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.email ? $page.errors.email[0] : ''"
+                    :error_message="getPageErrorMessage('email')"
                     input_autocomplete="new_email"
                     input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
                     input_id="email"
@@ -117,7 +117,7 @@
         computed: {
             isCurrentUser() {
                 try {
-                    return this.user.id === this.$page.auth.user.id;
+                    return this.user.id === this.$page.props.auth.user.id;
                 } catch (e) {
                     return false;
                 }

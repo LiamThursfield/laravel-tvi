@@ -28,6 +28,7 @@
                         cursor-pointer text-theme-primary
                         hover:underline
                     "
+                    as="button"
                     :href="$route('verification.resend')"
                     method="post"
                 >
@@ -42,6 +43,7 @@
                     text-gray-300 text-sm tracking-wide
                     hover:text-theme-base-subtle-contrast
                 "
+                as="button"
                 :href="$route('logout')"
                 method="post"
             >

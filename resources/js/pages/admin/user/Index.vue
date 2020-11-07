@@ -150,7 +150,7 @@
             },
             isUserCurrent(user) {
                 try {
-                    return user.id === this.$page.auth.user.id;
+                    return user.id === this.$page.props.auth.user.id;
                 } catch (e) {
                     return false;
                 }

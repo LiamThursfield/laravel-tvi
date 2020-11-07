@@ -75,21 +75,21 @@
         computed: {
             alertError() {
                 try {
-                    return this.$page.flash.error;
+                    return this.$page.props.flash.error;
                 } catch (e) {
                     return false;
                 }
             },
             alertSuccess() {
                 try {
-                    return this.$page.flash.success;
+                    return this.$page.props.flash.success;
                 } catch (e) {
                     return false;
                 }
             },
             alertWarning() {
                 try {
-                    return this.$page.flash.warning;
+                    return this.$page.props.flash.warning;
                 } catch (e) {
                     return false;
                 }
@@ -119,15 +119,15 @@
             },
             closeError() {
                 this.isClosedError = true;
-                this.$page.flash.error = null;
+                this.$page.props.flash.error = null;
             },
             closeSuccess() {
                 this.isClosedSuccess = true;
-                this.$page.flash.success = null;
+                this.$page.props.flash.success = null;
             },
             closeWarning() {
                 this.isClosedWarning = true;
-                this.$page.flash.warning = null;
+                this.$page.props.flash.warning = null;
             },
         },
         watch: {

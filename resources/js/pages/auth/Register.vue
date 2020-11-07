@@ -22,7 +22,7 @@
                 >
                     <input-group
                         class="mt-4"
-                        :error_message="$page.errors.first_name ? $page.errors.first_name[0] : ''"
+                        :error_message="getPageErrorMessage('first_name')"
                         input_autocomplete="given-name"
                         :input_autofocus="true"
                         input_id="first_name"
@@ -35,7 +35,7 @@
 
                     <input-group
                         class="mt-4"
-                        :error_message="$page.errors.last_name ? $page.errors.last_name[0] : ''"
+                        :error_message="getPageErrorMessage('last_name')"
                         input_autocomplete="family-name"
                         input_id="last_name"
                         input_name="last_name"
@@ -48,7 +48,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.email ? $page.errors.email[0] : ''"
+                    :error_message="getPageErrorMessage('email')"
                     input_autocomplete="email"
                     input_id="email"
                     input_name="email"
@@ -60,7 +60,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.password ? $page.errors.password[0] : ''"
+                    :error_message="getPageErrorMessage('password')"
                     input_autocomplete="new-password"
                     input_id="password"
                     input_name="password"
@@ -72,7 +72,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.password_confirmation ? $page.errors.password_confirmation[0] : ''"
+                    :error_message="getPageErrorMessage('password_confirmation')"
                     input_autocomplete="new-password"
                     input_id="password_confirmation"
                     input_name="password_confirmation"

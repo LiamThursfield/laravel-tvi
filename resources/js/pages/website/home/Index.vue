@@ -2,7 +2,7 @@
     <div class="bg-gray-100 flex flex-col min-h-screen min-w-screen">
         <nav class="flex flex-row justify-end px-6 py-4">
             <ul class="flex flex-row font-medium space-x-4 text-theme-base-contrast">
-                <template v-if="$page.auth.user">
+                <template v-if="$page.props.auth.user">
                     <li>
                         <a
                             class="hover:text-theme-primary"

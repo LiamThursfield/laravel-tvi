@@ -6,12 +6,12 @@
 
 require('./bootstrap');
 
-import { InertiaApp } from '@inertiajs/inertia-vue';
+import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue';
 
 import { store } from './store/admin'
 
-Vue.use(InertiaApp);
+Vue.use(plugin);
 Vue.use(require('vue-cookies'));
 
 require('./plugins/inertia-progress');
@@ -131,20 +131,43 @@ iconFiles.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], ic
 // Core
 Vue.component('pagination', require('./components/core/pagination/Pagination.vue').default);
 
+// Global Mixins
+Vue.mixin({
+    methods: {
+        getPageErrorMessage(field) {
+            try {
+                let error = this.$page.props.errors[field];
+
+                if (!error) {
+                    return '';
+                }
+
+                if (Array.isArray(error)) {
+                    return error[0];
+                }
+
+                return error;
+            } catch (e) {
+                return '';
+            }
+        }
+    }
+})
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = document.getElementById('app');
+const el = document.getElementById('app');
 
 new Vue({
     store,
-    render: h => h(InertiaApp, {
+    render: h => h(App, {
         props: {
-            initialPage: JSON.parse(app.dataset.page),
+            initialPage: JSON.parse(el.dataset.page),
             resolveComponent: name => import(`./pages/${name}`).then(module => module.default),
         },
     }),
-}).$mount(app);
+}).$mount(el);

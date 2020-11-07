@@ -16,7 +16,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.email ? $page.errors.email[0] : ''"
+                    :error_message="getPageErrorMessage('email')"
                     input_autocomplete="email"
                     input_id="email"
                     input_name="email"
@@ -28,7 +28,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.password ? $page.errors.password[0] : ''"
+                    :error_message="getPageErrorMessage('password')"
                     input_autocomplete="new-password"
                     :input_autofocus="true"
                     input_id="password"
@@ -41,7 +41,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.password_confirmation ? $page.errors.password_confirmation[0] : ''"
+                    :error_message="getPageErrorMessage('password_confirmation')"
                     input_autocomplete="new-password"
                     input_id="password_confirmation"
                     input_name="password_confirmation"

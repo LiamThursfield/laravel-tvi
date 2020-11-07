@@ -19,7 +19,7 @@
                 id="userDropdownButton"
                 class="menu-link"
             >
-                {{ $page.auth.user.first_name }}
+                {{ $page.props.auth.user.first_name }}
             </button>
         </div>
 
@@ -32,7 +32,7 @@
         >
 
             <p class="dropdown-subheading mb-2">
-                Hello, {{ $page.auth.user.first_name }}
+                Hello, {{ $page.props.auth.user.first_name }}
             </p>
 
             <inertia-link
@@ -55,6 +55,7 @@
 
             <inertia-link
                 class="dropdown-link"
+                as="button"
                 :href="$route('logout')"
                 method="post"
             >

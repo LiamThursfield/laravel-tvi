@@ -10,10 +10,10 @@
             </h1>
 
             <p
-                v-if="$page.flash.status"
+                v-if="$page.props.flash.status"
                 class="pb-8 px-6 text-center text-green-700"
             >
-                {{ $page.flash.status }}
+                {{ $page.props.flash.status }}
             </p>
 
             <form
@@ -24,7 +24,7 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="$page.errors.email ? $page.errors.email[0] : ''"
+                    :error_message="getPageErrorMessage('email')"
                     input_autocomplete="email"
                     input_id="email"
                     input_name="email"

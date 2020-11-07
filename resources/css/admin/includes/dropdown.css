@@ -1,5 +1,5 @@
 .dropdown-link {
-    @apply block px-4 py-1;
+    @apply block px-4 py-1 text-left w-full;
     background: var(--dropdown-color-base);
     color: var(--dropdown-color-base-contrast);
 
