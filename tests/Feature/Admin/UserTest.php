@@ -13,6 +13,28 @@ class UserTest extends AbstractAdminTestCase
     use RefreshDatabase;
 
     /** @test */
+    public function a_user_cannot_be_stored_with_an_email_belonging_to_another_user()
+    {
+        // Ensure validation errors are thrown
+        $this->withoutExceptionHandling();
+
+        $this->expectException(ValidationException::class);
+
+        $existing_user = User::factory()->create();
+
+        $new_user = [
+            'email'      => $existing_user->email,
+            'first_name' => 'FNAME',
+            'last_name' => 'LNAME',
+            'password' => "TESTPASSOWRD1",
+            'password_confirmation' => "TESTPASSOWRD1",
+        ];
+
+        $this->signInWithPermissions(PermissionInterface::CREATE_USERS)
+            ->post(route('admin.users.store'), $new_user);
+    }
+
+    /** @test */
     public function a_user_cannot_be_updated_with_an_email_belonging_to_another_user()
     {
         // Ensure validation errors are thrown
@@ -37,6 +59,15 @@ class UserTest extends AbstractAdminTestCase
         $user->refresh();
         $this->assertEquals($original_user_email, $user->email);
         $this->assertNotEquals($existing_user->email, $user->email);
+    }
+
+    /** @test */
+    public function authorised_users_can_create_users()
+    {
+        $response = $this
+            ->signInWithPermissions(PermissionInterface::CREATE_USERS)
+            ->get(route('admin.users.create'));
+        $response->assertStatus(200);
     }
 
     /** @test */
@@ -66,6 +97,30 @@ class UserTest extends AbstractAdminTestCase
         $response
             ->assertStatus(200)
             ->assertSee($user_to_edit->name);
+    }
+
+    /** @test */
+    public function authorised_users_can_store_users()
+    {
+        $user = [
+            'email'                 => 'test@test.com',
+            'first_name'            => 'first',
+            'last_name'             => 'first',
+            'password'              => 'Password1234',
+            'password_confirmation' => 'Password1234',
+        ];
+
+        $this
+            ->signInWithPermissions(PermissionInterface::CREATE_USERS)
+            ->post(route('admin.users.store', $user));
+
+        $new_user_query = User::where('email', $user['email']);
+
+        $this->assertCount(1, $new_user_query->get());
+
+        $new_user = $new_user_query->first();
+        $this->assertEquals($user['first_name'], $new_user->first_name);
+        $this->assertEquals($user['last_name'], $new_user->last_name);
     }
 
     /** @test */
@@ -108,6 +163,12 @@ class UserTest extends AbstractAdminTestCase
     }
 
     /** @test */
+    public function unauthorised_users_cannot_create_users()
+    {
+        $this->assertIsPermissionAuthenticatedRoute(route('admin.users.create'));
+    }
+
+    /** @test */
     public function unauthorised_users_cannot_delete_users()
     {
         $user = User::factory()->create();
@@ -122,6 +183,12 @@ class UserTest extends AbstractAdminTestCase
     {
         $user = User::factory()->create();
         $this->assertIsPermissionAuthenticatedRoute(route('admin.users.edit', $user));
+    }
+
+    /** @test */
+    public function unauthorised_users_cannot_store_users()
+    {
+        $this->assertIsPermissionAuthenticatedRoute(route('admin.users.store'), 'post');
     }
 
     /** @test */
