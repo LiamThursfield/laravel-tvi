@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserUpdateRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
     public int $status = 303;
 
@@ -19,13 +19,12 @@ class UserUpdateRequest extends FormRequest
         return [
             'email' => [
                 'required',
-                'string',
                 'email',
-                'max:255',
-                Rule::unique('users')->ignore($this->user->id, 'id'),
+                Rule::unique('users'),
             ],
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
         ];
     }
 }

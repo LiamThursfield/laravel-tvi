@@ -1,4 +1,4 @@
-` <template>
+<template>
     <form
         class="max-w-5xl mx-auto"
         autocomplete="off"
@@ -9,10 +9,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="mr-auto text-lg">
-                Edit User
-                <span class="ml-2 opacity-75 text-sm">
-                    {{ user.name }}
-                </span>
+                Create User
             </h1>
 
             <inertia-link
@@ -49,7 +46,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    Create User
                 </span>
             </button>
         </div>
@@ -59,7 +56,7 @@
 
                 <input-group
                     :error_message="getPageErrorMessage('first_name')"
-                    input_autocomplete="off"
+                    input_autocomplete="first_name"
                     :input_autofocus="true"
                     input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
                     input_id="first_name"
@@ -73,7 +70,7 @@
                 <input-group
                     class="mt-4"
                     :error_message="getPageErrorMessage('last_name')"
-                    input_autocomplete="off"
+                    input_autocomplete="last_name"
                     input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
                     input_id="last_name"
                     input_name="last_name"
@@ -95,49 +92,65 @@
                     label_text="Email"
                     v-model="formData.email"
                 />
+
+                <input-group
+                    class="mt-4"
+                    :error_message="getPageErrorMessage('password')"
+                    input_autocomplete="off"
+                    input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
+                    input_id="password"
+                    input_name="password"
+                    :input_required="true"
+                    input_type="password"
+                    label_text="Password"
+                    v-model="formData.password"
+                />
+
+                <input-group
+                    class="mt-4"
+                    :error_message="getPageErrorMessage('password_confirmation')"
+                    input_autocomplete="off"
+                    input_class="font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary"
+                    input_id="password_confirmation"
+                    input_name="password_confirmation"
+                    :input_required="true"
+                    input_type="password"
+                    label_text="Confirm Password"
+                    v-model="formData.password_confirmation"
+                />
             </div>
         </div>
     </form>
 </template>
 
 <script>
-    import InputGroup from "../../../components/core/forms/InputGroup";
+import InputGroup from "../../../components/core/forms/InputGroup";
 
-    export default {
-        name: "AdminUserEdit",
-        components: {InputGroup},
-        layout: 'admin-layout',
-        props: {
-            user: Object,
-        },
-        data() {
-            return {
-                formData: null,
-            }
-        },
-        computed: {
-            isCurrentUser() {
-                try {
-                    return this.user.id === this.$page.props.auth.user.id;
-                } catch (e) {
-                    return false;
-                }
-            }
-        },
-        created() {
-            this.formData = {
-                email:      this.user.email,
-                first_name: this.user.first_name,
-                last_name:  this.user.last_name,
-            }
-        },
-        methods: {
-            submit() {
-                this.$inertia.put(
-                    this.$route('admin.users.update', this.user.id),
-                    this.formData
-                );
-            }
+export default {
+    name: "AdminUserCreate",
+    components: {InputGroup},
+    layout: 'admin-layout',
+    props: {
+        user: Object,
+    },
+    data() {
+        return {
+            formData: {
+                email: '',
+                first_name: '',
+                last_name: '',
+                password: '',
+                password_confirmation: '',
+            },
+        }
+    },
+    methods: {
+        submit() {
+            this.$inertia.post(
+                this.$route('admin.users.store'),
+                this.formData
+            );
         }
     }
+}
 </script>

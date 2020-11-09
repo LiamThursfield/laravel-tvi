@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Http\Requests\Admin\User\UserUpdateRequest;
 use App\Interfaces\PermissionInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Inertia\Response;
 use Illuminate\Http\Request;
 
 class UserController extends AdminController
@@ -18,6 +18,10 @@ class UserController extends AdminController
     {
         parent::__construct();
         $this->addMetaTitleSection('Users');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_USERS)
+        )->only(['create', 'store']);
 
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_USERS)
@@ -32,12 +36,12 @@ class UserController extends AdminController
         )->only('index');
     }
 
+    public function create()
+    {
+        $this->addMetaTitleSection('Create')->shareMeta();
+        return Inertia::render('admin/user/Create');
+    }
 
-    /**
-     * Delete a user.
-     * @param Request $request
-     * @param User $user
-     */
     public function destroy(Request $request, User $user)
     {
         if (auth()->user()->id === $user->id) {
@@ -57,8 +61,7 @@ class UserController extends AdminController
 
     public function edit(User $user)
     {
-        $this->addMetaTitleSection('Edit - ' . $user->name);
-        $this->shareMeta();
+        $this->addMetaTitleSection('Edit - ' . $user->name)->shareMeta();
 
         return Inertia::render('admin/user/Edit', [
             'user' => function () use ($user) {
@@ -67,20 +70,6 @@ class UserController extends AdminController
         ]);
     }
 
-    public function update(UserUpdateRequest $request, User $user)
-    {
-        // @TODO - Move this to an action so that Roles can be edited in the same endpoint
-        $user->update($request->validated());
-        return Redirect::to(route('admin.users.edit', $user))
-            ->with('success', 'User updated.');
-    }
-
-    /**
-     * Show the user index.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->shareMeta();
@@ -91,5 +80,21 @@ class UserController extends AdminController
                     ->paginate($request->get('per_page'));
             }
         ]);
+    }
+
+    public function store(UserStoreRequest $request)
+    {
+        // @TODO - Move this to an action so that Roles can be edited in the same endpoint
+        $user = User::create($request->validated());
+        return Redirect::to(route('admin.users.edit', $user))
+            ->with('success', 'User created.');
+    }
+
+    public function update(UserUpdateRequest $request, User $user)
+    {
+        // @TODO - Move this to an action so that Roles can be edited in the same endpoint
+        $user->update($request->validated());
+        return Redirect::to(route('admin.users.edit', $user))
+            ->with('success', 'User updated.');
     }
 }

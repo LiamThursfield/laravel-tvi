@@ -27,9 +27,4 @@ Route::group([
     Route::put('/', [ProfileController::class, 'update'])->name('update');
 });
 
-Route::resource('users', UserController::class)->only([
-    'destroy',
-    'edit',
-    'index',
-    'update'
-]);
+Route::resource('users', UserController::class);
