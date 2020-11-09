@@ -26,6 +26,7 @@
                     class="mt-4"
                     :error_message="getPageErrorMessage('email')"
                     input_autocomplete="email"
+                    input_class="auth-input"
                     input_id="email"
                     input_name="email"
                     :input_required="true"

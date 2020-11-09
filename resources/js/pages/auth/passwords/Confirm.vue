@@ -18,6 +18,7 @@
                     class="mt-4"
                     :error_message="getPageErrorMessage('password')"
                     input_autocomplete="current-password"
+                    input_class="auth-input"
                     input_id="password"
                     input_name="password"
                     :input_required="true"

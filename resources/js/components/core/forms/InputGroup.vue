@@ -67,7 +67,7 @@
                 type: Boolean
             },
             input_class: {
-                default: 'font-medium rounded shadow mt-2 px-3 py-2 w-full focus:outline-none focus:shadow-outline-primary',
+                default: 'font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary',
                 type: String
             },
             input_disabled: {

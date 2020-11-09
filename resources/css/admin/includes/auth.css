@@ -18,4 +18,12 @@
     .auth-header {
         @apply font-semibold pb-6 pt-8 px-6 text-center text-theme-base-contrast text-2xl tracking-wide;
     }
+
+    .auth-input {
+        @apply font-medium rounded shadow mt-2 px-3 py-2 w-full;
+
+        &:focus {
+            @apply outline-none shadow-outline-primary
+        }
+    }
 }
