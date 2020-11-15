@@ -69,6 +69,11 @@ class CreateBasePermissionRoles extends Migration
     protected function getNewPermissions()
     {
         return [
+            // CMS
+            PermissionInterface::CREATE_CMS,
+            PermissionInterface::DELETE_CMS,
+            PermissionInterface::EDIT_CMS,
+            PermissionInterface::VIEW_CMS,
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
             PermissionInterface::VIEW_FILE_MANAGER,
@@ -92,6 +97,11 @@ class CreateBasePermissionRoles extends Migration
     {
         return [
             RoleInterface::ADMIN => [
+                // CMS
+                PermissionInterface::CREATE_CMS,
+                PermissionInterface::DELETE_CMS,
+                PermissionInterface::EDIT_CMS,
+                PermissionInterface::VIEW_CMS,
                 // File Manager
                 PermissionInterface::EDIT_FILE_MANAGER,
                 PermissionInterface::VIEW_FILE_MANAGER,
@@ -106,6 +116,8 @@ class CreateBasePermissionRoles extends Migration
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [
+                // CMS
+                PermissionInterface::VIEW_CMS,
                 // File Manager
                 PermissionInterface::VIEW_FILE_MANAGER,
                 // Profile
