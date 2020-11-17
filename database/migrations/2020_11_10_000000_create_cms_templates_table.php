@@ -19,6 +19,7 @@ class CreateCmsTemplatesTable extends Migration
             $table->id();
             $table->string('type', TemplateInterface::FIELD_TYPE_MAX_LENGTH);
             $table->string('name', TemplateInterface::FIELD_NAME_MAX_LENGTH);
+            $table->string('slug', TemplateInterface::FIELD_SLUG_MAX_LENGTH);
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -26,6 +27,8 @@ class CreateCmsTemplatesTable extends Migration
             // Index Creation
             $table->index('type');
             $table->index('name');
+            $table->index('slug');
+            $table->unique(['type', 'slug']);
         });
     }
 
