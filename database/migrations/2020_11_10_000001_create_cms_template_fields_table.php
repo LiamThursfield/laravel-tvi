@@ -20,7 +20,7 @@ class CreateCmsTemplateFieldsTable extends Migration
             $table->unsignedBigInteger('template_id');
             $table->string('type', TemplateFieldInterface::FIELD_TYPE_MAX_LENGTH);
             $table->string('name', TemplateFieldInterface::FIELD_NAME_MAX_LENGTH);
-            $table->string('slug', TemplateFieldInterface::FIELD_NAME_MAX_LENGTH);
+            $table->string('slug', TemplateFieldInterface::FIELD_SLUG_MAX_LENGTH);
             $table->text('description')->nullable();
             $table->boolean('is_required')->default(false);
             $table->unsignedInteger('order');
