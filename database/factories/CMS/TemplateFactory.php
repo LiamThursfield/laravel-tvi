@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use function Dotenv\Util\Str;
 
 class TemplateFactory extends Factory
 {
