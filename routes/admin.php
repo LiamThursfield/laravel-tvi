@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CMS\TemplateController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::group([
+    'as' => 'cms.',
+    'prefix' => 'cms'
+], function() {
+    Route::resource('templates', TemplateController::class);
+});
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])
     ->name('file_manager.index')
