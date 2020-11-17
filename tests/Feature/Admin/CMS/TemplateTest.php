@@ -2,14 +2,37 @@
 
 namespace Tests\Feature\Admin\CMS;
 
+use App\Interfaces\PermissionInterface;
 use App\Models\CMS\Template;
-use App\Models\CMS\TemplateField;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\Admin\AbstractAdminTestCase;
 
 class TemplateTest extends AbstractAdminTestCase
 {
     use RefreshDatabase;
+
+    /** @test */
+    public function authorised_users_can_create_users()
+    {
+        $response = $this
+            ->signInWithPermissions(PermissionInterface::CREATE_CMS)
+            ->get(route('admin.cms.templates.create'));
+        $response->assertStatus(200);
+    }
+
+    /** @test */
+    public function authorised_users_can_delete_users()
+    {
+        $template = Template::factory()->create();
+
+        $this
+            ->signInWithPermissions(PermissionInterface::DELETE_CMS)
+            ->delete(route('admin.cms.templates.destroy', $template));
+
+        $this->expectException(ModelNotFoundException::class);
+        Template::findOrFail($template->id);
+    }
 
     /** @test */
     public function unauthorised_users_cannot_create_templates()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\CMS;
 use App\Http\Controllers\AdminController;
 use App\Interfaces\PermissionInterface;
 use App\Models\CMS\Template;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
@@ -41,7 +42,12 @@ class TemplateController extends AdminController
 
     public function destroy(Request $request, Template  $template)
     {
-        // Stub
+        $template->delete();
+
+        return Redirect::back(303)->with(
+            'success',
+            'Template deleted.'
+        );
     }
 
     public function edit(Template $template)
