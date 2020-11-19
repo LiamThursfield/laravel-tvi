@@ -13,7 +13,7 @@ class TemplateTest extends AbstractAdminTestCase
     use RefreshDatabase;
 
     /** @test */
-    public function authorised_users_can_create_users()
+    public function authorised_users_can_create_templates()
     {
         $response = $this
             ->signInWithPermissions(PermissionInterface::CREATE_CMS)
@@ -22,7 +22,7 @@ class TemplateTest extends AbstractAdminTestCase
     }
 
     /** @test */
-    public function authorised_users_can_destroy_users()
+    public function authorised_users_can_destroy_templates()
     {
         $template = Template::factory()->create();
 
