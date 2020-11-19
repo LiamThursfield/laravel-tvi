@@ -13,6 +13,11 @@ class TemplateInterface
         self::TYPE_PAGE,
     ];
 
+    const ALL_TYPES_LABELLED = [
+        self::TYPE_LAYOUT => 'Layout',
+        self::TYPE_PAGE => 'Page'
+    ];
+
 
     // Table/Model Field Helpers
     const FIELD_NAME_MAX_LENGTH = 120;
