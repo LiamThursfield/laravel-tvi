@@ -22,7 +22,7 @@ class TemplateTest extends AbstractAdminTestCase
     }
 
     /** @test */
-    public function authorised_users_can_delete_users()
+    public function authorised_users_can_destroy_users()
     {
         $template = Template::factory()->create();
 
@@ -41,7 +41,7 @@ class TemplateTest extends AbstractAdminTestCase
     }
 
     /** @test */
-    public function unauthorised_users_cannot_delete_templates()
+    public function unauthorised_users_cannot_destroy_templates()
     {
         $template = Template::factory()->create();
 
