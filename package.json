@@ -14,6 +14,7 @@
         "@inertiajs/inertia-vue": "^0.4",
         "@inertiajs/progress": "^0.2",
         "@ivanv/vue-collapse-transition": "^0.2.1",
+        "@tailwindcss/custom-forms": "^0.2.1",
         "axios": "^0.19",
         "cross-env": "^7.0",
         "es6-promise": "^4.2.8",
