@@ -7,7 +7,7 @@ class TemplateFieldInterface
     // Template Field Types
     const TYPE_NUMBER   = 'number';
     const TYPE_TEXT     = 'text';
-    const TYPE_TEXTAREA = 'text';
+    const TYPE_TEXTAREA = 'textarea';
     const TYPE_WYSIWYG  = 'wysiwyg';
 
     const ALL_TYPES = [
