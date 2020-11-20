@@ -96,7 +96,7 @@
             },
             input_value: {
                 default: '',
-                type: String
+                type: String | Number
             },
             label_class: {
                 default: 'font-medium text-theme-base-contrast text-sm tracking-wider',
@@ -146,7 +146,6 @@
             },
             onInputKeyPress() {
                 this.$emit('input', this.$refs[this.input_id].value);
-                this.$emit('change', this.$refs[this.input_id].value);
 
                 if (this.error_hide_on_input) {
                     this.hide_error = true;
