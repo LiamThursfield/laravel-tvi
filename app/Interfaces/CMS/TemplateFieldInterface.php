@@ -17,6 +17,13 @@ class TemplateFieldInterface
         self::TYPE_WYSIWYG,
     ];
 
+    const ALL_TYPES_LABELLED = [
+        self::TYPE_NUMBER   => "Number",
+        self::TYPE_TEXT     => "Text",
+        self::TYPE_TEXTAREA => "Text Area",
+        self::TYPE_WYSIWYG  => "WYSIWYG",
+    ];
+
 
     // Table/Model Field Helpers
     const FIELD_NAME_MAX_LENGTH = 120;
