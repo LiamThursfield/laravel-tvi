@@ -18,6 +18,7 @@
             :required="input_required"
             :type="input_type"
             :value="input_value"
+            @blur="onInputBlur"
             @input="onInputKeyPress"
             @keyup.esc="blurInput"
         />
@@ -143,6 +144,9 @@
             },
             onErrorMessageChange() {
                 this.hide_error = false;
+            },
+            onInputBlur() {
+                this.$emit('blur');
             },
             onInputKeyPress() {
                 this.$emit('input', this.$refs[this.input_id].value);
