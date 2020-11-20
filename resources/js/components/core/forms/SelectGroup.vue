@@ -77,7 +77,7 @@
                 type: Boolean
             },
             select_class: {
-                default: 'border border-theme-base-subtle font-medium mt-2 px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none',
+                default: 'border border-theme-base-subtle cursor-pointer font-medium form-select mt-2 px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:shadow-none',
                 type: String
             },
             select_disabled: {
