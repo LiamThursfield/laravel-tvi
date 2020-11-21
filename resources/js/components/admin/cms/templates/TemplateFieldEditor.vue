@@ -60,6 +60,7 @@
 
                     <p class="p-4">
                         <template-field
+                            :is_autofocus_disabled="is_autofocus_disabled"
                             :template_field_types="template_field_types"
                             @input="updateTemplateFields"
                             v-model="editable_template_fields[index]"
@@ -102,6 +103,10 @@
             prop: 'template_fields'
         },
         props: {
+            is_editing: {
+                default: false,
+                type: Boolean
+            },
             is_view_only: {
                 default: false,
                 type: Boolean
@@ -118,14 +123,20 @@
         data() {
             return {
                 editable_template_fields: [],
+                is_autofocus_disabled: false,
                 is_dragging: false,
             }
         },
         created() {
+            if (this.is_editing) {
+                this.is_autofocus_disabled = true;
+            }
             this.editable_template_fields = _.cloneDeep(this.template_fields);
         },
         methods: {
             addTemplateField() {
+                this.is_autofocus_disabled = false;
+
                 this.editable_template_fields.push({
                     description: '',
                     is_required: false,

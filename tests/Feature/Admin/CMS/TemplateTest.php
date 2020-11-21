@@ -38,6 +38,25 @@ class TemplateTest extends AbstractAdminTestCase
     }
 
     /** @test */
+    public function authorised_users_can_edit_templates()
+    {
+        $this->withoutExceptionHandling();
+
+        $template = Template::factory()
+            ->has(TemplateField::factory()->count(2))
+            ->create();
+
+        $response = $this
+            ->signInWithPermissions(PermissionInterface::EDIT_CMS)
+            ->get(route('admin.cms.templates.edit', $template));
+
+        $response
+            ->assertStatus(200)
+            ->assertPropValue('template.id', $template->id);
+    }
+
+
+    /** @test */
     public function authorised_users_can_store_templates()
     {
         $template = [

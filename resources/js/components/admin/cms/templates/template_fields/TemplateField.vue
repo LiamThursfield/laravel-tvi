@@ -5,7 +5,7 @@
             label_text="Field Type"
             :select_any_enabled="true"
             select_any_label="Please select a field type"
-            :select_autofocus="true"
+            :select_autofocus="!is_autofocus_disabled"
             :select_id="`template-field-${template_field.order}-type`"
             :select_name="`template-field-${template_field.order}-type`"
             :select_options="template_field_types"
@@ -97,6 +97,10 @@
             error_message_key_prefix: {
                 default: 'template_fields',
                 type: String
+            },
+            is_autofocus_disabled: {
+                default: false,
+                type: Boolean
             },
             is_view_only: {
                 default: false,

@@ -7,6 +7,7 @@ use App\Actions\CMS\Template\TemplateStoreAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\CMS\Template\TemplateIndexRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
+use App\Http\Resources\Admin\CMS\TemplateResource;
 use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Interfaces\PermissionInterface;
@@ -67,7 +68,23 @@ class TemplateController extends AdminController
 
     public function edit(Template $template)
     {
-        // Stub
+        $this->addMetaTitleSection('Edit - ' . $template->name)->shareMeta();
+        return Inertia::render('admin/cms/template/Edit', [
+            'template' => function () use ($template) {
+                if (!$template->relationLoaded('templateFields')) {
+                    $template->load('templateFields');
+                }
+
+                TemplateResource::withoutWrapping();
+                return TemplateResource::make($template);
+            },
+            'template_field_types' => function () {
+                return TemplateFieldInterface::ALL_TYPES_LABELLED;
+            },
+            'template_types' => function () {
+                return TemplateInterface::ALL_TYPES_LABELLED;
+            }
+        ]);
     }
 
     public function index(TemplateIndexRequest $request)
