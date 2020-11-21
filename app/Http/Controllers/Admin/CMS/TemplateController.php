@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin\CMS;
 
+use App\Actions\CMS\Template\TemplateStoreAction;
 use App\Http\Controllers\AdminController;
+use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
+use App\Interfaces\CMS\TemplateFieldInterface;
+use App\Interfaces\CMS\TemplateInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\CMS\Template;
 use Illuminate\Support\Facades\Redirect;
@@ -37,7 +41,15 @@ class TemplateController extends AdminController
 
     public function create()
     {
-        // Stub
+        $this->addMetaTitleSection('Create')->shareMeta();
+        return Inertia::render('admin/cms/template/Create', [
+            'template_field_types' => function () {
+                return TemplateFieldInterface::ALL_TYPES_LABELLED;
+            },
+            'template_types' => function () {
+                return TemplateInterface::ALL_TYPES_LABELLED;
+            }
+        ]);
     }
 
     public function destroy(Request $request, Template  $template)
@@ -60,9 +72,11 @@ class TemplateController extends AdminController
         // Stub
     }
 
-    public function store(Request $request)
+    public function store(TemplateStoreRequest $request)
     {
-        // Stub
+        $template = app(TemplateStoreAction::class)->handle($request->validated());
+        return Redirect::to(route('admin.cms.templates.edit', $template))
+            ->with('success', 'Template created.');
     }
 
     public function update(Request $request, Template $template)
