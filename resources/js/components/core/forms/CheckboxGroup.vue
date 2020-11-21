@@ -63,7 +63,7 @@
                 type: Boolean
             },
             checkbox_class: {
-                default: 'cursor-pointer form-checkbox h-5 mt-2 text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:shadow-none',
+                default: 'cursor-pointer form-checkbox h-5 mt-2 text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:shadow-outline-primary',
                 type: String
             },
             checkbox_disabled: {
