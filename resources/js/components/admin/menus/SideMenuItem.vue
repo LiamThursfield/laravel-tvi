@@ -35,7 +35,7 @@
             class="menu-link"
             :class="{'menu-link-active': isActive}"
             :href="routeHref"
-            preserve-state
+            :preserve-state="preserveState"
         >
             <component
                 v-if="menuItem.icon"
@@ -145,6 +145,18 @@
                 } catch (e) {
                     // If the route doesn't exist, return as string
                     return this.menuItem.route;
+                }
+            },
+            preserveState() {
+                let preserve_state = false;
+                try {
+                    if (!this.menuItem.hasOwnProperty('preserveState')) {
+                        return preserve_state;
+                    }
+
+                    return !!this.menuItem.preserveState
+                } catch (e) {
+                    return preserve_state
                 }
             }
         },
