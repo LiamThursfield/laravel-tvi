@@ -16,6 +16,13 @@ namespace App\Interfaces;
  */
 class PermissionInterface
 {
+    // CMS Permissions
+    const CREATE_CMS  = 'create cms';
+    const DELETE_CMS  = 'delete cms';
+    const EDIT_CMS    = 'edit cms';
+    const VIEW_CMS    = 'view cms';
+
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -34,6 +41,12 @@ class PermissionInterface
     // All Permissions
     // This is used in User()->all_permissions
     const ALL_PERMISSIONS = [
+        'cms' => [
+            'create'    => self::CREATE_CMS,
+            'delete'    => self::DELETE_CMS,
+            'edit'      => self::EDIT_CMS,
+            'view'      => self::VIEW_CMS,
+        ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,
             'view' => self::VIEW_FILE_MANAGER,

@@ -1,26 +1,25 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="formatted_label_class"
-            :for="input_id"
+            :class="label_class"
+            :for="checkbox_id"
         >
             {{ label_text }}
         </label>
 
         <input
-            :id="input_id"
-            :class="formatted_input_class"
-            :autocomplete="input_autocomplete"
-            :disabled="input_disabled"
-            :name="input_name"
-            :placeholder="input_placeholder"
-            :ref="input_id"
-            :required="input_required"
-            :type="input_type"
-            :value="input_value"
-            @blur="onInputBlur"
-            @input="onInputKeyPress"
-            @keyup.esc="blurInput"
+            :id="checkbox_id"
+            :class="formatted_checkbox_class"
+            :disabled="checkbox_disabled"
+            :false-value="checkbox_value_false"
+            :name="checkbox_name"
+            :ref="checkbox_id"
+            :required="checkbox_required"
+            :true-value="checkbox_value_true"
+            type="checkbox"
+            @change="onCheckboxChange"
+            @keyup.esc="blurCheckbox"
+            v-model="editable_value"
         />
 
         <div>
@@ -38,9 +37,9 @@
 
 <script>
     export default {
-        name: "InputGroup",
+        name: "CheckboxGroup",
         model: {
-            prop: 'input_value'
+            prop: 'checkbox_value'
         },
         props: {
             allow_parent_updates: {
@@ -51,7 +50,7 @@
                 default: 'mt-1 text-red-500 text-sm',
                 type: String
             },
-            error_hide_on_input: {
+            error_hide_on_change: {
                 default: true,
                 type: Boolean
             },
@@ -59,53 +58,45 @@
                 default: '',
                 type: String
             },
-            input_autocomplete: {
-                default: '',
-                type: String
-            },
-            input_autofocus: {
+            checkbox_autofocus: {
                 default: false,
                 type: Boolean
             },
-            input_class: {
-                default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:outline-none focus:border-theme-primary',
+            checkbox_class: {
+                default: 'cursor-pointer form-checkbox h-5 mt-2 text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:shadow-outline-primary',
                 type: String
             },
-            input_disabled: {
+            checkbox_disabled: {
                 default: false,
                 type: Boolean
             },
-            input_id: {
+            checkbox_id: {
                 required: true,
                 type: String
             },
-            input_name: {
+            checkbox_name: {
                 required: true,
                 type: String
             },
-            input_placeholder: {
-                default: '',
-                type: String
-            },
-            input_required: {
+            checkbox_required: {
                 default: false,
                 type: Boolean
             },
-            input_type: {
-                default: 'text',
-                type: String
+            checkbox_value: {
+                default: false,
+                type: String | Number | Boolean
             },
-            input_value: {
-                default: '',
-                type: String | Number
+            checkbox_value_false: {
+                default: false,
+                type: String | Number | Boolean
+            },
+            checkbox_value_true: {
+                default: true,
+                type: String | Number | Boolean
             },
             label_class: {
-                default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
+                default: 'cursor-pointer font-medium select-none text-theme-base-contrast text-sm tracking-wider',
                 type: String
-            },
-            label_hidden: {
-                default: false,
-                type: Boolean
             },
             label_text: {
                 required: true,
@@ -114,57 +105,50 @@
         },
         data() {
             return  {
+                editable_value: false,
                 hide_error: false
             }
         },
         computed: {
-            formatted_input_class() {
+            formatted_checkbox_class() {
                 if (this.is_error) {
-                    return this.input_class + ' error';
+                    return this.checkbox_class + ' error';
                 }
-                return this.input_class;
+                return this.checkbox_class;
             },
-            formatted_label_class() {
-                let label_class = this.label_class;
-
-                if (this.label_hidden) {
-                    label_class += ' hidden';
-                }
-
-                return label_class;
+            is_checked() {
+                return this.editable_value === this.checkbox_value_true;
             },
             is_error() {
                 return !this.hide_error && this.error_message && this.error_message !== '';
             }
         },
         mounted() {
+            this.editable_value = this.checkbox_value;
             this.autofocus();
         },
         methods: {
             autofocus() {
-                if (this.input_autofocus && this.$refs[this.input_id]) {
+                if (this.checkbox_autofocus && this.$refs[this.checkbox_id]) {
                     this.$nextTick(() => {
-                        this.$refs[this.input_id].focus();
+                        this.$refs[this.checkbox_id].focus();
                     });
                 }
             },
-            blurInput() {
-                if (this.$refs[this.input_id]) {
+            blurCheckbox() {
+                if (this.$refs[this.checkbox_id]) {
                     this.$nextTick(() => {
-                        this.$refs[this.input_id].blur();
+                        this.$refs[this.checkbox_id].blur();
                     });
                 }
             },
             onErrorMessageChange() {
                 this.hide_error = false;
             },
-            onInputBlur() {
-                this.$emit('blur');
-            },
-            onInputKeyPress() {
-                this.$emit('input', this.$refs[this.input_id].value);
+            onCheckboxChange(e) {
+                this.$emit('input', this.is_checked ? this.checkbox_value_true : this.checkbox_value_false);
 
-                if (this.error_hide_on_input) {
+                if (this.error_hide_on_change) {
                     this.hide_error = true;
                 }
             },

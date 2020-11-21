@@ -132,7 +132,7 @@
             },
             confirmUserDelete() {
                 if (this.isLoadingUserDelete) {
-                    return this.$errorToast('Only able to delete one user at a time.');
+                    return this.$errorToast('It\'s only possible to delete one user at a time.');
                 }
                 this.$inertia.delete(
                     this.$route('admin.users.destroy', this.userToDelete.id),
@@ -144,9 +144,6 @@
                     }
                 );
                 this.userToDelete = null
-            },
-            deleteUser() {
-
             },
             isUserCurrent(user) {
                 try {
