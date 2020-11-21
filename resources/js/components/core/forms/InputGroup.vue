@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="label_class"
+            :class="formatted_label_class"
             :for="input_id"
         >
             {{ label_text }}
@@ -68,7 +68,7 @@
                 type: Boolean
             },
             input_class: {
-                default: 'font-medium rounded border border-theme-base-subtle mt-2 px-3 py-2 w-full focus:outline-none focus:border-theme-primary',
+                default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:outline-none focus:border-theme-primary',
                 type: String
             },
             input_disabled: {
@@ -100,8 +100,12 @@
                 type: String | Number
             },
             label_class: {
-                default: 'font-medium text-theme-base-contrast text-sm tracking-wider',
+                default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
                 type: String
+            },
+            label_hidden: {
+                default: false,
+                type: Boolean
             },
             label_text: {
                 required: true,
@@ -119,6 +123,15 @@
                     return this.input_class + ' error';
                 }
                 return this.input_class;
+            },
+            formatted_label_class() {
+                let label_class = this.label_class;
+
+                if (this.label_hidden) {
+                    label_class += ' hidden';
+                }
+
+                return label_class;
             },
             is_error() {
                 return !this.hide_error && this.error_message && this.error_message !== '';

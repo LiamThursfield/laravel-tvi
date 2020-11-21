@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="label_class"
+            :class="formatted_label_class"
             :for="select_id"
         >
             {{ label_text }}
@@ -69,6 +69,10 @@
                 default: "Any",
                 type: String
             },
+            select_any_class: {
+                default: "text-theme-base-subtle-contrast",
+                type: String
+            },
             select_any_value: {
                 default: '',
             },
@@ -77,7 +81,7 @@
                 type: Boolean
             },
             select_class: {
-                default: 'border border-theme-base-subtle cursor-pointer font-medium form-select mt-2 px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:shadow-none',
+                default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:shadow-none',
                 type: String
             },
             select_disabled: {
@@ -105,8 +109,12 @@
                 type: String
             },
             label_class: {
-                default: 'font-medium text-theme-base-contrast text-sm tracking-wider',
+                default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
                 type: String
+            },
+            label_hidden: {
+                default: false,
+                type: Boolean
             },
             label_text: {
                 required: true,
@@ -131,14 +139,33 @@
                 return options;
             },
             formatted_select_class() {
+                let select_class = this.select_class;
+
                 if (this.is_error) {
-                    return this.select_class + ' error';
+                    select_class += ' error';
                 }
-                return this.select_class;
+
+                if (this.is_any_option_selected) {
+                    select_class += ' ' + this.select_any_class;
+                }
+
+                return select_class;
+            },
+            formatted_label_class() {
+                let label_class = this.label_class;
+
+                if (this.label_hidden) {
+                    label_class += ' hidden';
+                }
+
+                return label_class;
             },
             is_error() {
                 return !this.hide_error && this.error_message && this.error_message !== '';
             },
+            is_any_option_selected() {
+                return this.select_value === this.select_any_value || this.select_value === null;
+            }
         },
         mounted() {
             this.autofocus();
