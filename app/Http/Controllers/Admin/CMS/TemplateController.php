@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin\CMS;
 
+use App\Actions\CMS\Template\TemplateQueryAction;
 use App\Actions\CMS\Template\TemplateStoreAction;
 use App\Http\Controllers\AdminController;
+use App\Http\Requests\Admin\CMS\Template\TemplateIndexRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
 use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\CMS\Template;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -67,9 +70,23 @@ class TemplateController extends AdminController
         // Stub
     }
 
-    public function index(Request $request)
+    public function index(TemplateIndexRequest $request)
     {
-        // Stub
+        $search_options = $request->validated();
+        $search_options['per_page'] = Arr::get($search_options, 'per_page', 15);
+
+        $this->shareMeta();
+        return Inertia::render('admin/cms/template/Index', [
+            'search_options' => $search_options,
+            'templates' => function () use ($search_options) {
+                return app(TemplateQueryAction::class)
+                    ->handle($search_options)
+                    ->paginate(Arr::get($search_options, 'per_page', 15));
+            },
+            'template_types' => function () {
+                return TemplateInterface::ALL_TYPES_LABELLED;
+            }
+        ]);
     }
 
     public function store(TemplateStoreRequest $request)
