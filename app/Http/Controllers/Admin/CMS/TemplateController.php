@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin\CMS;
 
 use App\Actions\CMS\Template\TemplateQueryAction;
 use App\Actions\CMS\Template\TemplateStoreAction;
+use App\Actions\CMS\Template\TemplateUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\CMS\Template\TemplateIndexRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
+use App\Http\Requests\Admin\CMS\Template\TemplateUpdateRequest;
 use App\Http\Resources\Admin\CMS\TemplateResource;
 use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Interfaces\CMS\TemplateInterface;
@@ -113,8 +115,10 @@ class TemplateController extends AdminController
             ->with('success', 'Template created.');
     }
 
-    public function update(Request $request, Template $template)
+    public function update(TemplateUpdateRequest $request, Template $template)
     {
-        // Stub
+        $template = app(TemplateUpdateAction::class)->handle($template, $request->validated());
+        return Redirect::to(route('admin.cms.templates.edit', $template))
+            ->with('success', 'Template updated.');
     }
 }

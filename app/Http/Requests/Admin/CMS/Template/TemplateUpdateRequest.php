@@ -7,7 +7,7 @@ use App\Interfaces\CMS\TemplateInterface;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TemplateStoreRequest extends FormRequest
+class TemplateUpdateRequest extends FormRequest
 {
     public int $status = 303;
 
@@ -36,7 +36,7 @@ class TemplateStoreRequest extends FormRequest
                     $ignored_types = array_keys($ignored_types);
 
                     return $query->whereNotIn('type', $ignored_types);
-                })
+                })->ignore($this->template->id, 'id')
             ],
             'type' => [
                 'required',
@@ -45,6 +45,7 @@ class TemplateStoreRequest extends FormRequest
 
             // Template Fields
             'template_fields.*.description' => 'nullable|string',
+            'template_fields.*.id' => 'nullable|integer',
             'template_fields.*.is_required' => 'sometimes|boolean',
             'template_fields.*.name' => [
                 'required',

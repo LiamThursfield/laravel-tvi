@@ -136,6 +136,11 @@
         },
         created() {
             this.editable_template_field = _.cloneDeep(this.template_field);
+
+            // If there is an existing slug, disable the auto slug update
+            if (this.editable_template_field.slug && this.editable_template_field.slug !== '') {
+                this.auto_update_slug = false;
+            }
         },
         methods: {
             getErrorMessage(field) {

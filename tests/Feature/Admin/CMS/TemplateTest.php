@@ -100,6 +100,50 @@ class TemplateTest extends AbstractAdminTestCase
         $this->assertEquals(2, $new_template_field_query->count());
     }
 
+    /** @test */
+    public function authorised_users_can_update_templates()
+    {
+        $this->withoutExceptionHandling();
+
+        $original_template = Template::factory()
+            ->has(TemplateField::factory(['settings' => []])->count(3))
+            ->create();
+        $original_template->load('templateFields');
+
+        $updated_template = $original_template->toArray();
+        $updated_template['name'] .= " UPDATED";
+        $updated_template['template_fields'][0]['name'] .= ' "UPDATED';
+        $updated_template['template_fields'][0]['order'] = (int) (($updated_template['template_fields'][0]['order'] + 3)  / 2);
+        $updated_template['template_fields'][1]['name'] .= ' "UPDATED';
+        $updated_template['template_fields'][1]['order'] = (int) (($updated_template['template_fields'][1]['order'] + 3)  / 2);
+        unset($updated_template['template_fields'][2]);
+
+        $response = $this
+            ->followingRedirects()
+            ->signInWithPermissions(PermissionInterface::EDIT_CMS)
+            ->put(route('admin.cms.templates.update', $original_template), $updated_template);
+
+
+        $response
+            ->assertStatus(200)
+            ->assertPropValue('template.id', $original_template->id)
+            ->assertPropValue('template.name', $updated_template['name']);
+
+        $original_template->refresh();
+
+        // Ensure the first field was updated
+        $field = $original_template->templateFields()->where('slug', $updated_template['template_fields'][0]['slug'])->first();
+        self::assertEquals($updated_template['template_fields'][0]['name'], $field->name);
+        self::assertEquals($updated_template['template_fields'][0]['order'], $field->order);
+
+        // Ensure the second field was updated
+        $field = $original_template->templateFields()->where('slug', $updated_template['template_fields'][1]['slug'])->first();
+        self::assertEquals($updated_template['template_fields'][1]['name'], $field->name);
+        self::assertEquals($updated_template['template_fields'][1]['order'], $field->order);
+
+        // Ensure the third field was deleted
+        self::assertCount(2, $original_template->templateFields);
+    }
 
     /** @test */
     public function unauthorised_users_cannot_create_templates()
