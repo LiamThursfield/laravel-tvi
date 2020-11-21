@@ -3,7 +3,7 @@
  */
 
 .button {
-    @apply rounded;
+    @apply px-4 py-2 rounded;
     @apply ease-in-out duration-300 transition-colors;
 
     &:not(:disabled) {
@@ -18,6 +18,10 @@
 
     &.button-default-responsive {
         @apply px-2 py-1 md:px-4 md:py-2;
+    }
+
+    &.button-small {
+        @apply px-2 py-1;
     }
 
     &.button-primary {

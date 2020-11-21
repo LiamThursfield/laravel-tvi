@@ -252,5 +252,7 @@ module.exports = {
         transitionDelay: ['responsive'],
         animation: ['responsive'],
     },
-    plugins: []
+    plugins: [
+        require('@tailwindcss/custom-forms')
+    ]
 };

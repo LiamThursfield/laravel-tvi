@@ -94,6 +94,37 @@
                         requiresAnyPermissions: [],
                         showLabel: false,
                     },
+                    cms: {
+                        children : {
+                            templates: {
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Templates",
+                                        requiresAllPermissions: ["cms.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.templates.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Template",
+                                        requiresAllPermissions: ["cms.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.templates.create",
+                                    },
+                                },
+                                icon: "icon-template",
+                                label: "Templates",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["cms.create", "cms.view"],
+                            }
+                        },
+                        label: "CMS",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["cms.edit", "cms.create", "cms.view"],
+                        showLabel: true,
+                    },
                     utilities: {
                         children : {
                             file_manager: {
