@@ -8,7 +8,7 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('user.create')"
+                v-if="userCan('users.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
