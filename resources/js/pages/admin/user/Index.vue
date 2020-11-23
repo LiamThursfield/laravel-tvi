@@ -81,7 +81,7 @@
             </div>
 
             <p
-                v-if="!usersData"
+                v-if="!users_data"
                 class="bg-theme-base-subtle mt-6 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No users
@@ -97,12 +97,12 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th v-if="showUsersActions"></th>
+                                <th v-if="show_users_actions"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr
-                                v-for="(user, index) in usersData"
+                                v-for="(user, index) in users_data"
                                 :key="`user-${user.id}`"
                             >
                                 <td>
@@ -111,7 +111,7 @@
                                 <td>
                                     {{ user.email }}
                                 </td>
-                                <td v-if="showUsersActions">
+                                <td v-if="show_users_actions">
                                     <div class="flex flex-row items-center justify-end -mx-1">
                                         <inertia-link
                                             v-if="userCan('users.edit')"
@@ -162,8 +162,8 @@
             <confirmation-modal
                 confirmText="Delete"
                 confirmType="danger"
-                :showModal="showDeleteModal"
-                :messageText="deleteModalText"
+                :showModal="show_delete_modal"
+                :messageText="delete_modal_text"
                 @cancelAction="cancelUserDelete"
                 @closeModal="cancelUserDelete"
                 @confirmAction="confirmUserDelete"
@@ -199,20 +199,20 @@
                     user_email      : '',
                 },
                 is_initialised: false,
-                isLoadingUserDelete: false,
-                showDeleteModal: false,
-                userToDelete: null,
+                is_loading_user_delete: false,
+                show_delete_modal: false,
+                user_to_delete: null,
             }
         },
         computed: {
-            deleteModalText() {
+            delete_modal_text() {
                 try {
-                    return 'Do you really want to delete \'' + this.userToDelete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.user_to_delete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this user?'
                 }
             },
-            showUsersActions() {
+            show_users_actions() {
                 return this.userCan('users.edit') || this.userCan('users.delete');
             },
             show_pagination() {
@@ -222,7 +222,7 @@
                     return false;
                 }
             },
-            usersData() {
+            users_data() {
                 if (!this.users || !this.users.data || this.users.data.length < 1) {
                     return false;
                 }
@@ -235,21 +235,21 @@
         },
         methods: {
             cancelUserDelete() {
-                if (!this.isLoadingUserDelete) {
-                    this.showDeleteModal = false;
-                    this.userToDelete = null;
+                if (!this.is_loading_user_delete) {
+                    this.show_delete_modal = false;
+                    this.user_to_delete = null;
                 }
             },
             checkUserDelete(user) {
-                this.showDeleteModal = true;
-                this.userToDelete = user;
+                this.show_delete_modal = true;
+                this.user_to_delete = user;
             },
             confirmUserDelete() {
-                if (this.isLoadingUserDelete) {
+                if (this.is_loading_user_delete) {
                     return this.$errorToast('It\'s only possible to delete one user at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.users.destroy', this.userToDelete.id),
+                    this.$route('admin.users.destroy', this.user_to_delete.id),
                     {
                         only: [
                             'flash',
@@ -257,7 +257,9 @@
                         ]
                     }
                 );
-                this.userToDelete = null
+
+                this.user_to_delete = null
+                this.show_delete_modal = false;
             },
             isUserCurrent(user) {
                 try {
@@ -271,7 +273,7 @@
                     this.is_initialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.usersData) {
+                    if (this.users_data) {
                         return;
                     }
                 }
