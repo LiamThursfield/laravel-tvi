@@ -10,7 +10,9 @@
         <div class="relative">
             <div
                 class="
-                    absolute flex flex-row items-center inset-0 justify-start
+                    absolute flex flex-row items-center justify-start
+                    bottom-0 left-0 top-0
+                    transition-default transition-colors
                     lg:hidden
                 "
             >
@@ -27,7 +29,8 @@
                 class="logo"
                 :href="$route('admin.index')"
             >
-                TVI
+                <logo-light class="mr-2 w-6"/>
+                <span>TVI</span>
             </inertia-link>
         </div>
 

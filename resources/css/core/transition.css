@@ -1,5 +1,14 @@
 /*! purgecss start ignore */
 
+
+/** Default transition timing function and duration **/
+.transition-default {
+    @apply ease-in-out duration-300;
+}
+
+
+/** Vue Transition Classes **/
+
 /********
  * Fade *
  ********/

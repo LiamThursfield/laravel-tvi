@@ -21,6 +21,7 @@ iconFiles.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], ic
 
 // Core
 Vue.component('pagination', require('./components/core/pagination/Pagination.vue').default);
+Vue.component('logo-light', require('./components/core/logos/LogoLight.vue').default);
 
 
 
