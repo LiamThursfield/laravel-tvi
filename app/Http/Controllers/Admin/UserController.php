@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\User\UserQueryAction;
 use App\Http\Controllers\AdminController;
+use App\Http\Requests\Admin\User\UserIndexRequest;
 use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Http\Requests\Admin\User\UserUpdateRequest;
 use App\Interfaces\PermissionInterface;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -70,14 +73,17 @@ class UserController extends AdminController
         ]);
     }
 
-    public function index(Request $request)
+    public function index(UserIndexRequest $request)
     {
+        $search_options = $request->validated();
+        $search_options['per_page'] = Arr::get($search_options, 'per_page', 15);
+
         $this->shareMeta();
         return Inertia::render('admin/user/Index', [
-            'users' => function () use ($request) {
-                return User::orderBy('first_name')
-                    ->orderBy('last_name')
-                    ->paginate($request->get('per_page'));
+            'search_options' => $search_options,
+            'users' => function () use ($search_options) {
+                return app(UserQueryAction::class)->handle($search_options)
+                    ->paginate(Arr::get($search_options, 'per_page'));
             }
         ]);
     }
