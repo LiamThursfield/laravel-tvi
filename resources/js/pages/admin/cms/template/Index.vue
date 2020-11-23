@@ -82,7 +82,7 @@
 
             <p
                 v-if="!templates_data"
-                class="bg-theme-base-subtle mt-6 mx-8 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
+                class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No templates
             </p>
