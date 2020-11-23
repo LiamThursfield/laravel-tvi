@@ -1,0 +1,66 @@
+select {
+    &.form-control {
+        @apply form-select;
+    }
+}
+
+input[type=checkbox] {
+    &.form-control {
+        @apply form-checkbox;
+        @apply cursor-pointer h-5 mt-2 text-theme-primary w-5 ;
+
+        &:focus {
+            @apply outline-none;
+        }
+
+        &:not(.color-override) {
+            @apply text-theme-primary;
+
+            &:focus {
+                @apply border-theme-primary shadow-outline-primary;
+            }
+        }
+
+        &.error {
+            @apply border-theme-danger-contrast;
+        }
+    }
+}
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+select
+{
+    &.form-control {
+        @apply border border-theme-base-subtle font-medium px-3 py-2 rounded w-full;
+
+        &:focus {
+            @apply outline-none border-theme-primary;
+        }
+
+        &.form-control-short {
+            @apply py-2;
+        }
+
+        &.error {
+            @apply border-theme-danger-contrast;
+
+            &:focus {
+                @apply border-theme-danger-contrast;
+            }
+        }
+    }
+
+    &.error {
+        @apply border-theme-danger-contrast;
+
+        &:focus {
+            @apply border-theme-danger-contrast;
+        }
+    }
+}
