@@ -1,44 +1,70 @@
 <template>
     <div>
-        <select-group
-            :error_message="getErrorMessage('type')"
-            label_text="Field Type"
-            :select_any_enabled="true"
-            select_any_label="Please select a field type"
-            :select_autofocus="!is_autofocus_disabled"
-            :select_id="`template-field-${template_field.order}-type`"
-            :select_name="`template-field-${template_field.order}-type`"
-            :select_options="template_field_types"
-            :select_required="true"
-            select_type="text"
-            @input="updateTemplateField"
-            v-model="editable_template_field.type"
-        />
+        <div
+            class="
+                flex flex-col
+                md:flex-row md:space-x-4
+            "
+        >
+            <select-group
+                class="flex-1"
+                :error_message="getErrorMessage('type')"
+                label_text="Field Type"
+                :select_any_enabled="true"
+                select_any_label="Please select a field type"
+                :select_autofocus="!is_autofocus_disabled"
+                :select_id="`template-field-${template_field.order}-type`"
+                :select_name="`template-field-${template_field.order}-type`"
+                :select_options="template_field_types"
+                :select_required="true"
+                select_type="text"
+                @input="updateTemplateField"
+                v-model="editable_template_field.type"
+            />
 
-        <input-group
-            class="mt-4"
-            :error_message="getErrorMessage('name')"
-            :input_id="`template-field-${template_field.order}-name`"
-            :input_name="`template-field-${template_field.order}-name`"
-            :input_required="true"
-            input_type="text"
-            label_text="Field Name"
-            @input="onNameInput"
-            v-model="editable_template_field.name"
-        />
+            <input-group
+                class="flex-1 mt-4 md:mt-0"
+                :input_disabled="true"
+                :input_id="`template-field-${template_field.order}-order`"
+                :input_name="`template-field-${template_field.order}-order`"
+                input_type="number"
+                label_text="Order"
+                @input="updateTemplateField"
+                v-model="editable_template_field.order"
+            />
+        </div>
 
-        <input-group
-            class="mt-4"
-            :error_message="getErrorMessage('slug')"
-            :input_id="`template-field-${template_field.order}-slug`"
-            :input_name="`template-field-${template_field.order}-slug`"
-            :input_required="true"
-            input_type="text"
-            label_text="Field Slug"
-            @blur="onSlugBlur"
-            @input="onSlugInput"
-            v-model="editable_template_field.slug"
-        />
+        <div
+            class="
+                flex flex-col
+                md:flex-row md:space-x-4
+            "
+        >
+            <input-group
+                class="flex-1 mt-4"
+                :error_message="getErrorMessage('name')"
+                :input_id="`template-field-${template_field.order}-name`"
+                :input_name="`template-field-${template_field.order}-name`"
+                :input_required="true"
+                input_type="text"
+                label_text="Field Name"
+                @input="onNameInput"
+                v-model="editable_template_field.name"
+            />
+
+            <input-group
+                class="flex-1 mt-4"
+                :error_message="getErrorMessage('slug')"
+                :input_id="`template-field-${template_field.order}-slug`"
+                :input_name="`template-field-${template_field.order}-slug`"
+                :input_required="true"
+                input_type="text"
+                label_text="Field Slug"
+                @blur="onSlugBlur"
+                @input="onSlugInput"
+                v-model="editable_template_field.slug"
+            />
+        </div>
 
         <input-group
             class="mt-4"
@@ -59,18 +85,6 @@
             label_text="Required?"
             @input="updateTemplateField"
             v-model="editable_template_field.is_required"
-        />
-
-        <input-group
-            class="mt-4"
-            :error_message="getErrorMessage('settings')"
-            :input_disabled="true"
-            :input_id="`template-field-${template_field.order}-order`"
-            :input_name="`template-field-${template_field.order}-order`"
-            input_type="number"
-            label_text="Order"
-            @input="updateTemplateField"
-            v-model="editable_template_field.order"
         />
 
         <!-- TODO: Implement Settings based on Type -->
