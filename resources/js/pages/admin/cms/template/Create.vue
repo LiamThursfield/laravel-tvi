@@ -108,6 +108,7 @@
         <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <template-field-editor
+                    :template_field_settings="template_field_settings"
                     :template_field_types="template_field_types"
                     v-model="form_data.template_fields"
                 />
@@ -131,6 +132,10 @@
         },
         layout: 'admin-layout',
         props: {
+            'template_field_settings': {
+                type: Object,
+                required: true
+            },
             'template_field_types': {
                 type: Object,
                 required: true

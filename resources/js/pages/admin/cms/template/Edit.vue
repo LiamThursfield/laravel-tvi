@@ -108,6 +108,7 @@
             <div class="block px-6 w-full">
                 <template-field-editor
                     :is_editing="true"
+                    :template_field_settings="template_field_settings"
                     :template_field_types="template_field_types"
                     v-model="form_data.template_fields"
                 />
@@ -135,6 +136,10 @@
             'template': {
                 type: Object,
                 required: true,
+            },
+            'template_field_settings': {
+                type: Object,
+                required: true
             },
             'template_field_types': {
                 type: Object,

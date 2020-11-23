@@ -74,21 +74,39 @@
         />
 
         <!-- TODO: Implement Settings based on Type -->
+        <component
+            v-if="settings_component"
+            :is="settings_component"
+            :default_settings="default_field_settings"
+            :template_field="editable_template_field"
+            @input="updateTemplateField"
+            v-model="editable_template_field.settings"
+        >
+            <p class="font-semibold mt-6 text-theme-base-subtle-contrast">
+                Settings
+            </p>
+        </component>
     </div>
 </template>
 
 <script>
-    import slugify from "slugify";
-    import CheckboxGroup from "../../../../core/forms/CheckboxGroup";
-    import InputGroup from "../../../../core/forms/InputGroup";
-    import SelectGroup from "../../../../core/forms/SelectGroup";
+    import slugify          from "slugify";
+    import CheckboxGroup    from "../../../../core/forms/CheckboxGroup";
+    import InputGroup       from "../../../../core/forms/InputGroup";
+    import NumberSettings   from "./template_field_settings/NumberSettings";
+    import SelectGroup      from "../../../../core/forms/SelectGroup";
+    import TextSettings     from "./template_field_settings/TextSettings";
+    import TextAreaSettings from "./template_field_settings/TextAreaSettings";
 
     export default {
         name: "TemplateField",
         components: {
             CheckboxGroup,
             InputGroup,
-            SelectGroup
+            NumberSettings,
+            SelectGroup,
+            TextSettings,
+            TextAreaSettings,
         },
         model: {
             prop: 'template_field'
@@ -107,6 +125,10 @@
                 type: Boolean
             },
             template_field: {
+                required: true,
+                type: Object
+            },
+            template_field_settings: {
                 required: true,
                 type: Object
             },
@@ -130,9 +152,36 @@
             }
         },
         computed: {
-            errorMessageKey() {
+            default_field_settings() {
+                if (!this.editable_template_field.type) {
+                    return false;
+                }
+
+                try {
+                    return this.template_field_settings[this.editable_template_field.type];
+                } catch (e) {
+                    return {};
+                }
+            },
+            error_message_key() {
                 return this.error_message_key_prefix + '.' + this.editable_template_field.order + '.';
-            }
+            },
+            settings_component() {
+                if (!this.editable_template_field.type) {
+                    return false;
+                }
+
+                switch (this.editable_template_field.type) {
+                    case 'number' :
+                        return 'number-settings';
+                    case 'text' :
+                        return 'text-settings';
+                    case 'textarea' :
+                        return 'text-area-settings';
+                    default:
+                        return false;
+                }
+            },
         },
         created() {
             this.editable_template_field = _.cloneDeep(this.template_field);
@@ -144,8 +193,8 @@
         },
         methods: {
             getErrorMessage(field) {
-                let message = this.getPageErrorMessage(this.errorMessageKey + field);
-                message = message.replace(this.errorMessageKey, '');
+                let message = this.getPageErrorMessage(this.error_message_key + field);
+                message = message.replace(this.error_message_key, '');
                 return message;
             },
             onNameInput() {

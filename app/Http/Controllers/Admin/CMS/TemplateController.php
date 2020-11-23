@@ -49,6 +49,9 @@ class TemplateController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
         return Inertia::render('admin/cms/template/Create', [
+            'template_field_settings' => function() {
+                return TemplateFieldInterface::SETTINGS;
+            },
             'template_field_types' => function () {
                 return TemplateFieldInterface::ALL_TYPES_LABELLED;
             },
@@ -79,6 +82,9 @@ class TemplateController extends AdminController
 
                 TemplateResource::withoutWrapping();
                 return TemplateResource::make($template);
+            },
+            'template_field_settings' => function() {
+                return TemplateFieldInterface::SETTINGS;
             },
             'template_field_types' => function () {
                 return TemplateFieldInterface::ALL_TYPES_LABELLED;
