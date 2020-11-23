@@ -44,7 +44,7 @@ select
         }
 
         &.form-control-short {
-            @apply py-2;
+            @apply py-1;
         }
 
         &.error {
