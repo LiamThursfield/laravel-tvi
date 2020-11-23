@@ -26,3 +26,8 @@ Route::group([
 ], function() {
     Route::get('/', [HomeController::class, 'index'])->name('index');
 });
+
+/** Fallback admin route - ensures Auth() calls work as expected in the exception handler */
+Route::fallback(function () {
+    abort(404);
+});

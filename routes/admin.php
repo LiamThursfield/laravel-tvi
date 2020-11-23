@@ -36,3 +36,8 @@ Route::group([
 });
 
 Route::resource('users', UserController::class);
+
+/** Fallback admin route - ensures Auth() calls work as expected in the exception handler */
+Route::fallback(function () {
+    abort(404);
+});
