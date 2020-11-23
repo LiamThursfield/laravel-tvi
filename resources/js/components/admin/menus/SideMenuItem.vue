@@ -15,19 +15,19 @@
             <component
                 v-if="menuItem.icon"
                 :is="menuItem.icon"
-                class="w-5"
+                class="h-5 w-5"
             />
 
             <div
                 v-else
-                class="w-5"
+                class="h-5 w-5"
             ></div>
 
             <span class="ml-2">
                 {{ menuItem.label }}
             </span>
 
-            <icon-chevron-right class="indicator w-5" />
+            <icon-chevron-right class="indicator h-5 w-5" />
         </button>
 
         <inertia-link
@@ -40,12 +40,12 @@
             <component
                 v-if="menuItem.icon"
                 :is="menuItem.icon"
-                class="w-5"
+                class="h-5 w-5"
             />
 
             <div
                 v-else
-                class="w-5"
+                class="h-5 w-5"
             ></div>
 
             <span class="ml-2">

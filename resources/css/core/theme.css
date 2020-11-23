@@ -58,7 +58,7 @@
     --side-menu-color-base-contrast             : theme('colors.navy.400');
     --side-menu-color-hover                     : theme('colors.blue.100');
     --side-menu-color-hover-contrast            : theme('colors.theme.primary');
-    --side-menu-color-logo                      : theme('colors.navy.400');
+    --side-menu-color-logo                      : theme('colors.navy.900');
     --side-menu-color-logo-active               : theme('colors.theme.primary');
     --side-menu-color-separator                 : theme('colors.theme.base');
     --side-menu-color-sub-menu-active           : theme('colors.white');

@@ -40,6 +40,7 @@
                 <div class="w-full md:w-1/3">
                     <input-group
                         input_autocomplete="template_name_search"
+                        input_class="form-control form-control-short"
                         input_id="template_name"
                         input_name="template_name"
                         input_placeholder="Template Name"
@@ -53,6 +54,7 @@
                 <div class="w-full md:w-1/3">
                     <input-group
                         input_autocomplete="template_slug_search"
+                        input_class="form-control form-control-short"
                         input_id="template_slug"
                         input_name="template_slug"
                         input_placeholder="Template Slug"
@@ -69,6 +71,7 @@
                         label_text="Template Type"
                         :select_any_enabled="true"
                         select_any_label="Template Type"
+                        select_class="form-control form-control-short"
                         select_id="template_type"
                         select_name="template_type"
                         :select_options="template_types"
@@ -79,7 +82,7 @@
 
             <p
                 v-if="!templates_data"
-                class="bg-theme-base-subtle mt-6 mx-8 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
+                class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No templates
             </p>

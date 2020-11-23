@@ -62,6 +62,7 @@
                         <template-field
                             :is_autofocus_disabled="is_autofocus_disabled"
                             :template_field_types="template_field_types"
+                            :template_field_settings="template_field_settings"
                             @input="updateTemplateFields"
                             v-model="editable_template_fields[index]"
                         />
@@ -111,14 +112,18 @@
                 default: false,
                 type: Boolean
             },
-            template_fields: {
-                required: true,
-                type: Array
+            'template_field_settings': {
+                type: Object,
+                required: true
             },
             template_field_types: {
                 required: true,
                 type: Object,
-            }
+            },
+            template_fields: {
+                required: true,
+                type: Array
+            },
         },
         data() {
             return {
@@ -160,7 +165,7 @@
             },
             onDraggableEnd() {
                 this.is_dragging = false;
-                this.reorderTemplateFields()
+                this.reorderTemplateFields();
             },
             onDraggableSort() {
                 // Clear page errors as indexes have changed

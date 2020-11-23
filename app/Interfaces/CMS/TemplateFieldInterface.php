@@ -4,7 +4,7 @@ namespace App\Interfaces\CMS;
 
 class TemplateFieldInterface
 {
-    // Template Field Types
+    // Template field types
     const TYPE_NUMBER   = 'number';
     const TYPE_TEXT     = 'text';
     const TYPE_TEXTAREA = 'textarea';
@@ -17,6 +17,7 @@ class TemplateFieldInterface
         self::TYPE_WYSIWYG,
     ];
 
+    // Labelled types - typically used for showing the types to a user
     const ALL_TYPES_LABELLED = [
         self::TYPE_NUMBER   => "Number",
         self::TYPE_TEXT     => "Text",
@@ -25,7 +26,25 @@ class TemplateFieldInterface
     ];
 
 
-    // Table/Model Field Helpers
+    // Default settings for each type
+    const SETTINGS = [
+        self::TYPE_NUMBER => [
+            'min' => null,
+            'max' => null,
+        ],
+        self::TYPE_TEXT => [
+            'max_length' => null,
+        ],
+        self::TYPE_TEXTAREA => [
+            'max_length' => null,
+            'rows'       => null,
+        ],
+        self::TYPE_WYSIWYG => [
+        ],
+    ];
+
+
+    // Table/Model field helpers
     const FIELD_NAME_MAX_LENGTH = 120;
     const FIELD_SLUG_MAX_LENGTH = self::FIELD_NAME_MAX_LENGTH; // Slug shouldn't be any longer than name
     const FIELD_TYPE_MAX_LENGTH = 50;

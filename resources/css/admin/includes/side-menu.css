@@ -20,9 +20,19 @@
         .logo {
             @apply flex font-semibold h-14 items-center justify-center text-xl;
             color: var(--side-menu-color-logo);
+            transition: color 400ms ease-in-out;
 
             &:hover {
                 color: var(--side-menu-color-logo-active);
+
+                svg {
+                    transform: rotate(360deg);
+                }
+            }
+
+            svg {
+                transform: rotate(0deg);
+                transition: all 600ms ease-in-out;
             }
         }
 
@@ -55,6 +65,7 @@
         }
 
         .menu-toggle {
+            @apply pr-4 py-4 transition-default transition-colors;
             color: var(--side-menu-color-toggle);
 
             &:focus {

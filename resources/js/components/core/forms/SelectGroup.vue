@@ -70,7 +70,7 @@
                 type: String
             },
             select_any_class: {
-                default: "text-theme-base-subtle-contrast",
+                default: "",
                 type: String
             },
             select_any_value: {
