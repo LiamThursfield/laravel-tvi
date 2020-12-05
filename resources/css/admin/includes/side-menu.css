@@ -151,6 +151,8 @@
 
 
 /** Animations **/
+
+/** Wobble is taken from: https://csslab.app/animations/wobble **/
 @keyframes wobble {
     0%, 100% {
         -webkit-transform: translateX(0%);
