@@ -11,15 +11,15 @@
         stroke-linecap="round"
         stroke-linejoin="round"
     >
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <polyline points="5 12 3 12 12 3 21 12 19 12" />
-        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <rect x="4" y="4" width="6" height="5" rx="2" />
+        <rect x="4" y="13" width="6" height="7" rx="2" />
+        <rect x="14" y="4" width="6" height="16" rx="2" />
     </svg>
 </template>
 
 <script>
     export default {
-        name: "IconHome",
+        name: "IconLayout",
     }
 </script>
