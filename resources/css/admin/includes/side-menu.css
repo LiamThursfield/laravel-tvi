@@ -25,14 +25,11 @@
             &:hover {
                 color: var(--side-menu-color-logo-active);
 
-                svg {
-                    transform: rotate(360deg);
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    svg {
+                        animation: wobble 1s ease 1;
+                    }
                 }
-            }
-
-            svg {
-                transform: rotate(0deg);
-                transition: all 600ms ease-in-out;
             }
         }
 
@@ -149,5 +146,41 @@
                 transform: translateX(0);
             }
         }
+    }
+}
+
+
+/** Animations **/
+@keyframes wobble {
+    0%, 100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        -webkit-transform: translateX(-2px) rotate(-10deg);
+        transform: translateX(-2px) rotate(-10deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(calc(2px / 2)) rotate(10deg);
+        transform: translateX(calc(2px / 2)) rotate(10deg);
+    }
+
+    45% {
+        -webkit-transform: translateX(calc(-2px / 2)) rotate(calc(-10deg / 1.8));
+        transform: translateX(calc(-2px / 2)) rotate(calc(-10deg / 1.8));
+    }
+
+    60% {
+        -webkit-transform: translateX(calc(2px / 3.3)) rotate(calc(10deg / 3));
+        transform: translateX(calc(2px / 3.3)) rotate(calc(10deg / 3));
+    }
+
+    75% {
+        -webkit-transform: translateX(calc(-2px / 5.5)) rotate(calc(-10deg / 5));
+        transform: translateX(calc(-2px / 5.5)) rotate(calc(-10deg / 5));
     }
 }
