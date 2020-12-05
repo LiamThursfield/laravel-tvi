@@ -21,6 +21,6 @@
 
 <script>
     export default {
-        name: "IconCornerUp",
+        name: "IconArrowBarUp",
     }
 </script>
