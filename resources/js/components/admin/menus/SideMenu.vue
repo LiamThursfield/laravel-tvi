@@ -165,7 +165,7 @@
                                         route: "admin.users.create",
                                     },
                                 },
-                                icon: "icon-home",
+                                icon: "icon-users",
                                 label: "Users",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["users.view", "users.create"],
