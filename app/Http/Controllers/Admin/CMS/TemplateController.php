@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\CMS;
 use App\Actions\CMS\Template\TemplateQueryAction;
 use App\Actions\CMS\Template\TemplateStoreAction;
 use App\Actions\CMS\Template\TemplateUpdateAction;
+use App\Http\Controllers\AdminCMSController;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\CMS\Template\TemplateIndexRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
@@ -19,30 +20,13 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
-class TemplateController extends AdminController
+class TemplateController extends AdminCMSController
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->addMetaTitleSection('CMS');
         $this->addMetaTitleSection('Templates');
-
-        $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_CMS)
-        )->only(['create', 'store']);
-
-        $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_CMS)
-        )->only('destroy');
-
-        $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_CMS)
-        )->only(['edit', 'update']);
-
-        $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_CMS)
-        )->only('index');
     }
 
     public function create()
