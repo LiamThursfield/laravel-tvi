@@ -15,10 +15,12 @@ use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\CMS\Template;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class TemplateController extends AdminCMSController
 {
@@ -29,7 +31,7 @@ class TemplateController extends AdminCMSController
         $this->addMetaTitleSection('Templates');
     }
 
-    public function create()
+    public function create() : Response
     {
         $this->addMetaTitleSection('Create')->shareMeta();
         return Inertia::render('admin/cms/template/Create', [
@@ -45,7 +47,7 @@ class TemplateController extends AdminCMSController
         ]);
     }
 
-    public function destroy(Request $request, Template  $template)
+    public function destroy(Request $request, Template  $template) : RedirectResponse
     {
         $template->delete();
 
@@ -55,7 +57,7 @@ class TemplateController extends AdminCMSController
         );
     }
 
-    public function edit(Template $template)
+    public function edit(Template $template) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $template->name)->shareMeta();
         return Inertia::render('admin/cms/template/Edit', [
@@ -79,7 +81,7 @@ class TemplateController extends AdminCMSController
         ]);
     }
 
-    public function index(TemplateIndexRequest $request)
+    public function index(TemplateIndexRequest $request) : Response
     {
         $search_options = $request->validated();
         $search_options['per_page'] = Arr::get($search_options, 'per_page', 15);
@@ -98,14 +100,14 @@ class TemplateController extends AdminCMSController
         ]);
     }
 
-    public function store(TemplateStoreRequest $request)
+    public function store(TemplateStoreRequest $request) : RedirectResponse
     {
         $template = app(TemplateStoreAction::class)->handle($request->validated());
         return Redirect::to(route('admin.cms.templates.edit', $template))
             ->with('success', 'Template created.');
     }
 
-    public function update(TemplateUpdateRequest $request, Template $template)
+    public function update(TemplateUpdateRequest $request, Template $template) : RedirectResponse
     {
         $template = app(TemplateUpdateAction::class)->handle($template, $request->validated());
         return Redirect::to(route('admin.cms.templates.edit', $template))
