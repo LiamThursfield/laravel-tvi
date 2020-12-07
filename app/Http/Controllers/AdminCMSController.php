@@ -27,6 +27,6 @@ class AdminCMSController extends AdminController
 
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_CMS)
-        )->only('index');
+        )->only(['index', 'show']);
     }
 }
