@@ -2,19 +2,12 @@
 
 namespace App\Http\Requests\Admin\User;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
-class UserStoreRequest extends FormRequest
+class UserStoreRequest extends BaseRequest
 {
-    public int $status = 303;
-
-    /**
-     * Define the rules for the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules() : array
     {
         return [
             'email' => [

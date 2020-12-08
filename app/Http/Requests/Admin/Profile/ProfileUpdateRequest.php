@@ -2,19 +2,12 @@
 
 namespace App\Http\Requests\Admin\Profile;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class ProfileUpdateRequest extends FormRequest
+class ProfileUpdateRequest extends BaseRequest
 {
-    public $status = 303;
-
-    /**
-     * Define the rules for the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [

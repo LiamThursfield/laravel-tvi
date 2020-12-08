@@ -6,13 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FileManagerDirectoryStoreRequest extends FormRequest
 {
-
-    /**
-     * Define the rules for the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules() : array
     {
         return [
             'directory' => 'required',
