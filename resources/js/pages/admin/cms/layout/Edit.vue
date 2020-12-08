@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('cms.create')"
+            v-if="userCan('cms.edit')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="mr-auto text-lg">
@@ -42,7 +42,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Create Layout
+                    Edit Layout
                 </span>
             </button>
         </div>
@@ -209,8 +209,8 @@
                 );
             },
             submit() {
-                this.$inertia.post(
-                    this.$route('admin.cms.layouts.store'),
+                this.$inertia.put(
+                    this.$route('admin.cms.layouts.update', this.layout.id),
                     this.form_data
                 );
             }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin\CMS;
 
 use App\Actions\CMS\Layout\LayoutQueryAction;
 use App\Actions\CMS\Layout\LayoutStoreAction;
+use App\Actions\CMS\Layout\LayoutUpdateAction;
 use App\Http\Controllers\AdminCMSController;
 use App\Http\Requests\Admin\CMS\Layout\LayoutIndexRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
+use App\Http\Requests\Admin\CMS\Layout\LayoutUpdateRequest;
 use App\Http\Resources\Admin\CMS\LayoutResource;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Models\CMS\Layout;
@@ -14,6 +16,7 @@ use App\Models\CMS\Template;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -37,6 +40,16 @@ class LayoutController extends AdminCMSController
                     ->keyBy('id');
             },
         ]);
+    }
+
+    public function destroy(Request $request, Layout $layout) : RedirectResponse
+    {
+        $layout->delete();
+
+        return Redirect::back(303)->with(
+            'success',
+            'Layout deleted.'
+        );
     }
 
     public function edit(Layout $layout) : Response
@@ -86,5 +99,12 @@ class LayoutController extends AdminCMSController
         $layout = app(LayoutStoreAction::class)->handle($request->validated());
         return Redirect::to(route('admin.cms.layouts.edit', $layout))
             ->with('success', 'Layout Created');
+    }
+
+    public function update(LayoutUpdateRequest $request, Layout $layout) : RedirectResponse
+    {
+        $layout = app(LayoutUpdateAction::class)->handle($layout, $request->validated());
+        return Redirect::to(route('admin.cms.layouts.edit', $layout))
+            ->with('success', 'Layout Updates');
     }
 }
