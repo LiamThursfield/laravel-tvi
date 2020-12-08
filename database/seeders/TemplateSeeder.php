@@ -16,11 +16,11 @@ class TemplateSeeder extends Seeder
      */
     public function run()
     {
-        // Default Layout
+        // Default Layout Template
         $layout = Template::create([
             'type' => TemplateInterface::TYPE_LAYOUT,
-            'name' => 'Default Layout',
-            'slug' => 'default-layout',
+            'name' => 'Default Layout Template',
+            'slug' => 'default-layout-template',
             'description' => 'Default template for layouts.',
         ]);
 
@@ -33,11 +33,11 @@ class TemplateSeeder extends Seeder
 
 
 
-        // Default Page
+        // Default Page Template
         $page = Template::create([
             'type' => TemplateInterface::TYPE_PAGE,
-            'name' => 'Default Page',
-            'slug' => 'default-page',
+            'name' => 'Default Page Template',
+            'slug' => 'default-page-template',
             'description' => 'Default template for pages.',
         ]);
 
