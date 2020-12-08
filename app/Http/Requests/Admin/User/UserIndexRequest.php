@@ -2,26 +2,16 @@
 
 namespace App\Http\Requests\Admin\User;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseIndexRequest;
 
-class UserIndexRequest extends FormRequest
+class UserIndexRequest extends BaseIndexRequest
 {
-    public int $status = 303;
-
-    /**
-     * Define the rules for the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules() : array
     {
-        return [
-            'order_by'          => 'nullable|string',
-            'order_direction'   => 'nullable|string',
-            'per_page'          => 'nullable|integer',
+        return array_merge(parent::rules(), [
             'user_email'        => 'nullable|string',
             'user_first_name'   => 'nullable|string',
             'user_last_name'    => 'nullable|string',
-        ];
+        ]);
     }
 }
