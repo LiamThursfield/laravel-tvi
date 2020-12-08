@@ -84,7 +84,6 @@ class TemplateController extends AdminCMSController
     public function index(TemplateIndexRequest $request) : Response
     {
         $search_options = $request->validated();
-        $search_options['per_page'] = Arr::get($search_options, 'per_page', 15);
 
         $this->shareMeta();
         return Inertia::render('admin/cms/template/Index', [
