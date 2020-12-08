@@ -125,7 +125,7 @@
             },
             select_value: {
                 default: '',
-                type: String
+                type: String | Number
             },
             label_class: {
                 default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
