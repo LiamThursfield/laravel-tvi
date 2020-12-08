@@ -2,21 +2,14 @@
 
 namespace App\Http\Requests\Admin\CMS\Template;
 
+use App\Http\Requests\BaseRequest;
 use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Interfaces\CMS\TemplateInterface;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TemplateUpdateRequest extends FormRequest
+class TemplateUpdateRequest extends BaseRequest
 {
-    public int $status = 303;
-
-    /**
-     * Define the rules for the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules() : array
     {
         return [
             'description' => 'nullable|string',

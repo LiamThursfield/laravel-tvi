@@ -2,26 +2,16 @@
 
 namespace App\Http\Requests\Admin\CMS\Template;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseIndexRequest;
 
-class TemplateIndexRequest extends FormRequest
+class TemplateIndexRequest extends BaseIndexRequest
 {
-    public int $status = 303;
-
-    /**
-     * Define the rules for the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules() : array
     {
-        return [
-            'order_by'          => 'nullable|string',
-            'order_direction'   => 'nullable|string',
-            'per_page'          => 'nullable|integer',
+        return array_merge(parent::rules(), [
             'template_name'     => 'nullable|string',
             'template_slug'     => 'nullable|string',
             'template_type'     => 'nullable|string',
-        ];
+        ]);
     }
 }

@@ -18,7 +18,16 @@
             @keyup.esc="blurSelect"
         >
             <option
-                v-for="(label, value) in all_options"
+                v-if="select_any_enabled"
+                :disabled="isOptionDisabled(select_any_value)"
+                :selected="isOptionSelected(select_any_value)"
+                :value="select_any_value"
+            >
+                {{ select_any_label}}
+            </option>
+
+            <option
+                v-for="(label, value) in formatted_options"
                 :key="`${select_id}-option-${value}`"
                 :disabled="isOptionDisabled(value)"
                 :selected="isOptionSelected(value)"
@@ -43,6 +52,8 @@
 </template>
 
 <script>
+    import _ from 'lodash';
+
     export default {
         name: 'SelectGroup',
         model: {
@@ -96,6 +107,14 @@
                 required: true,
                 type: String
             },
+            select_option_label_key: {
+                default: false,
+                type: Boolean | String | Number
+            },
+            select_option_value_key: {
+                default: false,
+                type: Boolean | String | Number
+            },
             select_options: {
                 required: true,
                 type: Object
@@ -106,7 +125,7 @@
             },
             select_value: {
                 default: '',
-                type: String
+                type: String | Number
             },
             label_class: {
                 default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
@@ -127,14 +146,32 @@
             }
         },
         computed: {
-            all_options() {
+            formatted_options() {
                 let options = {};
 
-                if (this.select_any_enabled) {
-                    options[this.select_any_value] = this.select_any_label;
-                }
+                _.forEach(this.select_options, (option, key) => {
+                    // Default the label and value for the select
+                    let label = option;
+                    let value = key;
 
-                options = Object.assign(options, this.select_options);
+                    // Set a custom label if necessary
+                    if (
+                        this.select_option_label_key !== false &&
+                        option.hasOwnProperty(this.select_option_label_key)
+                    ) {
+                        label = option[this.select_option_label_key];
+                    }
+
+                    // Set a custom value if necessary
+                    if (
+                        this.select_option_value_key !== false &&
+                        option.hasOwnProperty(this.select_option_value_key)
+                    ) {
+                        value = option[this.select_option_value_key];
+                    }
+
+                    options[value] = label;
+                });
 
                 return options;
             },

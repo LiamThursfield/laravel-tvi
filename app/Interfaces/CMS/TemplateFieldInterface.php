@@ -5,12 +5,14 @@ namespace App\Interfaces\CMS;
 class TemplateFieldInterface
 {
     // Template field types
+    const TYPE_IMAGE    = 'image';
     const TYPE_NUMBER   = 'number';
     const TYPE_TEXT     = 'text';
     const TYPE_TEXTAREA = 'textarea';
     const TYPE_WYSIWYG  = 'wysiwyg';
 
     const ALL_TYPES = [
+        self::TYPE_IMAGE,
         self::TYPE_NUMBER,
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
@@ -19,6 +21,7 @@ class TemplateFieldInterface
 
     // Labelled types - typically used for showing the types to a user
     const ALL_TYPES_LABELLED = [
+        self::TYPE_IMAGE    => "Image",
         self::TYPE_NUMBER   => "Number",
         self::TYPE_TEXT     => "Text",
         self::TYPE_TEXTAREA => "Text Area",
@@ -28,6 +31,7 @@ class TemplateFieldInterface
 
     // Default settings for each type
     const SETTINGS = [
+        self::TYPE_IMAGE => [],
         self::TYPE_NUMBER => [
             'min' => null,
             'max' => null,
@@ -39,8 +43,7 @@ class TemplateFieldInterface
             'max_length' => null,
             'rows'       => null,
         ],
-        self::TYPE_WYSIWYG => [
-        ],
+        self::TYPE_WYSIWYG => [],
     ];
 
 

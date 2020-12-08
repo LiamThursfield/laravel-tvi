@@ -25,14 +25,11 @@
             &:hover {
                 color: var(--side-menu-color-logo-active);
 
-                svg {
-                    transform: rotate(360deg);
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    svg {
+                        animation: wobble 1s ease 1;
+                    }
                 }
-            }
-
-            svg {
-                transform: rotate(0deg);
-                transition: all 600ms ease-in-out;
             }
         }
 
@@ -82,10 +79,11 @@
             >.menu-link,
             >.menu-link-parent {
                 @apply flex flex-row font-medium items-center mt-1 px-4 py-2 rounded text-sm w-full;
-                @apply transition-colors ease-in-out duration-300;
+                @apply ease-in-out duration-300;
 
                 background: var(--side-menu-color-base);
                 color: var(--side-menu-color-base-contrast);
+                transition-property: background-color, border-color, color, fill, padding, stroke;
 
                 &:focus {
                     @apply outline-none shadow-outline-primary;
@@ -95,6 +93,13 @@
                     background: var(--side-menu-color-hover);
                     color: var(--side-menu-color-hover-contrast);
                 }
+
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    &:hover {
+                        @apply pl-6;
+                    }
+                }
+
 
                 &.menu-link-active,
                 &.menu-link-active:hover {
@@ -108,10 +113,11 @@
             >.menu-link,
             >.menu-link-parent {
                 @apply flex flex-row font-medium items-center mt-1 px-4 py-1 rounded text-sm w-full;
-                @apply transition-colors ease-in-out duration-150;
+                @apply ease-in-out duration-150;
 
                 background: var(--side-menu-color-sub-menu-base);
                 color: var(--side-menu-color-sub-menu-base-contrast);
+                transition-property: background-color, border-color, color, fill, padding, stroke;
 
                 &:focus {
                     @apply font-semibold outline-none;
@@ -126,6 +132,12 @@
                 &.menu-link-active:hover {
                     background: var(--side-menu-color-sub-menu-active);
                     color: var(--side-menu-color-sub-menu-active-contrast);
+                }
+
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    &:hover {
+                        @apply pl-6;
+                    }
                 }
             }
         }
@@ -149,5 +161,43 @@
                 transform: translateX(0);
             }
         }
+    }
+}
+
+
+/** Animations **/
+
+/** Wobble is taken from: https://csslab.app/animations/wobble **/
+@keyframes wobble {
+    0%, 100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        -webkit-transform: translateX(-2px) rotate(-10deg);
+        transform: translateX(-2px) rotate(-10deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(calc(2px / 2)) rotate(10deg);
+        transform: translateX(calc(2px / 2)) rotate(10deg);
+    }
+
+    45% {
+        -webkit-transform: translateX(calc(-2px / 2)) rotate(calc(-10deg / 1.8));
+        transform: translateX(calc(-2px / 2)) rotate(calc(-10deg / 1.8));
+    }
+
+    60% {
+        -webkit-transform: translateX(calc(2px / 3.3)) rotate(calc(10deg / 3));
+        transform: translateX(calc(2px / 3.3)) rotate(calc(10deg / 3));
+    }
+
+    75% {
+        -webkit-transform: translateX(calc(-2px / 5.5)) rotate(calc(-10deg / 5));
+        transform: translateX(calc(-2px / 5.5)) rotate(calc(-10deg / 5));
     }
 }

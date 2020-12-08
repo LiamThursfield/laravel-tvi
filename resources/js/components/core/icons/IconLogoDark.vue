@@ -23,6 +23,6 @@
 
 <script>
     export default {
-        name: "IconLogoLight"
+        name: "IconLogoDark"
     }
 </script>

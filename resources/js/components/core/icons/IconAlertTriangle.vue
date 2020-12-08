@@ -19,6 +19,6 @@
 
 <script>
     export default {
-        name: "IconPhoto",
+        name: "IconAlertTriangle",
     }
 </script>

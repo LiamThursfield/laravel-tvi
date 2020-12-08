@@ -10,7 +10,7 @@
         >
             <div
                 v-if="isVisibleSuccess"
-                class="bg-theme-success flex flex-row items-center px-4 py-4 rounded text-theme-success-contrast"
+                class="bg-theme-success flex flex-row items-center px-4 py-4 relative rounded shadow-subtle text-theme-success-contrast"
                 key="alert-success"
             >
                 <span class="flex-1">
@@ -21,13 +21,13 @@
                     type="button"
                     @click="closeSuccess"
                 >
-                    <icon-close class="w-5" />
+                    <icon-close class="w-5 hover:text-theme-success-hover-contrast" />
                 </button>
             </div>
 
             <div
                 v-if="isVisibleWarning"
-                class="bg-theme-warning flex flex-row items-center px-4 py-4 rounded text-theme-warning-contrast"
+                class="bg-theme-warning flex flex-row items-center px-4 py-4 relative rounded shadow-subtle text-theme-warning-contrast"
                 key="alert-warning"
             >
                 <span class="flex-1">
@@ -36,15 +36,15 @@
                 <button
                     class="ml-2"
                     type="button"
-                    @click="isClosedWarning = true"
+                    @click="closeWarning"
                 >
-                    <icon-close class="w-5" />
+                  <icon-close class="w-5 hover:text-theme-warning-hover-contrast" />
                 </button>
             </div>
 
             <div
                 v-if="isVisibleError"
-                class="bg-theme-danger flex flex-row items-center px-4 py-4 rounded text-theme-danger-contrast"
+                class="bg-theme-danger flex flex-row items-center px-4 py-4 relative rounded shadow-subtle text-theme-danger-contrast"
                 key="alert-error"
             >
                 <span class="flex-1">
@@ -53,9 +53,10 @@
                 <button
                     class="ml-2"
                     type="button"
-                    @click="isClosedError = true"
+                    @click="closeError"
                 >
-                    <icon-close class="w-5" />
+                  <icon-close class="w-5 hover:text-theme-danger-hover-contrast" />
+                  <icon-close class="w-5 hover:text-theme-danger-hover-contrast" />
                 </button>
             </div>
         </transition-group>
