@@ -99,6 +99,29 @@
                     },
                     cms: {
                         children : {
+                            layouts: {
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Layouts",
+                                        requiresAllPermissions: ["cms.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.layouts.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Layout",
+                                        requiresAllPermissions: ["cms.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.layouts.create",
+                                    },
+                                },
+                                icon: "icon-layout",
+                                label: "Layouts",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["cms.create", "cms.view"],
+                            },
                             templates: {
                                 children: {
                                     index: {

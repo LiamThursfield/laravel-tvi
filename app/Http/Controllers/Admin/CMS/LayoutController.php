@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Http\Controllers\Admin\CMS;
+
+use App\Actions\CMS\Layout\LayoutQueryAction;
+use App\Actions\CMS\Layout\LayoutStoreAction;
+use App\Http\Controllers\AdminCMSController;
+use App\Http\Requests\Admin\CMS\Layout\LayoutIndexRequest;
+use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
+use App\Http\Resources\Admin\CMS\LayoutResource;
+use App\Interfaces\CMS\TemplateInterface;
+use App\Models\CMS\Layout;
+use App\Models\CMS\Template;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Inertia\Response;
+
+class LayoutController extends AdminCMSController
+{
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addMetaTitleSection('Layouts');
+    }
+
+    public function create() : Response
+    {
+        $this->addMetaTitleSection('Create')->shareMeta();
+        return Inertia::render('admin/cms/layout/Create', [
+            'templates' => function () {
+                return Template::where('type', TemplateInterface::TYPE_LAYOUT)
+                    ->orderBy('name', 'asc')
+                    ->get()
+                    ->keyBy('id');
+            },
+        ]);
+    }
+
+    public function edit(Layout $layout) : Response
+    {
+        $layout->load('template');
+        $layout->load('template.templateFields');
+
+        $this->addMetaTitleSection('Edit - ' . $layout->name)->shareMeta();
+        return Inertia::render('admin/cms/layout/Edit', [
+            'layout' => function () use ($layout) {
+                LayoutResource::withoutWrapping();
+                return LayoutResource::make($layout);
+            } ,
+            'templates' => function () {
+                return Template::where('type', TemplateInterface::TYPE_LAYOUT)
+                    ->orderBy('name', 'asc')
+                    ->get()
+                    ->keyBy('id');
+            },
+        ]);
+    }
+
+    public function index(LayoutIndexRequest $request)
+    {
+        $search_options = $request->validated();
+        $search_options['with'] = ['template'];
+
+        $this->shareMeta();
+        return Inertia::render('admin/cms/layout/Index', [
+            'layouts' => function () use ($search_options) {
+                return app(LayoutQueryAction::class)
+                    ->handle($search_options)
+                    ->paginate(Arr::get($search_options, 'per_page', 15));
+            },
+            'search_options' => $search_options,
+            'templates' => function () {
+                return Template::where('type', TemplateInterface::TYPE_LAYOUT)
+                    ->orderBy('name', 'asc')
+                    ->get()
+                    ->keyBy('id');
+            }
+        ]);
+    }
+
+    public function store(LayoutStoreRequest $request) : RedirectResponse
+    {
+        $layout = app(LayoutStoreAction::class)->handle($request->validated());
+        return Redirect::to(route('admin.cms.layouts.edit', $layout))
+            ->with('success', 'Layout Created');
+    }
+}
