@@ -114,7 +114,7 @@
 
 <style scoped>
     .skewed-logo-bg {
-        --transform-rotate: -18deg;
-        --transform-skew-y: 12deg
+        --tw-rotate: -18deg;
+        --tw-skew-y: 12deg
     }
 </style>

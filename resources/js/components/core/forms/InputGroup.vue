@@ -68,7 +68,7 @@
                 type: Boolean
             },
             input_class: {
-                default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:outline-none focus:border-theme-primary',
+                default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
                 type: String
             },
             input_disabled: {

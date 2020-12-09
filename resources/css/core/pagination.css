@@ -40,7 +40,7 @@
 
             &.pagination-link-inactive {
                 &:focus {
-                    @apply outline-none shadow-outline-primary;
+                    @apply outline-none ring ring-primary;
                 }
 
                 &:focus,
