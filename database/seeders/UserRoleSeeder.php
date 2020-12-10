@@ -25,6 +25,7 @@ class UserRoleSeeder extends Seeder
             'password'      => Hash::make('AdminPassword')
         ]);
         $user->assignRole(Role::whereName(RoleInterface::ADMIN)->first());
+        $user->assignRole(Role::whereName(RoleInterface::USER)->first());
 
         $user = $user = User::factory()->create([
             'first_name'    => 'Super',
@@ -32,7 +33,9 @@ class UserRoleSeeder extends Seeder
             'email'         => 'super@example.com',
             'password'      => Hash::make('SuperPassword')
         ]);
+        $user->assignRole(Role::whereName(RoleInterface::ADMIN)->first());
         $user->assignRole(Role::whereName(RoleInterface::SUPER)->first());
+        $user->assignRole(Role::whereName(RoleInterface::USER)->first());
 
         $user = $user = User::factory()->create([
             'first_name'    => 'User',
