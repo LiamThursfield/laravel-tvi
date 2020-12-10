@@ -9,10 +9,13 @@ use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Http\Requests\Admin\User\UserUpdateRequest;
 use App\Interfaces\PermissionInterface;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Inertia\Response;
 
 class UserController extends AdminController
 {
@@ -39,13 +42,17 @@ class UserController extends AdminController
         )->only('index');
     }
 
-    public function create()
+    public function create() : Response
     {
         $this->addMetaTitleSection('Create')->shareMeta();
-        return Inertia::render('admin/user/Create');
+        return Inertia::render('admin/user/Create', [
+            'selectable_roles' => function () {
+                return Auth::user()->getSelectableRoles(true, true);
+            }
+        ]);
     }
 
-    public function destroy(Request $request, User $user)
+    public function destroy(Request $request, User $user) : RedirectResponse
     {
         if (auth()->user()->id === $user->id) {
             return Redirect::back(303)->with(
@@ -62,18 +69,21 @@ class UserController extends AdminController
         );
     }
 
-    public function edit(User $user)
+    public function edit(User $user) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $user->name)->shareMeta();
 
         return Inertia::render('admin/user/Edit', [
+            'selectable_roles' => function () {
+                return Auth::user()->getSelectableRoles(true, true);
+            },
             'user' => function () use ($user) {
                 return $user;
             }
         ]);
     }
 
-    public function index(UserIndexRequest $request)
+    public function index(UserIndexRequest $request) : Response
     {
         $search_options = $request->validated();
         $search_options['per_page'] = Arr::get($search_options, 'per_page', 15);
@@ -88,7 +98,7 @@ class UserController extends AdminController
         ]);
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request) : RedirectResponse
     {
         // @TODO - Move this to an action so that Roles can be edited in the same endpoint
         $user = User::create($request->validated());
@@ -96,7 +106,7 @@ class UserController extends AdminController
             ->with('success', 'User created.');
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user) : RedirectResponse
     {
         // @TODO - Move this to an action so that Roles can be edited in the same endpoint
         $user->update($request->validated());
