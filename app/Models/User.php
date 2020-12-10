@@ -63,9 +63,10 @@ class User extends Authenticatable
     /**
      * Get all the roles that this user can select / assign to other users (or themselves).
      * @param bool $force_load
+     * @param bool $labelled
      * @return array
      */
-    public function getSelectableRoles(bool $force_load = false) : array
+    public function getSelectableRoles(bool $force_load = false, bool $labelled = false) : array
     {
         $roles = [];
 
@@ -74,7 +75,7 @@ class User extends Authenticatable
         }
 
         foreach ($this->roles as $role) {
-            $roles = array_merge($roles, RoleInterface::getSelectableRoles($role->name));
+            $roles = array_merge($roles, RoleInterface::getSelectableRoles($role->name, $labelled));
         }
         return array_unique($roles);
     }
