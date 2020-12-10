@@ -43,7 +43,7 @@
                                     class="
                                         bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-full
                                         ease-in-out duration-300 transition-colors
-                                        focus:outline-none focus:shadow-outline-primary
+                                        focus:outline-none focus:ring focus:ring-primary
                                         hover:bg-theme-primary hover:text-theme-primary-contrast
                                     "
                                     type="button"
@@ -68,7 +68,7 @@
                                     id="new_directory"
                                     class="
                                         appearance-none border border-theme-base-subtle-contrast px-4 py-1 rounded shadow-none
-                                        focus:outline-none focus:shadow-outline-primary
+                                        focus:outline-none focus:ring focus:ring-primary
                                     "
                                     placeholder="Directory Name"
                                     ref="new_directory"

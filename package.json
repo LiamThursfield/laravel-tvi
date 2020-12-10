@@ -1,41 +1,47 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "mix --production",
+        "production": "mix --production"
     },
     "devDependencies": {
         "@inertiajs/inertia": "^0.7",
         "@inertiajs/inertia-vue": "^0.4",
         "@inertiajs/progress": "^0.2",
         "@ivanv/vue-collapse-transition": "^0.2.1",
-        "@tailwindcss/custom-forms": "^0.2.1",
+        "@tailwindcss/forms": "^0.2.1",
+        "autoprefixer": "^10.1.0",
         "axios": "^0.19",
         "cross-env": "^7.0",
         "es6-promise": "^4.2.8",
-        "laravel-mix": "^5.0.1",
+        "laravel-mix": "^6.0.0-beta.15",
         "lodash": "^4.17.13",
         "object-path": "^0.11.5",
-        "postcss-import": "^12.0.1",
-        "postcss-nested": "^4.2.1",
+        "postcss": "^8.2.1",
+        "postcss-import": "^13.0.0",
+        "postcss-nested": "^5.0.3",
         "pretty-bytes": "^5.4.1",
         "resolve-url-loader": "^2.3.1",
         "slugify": "^1.4.6",
-        "tailwindcss": "^1.8",
+        "tailwindcss": "^2.0.1",
         "tippy.js": "^6.2.6",
         "vue": "^2.5.17",
         "vue-clickaway": "^2.2.2",
         "vue-cookies": "^1.7.4",
+        "vue-loader": "^15.9.5",
         "vue-meta": "^2.4.0",
         "vue-template-compiler": "^2.6.10",
         "vue-toasted": "^1.1.28",
         "vue2-dropzone": "^3.6.0",
         "vuedraggable": "^2.24.3",
-        "vuex": "^3.5.1"
+        "vuex": "^3.5.1",
+        "webpack": "^5.10.0"
+    },
+    "peerDependencies": {
+        "postcss": "^8.2.1"
     }
 }
