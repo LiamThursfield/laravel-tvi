@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\User\UserIndexRequest;
 use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Http\Requests\Admin\User\UserUpdateRequest;
+use App\Http\Resources\Admin\User\UserEditResource;
 use App\Interfaces\PermissionInterface;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -71,14 +72,16 @@ class UserController extends AdminController
 
     public function edit(User $user) : Response
     {
-        $this->addMetaTitleSection('Edit - ' . $user->name)->shareMeta();
+        $user->load('roles');
 
+        $this->addMetaTitleSection('Edit - ' . $user->name)->shareMeta();
         return Inertia::render('admin/user/Edit', [
             'selectable_roles' => function () {
                 return Auth::user()->getSelectableRoles(true, true);
             },
             'user' => function () use ($user) {
-                return $user;
+                UserEditResource::withoutWrapping();
+                return UserEditResource::make($user);
             }
         ]);
     }
