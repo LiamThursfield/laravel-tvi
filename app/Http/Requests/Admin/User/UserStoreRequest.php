@@ -2,22 +2,22 @@
 
 namespace App\Http\Requests\Admin\User;
 
-use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
-class UserStoreRequest extends BaseRequest
+class UserStoreRequest extends BaseUserRequest
 {
     public function rules() : array
     {
         return [
-            'email' => [
+            'email'         => [
                 'required',
                 'email',
                 Rule::unique('users'),
             ],
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
+            'first_name'    => 'required|string|max:255',
+            'last_name'     => 'required|string|max:255',
+            'password'      => 'required|string|min:8|confirmed',
+            'roles'         => 'nullable|array'
         ];
     }
 }
