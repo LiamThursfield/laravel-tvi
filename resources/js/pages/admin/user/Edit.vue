@@ -94,18 +94,51 @@
                 />
             </div>
         </div>
+
+        <div v-if="is_selectable_roles"
+             class="bg-white mt-6 py-6 shadow-subtle rounded-lg"
+        >
+            <div class="block px-6 w-full">
+                <p class="font-medium mb-4 text-theme-base-contrast tracking-wider">
+                    Roles
+                </p>
+
+                <div class="space-y-2">
+                    <inline-checkbox-group
+                        v-for="(role_label, role_key) in selectable_roles"
+                        :key="`user-role-${role_key}`"
+                        :checkbox_id="`user-role-${role_key}`"
+                        :checkbox_name="`user-role-${role_key}`"
+                        :label_text="role_label"
+                        v-model="formData.roles[role_key]"
+                    />
+                </div>
+            </div>
+        </div>
     </form>
 </template>
 
 <script>
+    import _ from "lodash";
+    import InlineCheckboxGroup from "../../../components/core/forms/InlineCheckboxGroup";
     import InputGroup from "../../../components/core/forms/InputGroup";
 
     export default {
         name: "AdminUserEdit",
-        components: {InputGroup},
+        components: {
+            InlineCheckboxGroup,
+            InputGroup,
+        },
         layout: 'admin-layout',
         props: {
-            user: Object,
+            selectable_roles: {
+                required: true,
+                type: Object,
+            },
+            user: {
+                required: true,
+                type: Object,
+            },
         },
         data() {
             return {
@@ -113,9 +146,16 @@
             }
         },
         computed: {
-            isCurrentUser() {
+            is_current_user() {
                 try {
                     return this.user.id === this.$page.props.auth.user.id;
+                } catch (e) {
+                    return false;
+                }
+            },
+            is_selectable_roles() {
+                try {
+                    return Object.keys(this.selectable_roles).length > 0;
                 } catch (e) {
                     return false;
                 }
@@ -126,9 +166,19 @@
                 email:      this.user.email,
                 first_name: this.user.first_name,
                 last_name:  this.user.last_name,
-            }
+                roles:      this.user.roles,
+            };
+
+            this.initialiseRoles();
         },
         methods: {
+            initialiseRoles() {
+                _.forEach(this.selectable_roles, (role_label, role_key) => {{
+                    if (!this.formData.roles.hasOwnProperty(role_key)) {
+                        this.formData.roles[role_key] = false;
+                    }
+                }});
+            },
             submit() {
                 this.$inertia.put(
                     this.$route('admin.users.update', this.user.id),

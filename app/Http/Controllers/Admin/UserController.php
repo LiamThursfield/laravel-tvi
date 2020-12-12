@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\User\UserQueryAction;
+use App\Actions\User\UserStoreAction;
+use App\Actions\User\UserUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\User\UserIndexRequest;
 use App\Http\Requests\Admin\User\UserStoreRequest;
@@ -103,16 +105,14 @@ class UserController extends AdminController
 
     public function store(UserStoreRequest $request) : RedirectResponse
     {
-        // @TODO - Move this to an action so that Roles can be edited in the same endpoint
-        $user = User::create($request->validated());
+        $user = app(UserStoreAction::class)->handle($request->validated());
         return Redirect::to(route('admin.users.edit', $user))
             ->with('success', 'User created.');
     }
 
     public function update(UserUpdateRequest $request, User $user) : RedirectResponse
     {
-        // @TODO - Move this to an action so that Roles can be edited in the same endpoint
-        $user->update($request->validated());
+        app(UserUpdateAction::class)->handle($user, $request->validated());
         return Redirect::to(route('admin.users.edit', $user))
             ->with('success', 'User updated.');
     }
