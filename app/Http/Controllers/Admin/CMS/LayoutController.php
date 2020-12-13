@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutUpdateRequest;
 use App\Http\Resources\Admin\CMS\LayoutResource;
 use App\Interfaces\CMS\TemplateInterface;
+use App\Models\CMS\Content;
 use App\Models\CMS\Layout;
 use App\Models\CMS\Template;
 use Illuminate\Http\RedirectResponse;
@@ -56,6 +57,7 @@ class LayoutController extends AdminCMSController
     {
         $layout->load('template');
         $layout->load('template.templateFields');
+        $layout->load('content');
 
         $this->addMetaTitleSection('Edit - ' . $layout->name)->shareMeta();
         return Inertia::render('admin/cms/layout/Edit', [
