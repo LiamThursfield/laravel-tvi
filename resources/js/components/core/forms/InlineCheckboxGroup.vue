@@ -20,7 +20,15 @@
                 :class="label_class"
                 :for="checkbox_id"
             >
-                {{ label_text }}
+                <span class="flex flex-row items-baseline">
+                    <span>{{ label_text }}</span>
+                    <sup
+                        v-if="checkbox_required"
+                        class="text-theme-danger-contrast"
+                    >
+                        *
+                    </sup>
+                </span>
             </label>
         </div>
 

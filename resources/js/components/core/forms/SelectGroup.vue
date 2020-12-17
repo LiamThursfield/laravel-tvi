@@ -4,7 +4,17 @@
             :class="formatted_label_class"
             :for="select_id"
         >
-            {{ label_text }}
+            <slot>
+                <span class="flex flex-row items-baseline">
+                    <span>{{ label_text }}</span>
+                    <sup
+                        v-if="select_required"
+                        class="text-theme-danger-contrast"
+                    >
+                        *
+                    </sup>
+                </span>
+            </slot>
         </label>
 
         <select
