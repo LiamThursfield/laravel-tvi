@@ -42,7 +42,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Edit Layout
+                    Save Changes
                 </span>
             </button>
         </div>
