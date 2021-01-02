@@ -22,6 +22,7 @@
             :class="formatted_input_class"
             :autocomplete="input_autocomplete"
             :disabled="input_disabled"
+            :maxlength="input_maxlength"
             :name="input_name"
             :placeholder="input_placeholder"
             :ref="input_id"
@@ -88,6 +89,10 @@
             input_id: {
                 required: true,
                 type: String
+            },
+            input_maxlength: {
+                default: '',
+                type: String | Number
             },
             input_name: {
                 required: true,
