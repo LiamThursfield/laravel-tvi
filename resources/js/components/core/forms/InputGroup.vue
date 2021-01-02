@@ -22,7 +22,10 @@
             :class="formatted_input_class"
             :autocomplete="input_autocomplete"
             :disabled="input_disabled"
+            :max="input_max"
             :maxlength="input_maxlength"
+            :min="input_min"
+            :minlength="input_minlength"
             :name="input_name"
             :placeholder="input_placeholder"
             :ref="input_id"
@@ -68,7 +71,7 @@
             },
             error_message: {
                 default: '',
-                type: String
+                type: false | String
             },
             input_autocomplete: {
                 default: '',
@@ -90,7 +93,19 @@
                 required: true,
                 type: String
             },
+            input_max: {
+                default: '',
+                type: String | Number
+            },
             input_maxlength: {
+                default: '',
+                type: String | Number
+            },
+            input_min: {
+                default: '',
+                type: String | Number
+            },
+            input_minlength: {
                 default: '',
                 type: String | Number
             },
