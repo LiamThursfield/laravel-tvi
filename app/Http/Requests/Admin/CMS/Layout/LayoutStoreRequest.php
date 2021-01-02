@@ -12,6 +12,7 @@ class LayoutStoreRequest extends BaseRequest
     public function attributes() : array
     {
         $custom_attributes = [
+            'content.*.template_field_id' => 'template field',
             'template_id' => 'template'
         ];
 
@@ -21,6 +22,20 @@ class LayoutStoreRequest extends BaseRequest
     public function rules() : array
     {
         return [
+            'content' => [
+                'nullable',
+                'array',
+            ],
+            'content.*.data'                => 'nullable',
+            'content.*.template_field_id'   => [
+                'required',
+                'integer',
+                Rule::exists('cms_template_fields', 'id')->where(function ($query) {
+                    return $query->where('template_id', $this->request->get('template_id'));
+                }),
+            ],
+
+
             'name' => [
                 'required',
                 'string',

@@ -50,7 +50,6 @@
 
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
-
                 <select-group
                     :error_message="getPageErrorMessage('template_id')"
                     label_text="Template"
@@ -95,12 +94,25 @@
                 />
             </div>
         </div>
+
+        <div
+            v-if="!this.is_loading_template && selected_template_has_fields && is_initialised_content"
+            class="bg-white mt-6 px-4 py-6 shadow-subtle rounded-lg"
+        >
+            <p class="text-lg">Fields</p>
+
+            <content-editor
+                :template_fields="this.selected_template.template_fields"
+                v-model="form_data.content"
+            />
+        </div>
     </form>
 </template>
 
 <script>
     import _ from 'lodash';
     import slugify from "slugify";
+    import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
@@ -110,8 +122,9 @@
     export default {
         name: "AdminCmsLayoutCreate",
         components: {
+            ContentEditor,
             InputGroup,
-            SelectGroup,
+            SelectGroup
         },
         layout: 'admin-layout',
         props: {
@@ -129,17 +142,30 @@
                 auto_update_slug: false,
                 form_data: {},
                 is_initialised_template: false,
+                is_initialised_content: false,
                 is_loading_template: false,
                 selected_template: null,
             }
         },
         computed: {
+            selected_template_has_fields() {
+                try {
+                    if (!this.selected_template) {
+                        return false;
+                    }
+
+                    return this.selected_template.template_fields.length;
+                } catch (e) {
+                    return false;
+                }
+            },
             selected_template_id() {
                 return this.form_data.template_id ?? '';
             },
         },
         created() {
             this.form_data = {
+                content:        {},
                 id:             this.layout.id,
                 name:           this.layout.name,
                 slug:           this.layout.slug,
@@ -147,12 +173,27 @@
             };
 
             this.selected_template = _.cloneDeep(this.layout.template);
+            this.setInitialContent();
         },
         methods: {
             cancelLoadTemplate() {
                 if (this.is_loading_template) {
                     templateCancelToken.cancel('Template load cancelled');
                     templateCancelToken = CancelToken.source();
+                }
+            },
+            doesObjectHaveKeys(obj) {
+                try {
+                    return Object.keys(obj).length;
+                } catch (e) {
+                    return false;
+                }
+            },
+            layoutHasContentField(template_field_id) {
+                try {
+                    return this.layout.content.hasOwnProperty(template_field_id);
+                } catch (e) {
+                    return false;
                 }
             },
             onNameInput() {
@@ -182,6 +223,7 @@
                     this.$route('admin.api.cms.templates.index', this.selected_template_id)
                 ).then(response => {
                     this.selected_template = _.cloneDeep(response.data.data);
+                    this.setNewTemplateContent();
                 }).catch(e => {
                     if (!axios.isCancel(e)) {
                         this.$errorToast('Failed to load selected template');
@@ -196,6 +238,43 @@
             },
             onSlugInput() {
                 this.auto_update_slug = false;
+            },
+            setInitialContent() {
+                // This is a fix / hack to prevent an empty object from becoming an array.
+                let content = {};
+                if (this.doesObjectHaveKeys(this.layout.content)) {
+                    content = _.cloneDeep(this.layout.content);
+                }
+
+                // Set the defaults for any missing content
+                _.forEach(this.selected_template.template_fields, (template_field) => {
+                    if (!this.layoutHasContentField(template_field.id)) {
+                        content[template_field.id] = {
+                            data: '',
+                            template_field_id: template_field.id
+                        };
+                    }
+                });
+
+                this.form_data.content = _.cloneDeep(content);
+                this.is_initialised_content = true;
+            },
+            setNewTemplateContent() {
+                if (!this.selected_template_has_fields) {
+                    this.form_data.content = {};
+                }
+
+                // Get all fields from the template and set the default data
+                let new_content = {};
+                _.forEach(this.selected_template.template_fields, (template_field) => {
+                    new_content[template_field.id] = {
+                        data: '',
+                        template_field_id: template_field.id,
+                    };
+                });
+
+                // Replace the existing content
+                this.$set(this.form_data, 'content', _.cloneDeep(new_content));
             },
             slugify(value) {
                 if (!value || !value.length) {

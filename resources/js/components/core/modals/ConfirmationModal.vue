@@ -16,7 +16,7 @@
                         class="
                             flex h-5 items-center justify-center rounded text-theme-base-subtle-contrast w-5
                             ease-in-out duration-300 transition-colors
-                            focus:outline-none focus:shadow-outline-primary
+                            focus:outline-none focus:ring focus:ring-primary
                             hover:bg-theme-base-subtle
                         "
                         :disabled="isActionLoading"
@@ -57,7 +57,7 @@
                             bg-theme-base-subtle min-w-24 px-4 py-2 rounded text-center text-theme-base-subtle-contrast w-full
                             ease-in-out duration-300 transition-colors
                             sm:w-auto
-                            focus:outline-none focus:shadow-outline-primary
+                            focus:outline-none focus:ring focus:ring-primary
                             hover:bg-theme-base-subtle-contrast hover:text-theme-base-subtle
                         "
                         :disabled="isActionLoading"
@@ -72,7 +72,7 @@
                             border flex flex-row items-center justify-center px-4 py-2 min-w-24 px-4 py-2 rounded text-center w-full
                             ease-in-out duration-300 transition-colors
                             sm:w-auto
-                            focus:outline-none focus:shadow-outline-primary
+                            focus:outline-none focus:ring focus:ring-primary
                         "
                         :class="confirmButtonClass"
                         :disabled="isActionLoading"

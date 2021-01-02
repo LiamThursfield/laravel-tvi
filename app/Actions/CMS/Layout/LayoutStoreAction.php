@@ -2,13 +2,17 @@
 
 namespace App\Actions\CMS\Layout;
 
+use App\Models\CMS\Content;
 use App\Models\CMS\Layout;
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class LayoutStoreAction
+class LayoutStoreAction extends AbstractLayoutCrudAction
 {
+    protected string $content_slug = 'content';
+
     /**
      * @param array $layout_data
      * @return Layout
@@ -17,15 +21,15 @@ class LayoutStoreAction
     public function handle(array $layout_data) : Layout
     {
         // Extract the content
-        $template_field_content = Arr::get($layout_data, 'template_field_content', []);
-        unset($layout_data['template_field_content']);
+        $content = collect(Arr::get($layout_data, $this->content_slug, []))->keyBy('template_field_id');
+        unset($layout_data[$this->content_slug]);
 
         try {
             DB::beginTransaction();
 
             $layout = Layout::create($layout_data);
 
-            // TODO: Template Field Content
+            $this->storeContent($layout, $content);
 
             DB::commit();
 
@@ -34,5 +38,28 @@ class LayoutStoreAction
             DB::rollBack();
             throw $e;
         }
+    }
+
+    protected function storeContent(Layout $layout, Collection $content)
+    {
+        // Get all the template fields for the new layout
+        $template_fields = $layout->template->templateFields->keyBy('id');
+
+        if (!count($template_fields)) {
+            return;
+        }
+
+        // Advanced content validation
+        $this->validateContent($content, $template_fields);
+
+        // Create the Content model if the template field exists
+        $new_content = [];
+        foreach ($content as $template_field_id => $c) {
+            if (isset($template_fields[$template_field_id])) {
+                $new_content[] = new Content($c);
+            }
+        }
+
+        $layout->content()->saveMany($new_content);
     }
 }

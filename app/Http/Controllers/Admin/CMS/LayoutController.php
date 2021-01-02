@@ -17,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -56,6 +57,7 @@ class LayoutController extends AdminCMSController
     {
         $layout->load('template');
         $layout->load('template.templateFields');
+        $layout->load('content');
 
         $this->addMetaTitleSection('Edit - ' . $layout->name)->shareMeta();
         return Inertia::render('admin/cms/layout/Edit', [

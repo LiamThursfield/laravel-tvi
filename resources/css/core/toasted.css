@@ -7,7 +7,7 @@
     }
 
     .toasted {
-        border-radius: theme('borderRadius.default') !important;
+        border-radius: theme('borderRadius.DEFAULT') !important;
 
         &.toasted-primary {
             &.error {

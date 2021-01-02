@@ -45,8 +45,8 @@
                         <input
                             id="remember"
                             class="
-                                leading-tight mr-2
-                                focus:outline-none focus:shadow-outline-primary
+                                leading-tight mr-2 rounded
+                                focus:outline-none focus:ring focus:ring-primary
                             "
                             name="remember"
                             type="checkbox"
@@ -62,7 +62,7 @@
                     <button
                         class="
                             bg-theme-primary px-4 py-2 rounded shadow text-theme-primary-contrast
-                            focus:outline-none focus:shadow-outline-primary
+                            focus:outline-none focus:ring focus:ring-primary
                             hover:bg-theme-primary-hover hover:shadow-lg
                             transition-all ease-in-out duration-300
                         "

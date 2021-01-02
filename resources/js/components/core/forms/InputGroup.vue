@@ -4,7 +4,17 @@
             :class="formatted_label_class"
             :for="input_id"
         >
-            {{ label_text }}
+            <slot>
+                <span class="flex flex-row items-baseline">
+                    <span>{{ label_text }}</span>
+                    <sup
+                        v-if="input_required"
+                        class="text-theme-danger-contrast"
+                    >
+                        *
+                    </sup>
+                </span>
+            </slot>
         </label>
 
         <input
@@ -12,6 +22,10 @@
             :class="formatted_input_class"
             :autocomplete="input_autocomplete"
             :disabled="input_disabled"
+            :max="input_max"
+            :maxlength="input_maxlength"
+            :min="input_min"
+            :minlength="input_minlength"
             :name="input_name"
             :placeholder="input_placeholder"
             :ref="input_id"
@@ -57,7 +71,7 @@
             },
             error_message: {
                 default: '',
-                type: String
+                type: false | String
             },
             input_autocomplete: {
                 default: '',
@@ -68,7 +82,7 @@
                 type: Boolean
             },
             input_class: {
-                default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:outline-none focus:border-theme-primary',
+                default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
                 type: String
             },
             input_disabled: {
@@ -78,6 +92,22 @@
             input_id: {
                 required: true,
                 type: String
+            },
+            input_max: {
+                default: '',
+                type: String | Number
+            },
+            input_maxlength: {
+                default: '',
+                type: String | Number
+            },
+            input_min: {
+                default: '',
+                type: String | Number
+            },
+            input_minlength: {
+                default: '',
+                type: String | Number
             },
             input_name: {
                 required: true,

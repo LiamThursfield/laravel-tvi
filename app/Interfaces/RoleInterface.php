@@ -14,6 +14,18 @@ class RoleInterface
     const SUPER = 'super';
     const USER  = 'user';
 
+    const ALL_ROLES = [
+        self::ADMIN,
+        self::SUPER,
+        self::USER,
+    ];
+
+    const ALL_ROLES_LABELLED = [
+        self::ADMIN => 'Admin',
+        self::SUPER => 'Super',
+        self::USER  => 'User',
+    ];
+
 
     // Define the roles that a user with the current role is able to select / assign.
     const ADMIN_SELECTABLE_ROLES = [
@@ -34,9 +46,10 @@ class RoleInterface
     /**
      * Get the roles that the current role is allowed select and assign to others.
      * @param string|null $current_role
+     * @param bool $labelled
      * @return array
      */
-    public static function getSelectableRoles(?string $current_role = null) : array
+    public static function getSelectableRoles(?string $current_role = null, bool $labelled = false) : array
     {
         $roles = [
             self::ADMIN => self::ADMIN_SELECTABLE_ROLES,
@@ -44,6 +57,17 @@ class RoleInterface
             self::USER => self::USER_SELECTABLE_ROLES,
         ];
 
-        return Arr::get($roles, $current_role, []);
+        $selectable_roles = Arr::get($roles, $current_role, []);
+
+        if (!$labelled) {
+            return $selectable_roles;
+        }
+
+        $labelled_roles = [];
+        foreach ($selectable_roles as $role) {
+            $labelled_roles[$role] = Arr::get(self::ALL_ROLES_LABELLED, $role, 'UNKNOWN ROLE');
+        }
+
+        return $labelled_roles;
     }
 }

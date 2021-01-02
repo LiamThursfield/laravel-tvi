@@ -7,7 +7,7 @@
 .vue-dropzone {
     background: unset;
     border-color: theme('colors.gray.500');
-    border-radius: theme('borderRadius.default');
+    border-radius: theme('borderRadius.DEFAULT');
     border-style: dashed;
     color: var(--color-base-contrast);
     min-height: 100px;
@@ -19,7 +19,7 @@
 
     .dz-preview {
         margin: theme('spacing.2');
-        border-radius: theme('borderRadius.default');
+        border-radius: theme('borderRadius.DEFAULT');
         overflow: hidden;
 
         .dz-image {

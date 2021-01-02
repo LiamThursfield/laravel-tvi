@@ -29,6 +29,10 @@ Laravel TVI is a base CMS for creating & managing websites.
 
 ![Admin - Dashboard](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_dashboard.png)
 
+**Admin - User Management **
+
+![Admin - User Management](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_user_management.png)
+
 **Admin - Index/Search Page**
 
 ![Admin - Index/Search Page](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_index.png)

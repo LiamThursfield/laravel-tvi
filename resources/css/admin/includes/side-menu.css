@@ -86,7 +86,7 @@
                 transition-property: background-color, border-color, color, fill, padding, stroke;
 
                 &:focus {
-                    @apply outline-none shadow-outline-primary;
+                    @apply outline-none ring ring-primary;
                 }
 
                 &:hover {

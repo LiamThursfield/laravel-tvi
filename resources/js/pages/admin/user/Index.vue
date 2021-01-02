@@ -117,7 +117,7 @@
                                             v-if="userCan('users.edit')"
                                             class="
                                                 flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
-                                                focus:outline-none focus:shadow-outline
+                                                focus:outline-none focus:ring
                                                 hover:bg-theme-info hover:text-theme-info-contrast
                                             "
                                             :href="$route('admin.users.edit', user.id)"
@@ -132,7 +132,7 @@
                                             v-if="userCan('users.delete')"
                                             class="
                                                 flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
-                                                focus:outline-none focus:shadow-outline
+                                                focus:outline-none focus:ring
                                                 hover:bg-theme-danger hover:text-theme-danger-contrast
                                             "
                                             :disabled="isUserCurrent(user)"

@@ -4,7 +4,17 @@
             :class="label_class"
             :for="checkbox_id"
         >
-            {{ label_text }}
+            <slot>
+                <span class="flex flex-row items-baseline">
+                    <span>{{ label_text }}</span>
+                    <sup
+                        v-if="checkbox_required"
+                        class="text-theme-danger-contrast"
+                    >
+                        *
+                    </sup>
+                </span>
+            </slot>
         </label>
 
         <input
@@ -63,7 +73,7 @@
                 type: Boolean
             },
             checkbox_class: {
-                default: 'cursor-pointer form-checkbox h-5 mt-2 text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:shadow-outline-primary',
+                default: 'cursor-pointer form-checkbox h-5 mt-2 rounded text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:ring focus:ring-primary',
                 type: String
             },
             checkbox_disabled: {

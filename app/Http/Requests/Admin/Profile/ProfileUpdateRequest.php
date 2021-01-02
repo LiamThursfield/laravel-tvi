@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 
 class ProfileUpdateRequest extends BaseRequest
 {
-    public function rules()
+    public function rules() : array
     {
         return [
             'email' => [

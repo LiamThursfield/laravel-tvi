@@ -1,13 +1,6 @@
-select {
-    &.form-control {
-        @apply form-select;
-    }
-}
-
 input[type=checkbox] {
     &.form-control {
-        @apply form-checkbox;
-        @apply cursor-pointer h-5 mt-2 text-theme-primary w-5 ;
+        @apply cursor-pointer h-5 mt-2 rounded text-theme-primary w-5 ;
 
         &:focus {
             @apply outline-none;
@@ -17,7 +10,7 @@ input[type=checkbox] {
             @apply text-theme-primary;
 
             &:focus {
-                @apply border-theme-primary shadow-outline-primary;
+                @apply border-theme-primary ring ring-primary;
             }
         }
 

@@ -120,7 +120,7 @@
                                         v-if="userCan('cms.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
-                                            focus:outline-none focus:shadow-outline
+                                            focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
                                         :href="$route('admin.cms.templates.edit', template.id)"
@@ -135,7 +135,7 @@
                                         v-if="userCan('cms.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
-                                            focus:outline-none focus:shadow-outline
+                                            focus:outline-none focus:ring
                                             hover:bg-theme-danger hover:text-theme-danger-contrast
                                         "
                                         title="Delete Template"
@@ -182,7 +182,7 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
     export default {
-        name: "AdminCMSTemplateIndex",
+        name: "AdminCmsTemplateIndex",
         components: {
             ConfirmationModal,
             InputGroup,

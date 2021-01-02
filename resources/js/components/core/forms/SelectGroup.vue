@@ -4,7 +4,17 @@
             :class="formatted_label_class"
             :for="select_id"
         >
-            {{ label_text }}
+            <slot>
+                <span class="flex flex-row items-baseline">
+                    <span>{{ label_text }}</span>
+                    <sup
+                        v-if="select_required"
+                        class="text-theme-danger-contrast"
+                    >
+                        *
+                    </sup>
+                </span>
+            </slot>
         </label>
 
         <select
@@ -92,7 +102,7 @@
                 type: Boolean
             },
             select_class: {
-                default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:shadow-none',
+                default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
                 type: String
             },
             select_disabled: {
