@@ -182,7 +182,7 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
     export default {
-        name: "AdminCMSTemplateIndex",
+        name: "AdminCmsTemplateIndex",
         components: {
             ConfirmationModal,
             InputGroup,
