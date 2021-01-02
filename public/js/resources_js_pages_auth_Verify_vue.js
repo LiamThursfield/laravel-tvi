@@ -1,7 +1,7 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_auth_Verify_vue"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/auth/Verify.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************!*
+/*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/auth/Verify.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -80,7 +80,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/pages/auth/Verify.vue":
-/*!********************************************!*
+/*!********************************************!*\
   !*** ./resources/js/pages/auth/Verify.vue ***!
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -119,7 +119,7 @@ component.options.__file = "resources/js/pages/auth/Verify.vue"
 /***/ }),
 
 /***/ "./resources/js/pages/auth/Verify.vue?vue&type=script&lang=js&":
-/*!*********************************************************************!*
+/*!*********************************************************************!*\
   !*** ./resources/js/pages/auth/Verify.vue?vue&type=script&lang=js& ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/pages/auth/Verify.vue?vue&type=template&id=2257ac07&":
-/*!***************************************************************************!*
+/*!***************************************************************************!*\
   !*** ./resources/js/pages/auth/Verify.vue?vue&type=template&id=2257ac07& ***!
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -152,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/auth/Verify.vue?vue&type=template&id=2257ac07&":
-/*!******************************************************************************************************************************************************************************************************************!*
+/*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/auth/Verify.vue?vue&type=template&id=2257ac07& ***!
   \******************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {

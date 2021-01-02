@@ -1,7 +1,7 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_admin_user_Edit_vue"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************************************!*
+/*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -11,6 +11,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -182,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************************************!*
+/*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -192,6 +200,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -250,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     error_message: {
       "default": '',
-      type: String
+      type: false | String
     },
     input_autocomplete: {
       "default": '',
@@ -271,6 +293,22 @@ __webpack_require__.r(__webpack_exports__);
     input_id: {
       required: true,
       type: String
+    },
+    input_max: {
+      "default": '',
+      type: String | Number
+    },
+    input_maxlength: {
+      "default": '',
+      type: String | Number
+    },
+    input_min: {
+      "default": '',
+      type: String | Number
+    },
+    input_minlength: {
+      "default": '',
+      type: String | Number
     },
     input_name: {
       required: true,
@@ -377,7 +415,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/user/Edit.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************!*
+/*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/user/Edit.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -582,7 +620,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/InlineCheckboxGroup.vue":
-/*!********************************************************************!*
+/*!********************************************************************!*\
   !*** ./resources/js/components/core/forms/InlineCheckboxGroup.vue ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -621,7 +659,7 @@ component.options.__file = "resources/js/components/core/forms/InlineCheckboxGro
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/InputGroup.vue":
-/*!***********************************************************!*
+/*!***********************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -660,7 +698,7 @@ component.options.__file = "resources/js/components/core/forms/InputGroup.vue"
 /***/ }),
 
 /***/ "./resources/js/pages/admin/user/Edit.vue":
-/*!************************************************!*
+/*!************************************************!*\
   !*** ./resources/js/pages/admin/user/Edit.vue ***!
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -699,7 +737,7 @@ component.options.__file = "resources/js/pages/admin/user/Edit.vue"
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************!*
+/*!*********************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -715,7 +753,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*
+/*!************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js& ***!
   \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -731,7 +769,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/pages/admin/user/Edit.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*
+/*!*************************************************************************!*\
   !*** ./resources/js/pages/admin/user/Edit.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -747,7 +785,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e&":
-/*!***************************************************************************************************!*
+/*!***************************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e& ***!
   \***************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -764,7 +802,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a&":
-/*!******************************************************************************************!*
+/*!******************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a& ***!
   \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -781,7 +819,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/pages/admin/user/Edit.vue?vue&type=template&id=b02c6c56&":
-/*!*******************************************************************************!*
+/*!*******************************************************************************!*\
   !*** ./resources/js/pages/admin/user/Edit.vue?vue&type=template&id=b02c6c56& ***!
   \*******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -798,7 +836,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e&":
-/*!******************************************************************************************************************************************************************************************************************************************!*
+/*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e& ***!
   \******************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -878,7 +916,15 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("label", { class: _vm.label_class, attrs: { for: _vm.checkbox_id } }, [
-        _vm._v("\n            " + _vm._s(_vm.label_text) + "\n        ")
+        _c("span", { staticClass: "flex flex-row items-baseline" }, [
+          _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+          _vm._v(" "),
+          _vm.checkbox_required
+            ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                _vm._v("\n                    *\n                ")
+              ])
+            : _vm._e()
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -909,7 +955,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a&":
-/*!*********************************************************************************************************************************************************************************************************************************!*
+/*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a& ***!
   \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -928,7 +974,20 @@ var render = function() {
     _c(
       "label",
       { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
-      [_vm._v("\n        " + _vm._s(_vm.label_text) + "\n    ")]
+      [
+        _vm._t("default", [
+          _c("span", { staticClass: "flex flex-row items-baseline" }, [
+            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _vm._v(" "),
+            _vm.input_required
+              ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                  _vm._v("\n                    *\n                ")
+                ])
+              : _vm._e()
+          ])
+        ])
+      ],
+      2
     ),
     _vm._v(" "),
     _c("input", {
@@ -938,6 +997,10 @@ var render = function() {
         id: _vm.input_id,
         autocomplete: _vm.input_autocomplete,
         disabled: _vm.input_disabled,
+        max: _vm.input_max,
+        maxlength: _vm.input_maxlength,
+        min: _vm.input_min,
+        minlength: _vm.input_minlength,
         name: _vm.input_name,
         placeholder: _vm.input_placeholder,
         required: _vm.input_required,
@@ -986,7 +1049,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/user/Edit.vue?vue&type=template&id=b02c6c56&":
-/*!**********************************************************************************************************************************************************************************************************************!*
+/*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/user/Edit.vue?vue&type=template&id=b02c6c56& ***!
   \**********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {

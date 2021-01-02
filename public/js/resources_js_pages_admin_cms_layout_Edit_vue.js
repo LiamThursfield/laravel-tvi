@@ -1,7 +1,401 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_admin_cms_layout_Edit_vue"],{
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _content_fields_ImageField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./content_fields/ImageField */ "./resources/js/components/admin/cms/content/content_fields/ImageField.vue");
+/* harmony import */ var _content_fields_NumberField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./content_fields/NumberField */ "./resources/js/components/admin/cms/content/content_fields/NumberField.vue");
+/* harmony import */ var _content_fields_TextAreaField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./content_fields/TextAreaField */ "./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue");
+/* harmony import */ var _content_fields_TextField__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./content_fields/TextField */ "./resources/js/components/admin/cms/content/content_fields/TextField.vue");
+/* harmony import */ var _content_fields_WysiwygField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./content_fields/WysiwygField */ "./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'AdminCmsContentEditor',
+  components: {
+    ImageField: _content_fields_ImageField__WEBPACK_IMPORTED_MODULE_1__.default,
+    NumberField: _content_fields_NumberField__WEBPACK_IMPORTED_MODULE_2__.default,
+    TextAreaField: _content_fields_TextAreaField__WEBPACK_IMPORTED_MODULE_3__.default,
+    TextField: _content_fields_TextField__WEBPACK_IMPORTED_MODULE_4__.default,
+    WysiwygField: _content_fields_WysiwygField__WEBPACK_IMPORTED_MODULE_5__.default
+  },
+  model: {
+    prop: 'content'
+  },
+  props: {
+    content: {
+      required: true,
+      type: Array | Object
+    },
+    content_field_slug: {
+      "default": 'content',
+      type: String
+    },
+    template_fields: {
+      required: true,
+      type: Array
+    }
+  },
+  data: function data() {
+    return {
+      editable_content: {}
+    };
+  },
+  created: function created() {
+    // If there is existing content, clone it
+    if (_typeof(this.content) === 'object' && Object.keys(this.content).length > 0) {
+      this.editable_content = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.content);
+    }
+  },
+  methods: {
+    getContentFieldComponent: function getContentFieldComponent(template_field) {
+      switch (template_field.type) {
+        case 'image':
+          return 'ImageField';
+
+        case 'number':
+          return 'NumberField';
+
+        case 'text':
+          return 'TextField';
+
+        case 'textarea':
+          return 'TextAreaField';
+
+        case 'wysiwyg':
+          return 'WysiwygField';
+
+        default:
+          this.$errorToast('Unregistered content field for template field: ' + template_field.type);
+          return false;
+      }
+    },
+    onEditableContentUpdate: function onEditableContentUpdate() {
+      this.$emit('input', lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.editable_content));
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../mixins/admin/cms/content-field */ "./resources/js/mixins/admin/cms/content-field.js");
+/* harmony import */ var _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// TODO: Replace with an image select modal
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "ImageField",
+  mixins: [_mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__.contentFieldMixin],
+  components: {
+    InputGroup: _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_1__.default
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../mixins/admin/cms/content-field */ "./resources/js/mixins/admin/cms/content-field.js");
+/* harmony import */ var _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "NumberField",
+  mixins: [_mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__.contentFieldMixin],
+  components: {
+    InputGroup: _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  computed: {
+    input_max: function input_max() {
+      try {
+        return this.template_field.settings.max;
+      } catch (e) {
+        return '';
+      }
+    },
+    input_min: function input_min() {
+      try {
+        return this.template_field.settings.min;
+      } catch (e) {
+        return '';
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../mixins/admin/cms/content-field */ "./resources/js/mixins/admin/cms/content-field.js");
+/* harmony import */ var _core_forms_TextAreaGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/forms/TextAreaGroup */ "./resources/js/components/core/forms/TextAreaGroup.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "TextAreaField",
+  mixins: [_mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__.contentFieldMixin],
+  components: {
+    TextAreaGroup: _core_forms_TextAreaGroup__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  computed: {
+    input_maxlength: function input_maxlength() {
+      try {
+        return this.template_field.settings.max_length;
+      } catch (e) {
+        return '';
+      }
+    },
+    input_rows: function input_rows() {
+      try {
+        return this.template_field.settings.rows;
+      } catch (e) {
+        return '';
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../mixins/admin/cms/content-field */ "./resources/js/mixins/admin/cms/content-field.js");
+/* harmony import */ var _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "TextField",
+  mixins: [_mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__.contentFieldMixin],
+  components: {
+    InputGroup: _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  computed: {
+    input_maxlength: function input_maxlength() {
+      try {
+        return this.template_field.settings.max_length;
+      } catch (e) {
+        return '';
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../mixins/admin/cms/content-field */ "./resources/js/mixins/admin/cms/content-field.js");
+/* harmony import */ var _core_forms_TextAreaGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/forms/TextAreaGroup */ "./resources/js/components/core/forms/TextAreaGroup.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// TODO: Find a suitable WYSIWYG plugin and replace
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "WysiwygField",
+  mixins: [_mixins_admin_cms_content_field__WEBPACK_IMPORTED_MODULE_0__.contentFieldMixin],
+  components: {
+    TextAreaGroup: _core_forms_TextAreaGroup__WEBPACK_IMPORTED_MODULE_1__.default
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************************************!*
+/*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -11,6 +405,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69,7 +477,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     error_message: {
       "default": '',
-      type: String
+      type: false | String
     },
     input_autocomplete: {
       "default": '',
@@ -90,6 +498,22 @@ __webpack_require__.r(__webpack_exports__);
     input_id: {
       required: true,
       type: String
+    },
+    input_max: {
+      "default": '',
+      type: String | Number
+    },
+    input_maxlength: {
+      "default": '',
+      type: String | Number
+    },
+    input_min: {
+      "default": '',
+      type: String | Number
+    },
+    input_minlength: {
+      "default": '',
+      type: String | Number
     },
     input_name: {
       required: true,
@@ -196,7 +620,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/SelectGroup.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************************************************************!*
+/*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/SelectGroup.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -208,6 +632,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -463,8 +897,223 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "TextAreaGroup",
+  model: {
+    prop: 'input_value'
+  },
+  props: {
+    allow_parent_updates: {
+      "default": true,
+      type: Boolean
+    },
+    error_class: {
+      "default": 'mt-1 text-red-500 text-sm',
+      type: String
+    },
+    error_hide_on_input: {
+      "default": true,
+      type: Boolean
+    },
+    error_message: {
+      "default": '',
+      type: String
+    },
+    input_autocomplete: {
+      "default": '',
+      type: String
+    },
+    input_autofocus: {
+      "default": false,
+      type: Boolean
+    },
+    input_class: {
+      "default": 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
+      type: String
+    },
+    input_disabled: {
+      "default": false,
+      type: Boolean
+    },
+    input_id: {
+      required: true,
+      type: String
+    },
+    input_maxlength: {
+      "default": '',
+      type: String | Number
+    },
+    input_name: {
+      required: true,
+      type: String
+    },
+    input_placeholder: {
+      "default": '',
+      type: String
+    },
+    input_required: {
+      "default": false,
+      type: Boolean
+    },
+    input_rows: {
+      "default": '',
+      type: String | Number
+    },
+    input_type: {
+      "default": 'text',
+      type: String
+    },
+    input_value: {
+      "default": '',
+      type: String | Number
+    },
+    label_class: {
+      "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
+      type: String
+    },
+    label_hidden: {
+      "default": false,
+      type: Boolean
+    },
+    label_text: {
+      required: true,
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      hide_error: false
+    };
+  },
+  computed: {
+    formatted_input_class: function formatted_input_class() {
+      if (this.is_error) {
+        return this.input_class + ' error';
+      }
+
+      return this.input_class;
+    },
+    formatted_label_class: function formatted_label_class() {
+      var label_class = this.label_class;
+
+      if (this.label_hidden) {
+        label_class += ' hidden';
+      }
+
+      return label_class;
+    },
+    is_error: function is_error() {
+      return !this.hide_error && this.error_message && this.error_message !== '';
+    }
+  },
+  mounted: function mounted() {
+    this.autofocus();
+  },
+  methods: {
+    autofocus: function autofocus() {
+      var _this = this;
+
+      if (this.input_autofocus && this.$refs[this.input_id]) {
+        this.$nextTick(function () {
+          _this.$refs[_this.input_id].focus();
+        });
+      }
+    },
+    blurInput: function blurInput() {
+      var _this2 = this;
+
+      if (this.$refs[this.input_id]) {
+        this.$nextTick(function () {
+          _this2.$refs[_this2.input_id].blur();
+        });
+      }
+    },
+    onErrorMessageChange: function onErrorMessageChange() {
+      this.hide_error = false;
+    },
+    onInputBlur: function onInputBlur() {
+      this.$emit('blur');
+    },
+    onInputKeyPress: function onInputKeyPress() {
+      this.$emit('input', this.$refs[this.input_id].value);
+
+      if (this.error_hide_on_input) {
+        this.hide_error = true;
+      }
+    }
+  },
+  watch: {
+    error_message: {
+      handler: "onErrorMessageChange"
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************!*
+/*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -478,8 +1127,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slugify */ "./node_modules/slugify/slugify.js");
 /* harmony import */ var slugify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(slugify__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
-/* harmony import */ var _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/core/forms/SelectGroup */ "./resources/js/components/core/forms/SelectGroup.vue");
+/* harmony import */ var _components_admin_cms_content_ContentEditor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/admin/cms/content/ContentEditor */ "./resources/js/components/admin/cms/content/ContentEditor.vue");
+/* harmony import */ var _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
+/* harmony import */ var _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/core/forms/SelectGroup */ "./resources/js/components/core/forms/SelectGroup.vue");
 //
 //
 //
@@ -580,6 +1230,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -589,8 +1251,9 @@ var templateCancelToken = CancelToken.source();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminCmsLayoutCreate",
   components: {
-    InputGroup: _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_2__.default,
-    SelectGroup: _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_3__.default
+    ContentEditor: _components_admin_cms_content_ContentEditor__WEBPACK_IMPORTED_MODULE_2__.default,
+    InputGroup: _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__.default,
+    SelectGroup: _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__.default
   },
   layout: 'admin-layout',
   props: {
@@ -608,11 +1271,23 @@ var templateCancelToken = CancelToken.source();
       auto_update_slug: false,
       form_data: {},
       is_initialised_template: false,
+      is_initialised_content: false,
       is_loading_template: false,
       selected_template: null
     };
   },
   computed: {
+    selected_template_has_fields: function selected_template_has_fields() {
+      try {
+        if (!this.selected_template) {
+          return false;
+        }
+
+        return this.selected_template.template_fields.length;
+      } catch (e) {
+        return false;
+      }
+    },
     selected_template_id: function selected_template_id() {
       var _this$form_data$templ;
 
@@ -621,18 +1296,34 @@ var templateCancelToken = CancelToken.source();
   },
   created: function created() {
     this.form_data = {
+      content: {},
       id: this.layout.id,
       name: this.layout.name,
       slug: this.layout.slug,
       template_id: this.layout.template_id
     };
     this.selected_template = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.layout.template);
+    this.setInitialContent();
   },
   methods: {
     cancelLoadTemplate: function cancelLoadTemplate() {
       if (this.is_loading_template) {
         templateCancelToken.cancel('Template load cancelled');
         templateCancelToken = CancelToken.source();
+      }
+    },
+    doesObjectHaveKeys: function doesObjectHaveKeys(obj) {
+      try {
+        return Object.keys(obj).length;
+      } catch (e) {
+        return false;
+      }
+    },
+    layoutHasContentField: function layoutHasContentField(template_field_id) {
+      try {
+        return this.layout.content.hasOwnProperty(template_field_id);
+      } catch (e) {
+        return false;
       }
     },
     onNameInput: function onNameInput() {
@@ -661,6 +1352,8 @@ var templateCancelToken = CancelToken.source();
       this.is_loading_template = true;
       axios.get(this.$route('admin.api.cms.templates.index', this.selected_template_id)).then(function (response) {
         _this.selected_template = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(response.data.data);
+
+        _this.setNewTemplateContent();
       })["catch"](function (e) {
         if (!axios.isCancel(e)) {
           _this.$errorToast('Failed to load selected template');
@@ -676,6 +1369,47 @@ var templateCancelToken = CancelToken.source();
     },
     onSlugInput: function onSlugInput() {
       this.auto_update_slug = false;
+    },
+    setInitialContent: function setInitialContent() {
+      var _this2 = this;
+
+      // This is a fix / hack to prevent an empty object from becoming an array.
+      var content = {};
+
+      if (this.doesObjectHaveKeys(this.layout.content)) {
+        content = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.layout.content);
+      } // Set the defaults for any missing content
+
+
+      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.selected_template.template_fields, function (template_field) {
+        if (!_this2.layoutHasContentField(template_field.id)) {
+          content[template_field.id] = {
+            data: '',
+            template_field_id: template_field.id
+          };
+        }
+      });
+
+      this.form_data.content = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(content);
+      this.is_initialised_content = true;
+    },
+    setNewTemplateContent: function setNewTemplateContent() {
+      if (!this.selected_template_has_fields) {
+        this.form_data.content = {};
+      } // Get all fields from the template and set the default data
+
+
+      var new_content = {};
+
+      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.selected_template.template_fields, function (template_field) {
+        new_content[template_field.id] = {
+          data: '',
+          template_field_id: template_field.id
+        };
+      }); // Replace the existing content
+
+
+      this.$set(this.form_data, 'content', lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(new_content));
     },
     slugify: function slugify(value) {
       if (!value || !value.length) {
@@ -699,8 +1433,94 @@ var templateCancelToken = CancelToken.source();
 
 /***/ }),
 
+/***/ "./resources/js/mixins/admin/cms/content-field.js":
+/*!********************************************************!*\
+  !*** ./resources/js/mixins/admin/cms/content-field.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "contentFieldMixin": () => /* binding */ contentFieldMixin
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+
+var contentFieldMixin = {
+  model: {
+    prop: 'content'
+  },
+  props: {
+    content: {
+      required: true
+    },
+    template_field: {
+      required: true,
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      editable_content: ''
+    };
+  },
+  computed: {
+    error_message: function error_message() {
+      // Returns either the first error message for the field, or false
+      try {
+        if (!Array.isArray(this.input_errors)) {
+          return this.input_errors;
+        }
+
+        return this.input_errors[0];
+      } catch (e) {
+        return false;
+      }
+    },
+    input_errors: function input_errors() {
+      var _this = this;
+
+      try {
+        var errors = [];
+
+        lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.$page.props.errors, function (e, slug) {
+          if (slug.indexOf(_this.input_name) === 0) {
+            e = lodash__WEBPACK_IMPORTED_MODULE_0___default().replace(e, _this.input_name + '.', '');
+            e = lodash__WEBPACK_IMPORTED_MODULE_0___default().replace(e, _this.input_name, '');
+            errors.push(e);
+          }
+        });
+
+        return errors;
+      } catch (e) {
+        return false;
+      }
+    },
+    input_name: function input_name() {
+      return 'content.' + this.template_field.id;
+    }
+  },
+  created: function created() {
+    this.editable_content = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.content);
+  },
+  methods: {
+    onEditableContentUpdate: lodash__WEBPACK_IMPORTED_MODULE_0___default().debounce(function () {
+      this.$emit('input', this.editable_content);
+    }, 100)
+  },
+  watch: {
+    editable_content: {
+      deep: true,
+      handler: 'onEditableContentUpdate'
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./node_modules/slugify/slugify.js":
-/*!*****************************************!*
+/*!*****************************************!*\
   !*** ./node_modules/slugify/slugify.js ***!
   \*****************************************/
 /***/ (function(module) {
@@ -770,8 +1590,242 @@ var templateCancelToken = CancelToken.source();
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/cms/content/ContentEditor.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/ContentEditor.vue ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _ContentEditor_vue_vue_type_template_id_5f32828f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ContentEditor.vue?vue&type=template&id=5f32828f& */ "./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=template&id=5f32828f&");
+/* harmony import */ var _ContentEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContentEditor.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ContentEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ContentEditor_vue_vue_type_template_id_5f32828f___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ContentEditor_vue_vue_type_template_id_5f32828f___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/content/ContentEditor.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/ImageField.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/ImageField.vue ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _ImageField_vue_vue_type_template_id_ec00e690___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageField.vue?vue&type=template&id=ec00e690& */ "./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=template&id=ec00e690&");
+/* harmony import */ var _ImageField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageField.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ImageField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ImageField_vue_vue_type_template_id_ec00e690___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ImageField_vue_vue_type_template_id_ec00e690___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/content/content_fields/ImageField.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/NumberField.vue":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/NumberField.vue ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _NumberField_vue_vue_type_template_id_fa5c47b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NumberField.vue?vue&type=template&id=fa5c47b0& */ "./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=template&id=fa5c47b0&");
+/* harmony import */ var _NumberField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumberField.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _NumberField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _NumberField_vue_vue_type_template_id_fa5c47b0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _NumberField_vue_vue_type_template_id_fa5c47b0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/content/content_fields/NumberField.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _TextAreaField_vue_vue_type_template_id_29605912___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TextAreaField.vue?vue&type=template&id=29605912& */ "./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=template&id=29605912&");
+/* harmony import */ var _TextAreaField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextAreaField.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _TextAreaField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _TextAreaField_vue_vue_type_template_id_29605912___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TextAreaField_vue_vue_type_template_id_29605912___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/content/content_fields/TextAreaField.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/TextField.vue":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/TextField.vue ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _TextField_vue_vue_type_template_id_efa102f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TextField.vue?vue&type=template&id=efa102f8& */ "./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=template&id=efa102f8&");
+/* harmony import */ var _TextField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextField.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _TextField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _TextField_vue_vue_type_template_id_efa102f8___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TextField_vue_vue_type_template_id_efa102f8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/content/content_fields/TextField.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WysiwygField.vue?vue&type=template&id=10530c06& */ "./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06&");
+/* harmony import */ var _WysiwygField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WysiwygField.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _WysiwygField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__.render,
+  _WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/content/content_fields/WysiwygField.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/core/forms/InputGroup.vue":
-/*!***********************************************************!*
+/*!***********************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue ***!
   \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -810,7 +1864,7 @@ component.options.__file = "resources/js/components/core/forms/InputGroup.vue"
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/SelectGroup.vue":
-/*!************************************************************!*
+/*!************************************************************!*\
   !*** ./resources/js/components/core/forms/SelectGroup.vue ***!
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -848,8 +1902,47 @@ component.options.__file = "resources/js/components/core/forms/SelectGroup.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/core/forms/TextAreaGroup.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/core/forms/TextAreaGroup.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _TextAreaGroup_vue_vue_type_template_id_619eb3a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TextAreaGroup.vue?vue&type=template&id=619eb3a0& */ "./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=template&id=619eb3a0&");
+/* harmony import */ var _TextAreaGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextAreaGroup.vue?vue&type=script&lang=js& */ "./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _TextAreaGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _TextAreaGroup_vue_vue_type_template_id_619eb3a0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TextAreaGroup_vue_vue_type_template_id_619eb3a0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/core/forms/TextAreaGroup.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/pages/admin/cms/layout/Edit.vue":
-/*!******************************************************!*
+/*!******************************************************!*\
   !*** ./resources/js/pages/admin/cms/layout/Edit.vue ***!
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -887,8 +1980,104 @@ component.options.__file = "resources/js/pages/admin/cms/layout/Edit.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ContentEditor.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ImageField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NumberField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextAreaField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WysiwygField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*
+/*!************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js& ***!
   \************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -904,7 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/SelectGroup.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*
+/*!*************************************************************************************!*\
   !*** ./resources/js/components/core/forms/SelectGroup.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -919,8 +2108,24 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextAreaGroup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*
+/*!*******************************************************************************!*\
   !*** ./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -935,8 +2140,110 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=template&id=5f32828f&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=template&id=5f32828f& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentEditor_vue_vue_type_template_id_5f32828f___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentEditor_vue_vue_type_template_id_5f32828f___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentEditor_vue_vue_type_template_id_5f32828f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ContentEditor.vue?vue&type=template&id=5f32828f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=template&id=5f32828f&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=template&id=ec00e690&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=template&id=ec00e690& ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageField_vue_vue_type_template_id_ec00e690___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageField_vue_vue_type_template_id_ec00e690___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageField_vue_vue_type_template_id_ec00e690___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ImageField.vue?vue&type=template&id=ec00e690& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=template&id=ec00e690&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=template&id=fa5c47b0&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=template&id=fa5c47b0& ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberField_vue_vue_type_template_id_fa5c47b0___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberField_vue_vue_type_template_id_fa5c47b0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberField_vue_vue_type_template_id_fa5c47b0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NumberField.vue?vue&type=template&id=fa5c47b0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=template&id=fa5c47b0&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=template&id=29605912&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=template&id=29605912& ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaField_vue_vue_type_template_id_29605912___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaField_vue_vue_type_template_id_29605912___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaField_vue_vue_type_template_id_29605912___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextAreaField.vue?vue&type=template&id=29605912& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=template&id=29605912&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=template&id=efa102f8&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=template&id=efa102f8& ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_template_id_efa102f8___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_template_id_efa102f8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextField_vue_vue_type_template_id_efa102f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextField.vue?vue&type=template&id=efa102f8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=template&id=efa102f8&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06& ***!
+  \******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WysiwygField.vue?vue&type=template&id=10530c06& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a&":
-/*!******************************************************************************************!*
+/*!******************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a& ***!
   \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -953,7 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/core/forms/SelectGroup.vue?vue&type=template&id=5aa394fe&":
-/*!*******************************************************************************************!*
+/*!*******************************************************************************************!*\
   !*** ./resources/js/components/core/forms/SelectGroup.vue?vue&type=template&id=5aa394fe& ***!
   \*******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -969,8 +2276,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=template&id=619eb3a0&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=template&id=619eb3a0& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaGroup_vue_vue_type_template_id_619eb3a0___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaGroup_vue_vue_type_template_id_619eb3a0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TextAreaGroup_vue_vue_type_template_id_619eb3a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TextAreaGroup.vue?vue&type=template&id=619eb3a0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=template&id=619eb3a0&");
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=template&id=d6212d60&":
-/*!*************************************************************************************!*
+/*!*************************************************************************************!*\
   !*** ./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=template&id=d6212d60& ***!
   \*************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -986,8 +2310,382 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=template&id=5f32828f&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/ContentEditor.vue?vue&type=template&id=5f32828f& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-col space-y-4" },
+    [
+      _vm.getPageErrorMessage(_vm.content_field_slug)
+        ? _c("p", { staticClass: "text-theme-danger-contrast" }, [
+            _vm._v(
+              "\n        " +
+                _vm._s(_vm.getPageErrorMessage(_vm.content_field_slug)) +
+                "\n    "
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.template_fields, function(template_field) {
+        return _c(
+          "div",
+          { key: template_field.id },
+          [
+            _c(
+              _vm.getContentFieldComponent(template_field),
+              {
+                tag: "component",
+                attrs: { template_field: template_field },
+                on: { input: _vm.onEditableContentUpdate },
+                model: {
+                  value: _vm.editable_content[template_field.id].data,
+                  callback: function($$v) {
+                    _vm.$set(
+                      _vm.editable_content[template_field.id],
+                      "data",
+                      $$v
+                    )
+                  },
+                  expression: "editable_content[template_field.id].data"
+                }
+              },
+              [
+                _c("div", [
+                  _c("p", { staticClass: "flex flex-row items-baseline" }, [
+                    _c("span", [_vm._v(_vm._s(template_field.name))]),
+                    _vm._v(" "),
+                    template_field.is_required
+                      ? _c(
+                          "sup",
+                          { staticClass: "text-theme-danger-contrast" },
+                          [
+                            _vm._v(
+                              "\n                        *\n                    "
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  template_field.description
+                    ? _c(
+                        "p",
+                        {
+                          staticClass: "text-sm text-theme-base-subtle-contrast"
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(template_field.description) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ]
+            )
+          ],
+          1
+        )
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=template&id=ec00e690&":
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/ImageField.vue?vue&type=template&id=ec00e690& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "input-group",
+        {
+          attrs: {
+            error_message: _vm.error_message,
+            input_autocomplete: _vm.input_name,
+            input_id: _vm.input_name,
+            input_name: _vm.input_name,
+            input_required: _vm.template_field.is_required,
+            input_type: "text",
+            label_text: ""
+          },
+          model: {
+            value: _vm.editable_content,
+            callback: function($$v) {
+              _vm.editable_content = $$v
+            },
+            expression: "editable_content"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=template&id=fa5c47b0&":
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/NumberField.vue?vue&type=template&id=fa5c47b0& ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "input-group",
+        {
+          attrs: {
+            error_message: _vm.error_message,
+            input_autocomplete: _vm.input_name,
+            input_id: _vm.input_name,
+            input_max: _vm.input_max,
+            input_min: _vm.input_min,
+            input_name: _vm.input_name,
+            input_required: _vm.template_field.is_required,
+            input_type: "number",
+            label_text: ""
+          },
+          model: {
+            value: _vm.editable_content,
+            callback: function($$v) {
+              _vm.editable_content = $$v
+            },
+            expression: "editable_content"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=template&id=29605912&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextAreaField.vue?vue&type=template&id=29605912& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "text-area-group",
+        {
+          attrs: {
+            error_message: _vm.error_message,
+            input_autocomplete: _vm.input_name,
+            input_id: _vm.input_name,
+            input_maxlength: _vm.input_maxlength,
+            input_name: _vm.input_name,
+            input_required: _vm.template_field.is_required,
+            input_rows: _vm.input_rows,
+            input_type: "text",
+            label_text: ""
+          },
+          model: {
+            value: _vm.editable_content,
+            callback: function($$v) {
+              _vm.editable_content = $$v
+            },
+            expression: "editable_content"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=template&id=efa102f8&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/TextField.vue?vue&type=template&id=efa102f8& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "input-group",
+        {
+          attrs: {
+            error_message: _vm.error_message,
+            input_autocomplete: _vm.input_name,
+            input_id: _vm.input_name,
+            input_maxlength: _vm.input_maxlength,
+            input_name: _vm.input_name,
+            input_required: _vm.template_field.is_required,
+            input_type: "text",
+            label_text: ""
+          },
+          model: {
+            value: _vm.editable_content,
+            callback: function($$v) {
+              _vm.editable_content = $$v
+            },
+            expression: "editable_content"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06&":
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "text-area-group",
+        {
+          attrs: {
+            error_message: _vm.error_message,
+            input_autocomplete: _vm.input_name,
+            input_id: _vm.input_name,
+            input_name: _vm.input_name,
+            input_required: _vm.template_field.is_required,
+            input_type: "text",
+            label_text: ""
+          },
+          model: {
+            value: _vm.editable_content,
+            callback: function($$v) {
+              _vm.editable_content = $$v
+            },
+            expression: "editable_content"
+          }
+        },
+        [_vm._t("default")],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a&":
-/*!*********************************************************************************************************************************************************************************************************************************!*
+/*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a& ***!
   \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1006,7 +2704,20 @@ var render = function() {
     _c(
       "label",
       { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
-      [_vm._v("\n        " + _vm._s(_vm.label_text) + "\n    ")]
+      [
+        _vm._t("default", [
+          _c("span", { staticClass: "flex flex-row items-baseline" }, [
+            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _vm._v(" "),
+            _vm.input_required
+              ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                  _vm._v("\n                    *\n                ")
+                ])
+              : _vm._e()
+          ])
+        ])
+      ],
+      2
     ),
     _vm._v(" "),
     _c("input", {
@@ -1016,6 +2727,10 @@ var render = function() {
         id: _vm.input_id,
         autocomplete: _vm.input_autocomplete,
         disabled: _vm.input_disabled,
+        max: _vm.input_max,
+        maxlength: _vm.input_maxlength,
+        min: _vm.input_min,
+        minlength: _vm.input_minlength,
         name: _vm.input_name,
         placeholder: _vm.input_placeholder,
         required: _vm.input_required,
@@ -1064,7 +2779,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/SelectGroup.vue?vue&type=template&id=5aa394fe&":
-/*!**********************************************************************************************************************************************************************************************************************************!*
+/*!**********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/SelectGroup.vue?vue&type=template&id=5aa394fe& ***!
   \**********************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1083,7 +2798,20 @@ var render = function() {
     _c(
       "label",
       { class: _vm.formatted_label_class, attrs: { for: _vm.select_id } },
-      [_vm._v("\n        " + _vm._s(_vm.label_text) + "\n    ")]
+      [
+        _vm._t("default", [
+          _c("span", { staticClass: "flex flex-row items-baseline" }, [
+            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _vm._v(" "),
+            _vm.select_required
+              ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                  _vm._v("\n                    *\n                ")
+                ])
+              : _vm._e()
+          ])
+        ])
+      ],
+      2
     ),
     _vm._v(" "),
     _c(
@@ -1170,8 +2898,100 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=template&id=619eb3a0&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/TextAreaGroup.vue?vue&type=template&id=619eb3a0& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "flex flex-col" }, [
+    _c(
+      "label",
+      { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
+      [
+        _vm._t("default", [
+          _c("span", { staticClass: "flex flex-row items-baseline" }, [
+            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _vm._v(" "),
+            _vm.input_required
+              ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                  _vm._v("\n                    *\n                ")
+                ])
+              : _vm._e()
+          ])
+        ])
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c("textarea", {
+      ref: _vm.input_id,
+      class: _vm.formatted_input_class,
+      attrs: {
+        id: _vm.input_id,
+        autocomplete: _vm.input_autocomplete,
+        disabled: _vm.input_disabled,
+        maxlength: _vm.input_maxlength,
+        name: _vm.input_name,
+        rows: _vm.input_rows,
+        placeholder: _vm.input_placeholder,
+        required: _vm.input_required,
+        type: _vm.input_type
+      },
+      domProps: { value: _vm.input_value },
+      on: {
+        blur: _vm.onInputBlur,
+        input: _vm.onInputKeyPress,
+        keyup: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])
+          ) {
+            return null
+          }
+          return _vm.blurInput($event)
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c("transition", { attrs: { name: "slide-down-fade" } }, [
+          _vm.is_error
+            ? _c("p", { class: _vm.error_class }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.error_message) +
+                    "\n            "
+                )
+              ])
+            : _vm._e()
+        ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=template&id=d6212d60&":
-/*!****************************************************************************************************************************************************************************************************************************!*
+/*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/cms/layout/Edit.vue?vue&type=template&id=d6212d60& ***!
   \****************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1321,7 +3141,33 @@ var render = function() {
           ],
           1
         )
-      ])
+      ]),
+      _vm._v(" "),
+      !this.is_loading_template &&
+      _vm.selected_template_has_fields &&
+      _vm.is_initialised_content
+        ? _c(
+            "div",
+            { staticClass: "bg-white mt-6 px-4 py-6 shadow-subtle rounded-lg" },
+            [
+              _c("p", { staticClass: "text-lg" }, [_vm._v("Fields")]),
+              _vm._v(" "),
+              _c("content-editor", {
+                attrs: {
+                  template_fields: this.selected_template.template_fields
+                },
+                model: {
+                  value: _vm.form_data.content,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form_data, "content", $$v)
+                  },
+                  expression: "form_data.content"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ]
   )
 }

@@ -1,7 +1,7 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_admin_file_manager_Index_vue"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/FileManager.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************************************!*
+/*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/FileManager.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -473,7 +473,7 @@ var filesCancelToken = CancelToken.source();
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************************************!*
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -563,7 +563,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************************************************************************!*
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -669,7 +669,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************************************************************************!*
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -761,7 +761,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -828,7 +828,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************************************!*
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1067,7 +1067,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/file_manager/Index.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************************************************!*
+/*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/file_manager/Index.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1109,7 +1109,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/pretty-bytes/index.js":
-/*!********************************************!*
+/*!********************************************!*\
   !*** ./node_modules/pretty-bytes/index.js ***!
   \********************************************/
 /***/ ((module) => {
@@ -1222,7 +1222,7 @@ module.exports = (number, options) => {
 /***/ }),
 
 /***/ "./node_modules/slugify/slugify.js":
-/*!*****************************************!*
+/*!*****************************************!*\
   !*** ./node_modules/slugify/slugify.js ***!
   \*****************************************/
 /***/ (function(module) {
@@ -1293,7 +1293,7 @@ module.exports = (number, options) => {
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/FileManager.vue":
-/*!********************************************************************!*
+/*!********************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/FileManager.vue ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1332,7 +1332,7 @@ component.options.__file = "resources/js/components/admin/file_manager/FileManag
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue":
-/*!******************************************************************************************!*
+/*!******************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue ***!
   \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1371,7 +1371,7 @@ component.options.__file = "resources/js/components/admin/file_manager/partials/
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue":
-/*!*****************************************************************************************!*
+/*!*****************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue ***!
   \*****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1410,7 +1410,7 @@ component.options.__file = "resources/js/components/admin/file_manager/partials/
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue":
-/*!****************************************************************************************!*
+/*!****************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue ***!
   \****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1449,7 +1449,7 @@ component.options.__file = "resources/js/components/admin/file_manager/partials/
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue":
-/*!**************************************************************************************!*
+/*!**************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue ***!
   \**************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1488,7 +1488,7 @@ component.options.__file = "resources/js/components/admin/file_manager/partials/
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue":
-/*!******************************************************************************************!*
+/*!******************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue ***!
   \******************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1527,7 +1527,7 @@ component.options.__file = "resources/js/components/admin/file_manager/partials/
 /***/ }),
 
 /***/ "./resources/js/pages/admin/file_manager/Index.vue":
-/*!*********************************************************!*
+/*!*********************************************************!*\
   !*** ./resources/js/pages/admin/file_manager/Index.vue ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1566,7 +1566,7 @@ component.options.__file = "resources/js/pages/admin/file_manager/Index.vue"
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/FileManager.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************!*
+/*!*********************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/FileManager.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1582,7 +1582,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************!*
+/*!*******************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1598,7 +1598,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************!*
+/*!******************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1614,7 +1614,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************!*
+/*!*****************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1630,7 +1630,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************!*
+/*!***************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1646,7 +1646,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************!*
+/*!*******************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1662,7 +1662,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/pages/admin/file_manager/Index.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*
+/*!**********************************************************************************!*\
   !*** ./resources/js/pages/admin/file_manager/Index.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1678,7 +1678,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/FileManager.vue?vue&type=template&id=00311d97&":
-/*!***************************************************************************************************!*
+/*!***************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/FileManager.vue?vue&type=template&id=00311d97& ***!
   \***************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1695,7 +1695,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=template&id=47039086&":
-/*!*************************************************************************************************************************!*
+/*!*************************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=template&id=47039086& ***!
   \*************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1712,7 +1712,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=template&id=abafb730&":
-/*!************************************************************************************************************************!*
+/*!************************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=template&id=abafb730& ***!
   \************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1729,7 +1729,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=template&id=f7930e14&":
-/*!***********************************************************************************************************************!*
+/*!***********************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=template&id=f7930e14& ***!
   \***********************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1746,7 +1746,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=template&id=0e1736c7&":
-/*!*********************************************************************************************************************!*
+/*!*********************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=template&id=0e1736c7& ***!
   \*********************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1763,7 +1763,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=template&id=2ca6c2e3&":
-/*!*************************************************************************************************************************!*
+/*!*************************************************************************************************************************!*\
   !*** ./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=template&id=2ca6c2e3& ***!
   \*************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1780,7 +1780,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./resources/js/pages/admin/file_manager/Index.vue?vue&type=template&id=059032f6&":
-/*!****************************************************************************************!*
+/*!****************************************************************************************!*\
   !*** ./resources/js/pages/admin/file_manager/Index.vue?vue&type=template&id=059032f6& ***!
   \****************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -1797,7 +1797,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/FileManager.vue?vue&type=template&id=00311d97&":
-/*!******************************************************************************************************************************************************************************************************************************************!*
+/*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/FileManager.vue?vue&type=template&id=00311d97& ***!
   \******************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2067,7 +2067,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=template&id=47039086&":
-/*!****************************************************************************************************************************************************************************************************************************************************************!*
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerDirectoryList.vue?vue&type=template&id=47039086& ***!
   \****************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2170,7 +2170,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=template&id=abafb730&":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFileUploader.vue?vue&type=template&id=abafb730& ***!
   \***************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2214,7 +2214,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=template&id=f7930e14&":
-/*!**************************************************************************************************************************************************************************************************************************************************************!*
+/*!**************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesHeader.vue?vue&type=template&id=f7930e14& ***!
   \**************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2321,7 +2321,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=template&id=0e1736c7&":
-/*!************************************************************************************************************************************************************************************************************************************************************!*
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesList.vue?vue&type=template&id=0e1736c7& ***!
   \************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2398,7 +2398,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=template&id=2ca6c2e3&":
-/*!****************************************************************************************************************************************************************************************************************************************************************!*
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/file_manager/partials/FileManagerFilesListFile.vue?vue&type=template&id=2ca6c2e3& ***!
   \****************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2534,7 +2534,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/file_manager/Index.vue?vue&type=template&id=059032f6&":
-/*!*******************************************************************************************************************************************************************************************************************************!*
+/*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/admin/file_manager/Index.vue?vue&type=template&id=059032f6& ***!
   \*******************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -2582,7 +2582,7 @@ render._withStripped = true
 /***/ }),
 
 /***/ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js":
-/*!*********************************************************!*
+/*!*********************************************************!*\
   !*** ./node_modules/vue2-dropzone/dist/vue2Dropzone.js ***!
   \*********************************************************/
 /***/ (function(module) {
