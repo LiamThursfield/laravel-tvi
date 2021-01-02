@@ -21,6 +21,20 @@ class LayoutUpdateRequest extends BaseRequest
     public function rules() : array
     {
         return [
+            'content' => [
+                'nullable',
+                'array',
+            ],
+            'content.*.data'                => 'nullable',
+            'content.*.template_field_id'   => [
+                'required',
+                'integer',
+                Rule::exists('cms_template_fields', 'id')->where(function ($query) {
+                    return $query->where('template_id', $this->request->get('template_id'));
+                }),
+            ],
+
+
             'name' => [
                 'required',
                 'string',

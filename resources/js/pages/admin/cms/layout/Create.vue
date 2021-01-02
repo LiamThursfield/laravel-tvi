@@ -50,7 +50,6 @@
 
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
-
                 <select-group
                     :error_message="getPageErrorMessage('template_id')"
                     label_text="Template"
@@ -95,11 +94,24 @@
                 />
             </div>
         </div>
+
+        <div
+            v-if="!this.is_loading_template && selected_template_has_fields"
+            class="bg-white mt-6 px-4 py-6 shadow-subtle rounded-lg"
+        >
+            <p class="text-lg">Fields</p>
+
+            <content-editor
+                :template_fields="this.selected_template.template_fields"
+                v-model="form_data.content"
+            />
+        </div>
     </form>
 </template>
 
 <script>
     import slugify from "slugify";
+    import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
@@ -109,6 +121,7 @@
     export default {
         name: "AdminCmsLayoutCreate",
         components: {
+            ContentEditor,
             InputGroup,
             SelectGroup,
         },
@@ -132,6 +145,17 @@
             }
         },
         computed: {
+            selected_template_has_fields() {
+                try {
+                    if (!this.selected_template) {
+                        return false;
+                    }
+
+                    return this.selected_template.template_fields.length;
+                } catch (e) {
+                    return false;
+                }
+            },
             selected_template_id() {
                 return this.form_data.template_id ?? '';
             },
@@ -164,6 +188,7 @@
                     this.$route('admin.api.cms.templates.index', this.selected_template_id)
                 ).then(response => {
                     this.selected_template = _.cloneDeep(response.data.data);
+                    this.setNewTemplateContent();
                 }).catch(e => {
                     if (!axios.isCancel(e)) {
                         this.$errorToast('Failed to load selected template');
@@ -178,6 +203,23 @@
             },
             onSlugInput() {
                 this.auto_update_slug = false;
+            },
+            setNewTemplateContent() {
+                if (!this.selected_template_has_fields) {
+                    this.form_data.content = {};
+                }
+
+                // Get all fields from the template and set the default data
+                let new_content = {};
+                _.forEach(this.selected_template.template_fields, (template_field) => {
+                    new_content[template_field.id] = {
+                        data: '',
+                        template_field_id: template_field.id,
+                    };
+                });
+
+                // Replace the existing content
+                this.$set(this.form_data, 'content', _.cloneDeep(new_content));
             },
             slugify(value) {
                 if (!value || !value.length) {

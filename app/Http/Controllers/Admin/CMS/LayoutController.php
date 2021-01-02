@@ -11,13 +11,13 @@ use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutUpdateRequest;
 use App\Http\Resources\Admin\CMS\LayoutResource;
 use App\Interfaces\CMS\TemplateInterface;
-use App\Models\CMS\Content;
 use App\Models\CMS\Layout;
 use App\Models\CMS\Template;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
