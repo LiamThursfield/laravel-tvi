@@ -99,6 +99,29 @@
                     },
                     cms: {
                         children : {
+                            pages: {
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Pages",
+                                        requiresAllPermissions: ["cms.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.pages.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Page",
+                                        requiresAllPermissions: ["cms.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.pages.create",
+                                    },
+                                },
+                                icon: "icon-layout-navbar",
+                                label: "Pages",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["cms.create", "cms.view"],
+                            },
                             layouts: {
                                 children: {
                                     index: {
