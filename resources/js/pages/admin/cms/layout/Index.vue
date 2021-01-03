@@ -218,7 +218,7 @@
                 try {
                     return 'Do you really want to delete \'' + this.layout_to_delete.name + '\'?';
                 } catch (e) {
-                    return 'Do you really want to delete this layouts?'
+                    return 'Do you really want to delete this layout?'
                 }
             },
             show_pagination() {
