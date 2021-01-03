@@ -2,6 +2,7 @@
 
 namespace App\Actions\CMS\Layout;
 
+use App\Actions\CMS\AbstractContentCrudAction;
 use App\Models\CMS\Content;
 use App\Models\CMS\Layout;
 use Exception;
@@ -9,10 +10,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class LayoutStoreAction extends AbstractLayoutCrudAction
+class LayoutStoreAction extends AbstractContentCrudAction
 {
-    protected string $content_slug = 'content';
-
     /**
      * @param array $layout_data
      * @return Layout

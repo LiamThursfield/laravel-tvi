@@ -12,6 +12,7 @@ class LayoutUpdateRequest extends BaseRequest
     public function attributes() : array
     {
         $custom_attributes = [
+            'content.*.template_field_id' => 'template field',
             'template_id' => 'template'
         ];
 

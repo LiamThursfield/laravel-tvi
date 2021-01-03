@@ -108,6 +108,6 @@ class LayoutController extends AdminCMSController
     {
         $layout = app(LayoutUpdateAction::class)->handle($layout, $request->validated());
         return Redirect::to(route('admin.cms.layouts.edit', $layout))
-            ->with('success', 'Layout Updates');
+            ->with('success', 'Layout Updated');
     }
 }
