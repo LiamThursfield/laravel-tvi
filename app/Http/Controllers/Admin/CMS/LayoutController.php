@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\CMS\Layout\LayoutIndexRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutUpdateRequest;
 use App\Http\Resources\Admin\CMS\LayoutResource;
+use App\Interfaces\AppInterface;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Models\CMS\Layout;
 use App\Models\CMS\Template;
@@ -85,7 +86,7 @@ class LayoutController extends AdminCMSController
             'layouts' => function () use ($search_options) {
                 return app(LayoutQueryAction::class)
                     ->handle($search_options)
-                    ->paginate(Arr::get($search_options, 'per_page', 15));
+                    ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'search_options' => $search_options,
             'templates' => function () {

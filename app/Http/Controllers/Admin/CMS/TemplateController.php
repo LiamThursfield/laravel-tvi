@@ -10,11 +10,11 @@ use App\Http\Requests\Admin\CMS\Template\TemplateIndexRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateUpdateRequest;
 use App\Http\Resources\Admin\CMS\TemplateResource;
+use App\Interfaces\AppInterface;
 use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Models\CMS\Template;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -89,7 +89,7 @@ class TemplateController extends AdminCMSController
             'templates' => function () use ($search_options) {
                 return app(TemplateQueryAction::class)
                     ->handle($search_options)
-                    ->paginate(Arr::get($search_options, 'per_page', 15));
+                    ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'template_types' => function () {
                 return TemplateInterface::ALL_TYPES_LABELLED;
