@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions\CMS\Layout;
+namespace App\Actions\CMS;
 
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
-abstract class AbstractLayoutCrudAction
+abstract class AbstractContentCrudAction
 {
     protected string $content_slug = 'content';
 

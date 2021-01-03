@@ -103,7 +103,7 @@
                     Roles
                 </p>
 
-                <div class="space-y-2">
+                <div class="space-y-3">
                     <inline-checkbox-group
                         v-for="(role_label, role_key) in selectable_roles"
                         :key="`user-role-${role_key}`"

@@ -665,7 +665,7 @@ var render = function() {
               _c("icon-save", { staticClass: "w-5 md:mr-2" }),
               _vm._v(" "),
               _c("span", { staticClass: "hidden md:inline" }, [
-                _vm._v("\n                Save\n            ")
+                _vm._v("\n                Save Changes\n            ")
               ])
             ],
             1

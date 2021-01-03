@@ -59,7 +59,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "CheckboxGroup",
+  name: "InlineCheckboxGroup",
   model: {
     prop: 'checkbox_value'
   },
@@ -117,7 +117,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String | Number | Boolean
     },
     label_class: {
-      "default": 'cursor-pointer font-medium select-none text-theme-base-contrast text-sm tracking-wider',
+      "default": 'cursor-pointer flex-1 font-medium select-none text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
     label_text: {
@@ -862,7 +862,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex flex-col" }, [
-    _c("div", { staticClass: "flex-flex-row" }, [
+    _c("div", { staticClass: "flex flex-row" }, [
       _c("input", {
         directives: [
           {

@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col">
-        <div class="flex-flex-row">
+        <div class="flex flex-row">
             <input
                 :id="checkbox_id"
                 :class="formatted_checkbox_class"
@@ -47,7 +47,7 @@
 
 <script>
     export default {
-        name: "CheckboxGroup",
+        name: "InlineCheckboxGroup",
         model: {
             prop: 'checkbox_value'
         },
@@ -105,7 +105,7 @@
                 type: String | Number | Boolean
             },
             label_class: {
-                default: 'cursor-pointer font-medium select-none text-theme-base-contrast text-sm tracking-wider',
+                default: 'cursor-pointer flex-1 font-medium select-none text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
             label_text: {

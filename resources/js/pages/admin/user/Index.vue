@@ -28,6 +28,16 @@
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <h1 class="font-semibold px-6 text-gray-850">
                 Search
+                <button
+                    class="
+                        text-sm text-theme-base-subtle-contrast
+                        focus:outline-none focus:text-theme-primary
+                        hover:text-theme-primary
+                    "
+                    @click="setSearchOptions"
+                >
+                    (Clear)
+                </button>
             </h1>
 
             <!--Search Panel -->

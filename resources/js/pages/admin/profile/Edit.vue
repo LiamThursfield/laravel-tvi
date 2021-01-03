@@ -40,7 +40,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save
+                    Save Changes
                 </span>
             </button>
         </div>

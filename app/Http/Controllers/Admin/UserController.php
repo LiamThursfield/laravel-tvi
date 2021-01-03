@@ -10,14 +10,14 @@ use App\Http\Requests\Admin\User\UserIndexRequest;
 use App\Http\Requests\Admin\User\UserStoreRequest;
 use App\Http\Requests\Admin\User\UserUpdateRequest;
 use App\Http\Resources\Admin\User\UserEditResource;
+use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 use Inertia\Response;
 
 class UserController extends AdminController
@@ -91,14 +91,13 @@ class UserController extends AdminController
     public function index(UserIndexRequest $request) : Response
     {
         $search_options = $request->validated();
-        $search_options['per_page'] = Arr::get($search_options, 'per_page', 15);
 
         $this->shareMeta();
         return Inertia::render('admin/user/Index', [
             'search_options' => $search_options,
             'users' => function () use ($search_options) {
                 return app(UserQueryAction::class)->handle($search_options)
-                    ->paginate(Arr::get($search_options, 'per_page'));
+                    ->paginate(AppInterface::getSearchPaginationParam($search_options));
             }
         ]);
     }

@@ -10,14 +10,13 @@ use App\Http\Requests\Admin\CMS\Layout\LayoutIndexRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutUpdateRequest;
 use App\Http\Resources\Admin\CMS\LayoutResource;
+use App\Interfaces\AppInterface;
 use App\Interfaces\CMS\TemplateInterface;
 use App\Models\CMS\Layout;
 use App\Models\CMS\Template;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -55,9 +54,11 @@ class LayoutController extends AdminCMSController
 
     public function edit(Layout $layout) : Response
     {
-        $layout->load('template');
-        $layout->load('template.templateFields');
-        $layout->load('content');
+        $layout->load([
+            'content',
+            'template',
+            'template.templateFields'
+        ]);
 
         $this->addMetaTitleSection('Edit - ' . $layout->name)->shareMeta();
         return Inertia::render('admin/cms/layout/Edit', [
@@ -84,7 +85,7 @@ class LayoutController extends AdminCMSController
             'layouts' => function () use ($search_options) {
                 return app(LayoutQueryAction::class)
                     ->handle($search_options)
-                    ->paginate(Arr::get($search_options, 'per_page', 15));
+                    ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'search_options' => $search_options,
             'templates' => function () {
@@ -107,6 +108,6 @@ class LayoutController extends AdminCMSController
     {
         $layout = app(LayoutUpdateAction::class)->handle($layout, $request->validated());
         return Redirect::to(route('admin.cms.layouts.edit', $layout))
-            ->with('success', 'Layout Updates');
+            ->with('success', 'Layout Updated');
     }
 }

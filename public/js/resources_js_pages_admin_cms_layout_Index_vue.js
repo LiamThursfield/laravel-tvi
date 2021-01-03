@@ -879,6 +879,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -919,7 +929,7 @@ __webpack_require__.r(__webpack_exports__);
       try {
         return 'Do you really want to delete \'' + this.layout_to_delete.name + '\'?';
       } catch (e) {
-        return 'Do you really want to delete this layouts?';
+        return 'Do you really want to delete this layout?';
       }
     },
     show_pagination: function show_pagination() {
@@ -1823,7 +1833,16 @@ var render = function() {
       { staticClass: "bg-white py-6 shadow-subtle rounded-lg" },
       [
         _c("h1", { staticClass: "font-semibold px-6 text-gray-850" }, [
-          _vm._v("\n            Search\n        ")
+          _vm._v("\n            Search\n            "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "\n                    text-sm text-theme-base-subtle-contrast\n                    focus:outline-none focus:text-theme-primary\n                    hover:text-theme-primary\n                ",
+              on: { click: _vm.setSearchOptions }
+            },
+            [_vm._v("\n                (Clear)\n            ")]
+          )
         ]),
         _vm._v(" "),
         _c(
