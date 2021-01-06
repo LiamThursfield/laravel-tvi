@@ -86,6 +86,11 @@
     --nprogress-color: theme('colors.theme.primary');
 
     /**
+     * DatePicker
+     */
+    --datepicker-color-primary: theme('colors.theme.primary');
+
+    /**
      * Pagination
      */
     --pagination-color-active: theme('colors.theme.primary');
