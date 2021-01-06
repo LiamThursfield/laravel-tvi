@@ -4,7 +4,7 @@
         class="pt-8 px-8"
     >
         <transition-group
-            class="flex flex-col space-y-4"
+            class="flex flex-col max-w-5xl mx-auto space-y-4"
             name="fade"
             tag="div"
         >
