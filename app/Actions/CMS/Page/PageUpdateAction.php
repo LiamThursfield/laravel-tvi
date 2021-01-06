@@ -6,7 +6,6 @@ use App\Models\CMS\Content;
 use App\Models\CMS\Page;
 use App\Traits\CMS\ManagesContent;
 use Exception;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
