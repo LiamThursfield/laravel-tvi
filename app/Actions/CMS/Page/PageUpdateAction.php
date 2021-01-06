@@ -2,27 +2,29 @@
 
 namespace App\Actions\CMS\Page;
 
-use App\Actions\CMS\AbstractContentCrudAction;
 use App\Models\CMS\Content;
 use App\Models\CMS\Page;
+use App\Traits\CMS\ManagesContent;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class PageUpdateAction extends AbstractContentCrudAction
+class PageUpdateAction
 {
+    use ManagesContent;
 
     public function handle(Page $page, array $page_data) : Page
     {
-        // Extract the content
-        $content = collect(Arr::get($page_data, $this->content_slug, []))->keyBy('template_field_id');
-        unset($page_data[$this->content_slug]);
+        $this->page_data = $page_data;
+
+        // Extract the content data
+        $content = $this->extractContentFromPageData();
 
         try {
             DB::beginTransaction();
 
-            $page->update($page_data);
+            $page->update($this->page_data);
 
             $this->updateContent($page, $content);
 
