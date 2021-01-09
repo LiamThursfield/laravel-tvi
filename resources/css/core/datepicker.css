@@ -539,4 +539,14 @@
     background-color: #f3f3f3
 }
 
+.mx-datepicker {
+    &.error {
+        @apply border-theme-danger-contrast;
+
+        .mx-input {
+            @apply border-theme-danger-contrast;
+        }
+    }
+}
+
 /* purgecss end ignore */
