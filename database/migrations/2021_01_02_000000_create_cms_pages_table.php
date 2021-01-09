@@ -22,9 +22,6 @@ class CreateCmsPagesTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('name', CMSInterface::FIELD_NAME_MAX_LENGTH);
             $table->string('slug', CMSInterface::FIELD_NAME_MAX_LENGTH);
-            $table->timestamp('enabled_at')->nullable();
-            $table->timestamp('published_at')->nullable();
-            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
 
             // Index Creation
@@ -43,9 +40,6 @@ class CreateCmsPagesTable extends Migration
 
             $table->index('name');
             $table->unique('slug');
-            $table->index('enabled_at');
-            $table->index('published_at');
-            $table->index('expired_at');
         });
     }
 

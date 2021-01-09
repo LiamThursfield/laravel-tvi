@@ -8,14 +8,14 @@ use Illuminate\Validation\ValidationException;
 
 trait ManagesContent
 {
+    use ManagesData;
+
     protected string $content_slug = 'content';
 
-    protected array $page_data = [];
-
-    protected function extractContentFromPageData() : Collection
+    protected function extractContentFromData() : Collection
     {
-        $data = collect(Arr::get($this->page_data, $this->content_slug, []))->keyBy('template_field_id');
-        unset($this->page_data[$this->content_slug]);
+        $data = collect(Arr::get($this->data, $this->content_slug, []))->keyBy('template_field_id');
+        unset($this->data[$this->content_slug]);
 
         return $data;
     }

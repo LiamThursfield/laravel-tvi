@@ -37,13 +37,13 @@
             </option>
 
             <option
-                v-for="(label, value) in formatted_options"
-                :key="`${select_id}-option-${value}`"
-                :disabled="isOptionDisabled(value)"
-                :selected="isOptionSelected(value)"
-                :value="value"
+                v-for="(option, key) in formatted_options"
+                :key="`${select_id}-option-${option.value}`"
+                :disabled="isOptionDisabled(option.value)"
+                :selected="isOptionSelected(option.value)"
+                :value="option.value"
             >
-                {{ label }}
+                {{ option.label }}
             </option>
         </select>
 
@@ -180,7 +180,10 @@
                         value = option[this.select_option_value_key];
                     }
 
-                    options[value] = label;
+                    options[key] = {
+                        label: label,
+                        value: value,
+                    };
                 });
 
                 return options;

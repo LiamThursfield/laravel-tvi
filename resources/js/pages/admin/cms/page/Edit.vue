@@ -82,6 +82,22 @@
                     v-model="form_data.template_id"
                 />
 
+                <select-group
+                    v-if="parent_pages_urls"
+                    class="mt-4"
+                    :error_message="getPageErrorMessage('parent_id')"
+                    label_text="Parent Page"
+                    :select_any_enabled="true"
+                    select_any_label="Please select a parent (optional)"
+                    select_id="parent_id"
+                    select_name="parent_id"
+                    :select_options="parent_pages_urls"
+                    select_option_label_key="label"
+                    select_option_value_key="id"
+                    select_type="text"
+                    v-model="form_data.parent_id"
+                />
+
                 <input-group
                     class="mt-4"
                     :error_message="getPageErrorMessage('name')"
@@ -112,6 +128,16 @@
         </div>
 
         <div
+            v-if="is_initialised_url"
+            class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
+        >
+            <url-editor
+                :parent-url="selected_parent_page_url"
+                v-model="form_data.url"
+            />
+        </div>
+
+        <div
             v-if="!this.is_loading_template && selected_template_has_fields && is_initialised_content"
             class="bg-white mt-6 px-4 py-6 shadow-subtle rounded-lg"
         >
@@ -131,16 +157,18 @@
     import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();
 
     export default {
-        name: "AdminCmsPageCreate",
+        name: "AdminCmsPageEdit",
         components: {
             ContentEditor,
             InputGroup,
-            SelectGroup
+            SelectGroup,
+            UrlEditor,
         },
         layout: 'admin-layout',
         props: {
@@ -150,6 +178,10 @@
             },
             'page': {
                 type: Object,
+                required: true
+            },
+            'parent_pages': {
+                type: Object | Array | null,
                 required: true
             },
             'templates': {
@@ -163,11 +195,69 @@
                 form_data: {},
                 is_initialised_template: false,
                 is_initialised_content: false,
+                is_initialised_url: false,
                 is_loading_template: false,
                 selected_template: null,
             }
         },
         computed: {
+            parent_pages_urls() {
+                try {
+                    if (!Object.keys(this.parent_pages).length) {
+                        return null;
+                    }
+
+                    let pages = {};
+                    _.forEach(this.parent_pages, (page, key) => {
+                        pages[key] = {
+                            id: page.id,
+                            label: page.name + ' => ' + page.url.url_full,
+                            url_full: page.url.url_full,
+                            url_main: page.url.url_main,
+                        };
+                    });
+
+                    return pages;
+                } catch (e) {
+                    return null;
+                }
+            },
+            parent_pages_map() {
+                try {
+                    if (!Object.keys(this.parent_pages).length) {
+                        return null;
+                    }
+
+                    let map = {};
+                    _.forEach(this.parent_pages, (page, key) => {
+                        map[page.id] = key;
+                    });
+
+                    return map;
+                } catch (e) {
+                    return null;
+                }
+            },
+            selected_parent_page() {
+                try {
+                    if (!this.form_data.parent_id) {
+                        return null;
+                    }
+
+                    return this.parent_pages[
+                        this.parent_pages_map[this.form_data.parent_id]
+                        ];
+                } catch (e) {
+                    return null;
+                }
+            },
+            selected_parent_page_url() {
+                try {
+                    return this.selected_parent_page.url.url_full;
+                } catch (e) {
+                    return null;
+                }
+            },
             selected_template_has_fields() {
                 try {
                     if (!this.selected_template) {
@@ -189,12 +279,15 @@
                 id:             this.page.id,
                 layout_id:      this.page.layout_id,
                 name:           this.page.name,
+                parent_id:      this.page.parent_id,
                 slug:           this.page.slug,
                 template_id:    this.page.template_id,
+                url: {},
             };
 
             this.selected_template = _.cloneDeep(this.page.template);
             this.setInitialContent();
+            this.setInitialUrl();
         },
         methods: {
             cancelLoadTemplate() {
@@ -279,6 +372,16 @@
 
                 this.form_data.content = _.cloneDeep(content);
                 this.is_initialised_content = true;
+            },
+            setInitialUrl() {
+                // This is a fix / hack to prevent an empty object from becoming an array.
+                let url = {};
+                if (this.doesObjectHaveKeys(this.page.url)) {
+                    url = _.cloneDeep(this.page.url);
+                }
+
+                this.form_data.url = _.cloneDeep(url);
+                this.is_initialised_url = true;
             },
             setNewTemplateContent() {
                 if (!this.selected_template_has_fields) {

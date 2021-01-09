@@ -5,26 +5,31 @@ namespace App\Actions\CMS\Page;
 use App\Models\CMS\Content;
 use App\Models\CMS\Page;
 use App\Traits\CMS\ManagesContent;
+use App\Traits\CMS\ManagesPageUrl;
 use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class PageStoreAction
 {
-    use ManagesContent;
+    use ManagesContent, ManagesPageUrl;
 
     public function handle(array $page_data) : Page
     {
-        $this->page_data = $page_data;
+        $this->data = $page_data;
 
-        // Extract the content data
-        $content = $this->extractContentFromPageData();
+        // Extract the relation data
+        $content = $this->extractContentFromData();
+        $url     = $this->extractUrlFromData();
 
         try {
             DB::beginTransaction();
 
-            $page = Page::create($this->page_data);
+            $page = Page::create($this->data);
+            $page->load('parent');
+            $page->load('parent.url');
 
+            $this->storePageUrl($page, $url);
             $this->storeContent($page, $content);
 
             DB::commit();

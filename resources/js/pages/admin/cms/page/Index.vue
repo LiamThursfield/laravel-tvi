@@ -150,10 +150,12 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
+                            <th class="indicator-column"></th>
                             <th>Name</th>
-                            <th>Slug</th>
-                            <th>Layout</th>
-                            <th>Template</th>
+                            <th>URL</th>
+                            <th class="text-center">Enabled</th>
+                            <th class="text-center">Publish / Expiry Date</th>
+                            <th>Layout / Template</th>
                             <th v-if="show_page_actions"></th>
                         </tr>
                         </thead>
@@ -162,16 +164,73 @@
                             v-for="(page, index) in pages_data"
                             :key="`page-${page.id}`"
                         >
+                            <td class="indicator-column">
+                                <div
+                                    class="h-3 rounded-full w-3"
+                                    :class="{
+                                        'bg-theme-success-contrast': page.url.is_live,
+                                        'bg-theme-danger-contrast': !page.url.is_live,
+                                    }"
+                                />
+                            </td>
                             <td>
                                 {{ page.name }}
+                                <br>
+                                <span class="text-sm text-theme-base-subtle-contrast">
+                                    {{ page.slug }}
+                                </span>
+                            </td>
+                            <td class="text-sm">
+                                {{ page.url.url_full }}
                             </td>
                             <td>
-                                {{ page.slug }}
+                                <div class="flex flex-row justify-center">
+                                    <icon-check
+                                        v-if="page.url.is_enabled"
+                                        class="h-4 w-4"
+                                    />
+                                    <icon-x
+                                        v-else
+                                        class="h-4 w-4"
+                                    />
+                                </div>
                             </td>
-                            <td>
+                            <td class="text-sm">
+                                <div class="flex flex-col opacity-75 space-y-1">
+                                    <span
+                                        class="px-2 py-0 rounded text-center"
+                                        :class="{
+                                            'bg-theme-success text-theme-success-contrast': page.url.is_published,
+                                            'bg-theme-danger text-theme-danger-contrast': !page.url.is_published,
+                                        }"
+                                    >
+                                        <template v-if="page.url.published_at">
+                                            {{ page.url.published_at | humanFriendlyDateTime }}
+                                        </template>
+                                        <template v-else>
+                                            -
+                                        </template>
+                                    </span>
+
+                                    <span
+                                        class="px-2 py-0 rounded text-center"
+                                        :class="{
+                                            'bg-theme-success text-theme-success-contrast': !page.url.is_expired,
+                                            'bg-theme-danger text-theme-danger-contrast': page.url.is_expired,
+                                        }"
+                                    >
+                                        <template v-if="page.url.expired_at">
+                                            {{ page.url.expired_at | humanFriendlyDateTime }}
+                                        </template>
+                                        <template v-else>
+                                            -
+                                        </template>
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="text-sm text-theme-base-subtle-contrast">
                                 {{  page.layout.name }}
-                            </td>
-                            <td>
+                                <br>
                                 {{  page.template.name }}
                             </td>
                             <td v-if="show_page_actions">
@@ -240,10 +299,12 @@
     import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import IconCheck from "../../../../components/core/icons/IconCheck";
 
     export default {
         name: "AdminCmsPageIndex",
         components: {
+            IconCheck,
             ConfirmationModal,
             InputGroup,
             SelectGroup

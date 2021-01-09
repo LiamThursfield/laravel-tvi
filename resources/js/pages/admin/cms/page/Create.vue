@@ -82,6 +82,21 @@
                     v-model="form_data.template_id"
                 />
 
+                <select-group
+                    v-if="parent_pages_urls"
+                    class="mt-4"
+                    :error_message="getPageErrorMessage('parent_id')"
+                    label_text="Parent Page"
+                    :select_any_enabled="true"
+                    select_any_label="Please select a parent (optional)"
+                    select_id="parent_id"
+                    select_name="parent_id"
+                    :select_options="parent_pages_urls"
+                    select_option_label_key="label"
+                    select_option_value_key="id"
+                    select_type="text"
+                    v-model="form_data.parent_id"
+                />
 
                 <input-group
                     class="mt-4"
@@ -113,8 +128,17 @@
         </div>
 
         <div
+            class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
+        >
+            <url-editor
+                :parent-url="selected_parent_page_url"
+                v-model="form_data.url"
+            />
+        </div>
+
+        <div
             v-if="!this.is_loading_template && selected_template_has_fields"
-            class="bg-white mt-6 px-4 py-6 shadow-subtle rounded-lg"
+            class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
         >
             <p class="text-lg">Fields</p>
 
@@ -131,6 +155,7 @@
     import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();
@@ -141,11 +166,16 @@
             ContentEditor,
             InputGroup,
             SelectGroup,
+            UrlEditor,
         },
         layout: 'admin-layout',
         props: {
             'layouts': {
                 type: Object,
+                required: true
+            },
+            'parent_pages': {
+                type: Object | Array | null,
                 required: true
             },
             'templates': {
@@ -159,14 +189,73 @@
                 form_data: {
                     layout_id: '',
                     name: '',
+                    parent_id: '',
                     slug: '',
                     template_id: '',
+                    url: {},
                 },
                 is_loading_template: false,
                 selected_template: null,
             }
         },
         computed: {
+            parent_pages_urls() {
+                try {
+                    if (!Object.keys(this.parent_pages).length) {
+                        return null;
+                    }
+
+                    let pages = {};
+                    _.forEach(this.parent_pages, (page, key) => {
+                        pages[key] = {
+                            id: page.id,
+                            label: page.name + ' => ' + page.url.url_full,
+                            url_full: page.url.url_full,
+                            url_main: page.url.url_main,
+                        };
+                    });
+
+                    return pages;
+                } catch (e) {
+                    return null;
+                }
+            },
+            parent_pages_map() {
+                try {
+                    if (!Object.keys(this.parent_pages).length) {
+                        return null;
+                    }
+
+                    let map = {};
+                    _.forEach(this.parent_pages, (page, key) => {
+                        map[page.id] = key;
+                    });
+
+                    return map;
+                } catch (e) {
+                    return null;
+                }
+            },
+            selected_parent_page() {
+                try {
+                    if (!this.form_data.parent_id) {
+                        return null;
+                    }
+
+                    return this.parent_pages[
+                        this.parent_pages_map[this.form_data.parent_id]
+                    ];
+                } catch (e) {
+                    return null;
+                }
+            },
+            selected_parent_page_url() {
+                try {
+                    return this.selected_parent_page.url.url_full;
+                } catch (e) {
+                    return null;
+                }
+            },
             selected_template_has_fields() {
                 try {
                     if (!this.selected_template) {
