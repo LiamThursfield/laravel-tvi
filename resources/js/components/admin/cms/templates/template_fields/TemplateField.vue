@@ -8,29 +8,28 @@
         >
             <select-group
                 class="flex-1"
-                :error_message="getErrorMessage('type')"
-                label_text="Field Type"
-                :select_any_enabled="true"
-                select_any_label="Please select a field type"
-                :select_autofocus="!is_autofocus_disabled"
-                :select_id="`template-field-${template_field.order}-type`"
-                :select_name="`template-field-${template_field.order}-type`"
-                :select_options="template_field_types"
-                :select_required="true"
-                select_type="text"
+                :errorMessage="getErrorMessage('type')"
+                labelText="Field Type"
+                :selectAnyEnabled="true"
+                selectAnyLabel="Please select a field type"
+                :selectAutoFocus="!is_autofocus_disabled"
+                :selectId="`template-field-${templateField.order}-type`"
+                :selectName="`template-field-${templateField.order}-type`"
+                :selectOptions="templateFieldTypes"
+                :selectRequired="true"
                 @input="updateTemplateField"
-                v-model="editable_template_field.type"
+                v-model="editable_templateField.type"
             />
 
             <input-group
                 class="flex-1 mt-4 md:mt-0"
-                :input_disabled="true"
-                :input_id="`template-field-${template_field.order}-order`"
-                :input_name="`template-field-${template_field.order}-order`"
-                input_type="number"
-                label_text="Order"
+                :inputDisabled="true"
+                :inputId="`template-field-${templateField.order}-order`"
+                :inputName="`template-field-${templateField.order}-order`"
+                inputType="number"
+                labelText="Order"
                 @input="updateTemplateField"
-                v-model="editable_template_field.order"
+                v-model="editable_templateField.order"
             />
         </div>
 
@@ -42,59 +41,59 @@
         >
             <input-group
                 class="flex-1 mt-4"
-                :error_message="getErrorMessage('name')"
-                :input_id="`template-field-${template_field.order}-name`"
-                :input_name="`template-field-${template_field.order}-name`"
-                :input_required="true"
-                input_type="text"
-                label_text="Field Name"
+                :errorMessage="getErrorMessage('name')"
+                :inputId="`template-field-${templateField.order}-name`"
+                :inputName="`template-field-${templateField.order}-name`"
+                :inputRequired="true"
+                inputType="text"
+                labelText="Field Name"
                 @input="onNameInput"
-                v-model="editable_template_field.name"
+                v-model="editable_templateField.name"
             />
 
             <input-group
                 class="flex-1 mt-4"
-                :error_message="getErrorMessage('slug')"
-                :input_id="`template-field-${template_field.order}-slug`"
-                :input_name="`template-field-${template_field.order}-slug`"
-                :input_required="true"
-                input_type="text"
-                label_text="Field Slug"
+                :errorMessage="getErrorMessage('slug')"
+                :inputId="`template-field-${templateField.order}-slug`"
+                :inputName="`template-field-${templateField.order}-slug`"
+                :inputRequired="true"
+                inputType="text"
+                labelText="Field Slug"
                 @blur="onSlugBlur"
                 @input="onSlugInput"
-                v-model="editable_template_field.slug"
+                v-model="editable_templateField.slug"
             />
         </div>
 
         <input-group
             class="mt-4"
-            :error_message="getErrorMessage('description')"
-            :input_id="`template-field-${template_field.order}-description`"
-            :input_name="`template-field-${template_field.order}-description`"
-            input_type="text"
-            label_text="Description"
+            :errorMessage="getErrorMessage('description')"
+            :inputId="`template-field-${templateField.order}-description`"
+            :inputName="`template-field-${templateField.order}-description`"
+            inputType="text"
+            labelText="Description"
             @input="updateTemplateField"
-            v-model="editable_template_field.description"
+            v-model="editable_templateField.description"
         />
 
         <checkbox-group
             class="mt-4"
-            :checkbox_id="`template-field-${template_field.order}-is_required`"
-            :checkbox_name="`template-field-${template_field.order}-is_required`"
-            :error_message="getErrorMessage('is_required')"
-            label_text="Required?"
+            :checkboxId="`template-field-${templateField.order}-is_required`"
+            :checkboxName="`template-field-${templateField.order}-is_required`"
+            :errorMessage="getErrorMessage('is_required')"
+            labelText="Required?"
             @input="updateTemplateField"
-            v-model="editable_template_field.is_required"
+            v-model="editable_templateField.is_required"
         />
 
         <!-- TODO: Implement Settings based on Type -->
         <component
             v-if="settings_component"
             :is="settings_component"
-            :default_settings="default_field_settings"
-            :template_field="editable_template_field"
+            :default_settings="default_fieldSettings"
+            :templateField="editable_templateField"
             @input="updateTemplateField"
-            v-model="editable_template_field.settings"
+            v-model="editable_templateField.settings"
         >
             <p class="font-semibold mt-6 text-theme-base-subtle-contrast">
                 Settings
@@ -123,11 +122,11 @@
             TextAreaSettings,
         },
         model: {
-            prop: 'template_field'
+            prop: 'templateField'
         },
         props: {
-            error_message_key_prefix: {
-                default: 'template_fields',
+            errorMessage_key_prefix: {
+                default: 'templateFields',
                 type: String
             },
             is_autofocus_disabled: {
@@ -138,23 +137,23 @@
                 default: false,
                 type: Boolean
             },
-            template_field: {
+            templateField: {
                 required: true,
                 type: Object
             },
-            template_field_settings: {
+            templateFieldSettings: {
                 required: true,
                 type: Object
             },
-            template_field_types: {
+            templateFieldTypes: {
                 required: true,
                 type: Object,
             }
         },
         data() {
             return {
-                auto_update_slug: true,
-                editable_template_field: {
+                autoUpdateSlug: true,
+                editable_templateField: {
                     description: '',
                     is_required: false,
                     name: '',
@@ -166,26 +165,26 @@
             }
         },
         computed: {
-            default_field_settings() {
-                if (!this.editable_template_field.type) {
+            default_fieldSettings() {
+                if (!this.editable_templateField.type) {
                     return false;
                 }
 
                 try {
-                    return this.template_field_settings[this.editable_template_field.type];
+                    return this.templateFieldSettings[this.editable_templateField.type];
                 } catch (e) {
                     return {};
                 }
             },
-            error_message_key() {
-                return this.error_message_key_prefix + '.' + this.editable_template_field.order + '.';
+            errorMessage_key() {
+                return this.errorMessage_key_prefix + '.' + this.editable_templateField.order + '.';
             },
             settings_component() {
-                if (!this.editable_template_field.type) {
+                if (!this.editable_templateField.type) {
                     return false;
                 }
 
-                switch (this.editable_template_field.type) {
+                switch (this.editable_templateField.type) {
                     case 'number' :
                         return 'number-settings';
                     case 'text' :
@@ -198,37 +197,37 @@
             },
         },
         created() {
-            this.editable_template_field = _.cloneDeep(this.template_field);
+            this.editable_templateField = _.cloneDeep(this.templateField);
 
             // If there is an existing slug, disable the auto slug update
-            if (this.editable_template_field.slug && this.editable_template_field.slug !== '') {
-                this.auto_update_slug = false;
+            if (this.editable_templateField.slug && this.editable_templateField.slug !== '') {
+                this.autoUpdateSlug = false;
             }
         },
         methods: {
             getErrorMessage(field) {
-                let message = this.getPageErrorMessage(this.error_message_key + field);
-                message = message.replace(this.error_message_key, '');
+                let message = this.getPageErrorMessage(this.errorMessage_key + field);
+                message = message.replace(this.errorMessage_key, '');
                 return message;
             },
             onNameInput() {
-                if (!this.auto_update_slug) {
+                if (!this.autoUpdateSlug) {
                     this.updateTemplateField();
                     return;
                 }
 
-                this.editable_template_field.slug = this.slugify(this.editable_template_field.name);
+                this.editable_templateField.slug = this.slugify(this.editable_templateField.name);
                 this.updateTemplateField();
             },
             onSlugBlur() {
-                this.editable_template_field.slug = this.slugify(this.editable_template_field.slug);
+                this.editable_templateField.slug = this.slugify(this.editable_templateField.slug);
                 this.updateTemplateField();
             },
             onSlugInput() {
-                this.auto_update_slug = false;
+                this.autoUpdateSlug = false;
             },
             onTemplateFieldUpdate() {
-                this.editable_template_field = _.cloneDeep(this.template_field);
+                this.editable_templateField = _.cloneDeep(this.templateField);
             },
             slugify(value) {
                 if (!value || !value.length) {
@@ -242,14 +241,14 @@
                 );
             },
             updateTemplateField() {
-                this.$emit('input', _.cloneDeep(this.editable_template_field));
+                this.$emit('input', _.cloneDeep(this.editable_templateField));
             }
         },
         watch: {
             // TODO: I'd like a more elegant / efficient solution
             // - This fixes some "oddities" to ensure data is re-ordered properly via draggable
             // - But it does get called quite a lot, especially if there are a lot of fields
-            template_field: {
+            templateField: {
                 deep: true,
                 handler: 'onTemplateFieldUpdate'
             }

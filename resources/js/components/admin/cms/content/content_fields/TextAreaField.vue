@@ -1,16 +1,16 @@
 <template>
     <div>
         <text-area-group
-            :error_message="error_message"
-            :input_autocomplete="input_name"
-            :input_id="input_name"
-            :input_maxlength="input_maxlength"
-            :input_name="input_name"
-            :input_required="template_field.is_required"
-            :input_rows="input_rows"
-            input_type="text"
-            label_text=""
-            v-model="editable_content"
+            :errorMessage="errorMessage"
+            :inputAutocomplete="inputName"
+            :inputId="inputName"
+            :inputMaxLength="inputMaxLength"
+            :inputName="inputName"
+            :inputRequired="templateField.is_required"
+            :inputRows="inputRows"
+            inputType="text"
+            labelText=""
+            v-model="editableContent"
         >
             <slot/>
         </text-area-group>
@@ -30,16 +30,16 @@
             TextAreaGroup,
         },
         computed: {
-            input_maxlength() {
+            inputMaxLength() {
                 try {
-                    return this.template_field.settings.max_length;
+                    return this.templateField.settings.max_length;
                 } catch (e) {
                     return '';
                 }
             },
-            input_rows() {
+            inputRows() {
                 try {
-                    return this.template_field.settings.rows;
+                    return this.templateField.settings.rows;
                 } catch (e) {
                     return '';
                 }

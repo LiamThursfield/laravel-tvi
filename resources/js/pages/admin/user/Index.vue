@@ -49,49 +49,49 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="user_first_name_search"
-                        input_class="form-control form-control-short"
-                        input_id="user_first_name"
-                        input_name="user_first_name"
-                        input_placeholder="First Name"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="First Name"
-                        v-model="editable_search_options.user_first_name"
+                        inputAutocomplete="user_first_name_search"
+                        inputClass="form-control form-control-short"
+                        inputId="user_first_name"
+                        inputName="user_first_name"
+                        inputPlaceholder="First Name"
+                        inputType="text"
+                        :labelHidden="true"
+                        labelText="First Name"
+                        v-model="editableSearchOptions.user_first_name"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="user_last_name_search"
-                        input_class="form-control form-control-short"
-                        input_id="user_last_name"
-                        input_name="user_last_name"
-                        input_placeholder="Last Name"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Last Name"
-                        v-model="editable_search_options.user_last_name"
+                        inputAutocomplete="user_last_name_search"
+                        inputClass="form-control form-control-short"
+                        inputId="user_last_name"
+                        inputName="user_last_name"
+                        inputPlaceholder="Last Name"
+                        inputType="text"
+                        :labelHidden="true"
+                        labelText="Last Name"
+                        v-model="editableSearchOptions.user_last_name"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="user_email_search"
-                        input_class="form-control form-control-short"
-                        input_id="user_email"
-                        input_name="user_email"
-                        input_placeholder="Email"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Email"
-                        v-model="editable_search_options.user_email"
+                        inputAutocomplete="user_email_search"
+                        inputClass="form-control form-control-short"
+                        inputId="user_email"
+                        inputName="user_email"
+                        inputPlaceholder="Email"
+                        inputType="text"
+                        :labelHidden="true"
+                        labelText="Email"
+                        v-model="editableSearchOptions.user_email"
                     />
                 </div>
             </div>
 
             <p
-                v-if="!users_data"
+                v-if="!usersData"
                 class="bg-theme-base-subtle mt-6 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No users
@@ -112,7 +112,7 @@
                         </thead>
                         <tbody>
                             <tr
-                                v-for="(user, index) in users_data"
+                                v-for="(user, index) in usersData"
                                 :key="`user-${user.id}`"
                             >
                                 <td>
@@ -163,7 +163,7 @@
 
             <!-- Pagination -->
             <div
-                v-if="show_pagination"
+                v-if="showPagination"
                 class="flex flex-row justify-center mt-12 px-6"
             >
                 <pagination :pagination="users.pagination" />
@@ -172,8 +172,8 @@
             <confirmation-modal
                 confirmText="Delete"
                 confirmType="danger"
-                :showModal="show_delete_modal"
-                :messageText="delete_modal_text"
+                :showModal="showDeleteModal"
+                :messageText="deleteModalText"
                 @cancelAction="cancelUserDelete"
                 @closeModal="cancelUserDelete"
                 @confirmAction="confirmUserDelete"
@@ -197,27 +197,27 @@
         },
         layout: 'admin-layout',
         props: {
-            search_options: Array | Object,
+            searchOptions: Array | Object,
             users: Object,
         },
         data() {
             return {
-                editable_search_options: {
+                editableSearchOptions: {
                     per_page        : 15,
                     user_first_name : '',
                     user_last_name  : '',
                     user_email      : '',
                 },
-                is_initialised: false,
-                is_loading_user_delete: false,
-                show_delete_modal: false,
-                user_to_delete: null,
+                isInitialised: false,
+                isLoadingUserDelete: false,
+                showDeleteModal: false,
+                userToDelete: null,
             }
         },
         computed: {
-            delete_modal_text() {
+            deleteModalText() {
                 try {
-                    return 'Do you really want to delete \'' + this.user_to_delete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.userToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this user?'
                 }
@@ -225,14 +225,14 @@
             show_users_actions() {
                 return this.userCan('users.edit') || this.userCan('users.delete');
             },
-            show_pagination() {
+            showPagination() {
                 try {
                     return this.users.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
-            users_data() {
+            usersData() {
                 if (!this.users || !this.users.data || this.users.data.length < 1) {
                     return false;
                 }
@@ -241,25 +241,25 @@
             }
         },
         mounted() {
-            this.setSearchOptions(this.search_options);
+            this.setSearchOptions(this.searchOptions);
         },
         methods: {
             cancelUserDelete() {
-                if (!this.is_loading_user_delete) {
-                    this.show_delete_modal = false;
-                    this.user_to_delete = null;
+                if (!this.isLoadingUserDelete) {
+                    this.showDeleteModal = false;
+                    this.userToDelete = null;
                 }
             },
             checkUserDelete(user) {
-                this.show_delete_modal = true;
-                this.user_to_delete = user;
+                this.showDeleteModal = true;
+                this.userToDelete = user;
             },
             confirmUserDelete() {
-                if (this.is_loading_user_delete) {
+                if (this.isLoadingUserDelete) {
                     return this.$errorToast('It\'s only possible to delete one user at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.users.destroy', this.user_to_delete.id),
+                    this.$route('admin.users.destroy', this.userToDelete.id),
                     {
                         only: [
                             'flash',
@@ -268,8 +268,8 @@
                     }
                 );
 
-                this.user_to_delete = null
-                this.show_delete_modal = false;
+                this.userToDelete = null
+                this.showDeleteModal = false;
             },
             isUserCurrent(user) {
                 try {
@@ -279,18 +279,18 @@
                 }
             },
             onSearchOptionsUpdate: _.debounce(function () {
-                if (!this.is_initialised) {
-                    this.is_initialised = true;
+                if (!this.isInitialised) {
+                    this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.users_data) {
+                    if (this.usersData) {
                         return;
                     }
                 }
 
                 Inertia.get(
                     this.$route('admin.users.index'),
-                    this.editable_search_options,
+                    this.editableSearchOptions,
                     {
                         only: ['users'],
                         preserveState: true,
@@ -314,11 +314,11 @@
                     console.log(e);
                 }
 
-                this.editable_search_options = _.cloneDeep(options);
+                this.editableSearchOptions = _.cloneDeep(options);
             }
         },
         watch: {
-            editable_search_options: {
+            editableSearchOptions: {
                 deep: true,
                 handler: 'onSearchOptionsUpdate'
             }

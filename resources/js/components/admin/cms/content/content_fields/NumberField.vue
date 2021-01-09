@@ -1,16 +1,16 @@
 <template>
     <div>
         <input-group
-            :error_message="error_message"
-            :input_autocomplete="input_name"
-            :input_id="input_name"
-            :input_max="input_max"
-            :input_min="input_min"
-            :input_name="input_name"
-            :input_required="template_field.is_required"
-            input_type="number"
-            label_text=""
-            v-model="editable_content"
+            :errorMessage="errorMessage"
+            :inputAutocomplete="inputName"
+            :inputId="inputName"
+            :inputMax="inputMax"
+            :inputMin="inputMin"
+            :inputName="inputName"
+            :inputRequired="templateField.is_required"
+            inputType="number"
+            labelText=""
+            v-model="editableContent"
         >
             <slot/>
         </input-group>
@@ -30,16 +30,16 @@
             InputGroup,
         },
         computed: {
-            input_max() {
+            inputMax() {
                 try {
-                    return this.template_field.settings.max;
+                    return this.templateField.settings.max;
                 } catch (e) {
                     return '';
                 }
             },
-            input_min() {
+            inputMin() {
                 try {
-                    return this.template_field.settings.min;
+                    return this.templateField.settings.min;
                 } catch (e) {
                     return '';
                 }

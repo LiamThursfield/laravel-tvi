@@ -38,7 +38,7 @@ class PageController extends AdminCMSController
                     ->get()
                     ->keyBy('id');
             },
-            'parent_pages' => function() {
+            'parentPages' => function() {
                 $pages = Page::withOrderedUrl()
                     ->withoutHomeUrl()
                     ->get();
@@ -87,7 +87,7 @@ class PageController extends AdminCMSController
                 PageResource::withoutWrapping();
                 return PageResource::make($page);
             },
-            'parent_pages' => function() use ($page) {
+            'parentPages' => function() use ($page) {
                 $pages = Page::withOrderedUrl()
                     ->withoutHomeUrl()
                     ->withoutSelfOrChildUrls($page->url->url_full ?? null)
@@ -127,7 +127,7 @@ class PageController extends AdminCMSController
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
-            'search_options' => $search_options,
+            'searchOptions' => $search_options,
             'templates' => function () {
                 return Template::where('type', TemplateInterface::TYPE_PAGE)
                     ->orderBy('name', 'asc')

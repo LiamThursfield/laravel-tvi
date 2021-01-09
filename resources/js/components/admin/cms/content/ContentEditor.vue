@@ -9,30 +9,30 @@
         </p>
 
         <div
-            v-for="template_field in template_fields"
-            :key="template_field.id"
+            v-for="templateField in templateFields"
+            :key="templateField.id"
         >
             <component
-                :is="getContentFieldComponent(template_field)"
-                :template_field="template_field"
+                :is="getContentFieldComponent(templateField)"
+                :templateField="templateField"
                 @input="onEditableContentUpdate"
-                v-model="editable_content[template_field.id].data"
+                v-model="editableContent[templateField.id].data"
             >
                 <div>
                     <p class="flex flex-row items-baseline">
-                        <span>{{ template_field.name }}</span>
+                        <span>{{ templateField.name }}</span>
                         <sup
-                            v-if="template_field.is_required"
+                            v-if="templateField.is_required"
                             class="text-theme-danger-contrast"
                         >
                             *
                         </sup>
                     </p>
                     <p
-                        v-if="template_field.description"
+                        v-if="templateField.description"
                         class="text-sm text-theme-base-subtle-contrast"
                     >
-                        {{ template_field.description }}
+                        {{ templateField.description }}
                     </p>
                 </div>
             </component>
@@ -69,25 +69,25 @@
                 default: 'content',
                 type: String,
             },
-            template_fields: {
+            templateFields: {
                 required: true,
                 type: Array
             }
         },
         data() {
             return {
-                editable_content: {},
+                editableContent: {},
             }
         },
         created() {
             // If there is existing content, clone it
             if (typeof this.content === 'object' && Object.keys(this.content).length > 0) {
-                this.editable_content = _.cloneDeep(this.content);
+                this.editableContent = _.cloneDeep(this.content);
             }
         },
         methods: {
-            getContentFieldComponent(template_field) {
-                switch (template_field.type) {
+            getContentFieldComponent(templateField) {
+                switch (templateField.type) {
                     case 'image':
                         return 'ImageField';
                     case 'number':
@@ -99,12 +99,12 @@
                     case 'wysiwyg':
                         return 'WysiwygField';
                     default:
-                        this.$errorToast('Unregistered content field for template field: ' + template_field.type);
+                        this.$errorToast('Unregistered content field for template field: ' + templateField.type);
                         return false;
                 }
             },
             onEditableContentUpdate() {
-                this.$emit('input', _.cloneDeep(this.editable_content));
+                this.$emit('input', _.cloneDeep(this.editableContent));
             }
         }
     }

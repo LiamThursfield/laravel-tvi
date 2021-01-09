@@ -2,29 +2,29 @@ import _ from 'lodash';
 
 export const templateFieldSettingsMixin = {
     model: {
-        prop: 'field_settings'
+        prop: 'fieldSettings'
     },
     props: {
         default_settings: {
             required: true,
             type: Array | Object,
         },
-        field_settings: {
+        fieldSettings: {
             required: true,
             type: Array | Object,
         },
-        template_field: {
+        templateField: {
             required: true,
             type: Object,
         }
     },
     data() {
         return {
-            editable_field_settings: {},
+            editableFieldSettings: {},
         }
     },
     computed: {
-        is_default_settings() {
+        isDefaultSettings() {
             try {
                 if (!this.default_settings || Array.isArray(this.default_settings)) {
                     return false;
@@ -37,21 +37,21 @@ export const templateFieldSettingsMixin = {
         }
     },
     mounted() {
-        this.editable_field_settings = _.cloneDeep(this.field_settings);
+        this.editableFieldSettings = _.cloneDeep(this.fieldSettings);
         this.initialiseSettings();
     },
     methods: {
         initialiseSettings() {
             // If the field settings are an array - convert to an object
-            if (!this.editable_field_settings || Array.isArray(this.editable_field_settings)) {
-                this.editable_field_settings = {};
+            if (!this.editableFieldSettings || Array.isArray(this.editableFieldSettings)) {
+                this.editableFieldSettings = {};
             }
 
             // Ensure all the default settings are added to the field settings, if not already preset.
-            if (this.is_default_settings) {
+            if (this.isDefaultSettings) {
                 _.forEach(this.default_settings, (value, key) => {
-                    if (!this.editable_field_settings.hasOwnProperty(key)) {
-                        this.editable_field_settings[key] = value;
+                    if (!this.editableFieldSettings.hasOwnProperty(key)) {
+                        this.editableFieldSettings[key] = value;
                     }
                 });
             }
@@ -60,14 +60,14 @@ export const templateFieldSettingsMixin = {
             //  i.e. any fields not in the default settings
         },
         onEditableSettingsChange() {
-            this.$emit('input', this.editable_field_settings);
+            this.$emit('input', this.editableFieldSettings);
         },
         onFieldSettingsChange() {
-            this.editable_field_settings = _.cloneDeep(this.field_settings)
+            this.editableFieldSettings = _.cloneDeep(this.fieldSettings)
         }
     },
     watch: {
-        field_settings: {
+        fieldSettings: {
             handler: "onFieldSettingsChange"
         }
     }

@@ -24,14 +24,14 @@
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('email')"
-                    input_autocomplete="email"
-                    input_class="auth-input"
-                    input_id="email"
-                    input_name="email"
-                    :input_required="true"
-                    input_type="email"
-                    label_text="Email"
+                    :errorMessage="getPageErrorMessage('email')"
+                    inputAutocomplete="email"
+                    inputClass="auth-input"
+                    inputId="email"
+                    inputName="email"
+                    :inputRequired="true"
+                    inputType="email"
+                    labelText="Email"
                     v-model="form.email"
                 />
 
@@ -80,7 +80,7 @@
     import InputGroup from "../../../components/core/forms/InputGroup";
 
     export default {
-        name: "AuthPassowrdEmail",
+        name: "AuthPasswordEmail",
         components: {InputGroup},
         layout: 'auth-layout',
         data() {

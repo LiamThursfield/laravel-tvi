@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="formatted_label_class"
-            :for="input_id"
+            :class="formattedLabelClass"
+            :for="inputId"
         >
             <slot>
                 <span class="flex flex-row items-baseline">
-                    <span>{{ label_text }}</span>
+                    <span>{{ labelText }}</span>
                     <sup
-                        v-if="input_required"
+                        v-if="inputRequired"
                         class="text-theme-danger-contrast"
                     >
                         *
@@ -18,26 +18,26 @@
         </label>
 
         <date-picker
-            :id="input_id"
-            :class="formatted_input_class"
-            :disabled="input_disabled"
-            :format="input_format"
-            :placeholder="input_placeholder"
-            :required="input_required"
-            :time-title-format="input_time_title_format"
-            :title-format="input_title_format"
-            :type="input_type"
-            :value-type="input_value_type"
-            v-model="editable_input"
+            :id="inputId"
+            :class="formattedInputClass"
+            :disabled="inputDisabled"
+            :format="inputFormat"
+            :placeholder="inputPlaceholder"
+            :required="inputRequired"
+            :time-title-format="inputTimeTitleFormat"
+            :title-format="inputTitleFormat"
+            :type="inputType"
+            :value-type="inputValueType"
+            v-model="editableInput"
         />
 
         <div>
             <transition name="slide-down-fade">
                 <p
-                    v-if="is_error"
-                    :class="error_class"
+                    v-if="isError"
+                    :class="errorClass"
                 >
-                    {{ error_message}}
+                    {{ errorMessage }}
                 </p>
             </transition>
         </div>
@@ -48,144 +48,144 @@
     export default {
         name: "DateTimePickerGroup",
         model: {
-            prop: 'input_value'
+            prop: 'inputValue'
         },
         props: {
-            error_class: {
+            errorClass: {
                 default: 'mt-1 text-red-500 text-sm',
                 type: String
             },
-            error_hide_on_input: {
+            errorHideOnInput: {
                 default: true,
                 type: Boolean
             },
-            error_message: {
+            errorMessage: {
                 default: '',
                 type: false | String
             },
-            input_class: {
+            inputClass: {
                 default: '',
                 type: String
             },
-            input_disabled: {
+            inputDisabled: {
                 default: false,
                 type: Boolean
             },
-            input_format: {
+            inputFormat: {
                 default: 'DD/MM/YYYY HH:mm',
                 type: String
             },
-            input_id: {
+            inputId: {
                 required: true,
                 type: String
             },
-            input_name: {
+            inputName: {
                 required: true,
                 type: String
             },
-            input_placeholder: {
+            inputPlaceholder: {
                 default: 'Please select a date',
                 type: String
             },
-            input_required: {
+            inputRequired: {
                 default: false,
                 type: Boolean
             },
-            input_time_title_format: {
+            inputTimeTitleFormat: {
                 default: 'DD/MM/YYYY HH:mm',
                 type: String
             },
-            input_title_format: {
+            inputTitleFormat: {
                 default: 'DD/MM/YYYY HH:mm',
                 type: String
             },
-            input_type: {
+            inputType: {
                 default: 'datetime',
                 type: String
             },
-            input_value: {
+            inputValue: {
                 default: '',
                 type: String | Number
             },
-            input_value_type: {
+            inputValueType: {
                 default: 'YYYY-MM-DD HH:mm',
                 type: String
             },
-            label_class: {
+            labelClass: {
                 default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
-            label_hidden: {
+            labelHidden: {
                 default: false,
                 type: Boolean
             },
-            label_text: {
+            labelText: {
                 required: true,
                 type: String
             },
         },
         data() {
             return  {
-                editable_input: '',
-                hide_error: false,
-                is_initialised: false,
+                editableInput: '',
+                hideError: false,
+                isInitialised: false,
             }
         },
         computed: {
-            formatted_input_class() {
-                if (this.is_error) {
-                    return this.input_class + ' error';
+            formattedInputClass() {
+                if (this.isError) {
+                    return this.inputClass + ' error';
                 }
-                return this.input_class;
+                return this.inputClass;
             },
-            formatted_label_class() {
-                let label_class = this.label_class;
+            formattedLabelClass() {
+                let labelClass = this.labelClass;
 
-                if (this.label_hidden) {
-                    label_class += ' hidden';
+                if (this.labelHidden) {
+                    labelClass += ' hidden';
                 }
 
-                return label_class;
+                return labelClass;
             },
-            is_error() {
-                return !this.hide_error && this.error_message && this.error_message !== '';
+            isError() {
+                return !this.hideError && this.errorMessage && this.errorMessage !== '';
             }
         },
         mounted() {
-            this.editable_input = this.input_value;
+            this.editableInput = this.inputValue;
             this.$nextTick(() => {
-                this.is_initialised = true;
+                this.isInitialised = true;
             })
         },
         methods: {
             onErrorMessageChange() {
-                this.hide_error = false;
+                this.hideError = false;
             },
             onEditableInputChange() {
-                if (!this.is_initialised) {
+                if (!this.isInitialised) {
                     return;
                 }
 
-                this.$emit('input', this.editable_input);
+                this.$emit('input', this.editableInput);
 
-                if (this.error_hide_on_input) {
-                    this.hide_error = true;
+                if (this.errorHideOnInput) {
+                    this.hideError = true;
                 }
             },
             onInputValueChange() {
-                if (this.input_value !== this. editable_input) {
-                    this.editable_input = this.input_value;
+                if (this.inputValue !== this. editableInput) {
+                    this.editableInput = this.inputValue;
                 }
             }
         },
         watch: {
-            editable_input: {
+            editableInput: {
                 handler: "onEditableInputChange"
             },
-            error_message: {
+            errorMessage: {
                 handler: "onErrorMessageChange"
             },
-            input_value: {
+            inputValue: {
                 handler: "onInputValueChange"
             },
         }

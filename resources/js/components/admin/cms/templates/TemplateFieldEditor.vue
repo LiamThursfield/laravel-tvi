@@ -12,7 +12,7 @@
         </div>
 
         <p
-            v-if="!editable_template_fields.length"
+            v-if="!editableTemplateFields.length"
             class="border-2 border-theme-base-subtle mt-6 px-4 py-3 rounded text-center text-theme-base-subtle-contrast"
         >
             No template fields
@@ -28,14 +28,14 @@
             @end="onDraggableEnd"
             @sort="onDraggableSort"
             @start="onDraggableStart"
-            v-model="editable_template_fields"
+            v-model="editableTemplateFields"
         >
             <transition-group
                 :name="!is_dragging ? 'flip-field' : null"
                 type="transition"
             >
                 <article
-                    v-for="(template_field, index) in editable_template_fields"
+                    v-for="(templateField, index) in editableTemplateFields"
                     :key="`template-field-${index}`"
                     class="border-2 border-theme-base-subtle mt-4 overflow-hidden rounded"
                 >
@@ -49,8 +49,8 @@
                         <icon-grid-dots class="w-5" />
 
                         <span class="flex-1 pl-4">
-                            <template v-if="template_field.name && template_field.name.length">
-                                {{ template_field.name }}
+                            <template v-if="templateField.name && templateField.name.length">
+                                {{ templateField.name }}
                             </template>
                             <template v-else>
                                 New Template Field
@@ -61,10 +61,10 @@
                     <p class="p-4">
                         <template-field
                             :is_autofocus_disabled="is_autofocus_disabled"
-                            :template_field_types="template_field_types"
-                            :template_field_settings="template_field_settings"
+                            :templateFieldTypes="templateFieldTypes"
+                            :templateFieldSettings="templateFieldSettings"
                             @input="updateTemplateFields"
-                            v-model="editable_template_fields[index]"
+                            v-model="editableTemplateFields[index]"
                         />
                     </p>
 
@@ -101,7 +101,7 @@
             TemplateField
         },
         model: {
-            prop: 'template_fields'
+            prop: 'templateFields'
         },
         props: {
             is_editing: {
@@ -112,22 +112,22 @@
                 default: false,
                 type: Boolean
             },
-            'template_field_settings': {
-                type: Object,
-                required: true
-            },
-            template_field_types: {
+            templateFieldSettings: {
                 required: true,
                 type: Object,
             },
-            template_fields: {
+            templateFieldTypes: {
                 required: true,
-                type: Array
+                type: Object,
+            },
+            templateFields: {
+                required: true,
+                type: Array,
             },
         },
         data() {
             return {
-                editable_template_fields: [],
+                editableTemplateFields: [],
                 is_autofocus_disabled: false,
                 is_dragging: false,
             }
@@ -136,17 +136,17 @@
             if (this.is_editing) {
                 this.is_autofocus_disabled = true;
             }
-            this.editable_template_fields = _.cloneDeep(this.template_fields);
+            this.editableTemplateFields = _.cloneDeep(this.templateFields);
         },
         methods: {
             addTemplateField() {
                 this.is_autofocus_disabled = false;
 
-                this.editable_template_fields.push({
+                this.editableTemplateFields.push({
                     description: '',
                     is_required: false,
                     name: '',
-                    order: this.template_fields.length,
+                    order: this.templateFields.length,
                     settings: {},
                     slug: '',
                     type: '',
@@ -156,7 +156,7 @@
             },
             deleteTemplateField(index) {
                 try {
-                    this.editable_template_fields.splice(index, 1);
+                    this.editableTemplateFields.splice(index, 1);
                     this.reorderTemplateFields();
                 } catch (e) {
                     this.$errorToast('Failed to delete field');
@@ -175,20 +175,20 @@
                 this.is_dragging = true;
             },
             onTemplateFieldsChange(fields) {
-                this.editable_template_fields = _.cloneDeep(fields);
+                this.editableTemplateFields = _.cloneDeep(fields);
             },
             onEditableTemplateFieldInput() {
                 this.updateTemplateFields();
             },
             reorderTemplateFields() {
                 try {
-                    if (!this.editable_template_fields.length) {
+                    if (!this.editableTemplateFields.length) {
                         this.updateTemplateFields();
                         return;
                     }
 
-                    this.editable_template_fields.forEach((field, index) => {
-                        this.editable_template_fields[index].order = index;
+                    this.editableTemplateFields.forEach((field, index) => {
+                        this.editableTemplateFields[index].order = index;
                     });
 
                     this.updateTemplateFields();
@@ -197,11 +197,11 @@
                 }
             },
             updateTemplateFields() {
-                this.$emit('input', _.cloneDeep(this.editable_template_fields));
+                this.$emit('input', _.cloneDeep(this.editableTemplateFields));
             }
         },
         watch: {
-            template_fields: {
+            templateFields: {
                 handler: 'onTemplateFieldsChange'
             }
         }

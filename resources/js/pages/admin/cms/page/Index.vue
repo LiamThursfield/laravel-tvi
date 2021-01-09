@@ -55,15 +55,15 @@
                 >
                     <input-group
                         class="mx-4"
-                        input_autocomplete="page_name_search"
-                        input_class="form-control form-control-short"
-                        input_id="page_name"
-                        input_name="page_name"
-                        input_placeholder="Page Name"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Page Name"
-                        v-model="editable_search_options.page_name"
+                        inputAutocomplete="page_name_search"
+                        inputClass="form-control form-control-short"
+                        inputId="page_name"
+                        inputName="page_name"
+                        inputPlaceholder="Page Name"
+                        inputType="text"
+                        :labelHidden="true"
+                        labelText="Page Name"
+                        v-model="editableSearchOptions.page_name"
                     />
                 </div>
 
@@ -76,15 +76,15 @@
                 >
                     <input-group
                         class="mx-4"
-                        input_autocomplete="page_slug_search"
-                        input_class="form-control form-control-short"
-                        input_id="page_slug"
-                        input_name="page_slug"
-                        input_placeholder="Page Slug"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Page Slug"
-                        v-model="editable_search_options.page_slug"
+                        inputAutocomplete="page_slug_search"
+                        inputClass="form-control form-control-short"
+                        inputId="page_slug"
+                        inputName="page_slug"
+                        inputPlaceholder="Page Slug"
+                        inputType="text"
+                        :labelHidden="true"
+                        labelText="Page Slug"
+                        v-model="editableSearchOptions.page_slug"
                     />
                 </div>
 
@@ -97,17 +97,17 @@
                 >
                     <select-group
                         class="mx-4"
-                        :label_hidden="true"
-                        label_text="Layout"
-                        :select_any_enabled="true"
-                        select_any_label="Layout"
-                        select_class="form-control form-control-short"
-                        select_id="template_id"
-                        select_name="layout_id"
-                        select_option_label_key="name"
-                        select_option_value_key="id"
-                        :select_options="layouts"
-                        v-model="editable_search_options.layout_id"
+                        :labelHidden="true"
+                        labelText="Layout"
+                        :selectAnyEnabled="true"
+                        selectAnyLabel="Layout"
+                        selectClass="form-control form-control-short"
+                        selectId="template_id"
+                        selectName="layout_id"
+                        selectOptionLabelKey="name"
+                        selectOptionValueKey="id"
+                        :selectOptions="layouts"
+                        v-model="editableSearchOptions.layout_id"
                     />
                 </div>
 
@@ -120,24 +120,24 @@
                 >
                     <select-group
                         class="mx-4"
-                        :label_hidden="true"
-                        label_text="Template"
-                        :select_any_enabled="true"
-                        select_any_label="Template"
-                        select_class="form-control form-control-short"
-                        select_id="template_id"
-                        select_name="template_id"
-                        select_option_label_key="name"
-                        select_option_value_key="id"
-                        :select_options="templates"
-                        v-model="editable_search_options.template_id"
+                        :labelHidden="true"
+                        labelText="Template"
+                        :selectAnyEnabled="true"
+                        selectAnyLabel="Template"
+                        selectClass="form-control form-control-short"
+                        selectId="template_id"
+                        selectName="template_id"
+                        selectOptionLabelKey="name"
+                        selectOptionValueKey="id"
+                        :selectOptions="templates"
+                        v-model="editableSearchOptions.template_id"
                     />
                 </div>
 
             </div>
 
             <p
-                v-if="!pages_data"
+                v-if="!pagesData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No pages
@@ -156,12 +156,12 @@
                             <th class="text-center">Enabled</th>
                             <th class="text-center">Publish / Expiry Date</th>
                             <th>Layout / Template</th>
-                            <th v-if="show_page_actions"></th>
+                            <th v-if="showPageActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(page, index) in pages_data"
+                            v-for="(page, index) in pagesData"
                             :key="`page-${page.id}`"
                         >
                             <td class="indicator-column">
@@ -233,7 +233,7 @@
                                 <br>
                                 {{  page.template.name }}
                             </td>
-                            <td v-if="show_page_actions">
+                            <td v-if="showPageActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
                                         v-if="userCan('cms.edit')"
@@ -273,7 +273,7 @@
 
                 <!-- Pagination -->
                 <div
-                    v-if="show_pagination"
+                    v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
                     <pagination :pagination="pages.pagination" />
@@ -283,8 +283,8 @@
             <confirmation-modal
                 confirmText="Delete"
                 confirmType="danger"
-                :showModal="show_delete_modal"
-                :messageText="delete_modal_text"
+                :showModal="showDeleteModal"
+                :messageText="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"
@@ -319,7 +319,7 @@
                 required: true,
                 type: Object,
             },
-            search_options: {
+            searchOptions: {
                 required: true,
                 type: Object | Array,
             },
@@ -330,41 +330,41 @@
         },
         data() {
             return {
-                editable_search_options: {
+                editableSearchOptions: {
                     layout_id   : '',
                     per_page    : 15,
                     page_name   : '',
                     page_slug   : '',
                     template_id : '',
                 },
-                is_initialised: false,
-                is_loading_delete: false,
-                show_delete_modal: false,
-                page_to_delete: null,
+                isInitialised: false,
+                isLoadingDelete: false,
+                showDeleteModal: false,
+                pageToDelete: null,
             }
         },
         mounted() {
-            this.setSearchOptions(this.search_options);
+            this.setSearchOptions(this.searchOptions);
         },
         computed: {
-            delete_modal_text() {
+            deleteModalText() {
                 try {
-                    return 'Do you really want to delete \'' + this.page_to_delete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.pageToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this page?'
                 }
             },
-            show_pagination() {
+            showPagination() {
                 try {
                     return this.pages.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
-            show_page_actions() {
+            showPageActions() {
                 return this.userCan('cms.edit') || this.userCan('cms.delete');
             },
-            pages_data() {
+            pagesData() {
                 if (!this.pages || !this.pages.data || this.pages.data.length < 1) {
                     return false;
                 }
@@ -374,21 +374,21 @@
         },
         methods: {
             cancelDelete() {
-                if (!this.is_loading_delete) {
-                    this.show_delete_modal = false;
-                    this.page_to_delete = null;
+                if (!this.isLoadingDelete) {
+                    this.showDeleteModal = false;
+                    this.pageToDelete = null;
                 }
             },
             checkDelete(page) {
-                this.show_delete_modal = true;
-                this.page_to_delete = page;
+                this.showDeleteModal = true;
+                this.pageToDelete = page;
             },
             confirmDelete() {
-                if (this.is_loading_delete) {
+                if (this.isLoadingDelete) {
                     return this.$errorToast('It\'s only possible to delete one page at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.cms.pages.destroy', this.page_to_delete.id),
+                    this.$route('admin.cms.pages.destroy', this.pageToDelete.id),
                     {
                         only: [
                             'flash',
@@ -396,22 +396,22 @@
                         ]
                     }
                 );
-                this.page_to_delete = null;
-                this.show_delete_modal = false;
+                this.pageToDelete = null;
+                this.showDeleteModal = false;
             },
             onSearchOptionsUpdate: _.debounce(function () {
-                if (!this.is_initialised) {
-                    this.is_initialised = true;
+                if (!this.isInitialised) {
+                    this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.pages_data) {
+                    if (this.pagesData) {
                         return;
                     }
                 }
 
                 Inertia.get(
                     this.$route('admin.cms.pages.index'),
-                    this.editable_search_options,
+                    this.editableSearchOptions,
                     {
                         only: ['pages'],
                         preserveState: true,
@@ -436,11 +436,11 @@
                     console.log(e);
                 }
 
-                this.editable_search_options = _.cloneDeep(options);
+                this.editableSearchOptions = _.cloneDeep(options);
             }
         },
         watch: {
-            editable_search_options: {
+            editableSearchOptions: {
                 deep: true,
                 handler: 'onSearchOptionsUpdate'
             }

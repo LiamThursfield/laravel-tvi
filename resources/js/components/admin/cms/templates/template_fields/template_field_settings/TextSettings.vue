@@ -4,12 +4,12 @@
 
         <input-group
             class="mt-4"
-            :input_id="`template-field-${template_field.order}-max-length`"
-            :input_name="`template-field-${template_field.order}-max-length`"
-            input_type="number"
-            label_text="Max Length"
+            :inputId="`template-field-${templateField.order}-max-length`"
+            :inputName="`template-field-${templateField.order}-max-length`"
+            inputType="number"
+            labelText="Max Length"
             @input="onEditableSettingsChange"
-            v-model="editable_field_settings.max_length"
+            v-model="editableFieldSettings.max_length"
         />
     </div>
 </template>

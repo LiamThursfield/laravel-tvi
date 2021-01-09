@@ -58,44 +58,44 @@
             <div class="block px-6 w-full">
 
                 <input-group
-                    :error_message="getPageErrorMessage('first_name')"
-                    input_autocomplete="off"
-                    :input_autofocus="true"
-                    input_id="first_name"
-                    input_name="first_name"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="First Name"
+                    :errorMessage="getPageErrorMessage('first_name')"
+                    inputAutocomplete="off"
+                    :inputAutofocus="true"
+                    inputId="first_name"
+                    inputName="first_name"
+                    :inputRequired="true"
+                    inputType="text"
+                    labelText="First Name"
                     v-model="formData.first_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('last_name')"
-                    input_autocomplete="off"
-                    input_id="last_name"
-                    input_name="last_name"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="Last Name"
+                    :errorMessage="getPageErrorMessage('last_name')"
+                    inputAutocomplete="off"
+                    inputId="last_name"
+                    inputName="last_name"
+                    :inputRequired="true"
+                    inputType="text"
+                    labelText="Last Name"
                     v-model="formData.last_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('email')"
-                    input_autocomplete="off"
-                    input_id="email"
-                    input_name="email"
-                    :input_required="true"
-                    input_type="email"
-                    label_text="Email"
+                    :errorMessage="getPageErrorMessage('email')"
+                    inputAutocomplete="off"
+                    inputId="email"
+                    inputName="email"
+                    :inputRequired="true"
+                    inputType="email"
+                    labelText="Email"
                     v-model="formData.email"
                 />
             </div>
         </div>
 
-        <div v-if="is_selectable_roles"
+        <div v-if="isSelectableRoles"
              class="bg-white mt-6 py-6 shadow-subtle rounded-lg"
         >
             <div class="block px-6 w-full">
@@ -105,11 +105,11 @@
 
                 <div class="space-y-3">
                     <inline-checkbox-group
-                        v-for="(role_label, role_key) in selectable_roles"
+                        v-for="(role_label, role_key) in selectableRoles"
                         :key="`user-role-${role_key}`"
-                        :checkbox_id="`user-role-${role_key}`"
-                        :checkbox_name="`user-role-${role_key}`"
-                        :label_text="role_label"
+                        :checkboxId="`user-role-${role_key}`"
+                        :checkboxName="`user-role-${role_key}`"
+                        :labelText="role_label"
                         v-model="formData.roles[role_key]"
                     />
                 </div>
@@ -131,7 +131,7 @@
         },
         layout: 'admin-layout',
         props: {
-            selectable_roles: {
+            selectableRoles: {
                 required: true,
                 type: Object,
             },
@@ -146,16 +146,16 @@
             }
         },
         computed: {
-            is_current_user() {
+            isCurrentUser() {
                 try {
                     return this.user.id === this.$page.props.auth.user.id;
                 } catch (e) {
                     return false;
                 }
             },
-            is_selectable_roles() {
+            isSelectableRoles() {
                 try {
-                    return Object.keys(this.selectable_roles).length > 0;
+                    return Object.keys(this.selectableRoles).length > 0;
                 } catch (e) {
                     return false;
                 }
@@ -169,11 +169,15 @@
                 roles:      this.user.roles,
             };
 
+            if (Array.isArray(this.formData.roles)) {
+                this.formData.roles = {};
+            }
+
             this.initialiseRoles();
         },
         methods: {
             initialiseRoles() {
-                _.forEach(this.selectable_roles, (role_label, role_key) => {{
+                _.forEach(this.selectableRoles, (role_label, role_key) => {{
                     if (!this.formData.roles.hasOwnProperty(role_key)) {
                         this.formData.roles[role_key] = false;
                     }

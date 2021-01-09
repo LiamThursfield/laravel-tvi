@@ -1,15 +1,15 @@
 <template>
     <div>
         <input-group
-            :error_message="error_message"
-            :input_autocomplete="input_name"
-            :input_id="input_name"
-            :input_maxlength="input_maxlength"
-            :input_name="input_name"
-            :input_required="template_field.is_required"
-            input_type="text"
-            label_text=""
-            v-model="editable_content"
+            :errorMessage="errorMessage"
+            :inputAutocomplete="inputName"
+            :inputId="inputName"
+            :inputMaxLength="inputMaxLength"
+            :inputName="inputName"
+            :inputRequired="templateField.is_required"
+            inputType="text"
+            labelText=""
+            v-model="editableContent"
         >
             <slot/>
         </input-group>
@@ -29,9 +29,9 @@
             InputGroup,
         },
         computed: {
-            input_maxlength() {
+            inputMaxLength() {
                 try {
-                    return this.template_field.settings.max_length;
+                    return this.templateField.settings.max_length;
                 } catch (e) {
                     return '';
                 }
