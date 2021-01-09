@@ -13,6 +13,8 @@ require('./plugins/vue-cookies');
 require('./plugins/vue-meta');
 require('./plugins/ziggy');
 
+require('./filters/date-times');
+
 require('./mixins/page-error');
 
 require('./component-registration');
