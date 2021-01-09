@@ -413,7 +413,10 @@ __webpack_require__.r(__webpack_exports__);
           value = option[_this.select_option_value_key];
         }
 
-        options[value] = label;
+        options[key] = {
+          label: label,
+          value: value
+        };
       });
 
       return options;
@@ -701,6 +704,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_core_modals_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/core/modals/ConfirmationModal */ "./resources/js/components/core/modals/ConfirmationModal.vue");
 /* harmony import */ var _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
 /* harmony import */ var _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/core/forms/SelectGroup */ "./resources/js/components/core/forms/SelectGroup.vue");
+/* harmony import */ var _components_core_icons_IconCheck__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/core/icons/IconCheck */ "./resources/js/components/core/icons/IconCheck.vue");
 //
 //
 //
@@ -937,6 +941,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -945,6 +1009,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminCmsPageIndex",
   components: {
+    IconCheck: _components_core_icons_IconCheck__WEBPACK_IMPORTED_MODULE_5__.default,
     ConfirmationModal: _components_core_modals_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__.default,
     InputGroup: _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__.default,
     SelectGroup: _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__.default
@@ -1634,15 +1699,18 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.formatted_options, function(label, value) {
+        _vm._l(_vm.formatted_options, function(option, key) {
           return _c(
             "option",
             {
-              key: _vm.select_id + "-option-" + value,
-              attrs: { disabled: _vm.isOptionDisabled(value) },
-              domProps: { selected: _vm.isOptionSelected(value), value: value }
+              key: _vm.select_id + "-option-" + option.value,
+              attrs: { disabled: _vm.isOptionDisabled(option.value) },
+              domProps: {
+                selected: _vm.isOptionSelected(option.value),
+                value: option.value
+              }
             },
-            [_vm._v("\n            " + _vm._s(label) + "\n        ")]
+            [_vm._v("\n            " + _vm._s(option.label) + "\n        ")]
           )
         })
       ],
@@ -2062,13 +2130,21 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", [
+                        _c("th", { staticClass: "indicator-column" }),
+                        _vm._v(" "),
                         _c("th", [_vm._v("Name")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Slug")]),
+                        _c("th", [_vm._v("URL")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Layout")]),
+                        _c("th", { staticClass: "text-center" }, [
+                          _vm._v("Enabled")
+                        ]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Template")]),
+                        _c("th", { staticClass: "text-center" }, [
+                          _vm._v("Publish / Expiry Date")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Layout / Template")]),
                         _vm._v(" "),
                         _vm.show_page_actions ? _c("th") : _vm._e()
                       ])
@@ -2078,37 +2154,160 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.pages_data, function(page, index) {
                         return _c("tr", { key: "page-" + page.id }, [
+                          _c("td", { staticClass: "indicator-column" }, [
+                            _c("div", {
+                              staticClass: "h-3 rounded-full w-3",
+                              class: {
+                                "bg-theme-success-contrast": page.url.is_live,
+                                "bg-theme-danger-contrast": !page.url.is_live
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
                           _c("td", [
                             _vm._v(
                               "\n                            " +
                                 _vm._s(page.name) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "text-sm text-theme-base-subtle-contrast"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(page.slug) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-sm" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(page.url.url_full) +
                                 "\n                        "
                             )
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page.slug) +
-                                "\n                        "
+                            _c(
+                              "div",
+                              { staticClass: "flex flex-row justify-center" },
+                              [
+                                page.url.is_enabled
+                                  ? _c("icon-check", { staticClass: "h-4 w-4" })
+                                  : _c("icon-x", { staticClass: "h-4 w-4" })
+                              ],
+                              1
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page.layout.name) +
-                                "\n                        "
+                          _c("td", { staticClass: "text-sm" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "flex flex-col opacity-75 space-y-1"
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "px-2 py-0 rounded text-center",
+                                    class: {
+                                      "bg-theme-success text-theme-success-contrast":
+                                        page.url.is_published,
+                                      "bg-theme-danger text-theme-danger-contrast": !page
+                                        .url.is_published
+                                    }
+                                  },
+                                  [
+                                    page.url.published_at
+                                      ? [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(
+                                                _vm._f("humanFriendlyDateTime")(
+                                                  page.url.published_at
+                                                )
+                                              ) +
+                                              "\n                                    "
+                                          )
+                                        ]
+                                      : [
+                                          _vm._v(
+                                            "\n                                        -\n                                    "
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "px-2 py-0 rounded text-center",
+                                    class: {
+                                      "bg-theme-success text-theme-success-contrast": !page
+                                        .url.is_expired,
+                                      "bg-theme-danger text-theme-danger-contrast":
+                                        page.url.is_expired
+                                    }
+                                  },
+                                  [
+                                    page.url.expired_at
+                                      ? [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(
+                                                _vm._f("humanFriendlyDateTime")(
+                                                  page.url.expired_at
+                                                )
+                                              ) +
+                                              "\n                                    "
+                                          )
+                                        ]
+                                      : [
+                                          _vm._v(
+                                            "\n                                        -\n                                    "
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                )
+                              ]
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page.template.name) +
-                                "\n                        "
-                            )
-                          ]),
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "text-sm text-theme-base-subtle-contrast"
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(page.layout.name) +
+                                  "\n                            "
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(page.template.name) +
+                                  "\n                        "
+                              )
+                            ]
+                          ),
                           _vm._v(" "),
                           _vm.show_page_actions
                             ? _c("td", [

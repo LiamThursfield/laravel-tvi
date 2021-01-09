@@ -1258,7 +1258,10 @@ __webpack_require__.r(__webpack_exports__);
           value = option[_this.select_option_value_key];
         }
 
-        options[value] = label;
+        options[key] = {
+          label: label,
+          value: value
+        };
       });
 
       return options;
@@ -7056,15 +7059,18 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.formatted_options, function(label, value) {
+        _vm._l(_vm.formatted_options, function(option, key) {
           return _c(
             "option",
             {
-              key: _vm.select_id + "-option-" + value,
-              attrs: { disabled: _vm.isOptionDisabled(value) },
-              domProps: { selected: _vm.isOptionSelected(value), value: value }
+              key: _vm.select_id + "-option-" + option.value,
+              attrs: { disabled: _vm.isOptionDisabled(option.value) },
+              domProps: {
+                selected: _vm.isOptionSelected(option.value),
+                value: option.value
+              }
             },
-            [_vm._v("\n            " + _vm._s(label) + "\n        ")]
+            [_vm._v("\n            " + _vm._s(option.label) + "\n        ")]
           )
         })
       ],

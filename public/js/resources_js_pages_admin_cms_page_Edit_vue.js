@@ -394,6 +394,593 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var slugify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slugify */ "./node_modules/slugify/slugify.js");
+/* harmony import */ var slugify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(slugify__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _core_forms_DateTimePickerGroup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../core/forms/DateTimePickerGroup */ "./resources/js/components/core/forms/DateTimePickerGroup.vue");
+/* harmony import */ var _core_forms_InlineCheckboxGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core/forms/InlineCheckboxGroup */ "./resources/js/components/core/forms/InlineCheckboxGroup.vue");
+/* harmony import */ var _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "UrlEditor",
+  components: {
+    DateTimePickerGroup: _core_forms_DateTimePickerGroup__WEBPACK_IMPORTED_MODULE_2__.default,
+    InlineCheckboxGroup: _core_forms_InlineCheckboxGroup__WEBPACK_IMPORTED_MODULE_3__.default,
+    InputGroup: _core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_4__.default
+  },
+  model: {
+    prop: 'urlData'
+  },
+  props: {
+    parentUrl: {
+      "default": null,
+      type: String | null
+    },
+    urlData: {
+      required: true,
+      type: Object | null
+    }
+  },
+  data: function data() {
+    return {
+      editableUrlData: {
+        expired_at: null,
+        is_enabled: false,
+        published_at: null,
+        url_main: ''
+      },
+      urlInput: ''
+    };
+  },
+  computed: {
+    urlFull: function urlFull() {
+      var url = '';
+
+      if (this.parentUrl && this.parentUrl.length) {
+        url += this.parentUrl;
+      }
+
+      url += this.urlInputSlugified;
+      return url.split('//').join('/');
+    },
+    urlInputSlugified: function urlInputSlugified() {
+      if (!this.urlInput) {
+        return '/';
+      }
+
+      var url = this.urlInput;
+      url.trim();
+
+      if (!url.length) {
+        return '/';
+      }
+
+      url = slugify__WEBPACK_IMPORTED_MODULE_1___default()(url, {
+        lower: true
+      });
+
+      if (url.indexOf('/') !== 0) {
+        url = '/' + url;
+      }
+
+      return url;
+    }
+  },
+  created: function created() {
+    try {
+      if (this.urlData && Object.keys(this.urlData).length) {
+        var _this$editableUrlData;
+
+        this.editableUrlData = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.urlData);
+        this.urlInput = (_this$editableUrlData = this.editableUrlData.url_main) !== null && _this$editableUrlData !== void 0 ? _this$editableUrlData : '';
+      }
+    } catch (e) {
+      return;
+    }
+  },
+  methods: {
+    onEditableUrlUpdate: lodash__WEBPACK_IMPORTED_MODULE_0___default().debounce(function () {
+      this.$emit('input', this.editableUrlData);
+    }, 100),
+    onUrlInputUpdate: lodash__WEBPACK_IMPORTED_MODULE_0___default().debounce(function () {
+      if (!this.urlInput.length) {
+        return;
+      }
+
+      var formatted = this.urlInput;
+      var startsWithSlash = this.urlInput.charAt(0) === '/';
+      formatted = slugify__WEBPACK_IMPORTED_MODULE_1___default()(formatted);
+
+      if (startsWithSlash) {
+        formatted = '/' + formatted;
+      }
+
+      if (this.urlInput !== formatted) {
+        this.urlInput = formatted;
+      }
+
+      this.$set(this.editableUrlData, 'url_main', formatted);
+    }, 100)
+  },
+  watch: {
+    editableUrlData: {
+      deep: true,
+      handler: 'onEditableUrlUpdate'
+    },
+    urlInput: {
+      handler: 'onUrlInputUpdate'
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "DateTimePickerGroup",
+  model: {
+    prop: 'input_value'
+  },
+  props: {
+    error_class: {
+      "default": 'mt-1 text-red-500 text-sm',
+      type: String
+    },
+    error_hide_on_input: {
+      "default": true,
+      type: Boolean
+    },
+    error_message: {
+      "default": '',
+      type: false | String
+    },
+    input_class: {
+      "default": '',
+      type: String
+    },
+    input_disabled: {
+      "default": false,
+      type: Boolean
+    },
+    input_format: {
+      "default": 'DD/MM/YYYY HH:mm',
+      type: String
+    },
+    input_id: {
+      required: true,
+      type: String
+    },
+    input_name: {
+      required: true,
+      type: String
+    },
+    input_placeholder: {
+      "default": 'Please select a date',
+      type: String
+    },
+    input_required: {
+      "default": false,
+      type: Boolean
+    },
+    input_time_title_format: {
+      "default": 'DD/MM/YYYY HH:mm',
+      type: String
+    },
+    input_title_format: {
+      "default": 'DD/MM/YYYY HH:mm',
+      type: String
+    },
+    input_type: {
+      "default": 'datetime',
+      type: String
+    },
+    input_value: {
+      "default": '',
+      type: String | Number
+    },
+    input_value_type: {
+      "default": 'YYYY-MM-DD HH:mm',
+      type: String
+    },
+    label_class: {
+      "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
+      type: String
+    },
+    label_hidden: {
+      "default": false,
+      type: Boolean
+    },
+    label_text: {
+      required: true,
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      editable_input: '',
+      hide_error: false,
+      is_initialised: false
+    };
+  },
+  computed: {
+    formatted_input_class: function formatted_input_class() {
+      if (this.is_error) {
+        return this.input_class + ' error';
+      }
+
+      return this.input_class;
+    },
+    formatted_label_class: function formatted_label_class() {
+      var label_class = this.label_class;
+
+      if (this.label_hidden) {
+        label_class += ' hidden';
+      }
+
+      return label_class;
+    },
+    is_error: function is_error() {
+      return !this.hide_error && this.error_message && this.error_message !== '';
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.editable_input = this.input_value;
+    this.$nextTick(function () {
+      _this.is_initialised = true;
+    });
+  },
+  methods: {
+    onErrorMessageChange: function onErrorMessageChange() {
+      this.hide_error = false;
+    },
+    onEditableInputChange: function onEditableInputChange() {
+      if (!this.is_initialised) {
+        return;
+      }
+
+      this.$emit('input', this.editable_input);
+
+      if (this.error_hide_on_input) {
+        this.hide_error = true;
+      }
+    },
+    onInputValueChange: function onInputValueChange() {
+      if (this.input_value !== this.editable_input) {
+        this.editable_input = this.input_value;
+      }
+    }
+  },
+  watch: {
+    editable_input: {
+      handler: "onEditableInputChange"
+    },
+    error_message: {
+      handler: "onErrorMessageChange"
+    },
+    input_value: {
+      handler: "onInputValueChange"
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "InlineCheckboxGroup",
+  model: {
+    prop: 'checkbox_value'
+  },
+  props: {
+    allow_parent_updates: {
+      "default": true,
+      type: Boolean
+    },
+    error_class: {
+      "default": 'mt-1 text-red-500 text-sm',
+      type: String
+    },
+    error_hide_on_change: {
+      "default": true,
+      type: Boolean
+    },
+    error_message: {
+      "default": '',
+      type: String
+    },
+    checkbox_autofocus: {
+      "default": false,
+      type: Boolean
+    },
+    checkbox_class: {
+      "default": 'cursor-pointer form-checkbox h-5 mr-2 rounded text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:ring focus:ring-primary',
+      type: String
+    },
+    checkbox_disabled: {
+      "default": false,
+      type: Boolean
+    },
+    checkbox_id: {
+      required: true,
+      type: String
+    },
+    checkbox_name: {
+      required: true,
+      type: String
+    },
+    checkbox_required: {
+      "default": false,
+      type: Boolean
+    },
+    checkbox_value: {
+      "default": false,
+      type: String | Number | Boolean
+    },
+    checkbox_value_false: {
+      "default": false,
+      type: String | Number | Boolean
+    },
+    checkbox_value_true: {
+      "default": true,
+      type: String | Number | Boolean
+    },
+    label_class: {
+      "default": 'cursor-pointer flex-1 font-medium select-none text-theme-base-contrast text-sm tracking-wider',
+      type: String
+    },
+    label_text: {
+      required: true,
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      editable_value: false,
+      hide_error: false
+    };
+  },
+  computed: {
+    formatted_checkbox_class: function formatted_checkbox_class() {
+      if (this.is_error) {
+        return this.checkbox_class + ' error';
+      }
+
+      return this.checkbox_class;
+    },
+    is_checked: function is_checked() {
+      return this.editable_value === this.checkbox_value_true;
+    },
+    is_error: function is_error() {
+      return !this.hide_error && this.error_message && this.error_message !== '';
+    }
+  },
+  mounted: function mounted() {
+    this.editable_value = this.checkbox_value;
+    this.autofocus();
+  },
+  methods: {
+    autofocus: function autofocus() {
+      var _this = this;
+
+      if (this.checkbox_autofocus && this.$refs[this.checkbox_id]) {
+        this.$nextTick(function () {
+          _this.$refs[_this.checkbox_id].focus();
+        });
+      }
+    },
+    blurCheckbox: function blurCheckbox() {
+      var _this2 = this;
+
+      if (this.$refs[this.checkbox_id]) {
+        this.$nextTick(function () {
+          _this2.$refs[_this2.checkbox_id].blur();
+        });
+      }
+    },
+    onErrorMessageChange: function onErrorMessageChange() {
+      this.hide_error = false;
+    },
+    onCheckboxChange: function onCheckboxChange(e) {
+      this.$emit('input', this.is_checked ? this.checkbox_value_true : this.checkbox_value_false);
+
+      if (this.error_hide_on_change) {
+        this.hide_error = true;
+      }
+    }
+  },
+  watch: {
+    error_message: {
+      handler: "onErrorMessageChange"
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js& ***!
@@ -807,7 +1394,10 @@ __webpack_require__.r(__webpack_exports__);
           value = option[_this.select_option_value_key];
         }
 
-        options[value] = label;
+        options[key] = {
+          label: label,
+          value: value
+        };
       });
 
       return options;
@@ -1130,6 +1720,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_cms_content_ContentEditor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/admin/cms/content/ContentEditor */ "./resources/js/components/admin/cms/content/ContentEditor.vue");
 /* harmony import */ var _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
 /* harmony import */ var _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/core/forms/SelectGroup */ "./resources/js/components/core/forms/SelectGroup.vue");
+/* harmony import */ var _components_admin_cms_urls_UrlEditor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/admin/cms/urls/UrlEditor */ "./resources/js/components/admin/cms/urls/UrlEditor.vue");
 //
 //
 //
@@ -1257,6 +1848,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -1265,11 +1883,12 @@ __webpack_require__.r(__webpack_exports__);
 var CancelToken = axios.CancelToken;
 var templateCancelToken = CancelToken.source();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AdminCmsPageCreate",
+  name: "AdminCmsPageEdit",
   components: {
     ContentEditor: _components_admin_cms_content_ContentEditor__WEBPACK_IMPORTED_MODULE_2__.default,
     InputGroup: _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__.default,
-    SelectGroup: _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__.default
+    SelectGroup: _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__.default,
+    UrlEditor: _components_admin_cms_urls_UrlEditor__WEBPACK_IMPORTED_MODULE_5__.default
   },
   layout: 'admin-layout',
   props: {
@@ -1279,6 +1898,10 @@ var templateCancelToken = CancelToken.source();
     },
     'page': {
       type: Object,
+      required: true
+    },
+    'parent_pages': {
+      type: Object | Array | null,
       required: true
     },
     'templates': {
@@ -1292,11 +1915,69 @@ var templateCancelToken = CancelToken.source();
       form_data: {},
       is_initialised_template: false,
       is_initialised_content: false,
+      is_initialised_url: false,
       is_loading_template: false,
       selected_template: null
     };
   },
   computed: {
+    parent_pages_urls: function parent_pages_urls() {
+      try {
+        if (!Object.keys(this.parent_pages).length) {
+          return null;
+        }
+
+        var pages = {};
+
+        lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.parent_pages, function (page, key) {
+          pages[key] = {
+            id: page.id,
+            label: page.name + ' => ' + page.url.url_full,
+            url_full: page.url.url_full,
+            url_main: page.url.url_main
+          };
+        });
+
+        return pages;
+      } catch (e) {
+        return null;
+      }
+    },
+    parent_pages_map: function parent_pages_map() {
+      try {
+        if (!Object.keys(this.parent_pages).length) {
+          return null;
+        }
+
+        var map = {};
+
+        lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.parent_pages, function (page, key) {
+          map[page.id] = key;
+        });
+
+        return map;
+      } catch (e) {
+        return null;
+      }
+    },
+    selected_parent_page: function selected_parent_page() {
+      try {
+        if (!this.form_data.parent_id) {
+          return null;
+        }
+
+        return this.parent_pages[this.parent_pages_map[this.form_data.parent_id]];
+      } catch (e) {
+        return null;
+      }
+    },
+    selected_parent_page_url: function selected_parent_page_url() {
+      try {
+        return this.selected_parent_page.url.url_full;
+      } catch (e) {
+        return null;
+      }
+    },
     selected_template_has_fields: function selected_template_has_fields() {
       try {
         if (!this.selected_template) {
@@ -1320,11 +2001,14 @@ var templateCancelToken = CancelToken.source();
       id: this.page.id,
       layout_id: this.page.layout_id,
       name: this.page.name,
+      parent_id: this.page.parent_id,
       slug: this.page.slug,
-      template_id: this.page.template_id
+      template_id: this.page.template_id,
+      url: {}
     };
     this.selected_template = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.page.template);
     this.setInitialContent();
+    this.setInitialUrl();
   },
   methods: {
     cancelLoadTemplate: function cancelLoadTemplate() {
@@ -1413,6 +2097,17 @@ var templateCancelToken = CancelToken.source();
 
       this.form_data.content = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(content);
       this.is_initialised_content = true;
+    },
+    setInitialUrl: function setInitialUrl() {
+      // This is a fix / hack to prevent an empty object from becoming an array.
+      var url = {};
+
+      if (this.doesObjectHaveKeys(this.page.url)) {
+        url = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.page.url);
+      }
+
+      this.form_data.url = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(url);
+      this.is_initialised_url = true;
     },
     setNewTemplateContent: function setNewTemplateContent() {
       if (!this.selected_template_has_fields) {
@@ -1845,6 +2540,123 @@ component.options.__file = "resources/js/components/admin/cms/content/content_fi
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/cms/urls/UrlEditor.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/admin/cms/urls/UrlEditor.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _UrlEditor_vue_vue_type_template_id_40670842___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UrlEditor.vue?vue&type=template&id=40670842& */ "./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=template&id=40670842&");
+/* harmony import */ var _UrlEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UrlEditor.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _UrlEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _UrlEditor_vue_vue_type_template_id_40670842___WEBPACK_IMPORTED_MODULE_0__.render,
+  _UrlEditor_vue_vue_type_template_id_40670842___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/cms/urls/UrlEditor.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/core/forms/DateTimePickerGroup.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/core/forms/DateTimePickerGroup.vue ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _DateTimePickerGroup_vue_vue_type_template_id_689a1cde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DateTimePickerGroup.vue?vue&type=template&id=689a1cde& */ "./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=template&id=689a1cde&");
+/* harmony import */ var _DateTimePickerGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DateTimePickerGroup.vue?vue&type=script&lang=js& */ "./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _DateTimePickerGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _DateTimePickerGroup_vue_vue_type_template_id_689a1cde___WEBPACK_IMPORTED_MODULE_0__.render,
+  _DateTimePickerGroup_vue_vue_type_template_id_689a1cde___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/core/forms/DateTimePickerGroup.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/core/forms/InlineCheckboxGroup.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/core/forms/InlineCheckboxGroup.vue ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _InlineCheckboxGroup_vue_vue_type_template_id_5460ad7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e& */ "./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e&");
+/* harmony import */ var _InlineCheckboxGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InlineCheckboxGroup.vue?vue&type=script&lang=js& */ "./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _InlineCheckboxGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _InlineCheckboxGroup_vue_vue_type_template_id_5460ad7e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _InlineCheckboxGroup_vue_vue_type_template_id_5460ad7e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/core/forms/InlineCheckboxGroup.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/core/forms/InputGroup.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue ***!
@@ -2097,6 +2909,54 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UrlEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UrlEditor.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UrlEditor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DateTimePickerGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DateTimePickerGroup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DateTimePickerGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineCheckboxGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InlineCheckboxGroup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineCheckboxGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js&":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/core/forms/InputGroup.vue?vue&type=script&lang=js& ***!
@@ -2259,6 +3119,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WysiwygField_vue_vue_type_template_id_10530c06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./WysiwygField.vue?vue&type=template&id=10530c06& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/content/content_fields/WysiwygField.vue?vue&type=template&id=10530c06&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=template&id=40670842&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=template&id=40670842& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UrlEditor_vue_vue_type_template_id_40670842___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UrlEditor_vue_vue_type_template_id_40670842___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UrlEditor_vue_vue_type_template_id_40670842___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./UrlEditor.vue?vue&type=template&id=40670842& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=template&id=40670842&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=template&id=689a1cde&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=template&id=689a1cde& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DateTimePickerGroup_vue_vue_type_template_id_689a1cde___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DateTimePickerGroup_vue_vue_type_template_id_689a1cde___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DateTimePickerGroup_vue_vue_type_template_id_689a1cde___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./DateTimePickerGroup.vue?vue&type=template&id=689a1cde& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=template&id=689a1cde&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineCheckboxGroup_vue_vue_type_template_id_5460ad7e___WEBPACK_IMPORTED_MODULE_0__.render,
+/* harmony export */   "staticRenderFns": () => /* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineCheckboxGroup_vue_vue_type_template_id_5460ad7e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineCheckboxGroup_vue_vue_type_template_id_5460ad7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e&");
 
 
 /***/ }),
@@ -2705,6 +3616,335 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=template&id=40670842&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/cms/urls/UrlEditor.vue?vue&type=template&id=40670842& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("input-group", {
+        attrs: {
+          input_id: "url_input",
+          input_name: "url_input",
+          input_required: true,
+          label_text: "Url",
+          input_type: "text"
+        },
+        model: {
+          value: _vm.urlInput,
+          callback: function($$v) {
+            _vm.urlInput = $$v
+          },
+          expression: "urlInput"
+        }
+      }),
+      _vm._v(" "),
+      _c("input-group", {
+        staticClass: "mt-4",
+        attrs: {
+          input_disabled: true,
+          input_id: "url_full",
+          input_name: "url_full",
+          label_text: "Formatted URL",
+          input_type: "text"
+        },
+        model: {
+          value: _vm.urlFull,
+          callback: function($$v) {
+            _vm.urlFull = $$v
+          },
+          expression: "urlFull"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-theme-base-subtle h-px my-6" }),
+      _vm._v(" "),
+      _c("inline-checkbox-group", {
+        staticClass: "mt-4",
+        attrs: {
+          checkbox_id: "url_is_enabled",
+          checkbox_name: "url_is_enabled",
+          label_text: "Enabled?"
+        },
+        model: {
+          value: _vm.editableUrlData.is_enabled,
+          callback: function($$v) {
+            _vm.$set(_vm.editableUrlData, "is_enabled", $$v)
+          },
+          expression: "editableUrlData.is_enabled"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex flex-col md:flex-row md:mt-2 md:space-x-4" },
+        [
+          _c("date-time-picker-group", {
+            staticClass: "mt-4 md:flex-1",
+            attrs: {
+              input_id: "url_published_at",
+              input_name: "url_published_at",
+              label_text: "Publish Date"
+            },
+            model: {
+              value: _vm.editableUrlData.published_at,
+              callback: function($$v) {
+                _vm.$set(_vm.editableUrlData, "published_at", $$v)
+              },
+              expression: "editableUrlData.published_at"
+            }
+          }),
+          _vm._v(" "),
+          _c("date-time-picker-group", {
+            staticClass: "mt-4 md:flex-1",
+            attrs: {
+              input_id: "url_expired_at",
+              input_name: "url_expired_at",
+              label_text: "Expiry Date"
+            },
+            model: {
+              value: _vm.editableUrlData.expired_at,
+              callback: function($$v) {
+                _vm.$set(_vm.editableUrlData, "expired_at", $$v)
+              },
+              expression: "editableUrlData.expired_at"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=template&id=689a1cde&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/DateTimePickerGroup.vue?vue&type=template&id=689a1cde& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex flex-col" },
+    [
+      _c(
+        "label",
+        { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
+        [
+          _vm._t("default", [
+            _c("span", { staticClass: "flex flex-row items-baseline" }, [
+              _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+              _vm._v(" "),
+              _vm.input_required
+                ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                    _vm._v("\n                    *\n                ")
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("date-picker", {
+        class: _vm.formatted_input_class,
+        attrs: {
+          id: _vm.input_id,
+          disabled: _vm.input_disabled,
+          format: _vm.input_format,
+          placeholder: _vm.input_placeholder,
+          required: _vm.input_required,
+          "time-title-format": _vm.input_time_title_format,
+          "title-format": _vm.input_title_format,
+          type: _vm.input_type,
+          "value-type": _vm.input_value_type
+        },
+        model: {
+          value: _vm.editable_input,
+          callback: function($$v) {
+            _vm.editable_input = $$v
+          },
+          expression: "editable_input"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _c("transition", { attrs: { name: "slide-down-fade" } }, [
+            _vm.is_error
+              ? _c("p", { class: _vm.error_class }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.error_message) +
+                      "\n            "
+                  )
+                ])
+              : _vm._e()
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InlineCheckboxGroup.vue?vue&type=template&id=5460ad7e& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render,
+/* harmony export */   "staticRenderFns": () => /* binding */ staticRenderFns
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "flex flex-col" }, [
+    _c("div", { staticClass: "flex flex-row" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.editable_value,
+            expression: "editable_value"
+          }
+        ],
+        ref: _vm.checkbox_id,
+        class: _vm.formatted_checkbox_class,
+        attrs: {
+          id: _vm.checkbox_id,
+          disabled: _vm.checkbox_disabled,
+          "false-value": _vm.checkbox_value_false,
+          name: _vm.checkbox_name,
+          required: _vm.checkbox_required,
+          "true-value": _vm.checkbox_value_true,
+          type: "checkbox"
+        },
+        domProps: {
+          checked: Array.isArray(_vm.editable_value)
+            ? _vm._i(_vm.editable_value, null) > -1
+            : _vm._q(_vm.editable_value, _vm.checkbox_value_true)
+        },
+        on: {
+          change: [
+            function($event) {
+              var $$a = _vm.editable_value,
+                $$el = $event.target,
+                $$c = $$el.checked
+                  ? _vm.checkbox_value_true
+                  : _vm.checkbox_value_false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && (_vm.editable_value = $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    (_vm.editable_value = $$a
+                      .slice(0, $$i)
+                      .concat($$a.slice($$i + 1)))
+                }
+              } else {
+                _vm.editable_value = $$c
+              }
+            },
+            _vm.onCheckboxChange
+          ],
+          keyup: function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])
+            ) {
+              return null
+            }
+            return _vm.blurCheckbox($event)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { class: _vm.label_class, attrs: { for: _vm.checkbox_id } }, [
+        _c("span", { staticClass: "flex flex-row items-baseline" }, [
+          _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+          _vm._v(" "),
+          _vm.checkbox_required
+            ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
+                _vm._v("\n                    *\n                ")
+              ])
+            : _vm._e()
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c("transition", { attrs: { name: "slide-down-fade" } }, [
+          _vm.is_error
+            ? _c("p", { class: _vm.error_class }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.error_message) +
+                    "\n            "
+                )
+              ])
+            : _vm._e()
+        ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/core/forms/InputGroup.vue?vue&type=template&id=4090938a& ***!
@@ -2878,15 +4118,18 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.formatted_options, function(label, value) {
+        _vm._l(_vm.formatted_options, function(option, key) {
           return _c(
             "option",
             {
-              key: _vm.select_id + "-option-" + value,
-              attrs: { disabled: _vm.isOptionDisabled(value) },
-              domProps: { selected: _vm.isOptionSelected(value), value: value }
+              key: _vm.select_id + "-option-" + option.value,
+              attrs: { disabled: _vm.isOptionDisabled(option.value) },
+              domProps: {
+                selected: _vm.isOptionSelected(option.value),
+                value: option.value
+              }
             },
-            [_vm._v("\n            " + _vm._s(label) + "\n        ")]
+            [_vm._v("\n            " + _vm._s(option.label) + "\n        ")]
           )
         })
       ],
@@ -3101,8 +4344,8 @@ var render = function() {
                 select_any_enabled: true,
                 select_any_label: "Please select a Layout",
                 select_autofocus: true,
-                select_id: "template_id",
-                select_name: "template_id",
+                select_id: "layout_id",
+                select_name: "layout_id",
                 select_options: _vm.layouts,
                 select_option_label_key: "name",
                 select_option_value_key: "id",
@@ -3141,6 +4384,31 @@ var render = function() {
                 expression: "form_data.template_id"
               }
             }),
+            _vm._v(" "),
+            _vm.parent_pages_urls
+              ? _c("select-group", {
+                  staticClass: "mt-4",
+                  attrs: {
+                    error_message: _vm.getPageErrorMessage("parent_id"),
+                    label_text: "Parent Page",
+                    select_any_enabled: true,
+                    select_any_label: "Please select a parent (optional)",
+                    select_id: "parent_id",
+                    select_name: "parent_id",
+                    select_options: _vm.parent_pages_urls,
+                    select_option_label_key: "label",
+                    select_option_value_key: "id",
+                    select_type: "text"
+                  },
+                  model: {
+                    value: _vm.form_data.parent_id,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form_data, "parent_id", $$v)
+                    },
+                    expression: "form_data.parent_id"
+                  }
+                })
+              : _vm._e(),
             _vm._v(" "),
             _c("input-group", {
               staticClass: "mt-4",
@@ -3187,6 +4455,26 @@ var render = function() {
           1
         )
       ]),
+      _vm._v(" "),
+      _vm.is_initialised_url
+        ? _c(
+            "div",
+            { staticClass: "bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg" },
+            [
+              _c("url-editor", {
+                attrs: { "parent-url": _vm.selected_parent_page_url },
+                model: {
+                  value: _vm.form_data.url,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form_data, "url", $$v)
+                  },
+                  expression: "form_data.url"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       !this.is_loading_template &&
       _vm.selected_template_has_fields &&
