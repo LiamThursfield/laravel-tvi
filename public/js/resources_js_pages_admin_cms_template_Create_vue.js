@@ -117,7 +117,7 @@ __webpack_require__.r(__webpack_exports__);
     TemplateField: _template_fields_TemplateField__WEBPACK_IMPORTED_MODULE_2__.default
   },
   model: {
-    prop: 'template_fields'
+    prop: 'templateFields'
   },
   props: {
     is_editing: {
@@ -128,22 +128,22 @@ __webpack_require__.r(__webpack_exports__);
       "default": false,
       type: Boolean
     },
-    'template_field_settings': {
-      type: Object,
-      required: true
-    },
-    template_field_types: {
+    templateFieldSettings: {
       required: true,
       type: Object
     },
-    template_fields: {
+    templateFieldTypes: {
+      required: true,
+      type: Object
+    },
+    templateFields: {
       required: true,
       type: Array
     }
   },
   data: function data() {
     return {
-      editable_template_fields: [],
+      editableTemplateFields: [],
       is_autofocus_disabled: false,
       is_dragging: false
     };
@@ -153,16 +153,16 @@ __webpack_require__.r(__webpack_exports__);
       this.is_autofocus_disabled = true;
     }
 
-    this.editable_template_fields = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.template_fields);
+    this.editableTemplateFields = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.templateFields);
   },
   methods: {
     addTemplateField: function addTemplateField() {
       this.is_autofocus_disabled = false;
-      this.editable_template_fields.push({
+      this.editableTemplateFields.push({
         description: '',
         is_required: false,
         name: '',
-        order: this.template_fields.length,
+        order: this.templateFields.length,
         settings: {},
         slug: '',
         type: ''
@@ -171,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteTemplateField: function deleteTemplateField(index) {
       try {
-        this.editable_template_fields.splice(index, 1);
+        this.editableTemplateFields.splice(index, 1);
         this.reorderTemplateFields();
       } catch (e) {
         this.$errorToast('Failed to delete field');
@@ -190,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
       this.is_dragging = true;
     },
     onTemplateFieldsChange: function onTemplateFieldsChange(fields) {
-      this.editable_template_fields = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(fields);
+      this.editableTemplateFields = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(fields);
     },
     onEditableTemplateFieldInput: function onEditableTemplateFieldInput() {
       this.updateTemplateFields();
@@ -199,13 +199,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       try {
-        if (!this.editable_template_fields.length) {
+        if (!this.editableTemplateFields.length) {
           this.updateTemplateFields();
           return;
         }
 
-        this.editable_template_fields.forEach(function (field, index) {
-          _this.editable_template_fields[index].order = index;
+        this.editableTemplateFields.forEach(function (field, index) {
+          _this.editableTemplateFields[index].order = index;
         });
         this.updateTemplateFields();
       } catch (e) {
@@ -213,11 +213,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     updateTemplateFields: function updateTemplateFields() {
-      this.$emit('input', lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.editable_template_fields));
+      this.$emit('input', lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.editableTemplateFields));
     }
   },
   watch: {
-    template_fields: {
+    templateFields: {
       handler: 'onTemplateFieldsChange'
     }
   }
@@ -348,7 +348,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -367,11 +366,11 @@ __webpack_require__.r(__webpack_exports__);
     TextAreaSettings: _template_field_settings_TextAreaSettings__WEBPACK_IMPORTED_MODULE_6__.default
   },
   model: {
-    prop: 'template_field'
+    prop: 'templateField'
   },
   props: {
-    error_message_key_prefix: {
-      "default": 'template_fields',
+    errorMessage_key_prefix: {
+      "default": 'templateFields',
       type: String
     },
     is_autofocus_disabled: {
@@ -382,23 +381,23 @@ __webpack_require__.r(__webpack_exports__);
       "default": false,
       type: Boolean
     },
-    template_field: {
+    templateField: {
       required: true,
       type: Object
     },
-    template_field_settings: {
+    templateFieldSettings: {
       required: true,
       type: Object
     },
-    template_field_types: {
+    templateFieldTypes: {
       required: true,
       type: Object
     }
   },
   data: function data() {
     return {
-      auto_update_slug: true,
-      editable_template_field: {
+      autoUpdateSlug: true,
+      editable_templateField: {
         description: '',
         is_required: false,
         name: '',
@@ -410,26 +409,26 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    default_field_settings: function default_field_settings() {
-      if (!this.editable_template_field.type) {
+    default_fieldSettings: function default_fieldSettings() {
+      if (!this.editable_templateField.type) {
         return false;
       }
 
       try {
-        return this.template_field_settings[this.editable_template_field.type];
+        return this.templateFieldSettings[this.editable_templateField.type];
       } catch (e) {
         return {};
       }
     },
-    error_message_key: function error_message_key() {
-      return this.error_message_key_prefix + '.' + this.editable_template_field.order + '.';
+    errorMessage_key: function errorMessage_key() {
+      return this.errorMessage_key_prefix + '.' + this.editable_templateField.order + '.';
     },
     settings_component: function settings_component() {
-      if (!this.editable_template_field.type) {
+      if (!this.editable_templateField.type) {
         return false;
       }
 
-      switch (this.editable_template_field.type) {
+      switch (this.editable_templateField.type) {
         case 'number':
           return 'number-settings';
 
@@ -445,36 +444,36 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.editable_template_field = _.cloneDeep(this.template_field); // If there is an existing slug, disable the auto slug update
+    this.editable_templateField = _.cloneDeep(this.templateField); // If there is an existing slug, disable the auto slug update
 
-    if (this.editable_template_field.slug && this.editable_template_field.slug !== '') {
-      this.auto_update_slug = false;
+    if (this.editable_templateField.slug && this.editable_templateField.slug !== '') {
+      this.autoUpdateSlug = false;
     }
   },
   methods: {
     getErrorMessage: function getErrorMessage(field) {
-      var message = this.getPageErrorMessage(this.error_message_key + field);
-      message = message.replace(this.error_message_key, '');
+      var message = this.getPageErrorMessage(this.errorMessage_key + field);
+      message = message.replace(this.errorMessage_key, '');
       return message;
     },
     onNameInput: function onNameInput() {
-      if (!this.auto_update_slug) {
+      if (!this.autoUpdateSlug) {
         this.updateTemplateField();
         return;
       }
 
-      this.editable_template_field.slug = this.slugify(this.editable_template_field.name);
+      this.editable_templateField.slug = this.slugify(this.editable_templateField.name);
       this.updateTemplateField();
     },
     onSlugBlur: function onSlugBlur() {
-      this.editable_template_field.slug = this.slugify(this.editable_template_field.slug);
+      this.editable_templateField.slug = this.slugify(this.editable_templateField.slug);
       this.updateTemplateField();
     },
     onSlugInput: function onSlugInput() {
-      this.auto_update_slug = false;
+      this.autoUpdateSlug = false;
     },
     onTemplateFieldUpdate: function onTemplateFieldUpdate() {
-      this.editable_template_field = _.cloneDeep(this.template_field);
+      this.editable_templateField = _.cloneDeep(this.templateField);
     },
     slugify: function slugify(value) {
       if (!value || !value.length) {
@@ -486,14 +485,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateTemplateField: function updateTemplateField() {
-      this.$emit('input', _.cloneDeep(this.editable_template_field));
+      this.$emit('input', _.cloneDeep(this.editable_templateField));
     }
   },
   watch: {
     // TODO: I'd like a more elegant / efficient solution
     // - This fixes some "oddities" to ensure data is re-ordered properly via draggable
     // - But it does get called quite a lot, especially if there are a lot of fields
-    template_field: {
+    templateField: {
       deep: true,
       handler: 'onTemplateFieldUpdate'
     }
@@ -667,6 +666,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+var _props;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -717,127 +720,119 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CheckboxGroup",
   model: {
-    prop: 'checkbox_value'
+    prop: 'checkboxValue'
   },
-  props: {
-    allow_parent_updates: {
-      "default": true,
-      type: Boolean
-    },
-    error_class: {
+  props: (_props = {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_change: {
+    errorHideOnChange: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: String
     },
-    checkbox_autofocus: {
+    checkboxAutofocus: {
       "default": false,
       type: Boolean
     },
-    checkbox_class: {
+    checkboxClass: {
       "default": 'cursor-pointer form-checkbox h-5 mt-2 rounded text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:ring focus:ring-primary',
       type: String
     },
-    checkbox_disabled: {
+    checkboxDisabled: {
       "default": false,
       type: Boolean
     },
-    checkbox_id: {
+    checkboxId: {
       required: true,
       type: String
     },
-    checkbox_name: {
+    checkboxName: {
       required: true,
       type: String
     },
-    checkbox_required: {
+    checkboxRequired: {
       "default": false,
       type: Boolean
     },
-    checkbox_value: {
+    checkboxValue: {
       "default": false,
       type: String | Number | Boolean
-    },
-    checkbox_value_false: {
-      "default": false,
-      type: String | Number | Boolean
-    },
-    checkbox_value_true: {
-      "default": true,
-      type: String | Number | Boolean
-    },
-    label_class: {
-      "default": 'cursor-pointer font-medium select-none text-theme-base-contrast text-sm tracking-wider',
-      type: String
-    },
-    label_text: {
-      required: true,
-      type: String
     }
-  },
+  }, _defineProperty(_props, "checkboxDisabled", {
+    "default": false,
+    type: String | Number | Boolean
+  }), _defineProperty(_props, "checkboxValueTrue", {
+    "default": true,
+    type: String | Number | Boolean
+  }), _defineProperty(_props, "labelClass", {
+    "default": 'cursor-pointer font-medium select-none text-theme-base-contrast text-sm tracking-wider',
+    type: String
+  }), _defineProperty(_props, "labelText", {
+    required: true,
+    type: String
+  }), _props),
   data: function data() {
     return {
-      editable_value: false,
-      hide_error: false
+      editableValue: false,
+      hideError: false
     };
   },
   computed: {
-    formatted_checkbox_class: function formatted_checkbox_class() {
-      if (this.is_error) {
-        return this.checkbox_class + ' error';
+    formattedCheckboxClass: function formattedCheckboxClass() {
+      if (this.isError) {
+        return this.checkboxClass + ' error';
       }
 
-      return this.checkbox_class;
+      return this.checkboxClass;
     },
-    is_checked: function is_checked() {
-      return this.editable_value === this.checkbox_value_true;
+    isChecked: function isChecked() {
+      return this.editableValue === this.checkboxValueTrue;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     }
   },
   mounted: function mounted() {
-    this.editable_value = this.checkbox_value;
+    this.editableValue = this.checkboxValue;
     this.autofocus();
   },
   methods: {
     autofocus: function autofocus() {
       var _this = this;
 
-      if (this.checkbox_autofocus && this.$refs[this.checkbox_id]) {
+      if (this.checkboxAutofocus && this.$refs[this.checkboxId]) {
         this.$nextTick(function () {
-          _this.$refs[_this.checkbox_id].focus();
+          _this.$refs[_this.checkboxId].focus();
         });
       }
     },
     blurCheckbox: function blurCheckbox() {
       var _this2 = this;
 
-      if (this.$refs[this.checkbox_id]) {
+      if (this.$refs[this.checkboxId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.checkbox_id].blur();
+          _this2.$refs[_this2.checkboxId].blur();
         });
       }
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
     onCheckboxChange: function onCheckboxChange(e) {
-      this.$emit('input', this.is_checked ? this.checkbox_value_true : this.checkbox_value_false);
+      this.$emit('input', this.isChecked ? this.checkboxValueTrue : this.checkboxDisabled);
 
-      if (this.error_hide_on_change) {
-        this.hide_error = true;
+      if (this.errorHideOnChange) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -911,118 +906,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InputGroup",
   model: {
-    prop: 'input_value'
+    prop: 'inputValue'
   },
   props: {
-    allow_parent_updates: {
-      "default": true,
-      type: Boolean
-    },
-    error_class: {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_input: {
+    errorHideOnInput: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: false | String
     },
-    input_autocomplete: {
+    inputAutocomplete: {
       "default": '',
       type: String
     },
-    input_autofocus: {
+    inputAutofocus: {
       "default": false,
       type: Boolean
     },
-    input_class: {
+    inputClass: {
       "default": 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
       type: String
     },
-    input_disabled: {
+    inputDisabled: {
       "default": false,
       type: Boolean
     },
-    input_id: {
+    inputId: {
       required: true,
       type: String
     },
-    input_max: {
+    inputMax: {
       "default": '',
       type: String | Number
     },
-    input_maxlength: {
+    inputMaxLength: {
       "default": '',
       type: String | Number
     },
-    input_min: {
+    inputMin: {
       "default": '',
       type: String | Number
     },
-    input_minlength: {
+    inputMinLength: {
       "default": '',
       type: String | Number
     },
-    input_name: {
+    inputName: {
       required: true,
       type: String
     },
-    input_placeholder: {
+    inputPlaceholder: {
       "default": '',
       type: String
     },
-    input_required: {
+    inputRequired: {
       "default": false,
       type: Boolean
     },
-    input_type: {
+    inputType: {
       "default": 'text',
       type: String
     },
-    input_value: {
+    inputValue: {
       "default": '',
       type: String | Number
     },
-    label_class: {
+    labelClass: {
       "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
-    label_hidden: {
+    labelHidden: {
       "default": false,
       type: Boolean
     },
-    label_text: {
+    labelText: {
       required: true,
       type: String
     }
   },
   data: function data() {
     return {
-      hide_error: false
+      hideError: false
     };
   },
   computed: {
-    formatted_input_class: function formatted_input_class() {
-      if (this.is_error) {
-        return this.input_class + ' error';
+    formattedInputClass: function formattedInputClass() {
+      if (this.isError) {
+        return this.inputClass + ' error';
       }
 
-      return this.input_class;
+      return this.inputClass;
     },
-    formatted_label_class: function formatted_label_class() {
-      var label_class = this.label_class;
+    formattedLabelClass: function formattedLabelClass() {
+      var labelClass = this.labelClass;
 
-      if (this.label_hidden) {
-        label_class += ' hidden';
+      if (this.labelHidden) {
+        labelClass += ' hidden';
       }
 
-      return label_class;
+      return labelClass;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     }
   },
   mounted: function mounted() {
@@ -1032,37 +1023,37 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this = this;
 
-      if (this.input_autofocus && this.$refs[this.input_id]) {
+      if (this.inputAutofocus && this.$refs[this.inputId]) {
         this.$nextTick(function () {
-          _this.$refs[_this.input_id].focus();
+          _this.$refs[_this.inputId].focus();
         });
       }
     },
     blurInput: function blurInput() {
       var _this2 = this;
 
-      if (this.$refs[this.input_id]) {
+      if (this.$refs[this.inputId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.input_id].blur();
+          _this2.$refs[_this2.inputId].blur();
         });
       }
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
     onInputBlur: function onInputBlur() {
       this.$emit('blur');
     },
     onInputKeyPress: function onInputKeyPress() {
-      this.$emit('input', this.$refs[this.input_id].value);
+      this.$emit('input', this.$refs[this.inputId].value);
 
-      if (this.error_hide_on_input) {
-        this.hide_error = true;
+      if (this.errorHideOnInput) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -1150,112 +1141,112 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SelectGroup',
   model: {
-    prop: 'select_value'
+    prop: 'selectValue'
   },
   props: {
-    error_class: {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_select: {
+    errorHideOnSelect: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: String
     },
-    select_any_enabled: {
+    selectAnyEnabled: {
       "default": false,
       type: Boolean
     },
-    select_any_label: {
+    selectAnyLabel: {
       "default": "Any",
       type: String
     },
-    select_any_class: {
+    selectAnyClass: {
       "default": "",
       type: String
     },
-    select_any_value: {
+    selectAnyValue: {
       "default": ''
     },
-    select_autofocus: {
+    selectAutoFocus: {
       "default": false,
       type: Boolean
     },
-    select_class: {
+    selectClass: {
       "default": 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
       type: String
     },
-    select_disabled: {
+    selectDisabled: {
       "default": false,
       type: Boolean
     },
-    select_id: {
+    selectId: {
       required: true,
       type: String
     },
-    select_name: {
+    selectName: {
       required: true,
       type: String
     },
-    select_option_label_key: {
+    selectOptionLabelKey: {
       "default": false,
       type: Boolean | String | Number
     },
-    select_option_value_key: {
+    selectOptionValueKey: {
       "default": false,
       type: Boolean | String | Number
     },
-    select_options: {
+    selectOptions: {
       required: true,
       type: Object
     },
-    select_required: {
+    selectRequired: {
       "default": false,
       type: Boolean
     },
-    select_value: {
+    selectValue: {
       "default": '',
       type: String | Number
     },
-    label_class: {
+    labelClass: {
       "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
-    label_hidden: {
+    labelHidden: {
       "default": false,
       type: Boolean
     },
-    label_text: {
+    labelText: {
       required: true,
       type: String
     }
   },
   data: function data() {
     return {
-      hide_error: false
+      hideError: false
     };
   },
   computed: {
-    formatted_options: function formatted_options() {
+    formattedOptions: function formattedOptions() {
       var _this = this;
 
       var options = {};
 
-      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.select_options, function (option, key) {
+      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.selectOptions, function (option, key) {
         // Default the label and value for the select
         var label = option;
         var value = key; // Set a custom label if necessary
 
-        if (_this.select_option_label_key !== false && option.hasOwnProperty(_this.select_option_label_key)) {
-          label = option[_this.select_option_label_key];
+        if (_this.selectOptionLabelKey !== false && option.hasOwnProperty(_this.selectOptionLabelKey)) {
+          label = option[_this.selectOptionLabelKey];
         } // Set a custom value if necessary
 
 
-        if (_this.select_option_value_key !== false && option.hasOwnProperty(_this.select_option_value_key)) {
-          value = option[_this.select_option_value_key];
+        if (_this.selectOptionValueKey !== false && option.hasOwnProperty(_this.selectOptionValueKey)) {
+          value = option[_this.selectOptionValueKey];
         }
 
         options[key] = {
@@ -1266,33 +1257,33 @@ __webpack_require__.r(__webpack_exports__);
 
       return options;
     },
-    formatted_select_class: function formatted_select_class() {
-      var select_class = this.select_class;
+    formattedSelectClass: function formattedSelectClass() {
+      var selectClass = this.selectClass;
 
-      if (this.is_error) {
-        select_class += ' error';
+      if (this.isError) {
+        selectClass += ' error';
       }
 
-      if (this.is_any_option_selected) {
-        select_class += ' ' + this.select_any_class;
+      if (this.isAnyOptionSelected) {
+        selectClass += ' ' + this.selectAnyClass;
       }
 
-      return select_class;
+      return selectClass;
     },
-    formatted_label_class: function formatted_label_class() {
-      var label_class = this.label_class;
+    formattedLabelClass: function formattedLabelClass() {
+      var labelClass = this.labelClass;
 
-      if (this.label_hidden) {
-        label_class += ' hidden';
+      if (this.labelHidden) {
+        labelClass += ' hidden';
       }
 
-      return label_class;
+      return labelClass;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     },
-    is_any_option_selected: function is_any_option_selected() {
-      return this.select_value === this.select_any_value || this.select_value === null;
+    isAnyOptionSelected: function isAnyOptionSelected() {
+      return this.selectValue === this.selectAnyValue || this.selectValue === null;
     }
   },
   mounted: function mounted() {
@@ -1302,23 +1293,23 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.select_autofocus && this.$refs[this.select_id]) {
+      if (this.selectAutoFocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.select_id].focus();
+          _this2.$refs[_this2.selectId].focus();
         });
       }
     },
     blurSelect: function blurSelect() {
       var _this3 = this;
 
-      if (this.$refs[this.select_id]) {
+      if (this.$refs[this.selectId]) {
         this.$nextTick(function () {
-          _this3.$refs[_this3.select_id].blur();
+          _this3.$refs[_this3.selectId].blur();
         });
       }
     },
     isOptionDisabled: function isOptionDisabled(option_value) {
-      if (!this.select_required) {
+      if (!this.selectRequired) {
         return false;
       }
 
@@ -1329,21 +1320,21 @@ __webpack_require__.r(__webpack_exports__);
       return false;
     },
     isOptionSelected: function isOptionSelected(option_value) {
-      return option_value === this.select_value;
+      return option_value === this.selectValue;
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
     onSelectChange: function onSelectChange() {
-      this.$emit('input', this.$refs[this.select_id].value);
+      this.$emit('input', this.$refs[this.selectId].value);
 
-      if (this.error_hide_on_select) {
-        this.hide_error = true;
+      if (this.errorHideOnSelect) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -1485,7 +1476,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -1499,23 +1489,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   layout: 'admin-layout',
   props: {
-    'template_field_settings': {
+    'templateFieldSettings': {
       type: Object,
       required: true
     },
-    'template_field_types': {
+    'templateFieldTypes': {
       type: Object,
       required: true
     },
-    'template_types': {
+    'templateTypes': {
       type: Object,
       required: true
     }
   },
   data: function data() {
     return {
-      auto_update_slug: true,
-      form_data: {
+      autoUpdateSlug: true,
+      formData: {
         description: '',
         name: '',
         slug: '',
@@ -1526,17 +1516,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onNameInput: function onNameInput() {
-      if (!this.auto_update_slug) {
+      if (!this.autoUpdateSlug) {
         return;
       }
 
-      this.form_data.slug = this.slugify(this.form_data.name);
+      this.formData.slug = this.slugify(this.formData.name);
     },
     onSlugBlur: function onSlugBlur() {
-      this.form_data.slug = this.slugify(this.form_data.slug);
+      this.formData.slug = this.slugify(this.formData.slug);
     },
     onSlugInput: function onSlugInput() {
-      this.auto_update_slug = false;
+      this.autoUpdateSlug = false;
     },
     slugify: function slugify(value) {
       if (!value || !value.length) {
@@ -1548,7 +1538,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submit: function submit() {
-      this.$inertia.post(this.$route('admin.cms.templates.store'), this.form_data);
+      this.$inertia.post(this.$route('admin.cms.templates.store'), this.formData);
     }
   }
 });
@@ -1571,29 +1561,29 @@ __webpack_require__.r(__webpack_exports__);
 
 var templateFieldSettingsMixin = {
   model: {
-    prop: 'field_settings'
+    prop: 'fieldSettings'
   },
   props: {
     default_settings: {
       required: true,
       type: Array | Object
     },
-    field_settings: {
+    fieldSettings: {
       required: true,
       type: Array | Object
     },
-    template_field: {
+    templateField: {
       required: true,
       type: Object
     }
   },
   data: function data() {
     return {
-      editable_field_settings: {}
+      editableFieldSettings: {}
     };
   },
   computed: {
-    is_default_settings: function is_default_settings() {
+    isDefaultSettings: function isDefaultSettings() {
       try {
         if (!this.default_settings || Array.isArray(this.default_settings)) {
           return false;
@@ -1606,7 +1596,7 @@ var templateFieldSettingsMixin = {
     }
   },
   mounted: function mounted() {
-    this.editable_field_settings = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.field_settings);
+    this.editableFieldSettings = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.fieldSettings);
     this.initialiseSettings();
   },
   methods: {
@@ -1614,15 +1604,15 @@ var templateFieldSettingsMixin = {
       var _this = this;
 
       // If the field settings are an array - convert to an object
-      if (!this.editable_field_settings || Array.isArray(this.editable_field_settings)) {
-        this.editable_field_settings = {};
+      if (!this.editableFieldSettings || Array.isArray(this.editableFieldSettings)) {
+        this.editableFieldSettings = {};
       } // Ensure all the default settings are added to the field settings, if not already preset.
 
 
-      if (this.is_default_settings) {
+      if (this.isDefaultSettings) {
         lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.default_settings, function (value, key) {
-          if (!_this.editable_field_settings.hasOwnProperty(key)) {
-            _this.editable_field_settings[key] = value;
+          if (!_this.editableFieldSettings.hasOwnProperty(key)) {
+            _this.editableFieldSettings[key] = value;
           }
         });
       } // TODO: Should we delete any settings that are no longer relevant?
@@ -1630,14 +1620,14 @@ var templateFieldSettingsMixin = {
 
     },
     onEditableSettingsChange: function onEditableSettingsChange() {
-      this.$emit('input', this.editable_field_settings);
+      this.$emit('input', this.editableFieldSettings);
     },
     onFieldSettingsChange: function onFieldSettingsChange() {
-      this.editable_field_settings = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.field_settings);
+      this.editableFieldSettings = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.fieldSettings);
     }
   },
   watch: {
-    field_settings: {
+    fieldSettings: {
       handler: "onFieldSettingsChange"
     }
   }
@@ -6184,7 +6174,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      !_vm.editable_template_fields.length
+      !_vm.editableTemplateFields.length
         ? _c(
             "p",
             {
@@ -6209,11 +6199,11 @@ var render = function() {
                 start: _vm.onDraggableStart
               },
               model: {
-                value: _vm.editable_template_fields,
+                value: _vm.editableTemplateFields,
                 callback: function($$v) {
-                  _vm.editable_template_fields = $$v
+                  _vm.editableTemplateFields = $$v
                 },
-                expression: "editable_template_fields"
+                expression: "editableTemplateFields"
               }
             },
             [
@@ -6225,8 +6215,8 @@ var render = function() {
                     type: "transition"
                   }
                 },
-                _vm._l(_vm.editable_template_fields, function(
-                  template_field,
+                _vm._l(_vm.editableTemplateFields, function(
+                  templateField,
                   index
                 ) {
                   return _c(
@@ -6250,11 +6240,11 @@ var render = function() {
                             "span",
                             { staticClass: "flex-1 pl-4" },
                             [
-                              template_field.name && template_field.name.length
+                              templateField.name && templateField.name.length
                                 ? [
                                     _vm._v(
                                       "\n                            " +
-                                        _vm._s(template_field.name) +
+                                        _vm._s(templateField.name) +
                                         "\n                        "
                                     )
                                   ]
@@ -6277,21 +6267,16 @@ var render = function() {
                           _c("template-field", {
                             attrs: {
                               is_autofocus_disabled: _vm.is_autofocus_disabled,
-                              template_field_types: _vm.template_field_types,
-                              template_field_settings:
-                                _vm.template_field_settings
+                              templateFieldTypes: _vm.templateFieldTypes,
+                              templateFieldSettings: _vm.templateFieldSettings
                             },
                             on: { input: _vm.updateTemplateFields },
                             model: {
-                              value: _vm.editable_template_fields[index],
+                              value: _vm.editableTemplateFields[index],
                               callback: function($$v) {
-                                _vm.$set(
-                                  _vm.editable_template_fields,
-                                  index,
-                                  $$v
-                                )
+                                _vm.$set(_vm.editableTemplateFields, index, $$v)
                               },
-                              expression: "editable_template_fields[index]"
+                              expression: "editableTemplateFields[index]"
                             }
                           })
                         ],
@@ -6373,45 +6358,42 @@ var render = function() {
           _c("select-group", {
             staticClass: "flex-1",
             attrs: {
-              error_message: _vm.getErrorMessage("type"),
-              label_text: "Field Type",
-              select_any_enabled: true,
-              select_any_label: "Please select a field type",
-              select_autofocus: !_vm.is_autofocus_disabled,
-              select_id: "template-field-" + _vm.template_field.order + "-type",
-              select_name:
-                "template-field-" + _vm.template_field.order + "-type",
-              select_options: _vm.template_field_types,
-              select_required: true,
-              select_type: "text"
+              errorMessage: _vm.getErrorMessage("type"),
+              labelText: "Field Type",
+              selectAnyEnabled: true,
+              selectAnyLabel: "Please select a field type",
+              selectAutoFocus: !_vm.is_autofocus_disabled,
+              selectId: "template-field-" + _vm.templateField.order + "-type",
+              selectName: "template-field-" + _vm.templateField.order + "-type",
+              selectOptions: _vm.templateFieldTypes,
+              selectRequired: true
             },
             on: { input: _vm.updateTemplateField },
             model: {
-              value: _vm.editable_template_field.type,
+              value: _vm.editable_templateField.type,
               callback: function($$v) {
-                _vm.$set(_vm.editable_template_field, "type", $$v)
+                _vm.$set(_vm.editable_templateField, "type", $$v)
               },
-              expression: "editable_template_field.type"
+              expression: "editable_templateField.type"
             }
           }),
           _vm._v(" "),
           _c("input-group", {
             staticClass: "flex-1 mt-4 md:mt-0",
             attrs: {
-              input_disabled: true,
-              input_id: "template-field-" + _vm.template_field.order + "-order",
-              input_name:
-                "template-field-" + _vm.template_field.order + "-order",
-              input_type: "number",
-              label_text: "Order"
+              inputDisabled: true,
+              inputId: "template-field-" + _vm.templateField.order + "-order",
+              inputName: "template-field-" + _vm.templateField.order + "-order",
+              inputType: "number",
+              labelText: "Order"
             },
             on: { input: _vm.updateTemplateField },
             model: {
-              value: _vm.editable_template_field.order,
+              value: _vm.editable_templateField.order,
               callback: function($$v) {
-                _vm.$set(_vm.editable_template_field, "order", $$v)
+                _vm.$set(_vm.editable_templateField, "order", $$v)
               },
-              expression: "editable_template_field.order"
+              expression: "editable_templateField.order"
             }
           })
         ],
@@ -6428,42 +6410,40 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              error_message: _vm.getErrorMessage("name"),
-              input_id: "template-field-" + _vm.template_field.order + "-name",
-              input_name:
-                "template-field-" + _vm.template_field.order + "-name",
-              input_required: true,
-              input_type: "text",
-              label_text: "Field Name"
+              errorMessage: _vm.getErrorMessage("name"),
+              inputId: "template-field-" + _vm.templateField.order + "-name",
+              inputName: "template-field-" + _vm.templateField.order + "-name",
+              inputRequired: true,
+              inputType: "text",
+              labelText: "Field Name"
             },
             on: { input: _vm.onNameInput },
             model: {
-              value: _vm.editable_template_field.name,
+              value: _vm.editable_templateField.name,
               callback: function($$v) {
-                _vm.$set(_vm.editable_template_field, "name", $$v)
+                _vm.$set(_vm.editable_templateField, "name", $$v)
               },
-              expression: "editable_template_field.name"
+              expression: "editable_templateField.name"
             }
           }),
           _vm._v(" "),
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              error_message: _vm.getErrorMessage("slug"),
-              input_id: "template-field-" + _vm.template_field.order + "-slug",
-              input_name:
-                "template-field-" + _vm.template_field.order + "-slug",
-              input_required: true,
-              input_type: "text",
-              label_text: "Field Slug"
+              errorMessage: _vm.getErrorMessage("slug"),
+              inputId: "template-field-" + _vm.templateField.order + "-slug",
+              inputName: "template-field-" + _vm.templateField.order + "-slug",
+              inputRequired: true,
+              inputType: "text",
+              labelText: "Field Slug"
             },
             on: { blur: _vm.onSlugBlur, input: _vm.onSlugInput },
             model: {
-              value: _vm.editable_template_field.slug,
+              value: _vm.editable_templateField.slug,
               callback: function($$v) {
-                _vm.$set(_vm.editable_template_field, "slug", $$v)
+                _vm.$set(_vm.editable_templateField, "slug", $$v)
               },
-              expression: "editable_template_field.slug"
+              expression: "editable_templateField.slug"
             }
           })
         ],
@@ -6473,41 +6453,40 @@ var render = function() {
       _c("input-group", {
         staticClass: "mt-4",
         attrs: {
-          error_message: _vm.getErrorMessage("description"),
-          input_id:
-            "template-field-" + _vm.template_field.order + "-description",
-          input_name:
-            "template-field-" + _vm.template_field.order + "-description",
-          input_type: "text",
-          label_text: "Description"
+          errorMessage: _vm.getErrorMessage("description"),
+          inputId: "template-field-" + _vm.templateField.order + "-description",
+          inputName:
+            "template-field-" + _vm.templateField.order + "-description",
+          inputType: "text",
+          labelText: "Description"
         },
         on: { input: _vm.updateTemplateField },
         model: {
-          value: _vm.editable_template_field.description,
+          value: _vm.editable_templateField.description,
           callback: function($$v) {
-            _vm.$set(_vm.editable_template_field, "description", $$v)
+            _vm.$set(_vm.editable_templateField, "description", $$v)
           },
-          expression: "editable_template_field.description"
+          expression: "editable_templateField.description"
         }
       }),
       _vm._v(" "),
       _c("checkbox-group", {
         staticClass: "mt-4",
         attrs: {
-          checkbox_id:
-            "template-field-" + _vm.template_field.order + "-is_required",
-          checkbox_name:
-            "template-field-" + _vm.template_field.order + "-is_required",
-          error_message: _vm.getErrorMessage("is_required"),
-          label_text: "Required?"
+          checkboxId:
+            "template-field-" + _vm.templateField.order + "-is_required",
+          checkboxName:
+            "template-field-" + _vm.templateField.order + "-is_required",
+          errorMessage: _vm.getErrorMessage("is_required"),
+          labelText: "Required?"
         },
         on: { input: _vm.updateTemplateField },
         model: {
-          value: _vm.editable_template_field.is_required,
+          value: _vm.editable_templateField.is_required,
           callback: function($$v) {
-            _vm.$set(_vm.editable_template_field, "is_required", $$v)
+            _vm.$set(_vm.editable_templateField, "is_required", $$v)
           },
-          expression: "editable_template_field.is_required"
+          expression: "editable_templateField.is_required"
         }
       }),
       _vm._v(" "),
@@ -6517,16 +6496,16 @@ var render = function() {
             {
               tag: "component",
               attrs: {
-                default_settings: _vm.default_field_settings,
-                template_field: _vm.editable_template_field
+                default_settings: _vm.default_fieldSettings,
+                templateField: _vm.editable_templateField
               },
               on: { input: _vm.updateTemplateField },
               model: {
-                value: _vm.editable_template_field.settings,
+                value: _vm.editable_templateField.settings,
                 callback: function($$v) {
-                  _vm.$set(_vm.editable_template_field, "settings", $$v)
+                  _vm.$set(_vm.editable_templateField, "settings", $$v)
                 },
-                expression: "editable_template_field.settings"
+                expression: "editable_templateField.settings"
               }
             },
             [
@@ -6583,36 +6562,36 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              input_id: "template-field-" + _vm.template_field.order + "-min",
-              input_name: "template-field-" + _vm.template_field.order + "-min",
-              input_type: "number",
-              label_text: "Minimum Value"
+              inputId: "template-field-" + _vm.templateField.order + "-min",
+              inputName: "template-field-" + _vm.templateField.order + "-min",
+              inputType: "number",
+              labelText: "Minimum Value"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
-              value: _vm.editable_field_settings.min,
+              value: _vm.editableFieldSettings.min,
               callback: function($$v) {
-                _vm.$set(_vm.editable_field_settings, "min", $$v)
+                _vm.$set(_vm.editableFieldSettings, "min", $$v)
               },
-              expression: "editable_field_settings.min"
+              expression: "editableFieldSettings.min"
             }
           }),
           _vm._v(" "),
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              input_id: "template-field-" + _vm.template_field.order + "-max",
-              input_name: "template-field-" + _vm.template_field.order + "-max",
-              input_type: "number",
-              label_text: "Maximum Value"
+              inputId: "template-field-" + _vm.templateField.order + "-max",
+              inputName: "template-field-" + _vm.templateField.order + "-max",
+              inputType: "number",
+              labelText: "Maximum Value"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
-              value: _vm.editable_field_settings.max,
+              value: _vm.editableFieldSettings.max,
               callback: function($$v) {
-                _vm.$set(_vm.editable_field_settings, "max", $$v)
+                _vm.$set(_vm.editableFieldSettings, "max", $$v)
               },
-              expression: "editable_field_settings.max"
+              expression: "editableFieldSettings.max"
             }
           })
         ],
@@ -6660,40 +6639,38 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              input_id:
-                "template-field-" + _vm.template_field.order + "-max-length",
-              input_name:
-                "template-field-" + _vm.template_field.order + "-max-length",
-              input_type: "number",
-              label_text: "Max Length"
+              inputId:
+                "template-field-" + _vm.templateField.order + "-max-length",
+              inputName:
+                "template-field-" + _vm.templateField.order + "-max-length",
+              inputType: "number",
+              labelText: "Max Length"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
-              value: _vm.editable_field_settings.max_length,
+              value: _vm.editableFieldSettings.max_length,
               callback: function($$v) {
-                _vm.$set(_vm.editable_field_settings, "max_length", $$v)
+                _vm.$set(_vm.editableFieldSettings, "max_length", $$v)
               },
-              expression: "editable_field_settings.max_length"
+              expression: "editableFieldSettings.max_length"
             }
           }),
           _vm._v(" "),
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              input_id:
-                "template-field-" + _vm.template_field.order + "-max-length",
-              input_name:
-                "template-field-" + _vm.template_field.order + "-max-length",
-              input_type: "text",
-              label_text: "Rows"
+              inputId: "template-field-" + _vm.templateField.order + "-rows",
+              inputName: "template-field-" + _vm.templateField.order + "-rows",
+              inputType: "text",
+              labelText: "Rows"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
-              value: _vm.editable_field_settings.rows,
+              value: _vm.editableFieldSettings.rows,
               callback: function($$v) {
-                _vm.$set(_vm.editable_field_settings, "rows", $$v)
+                _vm.$set(_vm.editableFieldSettings, "rows", $$v)
               },
-              expression: "editable_field_settings.rows"
+              expression: "editableFieldSettings.rows"
             }
           })
         ],
@@ -6734,20 +6711,19 @@ var render = function() {
       _c("input-group", {
         staticClass: "mt-4",
         attrs: {
-          input_id:
-            "template-field-" + _vm.template_field.order + "-max-length",
-          input_name:
-            "template-field-" + _vm.template_field.order + "-max-length",
-          input_type: "number",
-          label_text: "Max Length"
+          inputId: "template-field-" + _vm.templateField.order + "-max-length",
+          inputName:
+            "template-field-" + _vm.templateField.order + "-max-length",
+          inputType: "number",
+          labelText: "Max Length"
         },
         on: { input: _vm.onEditableSettingsChange },
         model: {
-          value: _vm.editable_field_settings.max_length,
+          value: _vm.editableFieldSettings.max_length,
           callback: function($$v) {
-            _vm.$set(_vm.editable_field_settings, "max_length", $$v)
+            _vm.$set(_vm.editableFieldSettings, "max_length", $$v)
           },
-          expression: "editable_field_settings.max_length"
+          expression: "editableFieldSettings.max_length"
         }
       })
     ],
@@ -6780,13 +6756,13 @@ var render = function() {
   return _c("div", { staticClass: "flex flex-col" }, [
     _c(
       "label",
-      { class: _vm.label_class, attrs: { for: _vm.checkbox_id } },
+      { class: _vm.labelClass, attrs: { for: _vm.checkboxId } },
       [
         _vm._t("default", [
           _c("span", { staticClass: "flex flex-row items-baseline" }, [
-            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _c("span", [_vm._v(_vm._s(_vm.labelText))]),
             _vm._v(" "),
-            _vm.checkbox_required
+            _vm.checkboxRequired
               ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                   _vm._v("\n                    *\n                ")
                 ])
@@ -6802,47 +6778,45 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.editable_value,
-          expression: "editable_value"
+          value: _vm.editableValue,
+          expression: "editableValue"
         }
       ],
-      ref: _vm.checkbox_id,
-      class: _vm.formatted_checkbox_class,
+      ref: _vm.checkboxId,
+      class: _vm.formattedCheckboxClass,
       attrs: {
-        id: _vm.checkbox_id,
-        disabled: _vm.checkbox_disabled,
-        "false-value": _vm.checkbox_value_false,
-        name: _vm.checkbox_name,
-        required: _vm.checkbox_required,
-        "true-value": _vm.checkbox_value_true,
+        id: _vm.checkboxId,
+        disabled: _vm.checkboxDisabled,
+        "false-value": _vm.checkboxDisabled,
+        name: _vm.checkboxName,
+        required: _vm.checkboxRequired,
+        "true-value": _vm.checkboxValueTrue,
         type: "checkbox"
       },
       domProps: {
-        checked: Array.isArray(_vm.editable_value)
-          ? _vm._i(_vm.editable_value, null) > -1
-          : _vm._q(_vm.editable_value, _vm.checkbox_value_true)
+        checked: Array.isArray(_vm.editableValue)
+          ? _vm._i(_vm.editableValue, null) > -1
+          : _vm._q(_vm.editableValue, _vm.checkboxValueTrue)
       },
       on: {
         change: [
           function($event) {
-            var $$a = _vm.editable_value,
+            var $$a = _vm.editableValue,
               $$el = $event.target,
-              $$c = $$el.checked
-                ? _vm.checkbox_value_true
-                : _vm.checkbox_value_false
+              $$c = $$el.checked ? _vm.checkboxValueTrue : _vm.checkboxDisabled
             if (Array.isArray($$a)) {
               var $$v = null,
                 $$i = _vm._i($$a, $$v)
               if ($$el.checked) {
-                $$i < 0 && (_vm.editable_value = $$a.concat([$$v]))
+                $$i < 0 && (_vm.editableValue = $$a.concat([$$v]))
               } else {
                 $$i > -1 &&
-                  (_vm.editable_value = $$a
+                  (_vm.editableValue = $$a
                     .slice(0, $$i)
                     .concat($$a.slice($$i + 1)))
               }
             } else {
-              _vm.editable_value = $$c
+              _vm.editableValue = $$c
             }
           },
           _vm.onCheckboxChange
@@ -6863,11 +6837,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -6904,13 +6878,13 @@ var render = function() {
   return _c("div", { staticClass: "flex flex-col" }, [
     _c(
       "label",
-      { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
+      { class: _vm.formattedLabelClass, attrs: { for: _vm.inputId } },
       [
         _vm._t("default", [
           _c("span", { staticClass: "flex flex-row items-baseline" }, [
-            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _c("span", [_vm._v(_vm._s(_vm.labelText))]),
             _vm._v(" "),
-            _vm.input_required
+            _vm.inputRequired
               ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                   _vm._v("\n                    *\n                ")
                 ])
@@ -6922,22 +6896,22 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("input", {
-      ref: _vm.input_id,
-      class: _vm.formatted_input_class,
+      ref: _vm.inputId,
+      class: _vm.formattedInputClass,
       attrs: {
-        id: _vm.input_id,
-        autocomplete: _vm.input_autocomplete,
-        disabled: _vm.input_disabled,
-        max: _vm.input_max,
-        maxlength: _vm.input_maxlength,
-        min: _vm.input_min,
-        minlength: _vm.input_minlength,
-        name: _vm.input_name,
-        placeholder: _vm.input_placeholder,
-        required: _vm.input_required,
-        type: _vm.input_type
+        id: _vm.inputId,
+        autocomplete: _vm.inputAutocomplete,
+        disabled: _vm.inputDisabled,
+        max: _vm.inputMax,
+        maxlength: _vm.inputMaxLength,
+        min: _vm.inputMin,
+        minlength: _vm.inputMinLength,
+        name: _vm.inputName,
+        placeholder: _vm.inputPlaceholder,
+        required: _vm.inputRequired,
+        type: _vm.inputType
       },
-      domProps: { value: _vm.input_value },
+      domProps: { value: _vm.inputValue },
       on: {
         blur: _vm.onInputBlur,
         input: _vm.onInputKeyPress,
@@ -6957,11 +6931,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -6998,13 +6972,13 @@ var render = function() {
   return _c("div", { staticClass: "flex flex-col" }, [
     _c(
       "label",
-      { class: _vm.formatted_label_class, attrs: { for: _vm.select_id } },
+      { class: _vm.formattedLabelClass, attrs: { for: _vm.selectId } },
       [
         _vm._t("default", [
           _c("span", { staticClass: "flex flex-row items-baseline" }, [
-            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _c("span", [_vm._v(_vm._s(_vm.labelText))]),
             _vm._v(" "),
-            _vm.select_required
+            _vm.selectRequired
               ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                   _vm._v("\n                    *\n                ")
                 ])
@@ -7018,13 +6992,13 @@ var render = function() {
     _c(
       "select",
       {
-        ref: _vm.select_id,
-        class: _vm.formatted_select_class,
+        ref: _vm.selectId,
+        class: _vm.formattedSelectClass,
         attrs: {
-          id: _vm.select_id,
-          disabled: _vm.select_disabled,
-          name: _vm.select_name,
-          required: _vm.select_required
+          id: _vm.selectId,
+          disabled: _vm.selectDisabled,
+          name: _vm.selectName,
+          required: _vm.selectRequired
         },
         on: {
           change: _vm.onSelectChange,
@@ -7040,29 +7014,29 @@ var render = function() {
         }
       },
       [
-        _vm.select_any_enabled
+        _vm.selectAnyEnabled
           ? _c(
               "option",
               {
-                attrs: { disabled: _vm.isOptionDisabled(_vm.select_any_value) },
+                attrs: { disabled: _vm.isOptionDisabled(_vm.selectAnyValue) },
                 domProps: {
-                  selected: _vm.isOptionSelected(_vm.select_any_value),
-                  value: _vm.select_any_value
+                  selected: _vm.isOptionSelected(_vm.selectAnyValue),
+                  value: _vm.selectAnyValue
                 }
               },
               [
                 _vm._v(
-                  "\n            " + _vm._s(_vm.select_any_label) + "\n        "
+                  "\n            " + _vm._s(_vm.selectAnyLabel) + "\n        "
                 )
               ]
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.formatted_options, function(option, key) {
+        _vm._l(_vm.formattedOptions, function(option, key) {
           return _c(
             "option",
             {
-              key: _vm.select_id + "-option-" + option.value,
+              key: _vm.selectId + "-option-" + option.value,
               attrs: { disabled: _vm.isOptionDisabled(option.value) },
               domProps: {
                 selected: _vm.isOptionSelected(option.value),
@@ -7080,11 +7054,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -7187,84 +7161,83 @@ var render = function() {
           [
             _c("select-group", {
               attrs: {
-                error_message: _vm.getPageErrorMessage("type"),
-                label_text: "Template Type",
-                select_any_enabled: true,
-                select_any_label: "Please select a template type",
-                select_autofocus: true,
-                select_id: "type",
-                select_name: "type",
-                select_options: _vm.template_types,
-                select_required: true,
-                select_type: "text"
+                errorMessage: _vm.getPageErrorMessage("type"),
+                labelText: "Template Type",
+                selectAnyEnabled: true,
+                selectAnyLabel: "Please select a template type",
+                selectAutoFocus: true,
+                selectId: "type",
+                selectName: "type",
+                selectOptions: _vm.templateTypes,
+                selectRequired: true
               },
               model: {
-                value: _vm.form_data.type,
+                value: _vm.formData.type,
                 callback: function($$v) {
-                  _vm.$set(_vm.form_data, "type", $$v)
+                  _vm.$set(_vm.formData, "type", $$v)
                 },
-                expression: "form_data.type"
+                expression: "formData.type"
               }
             }),
             _vm._v(" "),
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                error_message: _vm.getPageErrorMessage("name"),
-                input_autocomplete: "template_name",
-                input_id: "name",
-                input_name: "name",
-                input_required: true,
-                input_type: "text",
-                label_text: "Template Name"
+                errorMessage: _vm.getPageErrorMessage("name"),
+                inputAutocomplete: "template_name",
+                inputId: "name",
+                inputName: "name",
+                inputRequired: true,
+                inputType: "text",
+                labelText: "Template Name"
               },
               on: { input: _vm.onNameInput },
               model: {
-                value: _vm.form_data.name,
+                value: _vm.formData.name,
                 callback: function($$v) {
-                  _vm.$set(_vm.form_data, "name", $$v)
+                  _vm.$set(_vm.formData, "name", $$v)
                 },
-                expression: "form_data.name"
+                expression: "formData.name"
               }
             }),
             _vm._v(" "),
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                error_message: _vm.getPageErrorMessage("slug"),
-                input_autocomplete: "template_slug",
-                input_id: "slug",
-                input_name: "slug",
-                input_required: true,
-                input_type: "text",
-                label_text: "Template Slug"
+                errorMessage: _vm.getPageErrorMessage("slug"),
+                inputAutocomplete: "template_slug",
+                inputId: "slug",
+                inputName: "slug",
+                inputRequired: true,
+                inputType: "text",
+                labelText: "Template Slug"
               },
               on: { blur: _vm.onSlugBlur, input: _vm.onSlugInput },
               model: {
-                value: _vm.form_data.slug,
+                value: _vm.formData.slug,
                 callback: function($$v) {
-                  _vm.$set(_vm.form_data, "slug", $$v)
+                  _vm.$set(_vm.formData, "slug", $$v)
                 },
-                expression: "form_data.slug"
+                expression: "formData.slug"
               }
             }),
             _vm._v(" "),
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                error_message: _vm.getPageErrorMessage("description"),
-                input_autocomplete: "template_description",
-                input_id: "description",
-                input_name: "description",
-                input_type: "text",
-                label_text: "Description"
+                errorMessage: _vm.getPageErrorMessage("description"),
+                inputAutocomplete: "template_description",
+                inputId: "description",
+                inputName: "description",
+                inputType: "text",
+                labelText: "Description"
               },
               model: {
-                value: _vm.form_data.description,
+                value: _vm.formData.description,
                 callback: function($$v) {
-                  _vm.$set(_vm.form_data, "description", $$v)
+                  _vm.$set(_vm.formData, "description", $$v)
                 },
-                expression: "form_data.description"
+                expression: "formData.description"
               }
             })
           ],
@@ -7282,15 +7255,15 @@ var render = function() {
             [
               _c("template-field-editor", {
                 attrs: {
-                  template_field_settings: _vm.template_field_settings,
-                  template_field_types: _vm.template_field_types
+                  templateFieldSettings: _vm.templateFieldSettings,
+                  templateFieldTypes: _vm.templateFieldTypes
                 },
                 model: {
-                  value: _vm.form_data.template_fields,
+                  value: _vm.formData.template_fields,
                   callback: function($$v) {
-                    _vm.$set(_vm.form_data, "template_fields", $$v)
+                    _vm.$set(_vm.formData, "template_fields", $$v)
                   },
-                  expression: "form_data.template_fields"
+                  expression: "formData.template_fields"
                 }
               })
             ],

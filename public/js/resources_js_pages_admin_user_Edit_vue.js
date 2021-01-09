@@ -61,127 +61,123 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InlineCheckboxGroup",
   model: {
-    prop: 'checkbox_value'
+    prop: 'checkboxValue'
   },
   props: {
-    allow_parent_updates: {
-      "default": true,
-      type: Boolean
-    },
-    error_class: {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_change: {
+    errorHideOnChange: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: String
     },
-    checkbox_autofocus: {
+    checkboxAutofocus: {
       "default": false,
       type: Boolean
     },
-    checkbox_class: {
+    checkboxClass: {
       "default": 'cursor-pointer form-checkbox h-5 mr-2 rounded text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:ring focus:ring-primary',
       type: String
     },
-    checkbox_disabled: {
+    checkboxDisabled: {
       "default": false,
       type: Boolean
     },
-    checkbox_id: {
+    checkboxId: {
       required: true,
       type: String
     },
-    checkbox_name: {
+    checkboxName: {
       required: true,
       type: String
     },
-    checkbox_required: {
+    checkboxRequired: {
       "default": false,
       type: Boolean
     },
-    checkbox_value: {
+    checkboxValue: {
       "default": false,
       type: String | Number | Boolean
     },
-    checkbox_value_false: {
+    checkboxValueFalse: {
       "default": false,
       type: String | Number | Boolean
     },
-    checkbox_value_true: {
+    checkboxValueTrue: {
       "default": true,
       type: String | Number | Boolean
     },
-    label_class: {
+    labelClass: {
       "default": 'cursor-pointer flex-1 font-medium select-none text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
-    label_text: {
+    labelText: {
       required: true,
       type: String
     }
   },
   data: function data() {
     return {
-      editable_value: false,
-      hide_error: false
+      editableValue: false,
+      hideError: false
     };
   },
   computed: {
-    formatted_checkbox_class: function formatted_checkbox_class() {
-      if (this.is_error) {
-        return this.checkbox_class + ' error';
+    formattedCheckboxClass: function formattedCheckboxClass() {
+      if (this.isError) {
+        return this.checkboxClass + ' error';
       }
 
-      return this.checkbox_class;
+      return this.checkboxClass;
     },
-    is_checked: function is_checked() {
-      return this.editable_value === this.checkbox_value_true;
+    isChecked: function isChecked() {
+      return this.editableValue === this.checkboxValueTrue;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     }
   },
   mounted: function mounted() {
-    this.editable_value = this.checkbox_value;
+    this.editableValue = this.checkboxValue;
     this.autofocus();
   },
   methods: {
     autofocus: function autofocus() {
       var _this = this;
 
-      if (this.checkbox_autofocus && this.$refs[this.checkbox_id]) {
+      if (this.checkboxAutofocus && this.$refs[this.checkboxId]) {
         this.$nextTick(function () {
-          _this.$refs[_this.checkbox_id].focus();
+          _this.$refs[_this.checkboxId].focus();
         });
       }
     },
     blurCheckbox: function blurCheckbox() {
       var _this2 = this;
 
-      if (this.$refs[this.checkbox_id]) {
+      if (this.$refs[this.checkboxId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.checkbox_id].blur();
+          _this2.$refs[_this2.checkboxId].blur();
         });
       }
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
-    onCheckboxChange: function onCheckboxChange(e) {
-      this.$emit('input', this.is_checked ? this.checkbox_value_true : this.checkbox_value_false);
+    onCheckboxChange: function onCheckboxChange() {
+      this.$emit('input', this.isChecked ? this.checkboxValueTrue : this.checkboxValueFalse);
 
-      if (this.error_hide_on_change) {
-        this.hide_error = true;
+      if (this.errorHideOnChange) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -255,118 +251,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InputGroup",
   model: {
-    prop: 'input_value'
+    prop: 'inputValue'
   },
   props: {
-    allow_parent_updates: {
-      "default": true,
-      type: Boolean
-    },
-    error_class: {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_input: {
+    errorHideOnInput: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: false | String
     },
-    input_autocomplete: {
+    inputAutocomplete: {
       "default": '',
       type: String
     },
-    input_autofocus: {
+    inputAutofocus: {
       "default": false,
       type: Boolean
     },
-    input_class: {
+    inputClass: {
       "default": 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
       type: String
     },
-    input_disabled: {
+    inputDisabled: {
       "default": false,
       type: Boolean
     },
-    input_id: {
+    inputId: {
       required: true,
       type: String
     },
-    input_max: {
+    inputMax: {
       "default": '',
       type: String | Number
     },
-    input_maxlength: {
+    inputMaxLength: {
       "default": '',
       type: String | Number
     },
-    input_min: {
+    inputMin: {
       "default": '',
       type: String | Number
     },
-    input_minlength: {
+    inputMinLength: {
       "default": '',
       type: String | Number
     },
-    input_name: {
+    inputName: {
       required: true,
       type: String
     },
-    input_placeholder: {
+    inputPlaceholder: {
       "default": '',
       type: String
     },
-    input_required: {
+    inputRequired: {
       "default": false,
       type: Boolean
     },
-    input_type: {
+    inputType: {
       "default": 'text',
       type: String
     },
-    input_value: {
+    inputValue: {
       "default": '',
       type: String | Number
     },
-    label_class: {
+    labelClass: {
       "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
-    label_hidden: {
+    labelHidden: {
       "default": false,
       type: Boolean
     },
-    label_text: {
+    labelText: {
       required: true,
       type: String
     }
   },
   data: function data() {
     return {
-      hide_error: false
+      hideError: false
     };
   },
   computed: {
-    formatted_input_class: function formatted_input_class() {
-      if (this.is_error) {
-        return this.input_class + ' error';
+    formattedInputClass: function formattedInputClass() {
+      if (this.isError) {
+        return this.inputClass + ' error';
       }
 
-      return this.input_class;
+      return this.inputClass;
     },
-    formatted_label_class: function formatted_label_class() {
-      var label_class = this.label_class;
+    formattedLabelClass: function formattedLabelClass() {
+      var labelClass = this.labelClass;
 
-      if (this.label_hidden) {
-        label_class += ' hidden';
+      if (this.labelHidden) {
+        labelClass += ' hidden';
       }
 
-      return label_class;
+      return labelClass;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     }
   },
   mounted: function mounted() {
@@ -376,37 +368,37 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this = this;
 
-      if (this.input_autofocus && this.$refs[this.input_id]) {
+      if (this.inputAutofocus && this.$refs[this.inputId]) {
         this.$nextTick(function () {
-          _this.$refs[_this.input_id].focus();
+          _this.$refs[_this.inputId].focus();
         });
       }
     },
     blurInput: function blurInput() {
       var _this2 = this;
 
-      if (this.$refs[this.input_id]) {
+      if (this.$refs[this.inputId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.input_id].blur();
+          _this2.$refs[_this2.inputId].blur();
         });
       }
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
     onInputBlur: function onInputBlur() {
       this.$emit('blur');
     },
     onInputKeyPress: function onInputKeyPress() {
-      this.$emit('input', this.$refs[this.input_id].value);
+      this.$emit('input', this.$refs[this.inputId].value);
 
-      if (this.error_hide_on_input) {
-        this.hide_error = true;
+      if (this.errorHideOnInput) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -560,7 +552,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   layout: 'admin-layout',
   props: {
-    selectable_roles: {
+    selectableRoles: {
       required: true,
       type: Object
     },
@@ -575,16 +567,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    is_current_user: function is_current_user() {
+    isCurrentUser: function isCurrentUser() {
       try {
         return this.user.id === this.$page.props.auth.user.id;
       } catch (e) {
         return false;
       }
     },
-    is_selectable_roles: function is_selectable_roles() {
+    isSelectableRoles: function isSelectableRoles() {
       try {
-        return Object.keys(this.selectable_roles).length > 0;
+        return Object.keys(this.selectableRoles).length > 0;
       } catch (e) {
         return false;
       }
@@ -597,13 +589,18 @@ __webpack_require__.r(__webpack_exports__);
       last_name: this.user.last_name,
       roles: this.user.roles
     };
+
+    if (Array.isArray(this.formData.roles)) {
+      this.formData.roles = {};
+    }
+
     this.initialiseRoles();
   },
   methods: {
     initialiseRoles: function initialiseRoles() {
       var _this = this;
 
-      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.selectable_roles, function (role_label, role_key) {
+      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.selectableRoles, function (role_label, role_key) {
         {
           if (!_this.formData.roles.hasOwnProperty(role_key)) {
             _this.formData.roles[role_key] = false;
@@ -858,47 +855,47 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.editable_value,
-            expression: "editable_value"
+            value: _vm.editableValue,
+            expression: "editableValue"
           }
         ],
-        ref: _vm.checkbox_id,
-        class: _vm.formatted_checkbox_class,
+        ref: _vm.checkboxId,
+        class: _vm.formattedCheckboxClass,
         attrs: {
-          id: _vm.checkbox_id,
-          disabled: _vm.checkbox_disabled,
-          "false-value": _vm.checkbox_value_false,
-          name: _vm.checkbox_name,
-          required: _vm.checkbox_required,
-          "true-value": _vm.checkbox_value_true,
+          id: _vm.checkboxId,
+          disabled: _vm.checkboxDisabled,
+          "false-value": _vm.checkboxValueFalse,
+          name: _vm.checkboxName,
+          required: _vm.checkboxRequired,
+          "true-value": _vm.checkboxValueTrue,
           type: "checkbox"
         },
         domProps: {
-          checked: Array.isArray(_vm.editable_value)
-            ? _vm._i(_vm.editable_value, null) > -1
-            : _vm._q(_vm.editable_value, _vm.checkbox_value_true)
+          checked: Array.isArray(_vm.editableValue)
+            ? _vm._i(_vm.editableValue, null) > -1
+            : _vm._q(_vm.editableValue, _vm.checkboxValueTrue)
         },
         on: {
           change: [
             function($event) {
-              var $$a = _vm.editable_value,
+              var $$a = _vm.editableValue,
                 $$el = $event.target,
                 $$c = $$el.checked
-                  ? _vm.checkbox_value_true
-                  : _vm.checkbox_value_false
+                  ? _vm.checkboxValueTrue
+                  : _vm.checkboxValueFalse
               if (Array.isArray($$a)) {
                 var $$v = null,
                   $$i = _vm._i($$a, $$v)
                 if ($$el.checked) {
-                  $$i < 0 && (_vm.editable_value = $$a.concat([$$v]))
+                  $$i < 0 && (_vm.editableValue = $$a.concat([$$v]))
                 } else {
                   $$i > -1 &&
-                    (_vm.editable_value = $$a
+                    (_vm.editableValue = $$a
                       .slice(0, $$i)
                       .concat($$a.slice($$i + 1)))
                 }
               } else {
-                _vm.editable_value = $$c
+                _vm.editableValue = $$c
               }
             },
             _vm.onCheckboxChange
@@ -915,11 +912,11 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("label", { class: _vm.label_class, attrs: { for: _vm.checkbox_id } }, [
+      _c("label", { class: _vm.labelClass, attrs: { for: _vm.checkboxId } }, [
         _c("span", { staticClass: "flex flex-row items-baseline" }, [
-          _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+          _c("span", [_vm._v(_vm._s(_vm.labelText))]),
           _vm._v(" "),
-          _vm.checkbox_required
+          _vm.checkboxRequired
             ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                 _vm._v("\n                    *\n                ")
               ])
@@ -932,11 +929,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -973,13 +970,13 @@ var render = function() {
   return _c("div", { staticClass: "flex flex-col" }, [
     _c(
       "label",
-      { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
+      { class: _vm.formattedLabelClass, attrs: { for: _vm.inputId } },
       [
         _vm._t("default", [
           _c("span", { staticClass: "flex flex-row items-baseline" }, [
-            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _c("span", [_vm._v(_vm._s(_vm.labelText))]),
             _vm._v(" "),
-            _vm.input_required
+            _vm.inputRequired
               ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                   _vm._v("\n                    *\n                ")
                 ])
@@ -991,22 +988,22 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("input", {
-      ref: _vm.input_id,
-      class: _vm.formatted_input_class,
+      ref: _vm.inputId,
+      class: _vm.formattedInputClass,
       attrs: {
-        id: _vm.input_id,
-        autocomplete: _vm.input_autocomplete,
-        disabled: _vm.input_disabled,
-        max: _vm.input_max,
-        maxlength: _vm.input_maxlength,
-        min: _vm.input_min,
-        minlength: _vm.input_minlength,
-        name: _vm.input_name,
-        placeholder: _vm.input_placeholder,
-        required: _vm.input_required,
-        type: _vm.input_type
+        id: _vm.inputId,
+        autocomplete: _vm.inputAutocomplete,
+        disabled: _vm.inputDisabled,
+        max: _vm.inputMax,
+        maxlength: _vm.inputMaxLength,
+        min: _vm.inputMin,
+        minlength: _vm.inputMinLength,
+        name: _vm.inputName,
+        placeholder: _vm.inputPlaceholder,
+        required: _vm.inputRequired,
+        type: _vm.inputType
       },
-      domProps: { value: _vm.input_value },
+      domProps: { value: _vm.inputValue },
       on: {
         blur: _vm.onInputBlur,
         input: _vm.onInputKeyPress,
@@ -1026,11 +1023,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -1143,14 +1140,14 @@ var render = function() {
           [
             _c("input-group", {
               attrs: {
-                error_message: _vm.getPageErrorMessage("first_name"),
-                input_autocomplete: "off",
-                input_autofocus: true,
-                input_id: "first_name",
-                input_name: "first_name",
-                input_required: true,
-                input_type: "text",
-                label_text: "First Name"
+                errorMessage: _vm.getPageErrorMessage("first_name"),
+                inputAutocomplete: "off",
+                inputAutofocus: true,
+                inputId: "first_name",
+                inputName: "first_name",
+                inputRequired: true,
+                inputType: "text",
+                labelText: "First Name"
               },
               model: {
                 value: _vm.formData.first_name,
@@ -1164,13 +1161,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                error_message: _vm.getPageErrorMessage("last_name"),
-                input_autocomplete: "off",
-                input_id: "last_name",
-                input_name: "last_name",
-                input_required: true,
-                input_type: "text",
-                label_text: "Last Name"
+                errorMessage: _vm.getPageErrorMessage("last_name"),
+                inputAutocomplete: "off",
+                inputId: "last_name",
+                inputName: "last_name",
+                inputRequired: true,
+                inputType: "text",
+                labelText: "Last Name"
               },
               model: {
                 value: _vm.formData.last_name,
@@ -1184,13 +1181,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                error_message: _vm.getPageErrorMessage("email"),
-                input_autocomplete: "off",
-                input_id: "email",
-                input_name: "email",
-                input_required: true,
-                input_type: "email",
-                label_text: "Email"
+                errorMessage: _vm.getPageErrorMessage("email"),
+                inputAutocomplete: "off",
+                inputId: "email",
+                inputName: "email",
+                inputRequired: true,
+                inputType: "email",
+                labelText: "Email"
               },
               model: {
                 value: _vm.formData.email,
@@ -1205,7 +1202,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm.is_selectable_roles
+      _vm.isSelectableRoles
         ? _c(
             "div",
             { staticClass: "bg-white mt-6 py-6 shadow-subtle rounded-lg" },
@@ -1223,13 +1220,13 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "space-y-3" },
-                  _vm._l(_vm.selectable_roles, function(role_label, role_key) {
+                  _vm._l(_vm.selectableRoles, function(role_label, role_key) {
                     return _c("inline-checkbox-group", {
                       key: "user-role-" + role_key,
                       attrs: {
-                        checkbox_id: "user-role-" + role_key,
-                        checkbox_name: "user-role-" + role_key,
-                        label_text: role_label
+                        checkboxId: "user-role-" + role_key,
+                        checkboxName: "user-role-" + role_key,
+                        labelText: role_label
                       },
                       model: {
                         value: _vm.formData.roles[role_key],

@@ -38,8 +38,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    error_description: function error_description() {
-      if (!this.is_allowed_error) {
+    errorDescription: function errorDescription() {
+      if (!this.isAllowedError) {
         return 'Whoops, something went wrong on our servers. We are looking into it.';
       }
 
@@ -50,8 +50,8 @@ __webpack_require__.r(__webpack_exports__);
         503: 'Sorry, we are doing some maintenance. Please check back soon.'
       }[this.status];
     },
-    error_title_class: function error_title_class() {
-      if (!this.is_allowed_error) {
+    errorTitleCase: function errorTitleCase() {
+      if (!this.isAllowedError) {
         return 'text-theme-danger-contrast';
       }
 
@@ -62,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
         503: 'text-theme-primary'
       }[this.status];
     },
-    is_allowed_error: function is_allowed_error() {
+    isAllowedError: function isAllowedError() {
       var allowed_errors = [403, 404, 500, 503];
       return allowed_errors.indexOf(this.status) >= 0;
     }
@@ -168,12 +168,12 @@ var render = function() {
           "h1",
           {
             staticClass: "font-black text-7xl text-center",
-            class: _vm.error_title_class
+            class: _vm.errorTitleCase
           },
           [
             _vm._v(
               "\n            " +
-                _vm._s(_vm.is_allowed_error ? _vm.status : "Error") +
+                _vm._s(_vm.isAllowedError ? _vm.status : "Error") +
                 "\n        "
             )
           ]
@@ -187,7 +187,7 @@ var render = function() {
           },
           [
             _vm._v(
-              "\n            " + _vm._s(_vm.error_description) + "\n        "
+              "\n            " + _vm._s(_vm.errorDescription) + "\n        "
             )
           ]
         )
