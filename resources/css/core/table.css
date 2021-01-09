@@ -26,6 +26,14 @@
     tbody {
         td {
             padding: var(--table-padding-body-y)  var(--table-padding-body-x);
+
+            &.indicator-column {
+                padding-right: 0;
+            }
+
+            &.slim {
+                padding: var(--table-padding-body-y)  var(--table-padding-body-x-slim);
+            }
         }
 
         tr {
@@ -46,6 +54,14 @@
         th {
             @apply font-normal;
             padding: var(--table-padding-header-y)  var(--table-padding-header-x);
+
+            &.indicator-column {
+                padding-right: 0;
+            }
+
+            &.slim {
+                padding: var(--table-padding-header-y)  var(--table-padding-header-x-slim);
+            }
         }
 
         tr {
