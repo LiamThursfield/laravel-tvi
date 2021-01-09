@@ -56,7 +56,6 @@
                     @click="closeError"
                 >
                   <icon-close class="w-5 hover:text-theme-danger-hover-contrast" />
-                  <icon-close class="w-5 hover:text-theme-danger-hover-contrast" />
                 </button>
             </div>
         </transition-group>
