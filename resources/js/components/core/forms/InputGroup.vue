@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="formatted_label_class"
-            :for="input_id"
+            :class="formattedLabelClass"
+            :for="inputId"
         >
             <slot>
                 <span class="flex flex-row items-baseline">
-                    <span>{{ label_text }}</span>
+                    <span>{{ labelText }}</span>
                     <sup
-                        v-if="input_required"
+                        v-if="inputRequired"
                         class="text-theme-danger-contrast"
                     >
                         *
@@ -18,20 +18,20 @@
         </label>
 
         <input
-            :id="input_id"
-            :class="formatted_input_class"
-            :autocomplete="input_autocomplete"
-            :disabled="input_disabled"
-            :max="input_max"
-            :maxlength="input_maxlength"
-            :min="input_min"
-            :minlength="input_minlength"
-            :name="input_name"
-            :placeholder="input_placeholder"
-            :ref="input_id"
-            :required="input_required"
-            :type="input_type"
-            :value="input_value"
+            :id="inputId"
+            :class="formattedInputClass"
+            :autocomplete="inputAutocomplete"
+            :disabled="inputDisabled"
+            :max="inputMax"
+            :maxlength="inputMaxLength"
+            :min="inputMin"
+            :minlength="inputMinLength"
+            :name="inputName"
+            :placeholder="inputPlaceholder"
+            :ref="inputId"
+            :required="inputRequired"
+            :type="inputType"
+            :value="inputValue"
             @blur="onInputBlur"
             @input="onInputKeyPress"
             @keyup.esc="blurInput"
@@ -40,10 +40,10 @@
         <div>
             <transition name="slide-down-fade">
                 <p
-                    v-if="is_error"
-                    :class="error_class"
+                    v-if="isError"
+                    :class="errorClass"
                 >
-                    {{ error_message}}
+                    {{ errorMessage }}
                 </p>
             </transition>
         </div>
@@ -54,117 +54,113 @@
     export default {
         name: "InputGroup",
         model: {
-            prop: 'input_value'
+            prop: 'inputValue'
         },
         props: {
-            allow_parent_updates: {
-                default: true,
-                type: Boolean
-            },
-            error_class: {
+            errorClass: {
                 default: 'mt-1 text-red-500 text-sm',
                 type: String
             },
-            error_hide_on_input: {
+            errorHideOnInput: {
                 default: true,
                 type: Boolean
             },
-            error_message: {
+            errorMessage: {
                 default: '',
                 type: false | String
             },
-            input_autocomplete: {
+            inputAutocomplete: {
                 default: '',
                 type: String
             },
-            input_autofocus: {
+            inputAutofocus: {
                 default: false,
                 type: Boolean
             },
-            input_class: {
+            inputClass: {
                 default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
                 type: String
             },
-            input_disabled: {
+            inputDisabled: {
                 default: false,
                 type: Boolean
             },
-            input_id: {
+            inputId: {
                 required: true,
                 type: String
             },
-            input_max: {
+            inputMax: {
                 default: '',
                 type: String | Number
             },
-            input_maxlength: {
+            inputMaxLength: {
                 default: '',
                 type: String | Number
             },
-            input_min: {
+            inputMin: {
                 default: '',
                 type: String | Number
             },
-            input_minlength: {
+            inputMinLength: {
                 default: '',
                 type: String | Number
             },
-            input_name: {
+            inputName: {
                 required: true,
                 type: String
             },
-            input_placeholder: {
+            inputPlaceholder: {
                 default: '',
                 type: String
             },
-            input_required: {
+            inputRequired: {
                 default: false,
                 type: Boolean
             },
-            input_type: {
+            inputType: {
                 default: 'text',
                 type: String
             },
-            input_value: {
+            inputValue: {
                 default: '',
                 type: String | Number
             },
-            label_class: {
+            labelClass: {
                 default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
-            label_hidden: {
+            labelHidden: {
                 default: false,
                 type: Boolean
             },
-            label_text: {
+            labelText: {
                 required: true,
                 type: String
             },
         },
         data() {
             return  {
-                hide_error: false
+                hideError: false
             }
         },
         computed: {
-            formatted_input_class() {
-                if (this.is_error) {
-                    return this.input_class + ' error';
+            formattedInputClass() {
+                if (this.isError) {
+                    return this.inputClass + ' error';
                 }
-                return this.input_class;
+                return this.inputClass;
             },
-            formatted_label_class() {
-                let label_class = this.label_class;
+            formattedLabelClass() {
+                let labelClass = this.labelClass;
 
-                if (this.label_hidden) {
-                    label_class += ' hidden';
+                if (this.labelHidden) {
+                    labelClass += ' hidden';
                 }
 
-                return label_class;
+                return labelClass;
             },
-            is_error() {
-                return !this.hide_error && this.error_message && this.error_message !== '';
+            isError() {
+                return !this.hideError && this.errorMessage && this.errorMessage !== '';
             }
         },
         mounted() {
@@ -172,35 +168,35 @@
         },
         methods: {
             autofocus() {
-                if (this.input_autofocus && this.$refs[this.input_id]) {
+                if (this.inputAutofocus && this.$refs[this.inputId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.input_id].focus();
+                        this.$refs[this.inputId].focus();
                     });
                 }
             },
             blurInput() {
-                if (this.$refs[this.input_id]) {
+                if (this.$refs[this.inputId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.input_id].blur();
+                        this.$refs[this.inputId].blur();
                     });
                 }
             },
             onErrorMessageChange() {
-                this.hide_error = false;
+                this.hideError = false;
             },
             onInputBlur() {
                 this.$emit('blur');
             },
             onInputKeyPress() {
-                this.$emit('input', this.$refs[this.input_id].value);
+                this.$emit('input', this.$refs[this.inputId].value);
 
-                if (this.error_hide_on_input) {
-                    this.hide_error = true;
+                if (this.errorHideOnInput) {
+                    this.hideError = true;
                 }
             },
         },
         watch: {
-            error_message: {
+            errorMessage: {
                 handler: "onErrorMessageChange"
             },
         }

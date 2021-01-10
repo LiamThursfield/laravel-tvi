@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="label_class"
-            :for="checkbox_id"
+            :class="labelClass"
+            :for="checkboxId"
         >
             <slot>
                 <span class="flex flex-row items-baseline">
-                    <span>{{ label_text }}</span>
+                    <span>{{ labelText }}</span>
                     <sup
-                        v-if="checkbox_required"
+                        v-if="checkboxRequired"
                         class="text-theme-danger-contrast"
                     >
                         *
@@ -18,27 +18,27 @@
         </label>
 
         <input
-            :id="checkbox_id"
-            :class="formatted_checkbox_class"
-            :disabled="checkbox_disabled"
-            :false-value="checkbox_value_false"
-            :name="checkbox_name"
-            :ref="checkbox_id"
-            :required="checkbox_required"
-            :true-value="checkbox_value_true"
+            :id="checkboxId"
+            :class="formattedCheckboxClass"
+            :disabled="checkboxDisabled"
+            :false-value="checkboxDisabled"
+            :name="checkboxName"
+            :ref="checkboxId"
+            :required="checkboxRequired"
+            :true-value="checkboxValueTrue"
             type="checkbox"
             @change="onCheckboxChange"
             @keyup.esc="blurCheckbox"
-            v-model="editable_value"
+            v-model="editableValue"
         />
 
         <div>
             <transition name="slide-down-fade">
                 <p
-                    v-if="is_error"
-                    :class="error_class"
+                    v-if="isError"
+                    :class="errorClass"
                 >
-                    {{ error_message}}
+                    {{ errorMessage }}
                 </p>
             </transition>
         </div>
@@ -49,122 +49,118 @@
     export default {
         name: "CheckboxGroup",
         model: {
-            prop: 'checkbox_value'
+            prop: 'checkboxValue'
         },
         props: {
-            allow_parent_updates: {
-                default: true,
-                type: Boolean
-            },
-            error_class: {
+            errorClass: {
                 default: 'mt-1 text-red-500 text-sm',
                 type: String
             },
-            error_hide_on_change: {
+            errorHideOnChange: {
                 default: true,
                 type: Boolean
             },
-            error_message: {
+            errorMessage: {
                 default: '',
                 type: String
             },
-            checkbox_autofocus: {
+            checkboxAutofocus: {
                 default: false,
                 type: Boolean
             },
-            checkbox_class: {
+            checkboxClass: {
                 default: 'cursor-pointer form-checkbox h-5 mt-2 rounded text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:ring focus:ring-primary',
                 type: String
             },
-            checkbox_disabled: {
+            checkboxDisabled: {
                 default: false,
                 type: Boolean
             },
-            checkbox_id: {
+            checkboxId: {
                 required: true,
                 type: String
             },
-            checkbox_name: {
+            checkboxName: {
                 required: true,
                 type: String
             },
-            checkbox_required: {
+            checkboxRequired: {
                 default: false,
                 type: Boolean
             },
-            checkbox_value: {
+            checkboxValue: {
                 default: false,
                 type: String | Number | Boolean
             },
-            checkbox_value_false: {
+            checkboxDisabled: {
                 default: false,
                 type: String | Number | Boolean
             },
-            checkbox_value_true: {
+            checkboxValueTrue: {
                 default: true,
                 type: String | Number | Boolean
             },
-            label_class: {
+            labelClass: {
                 default: 'cursor-pointer font-medium select-none text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
-            label_text: {
+            labelText: {
                 required: true,
                 type: String
             },
         },
         data() {
             return  {
-                editable_value: false,
-                hide_error: false
+                editableValue: false,
+                hideError: false
             }
         },
         computed: {
-            formatted_checkbox_class() {
-                if (this.is_error) {
-                    return this.checkbox_class + ' error';
+            formattedCheckboxClass() {
+                if (this.isError) {
+                    return this.checkboxClass + ' error';
                 }
-                return this.checkbox_class;
+                return this.checkboxClass;
             },
-            is_checked() {
-                return this.editable_value === this.checkbox_value_true;
+            isChecked() {
+                return this.editableValue === this.checkboxValueTrue;
             },
-            is_error() {
-                return !this.hide_error && this.error_message && this.error_message !== '';
+            isError() {
+                return !this.hideError && this.errorMessage && this.errorMessage !== '';
             }
         },
         mounted() {
-            this.editable_value = this.checkbox_value;
+            this.editableValue = this.checkboxValue;
             this.autofocus();
         },
         methods: {
             autofocus() {
-                if (this.checkbox_autofocus && this.$refs[this.checkbox_id]) {
+                if (this.checkboxAutofocus && this.$refs[this.checkboxId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.checkbox_id].focus();
+                        this.$refs[this.checkboxId].focus();
                     });
                 }
             },
             blurCheckbox() {
-                if (this.$refs[this.checkbox_id]) {
+                if (this.$refs[this.checkboxId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.checkbox_id].blur();
+                        this.$refs[this.checkboxId].blur();
                     });
                 }
             },
             onErrorMessageChange() {
-                this.hide_error = false;
+                this.hideError = false;
             },
             onCheckboxChange(e) {
-                this.$emit('input', this.is_checked ? this.checkbox_value_true : this.checkbox_value_false);
+                this.$emit('input', this.isChecked ? this.checkboxValueTrue : this.checkboxDisabled);
 
-                if (this.error_hide_on_change) {
-                    this.hide_error = true;
+                if (this.errorHideOnChange) {
+                    this.hideError = true;
                 }
             },
         },
         watch: {
-            error_message: {
+            errorMessage: {
                 handler: "onErrorMessageChange"
             },
         }

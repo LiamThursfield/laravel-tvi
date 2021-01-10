@@ -3,7 +3,7 @@
         <div
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                  Layout
             </h1>
 
@@ -49,51 +49,54 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="layout_name_search"
-                        input_class="form-control form-control-short"
-                        input_id="layout_name"
-                        input_name="layout_name"
-                        input_placeholder="Layout Name"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Layout Name"
-                        v-model="editable_search_options.layout_name"
+                        input-autocomplete="layout_name_search"
+                        input-class="form-control form-control-short"
+                        input-id="layout_name"
+                        input-name="layout_name"
+                        input-placeholder="Layout Name"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Layout Name"
+                        v-model="editableSearchOptions.layout_name"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="layout_slug_search"
-                        input_class="form-control form-control-short"
-                        input_id="layout_slug"
-                        input_name="layout_slug"
-                        input_placeholder="Layout Slug"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Layout Slug"
-                        v-model="editable_search_options.layout_slug"
+                        input-autocomplete="layout_slug_search"
+                        input-class="form-control form-control-short"
+                        input-id="layout_slug"
+                        input-name="layout_slug"
+                        input-placeholder="Layout Slug"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Layout Slug"
+                        v-model="editableSearchOptions.layout_slug"
                     />
                 </div>
 
-                <div class="w-full md:w-1/3">
+                <div
+                    v-if="isTemplates"
+                    class="w-full md:w-1/3"
+                >
                     <select-group
-                        :label_hidden="true"
-                        label_text="Template"
-                        :select_any_enabled="true"
-                        select_any_label="Template"
-                        select_class="form-control form-control-short"
-                        select_id="template_id"
-                        select_name="template_id"
-                        select_option_label_key="name"
-                        select_option_value_key="id"
-                        :select_options="templates"
-                        v-model="editable_search_options.template_id"
+                        :label-hidden="true"
+                        label-text="Template"
+                        :select-any-enabled="true"
+                        select-any-label="Template"
+                        select-class="form-control form-control-short"
+                        select-id="template_id"
+                        select-name="template_id"
+                        select-option-label-key="name"
+                        select-option-value-key="id"
+                        :select-options="templates"
+                        v-model="editableSearchOptions.template_id"
                     />
                 </div>
             </div>
 
             <p
-                v-if="!layouts_data"
+                v-if="!layoutsData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No layouts
@@ -109,12 +112,12 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Template</th>
-                            <th v-if="show_layout_actions"></th>
+                            <th v-if="showLayoutActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(layout, index) in layouts_data"
+                            v-for="(layout, index) in layoutsData"
                             :key="`layout-${layout.id}`"
                         >
                             <td>
@@ -126,7 +129,7 @@
                             <td>
                                 {{  layout.template.name }}
                             </td>
-                            <td v-if="show_layout_actions">
+                            <td v-if="showLayoutActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
                                         v-if="userCan('cms.edit')"
@@ -166,7 +169,7 @@
 
                 <!-- Pagination -->
                 <div
-                    v-if="show_pagination"
+                    v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
                     <pagination :pagination="layouts.pagination" />
@@ -174,10 +177,10 @@
             </template>
 
             <confirmation-modal
-                confirmText="Delete"
-                confirmType="danger"
-                :showModal="show_delete_modal"
-                :messageText="delete_modal_text"
+                confirm-text="Delete"
+                confirm-type="danger"
+                :show-modal="showDeleteModal"
+                :message-text="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"
@@ -202,46 +205,62 @@
         },
         layout: 'admin-layout',
         props: {
-            layouts: Object,
-            search_options: Object|Array,
-            templates: Object
+            layouts: {
+                required: true,
+                type: Object,
+            },
+            searchOptions: {
+                required: true,
+                type: Object | Array,
+            },
+            templates: {
+                required: true,
+                type: Object | Array,
+            }
         },
         data() {
             return {
-                editable_search_options: {
+                editableSearchOptions: {
                     per_page        : 15,
                     layout_name   : '',
                     layout_slug   : '',
                     template_id   : '',
                 },
-                is_initialised: false,
-                is_loading_delete: false,
-                show_delete_modal: false,
-                layout_to_delete: null,
+                isInitialised: false,
+                isLoadingDelete: false,
+                showDeleteModal: false,
+                layoutToDelete: null,
             }
         },
         mounted() {
-            this.setSearchOptions(this.search_options);
+            this.setSearchOptions(this.searchOptions);
         },
         computed: {
-            delete_modal_text() {
+            deleteModalText() {
                 try {
-                    return 'Do you really want to delete \'' + this.layout_to_delete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.layoutToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this layout?'
                 }
             },
-            show_pagination() {
+            isTemplates() {
+                try {
+                    return Object.keys(this.templates).length;
+                } catch (e) {
+                    return false;
+                }
+            },
+            showPagination() {
                 try {
                     return this.layouts.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
-            show_layout_actions() {
+            showLayoutActions() {
                 return this.userCan('cms.edit') || this.userCan('cms.delete');
             },
-            layouts_data() {
+            layoutsData() {
                 if (!this.layouts || !this.layouts.data || this.layouts.data.length < 1) {
                     return false;
                 }
@@ -251,21 +270,21 @@
         },
         methods: {
             cancelDelete() {
-                if (!this.is_loading_delete) {
-                    this.show_delete_modal = false;
-                    this.layout_to_delete = null;
+                if (!this.isLoadingDelete) {
+                    this.showDeleteModal = false;
+                    this.layoutToDelete = null;
                 }
             },
             checkDelete(layout) {
-                this.show_delete_modal = true;
-                this.layout_to_delete = layout;
+                this.showDeleteModal = true;
+                this.layoutToDelete = layout;
             },
             confirmDelete() {
-                if (this.is_loading_delete) {
+                if (this.isLoadingDelete) {
                     return this.$errorToast('It\'s only possible to delete one layouts at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.cms.layouts.destroy', this.layout_to_delete.id),
+                    this.$route('admin.cms.layouts.destroy', this.layoutToDelete.id),
                     {
                         only: [
                             'flash',
@@ -273,22 +292,22 @@
                         ]
                     }
                 );
-                this.layout_to_delete = null;
-                this.show_delete_modal = false;
+                this.layoutToDelete = null;
+                this.showDeleteModal = false;
             },
             onSearchOptionsUpdate: _.debounce(function () {
-                if (!this.is_initialised) {
-                    this.is_initialised = true;
+                if (!this.isInitialised) {
+                    this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.layouts_data) {
+                    if (this.layoutsData) {
                         return;
                     }
                 }
 
                 Inertia.get(
                     this.$route('admin.cms.layouts.index'),
-                    this.editable_search_options,
+                    this.editableSearchOptions,
                     {
                         only: ['layouts'],
                         preserveState: true,
@@ -312,11 +331,11 @@
                     console.log(e);
                 }
 
-                this.editable_search_options = _.cloneDeep(options);
+                this.editableSearchOptions = _.cloneDeep(options);
             }
         },
         watch: {
-            editable_search_options: {
+            editableSearchOptions: {
                 deep: true,
                 handler: 'onSearchOptionsUpdate'
             }

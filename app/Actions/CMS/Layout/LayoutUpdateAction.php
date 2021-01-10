@@ -2,16 +2,18 @@
 
 namespace App\Actions\CMS\Layout;
 
-use App\Actions\CMS\AbstractContentCrudAction;
 use App\Models\CMS\Content;
 use App\Models\CMS\Layout;
+use App\Traits\CMS\ManagesContent;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class LayoutUpdateAction extends AbstractContentCrudAction
+class LayoutUpdateAction
 {
+    use ManagesContent;
+
     /**
      * @param Layout $layout
      * @param array $layout_data

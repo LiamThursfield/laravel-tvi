@@ -10,22 +10,22 @@
         >
             <input-group
                 class="flex-1 mt-4"
-                :input_id="`template-field-${template_field.order}-max-length`"
-                :input_name="`template-field-${template_field.order}-max-length`"
-                input_type="number"
-                label_text="Max Length"
+                :input-id="`template-field-${templateField.order}-max-length`"
+                :input-name="`template-field-${templateField.order}-max-length`"
+                input-type="number"
+                label-text="Max Length"
                 @input="onEditableSettingsChange"
-                v-model="editable_field_settings.max_length"
+                v-model="editableFieldSettings.max_length"
             />
 
             <input-group
                 class="flex-1 mt-4"
-                :input_id="`template-field-${template_field.order}-max-length`"
-                :input_name="`template-field-${template_field.order}-max-length`"
-                input_type="text"
-                label_text="Rows"
+                :input-id="`template-field-${templateField.order}-rows`"
+                :input-name="`template-field-${templateField.order}-rows`"
+                input-type="text"
+                label-text="Rows"
                 @input="onEditableSettingsChange"
-                v-model="editable_field_settings.rows"
+                v-model="editableFieldSettings.rows"
             />
         </div>
     </div>

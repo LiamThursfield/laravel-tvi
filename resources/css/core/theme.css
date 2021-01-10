@@ -86,6 +86,11 @@
     --nprogress-color: theme('colors.theme.primary');
 
     /**
+     * DatePicker
+     */
+    --datepicker-color-primary: theme('colors.theme.primary');
+
+    /**
      * Pagination
      */
     --pagination-color-active: theme('colors.theme.primary');
@@ -112,8 +117,10 @@
     --table-color-header-border: theme('colors.gray.200');
     --table-color-header-contrast: theme('colors.gray.600');
     --table-padding-body-x: theme('spacing.6');
+    --table-padding-body-x-slim: theme('spacing.3');
     --table-padding-body-y: theme('spacing.1');
     --table-padding-header-x: theme('spacing.6');
+    --table-padding-header-x-slim: theme('spacing.3');
     --table-padding-header-y: 0.375rem; /** theme('spacing.1.5'); **/
 
     /**

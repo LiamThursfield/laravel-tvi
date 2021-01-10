@@ -3,12 +3,13 @@
 namespace App\Actions\CMS\Page;
 
 use App\Models\CMS\Page;
+use App\Models\CMS\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
 class PageQueryAction
 {
-    protected string $order_by          = 'name';
+    protected string $order_by          = 'url_full';
     protected string $order_direction   = 'asc';
 
 
@@ -45,10 +46,19 @@ class PageQueryAction
             $query->where('template_id', Arr::get($search_options, 'template_id'));
         }
 
-        $query->orderBy(
-            Arr::get($search_options, 'order_by', $this->order_by),
-            Arr::get($search_options, 'order_direction', $this->order_direction),
-        );
+        $order_by = Arr::get($search_options, 'order_by', $this->order_by);
+        $order_direction = Arr::get($search_options, 'order_direction', $this->order_direction);
+
+        if ($order_by === 'url_full') {
+            $ordered_ids = Url::where('urlable_type', '=', Page::class)
+                ->orderBy('url_full',  $order_direction)
+                ->pluck('urlable_id')
+                ->implode(',');
+
+            $query->orderByRaw('FIELD (id, ' . $ordered_ids . ')');
+        } else {
+            $query->orderBy($this->order_by, $this->order_direction);
+        }
 
         if (Arr::get($search_options, 'with')) {
             $query->with(Arr::get($search_options, 'with'));

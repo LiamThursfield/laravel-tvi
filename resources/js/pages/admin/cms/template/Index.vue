@@ -3,7 +3,7 @@
         <div
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                  Templates
             </h1>
 
@@ -49,49 +49,49 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="template_name_search"
-                        input_class="form-control form-control-short"
-                        input_id="template_name"
-                        input_name="template_name"
-                        input_placeholder="Template Name"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Template Name"
-                        v-model="editable_search_options.template_name"
+                        input-autocomplete="template_name_search"
+                        input-class="form-control form-control-short"
+                        input-id="template_name"
+                        input-name="template_name"
+                        input-placeholder="Template Name"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Template Name"
+                        v-model="editableSearchOptions.template_name"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input_autocomplete="template_slug_search"
-                        input_class="form-control form-control-short"
-                        input_id="template_slug"
-                        input_name="template_slug"
-                        input_placeholder="Template Slug"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Template Slug"
-                        v-model="editable_search_options.template_slug"
+                        input-autocomplete="template_slug_search"
+                        input-class="form-control form-control-short"
+                        input-id="template_slug"
+                        input-name="template_slug"
+                        input-placeholder="Template Slug"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Template Slug"
+                        v-model="editableSearchOptions.template_slug"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <select-group
-                        :label_hidden="true"
-                        label_text="Template Type"
-                        :select_any_enabled="true"
-                        select_any_label="Template Type"
-                        select_class="form-control form-control-short"
-                        select_id="template_type"
-                        select_name="template_type"
-                        :select_options="template_types"
-                        v-model="editable_search_options.template_type"
+                        :label-hidden="true"
+                        label-text="Template Type"
+                        :select-any-enabled="true"
+                        select-any-label="Template Type"
+                        select-class="form-control form-control-short"
+                        select-id="template_type"
+                        select-name="template_type"
+                        :select-options="templateTypes"
+                        v-model="editableSearchOptions.template_type"
                     />
                 </div>
             </div>
 
             <p
-                v-if="!templates_data"
+                v-if="!templatesData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No templates
@@ -107,12 +107,12 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Type</th>
-                            <th v-if="show_template_actions"></th>
+                            <th v-if="showTemplateActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(template, index) in templates_data"
+                            v-for="(template, index) in templatesData"
                             :key="`template-${template.id}`"
                         >
                             <td>
@@ -124,7 +124,7 @@
                             <td>
                                 {{ getTemplateTypeLabel(template.type) }}
                             </td>
-                            <td v-if="show_template_actions">
+                            <td v-if="showTemplateActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
                                         v-if="userCan('cms.edit')"
@@ -164,7 +164,7 @@
 
                 <!-- Pagination -->
                 <div
-                    v-if="show_pagination"
+                    v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
                     <pagination :pagination="templates.pagination" />
@@ -172,10 +172,10 @@
             </template>
 
             <confirmation-modal
-                confirmText="Delete"
-                confirmType="danger"
-                :showModal="show_delete_modal"
-                :messageText="delete_modal_text"
+                confirm-text="Delete"
+                confirm-type="danger"
+                :show-modal="showDeleteModal"
+                :message-text="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"
@@ -200,46 +200,43 @@
         },
         layout: 'admin-layout',
         props: {
-            search_options: Object|Array,
+            searchOptions: Object|Array,
             templates: Object,
-            template_types: Object
+            templateTypes: Object
         },
         data() {
             return {
-                editable_search_options: {
+                editableSearchOptions: {
                     per_page        : 15,
                     template_name   : '',
                     template_slug   : '',
                     template_type   : '',
                 },
-                is_initialised: false,
-                is_loading_delete: false,
-                show_delete_modal: false,
-                template_to_delete: null,
+                isInitialised: false,
+                isLoadingDelete: false,
+                showDeleteModal: false,
+                templateToDelete: null,
             }
         },
-        mounted() {
-            this.setSearchOptions(this.search_options);
-        },
         computed: {
-            delete_modal_text() {
+            deleteModalText() {
                 try {
-                    return 'Do you really want to delete \'' + this.template_to_delete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.templateToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this template?'
                 }
             },
-            show_pagination() {
+            showPagination() {
                 try {
                     return this.templates.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
-            show_template_actions() {
+            showTemplateActions() {
                 return this.userCan('cms.edit') || this.userCan('cms.delete');
             },
-            templates_data() {
+            templatesData() {
                 if (!this.templates || !this.templates.data || this.templates.data.length < 1) {
                     return false;
                 }
@@ -247,23 +244,26 @@
                 return this.templates.data;
             }
         },
+        mounted() {
+            this.setSearchOptions(this.searchOptions);
+        },
         methods: {
             cancelDelete() {
-                if (!this.is_loading_delete) {
-                    this.show_delete_modal = false;
-                    this.template_to_delete = null;
+                if (!this.isLoadingDelete) {
+                    this.showDeleteModal = false;
+                    this.templateToDelete = null;
                 }
             },
             checkDelete(template) {
-                this.show_delete_modal = true;
-                this.template_to_delete = template;
+                this.showDeleteModal = true;
+                this.templateToDelete = template;
             },
             confirmDelete() {
-                if (this.is_loading_delete) {
+                if (this.isLoadingDelete) {
                     return this.$errorToast('It\'s only possible to delete one template at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.cms.templates.destroy', this.template_to_delete.id),
+                    this.$route('admin.cms.templates.destroy', this.templateToDelete.id),
                     {
                         only: [
                             'flash',
@@ -271,29 +271,29 @@
                         ]
                     }
                 );
-                this.template_to_delete = null;
-                this.show_delete_modal = false;
+                this.templateToDelete = null;
+                this.showDeleteModal = false;
             },
             getTemplateTypeLabel(type_slug) {
                 try {
-                     return this.template_types.hasOwnProperty(type_slug) ? this.template_types[type_slug] : type_slug;
+                     return this.templateTypes.hasOwnProperty(type_slug) ? this.templateTypes[type_slug] : type_slug;
                 } catch (e) {
                     return type_slug;
                 }
             },
             onSearchOptionsUpdate: _.debounce(function () {
-                if (!this.is_initialised) {
-                    this.is_initialised = true;
+                if (!this.isInitialised) {
+                    this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.templates_data) {
+                    if (this.templatesData) {
                         return;
                     }
                 }
 
                 Inertia.get(
                     this.$route('admin.cms.templates.index'),
-                    this.editable_search_options,
+                    this.editableSearchOptions,
                     {
                         only: ['templates'],
                         preserveState: true,
@@ -317,11 +317,11 @@
                     console.log(e);
                 }
 
-                this.editable_search_options = _.cloneDeep(options);
+                this.editableSearchOptions = _.cloneDeep(options);
             }
         },
         watch: {
-            editable_search_options: {
+            editableSearchOptions: {
                 deep: true,
                 handler: 'onSearchOptionsUpdate'
             }

@@ -8,7 +8,7 @@
             v-if="userCan('cms.edit')"
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                 Edit Page
             </h1>
 
@@ -51,75 +51,98 @@
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <select-group
-                    :error_message="getPageErrorMessage('layout_id')"
-                    label_text="Layout"
-                    :select_any_enabled="true"
-                    select_any_label="Please select a Layout"
-                    :select_autofocus="true"
-                    select_id="template_id"
-                    select_name="template_id"
-                    :select_options="layouts"
-                    select_option_label_key="name"
-                    select_option_value_key="id"
-                    :select_required="true"
-                    select_type="text"
-                    v-model="form_data.layout_id"
+                    :error-message="getPageErrorMessage('layout_id')"
+                    label-text="Layout"
+                    :select-any-enabled="true"
+                    select-any-label="Please select a Layout"
+                    :select-autofocus="true"
+                    select-id="layout_id"
+                    select-name="layout_id"
+                    :select-options="layouts"
+                    select-option-label-key="name"
+                    select-option-value-key="id"
+                    :select-required="true"
+                    v-model="formData.layout_id"
                 />
 
                 <select-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('template_id')"
-                    label_text="Template"
-                    :select_any_enabled="true"
-                    select_any_label="Please select a template"
-                    select_id="template_id"
-                    select_name="template_id"
-                    :select_options="templates"
-                    select_option_label_key="name"
-                    select_option_value_key="id"
-                    :select_required="true"
-                    select_type="text"
-                    v-model="form_data.template_id"
+                    :error-message="getPageErrorMessage('template_id')"
+                    label-text="Template"
+                    :select-any-enabled="true"
+                    select-any-label="Please select a template"
+                    select-id="template_id"
+                    select-name="template_id"
+                    :select-options="templates"
+                    select-option-label-key="name"
+                    select-option-value-key="id"
+                    :select-required="true"
+                    v-model="formData.template_id"
+                />
+
+                <select-group
+                    v-if="parentPagesUrls"
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('parent_id')"
+                    label-text="Parent Page"
+                    :select-any-enabled="true"
+                    select-any-label="Please select a parent (optional)"
+                    select-id="parent_id"
+                    select-name="parent_id"
+                    :select-options="parentPagesUrls"
+                    select-option-label-key="label"
+                    select-option-value-key="id"
+                    v-model="formData.parent_id"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('name')"
-                    input_autocomplete="page_name"
-                    input_id="name"
-                    input_name="name"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="Page Name"
+                    :error-message="getPageErrorMessage('name')"
+                    input-autocomplete="page_name"
+                    input-id="name"
+                    input-name="name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Page Name"
                     @input="onNameInput"
-                    v-model="form_data.name"
+                    v-model="formData.name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('slug')"
-                    input_autocomplete="page_slug"
-                    input_id="slug"
-                    input_name="slug"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="Page Slug"
+                    :error-message="getPageErrorMessage('slug')"
+                    input-autocomplete="page_slug"
+                    input-id="slug"
+                    input-name="slug"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Page Slug"
                     @blur="onSlugBlur"
                     @input="onSlugInput"
-                    v-model="form_data.slug"
+                    v-model="formData.slug"
                 />
             </div>
         </div>
 
         <div
-            v-if="!this.is_loading_template && selected_template_has_fields && is_initialised_content"
+            v-if="isInitialised_url"
+            class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
+        >
+            <url-editor
+                :parent-url="selectedParentPageUrl"
+                v-model="formData.url"
+            />
+        </div>
+
+        <div
+            v-if="!this.isLoadingTemplate && selectedTemplateHasFields && isInitialisedContent"
             class="bg-white mt-6 px-4 py-6 shadow-subtle rounded-lg"
         >
             <p class="text-lg">Fields</p>
 
             <content-editor
-                :template_fields="this.selected_template.template_fields"
-                v-model="form_data.content"
+                :template-fields="this.selectedTemplate.template_fields"
+                v-model="formData.content"
             />
         </div>
     </form>
@@ -131,16 +154,18 @@
     import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();
 
     export default {
-        name: "AdminCmsPageCreate",
+        name: "AdminCmsPageEdit",
         components: {
             ContentEditor,
             InputGroup,
-            SelectGroup
+            SelectGroup,
+            UrlEditor,
         },
         layout: 'admin-layout',
         props: {
@@ -152,6 +177,10 @@
                 type: Object,
                 required: true
             },
+            'parentPages': {
+                type: Object | Array | null,
+                required: true
+            },
             'templates': {
                 type: Object,
                 required: true
@@ -159,46 +188,106 @@
         },
         data() {
             return {
-                auto_update_slug: false,
-                form_data: {},
-                is_initialised_template: false,
-                is_initialised_content: false,
-                is_loading_template: false,
-                selected_template: null,
+                autoUpdateSlug: false,
+                formData: {},
+                isInitialisedTemplate: false,
+                isInitialisedContent: false,
+                isInitialised_url: false,
+                isLoadingTemplate: false,
+                selectedTemplate: null,
             }
         },
         computed: {
-            selected_template_has_fields() {
+            parentPagesUrls() {
                 try {
-                    if (!this.selected_template) {
+                    if (!Object.keys(this.parentPages).length) {
+                        return null;
+                    }
+
+                    let pages = {};
+                    _.forEach(this.parentPages, (page, key) => {
+                        pages[key] = {
+                            id: page.id,
+                            label: page.name + ' => ' + page.url.url_full,
+                            url_full: page.url.url_full,
+                            url_main: page.url.url_main,
+                        };
+                    });
+
+                    return pages;
+                } catch (e) {
+                    return null;
+                }
+            },
+            parentPagesMap() {
+                try {
+                    if (!Object.keys(this.parentPages).length) {
+                        return null;
+                    }
+
+                    let map = {};
+                    _.forEach(this.parentPages, (page, key) => {
+                        map[page.id] = key;
+                    });
+
+                    return map;
+                } catch (e) {
+                    return null;
+                }
+            },
+            selectedParentPage() {
+                try {
+                    if (!this.formData.parent_id) {
+                        return null;
+                    }
+
+                    return this.parentPages[
+                        this.parentPagesMap[this.formData.parent_id]
+                        ];
+                } catch (e) {
+                    return null;
+                }
+            },
+            selectedParentPageUrl() {
+                try {
+                    return this.selectedParentPage.url.url_full;
+                } catch (e) {
+                    return null;
+                }
+            },
+            selectedTemplateHasFields() {
+                try {
+                    if (!this.selectedTemplate) {
                         return false;
                     }
 
-                    return this.selected_template.template_fields.length;
+                    return this.selectedTemplate.template_fields.length;
                 } catch (e) {
                     return false;
                 }
             },
-            selected_template_id() {
-                return this.form_data.template_id ?? '';
+            selectedTemplateId() {
+                return this.formData.template_id ?? '';
             },
         },
         created() {
-            this.form_data = {
+            this.formData = {
                 content:        {},
                 id:             this.page.id,
                 layout_id:      this.page.layout_id,
                 name:           this.page.name,
+                parent_id:      this.page.parent_id,
                 slug:           this.page.slug,
                 template_id:    this.page.template_id,
+                url: {},
             };
-
-            this.selected_template = _.cloneDeep(this.page.template);
+            this.selectedTemplate = _.cloneDeep(this.page.template);
             this.setInitialContent();
+            this.setInitialUrl();
         },
         methods: {
             cancelLoadTemplate() {
-                if (this.is_loading_template) {
+                if (this.isLoadingTemplate) {
                     templateCancelToken.cancel('Template load cancelled');
                     templateCancelToken = CancelToken.source();
                 }
@@ -218,32 +307,32 @@
                 }
             },
             onNameInput() {
-                if (!this.auto_update_slug) {
+                if (!this.autoUpdateSlug) {
                     return;
                 }
 
-                this.form_data.slug = this.slugify(this.form_data.name);
+                this.formData.slug = this.slugify(this.formData.name);
             },
             onSelectedTemplateIdChange: _.debounce(function () {
                 // The template id is set by default, so no need to re-load initially
-                if (!this.is_initialised_template) {
-                    this.is_initialised_template = true;
+                if (!this.isInitialisedTemplate) {
+                    this.isInitialisedTemplate = true;
                     return;
                 }
 
-                this.selected_template = null;
+                this.selectedTemplate = null;
                 this.cancelLoadTemplate();
 
-                if (!this.selected_template_id) {
+                if (!this.selectedTemplateId) {
                     return;
                 }
 
-                this.is_loading_template = true;
+                this.isLoadingTemplate = true;
 
                 axios.get(
-                    this.$route('admin.api.cms.templates.index', this.selected_template_id)
+                    this.$route('admin.api.cms.templates.index', this.selectedTemplateId)
                 ).then(response => {
-                    this.selected_template = _.cloneDeep(response.data.data);
+                    this.selectedTemplate = _.cloneDeep(response.data.data);
                     this.setNewTemplateContent();
                 }).catch(e => {
                     if (!axios.isCancel(e)) {
@@ -251,14 +340,14 @@
                         console.log(e); // TODO: This should go through to a log tracker once available
                     }
                 }).finally(() => {
-                    this.is_loading_template = false;
+                    this.isLoadingTemplate = false;
                 })
             }, 500),
             onSlugBlur() {
-                this.form_data.slug = this.slugify(this.form_data.slug)
+                this.formData.slug = this.slugify(this.formData.slug)
             },
             onSlugInput() {
-                this.auto_update_slug = false;
+                this.autoUpdateSlug = false;
             },
             setInitialContent() {
                 // This is a fix / hack to prevent an empty object from becoming an array.
@@ -268,34 +357,44 @@
                 }
 
                 // Set the defaults for any missing content
-                _.forEach(this.selected_template.template_fields, (template_field) => {
-                    if (!this.pageHasContentField(template_field.id)) {
-                        content[template_field.id] = {
+                _.forEach(this.selectedTemplate.template_fields, (templateField) => {
+                    if (!this.pageHasContentField(templateField.id)) {
+                        content[templateField.id] = {
                             data: '',
-                            template_field_id: template_field.id
+                            template_field_id: templateField.id
                         };
                     }
                 });
 
-                this.form_data.content = _.cloneDeep(content);
-                this.is_initialised_content = true;
+                this.formData.content = _.cloneDeep(content);
+                this.isInitialisedContent = true;
+            },
+            setInitialUrl() {
+                // This is a fix / hack to prevent an empty object from becoming an array.
+                let url = {};
+                if (this.doesObjectHaveKeys(this.page.url)) {
+                    url = _.cloneDeep(this.page.url);
+                }
+
+                this.formData.url = _.cloneDeep(url);
+                this.isInitialised_url = true;
             },
             setNewTemplateContent() {
-                if (!this.selected_template_has_fields) {
-                    this.form_data.content = {};
+                if (!this.selectedTemplateHasFields) {
+                    this.formData.content = {};
                 }
 
                 // Get all fields from the template and set the default data
                 let new_content = {};
-                _.forEach(this.selected_template.template_fields, (template_field) => {
-                    new_content[template_field.id] = {
+                _.forEach(this.selectedTemplate.template_fields, (templateField) => {
+                    new_content[templateField.id] = {
                         data: '',
-                        template_field_id: template_field.id,
+                        template_field_id: templateField.id,
                     };
                 });
 
                 // Replace the existing content
-                this.$set(this.form_data, 'content', _.cloneDeep(new_content));
+                this.$set(this.formData, 'content', _.cloneDeep(new_content));
             },
             slugify(value) {
                 if (!value || !value.length) {
@@ -311,12 +410,12 @@
             submit() {
                 this.$inertia.put(
                     this.$route('admin.cms.pages.update', this.page.id),
-                    this.form_data
+                    this.formData
                 );
             }
         },
         watch: {
-            selected_template_id: {
+            selectedTemplateId: {
                 handler: 'onSelectedTemplateIdChange'
             }
         }

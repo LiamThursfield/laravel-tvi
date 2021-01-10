@@ -22,7 +22,6 @@ class PermissionInterface
     const EDIT_CMS    = 'edit cms';
     const VIEW_CMS    = 'view cms';
 
-
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -30,6 +29,9 @@ class PermissionInterface
     // Profile Permissions
     const EDIT_PROFILE = 'edit profile';
     const VIEW_PROFILE = 'view profile';
+
+    // Telescope Permissions
+    const VIEW_TELESCOPE = 'view telescope';
 
     // User Permissions
     const CREATE_USERS  = 'create users';
@@ -54,6 +56,9 @@ class PermissionInterface
         'profile' => [
             'edit' => self::EDIT_PROFILE,
             'view' => self::VIEW_PROFILE,
+        ],
+        'telescope' => [
+            'view'  => self::VIEW_TELESCOPE
         ],
         'users' => [
             'create'    => self::CREATE_USERS,

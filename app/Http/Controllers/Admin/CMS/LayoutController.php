@@ -87,7 +87,7 @@ class LayoutController extends AdminCMSController
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
-            'search_options' => $search_options,
+            'searchOptions' => $search_options,
             'templates' => function () {
                 return Template::where('type', TemplateInterface::TYPE_LAYOUT)
                     ->orderBy('name', 'asc')

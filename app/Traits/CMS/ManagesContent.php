@@ -1,13 +1,24 @@
 <?php
 
-namespace App\Actions\CMS;
+namespace App\Traits\CMS;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
-abstract class AbstractContentCrudAction
+trait ManagesContent
 {
+    use ManagesData;
+
     protected string $content_slug = 'content';
+
+    protected function extractContentFromData() : Collection
+    {
+        $data = collect(Arr::get($this->data, $this->content_slug, []))->keyBy('template_field_id');
+        unset($this->data[$this->content_slug]);
+
+        return $data;
+    }
 
     protected function validateContent(Collection $content, Collection $template_fields)
     {

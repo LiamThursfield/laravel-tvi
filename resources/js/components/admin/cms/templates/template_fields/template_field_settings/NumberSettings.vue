@@ -10,22 +10,22 @@
         >
             <input-group
                 class="flex-1 mt-4"
-                :input_id="`template-field-${template_field.order}-min`"
-                :input_name="`template-field-${template_field.order}-min`"
-                input_type="number"
-                label_text="Minimum Value"
+                :input-id="`template-field-${templateField.order}-min`"
+                :input-name="`template-field-${templateField.order}-min`"
+                input-type="number"
+                label-text="Minimum Value"
                 @input="onEditableSettingsChange"
-                v-model="editable_field_settings.min"
+                v-model="editableFieldSettings.min"
             />
 
             <input-group
                 class="flex-1 mt-4"
-                :input_id="`template-field-${template_field.order}-max`"
-                :input_name="`template-field-${template_field.order}-max`"
-                input_type="number"
-                label_text="Maximum Value"
+                :input-id="`template-field-${templateField.order}-max`"
+                :input-name="`template-field-${templateField.order}-max`"
+                input-type="number"
+                label-text="Maximum Value"
                 @input="onEditableSettingsChange"
-                v-model="editable_field_settings.max"
+                v-model="editableFieldSettings.max"
             />
         </div>
     </div>

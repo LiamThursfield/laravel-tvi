@@ -3,7 +3,7 @@
         <div
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                  Page
             </h1>
 
@@ -55,15 +55,15 @@
                 >
                     <input-group
                         class="mx-4"
-                        input_autocomplete="page_name_search"
-                        input_class="form-control form-control-short"
-                        input_id="page_name"
-                        input_name="page_name"
-                        input_placeholder="Page Name"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Page Name"
-                        v-model="editable_search_options.page_name"
+                        input-autocomplete="page_name_search"
+                        input-class="form-control form-control-short"
+                        input-id="page_name"
+                        input-name="page_name"
+                        input-placeholder="Page Name"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Page Name"
+                        v-model="editableSearchOptions.page_name"
                     />
                 </div>
 
@@ -76,19 +76,20 @@
                 >
                     <input-group
                         class="mx-4"
-                        input_autocomplete="page_slug_search"
-                        input_class="form-control form-control-short"
-                        input_id="page_slug"
-                        input_name="page_slug"
-                        input_placeholder="Page Slug"
-                        input_type="text"
-                        :label_hidden="true"
-                        label_text="Page Slug"
-                        v-model="editable_search_options.page_slug"
+                        input-autocomplete="page_slug_search"
+                        input-class="form-control form-control-short"
+                        input-id="page_slug"
+                        input-name="page_slug"
+                        input-placeholder="Page Slug"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Page Slug"
+                        v-model="editableSearchOptions.page_slug"
                     />
                 </div>
 
                 <div
+                    v-if="isLayouts"
                     class="
                         my-2 w-full
                         sm:w-1/2
@@ -97,21 +98,22 @@
                 >
                     <select-group
                         class="mx-4"
-                        :label_hidden="true"
-                        label_text="Layout"
-                        :select_any_enabled="true"
-                        select_any_label="Layout"
-                        select_class="form-control form-control-short"
-                        select_id="template_id"
-                        select_name="layout_id"
-                        select_option_label_key="name"
-                        select_option_value_key="id"
-                        :select_options="layouts"
-                        v-model="editable_search_options.layout_id"
+                        :label-hidden="true"
+                        label-text="Layout"
+                        :select-any-enabled="true"
+                        select-any-label="Layout"
+                        select-class="form-control form-control-short"
+                        select-id="template_id"
+                        select-name="layout_id"
+                        select-option-label-key="name"
+                        select-option-value-key="id"
+                        :select-options="layouts"
+                        v-model="editableSearchOptions.layout_id"
                     />
                 </div>
 
                 <div
+                    v-if="isTemplates"
                     class="
                         my-2 w-full
                         sm:w-1/2
@@ -120,24 +122,24 @@
                 >
                     <select-group
                         class="mx-4"
-                        :label_hidden="true"
-                        label_text="Template"
-                        :select_any_enabled="true"
-                        select_any_label="Template"
-                        select_class="form-control form-control-short"
-                        select_id="template_id"
-                        select_name="template_id"
-                        select_option_label_key="name"
-                        select_option_value_key="id"
-                        :select_options="templates"
-                        v-model="editable_search_options.template_id"
+                        :label-hidden="true"
+                        label-text="Template"
+                        :select-any-enabled="true"
+                        select-any-label="Template"
+                        select-class="form-control form-control-short"
+                        select-id="template_id"
+                        select-name="template_id"
+                        select-option-label-key="name"
+                        select-option-value-key="id"
+                        :select-options="templates"
+                        v-model="editableSearchOptions.template_id"
                     />
                 </div>
 
             </div>
 
             <p
-                v-if="!pages_data"
+                v-if="!pagesData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No pages
@@ -150,31 +152,90 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
+                            <th class="indicator-column"></th>
                             <th>Name</th>
-                            <th>Slug</th>
-                            <th>Layout</th>
-                            <th>Template</th>
-                            <th v-if="show_page_actions"></th>
+                            <th>URL</th>
+                            <th class="text-center">Enabled</th>
+                            <th class="text-center">Publish / Expiry Date</th>
+                            <th>Layout / Template</th>
+                            <th v-if="showPageActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(page, index) in pages_data"
+                            v-for="(page, index) in pagesData"
                             :key="`page-${page.id}`"
                         >
+                            <td class="indicator-column">
+                                <div
+                                    class="h-3 rounded-full w-3"
+                                    :class="{
+                                        'bg-theme-success-contrast': page.url.is_live,
+                                        'bg-theme-danger-contrast': !page.url.is_live,
+                                    }"
+                                />
+                            </td>
                             <td>
                                 {{ page.name }}
+                                <br>
+                                <span class="text-sm text-theme-base-subtle-contrast">
+                                    {{ page.slug }}
+                                </span>
+                            </td>
+                            <td class="text-sm">
+                                {{ page.url.url_full }}
                             </td>
                             <td>
-                                {{ page.slug }}
+                                <div class="flex flex-row justify-center">
+                                    <icon-check
+                                        v-if="page.url.is_enabled"
+                                        class="h-4 w-4"
+                                    />
+                                    <icon-x
+                                        v-else
+                                        class="h-4 w-4"
+                                    />
+                                </div>
                             </td>
-                            <td>
+                            <td class="text-sm">
+                                <div class="flex flex-col opacity-75 space-y-1">
+                                    <span
+                                        class="px-2 py-0 rounded text-center"
+                                        :class="{
+                                            'bg-theme-success text-theme-success-contrast': page.url.is_published,
+                                            'bg-theme-danger text-theme-danger-contrast': !page.url.is_published,
+                                        }"
+                                    >
+                                        <template v-if="page.url.published_at">
+                                            {{ page.url.published_at | humanFriendlyDateTime }}
+                                        </template>
+                                        <template v-else>
+                                            -
+                                        </template>
+                                    </span>
+
+                                    <span
+                                        class="px-2 py-0 rounded text-center"
+                                        :class="{
+                                            'bg-theme-success text-theme-success-contrast': !page.url.is_expired,
+                                            'bg-theme-danger text-theme-danger-contrast': page.url.is_expired,
+                                        }"
+                                    >
+                                        <template v-if="page.url.expired_at">
+                                            {{ page.url.expired_at | humanFriendlyDateTime }}
+                                        </template>
+                                        <template v-else>
+                                            -
+                                        </template>
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="text-sm text-theme-base-subtle-contrast">
                                 {{  page.layout.name }}
-                            </td>
-                            <td>
+                                <br>
                                 {{  page.template.name }}
                             </td>
-                            <td v-if="show_page_actions">
+                            <td v-if="showPageActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
                                         v-if="userCan('cms.edit')"
@@ -214,7 +275,7 @@
 
                 <!-- Pagination -->
                 <div
-                    v-if="show_pagination"
+                    v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
                     <pagination :pagination="pages.pagination" />
@@ -222,10 +283,10 @@
             </template>
 
             <confirmation-modal
-                confirmText="Delete"
-                confirmType="danger"
-                :showModal="show_delete_modal"
-                :messageText="delete_modal_text"
+                confirm-text="Delete"
+                confirm-type="danger"
+                :show-modal="showDeleteModal"
+                :message-text="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"
@@ -240,10 +301,12 @@
     import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import IconCheck from "../../../../components/core/icons/IconCheck";
 
     export default {
         name: "AdminCmsPageIndex",
         components: {
+            IconCheck,
             ConfirmationModal,
             InputGroup,
             SelectGroup
@@ -252,58 +315,72 @@
         props: {
             layouts: {
                 required: true,
-                type: Object,
+                type: Object | Array,
             },
             pages: {
                 required: true,
                 type: Object,
             },
-            search_options: {
+            searchOptions: {
                 required: true,
                 type: Object | Array,
             },
             templates: {
                 required: true,
-                type: Object,
+                type: Object | Array,
             },
         },
         data() {
             return {
-                editable_search_options: {
+                editableSearchOptions: {
                     layout_id   : '',
                     per_page    : 15,
                     page_name   : '',
                     page_slug   : '',
                     template_id : '',
                 },
-                is_initialised: false,
-                is_loading_delete: false,
-                show_delete_modal: false,
-                page_to_delete: null,
+                isInitialised: false,
+                isLoadingDelete: false,
+                showDeleteModal: false,
+                pageToDelete: null,
             }
         },
         mounted() {
-            this.setSearchOptions(this.search_options);
+            this.setSearchOptions(this.searchOptions);
         },
         computed: {
-            delete_modal_text() {
+            deleteModalText() {
                 try {
-                    return 'Do you really want to delete \'' + this.page_to_delete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.pageToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this page?'
                 }
             },
-            show_pagination() {
+            isLayouts() {
+                try {
+                    return Object.keys(this.layouts).length;
+                } catch (e) {
+                    return false;
+                }
+            },
+            isTemplates() {
+                try {
+                    return Object.keys(this.templates).length;
+                } catch (e) {
+                    return false;
+                }
+            },
+            showPagination() {
                 try {
                     return this.pages.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
-            show_page_actions() {
+            showPageActions() {
                 return this.userCan('cms.edit') || this.userCan('cms.delete');
             },
-            pages_data() {
+            pagesData() {
                 if (!this.pages || !this.pages.data || this.pages.data.length < 1) {
                     return false;
                 }
@@ -313,21 +390,21 @@
         },
         methods: {
             cancelDelete() {
-                if (!this.is_loading_delete) {
-                    this.show_delete_modal = false;
-                    this.page_to_delete = null;
+                if (!this.isLoadingDelete) {
+                    this.showDeleteModal = false;
+                    this.pageToDelete = null;
                 }
             },
             checkDelete(page) {
-                this.show_delete_modal = true;
-                this.page_to_delete = page;
+                this.showDeleteModal = true;
+                this.pageToDelete = page;
             },
             confirmDelete() {
-                if (this.is_loading_delete) {
+                if (this.isLoadingDelete) {
                     return this.$errorToast('It\'s only possible to delete one page at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.cms.pages.destroy', this.page_to_delete.id),
+                    this.$route('admin.cms.pages.destroy', this.pageToDelete.id),
                     {
                         only: [
                             'flash',
@@ -335,22 +412,22 @@
                         ]
                     }
                 );
-                this.page_to_delete = null;
-                this.show_delete_modal = false;
+                this.pageToDelete = null;
+                this.showDeleteModal = false;
             },
             onSearchOptionsUpdate: _.debounce(function () {
-                if (!this.is_initialised) {
-                    this.is_initialised = true;
+                if (!this.isInitialised) {
+                    this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.pages_data) {
+                    if (this.pagesData) {
                         return;
                     }
                 }
 
                 Inertia.get(
                     this.$route('admin.cms.pages.index'),
-                    this.editable_search_options,
+                    this.editableSearchOptions,
                     {
                         only: ['pages'],
                         preserveState: true,
@@ -375,11 +452,11 @@
                     console.log(e);
                 }
 
-                this.editable_search_options = _.cloneDeep(options);
+                this.editableSearchOptions = _.cloneDeep(options);
             }
         },
         watch: {
-            editable_search_options: {
+            editableSearchOptions: {
                 deep: true,
                 handler: 'onSearchOptionsUpdate'
             }

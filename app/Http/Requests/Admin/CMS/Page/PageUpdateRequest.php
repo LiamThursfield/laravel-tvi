@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin\CMS\Page;
 use App\Http\Requests\BaseRequest;
 use App\Interfaces\CMS\CMSInterface;
 use App\Interfaces\CMS\TemplateInterface;
+use App\Models\CMS\Page;
 use Illuminate\Validation\Rule;
 
 class PageUpdateRequest extends BaseRequest
@@ -22,10 +23,7 @@ class PageUpdateRequest extends BaseRequest
     public function rules() : array
     {
         return [
-            'content' => [
-                'nullable',
-                'array',
-            ],
+            'content'                       => 'nullable|array',
             'content.*.data'                => 'nullable',
             'content.*.template_field_id'   => [
                 'required',
@@ -34,14 +32,10 @@ class PageUpdateRequest extends BaseRequest
                     return $query->where('template_id', $this->request->get('template_id'));
                 }),
             ],
-
-            'enabled_at' => [
-                'nullable',
-                'date'
-            ],
-            'expired_at' => [
-                'nullable',
-                'date'
+            'id' => [
+                'required',
+                'integer',
+                Rule::exists('cms_pages', 'id'),
             ],
             'layout_id' => [
                 'required',
@@ -56,11 +50,7 @@ class PageUpdateRequest extends BaseRequest
             'parent_id' => [
                 'nullable',
                 'integer',
-                Rule::exists('cms_users', 'id'),
-            ],
-            'published_at' => [
-                'nullable',
-                'date'
+                Rule::exists('cms_pages', 'id'),
             ],
             'template_id' => [
                 'required',
@@ -75,6 +65,18 @@ class PageUpdateRequest extends BaseRequest
                 'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
                 Rule::unique('cms_pages')->ignore($this->page->id, 'id')
             ],
+            'url.expired_at'    => 'nullable|date',
+            'url.is_enabled'    => 'required|boolean',
+            'url.id'            => [
+                'required',
+                'integer',
+                Rule::exists('cms_urls', 'id')->where(function ($query) {
+                    $query->where('urlable_type', Page::class)
+                        ->where('urlable_id', '=', $this->request->get('id'));
+                }),
+            ],
+            'url.published_at'  => 'nullable|date',
+            'url.url_main'      => 'required|string',
         ];
     }
 }

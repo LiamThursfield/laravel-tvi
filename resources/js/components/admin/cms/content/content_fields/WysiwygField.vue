@@ -1,14 +1,14 @@
 <template>
     <div>
         <text-area-group
-            :error_message="error_message"
-            :input_autocomplete="input_name"
-            :input_id="input_name"
-            :input_name="input_name"
-            :input_required="template_field.is_required"
-            input_type="text"
-            label_text=""
-            v-model="editable_content"
+            :error-message="errorMessage"
+            :input-autocomplete="inputName"
+            :input-id="inputName"
+            :input-name="inputName"
+            :input-required="templateField.is_required"
+            input-type="text"
+            label-text=""
+            v-model="editableContent"
         >
             <slot/>
         </text-area-group>

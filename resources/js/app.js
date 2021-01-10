@@ -8,9 +8,12 @@ Vue.use(plugin);
 
 require('./plugins/inertia-progress');
 require('./plugins/toasted');
+require('./plugins/vue2-datepicker');
 require('./plugins/vue-cookies');
 require('./plugins/vue-meta');
 require('./plugins/ziggy');
+
+require('./filters/date-times');
 
 require('./mixins/page-error');
 

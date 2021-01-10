@@ -3,7 +3,7 @@
         <vue2-dropzone
             :id="id"
             :ref="id"
-            :duplicateCheck="true"
+            :duplicate-check="true"
             :options="dropzoneOptions"
             @vdropzone-error="onError"
             @vdropzone-files-added="onFilesAdded"

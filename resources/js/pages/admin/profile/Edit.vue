@@ -6,7 +6,7 @@
         <div
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                 Edit Profile
             </h1>
             <inertia-link
@@ -49,38 +49,38 @@
             <div class="block px-6 w-full">
 
                 <input-group
-                    :error_message="getPageErrorMessage('first_name')"
-                    input_autocomplete="first_name"
-                    :input_autofocus="true"
-                    input_id="first_name"
-                    input_name="first_name"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="First Name"
+                    :error-message="getPageErrorMessage('first_name')"
+                    input-autocomplete="first_name"
+                    :input-autofocus="true"
+                    input-id="first_name"
+                    input-name="first_name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="First Name"
                     v-model="formData.first_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('last_name')"
-                    input_autocomplete="last_name"
-                    input_id="last_name"
-                    input_name="last_name"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="Last Name"
+                    :error-message="getPageErrorMessage('last_name')"
+                    input-autocomplete="last_name"
+                    input-id="last_name"
+                    input-name="last_name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Last Name"
                     v-model="formData.last_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('email')"
-                    input_autocomplete="new_email"
-                    input_id="email"
-                    input_name="email"
-                    :input_required="true"
-                    input_type="email"
-                    label_text="Email"
+                    :error-message="getPageErrorMessage('email')"
+                    input-autocomplete="new_email"
+                    input-id="email"
+                    input-name="email"
+                    :input-required="true"
+                    input-type="email"
+                    label-text="Email"
                     v-model="formData.email"
                 />
             </div>

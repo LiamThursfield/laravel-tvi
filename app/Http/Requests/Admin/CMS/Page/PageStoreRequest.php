@@ -22,10 +22,7 @@ class PageStoreRequest extends BaseRequest
     public function rules() : array
     {
         return [
-            'content' => [
-                'nullable',
-                'array',
-            ],
+            'content'                       => 'nullable|array',
             'content.*.data'                => 'nullable',
             'content.*.template_field_id'   => [
                 'required',
@@ -33,15 +30,6 @@ class PageStoreRequest extends BaseRequest
                 Rule::exists('cms_template_fields', 'id')->where(function ($query) {
                     return $query->where('template_id', $this->request->get('template_id'));
                 }),
-            ],
-
-            'enabled_at' => [
-                'nullable',
-                'date'
-            ],
-            'expired_at' => [
-                'nullable',
-                'date'
             ],
             'layout_id' => [
                 'required',
@@ -56,11 +44,7 @@ class PageStoreRequest extends BaseRequest
             'parent_id' => [
                 'nullable',
                 'integer',
-                Rule::exists('cms_users', 'id'),
-            ],
-            'published_at' => [
-                'nullable',
-                'date'
+                Rule::exists('cms_pages', 'id'),
             ],
             'template_id' => [
                 'required',
@@ -75,6 +59,11 @@ class PageStoreRequest extends BaseRequest
                 'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
                 'unique:cms_pages'
             ],
+            'url'               => 'required|array',
+            'url.expired_at'    => 'nullable|date',
+            'url.is_enabled'    => 'required|boolean',
+            'url.published_at'  => 'nullable|date',
+            'url.url_main'      => 'required|string',
         ];
     }
 }

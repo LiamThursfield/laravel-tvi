@@ -3,13 +3,13 @@
         <div class="text-center">
             <h1
                 class="font-black text-7xl text-center"
-                :class="error_title_class"
+                :class="errorTitleCase"
             >
-                {{ is_allowed_error ? status : 'Error' }}
+                {{ isAllowedError ? status : 'Error' }}
             </h1>
 
             <p class="font-semibold mt-4 max-w-full text-center text-theme-base-subtle-contrast text-lg w-72">
-                {{ error_description }}
+                {{ errorDescription }}
             </p>
 
             <inertia-link
@@ -18,7 +18,7 @@
                     button
                     font-semibold inline-block mt-8 mx-auto px-12 text-lg
                 "
-                :class="error_button_class"
+                :class="errorButtonClass"
                 href="/"
             >
                 Go Home
@@ -39,8 +39,8 @@
             },
         },
         computed: {
-            error_button_class() {
-                if (!this.is_allowed_error) {
+            errorButtonClass() {
+                if (!this.isAllowedError) {
                     return 'bg-theme-danger text-theme-danger-contrast hover:bg-theme-danger-contrast hover:text-theme-danger';
                 }
 
@@ -50,8 +50,8 @@
                     500: 'bg-theme-danger text-theme-danger-contrast hover:bg-theme-danger-contrast hover:text-theme-danger',
                 }[this.status];
             },
-            error_description() {
-                if (!this.is_allowed_error) {
+            errorDescription() {
+                if (!this.isAllowedError) {
                     return 'Whoops, something went wrong on our servers. We are looking into it.'
                 }
 
@@ -62,8 +62,8 @@
                     503: 'Sorry, we are doing some maintenance. Please check back soon.',
                 }[this.status]
             },
-            error_title_class() {
-                if (!this.is_allowed_error) {
+            errorTitleCase() {
+                if (!this.isAllowedError) {
                     return 'text-theme-danger-contrast';
                 }
 
@@ -74,7 +74,7 @@
                     503: 'text-theme-primary',
                 }[this.status];
             },
-            is_allowed_error() {
+            isAllowedError() {
                 let allowed_errors = [403, 404, 500, 503];
                 return allowed_errors.indexOf(this.status) >= 0;
             }

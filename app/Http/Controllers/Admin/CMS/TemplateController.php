@@ -33,13 +33,13 @@ class TemplateController extends AdminCMSController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
         return Inertia::render('admin/cms/template/Create', [
-            'template_field_settings' => function() {
+            'templateFieldSettings' => function() {
                 return TemplateFieldInterface::SETTINGS;
             },
-            'template_field_types' => function () {
+            'templateFieldTypes' => function () {
                 return TemplateFieldInterface::ALL_TYPES_LABELLED;
             },
-            'template_types' => function () {
+            'templateTypes' => function () {
                 return TemplateInterface::ALL_TYPES_LABELLED;
             }
         ]);
@@ -67,13 +67,13 @@ class TemplateController extends AdminCMSController
                 TemplateResource::withoutWrapping();
                 return TemplateResource::make($template);
             },
-            'template_field_settings' => function() {
+            'templateFieldSettings' => function() {
                 return TemplateFieldInterface::SETTINGS;
             },
-            'template_field_types' => function () {
+            'templateFieldTypes' => function () {
                 return TemplateFieldInterface::ALL_TYPES_LABELLED;
             },
-            'template_types' => function () {
+            'templateTypes' => function () {
                 return TemplateInterface::ALL_TYPES_LABELLED;
             }
         ]);
@@ -85,13 +85,13 @@ class TemplateController extends AdminCMSController
 
         $this->shareMeta();
         return Inertia::render('admin/cms/template/Index', [
-            'search_options' => $search_options,
+            'searchOptions' => $search_options,
             'templates' => function () use ($search_options) {
                 return app(TemplateQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
-            'template_types' => function () {
+            'templateTypes' => function () {
                 return TemplateInterface::ALL_TYPES_LABELLED;
             }
         ]);

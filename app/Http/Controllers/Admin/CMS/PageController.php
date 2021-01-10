@@ -38,6 +38,14 @@ class PageController extends AdminCMSController
                     ->get()
                     ->keyBy('id');
             },
+            'parentPages' => function() {
+                $pages = Page::withOrderedUrl()
+                    ->withoutHomeUrl()
+                    ->get();
+
+                PageResource::withoutWrapping();
+                return PageResource::collection($pages);
+            },
             'templates' => function () {
                 return Template::where('type', TemplateInterface::TYPE_PAGE)
                     ->orderBy('name', 'asc')
@@ -64,7 +72,8 @@ class PageController extends AdminCMSController
             'layout',
             'parent',
             'template',
-            'template.templateFields'
+            'template.templateFields',
+            'url',
         ]);
 
         $this->addMetaTitleSection('Edit - ' . $page->name)->shareMeta();
@@ -77,6 +86,15 @@ class PageController extends AdminCMSController
             'page' => function () use ($page) {
                 PageResource::withoutWrapping();
                 return PageResource::make($page);
+            },
+            'parentPages' => function() use ($page) {
+                $pages = Page::withOrderedUrl()
+                    ->withoutHomeUrl()
+                    ->withoutSelfOrChildUrls($page->url->url_full ?? null)
+                    ->get();
+
+                PageResource::withoutWrapping();
+                return PageResource::collection($pages);
             },
             'templates' => function () {
                 return Template::where('type', TemplateInterface::TYPE_PAGE)
@@ -94,6 +112,7 @@ class PageController extends AdminCMSController
             'layout',
             'parent',
             'template',
+            'url',
         ];
 
         $this->shareMeta();
@@ -108,7 +127,7 @@ class PageController extends AdminCMSController
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
-            'search_options' => $search_options,
+            'searchOptions' => $search_options,
             'templates' => function () {
                 return Template::where('type', TemplateInterface::TYPE_PAGE)
                     ->orderBy('name', 'asc')

@@ -49,7 +49,7 @@ class UserController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
         return Inertia::render('admin/user/Create', [
-            'selectable_roles' => function () {
+            'selectableRoles' => function () {
                 return Auth::user()->getSelectableRoles(true, true);
             }
         ]);
@@ -78,7 +78,7 @@ class UserController extends AdminController
 
         $this->addMetaTitleSection('Edit - ' . $user->name)->shareMeta();
         return Inertia::render('admin/user/Edit', [
-            'selectable_roles' => function () {
+            'selectableRoles' => function () {
                 return Auth::user()->getSelectableRoles(true, true);
             },
             'user' => function () use ($user) {
@@ -94,7 +94,7 @@ class UserController extends AdminController
 
         $this->shareMeta();
         return Inertia::render('admin/user/Index', [
-            'search_options' => $search_options,
+            'searchOptions' => $search_options,
             'users' => function () use ($search_options) {
                 return app(UserQueryAction::class)->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));

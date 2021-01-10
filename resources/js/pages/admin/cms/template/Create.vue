@@ -8,7 +8,7 @@
             v-if="userCan('cms.create')"
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                 Create Template
             </h1>
 
@@ -52,55 +52,54 @@
             <div class="block px-6 w-full">
 
                 <select-group
-                    :error_message="getPageErrorMessage('type')"
-                    label_text="Template Type"
-                    :select_any_enabled="true"
-                    select_any_label="Please select a template type"
-                    :select_autofocus="true"
-                    select_id="type"
-                    select_name="type"
-                    :select_options="template_types"
-                    :select_required="true"
-                    select_type="text"
-                    v-model="form_data.type"
+                    :error-message="getPageErrorMessage('type')"
+                    label-text="Template Type"
+                    :select-any-enabled="true"
+                    select-any-label="Please select a template type"
+                    :select-autofocus="true"
+                    select-id="type"
+                    select-name="type"
+                    :select-options="templateTypes"
+                    :select-required="true"
+                    v-model="formData.type"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('name')"
-                    input_autocomplete="template_name"
-                    input_id="name"
-                    input_name="name"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="Template Name"
+                    :error-message="getPageErrorMessage('name')"
+                    input-autocomplete="template_name"
+                    input-id="name"
+                    input-name="name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Template Name"
                     @input="onNameInput"
-                    v-model="form_data.name"
+                    v-model="formData.name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('slug')"
-                    input_autocomplete="template_slug"
-                    input_id="slug"
-                    input_name="slug"
-                    :input_required="true"
-                    input_type="text"
-                    label_text="Template Slug"
+                    :error-message="getPageErrorMessage('slug')"
+                    input-autocomplete="template_slug"
+                    input-id="slug"
+                    input-name="slug"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Template Slug"
                     @blur="onSlugBlur"
                     @input="onSlugInput"
-                    v-model="form_data.slug"
+                    v-model="formData.slug"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error_message="getPageErrorMessage('description')"
-                    input_autocomplete="template_description"
-                    input_id="description"
-                    input_name="description"
-                    input_type="text"
-                    label_text="Description"
-                    v-model="form_data.description"
+                    :error-message="getPageErrorMessage('description')"
+                    input-autocomplete="template_description"
+                    input-id="description"
+                    input-name="description"
+                    input-type="text"
+                    label-text="Description"
+                    v-model="formData.description"
                 />
             </div>
         </div>
@@ -108,9 +107,9 @@
         <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <template-field-editor
-                    :template_field_settings="template_field_settings"
-                    :template_field_types="template_field_types"
-                    v-model="form_data.template_fields"
+                    :template-field-settings="templateFieldSettings"
+                    :template-field-types="templateFieldTypes"
+                    v-model="formData.template_fields"
                 />
             </div>
         </div>
@@ -132,23 +131,23 @@
         },
         layout: 'admin-layout',
         props: {
-            'template_field_settings': {
+            'templateFieldSettings': {
                 type: Object,
                 required: true
             },
-            'template_field_types': {
+            'templateFieldTypes': {
                 type: Object,
                 required: true
             },
-            'template_types': {
+            'templateTypes': {
                 type: Object,
                 required: true
             }
         },
         data() {
             return {
-                auto_update_slug: true,
-                form_data: {
+                autoUpdateSlug: true,
+                formData: {
                     description: '',
                     name: '',
                     slug: '',
@@ -159,17 +158,17 @@
         },
         methods: {
             onNameInput() {
-                if (!this.auto_update_slug) {
+                if (!this.autoUpdateSlug) {
                     return;
                 }
 
-                this.form_data.slug = this.slugify(this.form_data.name);
+                this.formData.slug = this.slugify(this.formData.name);
             },
             onSlugBlur() {
-                this.form_data.slug = this.slugify(this.form_data.slug)
+                this.formData.slug = this.slugify(this.formData.slug)
             },
             onSlugInput() {
-                this.auto_update_slug = false;
+                this.autoUpdateSlug = false;
             },
             slugify(value) {
                 if (!value || !value.length) {
@@ -185,7 +184,7 @@
             submit() {
                 this.$inertia.post(
                     this.$route('admin.cms.templates.store'),
-                    this.form_data
+                    this.formData
                 );
             }
         }

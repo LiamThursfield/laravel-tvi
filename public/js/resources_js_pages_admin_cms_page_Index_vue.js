@@ -66,118 +66,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InputGroup",
   model: {
-    prop: 'input_value'
+    prop: 'inputValue'
   },
   props: {
-    allow_parent_updates: {
-      "default": true,
-      type: Boolean
-    },
-    error_class: {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_input: {
+    errorHideOnInput: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: false | String
     },
-    input_autocomplete: {
+    inputAutocomplete: {
       "default": '',
       type: String
     },
-    input_autofocus: {
+    inputAutofocus: {
       "default": false,
       type: Boolean
     },
-    input_class: {
+    inputClass: {
       "default": 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
       type: String
     },
-    input_disabled: {
+    inputDisabled: {
       "default": false,
       type: Boolean
     },
-    input_id: {
+    inputId: {
       required: true,
       type: String
     },
-    input_max: {
+    inputMax: {
       "default": '',
       type: String | Number
     },
-    input_maxlength: {
+    inputMaxLength: {
       "default": '',
       type: String | Number
     },
-    input_min: {
+    inputMin: {
       "default": '',
       type: String | Number
     },
-    input_minlength: {
+    inputMinLength: {
       "default": '',
       type: String | Number
     },
-    input_name: {
+    inputName: {
       required: true,
       type: String
     },
-    input_placeholder: {
+    inputPlaceholder: {
       "default": '',
       type: String
     },
-    input_required: {
+    inputRequired: {
       "default": false,
       type: Boolean
     },
-    input_type: {
+    inputType: {
       "default": 'text',
       type: String
     },
-    input_value: {
+    inputValue: {
       "default": '',
       type: String | Number
     },
-    label_class: {
+    labelClass: {
       "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
-    label_hidden: {
+    labelHidden: {
       "default": false,
       type: Boolean
     },
-    label_text: {
+    labelText: {
       required: true,
       type: String
     }
   },
   data: function data() {
     return {
-      hide_error: false
+      hideError: false
     };
   },
   computed: {
-    formatted_input_class: function formatted_input_class() {
-      if (this.is_error) {
-        return this.input_class + ' error';
+    formattedInputClass: function formattedInputClass() {
+      if (this.isError) {
+        return this.inputClass + ' error';
       }
 
-      return this.input_class;
+      return this.inputClass;
     },
-    formatted_label_class: function formatted_label_class() {
-      var label_class = this.label_class;
+    formattedLabelClass: function formattedLabelClass() {
+      var labelClass = this.labelClass;
 
-      if (this.label_hidden) {
-        label_class += ' hidden';
+      if (this.labelHidden) {
+        labelClass += ' hidden';
       }
 
-      return label_class;
+      return labelClass;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     }
   },
   mounted: function mounted() {
@@ -187,37 +183,37 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this = this;
 
-      if (this.input_autofocus && this.$refs[this.input_id]) {
+      if (this.inputAutofocus && this.$refs[this.inputId]) {
         this.$nextTick(function () {
-          _this.$refs[_this.input_id].focus();
+          _this.$refs[_this.inputId].focus();
         });
       }
     },
     blurInput: function blurInput() {
       var _this2 = this;
 
-      if (this.$refs[this.input_id]) {
+      if (this.$refs[this.inputId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.input_id].blur();
+          _this2.$refs[_this2.inputId].blur();
         });
       }
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
     onInputBlur: function onInputBlur() {
       this.$emit('blur');
     },
     onInputKeyPress: function onInputKeyPress() {
-      this.$emit('input', this.$refs[this.input_id].value);
+      this.$emit('input', this.$refs[this.inputId].value);
 
-      if (this.error_hide_on_input) {
-        this.hide_error = true;
+      if (this.errorHideOnInput) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -305,146 +301,149 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SelectGroup',
   model: {
-    prop: 'select_value'
+    prop: 'selectValue'
   },
   props: {
-    error_class: {
+    errorClass: {
       "default": 'mt-1 text-red-500 text-sm',
       type: String
     },
-    error_hide_on_select: {
+    errorHideOnSelect: {
       "default": true,
       type: Boolean
     },
-    error_message: {
+    errorMessage: {
       "default": '',
       type: String
     },
-    select_any_enabled: {
+    selectAnyEnabled: {
       "default": false,
       type: Boolean
     },
-    select_any_label: {
+    selectAnyLabel: {
       "default": "Any",
       type: String
     },
-    select_any_class: {
+    selectAnyClass: {
       "default": "",
       type: String
     },
-    select_any_value: {
+    selectAnyValue: {
       "default": ''
     },
-    select_autofocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
-    select_class: {
+    selectClass: {
       "default": 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
       type: String
     },
-    select_disabled: {
+    selectDisabled: {
       "default": false,
       type: Boolean
     },
-    select_id: {
+    selectId: {
       required: true,
       type: String
     },
-    select_name: {
+    selectName: {
       required: true,
       type: String
     },
-    select_option_label_key: {
+    selectOptionLabelKey: {
       "default": false,
       type: Boolean | String | Number
     },
-    select_option_value_key: {
+    selectOptionValueKey: {
       "default": false,
       type: Boolean | String | Number
     },
-    select_options: {
+    selectOptions: {
       required: true,
       type: Object
     },
-    select_required: {
+    selectRequired: {
       "default": false,
       type: Boolean
     },
-    select_value: {
+    selectValue: {
       "default": '',
       type: String | Number
     },
-    label_class: {
+    labelClass: {
       "default": 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
       type: String
     },
-    label_hidden: {
+    labelHidden: {
       "default": false,
       type: Boolean
     },
-    label_text: {
+    labelText: {
       required: true,
       type: String
     }
   },
   data: function data() {
     return {
-      hide_error: false
+      hideError: false
     };
   },
   computed: {
-    formatted_options: function formatted_options() {
+    formattedOptions: function formattedOptions() {
       var _this = this;
 
       var options = {};
 
-      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.select_options, function (option, key) {
+      lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.selectOptions, function (option, key) {
         // Default the label and value for the select
         var label = option;
         var value = key; // Set a custom label if necessary
 
-        if (_this.select_option_label_key !== false && option.hasOwnProperty(_this.select_option_label_key)) {
-          label = option[_this.select_option_label_key];
+        if (_this.selectOptionLabelKey !== false && option.hasOwnProperty(_this.selectOptionLabelKey)) {
+          label = option[_this.selectOptionLabelKey];
         } // Set a custom value if necessary
 
 
-        if (_this.select_option_value_key !== false && option.hasOwnProperty(_this.select_option_value_key)) {
-          value = option[_this.select_option_value_key];
+        if (_this.selectOptionValueKey !== false && option.hasOwnProperty(_this.selectOptionValueKey)) {
+          value = option[_this.selectOptionValueKey];
         }
 
-        options[value] = label;
+        options[key] = {
+          label: label,
+          value: value
+        };
       });
 
       return options;
     },
-    formatted_select_class: function formatted_select_class() {
-      var select_class = this.select_class;
+    formattedSelectClass: function formattedSelectClass() {
+      var selectClass = this.selectClass;
 
-      if (this.is_error) {
-        select_class += ' error';
+      if (this.isError) {
+        selectClass += ' error';
       }
 
-      if (this.is_any_option_selected) {
-        select_class += ' ' + this.select_any_class;
+      if (this.isAnyOptionSelected) {
+        selectClass += ' ' + this.selectAnyClass;
       }
 
-      return select_class;
+      return selectClass;
     },
-    formatted_label_class: function formatted_label_class() {
-      var label_class = this.label_class;
+    formattedLabelClass: function formattedLabelClass() {
+      var labelClass = this.labelClass;
 
-      if (this.label_hidden) {
-        label_class += ' hidden';
+      if (this.labelHidden) {
+        labelClass += ' hidden';
       }
 
-      return label_class;
+      return labelClass;
     },
-    is_error: function is_error() {
-      return !this.hide_error && this.error_message && this.error_message !== '';
+    isError: function isError() {
+      return !this.hideError && this.errorMessage && this.errorMessage !== '';
     },
-    is_any_option_selected: function is_any_option_selected() {
-      return this.select_value === this.select_any_value || this.select_value === null;
+    isAnyOptionSelected: function isAnyOptionSelected() {
+      return this.selectValue === this.selectAnyValue || this.selectValue === null;
     }
   },
   mounted: function mounted() {
@@ -454,23 +453,23 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.select_autofocus && this.$refs[this.select_id]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
-          _this2.$refs[_this2.select_id].focus();
+          _this2.$refs[_this2.selectId].focus();
         });
       }
     },
     blurSelect: function blurSelect() {
       var _this3 = this;
 
-      if (this.$refs[this.select_id]) {
+      if (this.$refs[this.selectId]) {
         this.$nextTick(function () {
-          _this3.$refs[_this3.select_id].blur();
+          _this3.$refs[_this3.selectId].blur();
         });
       }
     },
     isOptionDisabled: function isOptionDisabled(option_value) {
-      if (!this.select_required) {
+      if (!this.selectRequired) {
         return false;
       }
 
@@ -481,21 +480,21 @@ __webpack_require__.r(__webpack_exports__);
       return false;
     },
     isOptionSelected: function isOptionSelected(option_value) {
-      return option_value === this.select_value;
+      return option_value === this.selectValue;
     },
     onErrorMessageChange: function onErrorMessageChange() {
-      this.hide_error = false;
+      this.hideError = false;
     },
     onSelectChange: function onSelectChange() {
-      this.$emit('input', this.$refs[this.select_id].value);
+      this.$emit('input', this.$refs[this.selectId].value);
 
-      if (this.error_hide_on_select) {
-        this.hide_error = true;
+      if (this.errorHideOnSelect) {
+        this.hideError = true;
       }
     }
   },
   watch: {
-    error_message: {
+    errorMessage: {
       handler: "onErrorMessageChange"
     }
   }
@@ -701,6 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_core_modals_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/core/modals/ConfirmationModal */ "./resources/js/components/core/modals/ConfirmationModal.vue");
 /* harmony import */ var _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/core/forms/InputGroup */ "./resources/js/components/core/forms/InputGroup.vue");
 /* harmony import */ var _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/core/forms/SelectGroup */ "./resources/js/components/core/forms/SelectGroup.vue");
+/* harmony import */ var _components_core_icons_IconCheck__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/core/icons/IconCheck */ "./resources/js/components/core/icons/IconCheck.vue");
 //
 //
 //
@@ -937,6 +937,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -945,6 +1007,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminCmsPageIndex",
   components: {
+    IconCheck: _components_core_icons_IconCheck__WEBPACK_IMPORTED_MODULE_5__.default,
     ConfirmationModal: _components_core_modals_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__.default,
     InputGroup: _components_core_forms_InputGroup__WEBPACK_IMPORTED_MODULE_3__.default,
     SelectGroup: _components_core_forms_SelectGroup__WEBPACK_IMPORTED_MODULE_4__.default
@@ -953,58 +1016,72 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     layouts: {
       required: true,
-      type: Object
+      type: Object | Array
     },
     pages: {
       required: true,
       type: Object
     },
-    search_options: {
+    searchOptions: {
       required: true,
       type: Object | Array
     },
     templates: {
       required: true,
-      type: Object
+      type: Object | Array
     }
   },
   data: function data() {
     return {
-      editable_search_options: {
+      editableSearchOptions: {
         layout_id: '',
         per_page: 15,
         page_name: '',
         page_slug: '',
         template_id: ''
       },
-      is_initialised: false,
-      is_loading_delete: false,
-      show_delete_modal: false,
-      page_to_delete: null
+      isInitialised: false,
+      isLoadingDelete: false,
+      showDeleteModal: false,
+      pageToDelete: null
     };
   },
   mounted: function mounted() {
-    this.setSearchOptions(this.search_options);
+    this.setSearchOptions(this.searchOptions);
   },
   computed: {
-    delete_modal_text: function delete_modal_text() {
+    deleteModalText: function deleteModalText() {
       try {
-        return 'Do you really want to delete \'' + this.page_to_delete.name + '\'?';
+        return 'Do you really want to delete \'' + this.pageToDelete.name + '\'?';
       } catch (e) {
         return 'Do you really want to delete this page?';
       }
     },
-    show_pagination: function show_pagination() {
+    isLayouts: function isLayouts() {
+      try {
+        return Object.keys(this.layouts).length;
+      } catch (e) {
+        return false;
+      }
+    },
+    isTemplates: function isTemplates() {
+      try {
+        return Object.keys(this.templates).length;
+      } catch (e) {
+        return false;
+      }
+    },
+    showPagination: function showPagination() {
       try {
         return this.pages.pagination.last_page > 1;
       } catch (e) {
         return false;
       }
     },
-    show_page_actions: function show_page_actions() {
+    showPageActions: function showPageActions() {
       return this.userCan('cms.edit') || this.userCan('cms.delete');
     },
-    pages_data: function pages_data() {
+    pagesData: function pagesData() {
       if (!this.pages || !this.pages.data || this.pages.data.length < 1) {
         return false;
       }
@@ -1014,36 +1091,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cancelDelete: function cancelDelete() {
-      if (!this.is_loading_delete) {
-        this.show_delete_modal = false;
-        this.page_to_delete = null;
+      if (!this.isLoadingDelete) {
+        this.showDeleteModal = false;
+        this.pageToDelete = null;
       }
     },
     checkDelete: function checkDelete(page) {
-      this.show_delete_modal = true;
-      this.page_to_delete = page;
+      this.showDeleteModal = true;
+      this.pageToDelete = page;
     },
     confirmDelete: function confirmDelete() {
-      if (this.is_loading_delete) {
+      if (this.isLoadingDelete) {
         return this.$errorToast('It\'s only possible to delete one page at a time.');
       }
 
-      this.$inertia["delete"](this.$route('admin.cms.pages.destroy', this.page_to_delete.id), {
+      this.$inertia["delete"](this.$route('admin.cms.pages.destroy', this.pageToDelete.id), {
         only: ['flash', 'pages']
       });
-      this.page_to_delete = null;
-      this.show_delete_modal = false;
+      this.pageToDelete = null;
+      this.showDeleteModal = false;
     },
     onSearchOptionsUpdate: lodash__WEBPACK_IMPORTED_MODULE_0___default().debounce(function () {
-      if (!this.is_initialised) {
-        this.is_initialised = true; // If there are already search results, don't attempt search
+      if (!this.isInitialised) {
+        this.isInitialised = true; // If there are already search results, don't attempt search
 
-        if (this.pages_data) {
+        if (this.pagesData) {
           return;
         }
       }
 
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get(this.$route('admin.cms.pages.index'), this.editable_search_options, {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get(this.$route('admin.cms.pages.index'), this.editableSearchOptions, {
         only: ['pages'],
         preserveState: true
       });
@@ -1067,11 +1144,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(e);
       }
 
-      this.editable_search_options = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(options);
+      this.editableSearchOptions = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(options);
     }
   },
   watch: {
-    editable_search_options: {
+    editableSearchOptions: {
       deep: true,
       handler: 'onSearchOptionsUpdate'
     }
@@ -1480,13 +1557,13 @@ var render = function() {
   return _c("div", { staticClass: "flex flex-col" }, [
     _c(
       "label",
-      { class: _vm.formatted_label_class, attrs: { for: _vm.input_id } },
+      { class: _vm.formattedLabelClass, attrs: { for: _vm.inputId } },
       [
         _vm._t("default", [
           _c("span", { staticClass: "flex flex-row items-baseline" }, [
-            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _c("span", [_vm._v(_vm._s(_vm.labelText))]),
             _vm._v(" "),
-            _vm.input_required
+            _vm.inputRequired
               ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                   _vm._v("\n                    *\n                ")
                 ])
@@ -1498,22 +1575,22 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("input", {
-      ref: _vm.input_id,
-      class: _vm.formatted_input_class,
+      ref: _vm.inputId,
+      class: _vm.formattedInputClass,
       attrs: {
-        id: _vm.input_id,
-        autocomplete: _vm.input_autocomplete,
-        disabled: _vm.input_disabled,
-        max: _vm.input_max,
-        maxlength: _vm.input_maxlength,
-        min: _vm.input_min,
-        minlength: _vm.input_minlength,
-        name: _vm.input_name,
-        placeholder: _vm.input_placeholder,
-        required: _vm.input_required,
-        type: _vm.input_type
+        id: _vm.inputId,
+        autocomplete: _vm.inputAutocomplete,
+        disabled: _vm.inputDisabled,
+        max: _vm.inputMax,
+        maxlength: _vm.inputMaxLength,
+        min: _vm.inputMin,
+        minlength: _vm.inputMinLength,
+        name: _vm.inputName,
+        placeholder: _vm.inputPlaceholder,
+        required: _vm.inputRequired,
+        type: _vm.inputType
       },
-      domProps: { value: _vm.input_value },
+      domProps: { value: _vm.inputValue },
       on: {
         blur: _vm.onInputBlur,
         input: _vm.onInputKeyPress,
@@ -1533,11 +1610,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -1574,13 +1651,13 @@ var render = function() {
   return _c("div", { staticClass: "flex flex-col" }, [
     _c(
       "label",
-      { class: _vm.formatted_label_class, attrs: { for: _vm.select_id } },
+      { class: _vm.formattedLabelClass, attrs: { for: _vm.selectId } },
       [
         _vm._t("default", [
           _c("span", { staticClass: "flex flex-row items-baseline" }, [
-            _c("span", [_vm._v(_vm._s(_vm.label_text))]),
+            _c("span", [_vm._v(_vm._s(_vm.labelText))]),
             _vm._v(" "),
-            _vm.select_required
+            _vm.selectRequired
               ? _c("sup", { staticClass: "text-theme-danger-contrast" }, [
                   _vm._v("\n                    *\n                ")
                 ])
@@ -1594,13 +1671,13 @@ var render = function() {
     _c(
       "select",
       {
-        ref: _vm.select_id,
-        class: _vm.formatted_select_class,
+        ref: _vm.selectId,
+        class: _vm.formattedSelectClass,
         attrs: {
-          id: _vm.select_id,
-          disabled: _vm.select_disabled,
-          name: _vm.select_name,
-          required: _vm.select_required
+          id: _vm.selectId,
+          disabled: _vm.selectDisabled,
+          name: _vm.selectName,
+          required: _vm.selectRequired
         },
         on: {
           change: _vm.onSelectChange,
@@ -1616,33 +1693,36 @@ var render = function() {
         }
       },
       [
-        _vm.select_any_enabled
+        _vm.selectAnyEnabled
           ? _c(
               "option",
               {
-                attrs: { disabled: _vm.isOptionDisabled(_vm.select_any_value) },
+                attrs: { disabled: _vm.isOptionDisabled(_vm.selectAnyValue) },
                 domProps: {
-                  selected: _vm.isOptionSelected(_vm.select_any_value),
-                  value: _vm.select_any_value
+                  selected: _vm.isOptionSelected(_vm.selectAnyValue),
+                  value: _vm.selectAnyValue
                 }
               },
               [
                 _vm._v(
-                  "\n            " + _vm._s(_vm.select_any_label) + "\n        "
+                  "\n            " + _vm._s(_vm.selectAnyLabel) + "\n        "
                 )
               ]
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.formatted_options, function(label, value) {
+        _vm._l(_vm.formattedOptions, function(option, key) {
           return _c(
             "option",
             {
-              key: _vm.select_id + "-option-" + value,
-              attrs: { disabled: _vm.isOptionDisabled(value) },
-              domProps: { selected: _vm.isOptionSelected(value), value: value }
+              key: _vm.selectId + "-option-" + option.value,
+              attrs: { disabled: _vm.isOptionDisabled(option.value) },
+              domProps: {
+                selected: _vm.isOptionSelected(option.value),
+                value: option.value
+              }
             },
-            [_vm._v("\n            " + _vm._s(label) + "\n        ")]
+            [_vm._v("\n            " + _vm._s(option.label) + "\n        ")]
           )
         })
       ],
@@ -1653,11 +1733,11 @@ var render = function() {
       "div",
       [
         _c("transition", { attrs: { name: "slide-down-fade" } }, [
-          _vm.is_error
-            ? _c("p", { class: _vm.error_class }, [
+          _vm.isError
+            ? _c("p", { class: _vm.errorClass }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(_vm.error_message) +
+                    _vm._s(_vm.errorMessage) +
                     "\n            "
                 )
               ])
@@ -1865,7 +1945,7 @@ var render = function() {
       "div",
       { staticClass: "flex flex-row items-center mb-6" },
       [
-        _c("h1", { staticClass: "mr-auto text-lg" }, [
+        _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
           _vm._v("\n             Page\n        ")
         ]),
         _vm._v(" "),
@@ -1925,21 +2005,21 @@ var render = function() {
                 _c("input-group", {
                   staticClass: "mx-4",
                   attrs: {
-                    input_autocomplete: "page_name_search",
-                    input_class: "form-control form-control-short",
-                    input_id: "page_name",
-                    input_name: "page_name",
-                    input_placeholder: "Page Name",
-                    input_type: "text",
-                    label_hidden: true,
-                    label_text: "Page Name"
+                    "input-autocomplete": "page_name_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "page_name",
+                    "input-name": "page_name",
+                    "input-placeholder": "Page Name",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Page Name"
                   },
                   model: {
-                    value: _vm.editable_search_options.page_name,
+                    value: _vm.editableSearchOptions.page_name,
                     callback: function($$v) {
-                      _vm.$set(_vm.editable_search_options, "page_name", $$v)
+                      _vm.$set(_vm.editableSearchOptions, "page_name", $$v)
                     },
-                    expression: "editable_search_options.page_name"
+                    expression: "editableSearchOptions.page_name"
                   }
                 })
               ],
@@ -1956,96 +2036,104 @@ var render = function() {
                 _c("input-group", {
                   staticClass: "mx-4",
                   attrs: {
-                    input_autocomplete: "page_slug_search",
-                    input_class: "form-control form-control-short",
-                    input_id: "page_slug",
-                    input_name: "page_slug",
-                    input_placeholder: "Page Slug",
-                    input_type: "text",
-                    label_hidden: true,
-                    label_text: "Page Slug"
+                    "input-autocomplete": "page_slug_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "page_slug",
+                    "input-name": "page_slug",
+                    "input-placeholder": "Page Slug",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Page Slug"
                   },
                   model: {
-                    value: _vm.editable_search_options.page_slug,
+                    value: _vm.editableSearchOptions.page_slug,
                     callback: function($$v) {
-                      _vm.$set(_vm.editable_search_options, "page_slug", $$v)
+                      _vm.$set(_vm.editableSearchOptions, "page_slug", $$v)
                     },
-                    expression: "editable_search_options.page_slug"
+                    expression: "editableSearchOptions.page_slug"
                   }
                 })
               ],
               1
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
-              },
-              [
-                _c("select-group", {
-                  staticClass: "mx-4",
-                  attrs: {
-                    label_hidden: true,
-                    label_text: "Layout",
-                    select_any_enabled: true,
-                    select_any_label: "Layout",
-                    select_class: "form-control form-control-short",
-                    select_id: "template_id",
-                    select_name: "layout_id",
-                    select_option_label_key: "name",
-                    select_option_value_key: "id",
-                    select_options: _vm.layouts
+            _vm.isLayouts
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
                   },
-                  model: {
-                    value: _vm.editable_search_options.layout_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.editable_search_options, "layout_id", $$v)
-                    },
-                    expression: "editable_search_options.layout_id"
-                  }
-                })
-              ],
-              1
-            ),
+                  [
+                    _c("select-group", {
+                      staticClass: "mx-4",
+                      attrs: {
+                        "label-hidden": true,
+                        "label-text": "Layout",
+                        "select-any-enabled": true,
+                        "select-any-label": "Layout",
+                        "select-class": "form-control form-control-short",
+                        "select-id": "template_id",
+                        "select-name": "layout_id",
+                        "select-option-label-key": "name",
+                        "select-option-value-key": "id",
+                        "select-options": _vm.layouts
+                      },
+                      model: {
+                        value: _vm.editableSearchOptions.layout_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.editableSearchOptions, "layout_id", $$v)
+                        },
+                        expression: "editableSearchOptions.layout_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
-              },
-              [
-                _c("select-group", {
-                  staticClass: "mx-4",
-                  attrs: {
-                    label_hidden: true,
-                    label_text: "Template",
-                    select_any_enabled: true,
-                    select_any_label: "Template",
-                    select_class: "form-control form-control-short",
-                    select_id: "template_id",
-                    select_name: "template_id",
-                    select_option_label_key: "name",
-                    select_option_value_key: "id",
-                    select_options: _vm.templates
+            _vm.isTemplates
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
                   },
-                  model: {
-                    value: _vm.editable_search_options.template_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.editable_search_options, "template_id", $$v)
-                    },
-                    expression: "editable_search_options.template_id"
-                  }
-                })
-              ],
-              1
-            )
+                  [
+                    _c("select-group", {
+                      staticClass: "mx-4",
+                      attrs: {
+                        "label-hidden": true,
+                        "label-text": "Template",
+                        "select-any-enabled": true,
+                        "select-any-label": "Template",
+                        "select-class": "form-control form-control-short",
+                        "select-id": "template_id",
+                        "select-name": "template_id",
+                        "select-option-label-key": "name",
+                        "select-option-value-key": "id",
+                        "select-options": _vm.templates
+                      },
+                      model: {
+                        value: _vm.editableSearchOptions.template_id,
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.editableSearchOptions,
+                            "template_id",
+                            $$v
+                          )
+                        },
+                        expression: "editableSearchOptions.template_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
           ]
         ),
         _vm._v(" "),
-        !_vm.pages_data
+        !_vm.pagesData
           ? _c(
               "p",
               {
@@ -2062,55 +2150,186 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", [
+                        _c("th", { staticClass: "indicator-column" }),
+                        _vm._v(" "),
                         _c("th", [_vm._v("Name")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Slug")]),
+                        _c("th", [_vm._v("URL")]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Layout")]),
+                        _c("th", { staticClass: "text-center" }, [
+                          _vm._v("Enabled")
+                        ]),
                         _vm._v(" "),
-                        _c("th", [_vm._v("Template")]),
+                        _c("th", { staticClass: "text-center" }, [
+                          _vm._v("Publish / Expiry Date")
+                        ]),
                         _vm._v(" "),
-                        _vm.show_page_actions ? _c("th") : _vm._e()
+                        _c("th", [_vm._v("Layout / Template")]),
+                        _vm._v(" "),
+                        _vm.showPageActions ? _c("th") : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.pages_data, function(page, index) {
+                      _vm._l(_vm.pagesData, function(page, index) {
                         return _c("tr", { key: "page-" + page.id }, [
+                          _c("td", { staticClass: "indicator-column" }, [
+                            _c("div", {
+                              staticClass: "h-3 rounded-full w-3",
+                              class: {
+                                "bg-theme-success-contrast": page.url.is_live,
+                                "bg-theme-danger-contrast": !page.url.is_live
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
                           _c("td", [
                             _vm._v(
                               "\n                            " +
                                 _vm._s(page.name) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "text-sm text-theme-base-subtle-contrast"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(page.slug) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-sm" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(page.url.url_full) +
                                 "\n                        "
                             )
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page.slug) +
-                                "\n                        "
+                            _c(
+                              "div",
+                              { staticClass: "flex flex-row justify-center" },
+                              [
+                                page.url.is_enabled
+                                  ? _c("icon-check", { staticClass: "h-4 w-4" })
+                                  : _c("icon-x", { staticClass: "h-4 w-4" })
+                              ],
+                              1
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page.layout.name) +
-                                "\n                        "
+                          _c("td", { staticClass: "text-sm" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "flex flex-col opacity-75 space-y-1"
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "px-2 py-0 rounded text-center",
+                                    class: {
+                                      "bg-theme-success text-theme-success-contrast":
+                                        page.url.is_published,
+                                      "bg-theme-danger text-theme-danger-contrast": !page
+                                        .url.is_published
+                                    }
+                                  },
+                                  [
+                                    page.url.published_at
+                                      ? [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(
+                                                _vm._f("humanFriendlyDateTime")(
+                                                  page.url.published_at
+                                                )
+                                              ) +
+                                              "\n                                    "
+                                          )
+                                        ]
+                                      : [
+                                          _vm._v(
+                                            "\n                                        -\n                                    "
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "px-2 py-0 rounded text-center",
+                                    class: {
+                                      "bg-theme-success text-theme-success-contrast": !page
+                                        .url.is_expired,
+                                      "bg-theme-danger text-theme-danger-contrast":
+                                        page.url.is_expired
+                                    }
+                                  },
+                                  [
+                                    page.url.expired_at
+                                      ? [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(
+                                                _vm._f("humanFriendlyDateTime")(
+                                                  page.url.expired_at
+                                                )
+                                              ) +
+                                              "\n                                    "
+                                          )
+                                        ]
+                                      : [
+                                          _vm._v(
+                                            "\n                                        -\n                                    "
+                                          )
+                                        ]
+                                  ],
+                                  2
+                                )
+                              ]
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page.template.name) +
-                                "\n                        "
-                            )
-                          ]),
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "text-sm text-theme-base-subtle-contrast"
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(page.layout.name) +
+                                  "\n                            "
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(page.template.name) +
+                                  "\n                        "
+                              )
+                            ]
+                          ),
                           _vm._v(" "),
-                          _vm.show_page_actions
+                          _vm.showPageActions
                             ? _c("td", [
                                 _c(
                                   "div",
@@ -2176,7 +2395,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm.show_pagination
+              _vm.showPagination
                 ? _c(
                     "div",
                     { staticClass: "flex flex-row justify-center mt-12 px-6" },
@@ -2192,10 +2411,10 @@ var render = function() {
         _vm._v(" "),
         _c("confirmation-modal", {
           attrs: {
-            confirmText: "Delete",
-            confirmType: "danger",
-            showModal: _vm.show_delete_modal,
-            messageText: _vm.delete_modal_text
+            "confirm-text": "Delete",
+            "confirm-type": "danger",
+            "show-modal": _vm.showDeleteModal,
+            "message-text": _vm.deleteModalText
           },
           on: {
             cancelAction: _vm.cancelDelete,

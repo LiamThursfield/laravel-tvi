@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col">
         <label
-            :class="formatted_label_class"
-            :for="select_id"
+            :class="formattedLabelClass"
+            :for="selectId"
         >
             <slot>
                 <span class="flex flex-row items-baseline">
-                    <span>{{ label_text }}</span>
+                    <span>{{ labelText }}</span>
                     <sup
-                        v-if="select_required"
+                        v-if="selectRequired"
                         class="text-theme-danger-contrast"
                     >
                         *
@@ -18,32 +18,32 @@
         </label>
 
         <select
-            :id="select_id"
-            :class="formatted_select_class"
-            :disabled="select_disabled"
-            :name="select_name"
-            :ref="select_id"
-            :required="select_required"
+            :id="selectId"
+            :class="formattedSelectClass"
+            :disabled="selectDisabled"
+            :name="selectName"
+            :ref="selectId"
+            :required="selectRequired"
             @change="onSelectChange"
             @keyup.esc="blurSelect"
         >
             <option
-                v-if="select_any_enabled"
-                :disabled="isOptionDisabled(select_any_value)"
-                :selected="isOptionSelected(select_any_value)"
-                :value="select_any_value"
+                v-if="selectAnyEnabled"
+                :disabled="isOptionDisabled(selectAnyValue)"
+                :selected="isOptionSelected(selectAnyValue)"
+                :value="selectAnyValue"
             >
-                {{ select_any_label}}
+                {{ selectAnyLabel}}
             </option>
 
             <option
-                v-for="(label, value) in formatted_options"
-                :key="`${select_id}-option-${value}`"
-                :disabled="isOptionDisabled(value)"
-                :selected="isOptionSelected(value)"
-                :value="value"
+                v-for="(option, key) in formattedOptions"
+                :key="`${selectId}-option-${option.value}`"
+                :disabled="isOptionDisabled(option.value)"
+                :selected="isOptionSelected(option.value)"
+                :value="option.value"
             >
-                {{ label }}
+                {{ option.label }}
             </option>
         </select>
 
@@ -51,10 +51,10 @@
         <div>
             <transition name="slide-down-fade">
                 <p
-                    v-if="is_error"
-                    :class="error_class"
+                    v-if="isError"
+                    :class="errorClass"
                 >
-                    {{ error_message}}
+                    {{ errorMessage }}
                 </p>
             </transition>
         </div>
@@ -67,151 +67,154 @@
     export default {
         name: 'SelectGroup',
         model: {
-            prop: 'select_value'
+            prop: 'selectValue'
         },
         props: {
-            error_class: {
+            errorClass: {
                 default: 'mt-1 text-red-500 text-sm',
                 type: String
             },
-            error_hide_on_select: {
+            errorHideOnSelect: {
                 default: true,
                 type: Boolean
             },
-            error_message: {
+            errorMessage: {
                 default: '',
                 type: String
             },
-            select_any_enabled: {
+            selectAnyEnabled: {
                 default: false,
                 type: Boolean
             },
-            select_any_label: {
+            selectAnyLabel: {
                 default: "Any",
                 type: String
             },
-            select_any_class: {
+            selectAnyClass: {
                 default: "",
                 type: String
             },
-            select_any_value: {
+            selectAnyValue: {
                 default: '',
             },
-            select_autofocus: {
+            selectAutofocus: {
                 default: false,
                 type: Boolean
             },
-            select_class: {
+            selectClass: {
                 default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
                 type: String
             },
-            select_disabled: {
+            selectDisabled: {
                 default: false,
                 type: Boolean
             },
-            select_id: {
+            selectId: {
                 required: true,
                 type: String
             },
-            select_name: {
+            selectName: {
                 required: true,
                 type: String
             },
-            select_option_label_key: {
+            selectOptionLabelKey: {
                 default: false,
                 type: Boolean | String | Number
             },
-            select_option_value_key: {
+            selectOptionValueKey: {
                 default: false,
                 type: Boolean | String | Number
             },
-            select_options: {
+            selectOptions: {
                 required: true,
                 type: Object
             },
-            select_required: {
+            selectRequired: {
                 default: false,
                 type: Boolean
             },
-            select_value: {
+            selectValue: {
                 default: '',
                 type: String | Number
             },
-            label_class: {
+            labelClass: {
                 default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
                 type: String
             },
-            label_hidden: {
+            labelHidden: {
                 default: false,
                 type: Boolean
             },
-            label_text: {
+            labelText: {
                 required: true,
                 type: String
             },
         },
         data() {
             return  {
-                hide_error: false
+                hideError: false
             }
         },
         computed: {
-            formatted_options() {
+            formattedOptions() {
                 let options = {};
 
-                _.forEach(this.select_options, (option, key) => {
+                _.forEach(this.selectOptions, (option, key) => {
                     // Default the label and value for the select
                     let label = option;
                     let value = key;
 
                     // Set a custom label if necessary
                     if (
-                        this.select_option_label_key !== false &&
-                        option.hasOwnProperty(this.select_option_label_key)
+                        this.selectOptionLabelKey !== false &&
+                        option.hasOwnProperty(this.selectOptionLabelKey)
                     ) {
-                        label = option[this.select_option_label_key];
+                        label = option[this.selectOptionLabelKey];
                     }
 
                     // Set a custom value if necessary
                     if (
-                        this.select_option_value_key !== false &&
-                        option.hasOwnProperty(this.select_option_value_key)
+                        this.selectOptionValueKey !== false &&
+                        option.hasOwnProperty(this.selectOptionValueKey)
                     ) {
-                        value = option[this.select_option_value_key];
+                        value = option[this.selectOptionValueKey];
                     }
 
-                    options[value] = label;
+                    options[key] = {
+                        label: label,
+                        value: value,
+                    };
                 });
 
                 return options;
             },
-            formatted_select_class() {
-                let select_class = this.select_class;
+            formattedSelectClass() {
+                let selectClass = this.selectClass;
 
-                if (this.is_error) {
-                    select_class += ' error';
+                if (this.isError) {
+                    selectClass += ' error';
                 }
 
-                if (this.is_any_option_selected) {
-                    select_class += ' ' + this.select_any_class;
+                if (this.isAnyOptionSelected) {
+                    selectClass += ' ' + this.selectAnyClass;
                 }
 
-                return select_class;
+                return selectClass;
             },
-            formatted_label_class() {
-                let label_class = this.label_class;
+            formattedLabelClass() {
+                let labelClass = this.labelClass;
 
-                if (this.label_hidden) {
-                    label_class += ' hidden';
+                if (this.labelHidden) {
+                    labelClass += ' hidden';
                 }
 
-                return label_class;
+                return labelClass;
             },
-            is_error() {
-                return !this.hide_error && this.error_message && this.error_message !== '';
+            isError() {
+                return !this.hideError && this.errorMessage && this.errorMessage !== '';
             },
-            is_any_option_selected() {
-                return this.select_value === this.select_any_value || this.select_value === null;
+            isAnyOptionSelected() {
+                return this.selectValue === this.selectAnyValue || this.selectValue === null;
             }
         },
         mounted() {
@@ -219,21 +222,21 @@
         },
         methods: {
             autofocus() {
-                if (this.select_autofocus && this.$refs[this.select_id]) {
+                if (this.selectAutofocus && this.$refs[this.selectId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.select_id].focus();
+                        this.$refs[this.selectId].focus();
                     });
                 }
             },
             blurSelect() {
-                if (this.$refs[this.select_id]) {
+                if (this.$refs[this.selectId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.select_id].blur();
+                        this.$refs[this.selectId].blur();
                     });
                 }
             },
             isOptionDisabled(option_value) {
-                if (!this.select_required) {
+                if (!this.selectRequired) {
                     return false;
                 }
 
@@ -244,21 +247,21 @@
                 return false;
             },
             isOptionSelected(option_value) {
-                return option_value === this.select_value;
+                return option_value === this.selectValue;
             },
             onErrorMessageChange() {
-                this.hide_error = false;
+                this.hideError = false;
             },
             onSelectChange() {
-                this.$emit('input', this.$refs[this.select_id].value);
+                this.$emit('input', this.$refs[this.selectId].value);
 
-                if (this.error_hide_on_select) {
-                    this.hide_error = true;
+                if (this.errorHideOnSelect) {
+                    this.hideError = true;
                 }
             },
         },
         watch: {
-            error_message: {
+            errorMessage: {
                 handler: "onErrorMessageChange"
             },
         }

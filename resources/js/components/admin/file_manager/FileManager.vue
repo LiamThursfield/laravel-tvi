@@ -20,10 +20,10 @@
 
                 <div class="mt-2">
                     <file-manager-directory-list
-                        :canChangeDirectory="canChangeDirectory"
+                        :can-change-directory="canChangeDirectory"
                         :directories="directories"
-                        :isLoadingDirectories="isLoadingDirectories"
-                        :parentDirectory="parentDirectory"
+                        :is-loading-directories="isLoadingDirectories"
+                        :parent-directory="parentDirectory"
                         @changeDirectory="changeDirectory"
                     />
 
@@ -37,7 +37,6 @@
                         >
                             <div
                                 v-if="!isCreatingDirectory"
-                                key="intial"
                             >
                                 <button
                                     class="
@@ -55,7 +54,6 @@
 
                             <div
                                 v-else
-                                key="creating"
                                 class="flex flex-col"
                             >
                                 <label
@@ -120,16 +118,16 @@
             <div class="flex-1">
                 <div class="bg-white shadow-subtle p-6 rounded-lg">
                     <file-manager-files-header
-                        :canChangeDirectory="canChangeDirectory"
-                        :currentDirectoryList="currentDirectoryList"
-                        :showBreadcrumbs="showBreadcrumbs"
+                        :can-change-directory="canChangeDirectory"
+                        :current-directory-list="currentDirectoryList"
+                        :show-breadcrumbs="showBreadcrumbs"
                         @changeDirectoryViaBreadcrumb="changeDirectoryViaBreadcrumb"
                     />
 
                     <file-manager-files-list
                         class="mt-2"
                         :files="files"
-                        :showFilesLoader="showFilesLoader"
+                        :show-files-loader="showFilesLoader"
                     />
                 </div>
 

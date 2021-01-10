@@ -1,6 +1,7 @@
 /*
  * Core - Custom Includes
  */
+@import "./datepicker.css";
 @import "./npprogress.css";
 @import "./transition.css";
 @import "./toasted.css";

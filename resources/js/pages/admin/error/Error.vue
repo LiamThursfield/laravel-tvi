@@ -3,13 +3,13 @@
         <div>
             <h1
                 class="font-black text-7xl text-center"
-                :class="error_title_class"
+                :class="errorTitleCase"
             >
-                {{ is_allowed_error ? status : 'Error' }}
+                {{ isAllowedError ? status : 'Error' }}
             </h1>
 
             <p class="font-semibold mt-4 max-w-full text-center text-theme-base-subtle-contrast text-lg w-72">
-                {{ error_description }}
+                {{ errorDescription }}
             </p>
         </div>
     </section>
@@ -27,8 +27,8 @@
             },
         },
         computed: {
-            error_description() {
-                if (!this.is_allowed_error) {
+            errorDescription() {
+                if (!this.isAllowedError) {
                     return 'Whoops, something went wrong on our servers. We are looking into it.'
                 }
 
@@ -39,8 +39,8 @@
                     503: 'Sorry, we are doing some maintenance. Please check back soon.',
                 }[this.status]
             },
-            error_title_class() {
-                if (!this.is_allowed_error) {
+            errorTitleCase() {
+                if (!this.isAllowedError) {
                     return 'text-theme-danger-contrast';
                 }
 
@@ -51,7 +51,7 @@
                     503: 'text-theme-primary',
                 }[this.status];
             },
-            is_allowed_error() {
+            isAllowedError() {
                 let allowed_errors = [403, 404, 500, 503];
                 return allowed_errors.indexOf(this.status) >= 0;
             }

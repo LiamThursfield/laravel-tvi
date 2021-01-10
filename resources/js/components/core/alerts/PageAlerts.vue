@@ -1,7 +1,6 @@
 <template>
     <section
         v-if="isVisibleAlerts"
-        class="pt-8 px-8"
     >
         <transition-group
             class="flex flex-col space-y-4"
@@ -10,7 +9,7 @@
         >
             <div
                 v-if="isVisibleSuccess"
-                class="bg-theme-success flex flex-row items-center px-4 py-4 relative rounded shadow-subtle text-theme-success-contrast"
+                class="bg-theme-success flex flex-row items-center px-4 py-4 relative shadow-subtle text-theme-success-contrast"
                 key="alert-success"
             >
                 <span class="flex-1">
@@ -27,7 +26,7 @@
 
             <div
                 v-if="isVisibleWarning"
-                class="bg-theme-warning flex flex-row items-center px-4 py-4 relative rounded shadow-subtle text-theme-warning-contrast"
+                class="bg-theme-warning flex flex-row items-center px-4 py-4 relative shadow-subtle text-theme-warning-contrast"
                 key="alert-warning"
             >
                 <span class="flex-1">
@@ -44,7 +43,7 @@
 
             <div
                 v-if="isVisibleError"
-                class="bg-theme-danger flex flex-row items-center px-4 py-4 relative rounded shadow-subtle text-theme-danger-contrast"
+                class="bg-theme-danger flex flex-row items-center px-4 py-4 relative shadow-subtle text-theme-danger-contrast"
                 key="alert-error"
             >
                 <span class="flex-1">
@@ -55,7 +54,6 @@
                     type="button"
                     @click="closeError"
                 >
-                  <icon-close class="w-5 hover:text-theme-danger-hover-contrast" />
                   <icon-close class="w-5 hover:text-theme-danger-hover-contrast" />
                 </button>
             </div>

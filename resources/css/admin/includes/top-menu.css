@@ -4,7 +4,7 @@
 
 #admin-layout {
     .top-menu {
-        @apply flex flex-row h-14 items-center px-4 relative shadow-subtle;
+        @apply flex flex-row h-14 items-center px-4 relative shadow-subtle z-10;
         background: var(--top-menu-color-base);
         color: var(--top-menu-color-base-contrast);
 
