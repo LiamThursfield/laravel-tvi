@@ -89,6 +89,7 @@
                 </div>
 
                 <div
+                    v-if="isLayouts"
                     class="
                         my-2 w-full
                         sm:w-1/2
@@ -112,6 +113,7 @@
                 </div>
 
                 <div
+                    v-if="isTemplates"
                     class="
                         my-2 w-full
                         sm:w-1/2
@@ -313,7 +315,7 @@
         props: {
             layouts: {
                 required: true,
-                type: Object,
+                type: Object | Array,
             },
             pages: {
                 required: true,
@@ -325,7 +327,7 @@
             },
             templates: {
                 required: true,
-                type: Object,
+                type: Object | Array,
             },
         },
         data() {
@@ -352,6 +354,20 @@
                     return 'Do you really want to delete \'' + this.pageToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this page?'
+                }
+            },
+            isLayouts() {
+                try {
+                    return Object.keys(this.layouts).length;
+                } catch (e) {
+                    return false;
+                }
+            },
+            isTemplates() {
+                try {
+                    return Object.keys(this.templates).length;
+                } catch (e) {
+                    return false;
                 }
             },
             showPagination() {

@@ -75,7 +75,10 @@
                     />
                 </div>
 
-                <div class="w-full md:w-1/3">
+                <div
+                    v-if="isTemplates"
+                    class="w-full md:w-1/3"
+                >
                     <select-group
                         :label-hidden="true"
                         label-text="Template"
@@ -202,9 +205,18 @@
         },
         layout: 'admin-layout',
         props: {
-            layouts: Object,
-            searchOptions: Object|Array,
-            templates: Object
+            layouts: {
+                required: true,
+                type: Object,
+            },
+            searchOptions: {
+                required: true,
+                type: Object | Array,
+            },
+            templates: {
+                required: true,
+                type: Object | Array,
+            }
         },
         data() {
             return {
@@ -229,6 +241,13 @@
                     return 'Do you really want to delete \'' + this.layoutToDelete.name + '\'?';
                 } catch (e) {
                     return 'Do you really want to delete this layout?'
+                }
+            },
+            isTemplates() {
+                try {
+                    return Object.keys(this.templates).length;
+                } catch (e) {
+                    return false;
                 }
             },
             showPagination() {
