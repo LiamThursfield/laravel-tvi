@@ -17,7 +17,13 @@ class TemplateSeeder extends Seeder
      */
     public function run()
     {
-        // Default Layout Template
+        $this->createLayoutTemplate();
+        $this->createPageTemplate();
+    }
+
+
+    protected function createLayoutTemplate()
+    {
         $template = Template::create([
             'type'          => TemplateInterface::TYPE_LAYOUT,
             'name'          => 'Default Layout Template',
@@ -32,15 +38,16 @@ class TemplateSeeder extends Seeder
             'order' => 0,
         ]);
 
-        $layout = Layout::create([
+
+        Layout::create([
             'name'          => 'Default Layout',
             'slug'          => 'default-layout',
             'template_id'   => $template->id,
         ]);
+    }
 
-
-
-        // Default Page Template
+    protected function createPageTemplate()
+    {
         $template = Template::create([
             'type'          => TemplateInterface::TYPE_PAGE,
             'name'          => 'Default Page Template',
@@ -59,7 +66,7 @@ class TemplateSeeder extends Seeder
             'type'  => TemplateFieldInterface::TYPE_WYSIWYG,
             'name'  => 'Content',
             'slug'  => 'content',
-            'order' => 0,
+            'order' => 1,
         ]);
     }
 }
