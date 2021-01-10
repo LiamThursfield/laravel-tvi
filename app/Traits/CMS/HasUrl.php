@@ -46,6 +46,10 @@ trait HasUrl
             ->pluck('urlable_id')
             ->implode(',');
 
+        if (!$ordered_ids) {
+            return $query;
+        }
+
         return $query->whereHas('url')
             ->with('url')
             ->orderByRaw('FIELD (id, ' . $ordered_ids . ')');
