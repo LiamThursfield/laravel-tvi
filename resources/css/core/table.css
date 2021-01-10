@@ -52,7 +52,7 @@
 
 
         th {
-            @apply font-normal;
+            @apply font-medium;
             padding: var(--table-padding-header-y)  var(--table-padding-header-x);
 
             &.indicator-column {

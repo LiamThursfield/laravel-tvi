@@ -8,7 +8,7 @@
             v-if="userCan('profile.edit')"
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                 Edit User
                 <span class="ml-2 opacity-75 text-sm">
                     {{ user.name }}

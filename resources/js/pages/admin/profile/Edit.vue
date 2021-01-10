@@ -6,7 +6,7 @@
         <div
             class="flex flex-row items-center mb-6"
         >
-            <h1 class="mr-auto text-lg">
+            <h1 class="font-medium mr-auto text-lg">
                 Edit Profile
             </h1>
             <inertia-link
