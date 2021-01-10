@@ -172,7 +172,7 @@ var render = function() {
           "div",
           { staticClass: "flex flex-row items-center mb-6" },
           [
-            _c("h1", { staticClass: "mr-auto text-lg" }, [
+            _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
               _vm._v("\n            My Profile\n        ")
             ]),
             _vm._v(" "),

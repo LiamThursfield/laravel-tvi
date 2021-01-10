@@ -636,15 +636,15 @@ var render = function() {
           _c("input-group", {
             staticClass: "mt-4",
             attrs: {
-              errorMessage: _vm.getPageErrorMessage("email"),
-              inputAutocomplete: "email",
-              inputAutofocus: true,
-              inputClass: "auth-input",
-              inputId: "email",
-              inputName: "email",
-              inputRequired: true,
-              inputType: "email",
-              labelText: "Email"
+              "error-message": _vm.getPageErrorMessage("email"),
+              "input-autocomplete": "email",
+              "input-autofocus": true,
+              "input-class": "auth-input",
+              "input-id": "email",
+              "input-name": "email",
+              "input-required": true,
+              "input-type": "email",
+              "label-text": "Email"
             },
             model: {
               value: _vm.form.email,
@@ -658,14 +658,14 @@ var render = function() {
           _c("input-group", {
             staticClass: "mt-4",
             attrs: {
-              errorMessage: _vm.getPageErrorMessage("password"),
-              inputAutocomplete: "current-password",
-              inputClass: "auth-input",
-              inputId: "password",
-              inputName: "password",
-              inputRequired: true,
-              inputType: "password",
-              labelText: "Password"
+              "error-message": _vm.getPageErrorMessage("password"),
+              "input-autocomplete": "current-password",
+              "input-class": "auth-input",
+              "input-id": "password",
+              "input-name": "password",
+              "input-required": true,
+              "input-type": "password",
+              "label-text": "Password"
             },
             model: {
               value: _vm.form.password,

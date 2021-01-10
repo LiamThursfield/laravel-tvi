@@ -331,7 +331,7 @@ __webpack_require__.r(__webpack_exports__);
     selectAnyValue: {
       "default": ''
     },
-    selectAutoFocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
@@ -453,7 +453,7 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.selectAutoFocus && this.$refs[this.selectId]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
           _this2.$refs[_this2.selectId].focus();
         });
@@ -888,6 +888,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -902,9 +905,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   layout: 'admin-layout',
   props: {
-    layouts: Object,
-    searchOptions: Object | Array,
-    templates: Object
+    layouts: {
+      required: true,
+      type: Object
+    },
+    searchOptions: {
+      required: true,
+      type: Object | Array
+    },
+    templates: {
+      required: true,
+      type: Object | Array
+    }
   },
   data: function data() {
     return {
@@ -929,6 +941,13 @@ __webpack_require__.r(__webpack_exports__);
         return 'Do you really want to delete \'' + this.layoutToDelete.name + '\'?';
       } catch (e) {
         return 'Do you really want to delete this layout?';
+      }
+    },
+    isTemplates: function isTemplates() {
+      try {
+        return Object.keys(this.templates).length;
+      } catch (e) {
+        return false;
       }
     },
     showPagination: function showPagination() {
@@ -1804,7 +1823,7 @@ var render = function() {
       "div",
       { staticClass: "flex flex-row items-center mb-6" },
       [
-        _c("h1", { staticClass: "mr-auto text-lg" }, [
+        _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
           _vm._v("\n             Layout\n        ")
         ]),
         _vm._v(" "),
@@ -1860,14 +1879,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "layout_name_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "layout_name",
-                    inputName: "layout_name",
-                    inputPlaceholder: "Layout Name",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Layout Name"
+                    "input-autocomplete": "layout_name_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "layout_name",
+                    "input-name": "layout_name",
+                    "input-placeholder": "Layout Name",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Layout Name"
                   },
                   model: {
                     value: _vm.editableSearchOptions.layout_name,
@@ -1887,14 +1906,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "layout_slug_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "layout_slug",
-                    inputName: "layout_slug",
-                    inputPlaceholder: "Layout Slug",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Layout Slug"
+                    "input-autocomplete": "layout_slug_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "layout_slug",
+                    "input-name": "layout_slug",
+                    "input-placeholder": "Layout Slug",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Layout Slug"
                   },
                   model: {
                     value: _vm.editableSearchOptions.layout_slug,
@@ -1908,34 +1927,40 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "w-full md:w-1/3" },
-              [
-                _c("select-group", {
-                  attrs: {
-                    labelHidden: true,
-                    labelText: "Template",
-                    selectAnyEnabled: true,
-                    selectAnyLabel: "Template",
-                    selectClass: "form-control form-control-short",
-                    selectId: "template_id",
-                    selectName: "template_id",
-                    selectOptionLabelKey: "name",
-                    selectOptionValueKey: "id",
-                    selectOptions: _vm.templates
-                  },
-                  model: {
-                    value: _vm.editableSearchOptions.template_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.editableSearchOptions, "template_id", $$v)
-                    },
-                    expression: "editableSearchOptions.template_id"
-                  }
-                })
-              ],
-              1
-            )
+            _vm.isTemplates
+              ? _c(
+                  "div",
+                  { staticClass: "w-full md:w-1/3" },
+                  [
+                    _c("select-group", {
+                      attrs: {
+                        "label-hidden": true,
+                        "label-text": "Template",
+                        "select-any-enabled": true,
+                        "select-any-label": "Template",
+                        "select-class": "form-control form-control-short",
+                        "select-id": "template_id",
+                        "select-name": "template_id",
+                        "select-option-label-key": "name",
+                        "select-option-value-key": "id",
+                        "select-options": _vm.templates
+                      },
+                      model: {
+                        value: _vm.editableSearchOptions.template_id,
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.editableSearchOptions,
+                            "template_id",
+                            $$v
+                          )
+                        },
+                        expression: "editableSearchOptions.template_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
           ]
         ),
         _vm._v(" "),
@@ -2076,10 +2101,10 @@ var render = function() {
         _vm._v(" "),
         _c("confirmation-modal", {
           attrs: {
-            confirmText: "Delete",
-            confirmType: "danger",
-            showModal: _vm.showDeleteModal,
-            messageText: _vm.deleteModalText
+            "confirm-text": "Delete",
+            "confirm-type": "danger",
+            "show-modal": _vm.showDeleteModal,
+            "message-text": _vm.deleteModalText
           },
           on: {
             cancelAction: _vm.cancelDelete,

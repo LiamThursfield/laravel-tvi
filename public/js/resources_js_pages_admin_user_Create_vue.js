@@ -1084,7 +1084,7 @@ var render = function() {
             "div",
             { staticClass: "flex flex-row items-center mb-6" },
             [
-              _c("h1", { staticClass: "mr-auto text-lg" }, [
+              _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
                 _vm._v("\n            Create User\n        ")
               ]),
               _vm._v(" "),
@@ -1138,14 +1138,14 @@ var render = function() {
           [
             _c("input-group", {
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("first_name"),
-                inputAutocomplete: "first_name",
-                inputAutofocus: true,
-                inputId: "first_name",
-                inputName: "first_name",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "First Name"
+                "error-message": _vm.getPageErrorMessage("first_name"),
+                "input-autocomplete": "first_name",
+                "input-autofocus": true,
+                "input-id": "first_name",
+                "input-name": "first_name",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "First Name"
               },
               model: {
                 value: _vm.formData.first_name,
@@ -1159,13 +1159,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("last_name"),
-                inputAutocomplete: "last_name",
-                inputId: "last_name",
-                inputName: "last_name",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Last Name"
+                "error-message": _vm.getPageErrorMessage("last_name"),
+                "input-autocomplete": "last_name",
+                "input-id": "last_name",
+                "input-name": "last_name",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Last Name"
               },
               model: {
                 value: _vm.formData.last_name,
@@ -1179,13 +1179,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("email"),
-                inputAutocomplete: "off",
-                inputId: "email",
-                inputName: "email",
-                inputRequired: true,
-                inputType: "email",
-                labelText: "Email"
+                "error-message": _vm.getPageErrorMessage("email"),
+                "input-autocomplete": "off",
+                "input-id": "email",
+                "input-name": "email",
+                "input-required": true,
+                "input-type": "email",
+                "label-text": "Email"
               },
               model: {
                 value: _vm.formData.email,
@@ -1199,13 +1199,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("password"),
-                inputAutocomplete: "off",
-                inputId: "password",
-                inputName: "password",
-                inputRequired: true,
-                inputType: "password",
-                labelText: "Password"
+                "error-message": _vm.getPageErrorMessage("password"),
+                "input-autocomplete": "off",
+                "input-id": "password",
+                "input-name": "password",
+                "input-required": true,
+                "input-type": "password",
+                "label-text": "Password"
               },
               model: {
                 value: _vm.formData.password,
@@ -1219,13 +1219,15 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("password_confirmation"),
-                inputAutocomplete: "off",
-                inputId: "password_confirmation",
-                inputName: "password_confirmation",
-                inputRequired: true,
-                inputType: "password",
-                labelText: "Confirm Password"
+                "error-message": _vm.getPageErrorMessage(
+                  "password_confirmation"
+                ),
+                "input-autocomplete": "off",
+                "input-id": "password_confirmation",
+                "input-name": "password_confirmation",
+                "input-required": true,
+                "input-type": "password",
+                "label-text": "Confirm Password"
               },
               model: {
                 value: _vm.formData.password_confirmation,
@@ -1262,9 +1264,9 @@ var render = function() {
                     return _c("inline-checkbox-group", {
                       key: "user-role-" + role_key,
                       attrs: {
-                        checkboxId: "user-role-" + role_key,
-                        checkboxName: "user-role-" + role_key,
-                        labelText: role_label
+                        "checkbox-id": "user-role-" + role_key,
+                        "checkbox-name": "user-role-" + role_key,
+                        "label-text": role_label
                       },
                       model: {
                         value: _vm.formData.roles[role_key],

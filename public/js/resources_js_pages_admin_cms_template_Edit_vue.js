@@ -120,11 +120,11 @@ __webpack_require__.r(__webpack_exports__);
     prop: 'templateFields'
   },
   props: {
-    is_editing: {
+    isEditing: {
       "default": false,
       type: Boolean
     },
-    is_view_only: {
+    isViewOnly: {
       "default": false,
       type: Boolean
     },
@@ -144,20 +144,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editableTemplateFields: [],
-      is_autofocus_disabled: false,
-      is_dragging: false
+      isAutofocusDisabled: false,
+      isDragging: false
     };
   },
   created: function created() {
-    if (this.is_editing) {
-      this.is_autofocus_disabled = true;
+    if (this.isEditing) {
+      this.isAutofocusDisabled = true;
     }
 
     this.editableTemplateFields = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(this.templateFields);
   },
   methods: {
     addTemplateField: function addTemplateField() {
-      this.is_autofocus_disabled = false;
+      this.isAutofocusDisabled = false;
       this.editableTemplateFields.push({
         description: '',
         is_required: false,
@@ -179,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     onDraggableEnd: function onDraggableEnd() {
-      this.is_dragging = false;
+      this.isDragging = false;
       this.reorderTemplateFields();
     },
     onDraggableSort: function onDraggableSort() {
@@ -187,7 +187,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$page.props.errors = {};
     },
     onDraggableStart: function onDraggableStart() {
-      this.is_dragging = true;
+      this.isDragging = true;
     },
     onTemplateFieldsChange: function onTemplateFieldsChange(fields) {
       this.editableTemplateFields = lodash__WEBPACK_IMPORTED_MODULE_0___default().cloneDeep(fields);
@@ -369,15 +369,15 @@ __webpack_require__.r(__webpack_exports__);
     prop: 'templateField'
   },
   props: {
-    errorMessage_key_prefix: {
+    errorMessageKeyPrefix: {
       "default": 'templateFields',
       type: String
     },
-    is_autofocus_disabled: {
+    isAutofocusDisabled: {
       "default": false,
       type: Boolean
     },
-    is_view_only: {
+    isViewOnly: {
       "default": false,
       type: Boolean
     },
@@ -421,7 +421,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     errorMessage_key: function errorMessage_key() {
-      return this.errorMessage_key_prefix + '.' + this.editable_templateField.order + '.';
+      return this.errorMessageKeyPrefix + '.' + this.editable_templateField.order + '.';
     },
     settings_component: function settings_component() {
       if (!this.editable_templateField.type) {
@@ -1171,7 +1171,7 @@ __webpack_require__.r(__webpack_exports__);
     selectAnyValue: {
       "default": ''
     },
-    selectAutoFocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
@@ -1293,7 +1293,7 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.selectAutoFocus && this.$refs[this.selectId]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
           _this2.$refs[_this2.selectId].focus();
         });
@@ -1565,7 +1565,7 @@ var templateFieldSettingsMixin = {
     prop: 'fieldSettings'
   },
   props: {
-    default_settings: {
+    defaultSettings: {
       required: true,
       type: Array | Object
     },
@@ -1586,11 +1586,11 @@ var templateFieldSettingsMixin = {
   computed: {
     isDefaultSettings: function isDefaultSettings() {
       try {
-        if (!this.default_settings || Array.isArray(this.default_settings)) {
+        if (!this.defaultSettings || Array.isArray(this.defaultSettings)) {
           return false;
         }
 
-        return Object.keys(this.default_settings).length;
+        return Object.keys(this.defaultSettings).length;
       } catch (e) {
         return false;
       }
@@ -1611,7 +1611,7 @@ var templateFieldSettingsMixin = {
 
 
       if (this.isDefaultSettings) {
-        lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.default_settings, function (value, key) {
+        lodash__WEBPACK_IMPORTED_MODULE_0___default().forEach(this.defaultSettings, function (value, key) {
           if (!_this.editableFieldSettings.hasOwnProperty(key)) {
             _this.editableFieldSettings[key] = value;
           }
@@ -6180,7 +6180,7 @@ var render = function() {
             "p",
             {
               staticClass:
-                "border-2 border-theme-base-subtle mt-6 px-4 py-3 rounded text-center text-theme-base-subtle-contrast"
+                "bg-theme-base-subtle mt-6 px-4 py-3 rounded text-center text-theme-base-subtle-contrast"
             },
             [_vm._v("\n        No template fields\n    ")]
           )
@@ -6190,8 +6190,8 @@ var render = function() {
               staticClass: "mt-6",
               attrs: {
                 animation: 200,
-                disabled: _vm.is_view_only,
-                ghostClass: "ghost",
+                disabled: _vm.isViewOnly,
+                "ghost-class": "ghost",
                 handle: ".draggable-handle"
               },
               on: {
@@ -6212,7 +6212,7 @@ var render = function() {
                 "transition-group",
                 {
                   attrs: {
-                    name: !_vm.is_dragging ? "flip-field" : null,
+                    name: !_vm.isDragging ? "flip-field" : null,
                     type: "transition"
                   }
                 },
@@ -6267,9 +6267,10 @@ var render = function() {
                         [
                           _c("template-field", {
                             attrs: {
-                              is_autofocus_disabled: _vm.is_autofocus_disabled,
-                              templateFieldTypes: _vm.templateFieldTypes,
-                              templateFieldSettings: _vm.templateFieldSettings
+                              "is-autofocus-disabled": _vm.isAutofocusDisabled,
+                              "template-field-types": _vm.templateFieldTypes,
+                              "template-field-settings":
+                                _vm.templateFieldSettings
                             },
                             on: { input: _vm.updateTemplateFields },
                             model: {
@@ -6359,15 +6360,17 @@ var render = function() {
           _c("select-group", {
             staticClass: "flex-1",
             attrs: {
-              errorMessage: _vm.getErrorMessage("type"),
-              labelText: "Field Type",
-              selectAnyEnabled: true,
-              selectAnyLabel: "Please select a field type",
-              selectAutoFocus: !_vm.is_autofocus_disabled,
-              selectId: "template-field-" + _vm.templateField.order + "-type",
-              selectName: "template-field-" + _vm.templateField.order + "-type",
-              selectOptions: _vm.templateFieldTypes,
-              selectRequired: true
+              "error-message": _vm.getErrorMessage("type"),
+              "label-text": "Field Type",
+              "select-any-enabled": true,
+              "select-any-label": "Please select a field type",
+              "select-autofocus": !_vm.isAutofocusDisabled,
+              "select-id":
+                "template-field-" + _vm.templateField.order + "-type",
+              "select-name":
+                "template-field-" + _vm.templateField.order + "-type",
+              "select-options": _vm.templateFieldTypes,
+              "select-required": true
             },
             on: { input: _vm.updateTemplateField },
             model: {
@@ -6382,11 +6385,13 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4 md:mt-0",
             attrs: {
-              inputDisabled: true,
-              inputId: "template-field-" + _vm.templateField.order + "-order",
-              inputName: "template-field-" + _vm.templateField.order + "-order",
-              inputType: "number",
-              labelText: "Order"
+              "input-disabled": true,
+              "input-id":
+                "template-field-" + _vm.templateField.order + "-order",
+              "input-name":
+                "template-field-" + _vm.templateField.order + "-order",
+              "input-type": "number",
+              "label-text": "Order"
             },
             on: { input: _vm.updateTemplateField },
             model: {
@@ -6411,12 +6416,13 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              errorMessage: _vm.getErrorMessage("name"),
-              inputId: "template-field-" + _vm.templateField.order + "-name",
-              inputName: "template-field-" + _vm.templateField.order + "-name",
-              inputRequired: true,
-              inputType: "text",
-              labelText: "Field Name"
+              "error-message": _vm.getErrorMessage("name"),
+              "input-id": "template-field-" + _vm.templateField.order + "-name",
+              "input-name":
+                "template-field-" + _vm.templateField.order + "-name",
+              "input-required": true,
+              "input-type": "text",
+              "label-text": "Field Name"
             },
             on: { input: _vm.onNameInput },
             model: {
@@ -6431,12 +6437,13 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              errorMessage: _vm.getErrorMessage("slug"),
-              inputId: "template-field-" + _vm.templateField.order + "-slug",
-              inputName: "template-field-" + _vm.templateField.order + "-slug",
-              inputRequired: true,
-              inputType: "text",
-              labelText: "Field Slug"
+              "error-message": _vm.getErrorMessage("slug"),
+              "input-id": "template-field-" + _vm.templateField.order + "-slug",
+              "input-name":
+                "template-field-" + _vm.templateField.order + "-slug",
+              "input-required": true,
+              "input-type": "text",
+              "label-text": "Field Slug"
             },
             on: { blur: _vm.onSlugBlur, input: _vm.onSlugInput },
             model: {
@@ -6454,12 +6461,13 @@ var render = function() {
       _c("input-group", {
         staticClass: "mt-4",
         attrs: {
-          errorMessage: _vm.getErrorMessage("description"),
-          inputId: "template-field-" + _vm.templateField.order + "-description",
-          inputName:
+          "error-message": _vm.getErrorMessage("description"),
+          "input-id":
             "template-field-" + _vm.templateField.order + "-description",
-          inputType: "text",
-          labelText: "Description"
+          "input-name":
+            "template-field-" + _vm.templateField.order + "-description",
+          "input-type": "text",
+          "label-text": "Description"
         },
         on: { input: _vm.updateTemplateField },
         model: {
@@ -6474,12 +6482,12 @@ var render = function() {
       _c("checkbox-group", {
         staticClass: "mt-4",
         attrs: {
-          checkboxId:
+          "checkbox-id":
             "template-field-" + _vm.templateField.order + "-is_required",
-          checkboxName:
+          "checkbox-name":
             "template-field-" + _vm.templateField.order + "-is_required",
-          errorMessage: _vm.getErrorMessage("is_required"),
-          labelText: "Required?"
+          "error-message": _vm.getErrorMessage("is_required"),
+          "label-text": "Required?"
         },
         on: { input: _vm.updateTemplateField },
         model: {
@@ -6497,8 +6505,8 @@ var render = function() {
             {
               tag: "component",
               attrs: {
-                default_settings: _vm.default_fieldSettings,
-                templateField: _vm.editable_templateField
+                "default-settings": _vm.default_fieldSettings,
+                "template-field": _vm.editable_templateField
               },
               on: { input: _vm.updateTemplateField },
               model: {
@@ -6563,10 +6571,11 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              inputId: "template-field-" + _vm.templateField.order + "-min",
-              inputName: "template-field-" + _vm.templateField.order + "-min",
-              inputType: "number",
-              labelText: "Minimum Value"
+              "input-id": "template-field-" + _vm.templateField.order + "-min",
+              "input-name":
+                "template-field-" + _vm.templateField.order + "-min",
+              "input-type": "number",
+              "label-text": "Minimum Value"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
@@ -6581,10 +6590,11 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              inputId: "template-field-" + _vm.templateField.order + "-max",
-              inputName: "template-field-" + _vm.templateField.order + "-max",
-              inputType: "number",
-              labelText: "Maximum Value"
+              "input-id": "template-field-" + _vm.templateField.order + "-max",
+              "input-name":
+                "template-field-" + _vm.templateField.order + "-max",
+              "input-type": "number",
+              "label-text": "Maximum Value"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
@@ -6640,12 +6650,12 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              inputId:
+              "input-id":
                 "template-field-" + _vm.templateField.order + "-max-length",
-              inputName:
+              "input-name":
                 "template-field-" + _vm.templateField.order + "-max-length",
-              inputType: "number",
-              labelText: "Max Length"
+              "input-type": "number",
+              "label-text": "Max Length"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
@@ -6660,10 +6670,11 @@ var render = function() {
           _c("input-group", {
             staticClass: "flex-1 mt-4",
             attrs: {
-              inputId: "template-field-" + _vm.templateField.order + "-rows",
-              inputName: "template-field-" + _vm.templateField.order + "-rows",
-              inputType: "text",
-              labelText: "Rows"
+              "input-id": "template-field-" + _vm.templateField.order + "-rows",
+              "input-name":
+                "template-field-" + _vm.templateField.order + "-rows",
+              "input-type": "text",
+              "label-text": "Rows"
             },
             on: { input: _vm.onEditableSettingsChange },
             model: {
@@ -6712,11 +6723,12 @@ var render = function() {
       _c("input-group", {
         staticClass: "mt-4",
         attrs: {
-          inputId: "template-field-" + _vm.templateField.order + "-max-length",
-          inputName:
+          "input-id":
             "template-field-" + _vm.templateField.order + "-max-length",
-          inputType: "number",
-          labelText: "Max Length"
+          "input-name":
+            "template-field-" + _vm.templateField.order + "-max-length",
+          "input-type": "number",
+          "label-text": "Max Length"
         },
         on: { input: _vm.onEditableSettingsChange },
         model: {
@@ -7111,7 +7123,7 @@ var render = function() {
             "div",
             { staticClass: "flex flex-row items-center mb-6" },
             [
-              _c("h1", { staticClass: "mr-auto text-lg" }, [
+              _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
                 _vm._v(
                   "\n            Edit Template - " +
                     _vm._s(_vm.template.name) +
@@ -7166,15 +7178,15 @@ var render = function() {
           [
             _c("select-group", {
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("type"),
-                labelText: "Template Type",
-                selectAnyEnabled: true,
-                selectAnyLabel: "Please select a template type",
-                selectAutoFocus: true,
-                selectId: "type",
-                selectName: "type",
-                selectOptions: _vm.templateTypes,
-                selectRequired: true
+                "error-message": _vm.getPageErrorMessage("type"),
+                "label-text": "Template Type",
+                "select-any-enabled": true,
+                "select-any-label": "Please select a template type",
+                "select-autofocus": true,
+                "select-id": "type",
+                "select-name": "type",
+                "select-options": _vm.templateTypes,
+                "select-required": true
               },
               model: {
                 value: _vm.formData.type,
@@ -7188,13 +7200,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("name"),
-                inputAutocomplete: "template_name",
-                inputId: "name",
-                inputName: "name",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Template Name"
+                "error-message": _vm.getPageErrorMessage("name"),
+                "input-autocomplete": "template_name",
+                "input-id": "name",
+                "input-name": "name",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Template Name"
               },
               on: { input: _vm.onNameInput },
               model: {
@@ -7209,13 +7221,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("slug"),
-                inputAutocomplete: "template_slug",
-                inputId: "slug",
-                inputName: "slug",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Template Slug"
+                "error-message": _vm.getPageErrorMessage("slug"),
+                "input-autocomplete": "template_slug",
+                "input-id": "slug",
+                "input-name": "slug",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Template Slug"
               },
               on: { blur: _vm.onSlugBlur },
               model: {
@@ -7230,12 +7242,12 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("description"),
-                inputAutocomplete: "template_description",
-                inputId: "description",
-                inputName: "description",
-                inputType: "text",
-                labelText: "Description"
+                "error-message": _vm.getPageErrorMessage("description"),
+                "input-autocomplete": "template_description",
+                "input-id": "description",
+                "input-name": "description",
+                "input-type": "text",
+                "label-text": "Description"
               },
               model: {
                 value: _vm.formData.description,
@@ -7260,9 +7272,9 @@ var render = function() {
             [
               _c("template-field-editor", {
                 attrs: {
-                  is_editing: true,
-                  templateFieldSettings: _vm.templateFieldSettings,
-                  templateFieldTypes: _vm.templateFieldTypes
+                  "is-editing": true,
+                  "template-field-settings": _vm.templateFieldSettings,
+                  "template-field-types": _vm.templateFieldTypes
                 },
                 model: {
                   value: _vm.formData.template_fields,

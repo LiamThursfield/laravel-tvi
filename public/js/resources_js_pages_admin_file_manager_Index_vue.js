@@ -164,8 +164,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -1836,10 +1834,10 @@ var render = function() {
               [
                 _c("file-manager-directory-list", {
                   attrs: {
-                    canChangeDirectory: _vm.canChangeDirectory,
+                    "can-change-directory": _vm.canChangeDirectory,
                     directories: _vm.directories,
-                    isLoadingDirectories: _vm.isLoadingDirectories,
-                    parentDirectory: _vm.parentDirectory
+                    "is-loading-directories": _vm.isLoadingDirectories,
+                    "parent-directory": _vm.parentDirectory
                   },
                   on: { changeDirectory: _vm.changeDirectory }
                 }),
@@ -1859,7 +1857,7 @@ var render = function() {
                           },
                           [
                             !_vm.isCreatingDirectory
-                              ? _c("div", { key: "intial" }, [
+                              ? _c("div", [
                                   _c(
                                     "button",
                                     {
@@ -1875,111 +1873,101 @@ var render = function() {
                                     ]
                                   )
                                 ])
-                              : _c(
-                                  "div",
-                                  {
-                                    key: "creating",
-                                    staticClass: "flex flex-col"
-                                  },
-                                  [
-                                    _c(
-                                      "label",
-                                      {
-                                        attrs: {
-                                          for: "new_directory",
-                                          hidden: ""
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                New Directory Name\n                            "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.newDirectoryName,
-                                          expression: "newDirectoryName"
-                                        }
-                                      ],
-                                      ref: "new_directory",
-                                      staticClass:
-                                        "\n                                    appearance-none border border-theme-base-subtle-contrast px-4 py-1 rounded shadow-none\n                                    focus:outline-none focus:ring focus:ring-primary\n                                ",
+                              : _c("div", { staticClass: "flex flex-col" }, [
+                                  _c(
+                                    "label",
+                                    {
                                       attrs: {
-                                        id: "new_directory",
-                                        placeholder: "Directory Name",
-                                        type: "text"
-                                      },
-                                      domProps: { value: _vm.newDirectoryName },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.newDirectoryName =
-                                            $event.target.value
-                                        }
+                                        for: "new_directory",
+                                        hidden: ""
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                New Directory Name\n                            "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
                                       {
-                                        staticClass:
-                                          "flex flex-row mt-2 space-x-2 w-full"
-                                      },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "\n                                        bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-1/2\n                                        ease-in-out duration-300 transition-colors\n                                        focus:bg-theme-danger focus:outline-none focus:text-theme-danger-contrast\n                                        hover:bg-theme-danger hover:text-theme-danger-contrast\n                                    ",
-                                            attrs: {
-                                              type: "button",
-                                              disabled:
-                                                _vm.isLoadingNewDirectory
-                                            },
-                                            on: {
-                                              click: _vm.stopCreatingDirectory
-                                            }
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.newDirectoryName,
+                                        expression: "newDirectoryName"
+                                      }
+                                    ],
+                                    ref: "new_directory",
+                                    staticClass:
+                                      "\n                                    appearance-none border border-theme-base-subtle-contrast px-4 py-1 rounded shadow-none\n                                    focus:outline-none focus:ring focus:ring-primary\n                                ",
+                                    attrs: {
+                                      id: "new_directory",
+                                      placeholder: "Directory Name",
+                                      type: "text"
+                                    },
+                                    domProps: { value: _vm.newDirectoryName },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.newDirectoryName =
+                                          $event.target.value
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "flex flex-row mt-2 space-x-2 w-full"
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "\n                                        bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-1/2\n                                        ease-in-out duration-300 transition-colors\n                                        focus:bg-theme-danger focus:outline-none focus:text-theme-danger-contrast\n                                        hover:bg-theme-danger hover:text-theme-danger-contrast\n                                    ",
+                                          attrs: {
+                                            type: "button",
+                                            disabled: _vm.isLoadingNewDirectory
                                           },
-                                          [
-                                            _c("icon-x", { staticClass: "w-5" })
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "\n                                        bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-1/2\n                                        ease-in-out duration-300 transition-colors\n                                        focus:bg-theme-success focus:outline-none focus:text-theme-success-contrast\n                                        hover:bg-theme-success hover:border-theme-success hover:text-theme-success-contrast\n                                    ",
-                                            attrs: {
-                                              type: "button",
-                                              disabled: !_vm.canCreateDirectory
-                                            },
-                                            on: { click: _vm.createDirectory }
+                                          on: {
+                                            click: _vm.stopCreatingDirectory
+                                          }
+                                        },
+                                        [_c("icon-x", { staticClass: "w-5" })],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "\n                                        bg-theme-base-subtle flex flex-row items-center justify-center px-2 py-1 rounded text-theme-base-subtle-contrast w-1/2\n                                        ease-in-out duration-300 transition-colors\n                                        focus:bg-theme-success focus:outline-none focus:text-theme-success-contrast\n                                        hover:bg-theme-success hover:border-theme-success hover:text-theme-success-contrast\n                                    ",
+                                          attrs: {
+                                            type: "button",
+                                            disabled: !_vm.canCreateDirectory
                                           },
-                                          [
-                                            !_vm.isLoadingNewDirectory
-                                              ? _c("icon-check", {
-                                                  staticClass: "w-5"
-                                                })
-                                              : _c("icon-loader-circle", {
-                                                  staticClass:
-                                                    "animate-spin-slow w-5"
-                                                })
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
+                                          on: { click: _vm.createDirectory }
+                                        },
+                                        [
+                                          !_vm.isLoadingNewDirectory
+                                            ? _c("icon-check", {
+                                                staticClass: "w-5"
+                                              })
+                                            : _c("icon-loader-circle", {
+                                                staticClass:
+                                                  "animate-spin-slow w-5"
+                                              })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ])
                           ]
                         )
                       ],
@@ -2002,9 +1990,9 @@ var render = function() {
               [
                 _c("file-manager-files-header", {
                   attrs: {
-                    canChangeDirectory: _vm.canChangeDirectory,
-                    currentDirectoryList: _vm.currentDirectoryList,
-                    showBreadcrumbs: _vm.showBreadcrumbs
+                    "can-change-directory": _vm.canChangeDirectory,
+                    "current-directory-list": _vm.currentDirectoryList,
+                    "show-breadcrumbs": _vm.showBreadcrumbs
                   },
                   on: {
                     changeDirectoryViaBreadcrumb:
@@ -2016,7 +2004,7 @@ var render = function() {
                   staticClass: "mt-2",
                   attrs: {
                     files: _vm.files,
-                    showFilesLoader: _vm.showFilesLoader
+                    "show-files-loader": _vm.showFilesLoader
                   }
                 })
               ],
@@ -2193,7 +2181,7 @@ var render = function() {
         ref: _vm.id,
         attrs: {
           id: _vm.id,
-          duplicateCheck: true,
+          "duplicate-check": true,
           options: _vm.dropzoneOptions
         },
         on: {

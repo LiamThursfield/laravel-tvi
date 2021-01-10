@@ -617,14 +617,14 @@ var render = function() {
               _c("input-group", {
                 staticClass: "mt-4",
                 attrs: {
-                  errorMessage: _vm.getPageErrorMessage("email"),
-                  inputAutocomplete: "email",
-                  inputClass: "auth-input",
-                  inputId: "email",
-                  inputName: "email",
-                  inputRequired: true,
-                  inputType: "email",
-                  labelText: "Email"
+                  "error-message": _vm.getPageErrorMessage("email"),
+                  "input-autocomplete": "email",
+                  "input-class": "auth-input",
+                  "input-id": "email",
+                  "input-name": "email",
+                  "input-required": true,
+                  "input-type": "email",
+                  "label-text": "Email"
                 },
                 model: {
                   value: _vm.form.email,

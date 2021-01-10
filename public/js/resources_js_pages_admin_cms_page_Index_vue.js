@@ -331,7 +331,7 @@ __webpack_require__.r(__webpack_exports__);
     selectAnyValue: {
       "default": ''
     },
-    selectAutoFocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
@@ -453,7 +453,7 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.selectAutoFocus && this.$refs[this.selectId]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
           _this2.$refs[_this2.selectId].focus();
         });
@@ -996,6 +996,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -1014,7 +1016,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     layouts: {
       required: true,
-      type: Object
+      type: Object | Array
     },
     pages: {
       required: true,
@@ -1026,7 +1028,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     templates: {
       required: true,
-      type: Object
+      type: Object | Array
     }
   },
   data: function data() {
@@ -1053,6 +1055,20 @@ __webpack_require__.r(__webpack_exports__);
         return 'Do you really want to delete \'' + this.pageToDelete.name + '\'?';
       } catch (e) {
         return 'Do you really want to delete this page?';
+      }
+    },
+    isLayouts: function isLayouts() {
+      try {
+        return Object.keys(this.layouts).length;
+      } catch (e) {
+        return false;
+      }
+    },
+    isTemplates: function isTemplates() {
+      try {
+        return Object.keys(this.templates).length;
+      } catch (e) {
+        return false;
       }
     },
     showPagination: function showPagination() {
@@ -1929,7 +1945,7 @@ var render = function() {
       "div",
       { staticClass: "flex flex-row items-center mb-6" },
       [
-        _c("h1", { staticClass: "mr-auto text-lg" }, [
+        _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
           _vm._v("\n             Page\n        ")
         ]),
         _vm._v(" "),
@@ -1989,14 +2005,14 @@ var render = function() {
                 _c("input-group", {
                   staticClass: "mx-4",
                   attrs: {
-                    inputAutocomplete: "page_name_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "page_name",
-                    inputName: "page_name",
-                    inputPlaceholder: "Page Name",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Page Name"
+                    "input-autocomplete": "page_name_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "page_name",
+                    "input-name": "page_name",
+                    "input-placeholder": "Page Name",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Page Name"
                   },
                   model: {
                     value: _vm.editableSearchOptions.page_name,
@@ -2020,14 +2036,14 @@ var render = function() {
                 _c("input-group", {
                   staticClass: "mx-4",
                   attrs: {
-                    inputAutocomplete: "page_slug_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "page_slug",
-                    inputName: "page_slug",
-                    inputPlaceholder: "Page Slug",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Page Slug"
+                    "input-autocomplete": "page_slug_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "page_slug",
+                    "input-name": "page_slug",
+                    "input-placeholder": "Page Slug",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Page Slug"
                   },
                   model: {
                     value: _vm.editableSearchOptions.page_slug,
@@ -2041,71 +2057,79 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
-              },
-              [
-                _c("select-group", {
-                  staticClass: "mx-4",
-                  attrs: {
-                    labelHidden: true,
-                    labelText: "Layout",
-                    selectAnyEnabled: true,
-                    selectAnyLabel: "Layout",
-                    selectClass: "form-control form-control-short",
-                    selectId: "template_id",
-                    selectName: "layout_id",
-                    selectOptionLabelKey: "name",
-                    selectOptionValueKey: "id",
-                    selectOptions: _vm.layouts
+            _vm.isLayouts
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
                   },
-                  model: {
-                    value: _vm.editableSearchOptions.layout_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.editableSearchOptions, "layout_id", $$v)
-                    },
-                    expression: "editableSearchOptions.layout_id"
-                  }
-                })
-              ],
-              1
-            ),
+                  [
+                    _c("select-group", {
+                      staticClass: "mx-4",
+                      attrs: {
+                        "label-hidden": true,
+                        "label-text": "Layout",
+                        "select-any-enabled": true,
+                        "select-any-label": "Layout",
+                        "select-class": "form-control form-control-short",
+                        "select-id": "template_id",
+                        "select-name": "layout_id",
+                        "select-option-label-key": "name",
+                        "select-option-value-key": "id",
+                        "select-options": _vm.layouts
+                      },
+                      model: {
+                        value: _vm.editableSearchOptions.layout_id,
+                        callback: function($$v) {
+                          _vm.$set(_vm.editableSearchOptions, "layout_id", $$v)
+                        },
+                        expression: "editableSearchOptions.layout_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
-              },
-              [
-                _c("select-group", {
-                  staticClass: "mx-4",
-                  attrs: {
-                    labelHidden: true,
-                    labelText: "Template",
-                    selectAnyEnabled: true,
-                    selectAnyLabel: "Template",
-                    selectClass: "form-control form-control-short",
-                    selectId: "template_id",
-                    selectName: "template_id",
-                    selectOptionLabelKey: "name",
-                    selectOptionValueKey: "id",
-                    selectOptions: _vm.templates
+            _vm.isTemplates
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "\n                    my-2 w-full\n                    sm:w-1/2\n                    lg:w-1/4\n                "
                   },
-                  model: {
-                    value: _vm.editableSearchOptions.template_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.editableSearchOptions, "template_id", $$v)
-                    },
-                    expression: "editableSearchOptions.template_id"
-                  }
-                })
-              ],
-              1
-            )
+                  [
+                    _c("select-group", {
+                      staticClass: "mx-4",
+                      attrs: {
+                        "label-hidden": true,
+                        "label-text": "Template",
+                        "select-any-enabled": true,
+                        "select-any-label": "Template",
+                        "select-class": "form-control form-control-short",
+                        "select-id": "template_id",
+                        "select-name": "template_id",
+                        "select-option-label-key": "name",
+                        "select-option-value-key": "id",
+                        "select-options": _vm.templates
+                      },
+                      model: {
+                        value: _vm.editableSearchOptions.template_id,
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.editableSearchOptions,
+                            "template_id",
+                            $$v
+                          )
+                        },
+                        expression: "editableSearchOptions.template_id"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
           ]
         ),
         _vm._v(" "),
@@ -2387,10 +2411,10 @@ var render = function() {
         _vm._v(" "),
         _c("confirmation-modal", {
           attrs: {
-            confirmText: "Delete",
-            confirmType: "danger",
-            showModal: _vm.showDeleteModal,
-            messageText: _vm.deleteModalText
+            "confirm-text": "Delete",
+            "confirm-type": "danger",
+            "show-modal": _vm.showDeleteModal,
+            "message-text": _vm.deleteModalText
           },
           on: {
             cancelAction: _vm.cancelDelete,

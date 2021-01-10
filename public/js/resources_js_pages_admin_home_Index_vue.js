@@ -23,6 +23,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminHomeIndex",
   layout: 'admin-layout'
@@ -125,13 +135,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-white p-6 shadow-subtle rounded-lg" }, [
-      _c("h1", { staticClass: "font-semibold text-gray-850" }, [
-        _vm._v("\n        Welcome\n    ")
+    return _c("div", [
+      _c("div", { staticClass: "flex flex-row items-center mb-6" }, [
+        _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
+          _vm._v("\n            Dashboard\n        ")
+        ])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "mt-2" }, [
-        _vm._v("\n        Let's build something great.\n    ")
+      _c("div", { staticClass: "bg-white p-6 shadow-subtle rounded-lg" }, [
+        _c("h1", { staticClass: "font-semibold text-gray-850" }, [
+          _vm._v("\n            Welcome\n        ")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "mt-2" }, [
+          _vm._v("\n            Let's build something great.\n        ")
+        ])
       ])
     ])
   }

@@ -725,7 +725,7 @@ __webpack_require__.r(__webpack_exports__);
     selectAnyValue: {
       "default": ''
     },
-    selectAutoFocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
@@ -847,7 +847,7 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.selectAutoFocus && this.$refs[this.selectId]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
           _this2.$refs[_this2.selectId].focus();
         });
@@ -1248,8 +1248,8 @@ var templateCancelToken = CancelToken.source();
   },
   layout: 'admin-layout',
   props: {
-    'templates': {
-      type: Object,
+    templates: {
+      type: Object | Array,
       required: true
     }
   },
@@ -1266,6 +1266,13 @@ var templateCancelToken = CancelToken.source();
     };
   },
   computed: {
+    isTemplates: function isTemplates() {
+      try {
+        return Object.keys(this.templates).length;
+      } catch (e) {
+        return false;
+      }
+    },
     selectedTemplateHasFields: function selectedTemplateHasFields() {
       try {
         if (!this.selectedTemplate) {
@@ -2284,7 +2291,7 @@ var render = function() {
               _vm.getContentFieldComponent(templateField),
               {
                 tag: "component",
-                attrs: { templateField: templateField },
+                attrs: { "template-field": templateField },
                 on: { input: _vm.onEditableContentUpdate },
                 model: {
                   value: _vm.editableContent[templateField.id].data,
@@ -2368,13 +2375,13 @@ var render = function() {
         "input-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -2421,15 +2428,15 @@ var render = function() {
         "input-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputMax: _vm.inputMax,
-            inputMin: _vm.inputMin,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "number",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-max": _vm.inputMax,
+            "input-min": _vm.inputMin,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "number",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -2476,15 +2483,15 @@ var render = function() {
         "text-area-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputMaxLength: _vm.inputMaxLength,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputRows: _vm.inputRows,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-max-length": _vm.inputMaxLength,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-rows": _vm.inputRows,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -2531,14 +2538,14 @@ var render = function() {
         "input-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputMaxLength: _vm.inputMaxLength,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-max-length": _vm.inputMaxLength,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -2585,13 +2592,13 @@ var render = function() {
         "text-area-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -2958,7 +2965,7 @@ var render = function() {
             "div",
             { staticClass: "flex flex-row items-center mb-6" },
             [
-              _c("h1", { staticClass: "mr-auto text-lg" }, [
+              _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
                 _vm._v("\n            Create Layout\n        ")
               ]),
               _vm._v(" "),
@@ -3009,17 +3016,17 @@ var render = function() {
           [
             _c("select-group", {
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("template_id"),
-                labelText: "Template",
-                selectAnyEnabled: true,
-                selectAnyLabel: "Please select a template",
-                selectAutoFocus: true,
-                selectId: "template_id",
-                selectName: "template_id",
-                selectOptions: _vm.templates,
-                selectOptionLabelKey: "name",
-                selectOptionValueKey: "id",
-                selectRequired: true
+                "error-message": _vm.getPageErrorMessage("template_id"),
+                "label-text": "Template",
+                "select-any-enabled": true,
+                "select-any-label": "Please select a template",
+                "select-autofocus": true,
+                "select-id": "template_id",
+                "select-name": "template_id",
+                "select-options": _vm.isTemplates ? _vm.templates : {},
+                "select-option-label-key": "name",
+                "select-option-value-key": "id",
+                "select-required": true
               },
               model: {
                 value: _vm.formData.template_id,
@@ -3033,13 +3040,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("name"),
-                inputAutocomplete: "layout_name",
-                inputId: "name",
-                inputName: "name",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Layout Name"
+                "error-message": _vm.getPageErrorMessage("name"),
+                "input-autocomplete": "layout_name",
+                "input-id": "name",
+                "input-name": "name",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Layout Name"
               },
               on: { input: _vm.onNameInput },
               model: {
@@ -3054,13 +3061,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("slug"),
-                inputAutocomplete: "layout_slug",
-                inputId: "slug",
-                inputName: "slug",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Layout Slug"
+                "error-message": _vm.getPageErrorMessage("slug"),
+                "input-autocomplete": "layout_slug",
+                "input-id": "slug",
+                "input-name": "slug",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Layout Slug"
               },
               on: { blur: _vm.onSlugBlur, input: _vm.onSlugInput },
               model: {
@@ -3085,7 +3092,7 @@ var render = function() {
               _vm._v(" "),
               _c("content-editor", {
                 attrs: {
-                  templateFields: this.selectedTemplate.template_fields
+                  "template-fields": this.selectedTemplate.template_fields
                 },
                 model: {
                   value: _vm.formData.content,

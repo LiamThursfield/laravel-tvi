@@ -1327,7 +1327,7 @@ var render = function() {
       "div",
       { staticClass: "flex flex-row items-center mb-6" },
       [
-        _c("h1", { staticClass: "mr-auto text-lg" }, [
+        _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
           _vm._v("\n            Users\n        ")
         ]),
         _vm._v(" "),
@@ -1383,14 +1383,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "user_first_name_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "user_first_name",
-                    inputName: "user_first_name",
-                    inputPlaceholder: "First Name",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "First Name"
+                    "input-autocomplete": "user_first_name_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "user_first_name",
+                    "input-name": "user_first_name",
+                    "input-placeholder": "First Name",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "First Name"
                   },
                   model: {
                     value: _vm.editableSearchOptions.user_first_name,
@@ -1414,14 +1414,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "user_last_name_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "user_last_name",
-                    inputName: "user_last_name",
-                    inputPlaceholder: "Last Name",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Last Name"
+                    "input-autocomplete": "user_last_name_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "user_last_name",
+                    "input-name": "user_last_name",
+                    "input-placeholder": "Last Name",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Last Name"
                   },
                   model: {
                     value: _vm.editableSearchOptions.user_last_name,
@@ -1441,14 +1441,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "user_email_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "user_email",
-                    inputName: "user_email",
-                    inputPlaceholder: "Email",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Email"
+                    "input-autocomplete": "user_email_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "user_email",
+                    "input-name": "user_email",
+                    "input-placeholder": "Email",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Email"
                   },
                   model: {
                     value: _vm.editableSearchOptions.user_email,
@@ -1594,10 +1594,10 @@ var render = function() {
         _vm._v(" "),
         _c("confirmation-modal", {
           attrs: {
-            confirmText: "Delete",
-            confirmType: "danger",
-            showModal: _vm.showDeleteModal,
-            messageText: _vm.deleteModalText
+            "confirm-text": "Delete",
+            "confirm-type": "danger",
+            "show-modal": _vm.showDeleteModal,
+            "message-text": _vm.deleteModalText
           },
           on: {
             cancelAction: _vm.cancelUserDelete,

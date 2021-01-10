@@ -592,14 +592,14 @@ var render = function() {
           _c("input-group", {
             staticClass: "mt-4",
             attrs: {
-              errorMessage: _vm.getPageErrorMessage("password"),
-              inputAutocomplete: "current-password",
-              inputClass: "auth-input",
-              inputId: "password",
-              inputName: "password",
-              inputRequired: true,
-              inputType: "password",
-              labelText: "Password"
+              "error-message": _vm.getPageErrorMessage("password"),
+              "input-autocomplete": "current-password",
+              "input-class": "auth-input",
+              "input-id": "password",
+              "input-name": "password",
+              "input-required": true,
+              "input-type": "password",
+              "label-text": "Password"
             },
             model: {
               value: _vm.form.password,

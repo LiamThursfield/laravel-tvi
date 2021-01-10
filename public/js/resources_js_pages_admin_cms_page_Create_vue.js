@@ -1308,7 +1308,7 @@ __webpack_require__.r(__webpack_exports__);
     selectAnyValue: {
       "default": ''
     },
-    selectAutoFocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
@@ -1430,7 +1430,7 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.selectAutoFocus && this.$refs[this.selectId]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
           _this2.$refs[_this2.selectId].focus();
         });
@@ -1873,17 +1873,17 @@ var templateCancelToken = CancelToken.source();
   },
   layout: 'admin-layout',
   props: {
-    'layouts': {
-      type: Object,
-      required: true
+    layouts: {
+      required: true,
+      type: Object | Array
     },
-    'parentPages': {
-      type: Object | Array | null,
-      required: true
+    parentPages: {
+      required: true,
+      type: Object | Array | null
     },
-    'templates': {
-      type: Object,
-      required: true
+    templates: {
+      required: true,
+      type: Object | Array
     }
   },
   data: function data() {
@@ -1902,6 +1902,20 @@ var templateCancelToken = CancelToken.source();
     };
   },
   computed: {
+    isLayouts: function isLayouts() {
+      try {
+        return Object.keys(this.layouts).length;
+      } catch (e) {
+        return false;
+      }
+    },
+    isTemplates: function isTemplates() {
+      try {
+        return Object.keys(this.templates).length;
+      } catch (e) {
+        return false;
+      }
+    },
     parentPagesUrls: function parentPagesUrls() {
       try {
         if (!Object.keys(this.parentPages).length) {
@@ -3193,7 +3207,7 @@ var render = function() {
               _vm.getContentFieldComponent(templateField),
               {
                 tag: "component",
-                attrs: { templateField: templateField },
+                attrs: { "template-field": templateField },
                 on: { input: _vm.onEditableContentUpdate },
                 model: {
                   value: _vm.editableContent[templateField.id].data,
@@ -3277,13 +3291,13 @@ var render = function() {
         "input-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -3330,15 +3344,15 @@ var render = function() {
         "input-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputMax: _vm.inputMax,
-            inputMin: _vm.inputMin,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "number",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-max": _vm.inputMax,
+            "input-min": _vm.inputMin,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "number",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -3385,15 +3399,15 @@ var render = function() {
         "text-area-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputMaxLength: _vm.inputMaxLength,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputRows: _vm.inputRows,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-max-length": _vm.inputMaxLength,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-rows": _vm.inputRows,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -3440,14 +3454,14 @@ var render = function() {
         "input-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputMaxLength: _vm.inputMaxLength,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-max-length": _vm.inputMaxLength,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -3494,13 +3508,13 @@ var render = function() {
         "text-area-group",
         {
           attrs: {
-            errorMessage: _vm.errorMessage,
-            inputAutocomplete: _vm.inputName,
-            inputId: _vm.inputName,
-            inputName: _vm.inputName,
-            inputRequired: _vm.templateField.is_required,
-            inputType: "text",
-            labelText: ""
+            "error-message": _vm.errorMessage,
+            "input-autocomplete": _vm.inputName,
+            "input-id": _vm.inputName,
+            "input-name": _vm.inputName,
+            "input-required": _vm.templateField.is_required,
+            "input-type": "text",
+            "label-text": ""
           },
           model: {
             value: _vm.editableContent,
@@ -3545,11 +3559,11 @@ var render = function() {
     [
       _c("input-group", {
         attrs: {
-          inputId: "url_input",
-          inputName: "url_input",
-          inputRequired: true,
-          labelText: "Url",
-          inputType: "text"
+          "input-id": "url_input",
+          "input-name": "url_input",
+          "input-required": true,
+          "input-type": "text",
+          "label-text": "Url"
         },
         model: {
           value: _vm.urlInput,
@@ -3563,11 +3577,11 @@ var render = function() {
       _c("input-group", {
         staticClass: "mt-4",
         attrs: {
-          inputDisabled: true,
-          inputId: "url_full",
-          inputName: "url_full",
-          labelText: "Formatted URL",
-          inputType: "text"
+          "input-disabled": true,
+          "input-id": "url_full",
+          "input-name": "url_full",
+          "input-type": "text",
+          "label-text": "Formatted URL"
         },
         model: {
           value: _vm.urlFull,
@@ -3583,9 +3597,9 @@ var render = function() {
       _c("inline-checkbox-group", {
         staticClass: "mt-4",
         attrs: {
-          checkboxId: "url_is_enabled",
-          checkboxName: "url_is_enabled",
-          labelText: "Enabled?"
+          "checkbox-id": "url_is_enabled",
+          "checkbox-name": "url_is_enabled",
+          "label-text": "Enabled?"
         },
         model: {
           value: _vm.editableUrlData.is_enabled,
@@ -3603,9 +3617,9 @@ var render = function() {
           _c("date-time-picker-group", {
             staticClass: "mt-4 md:flex-1",
             attrs: {
-              inputId: "url_published_at",
-              inputName: "url_published_at",
-              labelText: "Publish Date"
+              "input-id": "url_published_at",
+              "input-name": "url_published_at",
+              "label-text": "Publish Date"
             },
             model: {
               value: _vm.editableUrlData.published_at,
@@ -3619,9 +3633,9 @@ var render = function() {
           _c("date-time-picker-group", {
             staticClass: "mt-4 md:flex-1",
             attrs: {
-              inputId: "url_expired_at",
-              inputName: "url_expired_at",
-              labelText: "Expiry Date"
+              "input-id": "url_expired_at",
+              "input-name": "url_expired_at",
+              "label-text": "Expiry Date"
             },
             model: {
               value: _vm.editableUrlData.expired_at,
@@ -4196,7 +4210,7 @@ var render = function() {
             "div",
             { staticClass: "flex flex-row items-center mb-6" },
             [
-              _c("h1", { staticClass: "mr-auto text-lg" }, [
+              _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
                 _vm._v("\n            Create Page\n        ")
               ]),
               _vm._v(" "),
@@ -4247,17 +4261,17 @@ var render = function() {
           [
             _c("select-group", {
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("layout_id"),
-                labelText: "Layout",
-                selectAnyEnabled: true,
-                selectAnyLabel: "Please select a Layout",
-                selectAutoFocus: true,
-                selectId: "layout_id",
-                selectName: "layout_id",
-                selectOptions: _vm.layouts,
-                selectOptionLabelKey: "name",
-                selectOptionValueKey: "id",
-                selectRequired: true
+                "error-message": _vm.getPageErrorMessage("layout_id"),
+                "label-text": "Layout",
+                "select-any-enabled": true,
+                "select-any-label": "Please select a Layout",
+                "select-autofocus": true,
+                "select-id": "layout_id",
+                "select-name": "layout_id",
+                "select-options": _vm.isLayouts ? _vm.layouts : {},
+                "select-option-label-key": "name",
+                "select-option-value-key": "id",
+                "select-required": true
               },
               model: {
                 value: _vm.formData.layout_id,
@@ -4271,16 +4285,16 @@ var render = function() {
             _c("select-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("template_id"),
-                labelText: "Template",
-                selectAnyEnabled: true,
-                selectAnyLabel: "Please select a template",
-                selectId: "template_id",
-                selectName: "template_id",
-                selectOptions: _vm.templates,
-                selectOptionLabelKey: "name",
-                selectOptionValueKey: "id",
-                selectRequired: true
+                "error-message": _vm.getPageErrorMessage("template_id"),
+                "label-text": "Template",
+                "select-any-enabled": true,
+                "select-any-label": "Please select a template",
+                "select-id": "template_id",
+                "select-name": "template_id",
+                "select-options": _vm.isTemplates ? _vm.templates : {},
+                "select-option-label-key": "name",
+                "select-option-value-key": "id",
+                "select-required": true
               },
               model: {
                 value: _vm.formData.template_id,
@@ -4295,15 +4309,15 @@ var render = function() {
               ? _c("select-group", {
                   staticClass: "mt-4",
                   attrs: {
-                    errorMessage: _vm.getPageErrorMessage("parent_id"),
-                    labelText: "Parent Page",
-                    selectAnyEnabled: true,
-                    selectAnyLabel: "Please select a parent (optional)",
-                    selectId: "parent_id",
-                    selectName: "parent_id",
-                    selectOptions: _vm.parentPagesUrls,
-                    selectOptionLabelKey: "label",
-                    selectOptionValueKey: "id"
+                    "error-message": _vm.getPageErrorMessage("parent_id"),
+                    "label-text": "Parent Page",
+                    "select-any-enabled": true,
+                    "select-any-label": "Please select a parent (optional)",
+                    "select-id": "parent_id",
+                    "select-name": "parent_id",
+                    "select-options": _vm.parentPagesUrls,
+                    "select-option-label-key": "label",
+                    "select-option-value-key": "id"
                   },
                   model: {
                     value: _vm.formData.parent_id,
@@ -4318,13 +4332,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("name"),
-                inputAutocomplete: "page_name",
-                inputId: "name",
-                inputName: "name",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Page Name"
+                "error-message": _vm.getPageErrorMessage("name"),
+                "input-autocomplete": "page_name",
+                "input-id": "name",
+                "input-name": "name",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Page Name"
               },
               on: { input: _vm.onNameInput },
               model: {
@@ -4339,13 +4353,13 @@ var render = function() {
             _c("input-group", {
               staticClass: "mt-4",
               attrs: {
-                errorMessage: _vm.getPageErrorMessage("slug"),
-                inputAutocomplete: "page_slug",
-                inputId: "slug",
-                inputName: "slug",
-                inputRequired: true,
-                inputType: "text",
-                labelText: "Page Slug"
+                "error-message": _vm.getPageErrorMessage("slug"),
+                "input-autocomplete": "page_slug",
+                "input-id": "slug",
+                "input-name": "slug",
+                "input-required": true,
+                "input-type": "text",
+                "label-text": "Page Slug"
               },
               on: { blur: _vm.onSlugBlur, input: _vm.onSlugInput },
               model: {
@@ -4388,7 +4402,7 @@ var render = function() {
               _vm._v(" "),
               _c("content-editor", {
                 attrs: {
-                  templateFields: this.selectedTemplate.template_fields
+                  "template-fields": this.selectedTemplate.template_fields
                 },
                 model: {
                   value: _vm.formData.content,

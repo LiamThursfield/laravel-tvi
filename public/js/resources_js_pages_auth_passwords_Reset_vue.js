@@ -645,14 +645,14 @@ var render = function() {
           _c("input-group", {
             staticClass: "mt-4",
             attrs: {
-              errorMessage: _vm.getPageErrorMessage("email"),
-              inputAutocomplete: "email",
-              inputClass: "auth-input",
-              inputId: "email",
-              inputName: "email",
-              inputRequired: true,
-              inputType: "email",
-              labelText: "Email"
+              "error-message": _vm.getPageErrorMessage("email"),
+              "input-autocomplete": "email",
+              "input-class": "auth-input",
+              "input-id": "email",
+              "input-name": "email",
+              "input-required": true,
+              "input-type": "email",
+              "label-text": "Email"
             },
             model: {
               value: _vm.form.email,
@@ -666,15 +666,15 @@ var render = function() {
           _c("input-group", {
             staticClass: "mt-4",
             attrs: {
-              errorMessage: _vm.getPageErrorMessage("password"),
-              inputAutocomplete: "new-password",
-              inputAutofocus: true,
-              inputClass: "auth-input",
-              inputId: "password",
-              inputName: "password",
-              inputRequired: true,
-              inputType: "password",
-              labelText: "Password"
+              "error-message": _vm.getPageErrorMessage("password"),
+              "input-autocomplete": "new-password",
+              "input-autofocus": true,
+              "input-class": "auth-input",
+              "input-id": "password",
+              "input-name": "password",
+              "input-required": true,
+              "input-type": "password",
+              "label-text": "Password"
             },
             model: {
               value: _vm.form.password,
@@ -688,14 +688,14 @@ var render = function() {
           _c("input-group", {
             staticClass: "mt-4",
             attrs: {
-              errorMessage: _vm.getPageErrorMessage("password_confirmation"),
-              inputAutocomplete: "new-password",
-              inputClass: "auth-input",
-              inputId: "password_confirmation",
-              inputName: "password_confirmation",
-              inputRequired: true,
-              inputType: "password",
-              labelText: "Confirm Password"
+              "error-message": _vm.getPageErrorMessage("password_confirmation"),
+              "input-autocomplete": "new-password",
+              "input-class": "auth-input",
+              "input-id": "password_confirmation",
+              "input-name": "password_confirmation",
+              "input-required": true,
+              "input-type": "password",
+              "label-text": "Confirm Password"
             },
             model: {
               value: _vm.form.password_confirmation,

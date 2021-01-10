@@ -331,7 +331,7 @@ __webpack_require__.r(__webpack_exports__);
     selectAnyValue: {
       "default": ''
     },
-    selectAutoFocus: {
+    selectAutofocus: {
       "default": false,
       type: Boolean
     },
@@ -453,7 +453,7 @@ __webpack_require__.r(__webpack_exports__);
     autofocus: function autofocus() {
       var _this2 = this;
 
-      if (this.selectAutoFocus && this.$refs[this.selectId]) {
+      if (this.selectAutofocus && this.$refs[this.selectId]) {
         this.$nextTick(function () {
           _this2.$refs[_this2.selectId].focus();
         });
@@ -1809,7 +1809,7 @@ var render = function() {
       "div",
       { staticClass: "flex flex-row items-center mb-6" },
       [
-        _c("h1", { staticClass: "mr-auto text-lg" }, [
+        _c("h1", { staticClass: "font-medium mr-auto text-lg" }, [
           _vm._v("\n             Templates\n        ")
         ]),
         _vm._v(" "),
@@ -1865,14 +1865,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "template_name_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "template_name",
-                    inputName: "template_name",
-                    inputPlaceholder: "Template Name",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Template Name"
+                    "input-autocomplete": "template_name_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "template_name",
+                    "input-name": "template_name",
+                    "input-placeholder": "Template Name",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Template Name"
                   },
                   model: {
                     value: _vm.editableSearchOptions.template_name,
@@ -1892,14 +1892,14 @@ var render = function() {
               [
                 _c("input-group", {
                   attrs: {
-                    inputAutocomplete: "template_slug_search",
-                    inputClass: "form-control form-control-short",
-                    inputId: "template_slug",
-                    inputName: "template_slug",
-                    inputPlaceholder: "Template Slug",
-                    inputType: "text",
-                    labelHidden: true,
-                    labelText: "Template Slug"
+                    "input-autocomplete": "template_slug_search",
+                    "input-class": "form-control form-control-short",
+                    "input-id": "template_slug",
+                    "input-name": "template_slug",
+                    "input-placeholder": "Template Slug",
+                    "input-type": "text",
+                    "label-hidden": true,
+                    "label-text": "Template Slug"
                   },
                   model: {
                     value: _vm.editableSearchOptions.template_slug,
@@ -1919,14 +1919,14 @@ var render = function() {
               [
                 _c("select-group", {
                   attrs: {
-                    labelHidden: true,
-                    labelText: "Template Type",
-                    selectAnyEnabled: true,
-                    selectAnyLabel: "Template Type",
-                    selectClass: "form-control form-control-short",
-                    selectId: "template_type",
-                    selectName: "template_type",
-                    selectOptions: _vm.templateTypes
+                    "label-hidden": true,
+                    "label-text": "Template Type",
+                    "select-any-enabled": true,
+                    "select-any-label": "Template Type",
+                    "select-class": "form-control form-control-short",
+                    "select-id": "template_type",
+                    "select-name": "template_type",
+                    "select-options": _vm.templateTypes
                   },
                   model: {
                     value: _vm.editableSearchOptions.template_type,
@@ -2081,10 +2081,10 @@ var render = function() {
         _vm._v(" "),
         _c("confirmation-modal", {
           attrs: {
-            confirmText: "Delete",
-            confirmType: "danger",
-            showModal: _vm.showDeleteModal,
-            messageText: _vm.deleteModalText
+            "confirm-text": "Delete",
+            "confirm-type": "danger",
+            "show-modal": _vm.showDeleteModal,
+            "message-text": _vm.deleteModalText
           },
           on: {
             cancelAction: _vm.cancelDelete,
