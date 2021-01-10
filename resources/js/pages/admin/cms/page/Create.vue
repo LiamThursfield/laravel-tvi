@@ -58,7 +58,7 @@
                     :select-autofocus="true"
                     select-id="layout_id"
                     select-name="layout_id"
-                    :select-options="layouts"
+                    :select-options="isLayouts ? layouts : {}"
                     select-option-label-key="name"
                     select-option-value-key="id"
                     :select-required="true"
@@ -73,7 +73,7 @@
                     select-any-label="Please select a template"
                     select-id="template_id"
                     select-name="template_id"
-                    :select-options="templates"
+                    :select-options="isTemplates ? templates : {}"
                     select-option-label-key="name"
                     select-option-value-key="id"
                     :select-required="true"
@@ -167,17 +167,17 @@
         },
         layout: 'admin-layout',
         props: {
-            'layouts': {
-                type: Object,
-                required: true
+            layouts: {
+                required: true,
+                type: Object | Array,
             },
-            'parentPages': {
+            parentPages: {
+                required: true,
                 type: Object | Array | null,
-                required: true
             },
-            'templates': {
-                type: Object,
-                required: true
+            templates: {
+                required: true,
+                type: Object | Array,
             },
         },
         data() {
@@ -196,6 +196,20 @@
             }
         },
         computed: {
+            isLayouts() {
+                try {
+                    return Object.keys(this.layouts).length;
+                } catch (e) {
+                    return false;
+                }
+            },
+            isTemplates() {
+                try {
+                    return Object.keys(this.templates).length;
+                } catch (e) {
+                    return false;
+                }
+            },
             parentPagesUrls() {
                 try {
                     if (!Object.keys(this.parentPages).length) {

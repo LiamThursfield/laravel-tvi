@@ -58,7 +58,7 @@
                     :select-autofocus="true"
                     select-id="template_id"
                     select-name="template_id"
-                    :select-options="templates"
+                    :select-options="isTemplates ? templates : {}"
                     select-option-label-key="name"
                     select-option-value-key="id"
                     :select-required="true"
@@ -126,8 +126,8 @@
         },
         layout: 'admin-layout',
         props: {
-            'templates': {
-                type: Object,
+            templates: {
+                type: Object | Array,
                 required: true
             },
         },
@@ -144,6 +144,13 @@
             }
         },
         computed: {
+            isTemplates() {
+                try {
+                    return Object.keys(this.templates).length;
+                } catch (e) {
+                    return false;
+                }
+            },
             selectedTemplateHasFields() {
                 try {
                     if (!this.selectedTemplate) {
