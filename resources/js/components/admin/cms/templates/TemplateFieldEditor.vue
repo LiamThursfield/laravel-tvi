@@ -13,7 +13,7 @@
 
         <p
             v-if="!editableTemplateFields.length"
-            class="border-2 border-theme-base-subtle mt-6 px-4 py-3 rounded text-center text-theme-base-subtle-contrast"
+            class="bg-theme-base-subtle mt-6 px-4 py-3 rounded text-center text-theme-base-subtle-contrast"
         >
             No template fields
         </p>
