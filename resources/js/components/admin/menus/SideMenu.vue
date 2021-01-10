@@ -100,6 +100,7 @@
                     cms: {
                         children : {
                             pages: {
+                                activeRoutes: ["admin.cms.pages.index", "admin.cms.pages.create", "admin.cms.pages.edit"],
                                 children: {
                                     index: {
                                         icon: false,
@@ -123,6 +124,7 @@
                                 requiresAnyPermissions: ["cms.create", "cms.view"],
                             },
                             layouts: {
+                                activeRoutes: ["admin.cms.layouts.index", "admin.cms.layouts.create", "admin.cms.layouts.edit"],
                                 children: {
                                     index: {
                                         icon: false,
@@ -146,6 +148,7 @@
                                 requiresAnyPermissions: ["cms.create", "cms.view"],
                             },
                             templates: {
+                                activeRoutes: ["admin.cms.templates.index", "admin.cms.templates.create", "admin.cms.templates.edit"],
                                 children: {
                                     index: {
                                         icon: false,
@@ -193,7 +196,7 @@
                     settings: {
                         children : {
                             users: {
-                                activeRoutes: ["admin.users.index", "admin.users.create"],
+                                activeRoutes: ["admin.users.index", "admin.users.create", "admin.users.edit"],
                                 children: {
                                     index: {
                                         icon: false,
