@@ -55,14 +55,14 @@
                 >
                     <input-group
                         class="mx-4"
-                        inputAutocomplete="page_name_search"
-                        inputClass="form-control form-control-short"
-                        inputId="page_name"
-                        inputName="page_name"
-                        inputPlaceholder="Page Name"
-                        inputType="text"
-                        :labelHidden="true"
-                        labelText="Page Name"
+                        input-autocomplete="page_name_search"
+                        input-class="form-control form-control-short"
+                        input-id="page_name"
+                        input-name="page_name"
+                        input-placeholder="Page Name"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Page Name"
                         v-model="editableSearchOptions.page_name"
                     />
                 </div>
@@ -76,14 +76,14 @@
                 >
                     <input-group
                         class="mx-4"
-                        inputAutocomplete="page_slug_search"
-                        inputClass="form-control form-control-short"
-                        inputId="page_slug"
-                        inputName="page_slug"
-                        inputPlaceholder="Page Slug"
-                        inputType="text"
-                        :labelHidden="true"
-                        labelText="Page Slug"
+                        input-autocomplete="page_slug_search"
+                        input-class="form-control form-control-short"
+                        input-id="page_slug"
+                        input-name="page_slug"
+                        input-placeholder="Page Slug"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Page Slug"
                         v-model="editableSearchOptions.page_slug"
                     />
                 </div>
@@ -97,16 +97,16 @@
                 >
                     <select-group
                         class="mx-4"
-                        :labelHidden="true"
-                        labelText="Layout"
-                        :selectAnyEnabled="true"
-                        selectAnyLabel="Layout"
-                        selectClass="form-control form-control-short"
-                        selectId="template_id"
-                        selectName="layout_id"
-                        selectOptionLabelKey="name"
-                        selectOptionValueKey="id"
-                        :selectOptions="layouts"
+                        :label-hidden="true"
+                        label-text="Layout"
+                        :select-any-enabled="true"
+                        select-any-label="Layout"
+                        select-class="form-control form-control-short"
+                        select-id="template_id"
+                        select-name="layout_id"
+                        select-option-label-key="name"
+                        select-option-value-key="id"
+                        :select-options="layouts"
                         v-model="editableSearchOptions.layout_id"
                     />
                 </div>
@@ -120,16 +120,16 @@
                 >
                     <select-group
                         class="mx-4"
-                        :labelHidden="true"
-                        labelText="Template"
-                        :selectAnyEnabled="true"
-                        selectAnyLabel="Template"
-                        selectClass="form-control form-control-short"
-                        selectId="template_id"
-                        selectName="template_id"
-                        selectOptionLabelKey="name"
-                        selectOptionValueKey="id"
-                        :selectOptions="templates"
+                        :label-hidden="true"
+                        label-text="Template"
+                        :select-any-enabled="true"
+                        select-any-label="Template"
+                        select-class="form-control form-control-short"
+                        select-id="template_id"
+                        select-name="template_id"
+                        select-option-label-key="name"
+                        select-option-value-key="id"
+                        :select-options="templates"
                         v-model="editableSearchOptions.template_id"
                     />
                 </div>
@@ -281,10 +281,10 @@
             </template>
 
             <confirmation-modal
-                confirmText="Delete"
-                confirmType="danger"
-                :showModal="showDeleteModal"
-                :messageText="deleteModalText"
+                confirm-text="Delete"
+                confirm-type="danger"
+                :show-modal="showDeleteModal"
+                :message-text="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"

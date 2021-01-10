@@ -17,7 +17,7 @@
         >
              <pagination-link
                  :link="link"
-                 :linkClass="getLinkClass(link)"
+                 :link-class="getLinkClass(link)"
              >
                  <template v-if="getLinkIcon(link)">
                      <component

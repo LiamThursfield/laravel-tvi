@@ -55,62 +55,62 @@
             <div class="block px-6 w-full">
 
                 <input-group
-                    :errorMessage="getPageErrorMessage('first_name')"
-                    inputAutocomplete="first_name"
-                    :inputAutofocus="true"
-                    inputId="first_name"
-                    inputName="first_name"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="First Name"
+                    :error-message="getPageErrorMessage('first_name')"
+                    input-autocomplete="first_name"
+                    :input-autofocus="true"
+                    input-id="first_name"
+                    input-name="first_name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="First Name"
                     v-model="formData.first_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('last_name')"
-                    inputAutocomplete="last_name"
-                    inputId="last_name"
-                    inputName="last_name"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="Last Name"
+                    :error-message="getPageErrorMessage('last_name')"
+                    input-autocomplete="last_name"
+                    input-id="last_name"
+                    input-name="last_name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Last Name"
                     v-model="formData.last_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('email')"
-                    inputAutocomplete="off"
-                    inputId="email"
-                    inputName="email"
-                    :inputRequired="true"
-                    inputType="email"
-                    labelText="Email"
+                    :error-message="getPageErrorMessage('email')"
+                    input-autocomplete="off"
+                    input-id="email"
+                    input-name="email"
+                    :input-required="true"
+                    input-type="email"
+                    label-text="Email"
                     v-model="formData.email"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('password')"
-                    inputAutocomplete="off"
-                    inputId="password"
-                    inputName="password"
-                    :inputRequired="true"
-                    inputType="password"
-                    labelText="Password"
+                    :error-message="getPageErrorMessage('password')"
+                    input-autocomplete="off"
+                    input-id="password"
+                    input-name="password"
+                    :input-required="true"
+                    input-type="password"
+                    label-text="Password"
                     v-model="formData.password"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('password_confirmation')"
-                    inputAutocomplete="off"
-                    inputId="password_confirmation"
-                    inputName="password_confirmation"
-                    :inputRequired="true"
-                    inputType="password"
-                    labelText="Confirm Password"
+                    :error-message="getPageErrorMessage('password_confirmation')"
+                    input-autocomplete="off"
+                    input-id="password_confirmation"
+                    input-name="password_confirmation"
+                    :input-required="true"
+                    input-type="password"
+                    label-text="Confirm Password"
                     v-model="formData.password_confirmation"
                 />
             </div>
@@ -128,9 +128,9 @@
                     <inline-checkbox-group
                         v-for="(role_label, role_key) in selectableRoles"
                         :key="`user-role-${role_key}`"
-                        :checkboxId="`user-role-${role_key}`"
-                        :checkboxName="`user-role-${role_key}`"
-                        :labelText="role_label"
+                        :checkbox-id="`user-role-${role_key}`"
+                        :checkbox-name="`user-role-${role_key}`"
+                        :label-text="role_label"
                         v-model="formData.roles[role_key]"
                     />
                 </div>

@@ -22,8 +22,8 @@
             v-else
             class="mt-6"
             :animation="200"
-            :disabled="is_view_only"
-            ghostClass="ghost"
+            :disabled="isViewOnly"
+            ghost-class="ghost"
             handle=".draggable-handle"
             @end="onDraggableEnd"
             @sort="onDraggableSort"
@@ -31,7 +31,7 @@
             v-model="editableTemplateFields"
         >
             <transition-group
-                :name="!is_dragging ? 'flip-field' : null"
+                :name="!isDragging ? 'flip-field' : null"
                 type="transition"
             >
                 <article
@@ -60,9 +60,9 @@
 
                     <p class="p-4">
                         <template-field
-                            :is_autofocus_disabled="is_autofocus_disabled"
-                            :templateFieldTypes="templateFieldTypes"
-                            :templateFieldSettings="templateFieldSettings"
+                            :is-autofocus-disabled="isAutofocusDisabled"
+                            :template-field-types="templateFieldTypes"
+                            :template-field-settings="templateFieldSettings"
                             @input="updateTemplateFields"
                             v-model="editableTemplateFields[index]"
                         />
@@ -104,11 +104,11 @@
             prop: 'templateFields'
         },
         props: {
-            is_editing: {
+            isEditing: {
                 default: false,
                 type: Boolean
             },
-            is_view_only: {
+            isViewOnly: {
                 default: false,
                 type: Boolean
             },
@@ -128,19 +128,19 @@
         data() {
             return {
                 editableTemplateFields: [],
-                is_autofocus_disabled: false,
-                is_dragging: false,
+                isAutofocusDisabled: false,
+                isDragging: false,
             }
         },
         created() {
-            if (this.is_editing) {
-                this.is_autofocus_disabled = true;
+            if (this.isEditing) {
+                this.isAutofocusDisabled = true;
             }
             this.editableTemplateFields = _.cloneDeep(this.templateFields);
         },
         methods: {
             addTemplateField() {
-                this.is_autofocus_disabled = false;
+                this.isAutofocusDisabled = false;
 
                 this.editableTemplateFields.push({
                     description: '',
@@ -164,7 +164,7 @@
                 }
             },
             onDraggableEnd() {
-                this.is_dragging = false;
+                this.isDragging = false;
                 this.reorderTemplateFields();
             },
             onDraggableSort() {
@@ -172,7 +172,7 @@
                 this.$page.props.errors = {};
             },
             onDraggableStart() {
-                this.is_dragging = true;
+                this.isDragging = true;
             },
             onTemplateFieldsChange(fields) {
                 this.editableTemplateFields = _.cloneDeep(fields);

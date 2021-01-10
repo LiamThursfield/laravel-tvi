@@ -1,15 +1,15 @@
 <template>
     <div>
         <input-group
-            :errorMessage="errorMessage"
-            :inputAutocomplete="inputName"
-            :inputId="inputName"
-            :inputMax="inputMax"
-            :inputMin="inputMin"
-            :inputName="inputName"
-            :inputRequired="templateField.is_required"
-            inputType="number"
-            labelText=""
+            :error-message="errorMessage"
+            :input-autocomplete="inputName"
+            :input-id="inputName"
+            :input-max="inputMax"
+            :input-min="inputMin"
+            :input-name="inputName"
+            :input-required="templateField.is_required"
+            input-type="number"
+            label-text=""
             v-model="editableContent"
         >
             <slot/>

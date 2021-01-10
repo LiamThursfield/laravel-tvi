@@ -97,7 +97,7 @@
             selectAnyValue: {
                 default: '',
             },
-            selectAutoFocus: {
+            selectAutofocus: {
                 default: false,
                 type: Boolean
             },
@@ -222,7 +222,7 @@
         },
         methods: {
             autofocus() {
-                if (this.selectAutoFocus && this.$refs[this.selectId]) {
+                if (this.selectAutofocus && this.$refs[this.selectId]) {
                     this.$nextTick(() => {
                         this.$refs[this.selectId].focus();
                     });

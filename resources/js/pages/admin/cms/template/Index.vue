@@ -49,42 +49,42 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        inputAutocomplete="template_name_search"
-                        inputClass="form-control form-control-short"
-                        inputId="template_name"
-                        inputName="template_name"
-                        inputPlaceholder="Template Name"
-                        inputType="text"
-                        :labelHidden="true"
-                        labelText="Template Name"
+                        input-autocomplete="template_name_search"
+                        input-class="form-control form-control-short"
+                        input-id="template_name"
+                        input-name="template_name"
+                        input-placeholder="Template Name"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Template Name"
                         v-model="editableSearchOptions.template_name"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <input-group
-                        inputAutocomplete="template_slug_search"
-                        inputClass="form-control form-control-short"
-                        inputId="template_slug"
-                        inputName="template_slug"
-                        inputPlaceholder="Template Slug"
-                        inputType="text"
-                        :labelHidden="true"
-                        labelText="Template Slug"
+                        input-autocomplete="template_slug_search"
+                        input-class="form-control form-control-short"
+                        input-id="template_slug"
+                        input-name="template_slug"
+                        input-placeholder="Template Slug"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Template Slug"
                         v-model="editableSearchOptions.template_slug"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <select-group
-                        :labelHidden="true"
-                        labelText="Template Type"
-                        :selectAnyEnabled="true"
-                        selectAnyLabel="Template Type"
-                        selectClass="form-control form-control-short"
-                        selectId="template_type"
-                        selectName="template_type"
-                        :selectOptions="templateTypes"
+                        :label-hidden="true"
+                        label-text="Template Type"
+                        :select-any-enabled="true"
+                        select-any-label="Template Type"
+                        select-class="form-control form-control-short"
+                        select-id="template_type"
+                        select-name="template_type"
+                        :select-options="templateTypes"
                         v-model="editableSearchOptions.template_type"
                     />
                 </div>
@@ -172,10 +172,10 @@
             </template>
 
             <confirmation-modal
-                confirmText="Delete"
-                confirmType="danger"
-                :showModal="showDeleteModal"
-                :messageText="deleteModalText"
+                confirm-text="Delete"
+                confirm-type="danger"
+                :show-modal="showDeleteModal"
+                :message-text="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"

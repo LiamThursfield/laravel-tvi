@@ -51,42 +51,42 @@
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <select-group
-                    :errorMessage="getPageErrorMessage('template_id')"
-                    labelText="Template"
-                    :selectAnyEnabled="true"
-                    selectAnyLabel="Please select a template"
-                    :selectAutoFocus="true"
-                    selectId="template_id"
-                    selectName="template_id"
-                    :selectOptions="templates"
-                    selectOptionLabelKey="name"
-                    selectOptionValueKey="id"
-                    :selectRequired="true"
+                    :error-message="getPageErrorMessage('template_id')"
+                    label-text="Template"
+                    :select-any-enabled="true"
+                    select-any-label="Please select a template"
+                    :select-autofocus="true"
+                    select-id="template_id"
+                    select-name="template_id"
+                    :select-options="templates"
+                    select-option-label-key="name"
+                    select-option-value-key="id"
+                    :select-required="true"
                     v-model="formData.template_id"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('name')"
-                    inputAutocomplete="layout_name"
-                    inputId="name"
-                    inputName="name"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="Layout Name"
+                    :error-message="getPageErrorMessage('name')"
+                    input-autocomplete="layout_name"
+                    input-id="name"
+                    input-name="name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Layout Name"
                     @input="onNameInput"
                     v-model="formData.name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('slug')"
-                    inputAutocomplete="layout_slug"
-                    inputId="slug"
-                    inputName="slug"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="Layout Slug"
+                    :error-message="getPageErrorMessage('slug')"
+                    input-autocomplete="layout_slug"
+                    input-id="slug"
+                    input-name="slug"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Layout Slug"
                     @blur="onSlugBlur"
                     @input="onSlugInput"
                     v-model="formData.slug"
@@ -101,7 +101,7 @@
             <p class="text-lg">Fields</p>
 
             <content-editor
-                :templateFields="this.selectedTemplate.template_fields"
+                :template-fields="this.selectedTemplate.template_fields"
                 v-model="formData.content"
             />
         </div>

@@ -1,14 +1,14 @@
 <template>
     <div>
         <input-group
-            :errorMessage="errorMessage"
-            :inputAutocomplete="inputName"
-            :inputId="inputName"
-            :inputMaxLength="inputMaxLength"
-            :inputName="inputName"
-            :inputRequired="templateField.is_required"
-            inputType="text"
-            labelText=""
+            :error-message="errorMessage"
+            :input-autocomplete="inputName"
+            :input-id="inputName"
+            :input-max-length="inputMaxLength"
+            :input-name="inputName"
+            :input-required="templateField.is_required"
+            input-type="text"
+            label-text=""
             v-model="editableContent"
         >
             <slot/>

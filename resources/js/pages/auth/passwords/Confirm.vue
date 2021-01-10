@@ -16,14 +16,14 @@
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('password')"
-                    inputAutocomplete="current-password"
-                    inputClass="auth-input"
-                    inputId="password"
-                    inputName="password"
-                    :inputRequired="true"
-                    inputType="password"
-                    labelText="Password"
+                    :error-message="getPageErrorMessage('password')"
+                    input-autocomplete="current-password"
+                    input-class="auth-input"
+                    input-id="password"
+                    input-name="password"
+                    :input-required="true"
+                    input-type="password"
+                    label-text="Password"
                     v-model="form.password"
                 />
 

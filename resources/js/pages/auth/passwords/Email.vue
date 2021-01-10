@@ -24,14 +24,14 @@
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('email')"
-                    inputAutocomplete="email"
-                    inputClass="auth-input"
-                    inputId="email"
-                    inputName="email"
-                    :inputRequired="true"
-                    inputType="email"
-                    labelText="Email"
+                    :error-message="getPageErrorMessage('email')"
+                    input-autocomplete="email"
+                    input-class="auth-input"
+                    input-id="email"
+                    input-name="email"
+                    :input-required="true"
+                    input-type="email"
+                    label-text="Email"
                     v-model="form.email"
                 />
 

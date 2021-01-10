@@ -5,7 +5,7 @@ export const templateFieldSettingsMixin = {
         prop: 'fieldSettings'
     },
     props: {
-        default_settings: {
+        defaultSettings: {
             required: true,
             type: Array | Object,
         },
@@ -26,11 +26,11 @@ export const templateFieldSettingsMixin = {
     computed: {
         isDefaultSettings() {
             try {
-                if (!this.default_settings || Array.isArray(this.default_settings)) {
+                if (!this.defaultSettings || Array.isArray(this.defaultSettings)) {
                     return false;
                 }
 
-                return Object.keys(this.default_settings).length;
+                return Object.keys(this.defaultSettings).length;
             } catch (e) {
                 return false;
             }
@@ -49,7 +49,7 @@ export const templateFieldSettingsMixin = {
 
             // Ensure all the default settings are added to the field settings, if not already preset.
             if (this.isDefaultSettings) {
-                _.forEach(this.default_settings, (value, key) => {
+                _.forEach(this.defaultSettings, (value, key) => {
                     if (!this.editableFieldSettings.hasOwnProperty(key)) {
                         this.editableFieldSettings[key] = value;
                     }

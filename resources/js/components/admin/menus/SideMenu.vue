@@ -51,9 +51,9 @@
                     v-for="(menuItem, menuItemKey) in menuSection.children"
                     :key="`${menuSectionKey}.${menuItemKey}`"
                     class="root-menu-item"
-                    :menuItem="menuItem"
-                    :menuItemKey="`${menuSectionKey}.${menuItemKey}`"
-                    :toggledItems="toggledItems"
+                    :menu-item="menuItem"
+                    :menu-item-key="`${menuSectionKey}.${menuItemKey}`"
+                    :toggled-items="toggledItems"
                     @openItem="onMenuItemOpened"
                     @toggleItem="onMenuItemToggled"
                 />

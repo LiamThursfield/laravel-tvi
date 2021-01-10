@@ -49,44 +49,44 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        inputAutocomplete="layout_name_search"
-                        inputClass="form-control form-control-short"
-                        inputId="layout_name"
-                        inputName="layout_name"
-                        inputPlaceholder="Layout Name"
-                        inputType="text"
-                        :labelHidden="true"
-                        labelText="Layout Name"
+                        input-autocomplete="layout_name_search"
+                        input-class="form-control form-control-short"
+                        input-id="layout_name"
+                        input-name="layout_name"
+                        input-placeholder="Layout Name"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Layout Name"
                         v-model="editableSearchOptions.layout_name"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <input-group
-                        inputAutocomplete="layout_slug_search"
-                        inputClass="form-control form-control-short"
-                        inputId="layout_slug"
-                        inputName="layout_slug"
-                        inputPlaceholder="Layout Slug"
-                        inputType="text"
-                        :labelHidden="true"
-                        labelText="Layout Slug"
+                        input-autocomplete="layout_slug_search"
+                        input-class="form-control form-control-short"
+                        input-id="layout_slug"
+                        input-name="layout_slug"
+                        input-placeholder="Layout Slug"
+                        input-type="text"
+                        :label-hidden="true"
+                        label-text="Layout Slug"
                         v-model="editableSearchOptions.layout_slug"
                     />
                 </div>
 
                 <div class="w-full md:w-1/3">
                     <select-group
-                        :labelHidden="true"
-                        labelText="Template"
-                        :selectAnyEnabled="true"
-                        selectAnyLabel="Template"
-                        selectClass="form-control form-control-short"
-                        selectId="template_id"
-                        selectName="template_id"
-                        selectOptionLabelKey="name"
-                        selectOptionValueKey="id"
-                        :selectOptions="templates"
+                        :label-hidden="true"
+                        label-text="Template"
+                        :select-any-enabled="true"
+                        select-any-label="Template"
+                        select-class="form-control form-control-short"
+                        select-id="template_id"
+                        select-name="template_id"
+                        select-option-label-key="name"
+                        select-option-value-key="id"
+                        :select-options="templates"
                         v-model="editableSearchOptions.template_id"
                     />
                 </div>
@@ -174,10 +174,10 @@
             </template>
 
             <confirmation-modal
-                confirmText="Delete"
-                confirmType="danger"
-                :showModal="showDeleteModal"
-                :messageText="deleteModalText"
+                confirm-text="Delete"
+                confirm-type="danger"
+                :show-modal="showDeleteModal"
+                :message-text="deleteModalText"
                 @cancelAction="cancelDelete"
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"

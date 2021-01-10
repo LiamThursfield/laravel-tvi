@@ -52,52 +52,52 @@
             <div class="block px-6 w-full">
 
                 <select-group
-                    :errorMessage="getPageErrorMessage('type')"
-                    labelText="Template Type"
-                    :selectAnyEnabled="true"
-                    selectAnyLabel="Please select a template type"
-                    :selectAutoFocus="true"
-                    selectId="type"
-                    selectName="type"
-                    :selectOptions="templateTypes"
-                    :selectRequired="true"
+                    :error-message="getPageErrorMessage('type')"
+                    label-text="Template Type"
+                    :select-any-enabled="true"
+                    select-any-label="Please select a template type"
+                    :select-autofocus="true"
+                    select-id="type"
+                    select-name="type"
+                    :select-options="templateTypes"
+                    :select-required="true"
                     v-model="formData.type"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('name')"
-                    inputAutocomplete="template_name"
-                    inputId="name"
-                    inputName="name"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="Template Name"
+                    :error-message="getPageErrorMessage('name')"
+                    input-autocomplete="template_name"
+                    input-id="name"
+                    input-name="name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Template Name"
                     @input="onNameInput"
                     v-model="formData.name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('slug')"
-                    inputAutocomplete="template_slug"
-                    inputId="slug"
-                    inputName="slug"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="Template Slug"
+                    :error-message="getPageErrorMessage('slug')"
+                    input-autocomplete="template_slug"
+                    input-id="slug"
+                    input-name="slug"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Template Slug"
                     @blur="onSlugBlur"
                     v-model="formData.slug"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('description')"
-                    inputAutocomplete="template_description"
-                    inputId="description"
-                    inputName="description"
-                    inputType="text"
-                    labelText="Description"
+                    :error-message="getPageErrorMessage('description')"
+                    input-autocomplete="template_description"
+                    input-id="description"
+                    input-name="description"
+                    input-type="text"
+                    label-text="Description"
                     v-model="formData.description"
                 />
             </div>
@@ -106,9 +106,9 @@
         <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <template-field-editor
-                    :is_editing="true"
-                    :templateFieldSettings="templateFieldSettings"
-                    :templateFieldTypes="templateFieldTypes"
+                    :is-editing="true"
+                    :template-field-settings="templateFieldSettings"
+                    :template-field-types="templateFieldTypes"
                     v-model="formData.template_fields"
                 />
             </div>

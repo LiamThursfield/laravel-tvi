@@ -8,26 +8,26 @@
         >
             <select-group
                 class="flex-1"
-                :errorMessage="getErrorMessage('type')"
-                labelText="Field Type"
-                :selectAnyEnabled="true"
-                selectAnyLabel="Please select a field type"
-                :selectAutoFocus="!is_autofocus_disabled"
-                :selectId="`template-field-${templateField.order}-type`"
-                :selectName="`template-field-${templateField.order}-type`"
-                :selectOptions="templateFieldTypes"
-                :selectRequired="true"
+                :error-message="getErrorMessage('type')"
+                label-text="Field Type"
+                :select-any-enabled="true"
+                select-any-label="Please select a field type"
+                :select-autofocus="!isAutofocusDisabled"
+                :select-id="`template-field-${templateField.order}-type`"
+                :select-name="`template-field-${templateField.order}-type`"
+                :select-options="templateFieldTypes"
+                :select-required="true"
                 @input="updateTemplateField"
                 v-model="editable_templateField.type"
             />
 
             <input-group
                 class="flex-1 mt-4 md:mt-0"
-                :inputDisabled="true"
-                :inputId="`template-field-${templateField.order}-order`"
-                :inputName="`template-field-${templateField.order}-order`"
-                inputType="number"
-                labelText="Order"
+                :input-disabled="true"
+                :input-id="`template-field-${templateField.order}-order`"
+                :input-name="`template-field-${templateField.order}-order`"
+                input-type="number"
+                label-text="Order"
                 @input="updateTemplateField"
                 v-model="editable_templateField.order"
             />
@@ -41,24 +41,24 @@
         >
             <input-group
                 class="flex-1 mt-4"
-                :errorMessage="getErrorMessage('name')"
-                :inputId="`template-field-${templateField.order}-name`"
-                :inputName="`template-field-${templateField.order}-name`"
-                :inputRequired="true"
-                inputType="text"
-                labelText="Field Name"
+                :error-message="getErrorMessage('name')"
+                :input-id="`template-field-${templateField.order}-name`"
+                :input-name="`template-field-${templateField.order}-name`"
+                :input-required="true"
+                input-type="text"
+                label-text="Field Name"
                 @input="onNameInput"
                 v-model="editable_templateField.name"
             />
 
             <input-group
                 class="flex-1 mt-4"
-                :errorMessage="getErrorMessage('slug')"
-                :inputId="`template-field-${templateField.order}-slug`"
-                :inputName="`template-field-${templateField.order}-slug`"
-                :inputRequired="true"
-                inputType="text"
-                labelText="Field Slug"
+                :error-message="getErrorMessage('slug')"
+                :input-id="`template-field-${templateField.order}-slug`"
+                :input-name="`template-field-${templateField.order}-slug`"
+                :input-required="true"
+                input-type="text"
+                label-text="Field Slug"
                 @blur="onSlugBlur"
                 @input="onSlugInput"
                 v-model="editable_templateField.slug"
@@ -67,21 +67,21 @@
 
         <input-group
             class="mt-4"
-            :errorMessage="getErrorMessage('description')"
-            :inputId="`template-field-${templateField.order}-description`"
-            :inputName="`template-field-${templateField.order}-description`"
-            inputType="text"
-            labelText="Description"
+            :error-message="getErrorMessage('description')"
+            :input-id="`template-field-${templateField.order}-description`"
+            :input-name="`template-field-${templateField.order}-description`"
+            input-type="text"
+            label-text="Description"
             @input="updateTemplateField"
             v-model="editable_templateField.description"
         />
 
         <checkbox-group
             class="mt-4"
-            :checkboxId="`template-field-${templateField.order}-is_required`"
-            :checkboxName="`template-field-${templateField.order}-is_required`"
-            :errorMessage="getErrorMessage('is_required')"
-            labelText="Required?"
+            :checkbox-id="`template-field-${templateField.order}-is_required`"
+            :checkbox-name="`template-field-${templateField.order}-is_required`"
+            :error-message="getErrorMessage('is_required')"
+            label-text="Required?"
             @input="updateTemplateField"
             v-model="editable_templateField.is_required"
         />
@@ -90,8 +90,8 @@
         <component
             v-if="settings_component"
             :is="settings_component"
-            :default_settings="default_fieldSettings"
-            :templateField="editable_templateField"
+            :default-settings="default_fieldSettings"
+            :template-field="editable_templateField"
             @input="updateTemplateField"
             v-model="editable_templateField.settings"
         >
@@ -125,15 +125,15 @@
             prop: 'templateField'
         },
         props: {
-            errorMessage_key_prefix: {
+            errorMessageKeyPrefix: {
                 default: 'templateFields',
                 type: String
             },
-            is_autofocus_disabled: {
+            isAutofocusDisabled: {
                 default: false,
                 type: Boolean
             },
-            is_view_only: {
+            isViewOnly: {
                 default: false,
                 type: Boolean
             },
@@ -177,7 +177,7 @@
                 }
             },
             errorMessage_key() {
-                return this.errorMessage_key_prefix + '.' + this.editable_templateField.order + '.';
+                return this.errorMessageKeyPrefix + '.' + this.editable_templateField.order + '.';
             },
             settings_component() {
                 if (!this.editable_templateField.type) {

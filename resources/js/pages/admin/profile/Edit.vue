@@ -49,38 +49,38 @@
             <div class="block px-6 w-full">
 
                 <input-group
-                    :errorMessage="getPageErrorMessage('first_name')"
-                    inputAutocomplete="first_name"
-                    :inputAutofocus="true"
-                    inputId="first_name"
-                    inputName="first_name"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="First Name"
+                    :error-message="getPageErrorMessage('first_name')"
+                    input-autocomplete="first_name"
+                    :input-autofocus="true"
+                    input-id="first_name"
+                    input-name="first_name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="First Name"
                     v-model="formData.first_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('last_name')"
-                    inputAutocomplete="last_name"
-                    inputId="last_name"
-                    inputName="last_name"
-                    :inputRequired="true"
-                    inputType="text"
-                    labelText="Last Name"
+                    :error-message="getPageErrorMessage('last_name')"
+                    input-autocomplete="last_name"
+                    input-id="last_name"
+                    input-name="last_name"
+                    :input-required="true"
+                    input-type="text"
+                    label-text="Last Name"
                     v-model="formData.last_name"
                 />
 
                 <input-group
                     class="mt-4"
-                    :errorMessage="getPageErrorMessage('email')"
-                    inputAutocomplete="new_email"
-                    inputId="email"
-                    inputName="email"
-                    :inputRequired="true"
-                    inputType="email"
-                    labelText="Email"
+                    :error-message="getPageErrorMessage('email')"
+                    input-autocomplete="new_email"
+                    input-id="email"
+                    input-name="email"
+                    :input-required="true"
+                    input-type="email"
+                    label-text="Email"
                     v-model="formData.email"
                 />
             </div>

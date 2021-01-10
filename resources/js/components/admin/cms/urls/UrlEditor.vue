@@ -1,21 +1,21 @@
 <template>
     <div>
         <input-group
-            inputId="url_input"
-            inputName="url_input"
-            :inputRequired="true"
-            labelText="Url"
-            inputType="text"
+            input-id="url_input"
+            input-name="url_input"
+            :input-required="true"
+            input-type="text"
+            label-text="Url"
             v-model="urlInput"
         />
 
         <input-group
             class="mt-4"
-            :inputDisabled="true"
-            inputId="url_full"
-            inputName="url_full"
-            labelText="Formatted URL"
-            inputType="text"
+            :input-disabled="true"
+            input-id="url_full"
+            input-name="url_full"
+            input-type="text"
+            label-text="Formatted URL"
             v-model="urlFull"
         />
 
@@ -23,9 +23,9 @@
 
         <inline-checkbox-group
             class="mt-4"
-            checkboxId="url_is_enabled"
-            checkboxName="url_is_enabled"
-            labelText="Enabled?"
+            checkbox-id="url_is_enabled"
+            checkbox-name="url_is_enabled"
+            label-text="Enabled?"
             v-model="editableUrlData.is_enabled"
         />
 
@@ -34,17 +34,17 @@
         >
             <date-time-picker-group
                 class="mt-4 md:flex-1"
-                inputId="url_published_at"
-                inputName="url_published_at"
-                labelText="Publish Date"
+                input-id="url_published_at"
+                input-name="url_published_at"
+                label-text="Publish Date"
                 v-model="editableUrlData.published_at"
             />
 
             <date-time-picker-group
                 class="mt-4 md:flex-1"
-                inputId="url_expired_at"
-                inputName="url_expired_at"
-                labelText="Expiry Date"
+                input-id="url_expired_at"
+                input-name="url_expired_at"
+                label-text="Expiry Date"
                 v-model="editableUrlData.expired_at"
             />
         </div>

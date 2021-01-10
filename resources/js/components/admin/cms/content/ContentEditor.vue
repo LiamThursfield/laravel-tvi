@@ -14,7 +14,7 @@
         >
             <component
                 :is="getContentFieldComponent(templateField)"
-                :templateField="templateField"
+                :template-field="templateField"
                 @input="onEditableContentUpdate"
                 v-model="editableContent[templateField.id].data"
             >
