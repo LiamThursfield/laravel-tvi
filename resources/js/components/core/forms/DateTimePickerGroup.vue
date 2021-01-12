@@ -31,65 +31,38 @@
             v-model="editableInput"
         />
 
-        <div>
-            <transition name="slide-down-fade">
-                <p
-                    v-if="isError"
-                    :class="errorClass"
-                >
-                    {{ errorMessage }}
-                </p>
-            </transition>
-        </div>
+        <form-field-error
+            :error-class="errorClass"
+            :error-message="errorMessage"
+            :is-error="isError"
+        />
     </div>
 </template>
 
 <script>
+    import {baseFormGroupMixin} from "../../../mixins/admin/cms/forms/base-form-group";
+    import FormFieldError from "./partials/FormFieldError";
+
     export default {
         name: "DateTimePickerGroup",
-        model: {
-            prop: 'inputValue'
+        mixins: [
+            baseFormGroupMixin,
+        ],
+        components: {
+            FormFieldError
         },
         props: {
-            errorClass: {
-                default: 'mt-1 text-red-500 text-sm',
-                type: String
-            },
-            errorHideOnInput: {
-                default: true,
-                type: Boolean
-            },
-            errorMessage: {
-                default: '',
-                type: false | String
-            },
             inputClass: {
                 default: '',
                 type: String
-            },
-            inputDisabled: {
-                default: false,
-                type: Boolean
             },
             inputFormat: {
                 default: 'DD/MM/YYYY HH:mm',
                 type: String
             },
-            inputId: {
-                required: true,
-                type: String
-            },
-            inputName: {
-                required: true,
-                type: String
-            },
             inputPlaceholder: {
                 default: 'Please select a date',
                 type: String
-            },
-            inputRequired: {
-                default: false,
-                type: Boolean
             },
             inputTimeTitleFormat: {
                 default: 'DD/MM/YYYY HH:mm',
@@ -103,52 +76,15 @@
                 default: 'datetime',
                 type: String
             },
-            inputValue: {
-                default: '',
-                type: String | Number
-            },
             inputValueType: {
                 default: 'YYYY-MM-DD HH:mm',
-                type: String
-            },
-            labelClass: {
-                default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
-                type: String
-            },
-            labelHidden: {
-                default: false,
-                type: Boolean
-            },
-            labelText: {
-                required: true,
                 type: String
             },
         },
         data() {
             return  {
                 editableInput: '',
-                hideError: false,
                 isInitialised: false,
-            }
-        },
-        computed: {
-            formattedInputClass() {
-                if (this.isError) {
-                    return this.inputClass + ' error';
-                }
-                return this.inputClass;
-            },
-            formattedLabelClass() {
-                let labelClass = this.labelClass;
-
-                if (this.labelHidden) {
-                    labelClass += ' hidden';
-                }
-
-                return labelClass;
-            },
-            isError() {
-                return !this.hideError && this.errorMessage && this.errorMessage !== '';
             }
         },
         mounted() {
@@ -158,10 +94,7 @@
             })
         },
         methods: {
-            onErrorMessageChange() {
-                this.hideError = false;
-            },
-            onEditableInputChange() {
+            onInput() {
                 if (!this.isInitialised) {
                     return;
                 }
@@ -180,10 +113,7 @@
         },
         watch: {
             editableInput: {
-                handler: "onEditableInputChange"
-            },
-            errorMessage: {
-                handler: "onErrorMessageChange"
+                handler: "onInput"
             },
             inputValue: {
                 handler: "onInputValueChange"

@@ -24,8 +24,8 @@
             :name="inputName"
             :ref="inputId"
             :required="inputRequired"
-            @change="onSelectChange"
-            @keyup.esc="blurSelect"
+            @change="onInput"
+            @keyup.esc="blurInput"
         >
             <option
                 v-if="inputAnyOptionEnabled"
@@ -48,40 +48,28 @@
         </select>
 
 
-        <div>
-            <transition name="slide-down-fade">
-                <p
-                    v-if="isError"
-                    :class="errorClass"
-                >
-                    {{ errorMessage }}
-                </p>
-            </transition>
-        </div>
+        <form-field-error
+            :error-class="errorClass"
+            :error-message="errorMessage"
+            :is-error="isError"
+        />
     </div>
 </template>
 
 <script>
     import _ from 'lodash';
+    import {baseFormGroupMixin} from "../../../mixins/admin/cms/forms/base-form-group";
+    import FormFieldError from "./partials/FormFieldError";
 
     export default {
         name: 'SelectGroup',
-        model: {
-            prop: 'inputValue'
+        mixins: [
+            baseFormGroupMixin,
+        ],
+        components: {
+            FormFieldError
         },
         props: {
-            errorClass: {
-                default: 'mt-1 text-red-500 text-sm',
-                type: String
-            },
-            errorHideOnSelect: {
-                default: true,
-                type: Boolean
-            },
-            errorMessage: {
-                default: '',
-                type: String
-            },
             inputAnyOptionEnabled: {
                 default: false,
                 type: Boolean
@@ -97,24 +85,8 @@
             inputAnyOptionValue: {
                 default: '',
             },
-            inputAutofocus: {
-                default: false,
-                type: Boolean
-            },
             inputClass: {
                 default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
-                type: String
-            },
-            inputDisabled: {
-                default: false,
-                type: Boolean
-            },
-            inputId: {
-                required: true,
-                type: String
-            },
-            inputName: {
-                required: true,
                 type: String
             },
             inputOptionLabelKey: {
@@ -129,31 +101,6 @@
                 required: true,
                 type: Object
             },
-            inputRequired: {
-                default: false,
-                type: Boolean
-            },
-            inputValue: {
-                default: '',
-                type: String | Number
-            },
-            labelClass: {
-                default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
-                type: String
-            },
-            labelHidden: {
-                default: false,
-                type: Boolean
-            },
-            labelText: {
-                required: true,
-                type: String
-            },
-        },
-        data() {
-            return  {
-                hideError: false
-            }
         },
         computed: {
             formattedOptions() {
@@ -201,18 +148,6 @@
 
                 return inputClass;
             },
-            formattedLabelClass() {
-                let labelClass = this.labelClass;
-
-                if (this.labelHidden) {
-                    labelClass += ' hidden';
-                }
-
-                return labelClass;
-            },
-            isError() {
-                return !this.hideError && this.errorMessage && this.errorMessage !== '';
-            },
             isAnyOptionSelected() {
                 return this.inputValue === this.inputAnyOptionValue || this.inputValue === null;
             }
@@ -221,20 +156,6 @@
             this.autofocus();
         },
         methods: {
-            autofocus() {
-                if (this.inputAutofocus && this.$refs[this.inputId]) {
-                    this.$nextTick(() => {
-                        this.$refs[this.inputId].focus();
-                    });
-                }
-            },
-            blurSelect() {
-                if (this.$refs[this.inputId]) {
-                    this.$nextTick(() => {
-                        this.$refs[this.inputId].blur();
-                    });
-                }
-            },
             isOptionDisabled(option_value) {
                 if (!this.inputRequired) {
                     return false;
@@ -249,21 +170,6 @@
             isOptionSelected(option_value) {
                 return option_value === this.inputValue;
             },
-            onErrorMessageChange() {
-                this.hideError = false;
-            },
-            onSelectChange() {
-                this.$emit('input', this.$refs[this.inputId].value);
-
-                if (this.errorHideOnSelect) {
-                    this.hideError = true;
-                }
-            },
         },
-        watch: {
-            errorMessage: {
-                handler: "onErrorMessageChange"
-            },
-        }
     }
 </script>
