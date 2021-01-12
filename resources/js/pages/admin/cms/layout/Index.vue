@@ -82,14 +82,14 @@
                     <select-group
                         :label-hidden="true"
                         label-text="Template"
-                        :select-any-enabled="true"
-                        select-any-label="Template"
-                        select-class="form-control form-control-short"
-                        select-id="template_id"
-                        select-name="template_id"
-                        select-option-label-key="name"
-                        select-option-value-key="id"
-                        :select-options="templates"
+                        :input-any-option-enabled="true"
+                        input-any-option-label="Template"
+                        input-class="form-control form-control-short"
+                        input-id="template_id"
+                        input-name="template_id"
+                        input-option-label-key="name"
+                        input-option-value-key="id"
+                        :input-options="templates"
                         v-model="editableSearchOptions.template_id"
                     />
                 </div>

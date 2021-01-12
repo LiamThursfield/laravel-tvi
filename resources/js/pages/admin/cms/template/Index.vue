@@ -79,12 +79,12 @@
                     <select-group
                         :label-hidden="true"
                         label-text="Template Type"
-                        :select-any-enabled="true"
-                        select-any-label="Template Type"
-                        select-class="form-control form-control-short"
-                        select-id="template_type"
-                        select-name="template_type"
-                        :select-options="templateTypes"
+                        :input-any-option-enabled="true"
+                        input-any-option-label="Template Type"
+                        input-class="form-control form-control-short"
+                        input-id="template_type"
+                        input-name="template_type"
+                        :input-options="templateTypes"
                         v-model="editableSearchOptions.template_type"
                     />
                 </div>

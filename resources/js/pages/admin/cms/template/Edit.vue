@@ -54,12 +54,12 @@
                 <select-group
                     :error-message="getPageErrorMessage('type')"
                     label-text="Template Type"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a template type"
-                    :select-autofocus="true"
-                    select-id="type"
-                    select-name="type"
-                    :select-options="templateTypes"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a template type"
+                    :input-autofocus="true"
+                    input-id="type"
+                    input-name="type"
+                    :input-options="templateTypes"
                     :select-required="true"
                     v-model="formData.type"
                 />
