@@ -1,6 +1,7 @@
 <template>
     <div>
         <input-group
+            :error-message="getPageErrorMessage('url.url_main')"
             input-id="url_input"
             input-name="url_input"
             :input-required="true"
@@ -11,6 +12,7 @@
 
         <input-group
             class="mt-4"
+            :error-message="getPageErrorMessage('url.url_full')"
             :input-disabled="true"
             input-id="url_full"
             input-name="url_full"
@@ -23,6 +25,7 @@
 
         <inline-checkbox-group
             class="mt-4"
+            :error-message="getPageErrorMessage('url.is_enabled')"
             input-id="url_is_enabled"
             input-name="url_is_enabled"
             label-text="Enabled?"
@@ -34,6 +37,7 @@
         >
             <date-time-picker-group
                 class="mt-4 md:flex-1"
+                :error-message="getPageErrorMessage('url.published_at')"
                 input-id="url_published_at"
                 input-name="url_published_at"
                 label-text="Publish Date"
@@ -42,6 +46,7 @@
 
             <date-time-picker-group
                 class="mt-4 md:flex-1"
+                :error-message="getPageErrorMessage('url.expired_at')"
                 input-id="url_expired_at"
                 input-name="url_expired_at"
                 label-text="Expiry Date"
