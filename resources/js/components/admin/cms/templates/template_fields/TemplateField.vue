@@ -78,8 +78,8 @@
 
         <checkbox-group
             class="mt-4"
-            :checkbox-id="`template-field-${templateField.order}-is_required`"
-            :checkbox-name="`template-field-${templateField.order}-is_required`"
+            :input-id="`template-field-${templateField.order}-is_required`"
+            :input-name="`template-field-${templateField.order}-is_required`"
             :error-message="getErrorMessage('is_required')"
             label-text="Required?"
             @input="updateTemplateField"

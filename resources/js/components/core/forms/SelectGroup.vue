@@ -19,7 +19,7 @@
 
         <select
             :id="inputId"
-            :class="formattedinputClass"
+            :class="formattedInputClass"
             :disabled="inputDisabled"
             :name="inputName"
             :ref="inputId"
@@ -188,7 +188,7 @@
 
                 return options;
             },
-            formattedinputClass() {
+            formattedInputClass() {
                 let inputClass = this.inputClass;
 
                 if (this.isError) {

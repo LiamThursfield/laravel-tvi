@@ -23,8 +23,8 @@
 
         <inline-checkbox-group
             class="mt-4"
-            checkbox-id="url_is_enabled"
-            checkbox-name="url_is_enabled"
+            input-id="url_is_enabled"
+            input-name="url_is_enabled"
             label-text="Enabled?"
             v-model="editableUrlData.is_enabled"
         />

@@ -2,13 +2,13 @@
     <div class="flex flex-col">
         <label
             :class="labelClass"
-            :for="checkboxId"
+            :for="inputId"
         >
             <slot>
                 <span class="flex flex-row items-baseline">
                     <span>{{ labelText }}</span>
                     <sup
-                        v-if="checkboxRequired"
+                        v-if="inputRequired"
                         class="text-theme-danger-contrast"
                     >
                         *
@@ -18,14 +18,14 @@
         </label>
 
         <input
-            :id="checkboxId"
-            :class="formattedCheckboxClass"
-            :disabled="checkboxDisabled"
-            :false-value="checkboxDisabled"
-            :name="checkboxName"
-            :ref="checkboxId"
-            :required="checkboxRequired"
-            :true-value="checkboxValueTrue"
+            :id="inputId"
+            :class="formattedInputClass"
+            :disabled="inputDisabled"
+            :false-value="inputDisabled"
+            :name="inputName"
+            :ref="inputId"
+            :required="inputRequired"
+            :true-value="inputValueTrue"
             type="checkbox"
             @change="onCheckboxChange"
             @keyup.esc="blurCheckbox"
@@ -49,7 +49,7 @@
     export default {
         name: "CheckboxGroup",
         model: {
-            prop: 'checkboxValue'
+            prop: 'inputValue'
         },
         props: {
             errorClass: {
@@ -64,39 +64,39 @@
                 default: '',
                 type: String
             },
-            checkboxAutofocus: {
+            inputAutofocus: {
                 default: false,
                 type: Boolean
             },
-            checkboxClass: {
+            inputClass: {
                 default: 'cursor-pointer form-checkbox h-5 mt-2 rounded text-theme-primary w-5 focus:border-theme-primary focus:outline-none focus:ring focus:ring-primary',
                 type: String
             },
-            checkboxDisabled: {
+            inputDisabled: {
                 default: false,
                 type: Boolean
             },
-            checkboxId: {
+            inputId: {
                 required: true,
                 type: String
             },
-            checkboxName: {
+            inputName: {
                 required: true,
                 type: String
             },
-            checkboxRequired: {
+            inputRequired: {
                 default: false,
                 type: Boolean
             },
-            checkboxValue: {
+            inputValue: {
                 default: false,
                 type: String | Number | Boolean
             },
-            checkboxDisabled: {
+            inputDisabled: {
                 default: false,
                 type: String | Number | Boolean
             },
-            checkboxValueTrue: {
+            inputValueTrue: {
                 default: true,
                 type: String | Number | Boolean
             },
@@ -116,35 +116,35 @@
             }
         },
         computed: {
-            formattedCheckboxClass() {
+            formattedInputClass() {
                 if (this.isError) {
-                    return this.checkboxClass + ' error';
+                    return this.inputClass + ' error';
                 }
-                return this.checkboxClass;
+                return this.inputClass;
             },
             isChecked() {
-                return this.editableValue === this.checkboxValueTrue;
+                return this.editableValue === this.inputValueTrue;
             },
             isError() {
                 return !this.hideError && this.errorMessage && this.errorMessage !== '';
             }
         },
         mounted() {
-            this.editableValue = this.checkboxValue;
+            this.editableValue = this.inputValue;
             this.autofocus();
         },
         methods: {
             autofocus() {
-                if (this.checkboxAutofocus && this.$refs[this.checkboxId]) {
+                if (this.inputAutofocus && this.$refs[this.inputId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.checkboxId].focus();
+                        this.$refs[this.inputId].focus();
                     });
                 }
             },
             blurCheckbox() {
-                if (this.$refs[this.checkboxId]) {
+                if (this.$refs[this.inputId]) {
                     this.$nextTick(() => {
-                        this.$refs[this.checkboxId].blur();
+                        this.$refs[this.inputId].blur();
                     });
                 }
             },
@@ -152,7 +152,7 @@
                 this.hideError = false;
             },
             onCheckboxChange(e) {
-                this.$emit('input', this.isChecked ? this.checkboxValueTrue : this.checkboxDisabled);
+                this.$emit('input', this.isChecked ? this.inputValueTrue : this.inputDisabled);
 
                 if (this.errorHideOnChange) {
                     this.hideError = true;
