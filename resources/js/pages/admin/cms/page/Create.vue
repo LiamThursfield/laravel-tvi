@@ -128,6 +128,7 @@
             class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
         >
             <url-editor
+                :computed-url="computedUrl"
                 :parent-url="selectedParentPageUrl"
                 v-model="formData.url"
             />
@@ -183,6 +184,7 @@
         data() {
             return {
                 autoUpdateSlug: true,
+                computedUrl: '',
                 formData: {
                     layout_id: '',
                     name: '',
@@ -295,6 +297,7 @@
                 }
 
                 this.formData.slug = this.slugify(this.formData.name);
+                this.computedUrl = this.formData.slug;
             },
             onSelectedTemplateIdChange: _.debounce(function () {
                 this.selectedTemplate = null;
@@ -325,6 +328,7 @@
             },
             onSlugInput() {
                 this.autoUpdateSlug = false;
+                this.computedUrl = this.formData.slug;
             },
             setNewTemplateContent() {
                 if (!this.selectedTemplateHasFields) {

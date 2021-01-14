@@ -7,6 +7,7 @@
             :input-required="true"
             input-type="text"
             label-text="Url"
+            @input="onUrlInputInput"
             v-model="urlInput"
         />
 
@@ -75,6 +76,10 @@
             prop: 'urlData',
         },
         props: {
+            computedUrl: {
+                default: '',
+                type: String
+            },
             parentUrl: {
                 default: null,
                 type: String | null,
@@ -86,6 +91,7 @@
         },
         data() {
             return {
+                autoUpdateUrl: true,
                 editableUrlData: {
                     expired_at: null,
                     is_enabled: false,
@@ -134,21 +140,38 @@
                     this.editableUrlData = _.cloneDeep(this.urlData);
                     this.urlInput = this.editableUrlData.url_main ?? '';
                 }
+
+                if (this.urlInput && this.urlInput !== '') {
+                    this.autoUpdateUrl = false;
+                }
             } catch (e) {
                 return;
             }
         },
         methods: {
+            onComputedUrlUpdate() {
+                if (!this.autoUpdateUrl) {
+                    return;
+                }
+
+                this.updateUrl(this.computedUrl);
+            },
             onEditableUrlUpdate: _.debounce(function () {
                 this.$emit('input', this.editableUrlData);
             }, 100),
+            onUrlInputInput() {
+                this.autoUpdateUrl = false;
+            },
             onUrlInputUpdate: _.debounce(function () {
                 if (!this.urlInput.length) {
                     return;
                 }
 
-                let formatted = this.urlInput;
-                let startsWithSlash = this.urlInput.charAt(0) === '/';
+                this.updateUrl(this.urlInput);
+            }, 100),
+            updateUrl(url) {
+                let formatted = url;
+                let startsWithSlash = formatted.charAt(0) === '/';
 
                 formatted = slugify(formatted);
                 if (startsWithSlash) {
@@ -160,9 +183,12 @@
                 }
 
                 this.$set(this.editableUrlData, 'url_main', formatted);
-            }, 100),
+            },
         },
         watch: {
+            computedUrl: {
+                handler: 'onComputedUrlUpdate'
+            },
             editableUrlData: {
                 deep: true,
                 handler: 'onEditableUrlUpdate'
