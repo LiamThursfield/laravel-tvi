@@ -23,8 +23,14 @@ trait ManagesUrl
 
         // Main url starts with a slash, so ensure the parent url does not end with a slash
         $url = rtrim($parent_url->url_full, '/');
+        $url .= $main_url;
 
-        return $url . $main_url;
+        // Remove any trailing url from the full url, if the url isn't '/'
+        if ($url !== '/') {
+            $url = rtrim($url, '/');
+        }
+
+        return $url;
     }
 
     protected function extractUrlFromData() : Collection
