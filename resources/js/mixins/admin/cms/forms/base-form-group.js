@@ -78,7 +78,11 @@ export const baseFormGroupMixin = {
             return labelClass;
         },
         isError() {
-            return !this.hideError && this.errorMessage && this.errorMessage !== '';
+            if (!this.hideError && this.errorMessage && this.errorMessage !== '') {
+                return true;
+            }
+
+            return false;
         }
     },
     methods: {
