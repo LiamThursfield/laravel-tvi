@@ -60,7 +60,7 @@
                     input-id="type"
                     input-name="type"
                     :input-options="templateTypes"
-                    :select-required="true"
+                    :input-required="true"
                     v-model="formData.type"
                 />
 

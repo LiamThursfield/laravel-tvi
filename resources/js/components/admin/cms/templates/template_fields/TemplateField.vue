@@ -16,7 +16,7 @@
                 :input-id="`template-field-${templateField.order}-type`"
                 :input-name="`template-field-${templateField.order}-type`"
                 :input-options="templateFieldTypes"
-                :select-required="true"
+                :input-required="true"
                 @input="updateTemplateField"
                 v-model="editable_templateField.type"
             />

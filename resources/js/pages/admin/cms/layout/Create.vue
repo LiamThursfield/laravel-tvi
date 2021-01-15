@@ -61,7 +61,7 @@
                     :input-options="isTemplates ? templates : {}"
                     input-option-label-key="name"
                     input-option-value-key="id"
-                    :select-required="true"
+                    :input-required="true"
                     v-model="formData.template_id"
                 />
 
