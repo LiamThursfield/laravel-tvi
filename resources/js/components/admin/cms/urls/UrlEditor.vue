@@ -6,7 +6,7 @@
             input-name="url_input"
             :input-required="true"
             input-type="text"
-            label-text="Url"
+            label-text="URL"
             @input="onUrlInputInput"
             v-model="urlInput"
         />
@@ -20,7 +20,38 @@
             input-type="text"
             label-text="Formatted URL"
             v-model="urlFull"
-        />
+        >
+            <span class="flex flex-row items-center">
+                <span class="flex flex-row items-baseline">
+                    Formatted URL
+                    <sup class="text-theme-danger-contrast">*</sup>
+                </span>
+
+                <icon-loader-circle
+                    v-if="isUrlCheckLoading"
+                    class="animate-spin-slow h-4 ml-3 text-theme-base-subtle-contrast w-4"
+                />
+
+                <span
+                    v-else-if="isUrlChecked && this.urlInput.length"
+                    class="flex flex-row font-normal items-center ml-3"
+                    :class="{
+                        'text-theme-success-contrast': isUrlAvailable,
+                        'text-theme-danger-contrast': !isUrlAvailable,
+                    }"
+                >
+                    <template v-if="isUrlAvailable">
+                        <icon-check class="h-4 mr-1 w-4" />
+                        <span>URL is available</span>
+                    </template>
+
+                    <template v-else-if="!isUrlAvailable">
+                        <icon-x class="h-4 mr-1 w-4" />
+                        <span>URL is unavailable</span>
+                    </template>
+                </span>
+            </span>
+        </input-group>
 
         <div class="bg-theme-base-subtle h-px my-6"></div>
 
@@ -65,6 +96,9 @@
     import InlineCheckboxGroup from "../../../core/forms/InlineCheckboxGroup";
     import InputGroup from '../../../core/forms/InputGroup';
 
+    let CancelToken = axios.CancelToken;
+    let urlCheckCancelToken = CancelToken.source();
+
     export default {
         name: "UrlEditor",
         components: {
@@ -98,6 +132,9 @@
                     published_at: null,
                     url_main: '',
                 },
+                isUrlChecked: false,
+                isUrlCheckLoading: false,
+                isUrlAvailable: false,
                 urlInput: '',
             }
         },
@@ -149,6 +186,47 @@
             }
         },
         methods: {
+            cancelUrlCheck() {
+                if (this.isUrlCheckLoading) {
+                    urlCheckCancelToken.cancel('URL check cancelled');
+                    urlCheckCancelToken = CancelToken.source();
+                }
+            },
+            checkUrlIsAvailable: _.debounce(function () {
+                this.isUrlChecked = false;
+                this.cancelUrlCheck();
+
+                this.isUrlChecked = false;
+                this.isUrlAvailable = false;
+
+                if (!this.urlInput.length) {
+                    return;
+                }
+
+                this.isUrlCheckLoading = true;
+
+                let params = {
+                    url: this.urlFull,
+                    url_id: this.urlData.id ? this.urlData.id : null,
+                };
+
+                axios.get(
+                    this.$route('admin.api.cms.urls.available'),
+                    {
+                        params,
+                        cancelToken: urlCheckCancelToken.token,
+                    }
+                ).then(response => {
+                    this.isUrlCheckLoading = false;
+                    this.isUrlChecked = true;
+                    this.isUrlAvailable = response.data;
+                }).catch(error => {
+                    if (!axios.isCancel(error)) {
+                        this.isUrlCheckLoading = false;
+                        this.$errorToast('Failed to check URL availability')
+                    }
+                });
+            }, 500),
             onComputedUrlUpdate() {
                 if (!this.autoUpdateUrl) {
                     return;
@@ -159,8 +237,12 @@
             onEditableUrlUpdate: _.debounce(function () {
                 this.$emit('input', this.editableUrlData);
             }, 100),
+            onIsUrlAvailableUpdate() {
+                this.$emit('isAvailable', this.isUrlAvailable);
+            },
             onUrlInputInput() {
                 this.autoUpdateUrl = false;
+                this.isUrlChecked = false;
             },
             onUrlInputUpdate: _.debounce(function () {
                 if (!this.urlInput.length) {
@@ -180,9 +262,11 @@
 
                 if (this.urlInput !== formatted) {
                     this.urlInput = formatted;
+                    this.isUrlChecked = false;
                 }
 
                 this.$set(this.editableUrlData, 'url_main', formatted);
+                this.checkUrlIsAvailable();
             },
         },
         watch: {
@@ -192,6 +276,12 @@
             editableUrlData: {
                 deep: true,
                 handler: 'onEditableUrlUpdate'
+            },
+            isUrlAvailable: {
+                handler: 'onIsUrlAvailableUpdate'
+            },
+            urlFull: {
+                handler: 'checkUrlIsAvailable'
             },
             urlInput: {
                 handler: 'onUrlInputUpdate'

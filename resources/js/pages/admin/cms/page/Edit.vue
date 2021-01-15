@@ -130,6 +130,7 @@
         >
             <url-editor
                 :parent-url="selectedParentPageUrl"
+                @isAvailable="onUrlIsAvailableEvent"
                 v-model="formData.url"
             />
         </div>
@@ -194,6 +195,7 @@
                 isInitialisedContent: false,
                 isInitialised_url: false,
                 isLoadingTemplate: false,
+                isUrlAvailable: false,
                 selectedTemplate: null,
             }
         },
@@ -349,6 +351,9 @@
             onSlugInput() {
                 this.autoUpdateSlug = false;
             },
+            onUrlIsAvailableEvent(isAvailable) {
+                this.isUrlAvailable = isAvailable;
+            },
             setInitialContent() {
                 // This is a fix / hack to prevent an empty object from becoming an array.
                 let content = {};
@@ -408,6 +413,11 @@
                 );
             },
             submit() {
+                if (!this.isUrlAvailable) {
+                    this.$errorToast('Unable to save page. URL is unavailable');
+                    return;
+                }
+
                 this.$inertia.put(
                     this.$route('admin.cms.pages.update', this.page.id),
                     this.formData

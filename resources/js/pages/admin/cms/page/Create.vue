@@ -130,6 +130,7 @@
             <url-editor
                 :computed-url="computedUrl"
                 :parent-url="selectedParentPageUrl"
+                @isAvailable="onUrlIsAvailableEvent"
                 v-model="formData.url"
             />
         </div>
@@ -194,6 +195,7 @@
                     url: {},
                 },
                 isLoadingTemplate: false,
+                isUrlAvailable: false,
                 selectedTemplate: null,
             }
         },
@@ -330,6 +332,9 @@
                 this.autoUpdateSlug = false;
                 this.computedUrl = this.formData.slug;
             },
+            onUrlIsAvailableEvent(isAvailable) {
+                this.isUrlAvailable = isAvailable;
+            },
             setNewTemplateContent() {
                 if (!this.selectedTemplateHasFields) {
                     this.formData.content = {};
@@ -359,6 +364,11 @@
                 );
             },
             submit() {
+                if (!this.isUrlAvailable) {
+                    this.$errorToast('Unable to create page. URL is unavailable');
+                    return;
+                }
+
                 this.$inertia.post(
                     this.$route('admin.cms.pages.store'),
                     this.formData
