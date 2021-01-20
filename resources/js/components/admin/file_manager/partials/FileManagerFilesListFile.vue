@@ -71,6 +71,20 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Select File -->
+            <button
+                v-if="file && enableFileSelect"
+                class="
+                    flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
+                    ease-in-out duration-300 transition-colors
+                    focus:text-theme-primary focus:outline-none
+                    hover:text-theme-primary
+                "
+                @click="onFileSelected(file)"
+            >
+                <icon-square-check class="w-5" />
+            </button>
         </div>
     </li>
 </template>
@@ -88,6 +102,10 @@
         name: "FileManagerFilesListFile",
         components: {IconInfoSquare, IconExternalLink},
         props: {
+            enableFileSelect: {
+                default: false,
+                type: Boolean,
+            },
             file: {
                 required: true,
                 type: Object
@@ -210,6 +228,9 @@
             },
             onDropdownButtonClick() {
                 this.isDropdownPreviewLoaded = true;
+            },
+            onFileSelected(file) {
+                this.$emit('fileSelected', file);
             }
         },
     }

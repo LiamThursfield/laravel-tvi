@@ -43,6 +43,10 @@ export const baseFormGroupMixin = {
             default: '',
             type: String | Number
         },
+        inputWrapperClass: {
+            default: '',
+            type: String,
+        },
         labelClass: {
             default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
             type: String

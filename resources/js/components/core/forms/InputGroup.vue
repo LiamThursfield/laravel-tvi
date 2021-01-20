@@ -17,25 +17,31 @@
             </slot>
         </label>
 
-        <input
-            :id="inputId"
-            :class="formattedInputClass"
-            :autocomplete="inputAutocomplete"
-            :disabled="inputDisabled"
-            :max="inputMax"
-            :maxlength="inputMaxLength"
-            :min="inputMin"
-            :minlength="inputMinLength"
-            :name="inputName"
-            :placeholder="inputPlaceholder"
-            :ref="inputId"
-            :required="inputRequired"
-            :type="inputType"
-            :value="inputValue"
-            @blur="onInputBlur"
-            @input="onInput"
-            @keyup.esc="blurInput"
-        />
+        <div :class="inputWrapperClass">
+            <slot name="inputPrepend" />
+
+            <input
+                :id="inputId"
+                :class="formattedInputClass"
+                :autocomplete="inputAutocomplete"
+                :disabled="inputDisabled"
+                :max="inputMax"
+                :maxlength="inputMaxLength"
+                :min="inputMin"
+                :minlength="inputMinLength"
+                :name="inputName"
+                :placeholder="inputPlaceholder"
+                :ref="inputId"
+                :required="inputRequired"
+                :type="inputType"
+                :value="inputValue"
+                @blur="onInputBlur"
+                @input="onInput"
+                @keyup.esc="blurInput"
+            />
+
+            <slot name="inputAppend" />
+        </div>
 
         <form-field-error
             :error-class="errorClass"
