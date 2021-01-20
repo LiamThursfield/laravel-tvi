@@ -74,6 +74,11 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::DELETE_CMS,
             PermissionInterface::EDIT_CMS,
             PermissionInterface::VIEW_CMS,
+            // Advanced CMS
+            PermissionInterface::CREATE_CMS_ADVANCED,
+            PermissionInterface::DELETE_CMS_ADVANCED,
+            PermissionInterface::EDIT_CMS_ADVANCED,
+            PermissionInterface::VIEW_CMS_ADVANCED,
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
             PermissionInterface::VIEW_FILE_MANAGER,
@@ -104,6 +109,8 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::DELETE_CMS,
                 PermissionInterface::EDIT_CMS,
                 PermissionInterface::VIEW_CMS,
+                // Advanced CMS
+                PermissionInterface::VIEW_CMS_ADVANCED,
                 // File Manager
                 PermissionInterface::EDIT_FILE_MANAGER,
                 PermissionInterface::VIEW_FILE_MANAGER,

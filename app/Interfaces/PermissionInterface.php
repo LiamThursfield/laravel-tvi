@@ -22,6 +22,12 @@ class PermissionInterface
     const EDIT_CMS    = 'edit cms';
     const VIEW_CMS    = 'view cms';
 
+    // Advanced CMS Permissions
+    const CREATE_CMS_ADVANCED  = 'create cms_advanced';
+    const DELETE_CMS_ADVANCED  = 'delete cms_advanced';
+    const EDIT_CMS_ADVANCED    = 'edit cms_advanced';
+    const VIEW_CMS_ADVANCED    = 'view cms_advanced';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -48,6 +54,12 @@ class PermissionInterface
             'delete'    => self::DELETE_CMS,
             'edit'      => self::EDIT_CMS,
             'view'      => self::VIEW_CMS,
+        ],
+        'cms_advanced' => [
+            'create'    => self::CREATE_CMS_ADVANCED,
+            'delete'    => self::DELETE_CMS_ADVANCED,
+            'edit'      => self::EDIT_CMS_ADVANCED,
+            'view'      => self::VIEW_CMS_ADVANCED,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

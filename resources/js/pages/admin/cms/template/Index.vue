@@ -8,7 +8,7 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('cms.create')"
+                v-if="userCan('cms_advanced.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
@@ -127,7 +127,7 @@
                             <td v-if="showTemplateActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
-                                        v-if="userCan('cms.edit')"
+                                        v-if="userCan('cms_advanced.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -142,7 +142,7 @@
                                     </inertia-link>
 
                                     <button
-                                        v-if="userCan('cms.delete')"
+                                        v-if="userCan('cms_advanced.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -234,7 +234,7 @@
                 }
             },
             showTemplateActions() {
-                return this.userCan('cms.edit') || this.userCan('cms.delete');
+                return this.userCan('cms_advanced.edit') || this.userCan('cms_advanced.delete');
             },
             templatesData() {
                 if (!this.templates || !this.templates.data || this.templates.data.length < 1) {

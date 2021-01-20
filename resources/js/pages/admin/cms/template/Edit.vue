@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('cms.edit')"
+            v-if="userCan('cms_advanced.edit')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -13,7 +13,7 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('cms.view')"
+                v-if="userCan('cms_advanced.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2

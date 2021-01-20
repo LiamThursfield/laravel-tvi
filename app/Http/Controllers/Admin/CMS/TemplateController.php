@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\CMS;
 use App\Actions\CMS\Template\TemplateQueryAction;
 use App\Actions\CMS\Template\TemplateStoreAction;
 use App\Actions\CMS\Template\TemplateUpdateAction;
-use App\Http\Controllers\AdminCMSController;
+use App\Http\Controllers\AdminCMSAdvancedController;
 use App\Http\Requests\Admin\CMS\Template\TemplateIndexRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateStoreRequest;
 use App\Http\Requests\Admin\CMS\Template\TemplateUpdateRequest;
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class TemplateController extends AdminCMSController
+class TemplateController extends AdminCMSAdvancedController
 {
 
     public function __construct()
