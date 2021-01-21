@@ -12,8 +12,12 @@ class PageStoreRequest extends BaseRequest
     public function attributes() : array
     {
         $custom_attributes = [
-            'content.*.template_field_id' => 'template field',
-            'template_id' => 'template'
+            'content.*.template_field_id'   => 'template field',
+            'template_id'                   => 'template',
+            'url.expired_at'                => 'expired at',
+            'url.is_enabled'                => 'is enabled',
+            'url.published_at'              => 'published at',
+            'url.url_main'                  => 'URL',
         ];
 
         return array_merge(parent::attributes(), $custom_attributes);

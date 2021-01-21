@@ -22,7 +22,9 @@
                 v-for="file in files"
                 :key="file.meta.basename"
                 class="-mx-6 px-6"
+                :enable-file-select="enableFileSelect"
                 :file="file"
+                @fileSelected="onFileSelected"
             />
         </template>
     </ul>
@@ -35,6 +37,10 @@
         name: "FileManagerFilesList",
         components: {FileManagerFilesListFile},
         props: {
+            enableFileSelect: {
+                default: false,
+                type: Boolean,
+            },
             files: {
                 required: true,
                 type: Array
@@ -49,5 +55,10 @@
                 return this.files.length;
             }
         },
+        methods: {
+            onFileSelected(file) {
+                this.$emit('fileSelected', file);
+            }
+        }
     }
 </script>

@@ -53,15 +53,15 @@
                 <select-group
                     :error-message="getPageErrorMessage('layout_id')"
                     label-text="Layout"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a Layout"
-                    :select-autofocus="true"
-                    select-id="layout_id"
-                    select-name="layout_id"
-                    :select-options="isLayouts ? layouts : {}"
-                    select-option-label-key="name"
-                    select-option-value-key="id"
-                    :select-required="true"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a Layout"
+                    :input-autofocus="true"
+                    input-id="layout_id"
+                    input-name="layout_id"
+                    :input-options="isLayouts ? layouts : {}"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-required="true"
                     v-model="formData.layout_id"
                 />
 
@@ -69,14 +69,14 @@
                     class="mt-4"
                     :error-message="getPageErrorMessage('template_id')"
                     label-text="Template"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a template"
-                    select-id="template_id"
-                    select-name="template_id"
-                    :select-options="isTemplates ? templates : {}"
-                    select-option-label-key="name"
-                    select-option-value-key="id"
-                    :select-required="true"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a template"
+                    input-id="template_id"
+                    input-name="template_id"
+                    :input-options="isTemplates ? templates : {}"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-required="true"
                     v-model="formData.template_id"
                 />
 
@@ -85,13 +85,13 @@
                     class="mt-4"
                     :error-message="getPageErrorMessage('parent_id')"
                     label-text="Parent Page"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a parent (optional)"
-                    select-id="parent_id"
-                    select-name="parent_id"
-                    :select-options="parentPagesUrls"
-                    select-option-label-key="label"
-                    select-option-value-key="id"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a parent (optional)"
+                    input-id="parent_id"
+                    input-name="parent_id"
+                    :input-options="parentPagesUrls"
+                    input-option-label-key="label"
+                    input-option-value-key="id"
                     v-model="formData.parent_id"
                 />
 
@@ -128,7 +128,9 @@
             class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
         >
             <url-editor
+                :computed-url="computedUrl"
                 :parent-url="selectedParentPageUrl"
+                @isAvailable="onUrlIsAvailableEvent"
                 v-model="formData.url"
             />
         </div>
@@ -183,6 +185,7 @@
         data() {
             return {
                 autoUpdateSlug: true,
+                computedUrl: '',
                 formData: {
                     layout_id: '',
                     name: '',
@@ -192,6 +195,7 @@
                     url: {},
                 },
                 isLoadingTemplate: false,
+                isUrlAvailable: false,
                 selectedTemplate: null,
             }
         },
@@ -295,6 +299,7 @@
                 }
 
                 this.formData.slug = this.slugify(this.formData.name);
+                this.computedUrl = this.formData.slug;
             },
             onSelectedTemplateIdChange: _.debounce(function () {
                 this.selectedTemplate = null;
@@ -325,6 +330,10 @@
             },
             onSlugInput() {
                 this.autoUpdateSlug = false;
+                this.computedUrl = this.formData.slug;
+            },
+            onUrlIsAvailableEvent(isAvailable) {
+                this.isUrlAvailable = isAvailable;
             },
             setNewTemplateContent() {
                 if (!this.selectedTemplateHasFields) {
@@ -355,6 +364,11 @@
                 );
             },
             submit() {
+                if (!this.isUrlAvailable) {
+                    this.$errorToast('Unable to create page. URL is unavailable');
+                    return;
+                }
+
                 this.$inertia.post(
                     this.$route('admin.cms.pages.store'),
                     this.formData

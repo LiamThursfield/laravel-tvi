@@ -5,7 +5,7 @@
                 class="flex flex-row items-start text-theme-base-subtle-contrast py-1 w-full"
             >
                 <icon-loader-circle class="animate-spin-slow mr-2 w-5"/>
-                <span>Loading</span>
+                <span class="text-left">Loading</span>
             </li>
         </template>
         <template v-else>
@@ -23,7 +23,7 @@
                     @click="changeDirectory(parentDirectory)"
                 >
                     <icon-arrow-bar-up class="mr-2 w-5"/>
-                    <span>Parent Directory</span>
+                    <span class="text-left">Parent Directory</span>
                 </button>
             </li>
             <li
@@ -41,7 +41,7 @@
                     @click="changeDirectory(directory.directory)"
                 >
                     <icon-folder class="mr-2 w-5"/>
-                    <span>{{ directory.label }}</span>
+                    <span class="text-left">{{ directory.label }}</span>
                 </button>
             </li>
         </template>

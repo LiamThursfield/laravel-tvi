@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('cms.create')"
+            v-if="userCan('cms_advanced.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -13,7 +13,7 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('cms.view')"
+                v-if="userCan('cms_advanced.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
@@ -53,15 +53,15 @@
                 <select-group
                     :error-message="getPageErrorMessage('template_id')"
                     label-text="Template"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a template"
-                    :select-autofocus="true"
-                    select-id="template_id"
-                    select-name="template_id"
-                    :select-options="isTemplates ? templates : {}"
-                    select-option-label-key="name"
-                    select-option-value-key="id"
-                    :select-required="true"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a template"
+                    :input-autofocus="true"
+                    input-id="template_id"
+                    input-name="template_id"
+                    :input-options="isTemplates ? templates : {}"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-required="true"
                     v-model="formData.template_id"
                 />
 

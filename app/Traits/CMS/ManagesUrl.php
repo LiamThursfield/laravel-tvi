@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 trait ManagesUrl
 {
@@ -22,8 +23,14 @@ trait ManagesUrl
 
         // Main url starts with a slash, so ensure the parent url does not end with a slash
         $url = rtrim($parent_url->url_full, '/');
+        $url .= $main_url;
 
-        return $url . $main_url;
+        // Remove any trailing url from the full url, if the url isn't '/'
+        if ($url !== '/') {
+            $url = rtrim($url, '/');
+        }
+
+        return $url;
     }
 
     protected function extractUrlFromData() : Collection
@@ -59,10 +66,17 @@ trait ManagesUrl
         return $url_data;
     }
 
+    /**
+     * @param Url $url
+     * @param Collection $url_data
+     * @throws ValidationException
+     */
     protected function updateUrl(Url $url, Collection $url_data)
     {
         $old_url_full = $url->url_full;
         $new_url_full = $url_data->get('url_full');
+
+        $this->validateUniqueUrl($url_data, $url);
 
         $url->update($url_data->toArray());
         $this->updateChildUrls($url, $old_url_full, $new_url_full);
@@ -107,5 +121,26 @@ trait ManagesUrl
                 DB::update($query, $params);
             }
         });
+    }
+
+    /**
+     * @param Collection $url_data
+     * @param Url|null $existing_url
+     * @throws ValidationException
+     */
+    protected function validateUniqueUrl(Collection $url_data, ?Url $existing_url = null) {
+        $query = Url::where('url_full', $url_data->get('url_full'));
+
+        if (!is_null($existing_url)) {
+            $query->where('id', '<>', $existing_url->id);
+        }
+
+        if ($query->count() < 1) {
+            return;
+        }
+
+        throw ValidationException::withMessages([
+            $this->url_slug . '.url_full' => 'The url must be unique.'
+        ]);
     }
 }

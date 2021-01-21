@@ -16,17 +16,25 @@
                 <slot/>
             </div>
         </div>
+
+
+        <!-- Singleton Modals -->
+        <file-manager-modal class="z-30" />
     </main>
 </template>
 
 <script>
     import { Inertia } from '@inertiajs/inertia'
 
+    import FileManagerModal from "../../components/admin/modals/FileManagerModal";
     import PageAlerts from "../../components/core/alerts/PageAlerts";
 
     export default {
         name: "AdminLayout",
-        components: {PageAlerts},
+        components: {
+            FileManagerModal,
+            PageAlerts
+        },
         metaInfo() {
             return {
                 title: this.metaTitle,

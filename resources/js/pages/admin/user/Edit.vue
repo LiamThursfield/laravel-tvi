@@ -107,8 +107,8 @@
                     <inline-checkbox-group
                         v-for="(role_label, role_key) in selectableRoles"
                         :key="`user-role-${role_key}`"
-                        :checkbox-id="`user-role-${role_key}`"
-                        :checkbox-name="`user-role-${role_key}`"
+                        :input-id="`user-role-${role_key}`"
+                        :input-name="`user-role-${role_key}`"
                         :label-text="role_label"
                         v-model="formData.roles[role_key]"
                     />

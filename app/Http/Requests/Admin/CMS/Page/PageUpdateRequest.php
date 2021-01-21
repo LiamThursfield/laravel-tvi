@@ -13,8 +13,13 @@ class PageUpdateRequest extends BaseRequest
     public function attributes() : array
     {
         $custom_attributes = [
-            'content.*.template_field_id' => 'template field',
-            'template_id' => 'template'
+            'content.*.template_field_id'   => 'template field',
+            'template_id'                   => 'template',
+            'url.expired_at'                => 'expired at',
+            'url.id'                        => 'URL ID',
+            'url.is_enabled'                => 'is enabled',
+            'url.published_at'              => 'published at',
+            'url.url_main'                  => 'URL',
         ];
 
         return array_merge(parent::attributes(), $custom_attributes);
@@ -66,7 +71,6 @@ class PageUpdateRequest extends BaseRequest
                 Rule::unique('cms_pages')->ignore($this->page->id, 'id')
             ],
             'url.expired_at'    => 'nullable|date',
-            'url.is_enabled'    => 'required|boolean',
             'url.id'            => [
                 'required',
                 'integer',
@@ -75,6 +79,7 @@ class PageUpdateRequest extends BaseRequest
                         ->where('urlable_id', '=', $this->request->get('id'));
                 }),
             ],
+            'url.is_enabled'    => 'required|boolean',
             'url.published_at'  => 'nullable|date',
             'url.url_main'      => 'required|string',
         ];

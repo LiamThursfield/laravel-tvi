@@ -53,15 +53,15 @@
                 <select-group
                     :error-message="getPageErrorMessage('layout_id')"
                     label-text="Layout"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a Layout"
-                    :select-autofocus="true"
-                    select-id="layout_id"
-                    select-name="layout_id"
-                    :select-options="layouts"
-                    select-option-label-key="name"
-                    select-option-value-key="id"
-                    :select-required="true"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a Layout"
+                    :input-autofocus="true"
+                    input-id="layout_id"
+                    input-name="layout_id"
+                    :input-options="layouts"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-required="true"
                     v-model="formData.layout_id"
                 />
 
@@ -69,14 +69,14 @@
                     class="mt-4"
                     :error-message="getPageErrorMessage('template_id')"
                     label-text="Template"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a template"
-                    select-id="template_id"
-                    select-name="template_id"
-                    :select-options="templates"
-                    select-option-label-key="name"
-                    select-option-value-key="id"
-                    :select-required="true"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a template"
+                    input-id="template_id"
+                    input-name="template_id"
+                    :input-options="templates"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-required="true"
                     v-model="formData.template_id"
                 />
 
@@ -85,13 +85,13 @@
                     class="mt-4"
                     :error-message="getPageErrorMessage('parent_id')"
                     label-text="Parent Page"
-                    :select-any-enabled="true"
-                    select-any-label="Please select a parent (optional)"
-                    select-id="parent_id"
-                    select-name="parent_id"
-                    :select-options="parentPagesUrls"
-                    select-option-label-key="label"
-                    select-option-value-key="id"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Please select a parent (optional)"
+                    input-id="parent_id"
+                    input-name="parent_id"
+                    :input-options="parentPagesUrls"
+                    input-option-label-key="label"
+                    input-option-value-key="id"
                     v-model="formData.parent_id"
                 />
 
@@ -130,6 +130,7 @@
         >
             <url-editor
                 :parent-url="selectedParentPageUrl"
+                @isAvailable="onUrlIsAvailableEvent"
                 v-model="formData.url"
             />
         </div>
@@ -194,6 +195,7 @@
                 isInitialisedContent: false,
                 isInitialised_url: false,
                 isLoadingTemplate: false,
+                isUrlAvailable: false,
                 selectedTemplate: null,
             }
         },
@@ -349,6 +351,9 @@
             onSlugInput() {
                 this.autoUpdateSlug = false;
             },
+            onUrlIsAvailableEvent(isAvailable) {
+                this.isUrlAvailable = isAvailable;
+            },
             setInitialContent() {
                 // This is a fix / hack to prevent an empty object from becoming an array.
                 let content = {};
@@ -408,6 +413,11 @@
                 );
             },
             submit() {
+                if (!this.isUrlAvailable) {
+                    this.$errorToast('Unable to save page. URL is unavailable');
+                    return;
+                }
+
                 this.$inertia.put(
                     this.$route('admin.cms.pages.update', this.page.id),
                     this.formData

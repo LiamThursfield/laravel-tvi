@@ -2,13 +2,13 @@
     <div class="flex flex-col">
         <label
             :class="formattedLabelClass"
-            :for="selectId"
+            :for="inputId"
         >
             <slot>
                 <span class="flex flex-row items-baseline">
                     <span>{{ labelText }}</span>
                     <sup
-                        v-if="selectRequired"
+                        v-if="inputRequired"
                         class="text-theme-danger-contrast"
                     >
                         *
@@ -18,27 +18,27 @@
         </label>
 
         <select
-            :id="selectId"
-            :class="formattedSelectClass"
-            :disabled="selectDisabled"
-            :name="selectName"
-            :ref="selectId"
-            :required="selectRequired"
-            @change="onSelectChange"
-            @keyup.esc="blurSelect"
+            :id="inputId"
+            :class="formattedInputClass"
+            :disabled="inputDisabled"
+            :name="inputName"
+            :ref="inputId"
+            :required="inputRequired"
+            @change="onInput"
+            @keyup.esc="blurInput"
         >
             <option
-                v-if="selectAnyEnabled"
-                :disabled="isOptionDisabled(selectAnyValue)"
-                :selected="isOptionSelected(selectAnyValue)"
-                :value="selectAnyValue"
+                v-if="inputAnyOptionEnabled"
+                :disabled="isOptionDisabled(inputAnyOptionValue)"
+                :selected="isOptionSelected(inputAnyOptionValue)"
+                :value="inputAnyOptionValue"
             >
-                {{ selectAnyLabel}}
+                {{ inputAnyOptionLabel}}
             </option>
 
             <option
                 v-for="(option, key) in formattedOptions"
-                :key="`${selectId}-option-${option.value}`"
+                :key="`${inputId}-option-${option.value}`"
                 :disabled="isOptionDisabled(option.value)"
                 :selected="isOptionSelected(option.value)"
                 :value="option.value"
@@ -48,136 +48,83 @@
         </select>
 
 
-        <div>
-            <transition name="slide-down-fade">
-                <p
-                    v-if="isError"
-                    :class="errorClass"
-                >
-                    {{ errorMessage }}
-                </p>
-            </transition>
-        </div>
+        <form-field-error
+            :error-class="errorClass"
+            :error-message="errorMessage"
+            :is-error="isError"
+        />
     </div>
 </template>
 
 <script>
     import _ from 'lodash';
+    import {baseFormGroupMixin} from "../../../mixins/admin/cms/forms/base-form-group";
+    import FormFieldError from "./partials/FormFieldError";
 
     export default {
         name: 'SelectGroup',
-        model: {
-            prop: 'selectValue'
+        mixins: [
+            baseFormGroupMixin,
+        ],
+        components: {
+            FormFieldError
         },
         props: {
-            errorClass: {
-                default: 'mt-1 text-red-500 text-sm',
-                type: String
-            },
-            errorHideOnSelect: {
-                default: true,
-                type: Boolean
-            },
-            errorMessage: {
-                default: '',
-                type: String
-            },
-            selectAnyEnabled: {
+            inputAnyOptionEnabled: {
                 default: false,
                 type: Boolean
             },
-            selectAnyLabel: {
+            inputAnyOptionLabel: {
                 default: "Any",
                 type: String
             },
-            selectAnyClass: {
+            inputAnyOptionClass: {
                 default: "",
                 type: String
             },
-            selectAnyValue: {
+            inputAnyOptionValue: {
                 default: '',
             },
-            selectAutofocus: {
-                default: false,
-                type: Boolean
-            },
-            selectClass: {
+            inputClass: {
                 default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
                 type: String
             },
-            selectDisabled: {
-                default: false,
-                type: Boolean
-            },
-            selectId: {
-                required: true,
-                type: String
-            },
-            selectName: {
-                required: true,
-                type: String
-            },
-            selectOptionLabelKey: {
+            inputOptionLabelKey: {
                 default: false,
                 type: Boolean | String | Number
             },
-            selectOptionValueKey: {
+            inputOptionValueKey: {
                 default: false,
                 type: Boolean | String | Number
             },
-            selectOptions: {
+            inputOptions: {
                 required: true,
                 type: Object
             },
-            selectRequired: {
-                default: false,
-                type: Boolean
-            },
-            selectValue: {
-                default: '',
-                type: String | Number
-            },
-            labelClass: {
-                default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
-                type: String
-            },
-            labelHidden: {
-                default: false,
-                type: Boolean
-            },
-            labelText: {
-                required: true,
-                type: String
-            },
-        },
-        data() {
-            return  {
-                hideError: false
-            }
         },
         computed: {
             formattedOptions() {
                 let options = {};
 
-                _.forEach(this.selectOptions, (option, key) => {
+                _.forEach(this.inputOptions, (option, key) => {
                     // Default the label and value for the select
                     let label = option;
                     let value = key;
 
                     // Set a custom label if necessary
                     if (
-                        this.selectOptionLabelKey !== false &&
-                        option.hasOwnProperty(this.selectOptionLabelKey)
+                        this.inputOptionLabelKey !== false &&
+                        option.hasOwnProperty(this.inputOptionLabelKey)
                     ) {
-                        label = option[this.selectOptionLabelKey];
+                        label = option[this.inputOptionLabelKey];
                     }
 
                     // Set a custom value if necessary
                     if (
-                        this.selectOptionValueKey !== false &&
-                        option.hasOwnProperty(this.selectOptionValueKey)
+                        this.inputOptionValueKey !== false &&
+                        option.hasOwnProperty(this.inputOptionValueKey)
                     ) {
-                        value = option[this.selectOptionValueKey];
+                        value = option[this.inputOptionValueKey];
                     }
 
                     options[key] = {
@@ -188,55 +135,29 @@
 
                 return options;
             },
-            formattedSelectClass() {
-                let selectClass = this.selectClass;
+            formattedInputClass() {
+                let inputClass = this.inputClass;
 
                 if (this.isError) {
-                    selectClass += ' error';
+                    inputClass += ' error';
                 }
 
                 if (this.isAnyOptionSelected) {
-                    selectClass += ' ' + this.selectAnyClass;
+                    inputClass += ' ' + this.inputAnyOptionClass;
                 }
 
-                return selectClass;
-            },
-            formattedLabelClass() {
-                let labelClass = this.labelClass;
-
-                if (this.labelHidden) {
-                    labelClass += ' hidden';
-                }
-
-                return labelClass;
-            },
-            isError() {
-                return !this.hideError && this.errorMessage && this.errorMessage !== '';
+                return inputClass;
             },
             isAnyOptionSelected() {
-                return this.selectValue === this.selectAnyValue || this.selectValue === null;
+                return this.inputValue === this.inputAnyOptionValue || this.inputValue === null;
             }
         },
         mounted() {
             this.autofocus();
         },
         methods: {
-            autofocus() {
-                if (this.selectAutofocus && this.$refs[this.selectId]) {
-                    this.$nextTick(() => {
-                        this.$refs[this.selectId].focus();
-                    });
-                }
-            },
-            blurSelect() {
-                if (this.$refs[this.selectId]) {
-                    this.$nextTick(() => {
-                        this.$refs[this.selectId].blur();
-                    });
-                }
-            },
             isOptionDisabled(option_value) {
-                if (!this.selectRequired) {
+                if (!this.inputRequired) {
                     return false;
                 }
 
@@ -247,23 +168,8 @@
                 return false;
             },
             isOptionSelected(option_value) {
-                return option_value === this.selectValue;
-            },
-            onErrorMessageChange() {
-                this.hideError = false;
-            },
-            onSelectChange() {
-                this.$emit('input', this.$refs[this.selectId].value);
-
-                if (this.errorHideOnSelect) {
-                    this.hideError = true;
-                }
+                return option_value === this.inputValue;
             },
         },
-        watch: {
-            errorMessage: {
-                handler: "onErrorMessageChange"
-            },
-        }
     }
 </script>

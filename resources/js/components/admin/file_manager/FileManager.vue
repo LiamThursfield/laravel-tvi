@@ -126,8 +126,10 @@
 
                     <file-manager-files-list
                         class="mt-2"
+                        :enable-file-select="enableFileSelect"
                         :files="files"
                         :show-files-loader="showFilesLoader"
+                        @fileSelected="onFileSelected"
                     />
                 </div>
 
@@ -164,6 +166,10 @@
             FileManagerFilesList,
         },
         props: {
+            enableFileSelect: {
+                default: false,
+                type: Boolean,
+            },
             initialise: {
                 default: false,
                 type: Boolean
@@ -271,7 +277,6 @@
                 return url;
             }
         },
-
         mounted() {
             if (this.initialise) {
                 this.initialiseFileManager();
@@ -403,6 +408,9 @@
                     this.isLoadingFiles = false;
                 });
 
+            },
+            onFileSelected(file) {
+                this.$emit('fileSelected', file);
             },
             onFileUploaderFilesAdded() {
                 this.isLoadingFileUpload = true;

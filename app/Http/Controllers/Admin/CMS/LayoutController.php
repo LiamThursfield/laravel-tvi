@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\CMS;
 use App\Actions\CMS\Layout\LayoutQueryAction;
 use App\Actions\CMS\Layout\LayoutStoreAction;
 use App\Actions\CMS\Layout\LayoutUpdateAction;
-use App\Http\Controllers\AdminCMSController;
+use App\Http\Controllers\AdminCMSAdvancedController;
 use App\Http\Requests\Admin\CMS\Layout\LayoutIndexRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutStoreRequest;
 use App\Http\Requests\Admin\CMS\Layout\LayoutUpdateRequest;
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class LayoutController extends AdminCMSController
+class LayoutController extends AdminCMSAdvancedController
 {
 
     public function __construct()
