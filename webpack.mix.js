@@ -14,6 +14,8 @@ mix.postCss('resources/css/app.css', 'public/css', [
     require('autoprefixer')
 ]).version();
 
+mix.css('resources/css/tinymce/content.css', 'public/vendor/tinymce/skins/tvi/content.min.css');
+mix.css('resources/css/tinymce/skin.css', 'public/vendor/tinymce/skins/tvi/skin.min.css');
 
 /** Babel **/
 mix.babelConfig({
