@@ -19,7 +19,7 @@
 
             <template v-slot:inputAppend>
                 <button
-                    class="border border-l-0 border-theme-primary-subtle button button-default-responsive button-primary-subtle rounded-l-none"
+                    class="border border-l-0 border-theme-primary-subtle button button-primary-subtle rounded-l-none"
                     type="button"
                     @click="openFileManagerModal"
                 >
