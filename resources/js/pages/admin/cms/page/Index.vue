@@ -293,12 +293,10 @@
     import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import IconCheck from "../../../../components/core/icons/IconCheck";
 
     export default {
         name: "AdminCmsPageIndex",
         components: {
-            IconCheck,
             ConfirmationModal,
             InputGroup,
             SelectGroup

@@ -95,12 +95,8 @@
     import tippy from 'tippy.js';
     import 'tippy.js/animations/shift-away-extreme.css';
 
-    import IconExternalLink from "../../../core/icons/IconExternalLink";
-    import IconInfoSquare from "../../../core/icons/IconInfoSquare";
-
     export default {
         name: "FileManagerFilesListFile",
-        components: {IconInfoSquare, IconExternalLink},
         props: {
             enableFileSelect: {
                 default: false,
