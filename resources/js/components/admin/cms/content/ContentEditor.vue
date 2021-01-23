@@ -18,8 +18,8 @@
                 @input="onEditableContentUpdate"
                 v-model="editableContent[templateField.id].data"
             >
-                <div>
-                    <p class="flex flex-row items-baseline">
+                <div class="mb-2">
+                    <p class="flex flex-row font-medium items-baseline text-theme-base-contrast text-sm tracking-wider">
                         <span>{{ templateField.name }}</span>
                         <sup
                             v-if="templateField.is_required"

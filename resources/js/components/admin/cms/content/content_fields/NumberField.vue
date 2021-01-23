@@ -9,6 +9,7 @@
             :input-name="inputName"
             :input-required="templateField.is_required"
             input-type="number"
+            label-class=""
             label-text=""
             v-model="editableContent"
         >
