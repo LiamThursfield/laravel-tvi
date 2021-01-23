@@ -3,6 +3,7 @@
         <slot />
 
         <editor
+            ref="editor"
             api-key="yjslf080227w394afqv4gkul5yer7sxjorf08kvjgztc1n0i"
             :init="editorConfig"
             v-model="editableContent"
@@ -49,6 +50,9 @@
                     toolbar: 'fullscreen code styleselect bold italic alignleft aligncenter alignright image',
                 };
             },
+        },
+        beforeDestroy() {
+            this.$refs.editor.editor.destroy();
         },
         methods: {
             onEditorFilePicker(callback, value, meta) {
