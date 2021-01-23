@@ -22,10 +22,6 @@ class LayoutStoreRequest extends BaseRequest
     public function rules() : array
     {
         return [
-            'content' => [
-                'nullable',
-                'array',
-            ],
             'content.*.data'                => 'nullable',
             'content.*.template_field_id'   => [
                 'required',
