@@ -89,6 +89,10 @@
                 default: 'border border-theme-base-subtle cursor-pointer font-medium form-select px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0 focus:shadow-none',
                 type: String
             },
+            inputOptionExact: {
+                default: false,
+                type: Boolean,
+            },
             inputOptionLabelKey: {
                 default: false,
                 type: Boolean | String | Number
@@ -99,7 +103,7 @@
             },
             inputOptions: {
                 required: true,
-                type: Object
+                type: Array | Object
             },
         },
         computed: {
@@ -156,19 +160,23 @@
             this.autofocus();
         },
         methods: {
-            isOptionDisabled(option_value) {
+            isOptionDisabled(optionValue) {
                 if (!this.inputRequired) {
                     return false;
                 }
 
-                if (option_value === '') {
+                if (optionValue === '') {
                     return true;
                 }
 
                 return false;
             },
-            isOptionSelected(option_value) {
-                return option_value === this.inputValue;
+            isOptionSelected(optionValue) {
+                if (this.inputOptionExact) {
+                    return optionValue === this.inputValue;
+                }
+
+                return optionValue == this.inputValue;
             },
         },
     }
