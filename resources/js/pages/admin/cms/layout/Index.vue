@@ -316,10 +316,10 @@
             }, 500),
             setSearchOptions(new_options = {}) {
                 let options = {
-                    per_page        : 15,
+                    per_page      : 15,
                     layout_name   : '',
                     layout_slug   : '',
-                    template_type   : '',
+                    template_type : '',
                 }
 
                 try {
