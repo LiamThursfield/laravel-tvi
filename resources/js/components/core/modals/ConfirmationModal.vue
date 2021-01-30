@@ -167,6 +167,24 @@
             confirmAction() {
                 this.$emit('confirmAction');
             },
+            onShowModal() {
+                try {
+                    let body = document.getElementsByTagName('body')[0];
+
+                    if (this.showModal) {
+                        body.classList.add('overflow-y-hidden');
+                    } else {
+                        body.classList.remove('overflow-y-hidden');
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        },
+        watch: {
+            showModal: {
+                handler: 'onShowModal'
+            }
         }
     }
 </script>
