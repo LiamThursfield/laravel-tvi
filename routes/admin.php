@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CMS\LayoutController;
+use App\Http\Controllers\Admin\CMS\MenuController;
 use App\Http\Controllers\Admin\CMS\PageController;
 use App\Http\Controllers\Admin\CMS\TemplateController;
 use App\Http\Controllers\Admin\FileManagerController;
@@ -22,6 +23,7 @@ Route::group([
     'prefix' => 'cms'
 ], function() {
     Route::resource('layouts', LayoutController::class);
+    Route::resource('menus', MenuController::class);
     Route::resource('pages', PageController::class);
     Route::resource('templates', TemplateController::class);
 });

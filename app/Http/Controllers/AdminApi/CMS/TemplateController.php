@@ -12,7 +12,7 @@ class TemplateController extends Controller
     public function __construct()
     {
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_CMS)
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_CMS_ADVANCED)
         )->only('show');
     }
 

@@ -170,7 +170,31 @@
                                 label: "Templates",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["cms.create", "cms.view"],
-                            }
+                            },
+                            menus: {
+                                activeRoutes: ["admin.cms.menus.index", "admin.cms.menus.create", "admin.cms.menus.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Menus",
+                                        requiresAllPermissions: ["cms.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.menus.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Menu",
+                                        requiresAllPermissions: ["cms.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.menus.create",
+                                    },
+                                },
+                                icon: "icon-columns",
+                                label: "Menus",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["cms.create", "cms.view"],
+                            },
                         },
                         label: "CMS",
                         requiresAllPermissions: [],

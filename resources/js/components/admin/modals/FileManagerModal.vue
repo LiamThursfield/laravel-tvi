@@ -4,28 +4,48 @@
     >
         <div
             v-show="isModelOpen"
-            class="bg-navy-800 bg-opacity-50 fixed flex h-full inset-0 items-center justify-center py-16 px-8 w-full"
+            class="
+                bg-navy-800 bg-opacity-50 fixed flex h-full inset-0 items-center justify-center w-full
+                md:py-16 md:px-8
+            "
             @click.self="closeModal"
         >
-            <div class="bg-white flex flex-col h-full pb-8 rounded-lg w-full">
-                <button
+            <div
+                class="
+                    bg-white flex flex-col h-full pb-8 pt-4 w-full
+                    md:rounded-lg
+                "
+            >
+                <div
                     class="
-                            flex h-5 items-center justify-center ml-auto mr-3 mt-3 rounded text-theme-base-subtle-contrast w-5
+                        flex flex-row px-4
+                        md:px-8
+                    "
+                >
+                    <h1 class="font-medium  text-lg">
+                        File Manager
+                    </h1>
+
+                    <button
+                        class="
+                            flex items-center justify-center ml-auto p-1 rounded
                             ease-in-out duration-300 transition-colors
                             focus:outline-none focus:ring focus:ring-primary
                             hover:bg-theme-base-subtle
                         "
-                    type="button"
-                    @click="closeModal"
+                        type="button"
+                        @click="closeModal"
+                    >
+                        <icon-x class="h-5 w-5"/>
+                    </button>
+                </div>
+
+                <div
+                    class="
+                        bg-theme-base flex-1 mt-8 mx-4 p-6 rounded-lg
+                        md:mx-8
+                    "
                 >
-                    <icon-x />
-                </button>
-
-                <h1 class="font-medium px-8 text-lg">
-                    File Manager
-                </h1>
-
-                <div class="bg-theme-base flex-1 mt-8 mx-8 p-6 rounded-lg">
                     <file-manager
                         :enable-file-select="true"
                         :initialise="isModelOpen"

@@ -101,6 +101,7 @@
             <p class="text-lg">Fields</p>
 
             <content-editor
+                class="mt-4"
                 :template-fields="this.selectedTemplate.template_fields"
                 v-model="formData.content"
             />

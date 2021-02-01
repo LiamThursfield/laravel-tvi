@@ -70,7 +70,7 @@ class PageUpdateAction
             }
             // Check if the field is new
             else if (isset($content[$template_field_id])) {
-                $content_to_save[] = new Content($content[$template_field_id]);
+                $content_to_save[$template_field_id] = new Content($content[$template_field_id]);
                 unset($content[$template_field_id]);
             }
         }

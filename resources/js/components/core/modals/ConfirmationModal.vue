@@ -14,15 +14,16 @@
                 <div class="flex flex-row justify-end p-2">
                     <button
                         class="
-                            flex h-5 items-center justify-center rounded text-theme-base-subtle-contrast w-5
+                            flex items-center justify-center ml-auto p-1 rounded
                             ease-in-out duration-300 transition-colors
                             focus:outline-none focus:ring focus:ring-primary
                             hover:bg-theme-base-subtle
                         "
                         :disabled="isActionLoading"
+                        type="button"
                         @click="closeModal"
                     >
-                        <icon-close />
+                        <icon-close class="h-5 w-5"/>
                     </button>
                 </div>
 
@@ -166,6 +167,24 @@
             confirmAction() {
                 this.$emit('confirmAction');
             },
+            onShowModal() {
+                try {
+                    let body = document.getElementsByTagName('body')[0];
+
+                    if (this.showModal) {
+                        body.classList.add('overflow-y-hidden');
+                    } else {
+                        body.classList.remove('overflow-y-hidden');
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        },
+        watch: {
+            showModal: {
+                handler: 'onShowModal'
+            }
         }
     }
 </script>

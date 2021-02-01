@@ -5,6 +5,7 @@ namespace App\Interfaces\CMS;
 class TemplateFieldInterface
 {
     // Template field types
+    const TYPE_CMS_MENU = 'cms_menu';
     const TYPE_IMAGE    = 'image';
     const TYPE_NUMBER   = 'number';
     const TYPE_TEXT     = 'text';
@@ -12,6 +13,7 @@ class TemplateFieldInterface
     const TYPE_WYSIWYG  = 'wysiwyg';
 
     const ALL_TYPES = [
+        self::TYPE_CMS_MENU,
         self::TYPE_IMAGE,
         self::TYPE_NUMBER,
         self::TYPE_TEXT,
@@ -21,6 +23,7 @@ class TemplateFieldInterface
 
     // Labelled types - typically used for showing the types to a user
     const ALL_TYPES_LABELLED = [
+        self::TYPE_CMS_MENU => "CMS Menu",
         self::TYPE_IMAGE    => "Image",
         self::TYPE_NUMBER   => "Number",
         self::TYPE_TEXT     => "Text",
@@ -31,19 +34,20 @@ class TemplateFieldInterface
 
     // Default settings for each type
     const SETTINGS = [
-        self::TYPE_IMAGE => [],
-        self::TYPE_NUMBER => [
+        self::TYPE_CMS_MENU => [],
+        self::TYPE_IMAGE    => [],
+        self::TYPE_NUMBER   => [
             'min' => null,
             'max' => null,
         ],
-        self::TYPE_TEXT => [
+        self::TYPE_TEXT     => [
             'max_length' => null,
         ],
         self::TYPE_TEXTAREA => [
             'max_length' => null,
             'rows'       => null,
         ],
-        self::TYPE_WYSIWYG => [],
+        self::TYPE_WYSIWYG  => [],
     ];
 
 

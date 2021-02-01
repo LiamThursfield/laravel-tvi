@@ -200,11 +200,7 @@
                             <td class="text-sm">
                                 <div class="flex flex-col opacity-75 space-y-1">
                                     <span
-                                        class="px-2 py-0 rounded text-center"
-                                        :class="{
-                                            'bg-theme-success text-theme-success-contrast': page.url.is_published,
-                                            'bg-theme-danger text-theme-danger-contrast': !page.url.is_published,
-                                        }"
+                                        class="text-center"
                                     >
                                         <template v-if="page.url.published_at">
                                             {{ page.url.published_at | humanFriendlyDateTime }}
@@ -215,11 +211,7 @@
                                     </span>
 
                                     <span
-                                        class="px-2 py-0 rounded text-center"
-                                        :class="{
-                                            'bg-theme-success text-theme-success-contrast': !page.url.is_expired,
-                                            'bg-theme-danger text-theme-danger-contrast': page.url.is_expired,
-                                        }"
+                                        class="text-center"
                                     >
                                         <template v-if="page.url.expired_at">
                                             {{ page.url.expired_at | humanFriendlyDateTime }}
@@ -301,12 +293,10 @@
     import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import IconCheck from "../../../../components/core/icons/IconCheck";
 
     export default {
         name: "AdminCmsPageIndex",
         components: {
-            IconCheck,
             ConfirmationModal,
             InputGroup,
             SelectGroup

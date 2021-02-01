@@ -10,8 +10,9 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors')
 
 const additionalSpacing = {
-    '14': '3.5rem',
-    '84': '21rem',
+    '14' : '3.5rem',
+    '84' : '21rem',
+    '160': '40rem',
 };
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
                 'spin-slow': 'spin 1.5s linear infinite',
             },
             boxShadow: {
-                'subtle'            : '0px 0px 32px 0px rgba(136, 152, 170, 0.15)',
+                'subtle': '0px 0px 32px 0px rgba(136, 152, 170, 0.15)',
             },
             borderRadius: {
                 'xl':  '1rem',
