@@ -55,7 +55,7 @@
                     return false;
                 }
             },
-        },c
+        },
         created() {
             this.editableContent = this.content;
             this.getMenuItems();
