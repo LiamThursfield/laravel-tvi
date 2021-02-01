@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminApi\CMS\MenuController;
 use App\Http\Controllers\AdminApi\CMS\TemplateController;
 use App\Http\Controllers\AdminApi\CMS\UrlAvailableController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerDirectoryController;
@@ -16,6 +17,7 @@ Route::group([
     'as' => 'cms.',
     'prefix' => 'cms'
 ], function() {
+    Route::get('/menu', [MenuController::class, 'index'])->name('menus.index');
     Route::get('/template/{template}', [TemplateController::class, 'show'])->name('templates.index');
 
     Route::get('/url/available', [UrlAvailableController::class, 'handle'])->name('urls.available');

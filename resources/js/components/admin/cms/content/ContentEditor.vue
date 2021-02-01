@@ -42,6 +42,7 @@
 
 <script>
     import _ from 'lodash';
+    import CmsMenuField from "./content_fields/CmsMenuField";
     import ImageField from "./content_fields/ImageField";
     import NumberField from "./content_fields/NumberField";
     import TextAreaField from "./content_fields/TextAreaField";
@@ -51,6 +52,7 @@
     export default {
         name: 'AdminCmsContentEditor',
         components: {
+            CmsMenuField,
             ImageField,
             NumberField,
             TextAreaField,
@@ -88,6 +90,8 @@
         methods: {
             getContentFieldComponent(templateField) {
                 switch (templateField.type) {
+                    case 'cms_menu':
+                        return 'CmsMenuField';
                     case 'image':
                         return 'ImageField';
                     case 'number':
