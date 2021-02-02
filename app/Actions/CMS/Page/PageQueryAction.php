@@ -2,52 +2,32 @@
 
 namespace App\Actions\CMS\Page;
 
+use App\Actions\AbstractQueryAction;
 use App\Models\CMS\Page;
 use App\Models\CMS\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
-class PageQueryAction
+class PageQueryAction extends AbstractQueryAction
 {
-    protected string $order_by          = 'url_full';
-    protected string $order_direction   = 'asc';
+    protected array $searchable_fields_equals = [
+        'layout_id'     => 'layout_id',
+        'page_id'       => 'page_id',
+        'template_id'   => 'template_id',
+    ];
+
+    protected array $searchable_fields_likes = [
+        'name' => 'page_name',
+        'slug' => 'page_slug',
+    ];
+
+    protected string $order_by = 'url_full';
 
 
-    public function handle(array $search_options = []) : Builder
+    protected function addOrderOptions()
     {
-        $query = Page::query();
-
-        if (Arr::get($search_options, 'page_name')) {
-            $query->where(
-                'name',
-                'like',
-                '%' . Arr::get($search_options, 'page_name') . '%'
-            );
-        }
-
-        if (Arr::get($search_options, 'page_slug')) {
-            $query->where(
-                'slug',
-                'like',
-                '%' . Arr::get($search_options, 'page_slug') . '%'
-            );
-        }
-
-        if (Arr::get($search_options, 'layout_id')) {
-            $query->where('layout_id', Arr::get($search_options, 'layout_id'));
-        }
-
-        if (Arr::get($search_options, 'page_id')) {
-            $query->where('page_id', Arr::get($search_options, 'page_id'));
-        }
-
-
-        if (Arr::get($search_options, 'template_id')) {
-            $query->where('template_id', Arr::get($search_options, 'template_id'));
-        }
-
-        $order_by = Arr::get($search_options, 'order_by', $this->order_by);
-        $order_direction = Arr::get($search_options, 'order_direction', $this->order_direction);
+        $order_by = Arr::get($this->search_options, 'order_by', $this->order_by);
+        $order_direction = Arr::get($this->search_options, 'order_direction', $this->order_direction);
 
         if ($order_by === 'url_full') {
             $ordered_ids = Url::where('urlable_type', '=', Page::class)
@@ -55,15 +35,15 @@ class PageQueryAction
                 ->pluck('urlable_id')
                 ->implode(',');
 
-            $query->orderByRaw('FIELD (id, ' . $ordered_ids . ')');
+            $this->query->orderByRaw('FIELD (id, ' . $ordered_ids . ')');
         } else {
-            $query->orderBy($this->order_by, $this->order_direction);
+            $this->query->orderBy($order_by, $order_direction);
         }
+    }
 
-        if (Arr::get($search_options, 'with')) {
-            $query->with(Arr::get($search_options, 'with'));
-        }
 
-        return $query;
+    protected function getQueryBuilder(): Builder
+    {
+        return Page::query();
     }
 }
