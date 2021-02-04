@@ -57,6 +57,7 @@ class PageStoreAction
         $new_content = [];
         foreach ($content as $template_field_id => $c) {
             if (isset($template_fields[$template_field_id])) {
+                $c['template_field_type'] = $template_fields[$template_field_id]->type;
                 $new_content[] = new Content($c);
             }
         }

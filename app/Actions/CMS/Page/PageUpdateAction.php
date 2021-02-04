@@ -63,6 +63,7 @@ class PageUpdateAction
             // Check if the field exists and is being updated
             if (isset($content[$template_field_id]) && isset($existing_content[$template_field_id])) {
                 $existing_content[$template_field_id]['data'] = $content[$template_field_id]['data'];
+                $existing_content[$template_field_id]['template_field_type'] = $template_fields[$template_field_id]->type;
                 $content_to_save[$template_field_id] = $existing_content[$template_field_id];
 
                 unset($content[$template_field_id]);
@@ -70,7 +71,9 @@ class PageUpdateAction
             }
             // Check if the field is new
             else if (isset($content[$template_field_id])) {
-                $content_to_save[$template_field_id] = new Content($content[$template_field_id]);
+                $c = new Content($content[$template_field_id]);
+                $c->template_field_type = $template_fields[$template_field_id]->type;
+                $content_to_save[$template_field_id] = $c;
                 unset($content[$template_field_id]);
             }
         }
