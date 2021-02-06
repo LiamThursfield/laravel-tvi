@@ -125,6 +125,14 @@
         </div>
 
         <div
+            class="bg-white mt-6 overflow-x-hidden px-6 py-6 shadow-subtle rounded-lg"
+        >
+            <metadata-editor
+                v-model="formData.metadata"
+            />
+        </div>
+
+        <div
             class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
         >
             <url-editor
@@ -154,6 +162,7 @@
     import slugify from "slugify";
     import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
+    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
 
@@ -165,6 +174,7 @@
         components: {
             ContentEditor,
             InputGroup,
+            MetadataEditor,
             SelectGroup,
             UrlEditor,
         },
@@ -189,6 +199,7 @@
                 computedUrl: '',
                 formData: {
                     layout_id: '',
+                    metadata: {},
                     name: '',
                     parent_id: '',
                     slug: '',

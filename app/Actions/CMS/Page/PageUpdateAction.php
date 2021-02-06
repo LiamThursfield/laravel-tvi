@@ -5,6 +5,7 @@ namespace App\Actions\CMS\Page;
 use App\Models\CMS\Content;
 use App\Models\CMS\Page;
 use App\Traits\CMS\ManagesContent;
+use App\Traits\CMS\ManagesMetadata;
 use App\Traits\CMS\ManagesPageUrl;
 use Exception;
 use Illuminate\Support\Collection;
@@ -12,15 +13,17 @@ use Illuminate\Support\Facades\DB;
 
 class PageUpdateAction
 {
-    use ManagesContent, ManagesPageUrl;
+    use ManagesContent, ManagesMetadata, ManagesPageUrl;
 
     public function handle(Page $page, array $page_data) : Page
     {
         $this->data = $page_data;
 
         // Extract the content data
-        $content = $this->extractContentFromData();
-        $url     = $this->extractUrlFromData();
+        $content    = $this->extractContentFromData();
+        $metadata   = $this->extractMetadataFromData();
+        $url        = $this->extractUrlFromData();
+
 
         try {
             DB::beginTransaction();
@@ -28,11 +31,13 @@ class PageUpdateAction
             $page->update($this->data);
             $page->load('template');
             $page->load('template.templateFields');
+            $page->load('metadata');
             $page->load('parent');
             $page->load('parent.url');
 
-            $this->updatePageUrl($page, $url);
             $this->updateContent($page, $content);
+            $this->updateMetadata($page, $metadata);
+            $this->updatePageUrl($page, $url);
 
             DB::commit();
 

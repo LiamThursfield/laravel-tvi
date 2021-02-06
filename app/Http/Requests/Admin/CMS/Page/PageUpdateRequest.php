@@ -15,6 +15,14 @@ class PageUpdateRequest extends BaseRequest
         $custom_attributes = [
             'content.*.template_field_id'   => 'template field',
             'template_id'                   => 'template',
+            'metadata.canonical'            => 'canonical',
+            'metadata.description'          => 'meta description',
+            'metadata.og_description'       => 'og description ',
+            'metadata.og_image'             => 'og image',
+            'metadata.og_title'             => 'og title',
+            'metadata.og_type'              => 'og type',
+            'metadata.og_url'               => 'og url',
+            'metadata.title'                => 'meta title',
             'url.expired_at'                => 'expired at',
             'url.id'                        => 'URL ID',
             'url.is_enabled'                => 'is enabled',
@@ -46,6 +54,14 @@ class PageUpdateRequest extends BaseRequest
                 'integer',
                 Rule::exists('cms_layouts', 'id'),
             ],
+            'metadata.canonical'        => 'nullable|string',
+            'metadata.description'      => 'nullable|string',
+            'metadata.og_description'   => 'nullable|string',
+            'metadata.og_image'         => 'nullable|string',
+            'metadata.og_title'         => 'nullable|string',
+            'metadata.og_type'          => 'nullable|string',
+            'metadata.og_url'           => 'nullable|string',
+            'metadata.title'            => 'nullable|string',
             'name' => [
                 'required',
                 'string',
@@ -56,18 +72,18 @@ class PageUpdateRequest extends BaseRequest
                 'integer',
                 Rule::exists('cms_pages', 'id'),
             ],
+            'slug' => [
+                'required',
+                'string',
+                'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
+                Rule::unique('cms_pages')->ignore($this->page->id, 'id')
+            ],
             'template_id' => [
                 'required',
                 'integer',
                 Rule::exists('cms_templates', 'id')->where(function ($query) {
                     $query->where('type', TemplateInterface::TYPE_PAGE);
                 }),
-            ],
-            'slug' => [
-                'required',
-                'string',
-                'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
-                Rule::unique('cms_pages')->ignore($this->page->id, 'id')
             ],
             'url.expired_at'    => 'nullable|date',
             'url.id'            => [
