@@ -25,7 +25,7 @@ class TemplateFieldResource extends JsonResource
                 $this->type,
                 $this->type
             ),
-            'template'          => TemplateFieldResource::make($this->whenLoaded('template')),
+            'template'          => TemplateResource::make($this->whenLoaded('template')),
             'template_id'       => $this->template_id,
         ];
     }
