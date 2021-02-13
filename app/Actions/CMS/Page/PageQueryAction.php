@@ -7,6 +7,7 @@ use App\Models\CMS\Page;
 use App\Models\CMS\Url;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class PageQueryAction extends AbstractQueryAction
 {
@@ -23,6 +24,19 @@ class PageQueryAction extends AbstractQueryAction
 
     protected string $order_by = 'url_full';
 
+    protected function addCustomSearchOptions()
+    {
+        if (Arr::get($this->search_options, 'page_url')) {
+            $this->query->whereHas('url', function ($query) {
+                $url = Arr::get($this->search_options, 'page_url');
+                if (!Str::startsWith($url, '/')) {
+                    $url = '/' . $url;
+                }
+
+                $query->where('url_full', $url);
+            });
+        }
+    }
 
     protected function addOrderOptions()
     {
