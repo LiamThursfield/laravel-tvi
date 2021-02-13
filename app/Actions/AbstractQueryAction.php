@@ -44,7 +44,7 @@ abstract class AbstractQueryAction
         $order_by = Arr::get($this->search_options, 'order_by', $this->order_by);
         $order_direction = Arr::get($this->search_options, 'order_direction', $this->order_direction);
 
-        $this->query->orderBy($this->order_by, $this->order_direction);
+        $this->query->orderBy($order_by, $order_direction);
     }
 
 
