@@ -220,7 +220,7 @@
                 this.isLoadingTemplate = true;
 
                 axios.get(
-                    this.$route('admin.api.cms.templates.index', this.selectedTemplateId)
+                    this.$route('admin.api.cms.templates.show', this.selectedTemplateId)
                 ).then(response => {
                     this.selectedTemplate = _.cloneDeep(response.data.data);
                     this.setNewTemplateContent();
