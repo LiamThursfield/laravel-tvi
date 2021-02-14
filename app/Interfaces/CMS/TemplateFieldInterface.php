@@ -8,6 +8,7 @@ class TemplateFieldInterface
     const TYPE_CMS_MENU = 'cms_menu';
     const TYPE_IMAGE    = 'image';
     const TYPE_NUMBER   = 'number';
+    const TYPE_REPEATER = 'repeater';
     const TYPE_TEXT     = 'text';
     const TYPE_TEXTAREA = 'textarea';
     const TYPE_WYSIWYG  = 'wysiwyg';
@@ -16,6 +17,7 @@ class TemplateFieldInterface
         self::TYPE_CMS_MENU,
         self::TYPE_IMAGE,
         self::TYPE_NUMBER,
+        self::TYPE_REPEATER,
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
         self::TYPE_WYSIWYG,
@@ -26,6 +28,7 @@ class TemplateFieldInterface
         self::TYPE_CMS_MENU => "CMS Menu",
         self::TYPE_IMAGE    => "Image",
         self::TYPE_NUMBER   => "Number",
+        self::TYPE_REPEATER => "Repeater",
         self::TYPE_TEXT     => "Text",
         self::TYPE_TEXTAREA => "Text Area",
         self::TYPE_WYSIWYG  => "WYSIWYG",
@@ -39,6 +42,9 @@ class TemplateFieldInterface
         self::TYPE_NUMBER   => [
             'min' => null,
             'max' => null,
+        ],
+        self::TYPE_REPEATER => [
+            'template_id' => '',
         ],
         self::TYPE_TEXT     => [
             'max_length' => null,
