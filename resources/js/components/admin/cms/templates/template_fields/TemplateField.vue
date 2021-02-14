@@ -107,6 +107,7 @@
     import CheckboxGroup    from "../../../../core/forms/CheckboxGroup";
     import InputGroup       from "../../../../core/forms/InputGroup";
     import NumberSettings   from "./template_field_settings/NumberSettings";
+    import RepeaterSettings   from "./template_field_settings/RepeaterSettings";
     import SelectGroup      from "../../../../core/forms/SelectGroup";
     import TextSettings     from "./template_field_settings/TextSettings";
     import TextAreaSettings from "./template_field_settings/TextAreaSettings";
@@ -117,6 +118,7 @@
             CheckboxGroup,
             InputGroup,
             NumberSettings,
+            RepeaterSettings,
             SelectGroup,
             TextSettings,
             TextAreaSettings,
@@ -187,6 +189,8 @@
                 switch (this.editable_templateField.type) {
                     case 'number' :
                         return 'number-settings';
+                    case 'repeater' :
+                        return 'repeater-settings';
                     case 'text' :
                         return 'text-settings';
                     case 'textarea' :
