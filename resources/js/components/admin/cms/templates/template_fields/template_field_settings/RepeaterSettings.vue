@@ -84,7 +84,7 @@
                     console.log(e); // TODO: This should go through to a log tracker once available
                 }).finally(() => {
                     this.isLoadingTemplates = false;
-                })
+                });
             }
         }
     }
