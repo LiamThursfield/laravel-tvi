@@ -153,7 +153,7 @@
 
             <content-editor
                 class="mt-4"
-                :template-fields="this.selectedTemplate.template_fields"
+                :template-fields="selectedTemplate.template_fields"
                 v-model="formData.content"
             />
         </div>
@@ -163,7 +163,6 @@
 <script>
     import _ from 'lodash';
     import slugify from "slugify";
-    import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
@@ -175,7 +174,6 @@
     export default {
         name: "AdminCmsPageEdit",
         components: {
-            ContentEditor,
             InputGroup,
             MetadataEditor,
             SelectGroup,
