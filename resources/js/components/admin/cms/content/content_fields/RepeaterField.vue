@@ -138,7 +138,7 @@
                     };
                 });
 
-                row.key = this.newRowCount;
+                row.key = 'new-' + this.newRowCount;
                 this.newRowCount++;
 
                 this.editableContent.push(row);
@@ -182,6 +182,14 @@
                     this.isLoadingRepeaterTemplate = false;
                 });
             },
+            onEditableContentUpdate: _.debounce(function () {
+                let content = _.cloneDeep(this.editableContent);
+                _.forEach(content, (row, key) => {
+                    this.$delete(content[key], 'key');
+                })
+
+                this.$emit('input', content);
+            }, 100),
             setInitialContent() {
                 if (!this.content || this.content === '') {
                     this.editableContent = [];
@@ -199,7 +207,7 @@
                         rowFormatted = _.cloneDeep(row.content);
                     }
 
-                    rowFormatted.key = count;
+                    rowFormatted.key = 'existing=' + count;
                     count++;
 
                     // Set the defaults for any missing content in the row
