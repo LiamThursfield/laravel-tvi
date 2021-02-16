@@ -203,8 +203,8 @@
                     let rowFormatted = {};
 
                     // Get current row content
-                    if (this.doesObjectHaveKeys(row.content)) {
-                        rowFormatted = _.cloneDeep(row.content);
+                    if (this.doesObjectHaveKeys(row)) {
+                        rowFormatted = _.cloneDeep(row);
                     }
 
                     rowFormatted.key = 'existing=' + count;
