@@ -34,6 +34,26 @@ class TemplateFieldInterface
         self::TYPE_WYSIWYG  => "WYSIWYG",
     ];
 
+    // Types that are allowed to be used in a repeater -- essentially any that don't have relationships
+    const REPEATER_TYPES = [
+        self::TYPE_IMAGE,
+        self::TYPE_NUMBER,
+        self::TYPE_TEXT,
+        self::TYPE_TEXTAREA,
+        self::TYPE_WYSIWYG,
+    ];
+
+    static function getAllRepeaterTypesLabelled() : array
+    {
+        $types = [];
+
+        foreach (self::REPEATER_TYPES as $type) {
+            $types[$type] = self::ALL_TYPES_LABELLED[$type];
+        }
+
+        return $types;
+    }
+
 
     // Default settings for each type
     const SETTINGS = [
