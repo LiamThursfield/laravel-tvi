@@ -2,6 +2,7 @@
 
 namespace App\Traits\CMS;
 
+use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Models\CMS\Content;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -39,6 +40,11 @@ trait ManagesContent
         foreach ($content as $template_field_id => $c) {
             if (isset($template_fields[$template_field_id])) {
                 $c['template_field_type'] = $template_fields[$template_field_id]->type;
+
+                if (in_array($c['template_field_type'], TemplateFieldInterface::JSON_TYPES)) {
+                    $c['data'] = json_encode(Arr::get($c, 'data'));
+                }
+
                 $new_content[] = new Content($c);
             }
         }
@@ -64,6 +70,16 @@ trait ManagesContent
         $content_to_delete = [];
 
         foreach ($template_fields as $template_field_id => $template_field) {
+            // Format the data as JSON if necessary
+            if (
+                isset($content[$template_field_id]) &&
+                in_array($template_fields[$template_field_id]->type, TemplateFieldInterface::JSON_TYPES)
+            ) {
+                $c = $content[$template_field_id];
+                $c['data'] = json_encode(Arr::get($c, 'data'));
+                $content->put($template_field_id, $c);
+            }
+
             // Check if the field exists and is being updated
             if (isset($content[$template_field_id]) && isset($existing_content[$template_field_id])) {
                 $existing_content[$template_field_id]['data'] = $content[$template_field_id]['data'];

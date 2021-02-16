@@ -54,6 +54,11 @@ class TemplateFieldInterface
         return $types;
     }
 
+    // Types that should be cast/stored as JSON
+    const JSON_TYPES =[
+        self::TYPE_REPEATER
+    ];
+
 
     // Default settings for each type
     const SETTINGS = [

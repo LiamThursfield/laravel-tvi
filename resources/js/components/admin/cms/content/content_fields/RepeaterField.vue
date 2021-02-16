@@ -134,7 +134,10 @@
                 _.forEach(this.repeaterTemplateFields, (templateField) => {
                     row[templateField.id] = {
                         data: '',
-                        template_field_id: templateField.id
+                        template_field_id: templateField.id,
+                        template_field_order: templateField.order,
+                        template_field_slug: templateField.slug,
+                        template_field_type: templateField.type,
                     };
                 });
 
@@ -215,7 +218,10 @@
                         if (!rowFormatted.hasOwnProperty(templateField.id)) {
                             rowFormatted[templateField.id] = {
                                 data: '',
-                                template_field_id: templateField.id
+                                template_field_id: templateField.id,
+                                template_field_order: templateField.order,
+                                template_field_slug: templateField.slug,
+                                template_field_type: templateField.type,
                             };
                         }
                     });
