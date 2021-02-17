@@ -13,7 +13,6 @@ class ContentResource extends JsonResource
     public function toArray($request)
     {
         $data = $this->data;
-
         if (in_array($this->template_field_type, TemplateFieldInterface::JSON_TYPES)) {
             $data = json_decode($data, true);
         }
