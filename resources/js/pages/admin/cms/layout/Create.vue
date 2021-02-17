@@ -102,7 +102,7 @@
 
             <content-editor
                 class="mt-4"
-                :template-fields="this.selectedTemplate.template_fields"
+                :template-fields="selectedTemplate.template_fields"
                 v-model="formData.content"
             />
         </div>
@@ -111,7 +111,6 @@
 
 <script>
     import slugify from "slugify";
-    import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
@@ -121,7 +120,6 @@
     export default {
         name: "AdminCmsLayoutCreate",
         components: {
-            ContentEditor,
             InputGroup,
             SelectGroup,
         },
@@ -192,7 +190,7 @@
                 this.isLoadingTemplate = true;
 
                 axios.get(
-                    this.$route('admin.api.cms.templates.index', this.selectedTemplateId)
+                    this.$route('admin.api.cms.templates.show', this.selectedTemplateId)
                 ).then(response => {
                     this.selectedTemplate = _.cloneDeep(response.data.data);
                     this.setNewTemplateContent();

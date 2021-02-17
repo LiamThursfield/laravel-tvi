@@ -2,10 +2,10 @@
     <div class="flex flex-col space-y-4">
 
         <p
-            v-if="getPageErrorMessage(content_field_slug)"
+            v-if="getPageErrorMessage(contentFieldSlug)"
             class="text-theme-danger-contrast"
         >
-            {{ getPageErrorMessage(content_field_slug) }}
+            {{ getPageErrorMessage(contentFieldSlug) }}
         </p>
 
         <div
@@ -45,6 +45,7 @@
     import CmsMenuField from "./content_fields/CmsMenuField";
     import ImageField from "./content_fields/ImageField";
     import NumberField from "./content_fields/NumberField";
+    import RepeaterField from "./content_fields/RepeaterField";
     import TextAreaField from "./content_fields/TextAreaField";
     import TextField from "./content_fields/TextField";
     import WysiwygField from "./content_fields/WysiwygField";
@@ -55,6 +56,7 @@
             CmsMenuField,
             ImageField,
             NumberField,
+            RepeaterField,
             TextAreaField,
             TextField,
             WysiwygField,
@@ -67,7 +69,7 @@
                 required: true,
                 type: Array | Object
             },
-            content_field_slug: {
+            contentFieldSlug: {
                 default: 'content',
                 type: String,
             },
@@ -96,6 +98,8 @@
                         return 'ImageField';
                     case 'number':
                         return 'NumberField';
+                    case 'repeater':
+                        return 'RepeaterField';
                     case 'text':
                         return 'TextField';
                     case 'textarea':
