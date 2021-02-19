@@ -135,7 +135,10 @@ class InertiaServiceProvider extends ServiceProvider
     {
         Inertia::share([
             'app' => [
-                'name' => Config::get('app.name')
+                'name' => Config::get('app.name'),
+                'config' => [
+                    'file_manager_uploads_enabled' => Config::get('tvi.file_manager.uploads.enabled', false),
+                ],
             ],
             'auth' => function () {
                 return [

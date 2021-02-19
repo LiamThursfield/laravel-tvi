@@ -30,6 +30,10 @@ class FileManagerFileController extends AbstractFileManagerController
 
     public function store(Request $request)
     {
+        if (!config('tvi.file_manager.uploads.enabled')) {
+            abort(403, 'Uploads are disabled.');
+        }
+
         $directory = $request->get('directory', "");
         $file = $request->file('file');
 

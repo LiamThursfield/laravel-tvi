@@ -226,6 +226,13 @@
                 let list = _.split(directory, '/');
                 return ['/'].concat(list);
             },
+            isUploadEnabled() {
+                try {
+                    return !! this.$page.props.app.config.file_manager_uploads_enabled;
+                } catch (e) {
+                    return false;
+                }
+            },
             newDirectoryNameFormatted() {
                 if (!this.currentDirectoryList || this.currentDirectoryList.length < 2) {
                     return this.newDirectoryName;
@@ -259,7 +266,7 @@
                 return this.currentDirectoryList.length > 1;
             },
             showCreateDirectoryButton() {
-                return !this.isLoadingDirectories && !this.isLoadingFileUpload && this.userCan('file_manager.edit');
+                return this.isUploadEnabled && !this.isLoadingDirectories && !this.isLoadingFileUpload && this.userCan('file_manager.edit');
             },
             showFilesLoader() {
                 return this.isLoadingDirectories || this.isLoadingFiles;
@@ -327,7 +334,12 @@
                     this.changeDirectory(this.newDirectoryNameFormatted)
                     this.stopCreatingDirectory();
                 }).catch(e => {
-                    this.$errorToast('Failed to create directory');
+                    let message = 'Failed to create directory';
+                    if (e && e.response && e.response.data && e.response.data.message) {
+                        message += ' - ' + e.response.data.message;
+                    }
+
+                    this.$errorToast(message);
                     this.isLoadingNewDirectory = false;
                 });
             },
