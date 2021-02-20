@@ -18,6 +18,12 @@ class Contact extends Model
         'name'
     ];
 
+    protected $casts = [
+        'marketing_email'       => 'boolean',
+        'marketing_sms'         => 'boolean',
+        'marketing_telephone'   => 'boolean',
+    ];
+
 
     /**
      * Helper to return first + last name.
