@@ -16,9 +16,10 @@ class ContactEditResource extends JsonResource
             'marketing_email'       => $this->marketing_email,
             'marketing_sms'         => $this->marketing_sms,
             'marketing_telephone'   => $this->marketing_telephone,
+            'name'                  => $this->name ?? '',
+            'name_with_title'       => $this->name_with_title ?? '',
             'telephone'             => $this->telephone,
             'title'                 => $this->title,
-            'name'                  => $this->name ?? '',
         ];
     }
 }

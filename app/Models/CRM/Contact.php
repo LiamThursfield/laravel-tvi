@@ -15,7 +15,8 @@ class Contact extends Model
     protected $guarded = [];
 
     protected $appends = [
-        'name'
+        'name',
+        'name_with_title',
     ];
 
     protected $casts = [
@@ -31,6 +32,15 @@ class Contact extends Model
      */
     public function getNameAttribute() : String
     {
-        return trim($this->first_name ?? '' . ' ' . $this->last_name ?? '');
+        return trim(($this->first_name ?? '') . ' ' . ($this->last_name ?? ''));
+    }
+
+    /**
+     * Helper to return title + first + last name.
+     * @return string
+     */
+    public function getNameWithTitleAttribute() : String
+    {
+        return trim(($this->title ?? '') . ' ' . ($this->name));
     }
 }
