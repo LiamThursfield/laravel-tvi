@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('profile.edit')"
+            v-if="userCan('users.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
