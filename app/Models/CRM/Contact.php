@@ -10,7 +10,7 @@ class Contact extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'crm_contact';
+    protected $table = 'crm_contacts';
 
     protected $guarded = [];
 
