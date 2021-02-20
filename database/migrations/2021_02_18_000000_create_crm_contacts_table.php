@@ -1,5 +1,6 @@
 <?php
 
+use App\Interfaces\CRM\ContactInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ class CreateCrmContactsTable extends Migration
             $table->string('title')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('telephone')->nullable();
+            $table->string('telephone', ContactInterface::FIELD_TELEPHONE_MAX_LENGTH)->nullable();
             $table->string('email')->nullable();
             $table->boolean('marketing_telephone')->default(false);
             $table->boolean('marketing_sms')->default(false);
