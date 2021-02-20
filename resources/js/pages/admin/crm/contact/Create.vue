@@ -1,27 +1,25 @@
-` <template>
+<template>
     <form
         class="max-w-5xl mx-auto"
         autocomplete="off"
         @submit.prevent="submit"
     >
+        <!-- Header -->
         <div
-            v-if="userCan('users.edit')"
+            v-if="userCan('crm_contacts.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit User
-                <span class="ml-2 opacity-75 text-sm">
-                    {{ user.name }}
-                </span>
+                Create Contact
             </h1>
 
             <inertia-link
-                v-if="userCan('users.view')"
+                v-if="userCan('crm_contacts.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.users.index')"
+                :href="$route('admin.crm.contacts.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -49,18 +47,30 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    Create Contact
                 </span>
             </button>
         </div>
 
+        <!-- Contact Details -->
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
 
                 <input-group
-                    :error-message="getPageErrorMessage('first_name')"
-                    input-autocomplete="off"
+                    :error-message="getPageErrorMessage('title')"
+                    input-autocomplete="title"
                     :input-autofocus="true"
+                    input-id="title"
+                    input-name="title"
+                    input-type="text"
+                    label-text="Title"
+                    v-model="formData.title"
+                />
+
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('first_name')"
+                    input-autocomplete="first_name"
                     input-id="first_name"
                     input-name="first_name"
                     :input-required="true"
@@ -72,7 +82,7 @@
                 <input-group
                     class="mt-4"
                     :error-message="getPageErrorMessage('last_name')"
-                    input-autocomplete="off"
+                    input-autocomplete="last_name"
                     input-id="last_name"
                     input-name="last_name"
                     :input-required="true"
@@ -84,7 +94,7 @@
                 <input-group
                     class="mt-4"
                     :error-message="getPageErrorMessage('email')"
-                    input-autocomplete="off"
+                    input-autocomplete="email"
                     input-id="email"
                     input-name="email"
                     :input-required="true"
@@ -92,25 +102,49 @@
                     label-text="Email"
                     v-model="formData.email"
                 />
+
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('telephone')"
+                    input-autocomplete="telephone"
+                    input-id="telephone"
+                    input-max-length="20"
+                    input-name="telephone"
+                    input-type="telephone"
+                    label-text="Telephone"
+                    v-model="formData.telephone"
+                />
+
             </div>
         </div>
 
-        <div v-if="isSelectableRoles"
-             class="bg-white mt-6 py-6 shadow-subtle rounded-lg"
-        >
+        <!-- Marketing Preferences -->
+        <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <p class="font-medium mb-4 text-theme-base-contrast tracking-wider">
-                    Roles
+                    Marketing Preferences
                 </p>
 
-                <div class="space-y-3">
+                <div class="space-y-4">
                     <inline-checkbox-group
-                        v-for="(role_label, role_key) in selectableRoles"
-                        :key="`user-role-${role_key}`"
-                        :input-id="`user-role-${role_key}`"
-                        :input-name="`user-role-${role_key}`"
-                        :label-text="role_label"
-                        v-model="formData.roles[role_key]"
+                        input-id="marketing-email"
+                        input-name="marketing-email"
+                        label-text="Email"
+                        v-model="formData.marketing_email"
+                    />
+
+                    <inline-checkbox-group
+                        input-id="marketing-sms"
+                        input-name="marketing-sms"
+                        label-text="SMS"
+                        v-model="formData.marketing_sms"
+                    />
+
+                    <inline-checkbox-group
+                        input-id="marketing-telephone"
+                        input-name="marketing-telephone"
+                        label-text="Telephone"
+                        v-model="formData.marketing_telephone"
                     />
                 </div>
             </div>
@@ -120,72 +154,34 @@
 
 <script>
     import _ from "lodash";
-    import InlineCheckboxGroup from "../../../components/core/forms/InlineCheckboxGroup";
-    import InputGroup from "../../../components/core/forms/InputGroup";
+    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup";
 
     export default {
-        name: "AdminUserEdit",
+        name: "AdminCrmContactCreate",
         components: {
             InlineCheckboxGroup,
             InputGroup,
         },
         layout: 'admin-layout',
-        props: {
-            selectableRoles: {
-                required: true,
-                type: Object,
-            },
-            user: {
-                required: true,
-                type: Object,
-            },
-        },
         data() {
             return {
-                formData: null,
-            }
-        },
-        computed: {
-            isCurrentUser() {
-                try {
-                    return this.user.id === this.$page.props.auth.user.id;
-                } catch (e) {
-                    return false;
-                }
-            },
-            isSelectableRoles() {
-                try {
-                    return Object.keys(this.selectableRoles).length > 0;
-                } catch (e) {
-                    return false;
+                formData: {
+                    email: '',
+                    first_name: '',
+                    last_name: '',
+                    telephone: '',
+                    title: '',
+                    marketing_email: false,
+                    marketing_sms: false,
+                    marketing_telephone: false,
                 }
             }
-        },
-        created() {
-            this.formData = {
-                email:      this.user.email,
-                first_name: this.user.first_name,
-                last_name:  this.user.last_name,
-                roles:      this.user.roles,
-            };
-
-            if (Array.isArray(this.formData.roles)) {
-                this.formData.roles = {};
-            }
-
-            this.initialiseRoles();
         },
         methods: {
-            initialiseRoles() {
-                _.forEach(this.selectableRoles, (role_label, role_key) => {{
-                    if (!this.formData.roles.hasOwnProperty(role_key)) {
-                        this.formData.roles[role_key] = false;
-                    }
-                }});
-            },
             submit() {
-                this.$inertia.put(
-                    this.$route('admin.users.update', this.user.id),
+                this.$inertia.post(
+                    this.$route('admin.crm.contacts.store'),
                     this.formData
                 );
             }

@@ -59,13 +59,13 @@ abstract class AbstractQueryAction
     protected function addStandardSearchOptions()
     {
         foreach ($this->searchable_fields_equals as $field => $value) {
-            if (Arr::get($this->search_options, $value)) {
+            if (Arr::get($this->search_options, $value) || strlen(Arr::get($this->search_options, $value))) {
                 $this->query->where($field, Arr::get($this->search_options, $value));
             }
         }
 
         foreach ($this->searchable_fields_likes as $field => $value) {
-            if (Arr::get($this->search_options, $value)) {
+            if (Arr::get($this->search_options, $value) || strlen(Arr::get($this->search_options, $value))) {
                 $this->query->where(
                     $field,
                     'like',
