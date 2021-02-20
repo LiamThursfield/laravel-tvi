@@ -144,56 +144,56 @@
     import InlineCheckboxGroup from "../../../components/core/forms/InlineCheckboxGroup";
     import InputGroup from "../../../components/core/forms/InputGroup";
 
-export default {
-    name: "AdminUserCreate",
-    components: {
-        InlineCheckboxGroup,
-        InputGroup,
-    },
-    layout: 'admin-layout',
-    props: {
-        selectableRoles: {
-            default: null,
+    export default {
+        name: "AdminUserCreate",
+        components: {
+            InlineCheckboxGroup,
+            InputGroup,
         },
-    },
-    data() {
-        return {
-            formData: {
-                email: '',
-                first_name: '',
-                last_name: '',
-                password: '',
-                password_confirmation: '',
-                roles: {},
+        layout: 'admin-layout',
+        props: {
+            selectableRoles: {
+                default: null,
             },
-        }
-    },
-    computed: {
-        isSelectableRoles() {
-            try {
-                return Object.keys(this.selectableRoles).length > 0;
-            } catch (e) {
-                return false;
+        },
+        data() {
+            return {
+                formData: {
+                    email: '',
+                    first_name: '',
+                    last_name: '',
+                    password: '',
+                    password_confirmation: '',
+                    roles: {},
+                },
+            }
+        },
+        computed: {
+            isSelectableRoles() {
+                try {
+                    return Object.keys(this.selectableRoles).length > 0;
+                } catch (e) {
+                    return false;
+                }
+            }
+        },
+        mounted() {
+            this.initialiseRoles();
+        },
+        methods: {
+            initialiseRoles() {
+                _.forEach(this.selectableRoles, (role_label, role_key) => {{
+                    if (!this.formData.roles.hasOwnProperty(role_key)) {
+                        this.formData.roles[role_key] = false;
+                    }
+                }});
+            },
+            submit() {
+                this.$inertia.post(
+                    this.$route('admin.users.store'),
+                    this.formData
+                );
             }
         }
-    },
-    mounted() {
-        this.initialiseRoles();
-    },
-    methods: {
-        initialiseRoles() {
-            _.forEach(this.selectableRoles, (role_label, role_key) => {{
-                if (!this.formData.roles.hasOwnProperty(role_key)) {
-                    this.formData.roles[role_key] = false;
-                }
-            }});
-        },
-        submit() {
-            this.$inertia.post(
-                this.$route('admin.users.store'),
-                this.formData
-            );
-        }
     }
-}
 </script>
