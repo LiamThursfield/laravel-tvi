@@ -201,6 +201,38 @@
                         requiresAnyPermissions: ["cms.edit", "cms.create", "cms.view"],
                         showLabel: true,
                     },
+                    crm: {
+                        children: {
+                            contacts: {
+                                activeRoutes: ["admin.crm.contacts.index", "admin.crm.contacts.create", "admin.crm.contacts.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Contacts",
+                                        requiresAllPermissions: ["crm_contacts.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.contacts.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Contact",
+                                        requiresAllPermissions: ["crm_contacts.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.contacts.create",
+                                    },
+                                },
+                                icon: "icon-id",
+                                label: "Contacts",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["crm_contacts.create", "crm_contacts.view"],
+                            }
+                        },
+                        label: "CRM",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["crm_contacts.create", "crm_contacts.view"],
+                        showLabel: true,
+                    },
                     utilities: {
                         children : {
                             file_manager: {
