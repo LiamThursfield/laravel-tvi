@@ -17,7 +17,7 @@ class TemplateUpdateAction
      * @return Template
      * @throws Exception
      */
-    public function handle(Template $template, array $template_data)
+    public function handle(Template $template, array $template_data) : Template
     {
         // Extract the template fields data if it exists
         $template_fields_data = Arr::get($template_data, 'template_fields', null);
@@ -39,7 +39,14 @@ class TemplateUpdateAction
         }
     }
 
-    protected function updateFields(Template $template, ?array $template_fields_data) {
+    /**
+     * @param Template $template
+     * @param array|null $template_fields_data
+     * @return Template
+     * @throws Exception
+     */
+    protected function updateFields(Template $template, ?array $template_fields_data) : Template
+    {
         // If the data is null, don't bother updating or deleting any fields
         if (is_null($template_fields_data)) {
             return $template;
@@ -52,7 +59,6 @@ class TemplateUpdateAction
         }
 
         $template->load('templateFields');
-
         $existing_template_fields = [];
         foreach ($template->templateFields as $field) {
             $existing_template_fields[$field->id] = $field;
