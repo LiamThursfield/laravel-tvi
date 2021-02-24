@@ -200,9 +200,18 @@
         },
         layout: 'admin-layout',
         props: {
-            searchOptions: Object|Array,
-            templates: Object,
-            templateTypes: Object
+            searchOptions: {
+                required: true,
+                type: Object|Array,
+            },
+            templates: {
+                required: true,
+                type: Object,
+            },
+            templateTypes: {
+                required: true,
+                type: Object,
+            }
         },
         data() {
             return {
