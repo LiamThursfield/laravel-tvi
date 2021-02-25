@@ -9,10 +9,20 @@ use Illuminate\Validation\Rule;
 
 class FormStoreRequest extends BaseRequest
 {
+    public function attributes() : array
+    {
+        $custom_attributes = [
+            'email_recipients.*'   => 'email recipient',
+        ];
+
+        return array_merge(parent::attributes(), $custom_attributes);
+    }
+
     public function rules() : array
     {
         return [
             'description' => 'nullable|string',
+            'email_recipients.*' => 'required|email',
             'name' => [
                 'required',
                 'string',
