@@ -198,9 +198,6 @@
                     console.log(e); // TODO: Replace with error tracker
                 }
             },
-            onEditableTemplateFieldInput() {
-                this.updateTemplateFields();
-            },
             reorderTemplateFields() {
                 try {
                     if (!this.editableTemplateFields.length) {
