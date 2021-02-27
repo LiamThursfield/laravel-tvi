@@ -85,7 +85,7 @@
             @input="updateTemplateField"
             v-model="editableTemplateField.is_required"
         />
-        
+
         <component
             v-if="settingsComponent"
             :is="settingsComponent"
@@ -108,8 +108,8 @@
     import NumberSettings   from "./template_field_settings/NumberSettings";
     import RepeaterSettings from "./template_field_settings/RepeaterSettings";
     import SelectGroup      from "../../../../core/forms/SelectGroup";
-    import TextSettings     from "./template_field_settings/TextSettings";
     import TextAreaSettings from "./template_field_settings/TextAreaSettings";
+    import TextSettings     from "./template_field_settings/TextSettings";
 
     export default {
         name: "TemplateField",
@@ -119,8 +119,8 @@
             NumberSettings,
             RepeaterSettings,
             SelectGroup,
-            TextSettings,
             TextAreaSettings,
+            TextSettings,
         },
         model: {
             prop: 'templateField'
