@@ -88,8 +88,8 @@
 
         <!-- TODO: Implement Settings based on Type -->
         <component
-            v-if="settings_component"
-            :is="settings_component"
+            v-if="settingsComponent"
+            :is="settingsComponent"
             :default-settings="defaultFieldSettings"
             :template-field="editableTemplateField"
             @input="updateTemplateField"
@@ -178,10 +178,10 @@
                     return {};
                 }
             },
-            errorMessage_key() {
+            errorMessageKey() {
                 return this.errorMessageKeyPrefix + '.' + this.editableTemplateField.order + '.';
             },
-            settings_component() {
+            settingsComponent() {
                 if (!this.editableTemplateField.type) {
                     return false;
                 }
@@ -210,8 +210,8 @@
         },
         methods: {
             getErrorMessage(field) {
-                let message = this.getPageErrorMessage(this.errorMessage_key + field);
-                message = message.replace(this.errorMessage_key, '');
+                let message = this.getPageErrorMessage(this.errorMessageKey + field);
+                message = message.replace(this.errorMessageKey, '');
                 return message;
             },
             onNameInput() {
