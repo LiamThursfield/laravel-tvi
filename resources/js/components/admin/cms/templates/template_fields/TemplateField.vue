@@ -18,7 +18,7 @@
                 :input-options="templateFieldTypes"
                 :input-required="true"
                 @input="updateTemplateField"
-                v-model="editable_templateField.type"
+                v-model="editableTemplateField.type"
             />
 
             <input-group
@@ -29,7 +29,7 @@
                 input-type="number"
                 label-text="Order"
                 @input="updateTemplateField"
-                v-model="editable_templateField.order"
+                v-model="editableTemplateField.order"
             />
         </div>
 
@@ -48,7 +48,7 @@
                 input-type="text"
                 label-text="Field Name"
                 @input="onNameInput"
-                v-model="editable_templateField.name"
+                v-model="editableTemplateField.name"
             />
 
             <input-group
@@ -61,7 +61,7 @@
                 label-text="Field Slug"
                 @blur="onSlugBlur"
                 @input="onSlugInput"
-                v-model="editable_templateField.slug"
+                v-model="editableTemplateField.slug"
             />
         </div>
 
@@ -73,7 +73,7 @@
             input-type="text"
             label-text="Description"
             @input="updateTemplateField"
-            v-model="editable_templateField.description"
+            v-model="editableTemplateField.description"
         />
 
         <checkbox-group
@@ -83,17 +83,17 @@
             :error-message="getErrorMessage('is_required')"
             label-text="Required?"
             @input="updateTemplateField"
-            v-model="editable_templateField.is_required"
+            v-model="editableTemplateField.is_required"
         />
 
         <!-- TODO: Implement Settings based on Type -->
         <component
             v-if="settings_component"
             :is="settings_component"
-            :default-settings="default_fieldSettings"
-            :template-field="editable_templateField"
+            :default-settings="defaultFieldSettings"
+            :template-field="editableTemplateField"
             @input="updateTemplateField"
-            v-model="editable_templateField.settings"
+            v-model="editableTemplateField.settings"
         >
             <p class="font-semibold mt-6 text-theme-base-subtle-contrast">
                 Settings
@@ -155,7 +155,7 @@
         data() {
             return {
                 autoUpdateSlug: true,
-                editable_templateField: {
+                editableTemplateField: {
                     description: '',
                     is_required: false,
                     name: '',
@@ -167,26 +167,26 @@
             }
         },
         computed: {
-            default_fieldSettings() {
-                if (!this.editable_templateField.type) {
+            defaultFieldSettings() {
+                if (!this.editableTemplateField.type) {
                     return false;
                 }
 
                 try {
-                    return this.templateFieldSettings[this.editable_templateField.type];
+                    return this.templateFieldSettings[this.editableTemplateField.type];
                 } catch (e) {
                     return {};
                 }
             },
             errorMessage_key() {
-                return this.errorMessageKeyPrefix + '.' + this.editable_templateField.order + '.';
+                return this.errorMessageKeyPrefix + '.' + this.editableTemplateField.order + '.';
             },
             settings_component() {
-                if (!this.editable_templateField.type) {
+                if (!this.editableTemplateField.type) {
                     return false;
                 }
 
-                switch (this.editable_templateField.type) {
+                switch (this.editableTemplateField.type) {
                     case 'number' :
                         return 'number-settings';
                     case 'repeater' :
@@ -201,10 +201,10 @@
             },
         },
         created() {
-            this.editable_templateField = _.cloneDeep(this.templateField);
+            this.editableTemplateField = _.cloneDeep(this.templateField);
 
             // If there is an existing slug, disable the auto slug update
-            if (this.editable_templateField.slug && this.editable_templateField.slug !== '') {
+            if (this.editableTemplateField.slug && this.editableTemplateField.slug !== '') {
                 this.autoUpdateSlug = false;
             }
         },
@@ -220,18 +220,18 @@
                     return;
                 }
 
-                this.editable_templateField.slug = this.slugify(this.editable_templateField.name);
+                this.editableTemplateField.slug = this.slugify(this.editableTemplateField.name);
                 this.updateTemplateField();
             },
             onSlugBlur() {
-                this.editable_templateField.slug = this.slugify(this.editable_templateField.slug);
+                this.editableTemplateField.slug = this.slugify(this.editableTemplateField.slug);
                 this.updateTemplateField();
             },
             onSlugInput() {
                 this.autoUpdateSlug = false;
             },
             onTemplateFieldUpdate() {
-                this.editable_templateField = _.cloneDeep(this.templateField);
+                this.editableTemplateField = _.cloneDeep(this.templateField);
             },
             slugify(value) {
                 if (!value || !value.length) {
@@ -245,7 +245,7 @@
                 );
             },
             updateTemplateField() {
-                this.$emit('input', _.cloneDeep(this.editable_templateField));
+                this.$emit('input', _.cloneDeep(this.editableTemplateField));
             }
         },
         watch: {
