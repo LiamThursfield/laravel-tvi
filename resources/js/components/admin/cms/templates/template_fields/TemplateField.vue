@@ -85,8 +85,7 @@
             @input="updateTemplateField"
             v-model="editableTemplateField.is_required"
         />
-
-        <!-- TODO: Implement Settings based on Type -->
+        
         <component
             v-if="settingsComponent"
             :is="settingsComponent"
