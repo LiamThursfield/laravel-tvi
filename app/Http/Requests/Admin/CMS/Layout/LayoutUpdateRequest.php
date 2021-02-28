@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests\Admin\CMS\Layout;
 
-use App\Http\Requests\BaseRequest;
 use App\Interfaces\CMS\CMSInterface;
-use App\Interfaces\CMS\TemplateInterface;
 use Illuminate\Validation\Rule;
 
-class LayoutUpdateRequest extends BaseRequest
+class LayoutUpdateRequest extends LayoutStoreRequest
 {
     public function attributes() : array
     {
@@ -21,35 +19,15 @@ class LayoutUpdateRequest extends BaseRequest
 
     public function rules() : array
     {
-        return [
-            'content.*.data'                => 'nullable',
-            'content.*.template_field_id'   => [
-                'required',
-                'integer',
-                Rule::exists('cms_template_fields', 'id')->where(function ($query) {
-                    return $query->where('template_id', $this->request->get('template_id'));
-                }),
-            ],
+        $rules = parent::rules();
 
-
-            'name' => [
-                'required',
-                'string',
-                'max:' . CMSInterface::FIELD_NAME_MAX_LENGTH,
-            ],
-            'template_id' => [
-                'required',
-                'integer',
-                Rule::exists('cms_templates', 'id')->where(function ($query) {
-                    $query->where('type', TemplateInterface::TYPE_LAYOUT);
-                }),
-            ],
-            'slug' => [
-                'required',
-                'string',
-                'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
-                Rule::unique('cms_layouts')->ignore($this->layout->id, 'id')
-            ],
+        $rules['slug'] = [
+            'required',
+            'string',
+            'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
+            Rule::unique('cms_layouts')->ignore($this->layout->id, 'id')
         ];
+
+        return $rules;
     }
 }
