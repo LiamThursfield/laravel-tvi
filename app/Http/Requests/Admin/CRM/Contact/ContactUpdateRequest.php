@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Admin\CRM\Contact;
 
-use App\Http\Requests\BaseRequest;
-use App\Interfaces\CRM\ContactInterface;
 use Illuminate\Validation\Rule;
 
 class ContactUpdateRequest extends ContactStoreRequest
