@@ -203,6 +203,30 @@
                     },
                     crm: {
                         children: {
+                            forms: {
+                                activeRoutes: ["admin.crm.forms.index", "admin.crm.forms.create", "admin.crm.forms.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Forms",
+                                        requiresAllPermissions: ["crm_forms.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.forms.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Form",
+                                        requiresAllPermissions: ["crm_forms.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.forms.create",
+                                    },
+                                },
+                                icon: "icon-forms",
+                                label: "Forms",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["crm_forms.create", "crm_forms.view"],
+                            },
                             contacts: {
                                 activeRoutes: ["admin.crm.contacts.index", "admin.crm.contacts.create", "admin.crm.contacts.edit"],
                                 children: {
@@ -230,7 +254,7 @@
                         },
                         label: "CRM",
                         requiresAllPermissions: [],
-                        requiresAnyPermissions: ["crm_contacts.create", "crm_contacts.view"],
+                        requiresAnyPermissions: ["crm_forms.create", "crm_forms.view", "crm_contacts.create", "crm_contacts.view"],
                         showLabel: true,
                     },
                     utilities: {

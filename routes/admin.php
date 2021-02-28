@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CMS\MenuController;
 use App\Http\Controllers\Admin\CMS\PageController;
 use App\Http\Controllers\Admin\CMS\TemplateController;
 use App\Http\Controllers\Admin\CRM\ContactController;
+use App\Http\Controllers\Admin\CRM\FormController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -34,6 +35,7 @@ Route::group([
     'prefix' => 'crm'
 ], function() {
     Route::resource('contacts', ContactController::class);
+    Route::resource('forms', FormController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])

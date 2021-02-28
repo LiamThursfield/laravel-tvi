@@ -13,23 +13,23 @@
                 :input-any-option-enabled="true"
                 input-any-option-label="Please select a field type"
                 :input-autofocus="!isAutofocusDisabled"
-                :input-id="`template-field-${templateField.order}-type`"
-                :input-name="`template-field-${templateField.order}-type`"
-                :input-options="templateFieldTypes"
+                :input-id="`form-field-${formField.order}-type`"
+                :input-name="`form-field-${formField.order}-type`"
+                :input-options="selectableFormFieldTypes"
                 :input-required="true"
-                @input="updateTemplateField"
-                v-model="editableTemplateField.type"
+                @input="updateFormField"
+                v-model="editableFormField.type"
             />
 
             <input-group
                 class="flex-1 mt-4 md:mt-0"
                 :input-disabled="true"
-                :input-id="`template-field-${templateField.order}-order`"
-                :input-name="`template-field-${templateField.order}-order`"
+                :input-id="`form-field-${formField.order}-order`"
+                :input-name="`form-field-${formField.order}-order`"
                 input-type="number"
                 label-text="Order"
-                @input="updateTemplateField"
-                v-model="editableTemplateField.order"
+                @input="updateFormField"
+                v-model="editableFormField.order"
             />
         </div>
 
@@ -42,57 +42,48 @@
             <input-group
                 class="flex-1 mt-4"
                 :error-message="getErrorMessage('name')"
-                :input-id="`template-field-${templateField.order}-name`"
-                :input-name="`template-field-${templateField.order}-name`"
+                :input-id="`template-field-${formField.order}-name`"
+                :input-name="`template-field-${formField.order}-name`"
                 :input-required="true"
                 input-type="text"
                 label-text="Field Name"
                 @input="onNameInput"
-                v-model="editableTemplateField.name"
+                v-model="editableFormField.name"
             />
 
             <input-group
                 class="flex-1 mt-4"
                 :error-message="getErrorMessage('slug')"
-                :input-id="`template-field-${templateField.order}-slug`"
-                :input-name="`template-field-${templateField.order}-slug`"
+                :input-disabled="isCrmFieldType"
+                :input-id="`template-field-${formField.order}-slug`"
+                :input-name="`template-field-${formField.order}-slug`"
                 :input-required="true"
                 input-type="text"
                 label-text="Field Slug"
                 @blur="onSlugBlur"
                 @input="onSlugInput"
-                v-model="editableTemplateField.slug"
+                v-model="editableFormField.slug"
             />
         </div>
 
-        <input-group
-            class="mt-4"
-            :error-message="getErrorMessage('description')"
-            :input-id="`template-field-${templateField.order}-description`"
-            :input-name="`template-field-${templateField.order}-description`"
-            input-type="text"
-            label-text="Description"
-            @input="updateTemplateField"
-            v-model="editableTemplateField.description"
-        />
-
         <checkbox-group
             class="mt-4"
-            :input-id="`template-field-${templateField.order}-is_required`"
-            :input-name="`template-field-${templateField.order}-is_required`"
+            :input-id="`template-field-${formField.order}-is_required`"
+            :input-name="`template-field-${formField.order}-is_required`"
             :error-message="getErrorMessage('is_required')"
             label-text="Required?"
-            @input="updateTemplateField"
-            v-model="editableTemplateField.is_required"
+            @input="updateFormField"
+            v-model="editableFormField.is_required"
         />
+
 
         <component
             v-if="settingsComponent"
             :is="settingsComponent"
             :default-settings="defaultFieldSettings"
-            :template-field="editableTemplateField"
-            @input="updateTemplateField"
-            v-model="editableTemplateField.settings"
+            :form-field="editableFormField"
+            @input="updateFormField"
+            v-model="editableFormField.settings"
         >
             <p class="font-semibold mt-6 text-theme-base-subtle-contrast">
                 Settings
@@ -105,30 +96,43 @@
     import slugify          from "slugify";
     import CheckboxGroup    from "../../../../core/forms/CheckboxGroup";
     import InputGroup       from "../../../../core/forms/InputGroup";
-    import NumberSettings   from "./template_field_settings/NumberSettings";
-    import RepeaterSettings from "./template_field_settings/RepeaterSettings";
+    import NumberSettings   from "./form_field_settings/NumberSettings";
     import SelectGroup      from "../../../../core/forms/SelectGroup";
-    import TextAreaSettings from "./template_field_settings/TextAreaSettings";
-    import TextSettings     from "./template_field_settings/TextSettings";
+    import TextAreaSettings from "./form_field_settings/TextAreaSettings";
+    import TextSettings     from "./form_field_settings/TextSettings";
 
     export default {
-        name: "TemplateField",
+        name: "FormField",
         components: {
             CheckboxGroup,
             InputGroup,
             NumberSettings,
-            RepeaterSettings,
             SelectGroup,
             TextAreaSettings,
             TextSettings,
         },
         model: {
-            prop: 'templateField'
+            prop: 'formField'
         },
         props: {
+            crmFormFieldTypes: {
+
+            },
             errorMessageKeyPrefix: {
-                default: 'templateFields',
+                default: 'formFields',
                 type: String
+            },
+            formField: {
+                required: true,
+                type: Object
+            },
+            formFieldSettings: {
+                required: true,
+                type: Object
+            },
+            formFieldTypes: {
+                required: true,
+                type: Object,
             },
             isAutofocusDisabled: {
                 default: false,
@@ -138,24 +142,11 @@
                 default: false,
                 type: Boolean
             },
-            templateField: {
-                required: true,
-                type: Object
-            },
-            templateFieldSettings: {
-                required: true,
-                type: Object
-            },
-            templateFieldTypes: {
-                required: true,
-                type: Object,
-            }
         },
         data() {
             return {
                 autoUpdateSlug: true,
-                editableTemplateField: {
-                    description: '',
+                editableFormField: {
                     is_required: false,
                     name: '',
                     order: 0,
@@ -167,29 +158,50 @@
         },
         computed: {
             defaultFieldSettings() {
-                if (!this.editableTemplateField.type) {
+                if (!this.editableFormField.type) {
                     return false;
                 }
 
                 try {
-                    return this.templateFieldSettings[this.editableTemplateField.type];
+                    return this.formFieldSettings[this.editableFormField.type];
                 } catch (e) {
                     return {};
                 }
             },
             errorMessageKey() {
-                return this.errorMessageKeyPrefix + '.' + this.editableTemplateField.order + '.';
+                return this.errorMessageKeyPrefix + '.' + this.editableFormField.order + '.';
+            },
+            isCrmFieldType() {
+                try {
+                    if (!this.editableFormField) {
+                        return false;
+                    }
+
+                    return Object.keys(this.crmFormFieldTypes).indexOf(this.editableFormField.type) >= 0;
+                } catch (e) {
+                    return false;
+                }
+            },
+            selectableFormFieldTypes() {
+                let types = {};
+
+                // Add the currently selected type if it's a CRM type
+                if (this.isCrmFieldType) {
+                    types[this.editableFormField.type] = this.crmFormFieldTypes[this.editableFormField.type];
+                }
+
+                types = {...types, ...this.formFieldTypes}
+
+                return types;
             },
             settingsComponent() {
-                if (!this.editableTemplateField.type) {
+                if (!this.editableFormField.type) {
                     return false;
                 }
 
-                switch (this.editableTemplateField.type) {
+                switch (this.editableFormField.type) {
                     case 'number' :
                         return 'number-settings';
-                    case 'repeater' :
-                        return 'repeater-settings';
                     case 'text' :
                         return 'text-settings';
                     case 'textarea' :
@@ -200,10 +212,10 @@
             },
         },
         created() {
-            this.editableTemplateField = _.cloneDeep(this.templateField);
+            this.editableFormField = _.cloneDeep(this.formField);
 
             // If there is an existing slug, disable the auto slug update
-            if (this.editableTemplateField.slug && this.editableTemplateField.slug !== '') {
+            if (this.editableFormField.slug && this.editableFormField.slug !== '') {
                 this.autoUpdateSlug = false;
             }
         },
@@ -213,47 +225,57 @@
                 message = message.replace(this.errorMessageKey, '');
                 return message;
             },
+            onEditableFormFieldUpdate() {
+                if (this.isCrmFieldType) {
+                    // Use the type as slug for CRM fields
+                    this.$set(
+                        this.editableFormField,
+                        'slug',
+                        this.editableFormField.type
+                    )
+                }
+            },
+            onFormFieldUpdate() {
+                this.editableFormField = _.cloneDeep(this.formField);
+            },
             onNameInput() {
                 if (!this.autoUpdateSlug) {
-                    this.updateTemplateField();
+                    this.updateFormField();
                     return;
                 }
 
-                this.editableTemplateField.slug = this.slugify(this.editableTemplateField.name);
-                this.updateTemplateField();
+                this.editableFormField.slug = this.slugify(this.editableFormField.name);
+                this.updateFormField();
             },
             onSlugBlur() {
-                this.editableTemplateField.slug = this.slugify(this.editableTemplateField.slug);
-                this.updateTemplateField();
+                this.editableFormField.slug = this.slugify(this.editableFormField.slug);
+                this.updateFormField();
             },
             onSlugInput() {
                 this.autoUpdateSlug = false;
-            },
-            onTemplateFieldUpdate() {
-                this.editableTemplateField = _.cloneDeep(this.templateField);
             },
             slugify(value) {
                 if (!value || !value.length) {
                     return '';
                 }
 
-                return slugify(
-                    value, {
-                        lower: true,
-                    }
-                );
+                return slugify(value, {lower: true});
             },
-            updateTemplateField() {
-                this.$emit('input', _.cloneDeep(this.editableTemplateField));
+            updateFormField() {
+                this.$emit('input', _.cloneDeep(this.editableFormField));
             }
         },
         watch: {
+            editableFormField: {
+                deep: true,
+                handler: 'onEditableFormFieldUpdate'
+            },
             // TODO: I'd like a more elegant / efficient solution
             // - This fixes some "oddities" to ensure data is re-ordered properly via draggable
             // - But it does get called quite a lot, especially if there are a lot of fields
-            templateField: {
+            formField: {
                 deep: true,
-                handler: 'onTemplateFieldUpdate'
+                handler: 'onFormFieldUpdate'
             }
         }
     }

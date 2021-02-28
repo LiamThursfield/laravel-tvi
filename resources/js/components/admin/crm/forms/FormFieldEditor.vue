@@ -1,21 +1,14 @@
 <template>
     <div>
         <div class="flex flex-row items-center">
-            <span class="text-lg">Template Fields</span>
-            <button
-                class="button button-primary-subtle button-small ml-auto text-sm"
-                type="button"
-                @click="addTemplateField"
-            >
-                Add Field
-            </button>
+            <span class="text-lg">Form Fields</span>
         </div>
 
         <p
-            v-if="!editableTemplateFields.length"
+            v-if="!editableFormFields.length"
             class="bg-theme-base-subtle mt-6 px-4 py-3 rounded text-center text-theme-base-subtle-contrast"
         >
-            No template fields
+            No form fields
         </p>
 
         <draggable
@@ -28,15 +21,15 @@
             @end="onDraggableEnd"
             @sort="onDraggableSort"
             @start="onDraggableStart"
-            v-model="editableTemplateFields"
+            v-model="editableFormFields"
         >
             <transition-group
                 :name="!isDragging ? 'flip-field' : null"
                 type="transition"
             >
                 <article
-                    v-for="(templateField, index) in editableTemplateFields"
-                    :key="`template-field-${index}`"
+                    v-for="(formField, index) in editableFormFields"
+                    :key="`form-field-${index}`"
                     class="border-2 border-theme-base-subtle mt-4 overflow-hidden rounded"
                 >
                     <!-- Draggable Header -->
@@ -49,22 +42,23 @@
                         <icon-grid-dots class="w-5" />
 
                         <span class="flex-1 pl-4">
-                            <template v-if="templateField.name && templateField.name.length">
-                                {{ templateField.name }}
+                            <template v-if="formField.name && formField.name.length">
+                                {{ formField.name }}
                             </template>
                             <template v-else>
-                                New Template Field
+                                New Form Field
                             </template>
                         </span>
                     </header>
 
                     <p class="p-4">
-                        <template-field
+                        <form-field
+                            :crm-form-field-types="crmFormFieldTypes"
+                            :form-field-types="selectableFormFieldTypes"
+                            :form-field-settings="formFieldSettings"
                             :is-autofocus-disabled="isAutofocusDisabled"
-                            :template-field-types="templateFieldTypes"
-                            :template-field-settings="templateFieldSettings"
-                            @input="updateTemplateFields"
-                            v-model="editableTemplateFields[index]"
+                            @input="updateFormFields"
+                            v-model="editableFormFields[index]"
                         />
                     </p>
 
@@ -76,7 +70,7 @@
                                 hover:bg-theme-danger-contrast hover:text-theme-danger hover:border-theme-danger-contrast
                             "
                             type="button"
-                            @click="deleteTemplateField(index)"
+                            @click="deleteFormField(index)"
                         >
                             <icon-trash class="h-4 w-4" />
                             <span class="pl-2">Delete</span>
@@ -86,24 +80,48 @@
                 </article>
             </transition-group>
         </draggable>
+
+        <div class="flex flex-row items-center mt-6">
+
+            <button
+                class="button button-primary-subtle button-small ml-auto text-sm"
+                type="button"
+                @click="addFormField"
+            >
+                Add Field
+            </button>
+        </div>
+
     </div>
 </template>
 
 <script>
     import _ from 'lodash';
     import draggable from 'vuedraggable';
-    import TemplateField from "./template_fields/TemplateField";
+    import FormField from "./form_fields/FormField";
 
     export default {
-        name: 'TemplateFieldEditor',
+        name: 'FormFieldEditor',
         components: {
             draggable,
-            TemplateField
+            FormField,
         },
         model: {
-            prop: 'templateFields'
+            prop: 'formFields'
         },
         props: {
+            crmFormFieldTypes: {
+                type: Object,
+                required: true
+            },
+            formFields: {
+                required: true,
+                type: Array
+            },
+            formFieldSettings: {
+                type: Object,
+                required: true
+            },
             isEditing: {
                 default: false,
                 type: Boolean
@@ -112,67 +130,77 @@
                 default: false,
                 type: Boolean
             },
-            templateFieldSettings: {
-                required: true,
+            standardFormFieldTypes: {
                 type: Object,
-            },
-            templateFieldTypes: {
-                required: true,
-                type: Object,
-            },
-            templateFields: {
-                required: true,
-                type: Array,
+                required: true
             },
         },
         data() {
             return {
-                editableTemplateFields: [],
+                editableFormFields: [],
                 isAutofocusDisabled: false,
                 isDragging: false,
             }
+        },
+        computed: {
+            selectedFormFieldTypes() {
+                let types = new Set();
+
+                _.forEach(this.editableFormFields, field => {
+                    if (field.type) {
+                        types.add(field.type);
+                    }
+                });
+
+                return types;
+            },
+            selectableFormFieldTypes() {
+
+                // CRM fields can only be selected once
+                let availableCrmTypes = {};
+                _.forEach(this.crmFormFieldTypes, (label, slug) => {
+                    if (!this.selectedFormFieldTypes.has(slug)) {
+                        availableCrmTypes[slug] = label;
+                    }
+                });
+
+                return {...availableCrmTypes, ...this.standardFormFieldTypes};
+
+            },
         },
         created() {
             if (this.isEditing) {
                 this.isAutofocusDisabled = true;
             }
-            this.editableTemplateFields = _.cloneDeep(this.templateFields);
+            this.editableFormFields = _.cloneDeep(this.formFields);
         },
         methods: {
-            addTemplateField() {
+            addFormField() {
                 this.isAutofocusDisabled = false;
 
-                this.editableTemplateFields.push({
-                    description: '',
+                this.editableFormFields.push({
                     is_required: false,
                     name: '',
-                    order: this.templateFields.length,
+                    order: this.formFields.length,
                     settings: {},
                     slug: '',
                     type: '',
                 });
 
-                this.updateTemplateFields();
+                this.updateFormFields();
             },
-            deleteTemplateField(index) {
+            deleteFormField(index) {
                 try {
-                    this.editableTemplateFields.splice(index, 1);
-                    this.reorderTemplateFields();
+                    this.editableFormFields.splice(index, 1);
+                    this.reorderFormFields();
                 } catch (e) {
                     this.$errorToast('Failed to delete field');
                     console.log(e); // TODO: This should go through to a log tracker once available
                 }
             },
-            getTemplateFieldTypesKeys() {
-                try {
-                    return Object.keys(this.templateFieldTypes);
-                } catch (e) {
-                    return [];
-                }
-            },
             onDraggableEnd() {
                 this.isDragging = false;
-                this.reorderTemplateFields();
+                this.reorderFormFields();
             },
             onDraggableSort() {
                 // Clear page errors as indexes have changed
@@ -181,51 +209,33 @@
             onDraggableStart() {
                 this.isDragging = true;
             },
-            onTemplateFieldsChange(fields) {
-                this.editableTemplateFields = _.cloneDeep(fields);
+            onFormFieldsChange(fields) {
+                this.editableFormFields = _.cloneDeep(fields);
             },
-            onTemplateFieldTypesChange() {
+            reorderFormFields() {
                 try {
-                    let allowedFields = this.getTemplateFieldTypesKeys();
-                    _.forEach(this.editableTemplateFields, (field, key) => {
-                        if (field.type && allowedFields.indexOf(field.type) < 0) {
-                            this.editableTemplateFields[key].type = '';
-                        }
-                    });
-
-                    this.updateTemplateFields();
-                } catch (e) {
-                    console.log(e); // TODO: Replace with error tracker
-                }
-            },
-            reorderTemplateFields() {
-                try {
-                    if (!this.editableTemplateFields.length) {
-                        this.updateTemplateFields();
+                    if (!this.editableFormFields.length) {
+                        this.updateFormFields();
                         return;
                     }
 
-                    this.editableTemplateFields.forEach((field, index) => {
-                        this.editableTemplateFields[index].order = index;
+                    this.editableFormFields.forEach((field, index) => {
+                        this.editableFormFields[index].order = index;
                     });
 
-                    this.updateTemplateFields();
+                    this.updateFormFields();
                 } catch (e) {
                     throw "Failed to reorder fields: " + e
                 }
             },
-            updateTemplateFields() {
-                this.$emit('input', _.cloneDeep(this.editableTemplateFields));
+            updateFormFields() {
+                this.$emit('input', _.cloneDeep(this.editableFormFields));
             }
         },
         watch: {
-            templateFields: {
-                handler: 'onTemplateFieldsChange'
+            formFields: {
+                handler: 'onFormFieldsChange'
             },
-            templateFieldTypes: {
-                handler: 'onTemplateFieldTypesChange',
-                deep: true,
-            }
         }
     }
 </script>
@@ -243,4 +253,3 @@
         transition: transform 0s;
     }
 </style>
-

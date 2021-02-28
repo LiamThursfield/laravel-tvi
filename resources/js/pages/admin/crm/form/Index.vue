@@ -1,26 +1,27 @@
 <template>
     <section>
+        <!-- Header -->
         <div
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                 Templates
+                Forms
             </h1>
 
             <inertia-link
-                v-if="userCan('cms_advanced.create')"
+                v-if="userCan('crm_forms.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
                 "
-                :href="$route('admin.cms.templates.create')"
+                :href="$route('admin.crm.forms.create')"
             >
                 <icon-plus class="w-5 md:mr-2"/>
 
                 <span
                     class="hidden md:inline"
                 >
-                    Create Template
+                    Create Form
                 </span>
             </inertia-link>
         </div>
@@ -47,58 +48,43 @@
                     md:flex-row md:space-y-0 md:space-x-8
                 "
             >
-                <div class="w-full md:w-1/3">
+                <div class="w-full md:w-1/2">
                     <input-group
-                        input-autocomplete="template_name_search"
+                        input-autocomplete="form_name_search"
                         input-class="form-control form-control-short"
-                        input-id="template_name"
-                        input-name="template_name"
-                        input-placeholder="Template Name"
+                        input-id="form_name"
+                        input-name="form_name"
+                        input-placeholder="Form Name"
                         input-type="text"
                         :label-hidden="true"
-                        label-text="Template Name"
-                        v-model="editableSearchOptions.template_name"
+                        label-text="Form Name"
+                        v-model="editableSearchOptions.form_name"
                     />
                 </div>
 
-                <div class="w-full md:w-1/3">
+                <div class="w-full md:w-1/2">
                     <input-group
-                        input-autocomplete="template_slug_search"
+                        input-autocomplete="form_slug_search"
                         input-class="form-control form-control-short"
-                        input-id="template_slug"
-                        input-name="template_slug"
-                        input-placeholder="Template Slug"
+                        input-id="form_slug"
+                        input-name="form_slug"
+                        input-placeholder="Form Slug"
                         input-type="text"
                         :label-hidden="true"
-                        label-text="Template Slug"
-                        v-model="editableSearchOptions.template_slug"
-                    />
-                </div>
-
-                <div class="w-full md:w-1/3">
-                    <select-group
-                        :label-hidden="true"
-                        label-text="Template Type"
-                        :input-any-option-enabled="true"
-                        input-any-option-label="Template Type"
-                        input-class="form-control form-control-short"
-                        input-id="template_type"
-                        input-name="template_type"
-                        :input-options="templateTypes"
-                        v-model="editableSearchOptions.template_type"
+                        label-text="Form Slug"
+                        v-model="editableSearchOptions.form_slug"
                     />
                 </div>
             </div>
 
             <p
-                v-if="!templatesData"
+                v-if="!formsData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
-                No templates
+                No forms
             </p>
 
             <template v-else>
-
                 <!-- Search Results -->
                 <div class="block mt-8 overflow-x-auto w-full">
                     <table class="table table-hover table-striped w-full">
@@ -106,35 +92,31 @@
                         <tr>
                             <th>Name</th>
                             <th>Slug</th>
-                            <th>Type</th>
-                            <th v-if="showTemplateActions"></th>
+                            <th v-if="showFormActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(template, index) in templatesData"
-                            :key="`template-${template.id}`"
+                            v-for="form in formsData"
+                            :key="`template-${form.id}`"
                         >
                             <td>
-                                {{ template.name }}
+                                {{ form.name }}
                             </td>
                             <td>
-                                {{ template.slug }}
+                                {{ form.slug }}
                             </td>
-                            <td>
-                                {{ getTemplateTypeLabel(template.type) }}
-                            </td>
-                            <td v-if="showTemplateActions">
+                            <td v-if="showFormActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
-                                        v-if="userCan('cms_advanced.edit')"
+                                        v-if="userCan('crm_forms.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.cms.templates.edit', template.id)"
-                                        title="Edit Template"
+                                        :href="$route('admin.crm.forms.edit', form.id)"
+                                        title="Edit Form"
                                     >
                                         <icon-edit
                                             class="w-4"
@@ -142,14 +124,14 @@
                                     </inertia-link>
 
                                     <button
-                                        v-if="userCan('cms_advanced.delete')"
+                                        v-if="userCan('crm_forms.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-danger hover:text-theme-danger-contrast
                                         "
                                         title="Delete Template"
-                                        @click="checkDelete(template)"
+                                        @click="checkDelete(form)"
                                     >
                                         <icon-trash
                                             class="w-4"
@@ -167,9 +149,10 @@
                     v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
-                    <pagination :pagination="templates.pagination" />
+                    <pagination :pagination="forms.pagination" />
                 </div>
             </template>
+
 
             <confirmation-modal
                 confirm-text="Delete"
@@ -192,7 +175,7 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
     export default {
-        name: "AdminCmsTemplateIndex",
+        name: "AdminCrmFormIndex",
         components: {
             ConfirmationModal,
             InputGroup,
@@ -204,53 +187,48 @@
                 required: true,
                 type: Object|Array,
             },
-            templates: {
+            forms: {
                 required: true,
                 type: Object,
             },
-            templateTypes: {
-                required: true,
-                type: Object,
-            }
         },
         data() {
             return {
                 editableSearchOptions: {
-                    per_page        : 15,
-                    template_name   : '',
-                    template_slug   : '',
-                    template_type   : '',
+                    per_page    : 15,
+                    form_name   : '',
+                    form_slug   : '',
                 },
                 isInitialised: false,
                 isLoadingDelete: false,
                 showDeleteModal: false,
-                templateToDelete: null,
+                formToDelete: null,
             }
         },
         computed: {
             deleteModalText() {
                 try {
-                    return 'Do you really want to delete \'' + this.templateToDelete.name + '\'?';
+                    return 'Do you really want to delete \'' + this.formToDelete.name + '\'?';
                 } catch (e) {
-                    return 'Do you really want to delete this template?'
+                    return 'Do you really want to delete this form?'
                 }
             },
             showPagination() {
                 try {
-                    return this.templates.pagination.last_page > 1;
+                    return this.forms.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
-            showTemplateActions() {
+            showFormActions() {
                 return this.userCan('cms_advanced.edit') || this.userCan('cms_advanced.delete');
             },
-            templatesData() {
-                if (!this.templates || !this.templates.data || this.templates.data.length < 1) {
+            formsData() {
+                if (!this.forms || !this.forms.data || this.forms.data.length < 1) {
                     return false;
                 }
 
-                return this.templates.data;
+                return this.forms.data;
             }
         },
         mounted() {
@@ -260,51 +238,44 @@
             cancelDelete() {
                 if (!this.isLoadingDelete) {
                     this.showDeleteModal = false;
-                    this.templateToDelete = null;
+                    this.formToDelete = null;
                 }
             },
-            checkDelete(template) {
+            checkDelete(form) {
                 this.showDeleteModal = true;
-                this.templateToDelete = template;
+                this.formToDelete = form;
             },
             confirmDelete() {
                 if (this.isLoadingDelete) {
-                    return this.$errorToast('It\'s only possible to delete one template at a time.');
+                    return this.$errorToast('It\'s only possible to delete one form at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.cms.templates.destroy', this.templateToDelete.id),
+                    this.$route('admin.crm.forms.destroy', this.formToDelete.id),
                     {
                         only: [
                             'flash',
-                            'templates'
+                            'forms'
                         ]
                     }
                 );
-                this.templateToDelete = null;
+                this.formToDelete = null;
                 this.showDeleteModal = false;
-            },
-            getTemplateTypeLabel(type_slug) {
-                try {
-                     return this.templateTypes.hasOwnProperty(type_slug) ? this.templateTypes[type_slug] : type_slug;
-                } catch (e) {
-                    return type_slug;
-                }
             },
             onSearchOptionsUpdate: _.debounce(function () {
                 if (!this.isInitialised) {
                     this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.templatesData) {
+                    if (this.formsData) {
                         return;
                     }
                 }
 
                 Inertia.get(
-                    this.$route('admin.cms.templates.index'),
+                    this.$route('admin.crm.forms.index'),
                     this.editableSearchOptions,
                     {
-                        only: ['templates'],
+                        only: ['forms'],
                         preserveState: true,
                     }
                 );
@@ -312,9 +283,8 @@
             setSearchOptions(new_options = {}) {
                 let options = {
                     per_page        : 15,
-                    template_name   : '',
-                    template_slug   : '',
-                    template_type   : '',
+                    form_name   : '',
+                    form_slug   : '',
                 }
 
                 try {
