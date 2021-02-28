@@ -13,6 +13,7 @@ class FormUpdateRequest extends FormStoreRequest
     {
         $rules = parent::rules();
 
+        $rules['form_fields.*.id'] = 'nullable|integer';
         $rules['slug'] = [
             'required',
             'string',

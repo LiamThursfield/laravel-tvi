@@ -38,6 +38,7 @@ class TemplateStoreRequest extends BaseRequest
 
             // Template Fields
             'template_fields.*.description' => 'nullable|string',
+            'template_fields.*.id' => 'nullable|integer',
             'template_fields.*.is_required' => 'sometimes|boolean',
             'template_fields.*.name' => [
                 'required',
