@@ -10,7 +10,7 @@ class FormResource extends JsonResource
     {
         return [
             'email_recipients'  => $this->email_recipients ?? [],
-            'form_fields'       => FormFieldResource::make($this->whenLoaded('form_fields')),
+            'form_fields'       => FormFieldResource::collection($this->whenLoaded('formFields')),
             'id'                => $this->id,
             'name'              => $this->name,
             'slug'              => $this->slug,
