@@ -20,9 +20,15 @@ class Form extends Model
         'email_recipients' => 'array',
     ];
 
+
     public function formFields() : HasMany
     {
         return $this->hasMany(FormField::class);
+    }
+
+    public function formSubmissions() : HasMany
+    {
+        return $this->hasMany(FormSubmission::class);
     }
 
 }
