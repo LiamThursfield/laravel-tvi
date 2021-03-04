@@ -17,8 +17,17 @@ class FormFieldInterface
         self::TYPE_CRM_EMAIL,
         self::TYPE_CRM_FIRST_NAME,
         self::TYPE_CRM_LAST_NAME,
-        self::TYPE_CRM_TITLE,
         self::TYPE_CRM_TELEPHONE,
+        self::TYPE_CRM_TITLE,
+    ];
+
+    // The value is the name of the field in the contact model
+    const ALL_CRM_TYPES_MAPPED = [
+        self::TYPE_CRM_EMAIL        => 'email',
+        self::TYPE_CRM_FIRST_NAME   => 'first_name',
+        self::TYPE_CRM_LAST_NAME    => 'last_name',
+        self::TYPE_CRM_TELEPHONE    => 'telephone',
+        self::TYPE_CRM_TITLE        => 'title',
     ];
 
     // Standard Form Field Types
