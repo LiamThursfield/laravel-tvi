@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CMS\PageController;
+use App\Http\Controllers\Api\CRM\FormSubmissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/form-submission/{form}', [FormSubmissionController::class, 'store'])->name('api.form-submission.store');
 
 Route::get('/page', [PageController::class, 'show'])->name('api.page');
