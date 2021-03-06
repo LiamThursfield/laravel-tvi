@@ -221,7 +221,7 @@
                 }
             },
             showFormActions() {
-                return this.userCan('cms_advanced.edit') || this.userCan('cms_advanced.delete');
+                return this.userCan('crm_forms.edit') || this.userCan('crm_forms.delete');
             },
             formsData() {
                 if (!this.forms || !this.forms.data || this.forms.data.length < 1) {
