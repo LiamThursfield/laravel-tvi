@@ -232,14 +232,14 @@
                         this.editableFormField,
                         'slug',
                         this.editableFormField.type
-                    )
+                    );
                 }
             },
             onFormFieldUpdate() {
                 this.editableFormField = _.cloneDeep(this.formField);
             },
             onNameInput() {
-                if (!this.autoUpdateSlug) {
+                if (!this.autoUpdateSlug || this.isCrmFieldType) {
                     this.updateFormField();
                     return;
                 }
@@ -259,7 +259,10 @@
                     return '';
                 }
 
-                return slugify(value, {lower: true});
+                return slugify(value, {
+                    lower: true,
+                    replacement: '_',
+                });
             },
             updateFormField() {
                 this.$emit('input', _.cloneDeep(this.editableFormField));
