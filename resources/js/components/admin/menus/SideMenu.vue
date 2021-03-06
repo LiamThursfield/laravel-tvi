@@ -206,14 +206,6 @@
                             forms: {
                                 activeRoutes: ["admin.crm.forms.index", "admin.crm.forms.create", "admin.crm.forms.edit", "admin.crm.form-submissions.index", "admin.crm.form-submissions.show"],
                                 children: {
-                                    submissions: {
-                                        activeRoutes: ["admin.crm.form-submissions.index", "admin.crm.form-submissions.show"],
-                                        icon: false,
-                                        label: "View Form Submissions",
-                                        requiresAllPermissions: ["crm_form_submissions.view"],
-                                        requiresAnyPermissions: [],
-                                        route: "admin.crm.form-submissions.index",
-                                    },
                                     index: {
                                         icon: false,
                                         label: "View Forms",
@@ -228,6 +220,14 @@
                                         requiresAllPermissions: ["crm_forms.create"],
                                         requiresAnyPermissions: [],
                                         route: "admin.crm.forms.create",
+                                    },
+                                    submissions: {
+                                        activeRoutes: ["admin.crm.form-submissions.index", "admin.crm.form-submissions.show"],
+                                        icon: false,
+                                        label: "View Form Submissions",
+                                        requiresAllPermissions: ["crm_form_submissions.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.form-submissions.index",
                                     },
                                 },
                                 icon: "icon-forms",
