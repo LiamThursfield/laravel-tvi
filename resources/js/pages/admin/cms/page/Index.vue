@@ -104,7 +104,7 @@
                         input-any-option-label="Layout"
                         input-class="form-control form-control-short"
                         input-id="template_id"
-                        input-name="layout_id"
+                        input-name="template_id"
                         input-option-label-key="name"
                         input-option-value-key="id"
                         :input-options="layouts"
