@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin\CRM;
 use App\Actions\CRM\FormSubmission\FormSubmissionQueryAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\CRM\FormSubmission\FormSubmissionIndexRequest;
+use App\Http\Resources\Admin\CRM\FormSubmissionResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\CRM\Form;
+use App\Models\CRM\FormSubmission;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -43,6 +45,24 @@ class FormSubmissionController extends AdminController
             },
             'forms' => function () {
                 return Form::orderBy('name', 'asc')->get()->keyBy('id');
+            }
+        ]);
+    }
+
+    public function show(FormSubmission $formSubmission) : Response
+    {
+        $this->addMetaTitleSection('View')->shareMeta();
+
+        return Inertia::render('admin/crm/form_submission/Show', [
+            'formSubmission' => function () use ($formSubmission) {
+                $formSubmission->load([
+                    'contact',
+                    'form',
+                    'form.formFields',
+                ]);
+
+                FormSubmissionResource::withoutWrapping();
+                return FormSubmissionResource::make($formSubmission);
             }
         ]);
     }
