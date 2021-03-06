@@ -9,7 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\CRM\Contact\ContactIndexRequest;
 use App\Http\Requests\Admin\CRM\Contact\ContactStoreRequest;
 use App\Http\Requests\Admin\CRM\Contact\ContactUpdateRequest;
-use App\Http\Resources\Admin\CRM\ContactEditResource;
+use App\Http\Resources\Admin\CRM\ContactResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\CRM\Contact;
@@ -65,8 +65,8 @@ class ContactController extends AdminController
         $this->addMetaTitleSection('Edit - ' . $contact->name)->shareMeta();
         return Inertia::render('admin/crm/contact/Edit', [
             'contact' => function () use ($contact) {
-                ContactEditResource::withoutWrapping();
-                return ContactEditResource::make($contact);
+                ContactResource::withoutWrapping();
+                return ContactResource::make($contact);
             }
         ]);
     }

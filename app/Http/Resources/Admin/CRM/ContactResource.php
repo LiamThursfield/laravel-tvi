@@ -4,7 +4,7 @@ namespace App\Http\Resources\Admin\CRM;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ContactEditResource extends JsonResource
+class ContactResource extends JsonResource
 {
     public function toArray($request)
     {
