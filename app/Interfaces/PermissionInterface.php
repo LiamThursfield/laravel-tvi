@@ -34,6 +34,9 @@ class PermissionInterface
     const EDIT_CRM_CONTACTS      = 'edit crm_contacts';
     const VIEW_CRM_CONTACTS      = 'view crm_contacts';
 
+    // CRM Form Submission Permissions
+    const VIEW_CRM_FORM_SUBMISSIONS = 'view crm_form_permissions';
+
     // CRM Forms Permissions
     const CREATE_CRM_FORMS    = 'create crm_forms';
     const DELETE_CRM_FORMS    = 'delete crm_forms';
@@ -78,6 +81,9 @@ class PermissionInterface
             'delete'    => self::DELETE_CRM_CONTACTS,
             'edit'      => self::EDIT_CRM_CONTACTS,
             'view'      => self::VIEW_CRM_CONTACTS,
+        ],
+        'crm_form_submissions' => [
+            'view'  => self::VIEW_CRM_FORM_SUBMISSIONS,
         ],
         'crm_forms' => [
             'create'    => self::CREATE_CRM_FORMS,

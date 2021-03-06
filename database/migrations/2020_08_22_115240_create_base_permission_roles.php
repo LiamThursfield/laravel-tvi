@@ -84,6 +84,8 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::DELETE_CRM_CONTACTS,
             PermissionInterface::EDIT_CRM_CONTACTS,
             PermissionInterface::VIEW_CRM_CONTACTS,
+            // CRM Form Submissions
+            PermissionInterface::VIEW_CRM_FORM_SUBMISSIONS,
             // CRM Forms
             PermissionInterface::CREATE_CRM_FORMS,
             PermissionInterface::DELETE_CRM_FORMS,
@@ -126,6 +128,8 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::DELETE_CRM_CONTACTS,
                 PermissionInterface::EDIT_CRM_CONTACTS,
                 PermissionInterface::VIEW_CRM_CONTACTS,
+                // CRM Form Submissions
+                PermissionInterface::VIEW_CRM_FORM_SUBMISSIONS,
                 // CRM Forms
                 PermissionInterface::CREATE_CRM_FORMS,
                 PermissionInterface::DELETE_CRM_FORMS,
