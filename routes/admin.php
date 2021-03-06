@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CMS\PageController;
 use App\Http\Controllers\Admin\CMS\TemplateController;
 use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
+use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -35,6 +36,9 @@ Route::group([
     'prefix' => 'crm'
 ], function() {
     Route::resource('contacts', ContactController::class);
+    Route::resource('form-submissions', FormSubmissionController::class)->only([
+        'index', 'show'
+    ]);
     Route::resource('forms', FormController::class);
 });
 
