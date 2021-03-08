@@ -25,17 +25,17 @@ class TemplateSeeder extends Seeder
     protected function createLayoutTemplate()
     {
         $template = Template::create([
-            'type'          => TemplateInterface::TYPE_LAYOUT,
+            'description'   => 'Default template for layouts.',
             'name'          => 'Default Layout Template',
             'slug'          => 'default-layout-template',
-            'description'   => 'Default template for layouts.',
+            'type'          => TemplateInterface::TYPE_LAYOUT,
         ]);
 
         $template->templateFields()->create([
-            'type'  => TemplateFieldInterface::TYPE_TEXT,
             'name'  => 'Shared Content',
-            'slug'  => 'shared-content',
             'order' => 0,
+            'slug'  => 'shared-content',
+            'type'  => TemplateFieldInterface::TYPE_TEXT,
         ]);
 
 
@@ -49,24 +49,25 @@ class TemplateSeeder extends Seeder
     protected function createPageTemplate()
     {
         $template = Template::create([
-            'type'          => TemplateInterface::TYPE_PAGE,
+            'description'   => 'Default template for pages.',
             'name'          => 'Default Page Template',
             'slug'          => 'default-page-template',
-            'description'   => 'Default template for pages.',
+            'type'          => TemplateInterface::TYPE_PAGE,
         ]);
 
-        $template->templateFields()->create([
-            'type'  => TemplateFieldInterface::TYPE_TEXT,
-            'name'  => 'Header',
-            'slug'  => 'header',
-            'order' => 0,
-        ]);
-
-        $template->templateFields()->create([
-            'type'  => TemplateFieldInterface::TYPE_WYSIWYG,
-            'name'  => 'Content',
-            'slug'  => 'content',
-            'order' => 1,
+        $template->templateFields()->createMany([
+            [
+                'name'  => 'Header',
+                'order' => 0,
+                'slug'  => 'header',
+                'type'  => TemplateFieldInterface::TYPE_TEXT,
+            ],
+            [
+                'name'  => 'Content',
+                'order' => 1,
+                'slug'  => 'content',
+                'type'  => TemplateFieldInterface::TYPE_WYSIWYG,
+            ],
         ]);
     }
 }
