@@ -89,6 +89,19 @@ class FormSubmissionStoreAction
                 = Arr::get($this->submissionData, $field->slug);
         }
 
+        // Get the marketing fields
+        // We should only update marketing fields that are enabled in the form
+        $marketingFields = [
+            'marketing_email',
+            'marketing_sms',
+            'marketing_telephone',
+        ];
+        foreach ($marketingFields as $field) {
+            if ($this->form[$field]) {
+                $crmData[$field] = (bool) Arr::get($this->submissionData, $field, false);
+            }
+        }
+
         return $crmData;
     }
 }

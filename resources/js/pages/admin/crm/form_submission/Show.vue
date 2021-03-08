@@ -77,6 +77,34 @@
             </div>
         </div>
 
+        <!-- Marketing Preferences -->
+        <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
+            <div class="block px-6 w-full">
+                <h2 class="font-semibold">
+                    Marketing Preference Data
+                </h2>
+
+                <p
+                    v-for="(enabled, slug) in enabledFormMarketingFields"
+                    :key="`marketing-field-${slug}`"
+                    class="mt-2"
+                >
+                    <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
+                        {{  marketingFields[slug] }}
+                    </span>
+
+                    <template v-if="!enabled">
+                        The {{ marketingFields[slug] }} field is not tracked for this form.
+                    </template>
+
+                    <template v-else>
+                        {{ getFormSubmissionMarketingField(slug) }}
+                    </template>
+                </p>
+            </div>
+        </div>
+
+        <!-- Submission Data -->
         <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <h2 class="font-semibold">
@@ -99,6 +127,7 @@
 </template>
 
 <script>
+    import _ from 'lodash';
 
     export default {
         name: "AdminCrmFormSubmissionShow",
@@ -109,12 +138,49 @@
                 type: Object
             }
         },
+        data() {
+            return {
+                marketingFields: {
+                    marketing_email: 'Email',
+                    marketing_sms: 'SMS',
+                    marketing_telephone: 'Telephone',
+                }
+            }
+        },
+        computed: {
+            enabledFormMarketingFields() {
+                let fields = {};
+
+                try {
+                    _.forEach(this.marketingFields, (label, slug) => {
+                        if (this.formSubmission.form.hasOwnProperty(slug)) {
+                            fields[slug] = this.formSubmission.form[slug];
+                        } else {
+                            fields[slug] = false;
+                        }
+                    });
+
+                    return fields;
+                } catch (e) {
+                    return fields;
+                }
+            },
+        },
         methods: {
             getFormSubmissionDataField(slug, defaultValue = '-') {
                 try {
                     return this.formSubmission.data[slug];
                 } catch (e) {
                     return defaultValue;
+                }
+            },
+            getFormSubmissionMarketingField(slug) {
+                try {
+                    return Boolean(this.getFormSubmissionDataField(slug, false)) ?
+                        'Enabled' :
+                        'Disabled';
+                } catch (e) {
+                    return 'An error occurred.';
                 }
             }
         }

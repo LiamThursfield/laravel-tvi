@@ -21,10 +21,10 @@ class ValidateFormSubmissionDataAction
             $form->load('formFields');
         }
 
-
         $rules = [];
         $messages = [];
 
+        // Add validation rules for the form fields
         foreach ($form->formFields as $field) {
             $fieldRules = [];
 
@@ -46,8 +46,20 @@ class ValidateFormSubmissionDataAction
             $rules[$field->slug] = implode('|', $fieldRules);
         }
 
-        $validator = Validator::make($submissionData, $rules, $messages);
+        // Add validation rules for the marketing fields
+        $marketingFields = [
+            'marketing_email'       => 'Email',
+            'marketing_sms'         => 'Email',
+            'marketing_telephone'   => 'Email',
+        ];
+        foreach ($marketingFields as $fieldSlug => $fieldLabel) {
+            if ($form[$fieldSlug]) {
+                $rules[$fieldSlug] = 'nullable|boolean';
+                $messages[$fieldSlug . '.boolean'] = 'The ' . $fieldLabel . ' marketing field must be true/false.';
+            }
+        }
 
+        $validator = Validator::make($submissionData, $rules, $messages);
         return $validator->validate();
     }
 
