@@ -21,10 +21,9 @@ class FormSubmissionController extends Controller
     {
         app(FormSubmissionStoreAction::class)->handle($form, $request->all());
 
-        // TODO: Add success message to form model. Add redirect url to form model
         return new JsonResponse([
-            'message'       => 'Successfully submitted ' . $form->name . ' form',
-            'redirect_url'  => false,
+            'message'       => $form->success_message ?? 'Successfully submitted ' . $form->name . ' form',
+            'redirect_url'  => $form->redirect_url ?? false,
         ]);
     }
 }

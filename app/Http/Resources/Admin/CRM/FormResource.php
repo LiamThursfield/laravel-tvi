@@ -16,7 +16,9 @@ class FormResource extends JsonResource
             'marketing_sms'         => $this->marketing_sms,
             'marketing_telephone'   => $this->marketing_telephone,
             'name'                  => $this->name,
+            'redirect_url'          => $this->redirect_url,
             'slug'                  => $this->slug,
+            'success_message'       => $this->success_message,
         ];
     }
 }

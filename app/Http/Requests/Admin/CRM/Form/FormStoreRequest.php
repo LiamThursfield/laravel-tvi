@@ -31,11 +31,21 @@ class FormStoreRequest extends BaseRequest
                 'string',
                 'max:' . FormInterface::FIELD_NAME_MAX_LENGTH,
             ],
+            'redirect_url' => [
+                'nullable',
+                'string',
+                'max:' . FormInterface::FIELD_REDIRECT_URL_MAX_LENGTH,
+            ],
             'slug' => [
                 'required',
                 'string',
                 'max:' . FormInterface::FIELD_SLUG_MAX_LENGTH,
                 Rule::unique('crm_forms'),
+            ],
+            'success_message' => [
+                'nullable',
+                'string',
+                'max:' . FormInterface::FIELD_SUCCESS_MESSAGE_MAX_LENGTH,
             ],
 
             // Form Fields

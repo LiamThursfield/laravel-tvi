@@ -23,6 +23,8 @@ class CreateCrmFormsTable extends Migration
             $table->boolean('marketing_email')->default(false);
             $table->boolean('marketing_sms')->default(false);
             $table->boolean('marketing_telephone')->default(false);
+            $table->string('redirect_url', FormInterface::FIELD_REDIRECT_URL_MAX_LENGTH)->nullable();
+            $table->string('success_message', FormInterface::FIELD_SUCCESS_MESSAGE_MAX_LENGTH)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -52,7 +52,6 @@
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <input-group
-                    class="mt-4"
                     :error-message="getPageErrorMessage('name')"
                     input-autocomplete="form_name"
                     input-id="name"
@@ -76,6 +75,27 @@
                     @blur="onSlugBlur"
                     @input="onSlugInput"
                     v-model="formData.slug"
+                />
+
+                <text-area-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('success_message')"
+                    input-id="success_message"
+                    input-name="success_message"
+                    input-rows="2"
+                    input-type="text"
+                    label-text="Success Message"
+                    v-model="formData.success_message"
+                />
+
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('redirect_url')"
+                    input-id="redirect_url"
+                    input-name="redirect_url"
+                    input-type="text"
+                    label-text="Redirect Url (Leave blank for no redirect)"
+                    v-model="formData.redirect_url"
                 />
 
                 <array-group
@@ -139,17 +159,19 @@
 <script>
     import slugify from 'slugify';
     import ArrayGroup from "../../../../components/core/forms/ArrayGroup.";
+    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor";
     import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
     import InputGroup from "../../../../components/core/forms/InputGroup";
-    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
 
     export default {
         name: "AdminCrmFormCreate",
         components: {
             ArrayGroup,
+            FormFieldEditor,
             InlineCheckboxGroup,
             InputGroup,
-            FormFieldEditor,
+            TextAreaGroup,
         },
         layout: 'admin-layout',
         props: {
@@ -176,7 +198,9 @@
                     marketing_sms: false,
                     marketing_telephone: false,
                     name: '',
+                    redirect_url: '',
                     slug: '',
+                    success_message: '',
                 },
             }
         },
