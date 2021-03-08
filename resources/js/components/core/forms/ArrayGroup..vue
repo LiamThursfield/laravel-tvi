@@ -137,8 +137,6 @@
             } catch (e) {
                 this.editableInputValue = [];
             }
-
-            this.editableInputValue = [];
         },
         methods: {
             addValue() {
