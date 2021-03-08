@@ -22,9 +22,9 @@ class CreateCrmContactsTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('telephone', ContactInterface::FIELD_TELEPHONE_MAX_LENGTH)->nullable();
             $table->string('email')->nullable();
-            $table->boolean('marketing_telephone')->default(false);
-            $table->boolean('marketing_sms')->default(false);
             $table->boolean('marketing_email')->default(false);
+            $table->boolean('marketing_sms')->default(false);
+            $table->boolean('marketing_telephone')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
