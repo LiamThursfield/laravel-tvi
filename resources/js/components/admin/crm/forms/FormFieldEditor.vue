@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="flex flex-row items-center">
-            <span class="text-lg">Form Fields</span>
+            <span class="font-medium mb-4 text-theme-base-contrast tracking-wider">
+                Form Fields
+            </span>
         </div>
 
         <p

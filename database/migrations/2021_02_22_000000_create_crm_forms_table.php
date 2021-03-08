@@ -20,6 +20,9 @@ class CreateCrmFormsTable extends Migration
             $table->string('name', FormInterface::FIELD_NAME_MAX_LENGTH);
             $table->string('slug', FormInterface::FIELD_SLUG_MAX_LENGTH);
             $table->json('email_recipients')->nullable();
+            $table->boolean('marketing_email')->default(false);
+            $table->boolean('marketing_sms')->default(false);
+            $table->boolean('marketing_telephone')->default(false);
             $table->timestamps();
             $table->softDeletes();
 

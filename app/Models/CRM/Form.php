@@ -17,7 +17,10 @@ class Form extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'email_recipients' => 'array',
+        'email_recipients'      => 'array',
+        'marketing_email'       => 'boolean',
+        'marketing_sms'         => 'boolean',
+        'marketing_telephone'   => 'boolean',
     ];
 
 

@@ -89,6 +89,39 @@
             </div>
         </div>
 
+        <!-- Marketing Preferences -->
+        <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
+            <div class="block px-6 w-full">
+                <p class="font-medium mb-4 text-theme-base-contrast tracking-wider">
+                    Marketing Preference Fields
+                </p>
+
+                <div class="space-y-4">
+                    <inline-checkbox-group
+                        input-id="marketing-email"
+                        input-name="marketing-email"
+                        label-text="Email"
+                        v-model="formData.marketing_email"
+                    />
+
+                    <inline-checkbox-group
+                        input-id="marketing-sms"
+                        input-name="marketing-sms"
+                        label-text="SMS"
+                        v-model="formData.marketing_sms"
+                    />
+
+                    <inline-checkbox-group
+                        input-id="marketing-telephone"
+                        input-name="marketing-telephone"
+                        label-text="Telephone"
+                        v-model="formData.marketing_telephone"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Fields -->
         <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <form-field-editor
@@ -106,6 +139,7 @@
 <script>
     import slugify from 'slugify';
     import ArrayGroup from "../../../../components/core/forms/ArrayGroup.";
+    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor";
 
@@ -113,6 +147,7 @@
         name: "AdminCrmFormCreate",
         components: {
             ArrayGroup,
+            InlineCheckboxGroup,
             InputGroup,
             FormFieldEditor,
         },
@@ -137,6 +172,9 @@
                 formData: {
                     email_recipients: [],
                     form_fields: [],
+                    marketing_email: false,
+                    marketing_sms: false,
+                    marketing_telephone: false,
                     name: '',
                     slug: '',
                 },

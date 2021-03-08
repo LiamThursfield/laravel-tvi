@@ -21,8 +21,11 @@ class FormStoreRequest extends BaseRequest
     public function rules() : array
     {
         return [
-            'description' => 'nullable|string',
-            'email_recipients.*' => 'required|email',
+            'description'           => 'nullable|string',
+            'email_recipients.*'    => 'required|email',
+            'marketing_email'       => 'nullable|boolean',
+            'marketing_sms'         => 'nullable|boolean',
+            'marketing_telephone'   => 'nullable|boolean',
             'name' => [
                 'required',
                 'string',
