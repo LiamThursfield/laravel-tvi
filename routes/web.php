@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes([
-    'verify' => config('auth.user_verification')
+    'register'  => config('auth.user_register'),
+    'verify'    => config('auth.user_verification')
 ]);
 
 

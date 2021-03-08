@@ -126,6 +126,21 @@ return [
     |
     */
 
-    'user_verification' => false
+    'user_verification' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Registration
+    |--------------------------------------------------------------------------
+    |
+    |
+    | Here you may enable/disable user registration, if true then users
+    | can manually register an account.
+    |
+    | Typically, this should be managed via an environment variable
+    |
+    */
+
+    'user_register' => env('AUTH_USER_REGISTER', false),
 
 ];
