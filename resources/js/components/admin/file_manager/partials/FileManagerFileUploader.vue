@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="isUploadEnabled">
         <vue2-dropzone
             :id="id"
             :ref="id"
@@ -44,6 +44,13 @@
                 }
 
                 return options;
+            },
+            isUploadEnabled() {
+                try {
+                    return !! this.$page.props.app.config.file_manager_uploads_enabled;
+                } catch (e) {
+                    return false;
+                }
             }
         },
         methods: {

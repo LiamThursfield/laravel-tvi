@@ -201,6 +201,70 @@
                         requiresAnyPermissions: ["cms.edit", "cms.create", "cms.view"],
                         showLabel: true,
                     },
+                    crm: {
+                        children: {
+                            forms: {
+                                activeRoutes: ["admin.crm.forms.index", "admin.crm.forms.create", "admin.crm.forms.edit", "admin.crm.form-submissions.index", "admin.crm.form-submissions.show"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Forms",
+                                        requiresAllPermissions: ["crm_forms.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.forms.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Form",
+                                        requiresAllPermissions: ["crm_forms.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.forms.create",
+                                    },
+                                    submissions: {
+                                        activeRoutes: ["admin.crm.form-submissions.index", "admin.crm.form-submissions.show"],
+                                        icon: false,
+                                        label: "View Form Submissions",
+                                        requiresAllPermissions: ["crm_form_submissions.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.form-submissions.index",
+                                    },
+                                },
+                                icon: "icon-forms",
+                                label: "Forms",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["crm_forms.create", "crm_forms.view"],
+                            },
+                            contacts: {
+                                activeRoutes: ["admin.crm.contacts.index", "admin.crm.contacts.create", "admin.crm.contacts.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Contacts",
+                                        requiresAllPermissions: ["crm_contacts.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.contacts.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Contact",
+                                        requiresAllPermissions: ["crm_contacts.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.contacts.create",
+                                    },
+                                },
+                                icon: "icon-id",
+                                label: "Contacts",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["crm_contacts.create", "crm_contacts.view"],
+                            }
+                        },
+                        label: "CRM",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["crm_forms.create", "crm_forms.view", "crm_contacts.create", "crm_contacts.view"],
+                        showLabel: true,
+                    },
                     utilities: {
                         children : {
                             file_manager: {

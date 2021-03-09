@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CMS\PageController;
+use App\Http\Controllers\Api\CRM\FormSubmissionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/form-submission/{form}', [FormSubmissionController::class, 'store'])->name('api.form-submission.store');
+
+Route::get('/page', [PageController::class, 'show'])->name('api.page');

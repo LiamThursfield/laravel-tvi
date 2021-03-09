@@ -163,6 +163,13 @@
                     console.log(e); // TODO: This should go through to a log tracker once available
                 }
             },
+            getTemplateFieldTypesKeys() {
+                try {
+                    return Object.keys(this.templateFieldTypes);
+                } catch (e) {
+                    return [];
+                }
+            },
             onDraggableEnd() {
                 this.isDragging = false;
                 this.reorderTemplateFields();
@@ -177,8 +184,19 @@
             onTemplateFieldsChange(fields) {
                 this.editableTemplateFields = _.cloneDeep(fields);
             },
-            onEditableTemplateFieldInput() {
-                this.updateTemplateFields();
+            onTemplateFieldTypesChange() {
+                try {
+                    let allowedFields = this.getTemplateFieldTypesKeys();
+                    _.forEach(this.editableTemplateFields, (field, key) => {
+                        if (field.type && allowedFields.indexOf(field.type) < 0) {
+                            this.editableTemplateFields[key].type = '';
+                        }
+                    });
+
+                    this.updateTemplateFields();
+                } catch (e) {
+                    console.log(e); // TODO: Replace with error tracker
+                }
             },
             reorderTemplateFields() {
                 try {
@@ -203,6 +221,10 @@
         watch: {
             templateFields: {
                 handler: 'onTemplateFieldsChange'
+            },
+            templateFieldTypes: {
+                handler: 'onTemplateFieldTypesChange',
+                deep: true,
             }
         }
     }

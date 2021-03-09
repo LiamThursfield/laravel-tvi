@@ -28,6 +28,21 @@ class PermissionInterface
     const EDIT_CMS_ADVANCED    = 'edit cms_advanced';
     const VIEW_CMS_ADVANCED    = 'view cms_advanced';
 
+    // CRM Contacts Permissions
+    const CREATE_CRM_CONTACTS    = 'create crm_contacts';
+    const DELETE_CRM_CONTACTS    = 'delete crm_contacts';
+    const EDIT_CRM_CONTACTS      = 'edit crm_contacts';
+    const VIEW_CRM_CONTACTS      = 'view crm_contacts';
+
+    // CRM Form Submission Permissions
+    const VIEW_CRM_FORM_SUBMISSIONS = 'view crm_form_permissions';
+
+    // CRM Forms Permissions
+    const CREATE_CRM_FORMS    = 'create crm_forms';
+    const DELETE_CRM_FORMS    = 'delete crm_forms';
+    const EDIT_CRM_FORMS      = 'edit crm_forms';
+    const VIEW_CRM_FORMS      = 'view crm_forms';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -60,6 +75,21 @@ class PermissionInterface
             'delete'    => self::DELETE_CMS_ADVANCED,
             'edit'      => self::EDIT_CMS_ADVANCED,
             'view'      => self::VIEW_CMS_ADVANCED,
+        ],
+        'crm_contacts' => [
+            'create'    => self::CREATE_CRM_CONTACTS,
+            'delete'    => self::DELETE_CRM_CONTACTS,
+            'edit'      => self::EDIT_CRM_CONTACTS,
+            'view'      => self::VIEW_CRM_CONTACTS,
+        ],
+        'crm_form_submissions' => [
+            'view'  => self::VIEW_CRM_FORM_SUBMISSIONS,
+        ],
+        'crm_forms' => [
+            'create'    => self::CREATE_CRM_FORMS,
+            'delete'    => self::DELETE_CRM_FORMS,
+            'edit'      => self::EDIT_CRM_FORMS,
+            'view'      => self::VIEW_CRM_FORMS,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

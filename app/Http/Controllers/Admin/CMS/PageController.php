@@ -70,6 +70,7 @@ class PageController extends AdminCMSController
         $page->load([
             'content',
             'layout',
+            'metadata',
             'parent',
             'template',
             'template.templateFields',

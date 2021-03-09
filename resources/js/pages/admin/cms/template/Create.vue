@@ -108,7 +108,7 @@
             <div class="block px-6 w-full">
                 <template-field-editor
                     :template-field-settings="templateFieldSettings"
-                    :template-field-types="templateFieldTypes"
+                    :template-field-types="allowedTemplateFieldTypes"
                     v-model="formData.template_fields"
                 />
             </div>
@@ -131,6 +131,10 @@
         },
         layout: 'admin-layout',
         props: {
+            'repeaterTemplateFieldTypes': {
+                type: Object,
+                required: true
+            },
             'templateFieldSettings': {
                 type: Object,
                 required: true
@@ -154,6 +158,15 @@
                     template_fields: [],
                     type: '',
                 },
+            }
+        },
+        computed: {
+            allowedTemplateFieldTypes() {
+                if (this.formData.type === 'repeater') {
+                    return this.repeaterTemplateFieldTypes;
+                }
+
+                return this.templateFieldTypes;
             }
         },
         methods: {

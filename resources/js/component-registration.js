@@ -13,6 +13,7 @@ Vue.component('website-layout', require('./layouts/website/WebsiteLayout.vue').d
 // Admin
 Vue.component('side-menu', require('./components/admin/menus/SideMenu.vue').default);
 Vue.component('top-menu', require('./components/admin/menus/TopMenu.vue').default);
+Vue.component('content-editor', require('./components/admin/cms/content/ContentEditor.vue').default);
 
 // Icons
 // Autoload any icons inside /components/core/icons

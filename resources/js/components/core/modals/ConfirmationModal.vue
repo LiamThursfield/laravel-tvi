@@ -4,7 +4,7 @@
         name="fade"
     >
         <div
-            class="absolute bg-gray-800 bg-opacity-75 flex h-full inset-0 items-center justify-center w-full p-4 z-30"
+            class="bg-gray-800 bg-opacity-75 fixed flex h-full inset-0 items-center justify-center w-full p-4 z-30"
             :class="componentName"
         >
             <div

@@ -57,6 +57,7 @@
                     :input-any-option-enabled="true"
                     input-any-option-label="Please select a template type"
                     :input-autofocus="true"
+                    :input-disabled="true"
                     input-id="type"
                     input-name="type"
                     :input-options="templateTypes"
@@ -108,7 +109,7 @@
                 <template-field-editor
                     :is-editing="true"
                     :template-field-settings="templateFieldSettings"
-                    :template-field-types="templateFieldTypes"
+                    :template-field-types="allowedTemplateFieldTypes"
                     v-model="formData.template_fields"
                 />
             </div>
@@ -132,6 +133,10 @@
         },
         layout: 'admin-layout',
         props: {
+            'repeaterTemplateFieldTypes': {
+                type: Object,
+                required: true
+            },
             'template': {
                 type: Object,
                 required: true,
@@ -153,6 +158,15 @@
             return {
                 autoUpdateSlug: false,
                 formData: {},
+            }
+        },
+        computed: {
+            allowedTemplateFieldTypes() {
+                if (this.formData.type === 'repeater') {
+                    return this.repeaterTemplateFieldTypes;
+                }
+
+                return this.templateFieldTypes;
             }
         },
         created() {

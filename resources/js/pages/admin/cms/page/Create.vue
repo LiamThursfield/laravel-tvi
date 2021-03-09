@@ -125,6 +125,14 @@
         </div>
 
         <div
+            class="bg-white mt-6 overflow-x-hidden px-6 py-6 shadow-subtle rounded-lg"
+        >
+            <metadata-editor
+                v-model="formData.metadata"
+            />
+        </div>
+
+        <div
             class="bg-white mt-6 px-6 py-6 shadow-subtle rounded-lg"
         >
             <url-editor
@@ -143,7 +151,7 @@
 
             <content-editor
                 class="mt-4"
-                :template-fields="this.selectedTemplate.template_fields"
+                :template-fields="selectedTemplate.template_fields"
                 v-model="formData.content"
             />
         </div>
@@ -152,8 +160,8 @@
 
 <script>
     import slugify from "slugify";
-    import ContentEditor from "../../../../components/admin/cms/content/ContentEditor";
     import InputGroup from "../../../../components/core/forms/InputGroup";
+    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
 
@@ -163,8 +171,8 @@
     export default {
         name: "AdminCmsPageCreate",
         components: {
-            ContentEditor,
             InputGroup,
+            MetadataEditor,
             SelectGroup,
             UrlEditor,
         },
@@ -189,6 +197,7 @@
                 computedUrl: '',
                 formData: {
                     layout_id: '',
+                    metadata: {},
                     name: '',
                     parent_id: '',
                     slug: '',
@@ -313,7 +322,7 @@
                 this.isLoadingTemplate = true;
 
                 axios.get(
-                    this.$route('admin.api.cms.templates.index', this.selectedTemplateId)
+                    this.$route('admin.api.cms.templates.show', this.selectedTemplateId)
                 ).then(response => {
                     this.selectedTemplate = _.cloneDeep(response.data.data);
                     this.setNewTemplateContent();

@@ -19,6 +19,7 @@ class CreateCmsContentTable extends Migration
             $table->unsignedBigInteger('contentable_id');
             $table->string('contentable_type');
             $table->unsignedBigInteger('template_field_id');
+            $table->string('template_field_type');
             $table->longText('data')->nullable();
             $table->timestamps();
 

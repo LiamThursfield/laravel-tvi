@@ -7,15 +7,18 @@ class TemplateInterface
     // Template Types
     const TYPE_LAYOUT   = 'layout';
     const TYPE_PAGE     = 'page';
+    const TYPE_REPEATER = 'repeater';
 
     const ALL_TYPES = [
         self::TYPE_LAYOUT,
         self::TYPE_PAGE,
+        self::TYPE_REPEATER,
     ];
 
     const ALL_TYPES_LABELLED = [
         self::TYPE_LAYOUT => 'Layout',
-        self::TYPE_PAGE => 'Page'
+        self::TYPE_PAGE => 'Page',
+        self::TYPE_REPEATER => 'Repeater',
     ];
 
 

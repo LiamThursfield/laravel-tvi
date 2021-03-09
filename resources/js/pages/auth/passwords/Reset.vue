@@ -82,6 +82,7 @@
             </inertia-link>
 
             <inertia-link
+                v-if="$routeCheck('register')"
                 class="
                     text-gray-300 text-sm tracking-wide
                     hover:text-theme-base-subtle-contrast

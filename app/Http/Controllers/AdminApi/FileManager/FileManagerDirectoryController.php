@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class FileManagerDirectoryController extends AbstractFileManagerController
 {
-
     /**
      * Get a list of directories based on the (optional) base directory
      *
@@ -38,6 +37,10 @@ class FileManagerDirectoryController extends AbstractFileManagerController
      */
     public function store(FileManagerDirectoryStoreRequest $request)
     {
+        if (!config('tvi.file_manager.uploads.enabled')) {
+            abort(403, 'Directory Creation/Uploads are disabled.');
+        }
+
         $directory = $request->get('directory');
         Storage::disk($this->storage_disk)->makeDirectory($directory);
 

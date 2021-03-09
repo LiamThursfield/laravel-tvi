@@ -16,7 +16,7 @@ class TemplateStoreAction
      * @return Template
      * @throws Exception
      */
-    public function handle(array $template_data)
+    public function handle(array $template_data) : Template
     {
         // Extract the template fields data if it exists
         $template_fields_data = Arr::get($template_data, 'template_fields', []);

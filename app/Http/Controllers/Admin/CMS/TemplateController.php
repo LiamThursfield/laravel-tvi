@@ -33,7 +33,10 @@ class TemplateController extends AdminCMSAdvancedController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
         return Inertia::render('admin/cms/template/Create', [
-            'templateFieldSettings' => function() {
+            'repeaterTemplateFieldTypes' => function () {
+                return TemplateFieldInterface::getAllRepeaterTypesLabelled();
+            },
+            'templateFieldSettings' => function () {
                 return TemplateFieldInterface::SETTINGS;
             },
             'templateFieldTypes' => function () {
@@ -59,6 +62,9 @@ class TemplateController extends AdminCMSAdvancedController
     {
         $this->addMetaTitleSection('Edit - ' . $template->name)->shareMeta();
         return Inertia::render('admin/cms/template/Edit', [
+            'repeaterTemplateFieldTypes' => function () {
+                return TemplateFieldInterface::getAllRepeaterTypesLabelled();
+            },
             'template' => function () use ($template) {
                 if (!$template->relationLoaded('templateFields')) {
                     $template->load('templateFields');

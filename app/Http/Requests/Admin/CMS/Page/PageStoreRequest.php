@@ -14,6 +14,14 @@ class PageStoreRequest extends BaseRequest
         $custom_attributes = [
             'content.*.template_field_id'   => 'template field',
             'template_id'                   => 'template',
+            'metadata.canonical'            => 'canonical',
+            'metadata.description'          => 'meta description',
+            'metadata.og_description'       => 'og description ',
+            'metadata.og_image'             => 'og image',
+            'metadata.og_title'             => 'og title',
+            'metadata.og_type'              => 'og type',
+            'metadata.og_url'               => 'og url',
+            'metadata.title'                => 'meta title',
             'url.expired_at'                => 'expired at',
             'url.is_enabled'                => 'is enabled',
             'url.published_at'              => 'published at',
@@ -39,6 +47,14 @@ class PageStoreRequest extends BaseRequest
                 'integer',
                 Rule::exists('cms_layouts', 'id'),
             ],
+            'metadata.canonical'        => 'nullable|string',
+            'metadata.description'      => 'nullable|string',
+            'metadata.og_description'   => 'nullable|string',
+            'metadata.og_image'         => 'nullable|string',
+            'metadata.og_title'         => 'nullable|string',
+            'metadata.og_type'          => 'nullable|string',
+            'metadata.og_url'           => 'nullable|string',
+            'metadata.title'            => 'nullable|string',
             'name' => [
                 'required',
                 'string',
@@ -49,6 +65,12 @@ class PageStoreRequest extends BaseRequest
                 'integer',
                 Rule::exists('cms_pages', 'id'),
             ],
+            'slug' => [
+                'required',
+                'string',
+                'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
+                'unique:cms_pages'
+            ],
             'template_id' => [
                 'required',
                 'integer',
@@ -56,13 +78,6 @@ class PageStoreRequest extends BaseRequest
                     $query->where('type', TemplateInterface::TYPE_PAGE);
                 }),
             ],
-            'slug' => [
-                'required',
-                'string',
-                'max:' . CMSInterface::FIELD_SLUG_MAX_LENGTH,
-                'unique:cms_pages'
-            ],
-            'url'               => 'required|array',
             'url.expired_at'    => 'nullable|date',
             'url.is_enabled'    => 'required|boolean',
             'url.published_at'  => 'nullable|date',

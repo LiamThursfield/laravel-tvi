@@ -18,7 +18,9 @@ Route::group([
     'prefix' => 'cms'
 ], function() {
     Route::get('/menu', [MenuController::class, 'index'])->name('menus.index');
-    Route::get('/template/{template}', [TemplateController::class, 'show'])->name('templates.index');
+
+    Route::get('/template}', [TemplateController::class, 'index'])->name('templates.index');
+    Route::get('/template/{template}', [TemplateController::class, 'show'])->name('templates.show');
 
     Route::get('/url/available', [UrlAvailableController::class, 'handle'])->name('urls.available');
 });
