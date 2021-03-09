@@ -1,4 +1,4 @@
-[![Laravel TVI](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/readme-header.png)](https://tvi.liamthursfield.test)
+[![Laravel TVI](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/readme-header.png)](https://tvi-demo.liamthursfield.test)
 
 Laravel TVI is a base CMS for creating & managing websites.
 
