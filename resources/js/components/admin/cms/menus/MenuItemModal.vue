@@ -69,7 +69,7 @@
                             class="mt-4"
                             input-id="menu_item_target"
                             input-name="menu_item_target"
-                            input-placeholder="URL/Href"
+                            input-placeholder="Target"
                             label-text="Target"
                             v-model="editableMenuItem.target"
                         />
