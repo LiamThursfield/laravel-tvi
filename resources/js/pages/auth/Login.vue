@@ -112,8 +112,8 @@
         data() {
             return {
                 form: {
-                    email: 'admin@example.com', // TODO: Remove on final release
-                    password: 'AdminPassword', // TODO: Remove on final release
+                    email: '',
+                    password: '',
                     remember: null
                 }
             }
