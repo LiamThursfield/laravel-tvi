@@ -5,10 +5,9 @@ Vue.mixin({
     methods: {
         clearPageErrorMessage(field) {
             try {
-                console.log('here');
                 this.$page.props.errors[field] = null;
             } catch (e) {
-                return;
+                return '';
             }
         },
         getPageErrorMessage(field) {
