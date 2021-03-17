@@ -25,6 +25,7 @@
                     input-type="email"
                     label-text="Email"
                     v-model="form.email"
+                    @errorHidden="clearPageErrorMessage('email')"
                 />
 
                 <input-group
@@ -38,6 +39,7 @@
                     input-type="password"
                     label-text="Password"
                     v-model="form.password"
+                    @errorHidden="clearPageErrorMessage('password')"
                 />
 
                 <div class="mt-6">
