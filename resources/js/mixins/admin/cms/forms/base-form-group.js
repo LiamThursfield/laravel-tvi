@@ -112,6 +112,7 @@ export const baseFormGroupMixin = {
 
             if (this.errorHideOnInput) {
                 this.hideError = true;
+                this.$emit('errorHidden');
             }
         },
         onInputBlur() {
