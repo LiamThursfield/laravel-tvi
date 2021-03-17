@@ -47,5 +47,8 @@
     },
     "peerDependencies": {
         "postcss": "^8.2.1"
+    },
+    "dependencies": {
+        "@tailwindcss/typography": "^0.4.0"
     }
 }
