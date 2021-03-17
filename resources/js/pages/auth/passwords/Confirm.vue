@@ -24,6 +24,7 @@
                     :input-required="true"
                     input-type="password"
                     label-text="Password"
+                    @errorHidden="clearPageErrorMessage('password')"
                     v-model="form.password"
                 />
 

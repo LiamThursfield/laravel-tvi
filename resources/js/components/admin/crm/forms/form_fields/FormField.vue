@@ -17,6 +17,7 @@
                 :input-name="`form-field-${formField.order}-type`"
                 :input-options="selectableFormFieldTypes"
                 :input-required="true"
+                @errorHidden="clearErrorMessage('type')"
                 @input="updateFormField"
                 v-model="editableFormField.type"
             />
@@ -47,6 +48,7 @@
                 :input-required="true"
                 input-type="text"
                 label-text="Field Name"
+                @errorHidden="clearErrorMessage('name')"
                 @input="onNameInput"
                 v-model="editableFormField.name"
             />
@@ -220,6 +222,9 @@
             }
         },
         methods: {
+            clearErrorMessage(field) {
+                this.clearPageErrorMessage(this.errorMessageKey + field);
+            },
             getErrorMessage(field) {
                 let message = this.getPageErrorMessage(this.errorMessageKey + field);
                 message = message.replace(this.errorMessageKey, '');

@@ -63,6 +63,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="First Name"
+                    @errorHidden="clearPageErrorMessage('first_name')"
                     v-model="formData.first_name"
                 />
 
@@ -75,6 +76,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="Last Name"
+                    @errorHidden="clearPageErrorMessage('last_name')"
                     v-model="formData.last_name"
                 />
 
@@ -87,6 +89,7 @@
                     :input-required="true"
                     input-type="email"
                     label-text="Email"
+                    @errorHidden="clearPageErrorMessage('email')"
                     v-model="formData.email"
                 />
 
@@ -99,6 +102,7 @@
                     :input-required="true"
                     input-type="password"
                     label-text="Password"
+                    @errorHidden="clearPageErrorMessage('password')"
                     v-model="formData.password"
                 />
 
@@ -111,6 +115,7 @@
                     :input-required="true"
                     input-type="password"
                     label-text="Confirm Password"
+                    @errorHidden="clearPageErrorMessage('password_confirmation')"
                     v-model="formData.password_confirmation"
                 />
             </div>

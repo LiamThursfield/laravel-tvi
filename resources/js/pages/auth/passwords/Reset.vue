@@ -24,6 +24,7 @@
                     :input-required="true"
                     input-type="email"
                     label-text="Email"
+                    @errorHidden="clearPageErrorMessage('email')"
                     v-model="form.email"
                 />
 
@@ -38,6 +39,7 @@
                     :input-required="true"
                     input-type="password"
                     label-text="Password"
+                    @errorHidden="clearPageErrorMessage('password')"
                     v-model="form.password"
                 />
 
@@ -51,6 +53,7 @@
                     :input-required="true"
                     input-type="password"
                     label-text="Confirm Password"
+                    @errorHidden="clearPageErrorMessage('password_confirmation')"
                     v-model="form.password_confirmation"
                 />
 

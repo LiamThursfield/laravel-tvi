@@ -59,6 +59,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="Form Name"
+                    @errorHidden="clearPageErrorMessage('name')"
                     @input="onNameInput"
                     v-model="formData.name"
                 />
@@ -73,6 +74,7 @@
                     input-type="text"
                     label-text="Form Slug"
                     @blur="onSlugBlur"
+                    @errorHidden="clearPageErrorMessage('slug')"
                     @input="onSlugInput"
                     v-model="formData.slug"
                 />
@@ -85,6 +87,7 @@
                     input-rows="2"
                     input-type="text"
                     label-text="Success Message"
+                    @errorHidden="clearPageErrorMessage('success_message')"
                     v-model="formData.success_message"
                 />
 
@@ -95,6 +98,7 @@
                     input-name="redirect_url"
                     input-type="text"
                     label-text="Redirect Url (Leave blank for no redirect)"
+                    @errorHidden="clearPageErrorMessage('redirect_url')"
                     v-model="formData.redirect_url"
                 />
 

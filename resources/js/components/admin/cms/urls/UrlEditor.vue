@@ -7,6 +7,7 @@
             :input-required="true"
             input-type="text"
             label-text="URL"
+            @errorHidden="clearPageErrorMessage('url.url_main')"
             @input="onUrlInputInput"
             v-model="urlInput"
         />
@@ -19,6 +20,7 @@
             input-name="url_full"
             input-type="text"
             label-text="Formatted URL"
+            @errorHidden="clearPageErrorMessage('url.url_full')"
             v-model="urlFull"
         >
             <span class="flex flex-row items-center">
@@ -61,6 +63,7 @@
             input-id="url_is_enabled"
             input-name="url_is_enabled"
             label-text="Enabled?"
+            @errorHidden="clearPageErrorMessage('url.is_enabled')"
             v-model="editableUrlData.is_enabled"
         />
 
@@ -73,6 +76,7 @@
                 input-id="url_published_at"
                 input-name="url_published_at"
                 label-text="Publish Date"
+                @errorHidden="clearPageErrorMessage('url.published_at')"
                 v-model="editableUrlData.published_at"
             />
 
@@ -82,6 +86,7 @@
                 input-id="url_expired_at"
                 input-name="url_expired_at"
                 label-text="Expiry Date"
+                @errorHidden="clearPageErrorMessage('url.expired_at')"
                 v-model="editableUrlData.expired_at"
             />
         </div>

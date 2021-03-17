@@ -17,6 +17,7 @@
                 :input-name="`template-field-${templateField.order}-type`"
                 :input-options="templateFieldTypes"
                 :input-required="true"
+                @errorHidden="clearErrorMessage('type')"
                 @input="updateTemplateField"
                 v-model="editableTemplateField.type"
             />
@@ -47,6 +48,7 @@
                 :input-required="true"
                 input-type="text"
                 label-text="Field Name"
+                @errorHidden="clearErrorMessage('name')"
                 @input="onNameInput"
                 v-model="editableTemplateField.name"
             />
@@ -60,6 +62,7 @@
                 input-type="text"
                 label-text="Field Slug"
                 @blur="onSlugBlur"
+                @errorHidden="clearErrorMessage('slug')"
                 @input="onSlugInput"
                 v-model="editableTemplateField.slug"
             />
@@ -72,16 +75,18 @@
             :input-name="`template-field-${templateField.order}-description`"
             input-type="text"
             label-text="Description"
+            @errorHidden="clearErrorMessage('description')"
             @input="updateTemplateField"
             v-model="editableTemplateField.description"
         />
 
         <checkbox-group
             class="mt-4"
+            :error-message="getErrorMessage('is_required')"
             :input-id="`template-field-${templateField.order}-is_required`"
             :input-name="`template-field-${templateField.order}-is_required`"
-            :error-message="getErrorMessage('is_required')"
             label-text="Required?"
+            @errorHidden="clearErrorMessage('is_required')"
             @input="updateTemplateField"
             v-model="editableTemplateField.is_required"
         />
@@ -208,6 +213,9 @@
             }
         },
         methods: {
+            clearErrorMessage(field) {
+                this.clearPageErrorMessage(this.errorMessageKey + field);
+            },
             getErrorMessage(field) {
                 let message = this.getPageErrorMessage(this.errorMessageKey + field);
                 message = message.replace(this.errorMessageKey, '');

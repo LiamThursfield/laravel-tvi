@@ -24,8 +24,8 @@
                     :input-required="true"
                     input-type="email"
                     label-text="Email"
-                    v-model="form.email"
                     @errorHidden="clearPageErrorMessage('email')"
+                    v-model="form.email"
                 />
 
                 <input-group
@@ -38,8 +38,8 @@
                     :input-required="true"
                     input-type="password"
                     label-text="Password"
-                    v-model="form.password"
                     @errorHidden="clearPageErrorMessage('password')"
+                    v-model="form.password"
                 />
 
                 <div class="mt-6">
