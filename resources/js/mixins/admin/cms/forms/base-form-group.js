@@ -4,7 +4,7 @@ export const baseFormGroupMixin = {
     },
     props: {
         errorClass: {
-            default: 'mt-1 text-red-500 text-sm',
+            default: 'input-group-error',
             type: String
         },
         errorHideOnInput: {
@@ -20,7 +20,7 @@ export const baseFormGroupMixin = {
             type: Boolean
         },
         inputClass: {
-            default: 'border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0',
+            default: 'input-group-input',
             type: String
         },
         inputDisabled: {
@@ -48,7 +48,7 @@ export const baseFormGroupMixin = {
             type: String,
         },
         labelClass: {
-            default: 'font-medium mb-2 text-theme-base-contrast text-sm tracking-wider',
+            default: 'input-group-label',
             type: String
         },
         labelHidden: {
@@ -112,6 +112,7 @@ export const baseFormGroupMixin = {
 
             if (this.errorHideOnInput) {
                 this.hideError = true;
+                this.$emit('errorHidden');
             }
         },
         onInputBlur() {

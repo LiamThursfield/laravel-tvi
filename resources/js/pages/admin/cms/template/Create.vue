@@ -62,6 +62,7 @@
                     :input-options="templateTypes"
                     :input-required="true"
                     v-model="formData.type"
+                    @errorHidden="clearPageErrorMessage('type')"
                 />
 
                 <input-group
@@ -75,6 +76,7 @@
                     label-text="Template Name"
                     @input="onNameInput"
                     v-model="formData.name"
+                    @errorHidden="clearPageErrorMessage('name')"
                 />
 
                 <input-group
@@ -89,6 +91,7 @@
                     @blur="onSlugBlur"
                     @input="onSlugInput"
                     v-model="formData.slug"
+                    @errorHidden="clearPageErrorMessage('slug')"
                 />
 
                 <input-group
@@ -100,6 +103,7 @@
                     input-type="text"
                     label-text="Description"
                     v-model="formData.description"
+                    @errorHidden="clearPageErrorMessage('description')"
                 />
             </div>
         </div>

@@ -33,6 +33,7 @@
                     input-name="metadata_title"
                     input-type="text"
                     label-text="Title"
+                    @errorHidden="clearPageErrorMessage('metadata.title')"
                     v-model="editableMetadata.title"
                 />
 
@@ -43,6 +44,7 @@
                     input-name="metadata_description"
                     input-type="text"
                     label-text="Meta Description"
+                    @errorHidden="clearPageErrorMessage('metadata.description')"
                     v-model="editableMetadata.description"
                 />
 
@@ -53,6 +55,7 @@
                     input-name="metadata_canonical"
                     input-type="text"
                     label-text="Canonical"
+                    @errorHidden="clearPageErrorMessage('metadata.canonical')"
                     v-model="editableMetadata.canonical"
                 />
             </div>
@@ -68,6 +71,7 @@
                     input-name="metadata_og_title"
                     input-type="text"
                     label-text="OG Title"
+                    @errorHidden="clearPageErrorMessage('metadata.og_title')"
                     v-model="editableMetadata.og_title"
                 />
 
@@ -78,6 +82,7 @@
                     input-name="metadata_og_description"
                     input-type="text"
                     label-text="OG Description"
+                    @errorHidden="clearPageErrorMessage('metadata.og_description')"
                     v-model="editableMetadata.og_description"
                 />
 
@@ -88,6 +93,7 @@
                     input-name="metadata_og_type"
                     input-type="text"
                     label-text="OG Type"
+                    @errorHidden="clearPageErrorMessage('metadata.og_type')"
                     v-model="editableMetadata.og_type"
                 />
 
@@ -98,6 +104,7 @@
                     input-name="metadata_og_url"
                     input-type="text"
                     label-text="OG URL"
+                    @errorHidden="clearPageErrorMessage('metadata.og_url')"
                     v-model="editableMetadata.og_url"
                 />
 
@@ -110,6 +117,7 @@
                     input-type="text"
                     input-wrapper-class="flex flex-row items-center"
                     label-text="OG Image"
+                    @errorHidden="clearPageErrorMessage('metadata.og_image')"
                     v-model="editableMetadata.og_image"
                 >
                     <template v-slot:inputAppend>

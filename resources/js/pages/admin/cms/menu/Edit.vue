@@ -58,6 +58,7 @@
                 :input-required="true"
                 input-type="text"
                 label-text="Menu Name"
+                @errorHidden="clearPageErrorMessage('name')"
                 @input="onNameInput"
                 v-model="formData.name"
             />
@@ -72,6 +73,7 @@
                 input-type="text"
                 label-text="Menu Slug"
                 @blur="onSlugBlur"
+                @errorHidden="clearPageErrorMessage('slug')"
                 @input="onSlugInput"
                 v-model="formData.slug"
             />

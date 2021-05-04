@@ -44,10 +44,10 @@
                         strikethrough: { inline: 'span', classes: 'line-through' },
                     },
                     min_height: 300,
-                    plugins: 'code fullscreen image',
+                    plugins: 'code fullscreen image lists link',
                     skin: 'TVI',
                     skin_url: '/vendor/tinymce/skins/tvi',
-                    toolbar: 'fullscreen code styleselect bold italic alignleft aligncenter alignright image',
+                    toolbar: 'styleselect bold italic alignleft aligncenter alignright numlist bullist link image',
                 };
             },
         },

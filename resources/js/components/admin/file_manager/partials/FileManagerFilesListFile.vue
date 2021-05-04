@@ -2,9 +2,11 @@
     <li
         class="
             flex flex-row items-start justify-between py-2 space-x-4
-            ease-in-out duration-300 transition-colors
+            ease-in-out duration-300 transition-all
             hover:bg-gray-100
         "
+        :class="{ 'cursor-pointer hover:pl-8': enableFileSelect }"
+        @click="onFileSelected(file)"
     >
         <div class="flex flex-row items-start">
             <component
@@ -26,6 +28,7 @@
                 :href="file.url"
                 rel="noreferrer noopener nofollow"
                 target="_blank"
+                @click.stop=""
             >
                 <icon-external-link class="w-5" />
             </a>
@@ -42,7 +45,7 @@
                         hover:text-theme-primary
                     "
                     type="button"
-                    @click="onDropdownButtonClick"
+                    @click.stop="onDropdownButtonClick"
                 >
                     <icon-info-square class="w-5" />
                 </button>
@@ -54,6 +57,7 @@
                         flex flex-col px-4 py-4 space-y-3
                         focus:outline-none
                     "
+                    @click.stop=""
                 >
                     <div v-if="showDropdownPreview">
                         <img class="max-w-full" :src="file.url" alt="">
@@ -65,26 +69,24 @@
                         <span class="block text-theme-base-subtle-contrast text-xs">
                             {{  label }}
                         </span>
-                        <span class="block break-all text-gray-700 text-sm">
+                        <a
+                            v-if="value && label.toLowerCase() === 'url'"
+                            class="block break-all text-gray-700 text-sm underline"
+                            :href="value"
+                            rel="noreferrer noopener nofollow"
+                            target="_blank"
+                        >
+                            {{ value }}
+                        </a>
+                        <span
+                            v-else
+                            class="block break-all text-gray-700 text-sm"
+                        >
                             {{  value }}
                         </span>
                     </p>
                 </div>
             </div>
-
-            <!-- Select File -->
-            <button
-                v-if="file && enableFileSelect"
-                class="
-                    flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
-                    ease-in-out duration-300 transition-colors
-                    focus:text-theme-primary focus:outline-none
-                    hover:text-theme-primary
-                "
-                @click="onFileSelected(file)"
-            >
-                <icon-square-check class="w-5" />
-            </button>
         </div>
     </li>
 </template>
@@ -226,7 +228,9 @@
                 this.isDropdownPreviewLoaded = true;
             },
             onFileSelected(file) {
-                this.$emit('fileSelected', file);
+                if (this.enableFileSelect) {
+                    this.$emit('fileSelected', file);
+                }
             }
         },
     }

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'admin' => [
+        'url' => env('TVI_ADMIN_URL', null),
+    ],
+
     'file_manager' => [
         'uploads' => [
             'enabled' => env('TVI_FILE_MANAGER_UPLOADS_ENABLED', false),

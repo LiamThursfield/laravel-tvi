@@ -62,6 +62,7 @@
                     input-name="type"
                     :input-options="templateTypes"
                     :input-required="true"
+                    @errorHidden="clearPageErrorMessage('type')"
                     v-model="formData.type"
                 />
 
@@ -74,6 +75,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="Template Name"
+                    @errorHidden="clearPageErrorMessage('name')"
                     @input="onNameInput"
                     v-model="formData.name"
                 />
@@ -88,6 +90,7 @@
                     input-type="text"
                     label-text="Template Slug"
                     @blur="onSlugBlur"
+                    @errorHidden="clearPageErrorMessage('slug')"
                     v-model="formData.slug"
                 />
 
@@ -99,6 +102,7 @@
                     input-name="description"
                     input-type="text"
                     label-text="Description"
+                    @errorHidden="clearPageErrorMessage('description')"
                     v-model="formData.description"
                 />
             </div>

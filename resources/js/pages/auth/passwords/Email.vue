@@ -32,6 +32,7 @@
                     :input-required="true"
                     input-type="email"
                     label-text="Email"
+                    @errorHidden="clearPageErrorMessage('email')"
                     v-model="form.email"
                 />
 

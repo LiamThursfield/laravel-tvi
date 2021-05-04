@@ -62,6 +62,7 @@
                     input-option-label-key="name"
                     input-option-value-key="id"
                     :input-required="true"
+                    @errorHidden="clearPageErrorMessage('layout_id')"
                     v-model="formData.layout_id"
                 />
 
@@ -77,6 +78,7 @@
                     input-option-label-key="name"
                     input-option-value-key="id"
                     :input-required="true"
+                    @errorHidden="clearPageErrorMessage('template_id')"
                     v-model="formData.template_id"
                 />
 
@@ -92,6 +94,7 @@
                     :input-options="parentPagesUrls"
                     input-option-label-key="label"
                     input-option-value-key="id"
+                    @errorHidden="clearPageErrorMessage('parent_id')"
                     v-model="formData.parent_id"
                 />
 
@@ -104,6 +107,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="Page Name"
+                    @errorHidden="clearPageErrorMessage('name')"
                     @input="onNameInput"
                     v-model="formData.name"
                 />
@@ -118,6 +122,7 @@
                     input-type="text"
                     label-text="Page Slug"
                     @blur="onSlugBlur"
+                    @errorHidden="clearPageErrorMessage('slug')"
                     @input="onSlugInput"
                     v-model="formData.slug"
                 />

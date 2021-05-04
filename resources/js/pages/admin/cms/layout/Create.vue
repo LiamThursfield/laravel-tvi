@@ -62,6 +62,7 @@
                     input-option-label-key="name"
                     input-option-value-key="id"
                     :input-required="true"
+                    @errorHidden="clearPageErrorMessage('template_id')"
                     v-model="formData.template_id"
                 />
 
@@ -74,6 +75,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="Layout Name"
+                    @errorHidden="clearPageErrorMessage('name')"
                     @input="onNameInput"
                     v-model="formData.name"
                 />
@@ -88,6 +90,7 @@
                     input-type="text"
                     label-text="Layout Slug"
                     @blur="onSlugBlur"
+                    @errorHidden="clearPageErrorMessage('slug')"
                     @input="onSlugInput"
                     v-model="formData.slug"
                 />

@@ -1,3 +1,4 @@
+/*! purgecss start ignore */
 input[type=checkbox] {
     &.form-control {
         @apply cursor-pointer h-5 mt-2 rounded text-theme-primary w-5 ;
@@ -57,3 +58,16 @@ select
         }
     }
 }
+
+.input-group-error {
+    @apply mt-1 text-red-500 text-sm;
+}
+
+.input-group-input {
+    @apply border border-theme-base-subtle font-medium px-3 py-2 rounded w-full focus:border-theme-primary focus:outline-none focus:ring-0
+}
+
+.input-group-label {
+    @apply font-medium mb-2 text-theme-base-contrast text-sm tracking-wider
+}
+/*! purgecss end ignore */

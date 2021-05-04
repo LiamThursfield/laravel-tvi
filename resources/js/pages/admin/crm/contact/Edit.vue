@@ -67,6 +67,7 @@
                     input-name="title"
                     input-type="text"
                     label-text="Title"
+                    @errorHidden="clearPageErrorMessage('title')"
                     v-model="formData.title"
                 />
 
@@ -79,6 +80,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="First Name"
+                    @errorHidden="clearPageErrorMessage('first_name')"
                     v-model="formData.first_name"
                 />
 
@@ -91,6 +93,7 @@
                     :input-required="true"
                     input-type="text"
                     label-text="Last Name"
+                    @errorHidden="clearPageErrorMessage('last_name')"
                     v-model="formData.last_name"
                 />
 
@@ -103,6 +106,7 @@
                     :input-required="true"
                     input-type="email"
                     label-text="Email"
+                    @errorHidden="clearPageErrorMessage('email')"
                     v-model="formData.email"
                 />
 
@@ -115,6 +119,7 @@
                     input-name="telephone"
                     input-type="telephone"
                     label-text="Telephone"
+                    @errorHidden="clearPageErrorMessage('telephone')"
                     v-model="formData.telephone"
                 />
 
