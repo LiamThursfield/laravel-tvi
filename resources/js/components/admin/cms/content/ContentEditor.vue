@@ -43,6 +43,7 @@
 <script>
     import _ from 'lodash';
     import CmsMenuField from "./content_fields/CmsMenuField";
+    import CrmFormField from "./content_fields/CrmFormField";
     import ImageField from "./content_fields/ImageField";
     import NumberField from "./content_fields/NumberField";
     import RepeaterField from "./content_fields/RepeaterField";
@@ -54,6 +55,7 @@
         name: 'AdminCmsContentEditor',
         components: {
             CmsMenuField,
+            CrmFormField,
             ImageField,
             NumberField,
             RepeaterField,
@@ -94,6 +96,8 @@
                 switch (templateField.type) {
                     case 'cms_menu':
                         return 'CmsMenuField';
+                    case 'crm_form':
+                        return 'CrmFormField';
                     case 'image':
                         return 'ImageField';
                     case 'number':
