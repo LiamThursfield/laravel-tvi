@@ -84,7 +84,6 @@
         </draggable>
 
         <div class="flex flex-row items-center mt-6">
-
             <button
                 class="button button-primary-subtle button-small ml-auto text-sm"
                 type="button"

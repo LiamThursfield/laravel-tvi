@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminApi\CMS\MenuController;
 use App\Http\Controllers\AdminApi\CMS\TemplateController;
 use App\Http\Controllers\AdminApi\CMS\UrlAvailableController;
+use App\Http\Controllers\AdminApi\CRM\FormController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerDirectoryController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerFileController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,13 @@ Route::group([
     Route::get('/template/{template}', [TemplateController::class, 'show'])->name('templates.show');
 
     Route::get('/url/available', [UrlAvailableController::class, 'handle'])->name('urls.available');
+});
+
+Route::group([
+    'as' => 'crm.',
+    'prefix' => 'crm'
+], function() {
+    Route::get('/form', [FormController::class, 'index'])->name('forms.index');
 });
 
 Route::group([
