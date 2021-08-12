@@ -18,74 +18,85 @@
             No template fields
         </p>
 
-        <draggable
-            v-else
-            class="mt-6"
-            :animation="200"
-            :disabled="isViewOnly"
-            ghost-class="ghost"
-            handle=".draggable-handle"
-            @end="onDraggableEnd"
-            @sort="onDraggableSort"
-            @start="onDraggableStart"
-            v-model="editableTemplateFields"
-        >
-            <transition-group
-                :name="!isDragging ? 'flip-field' : null"
-                type="transition"
+        <template v-else>
+            <draggable
+                class="mt-6"
+                :animation="200"
+                :disabled="isViewOnly"
+                ghost-class="ghost"
+                handle=".draggable-handle"
+                @end="onDraggableEnd"
+                @sort="onDraggableSort"
+                @start="onDraggableStart"
+                v-model="editableTemplateFields"
             >
-                <article
-                    v-for="(templateField, index) in editableTemplateFields"
-                    :key="`template-field-${index}`"
-                    class="border-2 border-theme-base-subtle mt-4 overflow-hidden rounded"
+                <transition-group
+                    :name="!isDragging ? 'flip-field' : null"
+                    type="transition"
                 >
-                    <!-- Draggable Header -->
-                    <header
-                        class="
-                            draggable-handle
-                            bg-theme-base-subtle cursor-move flex flex-row items-center px-4 py-3
-                        "
+                    <article
+                        v-for="(templateField, index) in editableTemplateFields"
+                        :key="`template-field-${index}`"
+                        class="border-2 border-theme-base-subtle mt-4 overflow-hidden rounded"
                     >
-                        <icon-grid-dots class="w-5" />
-
-                        <span class="flex-1 pl-4">
-                            <template v-if="templateField.name && templateField.name.length">
-                                {{ templateField.name }}
-                            </template>
-                            <template v-else>
-                                New Template Field
-                            </template>
-                        </span>
-                    </header>
-
-                    <p class="p-4">
-                        <template-field
-                            :is-autofocus-disabled="isAutofocusDisabled"
-                            :template-field-types="templateFieldTypes"
-                            :template-field-settings="templateFieldSettings"
-                            @input="updateTemplateFields"
-                            v-model="editableTemplateFields[index]"
-                        />
-                    </p>
-
-                    <footer class="flex flex-row items-center px-4 py-3">
-                        <button
+                        <!-- Draggable Header -->
+                        <header
                             class="
-                                button button-small
-                                bg-transparent border border-theme-base-subtle-contrast flex flex-row items-center ml-auto text-sm text-theme-base-subtle-contrast
-                                hover:bg-theme-danger-contrast hover:text-theme-danger hover:border-theme-danger-contrast
+                                draggable-handle
+                                bg-theme-base-subtle cursor-move flex flex-row items-center px-4 py-3
                             "
-                            type="button"
-                            @click="deleteTemplateField(index)"
                         >
-                            <icon-trash class="h-4 w-4" />
-                            <span class="pl-2">Delete</span>
-                        </button>
-                    </footer>
+                            <icon-grid-dots class="w-5" />
 
-                </article>
-            </transition-group>
-        </draggable>
+                            <span class="flex-1 pl-4">
+                                <template v-if="templateField.name && templateField.name.length">
+                                    {{ templateField.name }}
+                                </template>
+                                <template v-else>
+                                    New Template Field
+                                </template>
+                            </span>
+                        </header>
+
+                        <p class="p-4">
+                            <template-field
+                                :is-autofocus-disabled="isAutofocusDisabled"
+                                :template-field-types="templateFieldTypes"
+                                :template-field-settings="templateFieldSettings"
+                                @input="updateTemplateFields"
+                                v-model="editableTemplateFields[index]"
+                            />
+                        </p>
+
+                        <footer class="flex flex-row items-center px-4 py-3">
+                            <button
+                                class="
+                                    button button-small
+                                    bg-transparent border border-theme-base-subtle-contrast flex flex-row items-center ml-auto text-sm text-theme-base-subtle-contrast
+                                    hover:bg-theme-danger-contrast hover:text-theme-danger hover:border-theme-danger-contrast
+                                "
+                                type="button"
+                                @click="deleteTemplateField(index)"
+                            >
+                                <icon-trash class="h-4 w-4" />
+                                <span class="pl-2">Delete</span>
+                            </button>
+                        </footer>
+
+                    </article>
+                </transition-group>
+            </draggable>
+
+            <div class="flex flex-row items-center mt-6">
+            <button
+                class="button button-primary-subtle button-small ml-auto text-sm"
+                type="button"
+                @click="addTemplateField"
+            >
+                Add Field
+            </button>
+        </div>
+        </template>
     </div>
 </template>
 
