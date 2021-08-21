@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Website\HomeController;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Website\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +25,9 @@ Auth::routes([
 Route::group([
     'as'        => 'website.',
 ], function() {
+    // If you want to use the CMS to control the home page - delete this route
     Route::get('/', [HomeController::class, 'index'])->name('index');
 });
 
 /** Fallback admin route - ensures Auth() calls work as expected in the exception handler */
-Route::fallback(function () {
-    abort(404);
-});
+Route::fallback([PageController::class, 'show']);
