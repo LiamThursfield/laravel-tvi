@@ -119,12 +119,11 @@ class TemplateTest extends AbstractAdminTestCase
         unset($updated_template['template_fields'][2]);
 
         $response = $this
-            ->followingRedirects()
             ->signInWithPermissions(PermissionInterface::EDIT_CMS_ADVANCED)
             ->put(route('admin.cms.templates.update', $original_template), $updated_template);
 
 
-        $response
+        $this->followRedirects($response)
             ->assertStatus(200)
             ->assertPropValue('template.id', $original_template->id)
             ->assertPropValue('template.name', $updated_template['name']);

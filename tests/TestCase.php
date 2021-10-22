@@ -100,6 +100,11 @@ abstract class TestCase extends BaseTestCase
 
         $this->actingAs($user);
 
+        // Navigating to admin ensures that any 'redirect back' go to admin index instead of web index
+        // Going to web index causes issues when following redirects and web routes are not disabled
+        // As an additional redirect to admin causes any shared data to be lost from the response
+        $this->get(route('admin.index'));
+
         return $this;
     }
 
