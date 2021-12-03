@@ -110,32 +110,42 @@
             formattedOptions() {
                 let options = {};
 
-                _.forEach(this.inputOptions, (option, key) => {
-                    // Default the label and value for the select
-                    let label = option;
-                    let value = key;
+                // If the options are just an array
+                if (Array.isArray(this.inputOptions)) {
+                    _.forEach(this.inputOptions, option => {
+                        options[option] = {
+                            label: option,
+                            value: option,
+                        };
+                    });
+                } else {
+                    _.forEach(this.inputOptions, (option, key) => {
+                        // Default the label and value for the select
+                        let label = option;
+                        let value = key;
 
-                    // Set a custom label if necessary
-                    if (
-                        this.inputOptionLabelKey !== false &&
-                        option.hasOwnProperty(this.inputOptionLabelKey)
-                    ) {
-                        label = option[this.inputOptionLabelKey];
-                    }
+                        // Set a custom label if necessary
+                        if (
+                            this.inputOptionLabelKey !== false &&
+                            option.hasOwnProperty(this.inputOptionLabelKey)
+                        ) {
+                            label = option[this.inputOptionLabelKey];
+                        }
 
-                    // Set a custom value if necessary
-                    if (
-                        this.inputOptionValueKey !== false &&
-                        option.hasOwnProperty(this.inputOptionValueKey)
-                    ) {
-                        value = option[this.inputOptionValueKey];
-                    }
+                        // Set a custom value if necessary
+                        if (
+                            this.inputOptionValueKey !== false &&
+                            option.hasOwnProperty(this.inputOptionValueKey)
+                        ) {
+                            value = option[this.inputOptionValueKey];
+                        }
 
-                    options[key] = {
-                        label: label,
-                        value: value,
-                    };
-                });
+                        options[key] = {
+                            label: label,
+                            value: value,
+                        };
+                    });
+                }
 
                 return options;
             },
