@@ -24,8 +24,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
         // Implicitly grant "Super" role all permissions
         Gate::before(function ($user, $ability) {
             return $user->hasRole(RoleInterface::SUPER) ? true : null;
