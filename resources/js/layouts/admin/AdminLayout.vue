@@ -1,30 +1,32 @@
 <template>
-    <main
-        id="admin-layout"
-        class="flex min-h-screen"
-    >
-        <side-menu
-            :url="url()"
-        />
+    <div>
+        <main
+            id="admin-layout"
+            class="flex min-h-screen"
+        >
+            <side-menu
+                :url="url()"
+            />
 
-        <div class="flex flex-1 flex-col max-w-full">
-            <top-menu />
+            <div class="flex flex-1 flex-col max-w-full">
+                <top-menu />
 
-            <page-alerts />
+                <page-alerts />
 
-            <div class="bg-theme-base flex-1 p-8">
-                <slot/>
+                <div class="bg-theme-base flex-1 p-8">
+                    <slot/>
+                </div>
             </div>
-        </div>
 
 
-        <!-- Singleton Modals -->
-        <file-manager-modal class="z-30" />
-    </main>
+            <!-- Singleton Modals -->
+            <file-manager-modal class="z-30" />
+        </main>
+    </div>
 </template>
 
 <script>
-    import { Inertia } from '@inertiajs/inertia'
+    import { router } from '@inertiajs/vue2'
 
     import FileManagerModal from "../../components/admin/modals/FileManagerModal";
     import PageAlerts from "../../components/core/alerts/PageAlerts";
@@ -61,7 +63,7 @@
             }
         },
         mounted() {
-            Inertia.on('success', event => {
+            router.on('success', event => {
                 this.hideMobileSideMenu();
             })
         },

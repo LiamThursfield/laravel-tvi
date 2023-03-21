@@ -63,6 +63,7 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
+            'throw' => true,
         ],
 
         'file_manager' => [
@@ -73,7 +74,8 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
-            'root' => env('AWS_FILE_MANAGER_ROOT')
+            'root' => env('AWS_FILE_MANAGER_ROOT'),
+            'throw' => true,
         ],
 
     ],

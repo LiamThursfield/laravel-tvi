@@ -1,7 +1,7 @@
 // Add ziggy route helper
 import Vue from "vue";
 
-Vue.prototype.$route = (...args) => route(...args).url();
+Vue.prototype.$route = (...args) => route(...args);
 Vue.prototype.$routeCheck = (...args) => route().check(...args);
 Vue.prototype.$routeCurrent = (...args) => route().current(...args);
 

@@ -191,7 +191,7 @@
 
 <script>
     import _ from 'lodash';
-    import { Inertia } from '@inertiajs/inertia'
+    import { router } from '@inertiajs/vue2'
     import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
@@ -305,7 +305,7 @@
                     }
                 }
 
-                Inertia.get(
+                router.get(
                     this.$route('admin.cms.layouts.index'),
                     this.editableSearchOptions,
                     {

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BaseUserRequest extends BaseRequest
 {
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         $validated =  parent::validated();
 

@@ -5,6 +5,9 @@ import Vue from "vue";
  * Global component imports
  */
 
+import { Link } from "@inertiajs/vue2";
+Vue.component('inertia-link', Link);
+
 // Layouts
 Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
 Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);

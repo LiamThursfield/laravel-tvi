@@ -1,9 +1,11 @@
 <template>
-    <main
-        id="website-layout"
-    >
-        <slot />
-    </main>
+    <div>
+        <main
+            id="website-layout"
+        >
+            <slot />
+        </main>
+    </div>
 </template>
 
 <script>

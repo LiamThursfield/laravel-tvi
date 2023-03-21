@@ -3,10 +3,8 @@ require('./bootstrap');
 import Vue from 'vue';
 import { store } from './store/admin'
 
-import { App, plugin } from '@inertiajs/inertia-vue'
-Vue.use(plugin);
+import { createInertiaApp } from '@inertiajs/vue2'
 
-require('./plugins/inertia-progress');
 require('./plugins/toasted');
 require('./plugins/vue2-datepicker');
 require('./plugins/vue-cookies');
@@ -19,14 +17,26 @@ require('./mixins/page-error');
 
 require('./component-registration');
 
+const app = createInertiaApp({
+    progress: {
+        // The delay after which the progress bar will
+        // appear during navigation, in milliseconds.
+        delay: 5,
 
-const el = document.getElementById('app');
-new Vue({
-    store,
-    render: h => h(App, {
-        props: {
-            initialPage: JSON.parse(el.dataset.page),
-            resolveComponent: name => import(`./pages/${name}`).then(module => module.default),
-        },
-    }),
-}).$mount(el);
+        // Whether to include the default NProgress styles.
+        includeCSS: false,
+
+        // Whether the NProgress spinner will be shown.
+        showSpinner: false,
+
+    },
+    resolve: (name) => require(`./pages/${name}.vue`),
+    setup({ el, App, props, plugin }) {
+        Vue.use(plugin)
+
+        new Vue({
+            store,
+            render: h => h(App, props),
+        }).$mount(el)
+    },
+});
