@@ -25,6 +25,7 @@
             <div
                 v-if="tab_selected === tab_key_meta"
                 key="tab_key_meta"
+                class="overflow-hidden"
             >
                 <input-group
                     class="mt-4"
@@ -63,6 +64,7 @@
             <div
                 v-if="tab_selected === tab_key_open_graph"
                 key="tab_key_open_graph"
+                class="overflow-hidden"
             >
                 <input-group
                     class="mt-4"
