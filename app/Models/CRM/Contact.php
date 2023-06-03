@@ -31,7 +31,7 @@ class Contact extends Model
      * Helper to return first + last name.
      * @return string
      */
-    public function getNameAttribute() : String
+    public function getNameAttribute(): String
     {
         return trim(($this->first_name ?? '') . ' ' . ($this->last_name ?? ''));
     }
@@ -40,13 +40,19 @@ class Contact extends Model
      * Helper to return title + first + last name.
      * @return string
      */
-    public function getNameWithTitleAttribute() : String
+    public function getNameWithTitleAttribute(): String
     {
         return trim(($this->title ?? '') . ' ' . ($this->name));
     }
 
 
-    public function formSubmissions() : HasMany
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+
+
+    public function formSubmissions(): HasMany
     {
         return $this->hasMany(FormSubmission::class);
     }
