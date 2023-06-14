@@ -17,10 +17,11 @@ class AddressTest extends AbstractAdminTestCase
         $contact = Contact::factory()->create();
 
         $address = Address::factory()->create([
-            'contact_id' => $contact->id,
+            'addressable_id' => $contact->id,
+            'addressable_type' => Contact::class,
         ]);
 
-        $this->assertEquals($contact->name, $address->contact->name);
+        $this->assertEquals($contact->name, $address->addressable->name);
     }
 
 
@@ -30,12 +31,13 @@ class AddressTest extends AbstractAdminTestCase
         $contact = Contact::factory()->create();
 
         $addresses = Address::factory(5)->create([
-            'contact_id' => $contact->id,
+            'addressable_id' => $contact->id,
+            'addressable_type' => Contact::class,
         ]);
 
         self::assertEquals(
             $contact->addresses->pluck('id'),
-            $addresses->pluck('name')
+            $addresses->pluck('id')
         );
     }
 
