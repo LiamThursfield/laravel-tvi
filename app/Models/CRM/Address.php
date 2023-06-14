@@ -5,6 +5,7 @@ namespace App\Models\CRM;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
@@ -18,8 +19,8 @@ class Address extends Model
     protected $casts = [
     ];
 
-    public function contact(): ?BelongsTo
+    public function addressable(): ?MorphTo
     {
-        return $this->belongsTo(Contact::class) ?? null;
+        return $this->morphTo() ?? null;
     }
 }

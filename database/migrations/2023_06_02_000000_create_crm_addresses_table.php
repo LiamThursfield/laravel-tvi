@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,10 @@ return new class extends Migration
     {
         Schema::create('crm_addresses', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('addressable_id')->nullable();
+            $table->string('addressable_type')->nullable();
+
             $table->string('postcode', 10);
             $table->string('line_1');
             $table->string('line_2')->nullable();
@@ -20,21 +25,22 @@ return new class extends Migration
             $table->string('town_city')->nullable();
             $table->string('county')->nullable();
             $table->string('country')->nullable();
-            $table->unsignedBigInteger('contact_id')->nullable();
             $table->timestamps();
 
+            $table->index('addressable_id');
+            $table->index('addressable_type');
+            $table->index(['addressable_id', 'addressable_type'], 'addressable');
+
             $table->index('postcode');
+
             $table->unique([
                     'postcode',
                     'line_1',
-                    'contact_id'
+                    'addressable_id',
+                    'addressable_type',
                 ],
                 'crm_addresses_unique'
             );
-
-            $table->foreign('contact_id')
-                ->references('id')
-                ->on('crm_contacts');
         });
     }
 
