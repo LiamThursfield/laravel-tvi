@@ -152,7 +152,7 @@
                                                     hover:bg-theme-info hover:text-theme-info-contrast
                                                 "
                                             :href="$route('admin.crm.contacts.edit', contact.id)"
-                                            title="Edit User"
+                                            title="Edit Contact"
                                         >
                                             <icon-edit class="w-4" />
                                         </inertia-link>
