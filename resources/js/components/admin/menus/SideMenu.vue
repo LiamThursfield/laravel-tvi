@@ -258,11 +258,35 @@
                                 label: "Contacts",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["crm_contacts.create", "crm_contacts.view"],
+                            },
+                            organisation_units: {
+                                activeRoutes: ["admin.crm.organisation-units.index", "admin.crm.organisation-units.create", "admin.crm.organisation-units.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Units",
+                                        requiresAllPermissions: ["crm_organisation_units.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.organisation-units.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Unit",
+                                        requiresAllPermissions: ["crm_organisation_units.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.crm.organisation-units.create",
+                                    },
+                                },
+                                icon: "icon-building",
+                                label: "Organisation Units",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["crm_organisation_units.create", "crm_organisation_units.view"],
                             }
                         },
                         label: "CRM",
                         requiresAllPermissions: [],
-                        requiresAnyPermissions: ["crm_forms.create", "crm_forms.view", "crm_contacts.create", "crm_contacts.view"],
+                        requiresAnyPermissions: ["crm_forms.create", "crm_forms.view", "crm_contacts.create", "crm_contacts.view", "crm_organisation_units.create", "crm_organisation_units.view"],
                         showLabel: true,
                     },
                     utilities: {
