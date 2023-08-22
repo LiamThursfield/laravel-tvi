@@ -56,6 +56,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'tenant' => [
+            \Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain::class,
+            \Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains::class,
+        ],
     ];
 
     /**

@@ -18,6 +18,7 @@
         "league/flysystem-aws-s3-v3": "^3.1",
         "predis/predis": "^1.0",
         "spatie/laravel-permission": "^5.8",
+        "stancl/tenancy": "^3.7",
         "tightenco/ziggy": "^1.5"
     },
     "require-dev": {
