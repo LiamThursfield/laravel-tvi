@@ -93,6 +93,10 @@
                 default: false,
                 type: Boolean,
             },
+            inputOptionForceFormatting: {
+                default: false,
+                type: Boolean,
+            },
             inputOptionLabelKey: {
                 default: false,
                 type: Boolean | String | Number
@@ -111,7 +115,7 @@
                 let options = {};
 
                 // If the options are just an array
-                if (Array.isArray(this.inputOptions)) {
+                if (Array.isArray(this.inputOptions) && !this.inputOptionForceFormatting) {
                     _.forEach(this.inputOptions, option => {
                         options[option] = {
                             label: option,

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin\CRM;
 
 use App\Actions\CRM\OrganisationUnit\OrganisationUnitQueryAction;
+use App\Actions\CRM\OrganisationUnit\OrganisationUnitStoreAction;
+use App\Actions\CRM\OrganisationUnit\OrganisationUnitUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\CRM\OrganisationUnit\OrganisationUnitIndexRequest;
+use App\Http\Requests\Admin\CRM\OrganisationUnit\OrganisationUnitStoreRequest;
+use App\Http\Requests\Admin\CRM\OrganisationUnit\OrganisationUnitUpdateRequest;
 use App\Http\Resources\Admin\CRM\OrganisationUnitResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\CRM\OrganisationUnitInterface;
@@ -44,7 +48,11 @@ class OrganisationUnitController extends AdminController
     public function create() : Response
     {
         $this->addMetaTitleSection('Create')->shareMeta();
-        return Inertia::render('admin/crm/organisation_unit/Create');
+        return Inertia::render('admin/crm/organisation_unit/Create', [
+            'types' => function () {
+                return OrganisationUnitInterface::TYPE_LABELS;
+            }
+        ]);
     }
 
     public function destroy(OrganisationUnit $organisationUnit) : RedirectResponse
@@ -84,18 +92,18 @@ class OrganisationUnitController extends AdminController
             }
         ]);
     }
-//
-//    public function store(ContactStoreRequest $request) : RedirectResponse
-//    {
-//        $user = app(ContactStoreAction::class)->handle($request->validated());
-//        return Redirect::to(route('admin.crm.contacts.edit', $user))
-//            ->with('success', 'Contact created.');
-//    }
-//
-//    public function update(ContactUpdateRequest $request, Contact $contact) : RedirectResponse
-//    {
-//        app(ContactUpdateAction::class)->handle($contact, $request->validated());
-//        return Redirect::to(route('admin.crm.contacts.edit', $contact))
-//            ->with('success', 'Contact updated.');
-//    }
+
+    public function store(OrganisationUnitStoreRequest $request) : RedirectResponse
+    {
+        $organisation_unit = app(OrganisationUnitStoreAction::class)->handle($request->validated());
+        return Redirect::to(route('admin.crm.organisation-units.index')) // TODO: Redirect to edit
+            ->with('success', 'Organisation Unit created.');
+    }
+
+    public function update(OrganisationUnitUpdateRequest $request, OrganisationUnit $organisationUnit) : RedirectResponse
+    {
+        app(OrganisationUnitUpdateAction::class)->handle($organisationUnit, $request->validated());
+        return Redirect::to(route('admin.crm.organisation-units.index')) // TODO: Redirect to edit
+            ->with('success', 'Contact updated.');
+    }
 }
