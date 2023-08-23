@@ -43,6 +43,12 @@ class PermissionInterface
     const EDIT_CRM_FORMS      = 'edit crm_forms';
     const VIEW_CRM_FORMS      = 'view crm_forms';
 
+    // CRM Organisation Unit Permissions
+    const CREATE_CRM_ORGANISATION_UNITS    = 'create crm_organisation_units';
+    const DELETE_CRM_ORGANISATION_UNITS    = 'delete crm_organisation_units';
+    const EDIT_CRM_ORGANISATION_UNITS      = 'edit crm_organisation_units';
+    const VIEW_CRM_ORGANISATION_UNITS      = 'view crm_organisation_units';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -90,6 +96,12 @@ class PermissionInterface
             'delete'    => self::DELETE_CRM_FORMS,
             'edit'      => self::EDIT_CRM_FORMS,
             'view'      => self::VIEW_CRM_FORMS,
+        ],
+        'crm_organisation_units' => [
+            'create'    => self::CREATE_CRM_ORGANISATION_UNITS,
+            'delete'    => self::DELETE_CRM_ORGANISATION_UNITS,
+            'edit'      => self::EDIT_CRM_ORGANISATION_UNITS,
+            'view'      => self::VIEW_CRM_ORGANISATION_UNITS,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

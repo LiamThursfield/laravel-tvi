@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CMS\TemplateController;
 use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
 use App\Http\Controllers\Admin\CRM\FormSubmissionController;
+use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -40,6 +41,7 @@ Route::group([
         'index', 'show'
     ]);
     Route::resource('forms', FormController::class);
+    Route::resource('organisation-units', OrganisationUnitController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])

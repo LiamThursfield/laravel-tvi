@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminApi\CMS\MenuController;
 use App\Http\Controllers\AdminApi\CMS\TemplateController;
 use App\Http\Controllers\AdminApi\CMS\UrlAvailableController;
 use App\Http\Controllers\AdminApi\CRM\FormController;
+use App\Http\Controllers\AdminApi\CRM\OrganisationUnitController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerDirectoryController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerFileController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::group([
     'as' => 'crm.',
     'prefix' => 'crm'
 ], function() {
+    Route::get('/organisation-units', [OrganisationUnitController::class, 'index'])->name('organisation-units.index');
+
     Route::get('/form', [FormController::class, 'index'])->name('forms.index');
 });
 
