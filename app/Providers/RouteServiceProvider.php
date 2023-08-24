@@ -42,12 +42,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        // Landlord routes
+        $this->mapLandlordWebRoutes();
+
+        // Tenant routes
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
-
         $this->mapAdminRoutes();
-
         $this->mapAdminApiRoutes();
     }
 
@@ -62,7 +63,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminRoutes()
     {
-        Route::middleware('admin')
+        Route::middleware(['admin','tenant'])
             ->namespace($this->namespace)
             ->as('admin.')
             ->prefix('admin')
@@ -79,7 +80,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminApiRoutes()
     {
-        Route::middleware('admin')
+        Route::middleware(['admin','tenant'])
             ->namespace($this->namespace)
             ->as('admin.api.')
             ->prefix('admin/api')
@@ -96,13 +97,13 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-            ->middleware('api')
+            ->middleware(['api', 'tenant'])
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
     }
 
     /**
-     * Define the "web" routes for the application.
+     * Define the tenant's "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
      *
@@ -110,8 +111,23 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'tenant'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+    }
+
+    protected function mapLandlordWebRoutes()
+    {
+        foreach ($this->centralDomains() as $domain) {
+            Route::middleware('web')
+                ->domain($domain)
+                ->namespace($this->namespace)
+                ->group(base_path('routes/landlord/web.php'));
+        }
+    }
+
+    protected function centralDomains(): array
+    {
+        return config('tenancy.central_domains');
     }
 }
