@@ -40,11 +40,13 @@ return new class extends Migration
 
             $table->foreign('company_id')
                 ->references('id')
-                ->on('crm_organisation_units');
+                ->on('crm_organisation_units')
+                ->onDelete('cascade');
 
             $table->foreign('location_id')
                 ->references('id')
-                ->on('crm_organisation_units');
+                ->on('crm_organisation_units')
+                ->onDelete('cascade');
 
             $table->foreign('address_id')
                 ->references('id')

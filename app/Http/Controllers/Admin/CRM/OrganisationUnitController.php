@@ -72,6 +72,9 @@ class OrganisationUnitController extends AdminController
             'organisationUnit' => function () use ($organisationUnit) {
                 OrganisationUnitResource::withoutWrapping();
                 return OrganisationUnitResource::make($organisationUnit);
+            },
+            'types' => function () {
+                return OrganisationUnitInterface::TYPE_LABELS;
             }
         ]);
     }
@@ -95,15 +98,15 @@ class OrganisationUnitController extends AdminController
 
     public function store(OrganisationUnitStoreRequest $request) : RedirectResponse
     {
-        $organisation_unit = app(OrganisationUnitStoreAction::class)->handle($request->validated());
-        return Redirect::to(route('admin.crm.organisation-units.index')) // TODO: Redirect to edit
+        $organisationUnit = app(OrganisationUnitStoreAction::class)->handle($request->validated());
+        return Redirect::to(route('admin.crm.organisation-units.edit'. $organisationUnit->id))
             ->with('success', 'Organisation Unit created.');
     }
 
     public function update(OrganisationUnitUpdateRequest $request, OrganisationUnit $organisationUnit) : RedirectResponse
     {
         app(OrganisationUnitUpdateAction::class)->handle($organisationUnit, $request->validated());
-        return Redirect::to(route('admin.crm.organisation-units.index')) // TODO: Redirect to edit
-            ->with('success', 'Contact updated.');
+        return Redirect::to(route('admin.crm.organisation-units.edit', $organisationUnit->id))
+            ->with('success', 'Organisation Unit updated.');
     }
 }
