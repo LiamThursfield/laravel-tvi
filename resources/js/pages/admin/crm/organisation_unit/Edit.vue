@@ -10,7 +10,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Create Organisation Unit
+                Edit Organisation Unit - {{ organisationUnit.name }}
             </h1>
 
             <inertia-link
@@ -47,19 +47,19 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Create Organisation Unit
+                    Save Changes
                 </span>
             </button>
         </div>
 
-        <!-- Type/Parent Details -->
+        <!-- Type/Parent Details -- Not editable -->
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <select-group
                     :error-message="getPageErrorMessage('type')"
                     :input-any-option-enabled="true"
                     input-any-option-label="Please select a type"
-                    :input-autofocus="true"
+                    :input-disabled="true"
                     input-id="type"
                     input-name="Type"
                     :input-options="types"
@@ -77,7 +77,7 @@
                     :input-any-option-enabled="true"
                     :input-any-option-label="isLoadingCompanies ? 'Loading...' : 'Please select a company'"
                     :input-any-option-value="null"
-                    :input-disabled="isLoadingCompanies || !companies || !companies.length"
+                    :input-disabled="true"
                     input-id="company_id"
                     input-name="company_id"
                     :input-option-force-formatting="true"
@@ -98,7 +98,7 @@
                     :input-any-option-enabled="true"
                     :input-any-option-label="isLoadingLocations ? 'Loading...' : 'Please select a location'"
                     :input-any-option-value="null"
-                    :input-disabled="isLoadingLocations || !locations || !locations.length"
+                    :input-disabled="true"
                     input-id="location_id"
                     input-name="location_id"
                     :input-option-force-formatting="true"
@@ -111,7 +111,6 @@
                     @input="onLocationInput"
                     v-model="formData.location_id"
                 />
-
             </div>
         </div>
 
@@ -248,6 +247,7 @@
 </template>
 
 <script>
+    import _ from "lodash";
     import slugify from "slugify";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
@@ -257,13 +257,17 @@
     let locationsCancelToken = CancelToken.source();
 
     export default {
-        name: "AdminCrmOrganisationUnitCreate",
+        name: "AdminCrmOrganisationUnitEdit",
         components: {
             InputGroup,
             SelectGroup,
         },
         layout: 'admin-layout',
         props: {
+            organisationUnit: {
+                type: Object,
+                required: true,
+            },
             types: {
                 type: Object,
                 required: true,
@@ -271,25 +275,9 @@
         },
         data() {
             return {
-                autoUpdateSlug: true,
+                autoUpdateSlug: false,
                 companies: [],
-                formData: {
-                    company_id: '',
-                    email: '',
-                    location_id: '',
-                    name: '',
-                    notification_emails: [],
-                    parent_id: null,
-                    slug: '',
-                    socials: {
-                        facebook: '',
-                        instagram: '',
-                        linkedin: '',
-                        twitter: '',
-                    },
-                    telephone: '',
-                    type: '',
-                },
+                formData: {},
                 isLoadingCompanies: false,
                 isLoadingLocations: false,
                 locations: [],
@@ -310,6 +298,19 @@
             showLocationSelect() {
                 return this.formData.type === 'department';
             },
+        },
+        created() {
+            this.formData = _.cloneDeep(this.organisationUnit);
+
+            if (this.formData.company_id) {
+                this.selected_company_id = this.formData.company_id;
+                this.loadCompanies();
+            }
+
+            if (this.formData.location_id) {
+                this.selected_location_id = this.formData.location_id;
+                this.loadLocations();
+            }
         },
         methods: {
             loadCompanies() {
@@ -363,49 +364,11 @@
                     this.isLoadingLocations = false;
                 });
             },
-            onCompanyInput() {
-                console.log('onCompanyInput', this.formData.company_id);
-                this.locations = [];
-                this.formData.location_id = null;
-
-                if (this.showLocationSelect) {
-                    this.formData.parent_id = null;
-                    this.loadLocations();
-                } else if (this.formData.company_id) {
-                    this.formData.parent_id = this.formData.company_id;
-                }
-            },
-            onLocationInput() {
-                if (this.formData.location_id) {
-                    this.formData.parent_id = this.formData.location_id;
-                } else {
-                    this.formData.parent_id = null;
-                }
-            },
-            onNameInput() {
-                if (!this.autoUpdateSlug) {
-                    return;
-                }
-
-                this.formData.slug = this.slugify(this.formData.name);
-            },
             onSlugBlur() {
                 this.formData.slug = this.slugify(this.formData.slug)
             },
             onSlugInput() {
                 this.autoUpdateSlug = false;
-            },
-            onTypeInput() {
-                this.companies = [];
-                this.locations = [];
-
-                this.formData.company_id = null;
-                this.formData.location_id = null;
-                this.formData.parent_id = null;
-
-                if (this.showCompanySelect) {
-                    this.loadCompanies();
-                }
             },
             slugify(value) {
                 if (!value || !value.length) {
@@ -419,8 +382,8 @@
                 );
             },
             submit() {
-                this.$inertia.post(
-                    this.$route('admin.crm.organisation-units.store'),
+                this.$inertia.put(
+                    this.$route('admin.crm.organisation-units.update', this.organisationUnit.id),
                     this.formData
                 );
             }
