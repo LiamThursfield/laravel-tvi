@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\Landlord;
 
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
@@ -15,10 +15,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (!config('sigi.web.enabled')) {
-            return redirect(route('admin.index'));
-        }
-
-        return Inertia::render('website/home/Index');
+        return Inertia::render('landlord/home/Index');
     }
 }

@@ -52,13 +52,13 @@
             metaDescription() {
                 return this.getMetaDataField(
                     'description',
-                    'Laravel TVI - A CMS powered by Laravel, Tailwind, Vue, and Inertia'
+                    'SIGI - powered by Laravel, Tailwind, Vue, and Inertia'
                 );
             },
             metaTitle() {
                 return this.getMetaDataField(
                     'title',
-                    'Laravel TVI'
+                    'SIGI'
                 );
             }
         },

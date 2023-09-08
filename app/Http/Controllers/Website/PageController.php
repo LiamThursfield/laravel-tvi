@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function show(Request $request): Response
     {
-        if (!config('tvi.web.enabled')) {
+        if (!config('sigi.web.enabled')) {
             abort(404);
         }
 

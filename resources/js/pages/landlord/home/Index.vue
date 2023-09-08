@@ -55,7 +55,7 @@
                             sm:ml-6
                         "
                     >
-                        SIGI - {{ $page.props.tenant.id }}
+                        SIGI - Landlord
                     </span>
                 </h1>
             </div>
@@ -106,15 +106,15 @@
 </template>
 
 <script>
-    export default {
-        name: "Index",
-        layout: 'website-layout'
-    }
+export default {
+    name: "Index",
+    layout: 'website-layout'
+}
 </script>
 
 <style scoped>
-    .skewed-logo-bg {
-        --tw-rotate: -18deg;
-        --tw-skew-y: 12deg
-    }
+.skewed-logo-bg {
+    --tw-rotate: -18deg;
+    --tw-skew-y: 12deg
+}
 </style>

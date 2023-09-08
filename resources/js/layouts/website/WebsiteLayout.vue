@@ -13,11 +13,11 @@
         name: "WebsiteLayout",
         metaInfo() {
             return {
-                title: 'Laravel TVI',
+                title: 'SIGI',
                 meta: [
                     {
                         name: 'description',
-                        content: 'Laravel TVI - A CMS powered by Laravel, Tailwind, Vue, and Inertia',
+                        content: 'SIGI - powered by Laravel, Tailwind, Vue, and Inertia',
                     }
                 ]
             }

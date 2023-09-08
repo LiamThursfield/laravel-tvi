@@ -32,11 +32,11 @@
         name: "AuthLayout",
         metaInfo() {
             return {
-                title: 'Laravel TVI',
+                title: 'SIGI',
                 meta: [
                     {
                         name: 'description',
-                        content: 'Laravel TVI',
+                        content: 'SIGI',
                     }
                 ]
             }

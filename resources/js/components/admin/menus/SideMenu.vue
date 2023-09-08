@@ -30,7 +30,7 @@
                 :href="$route('admin.index')"
             >
                 <logo-light class="mr-2 w-6"/>
-                <span>TVI</span>
+                <span>SIGI</span>
             </inertia-link>
         </div>
 

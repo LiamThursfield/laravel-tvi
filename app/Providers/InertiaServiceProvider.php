@@ -62,7 +62,7 @@ class InertiaServiceProvider extends ServiceProvider
 
                 public function links($view = null, $data = [])
                 {
-                    $this->onEachSide(\config('tvi.pagination.links_on_each_side', 1));
+                    $this->onEachSide(\config('sigi.pagination.links_on_each_side', 1));
                     $this->appends(Request::all());
 
                     $window = UrlWindow::make($this);
@@ -137,7 +137,7 @@ class InertiaServiceProvider extends ServiceProvider
             'app' => [
                 'name' => Config::get('app.name'),
                 'config' => [
-                    'file_manager_uploads_enabled' => Config::get('tvi.file_manager.uploads.enabled', false),
+                    'file_manager_uploads_enabled' => Config::get('sigi.file_manager.uploads.enabled', false),
                 ],
             ],
             'auth' => function () {
@@ -166,6 +166,11 @@ class InertiaServiceProvider extends ServiceProvider
                     'warning'   => Session::get('warning'),
                 ];
             },
+            'tenant' => function () {
+                return [
+                    'id' => tenant()->id ?? null,
+                ];
+            }
         ]);
     }
 

@@ -45,8 +45,8 @@
                     },
                     min_height: 300,
                     plugins: 'code fullscreen image lists link',
-                    skin: 'TVI',
-                    skin_url: '/vendor/tinymce/skins/tvi',
+                    skin: 'SIGI',
+                    skin_url: '/vendor/tinymce/skins/sigi',
                     toolbar: 'styleselect bold italic alignleft aligncenter alignright numlist bullist link image',
                 };
             },

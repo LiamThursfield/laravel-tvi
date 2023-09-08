@@ -33,7 +33,7 @@ class FileManagerFileController extends AbstractFileManagerController
 
     public function store(Request $request)
     {
-        if (!config('tvi.file_manager.uploads.enabled')) {
+        if (!config('sigi.file_manager.uploads.enabled')) {
             abort(403, 'Uploads are disabled.');
         }
 

@@ -1,9 +1,7 @@
-[![Laravel TVI](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/readme-header.png)](https://tvi-demo.liamthursfield.test)
-
-Laravel TVI is a base CMS for creating & managing websites.
+# SIGI
 
 
-## About Laravel TVI
+## About SIGI
 
 ## Core Stack
 - [Laravel](https://laravel.com/)
@@ -14,40 +12,54 @@ Laravel TVI is a base CMS for creating & managing websites.
 
 ---------
 
+## Installation
 
-## Screenshots
+### Requirements
+- [PHP](https://www.php.net/) >= 8.1
+- [Composer](https://getcomposer.org/)
 
-**Homepage**
+### Steps
 
-![Homepage](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/app_home.png)
+1. Clone the repository
+2. Copy `.env.example` to `.env`
+    ```bash
+    cp .env.example .env
+    ```
+3. Install dependencies to install [Laravel Sail](https://laravel.com/docs/10.x/sail#installation)
+    ```bash
+    composer install --ignore-platform-reqs
+    ```
+4. Start sail
+    ```bash
+    ./vendor/bin/sail up
+    ```
+5. Install composer dependencies
+    ```bash
+    ./vendor/bin/sail composer install
+    ```
+6. Install yarn dependencies
+    ```bash
+    ./vendor/bin/sail yarn
+    ```
+7. Generate application key
+    ```bash
+    ./vendor/bin/sail artisan key:generate
+    ```
+8. Run database migrations for the landlord/central database
+    ```bash
+    ./vendor/bin/sail artisan migrate
+    ```
+9. Create a sample tenant
+    ```bash
+    ./vendor/bin/sail artisan tenants:create
+    ```
+    1. For the ID - choose any unique string e.g. `tenant`
+    2. For the domain(s) - choose the subdomain you'd like to use to access the tenant's routes e.g. `tenant` would result in `tenant.localhost`
+10. (Optional) Run database seeders for the tenant database
+    ```bash
+    ./vendor/bin/sail artisan tenants:seed
+    ```
 
-**Auth - Login**
-
-![Auth - Login](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/login.png)
-
-**Admin - Dashboard**
-
-![Admin - Dashboard](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_dashboard.png)
-
-**Admin - User Management**
-
-![Admin - User Management](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_user_management.png)
-
-**Admin - Index/Search Page**
-
-![Admin - Index/Search Page](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_index.png)
-
-**Admin - Create Page**
-
-![Admin - Create Page](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_create.png)
-
-**Admin - File Manager**
-
-![Admin - File Manager](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_filemanager.png)
-
-**Admin - Modal**
-
-![Admin - Modal](https://raw.githubusercontent.com/LiamThursfield/laravel-tvi/master/.github/screenshots/admin_modal.png)
 
 ---------
 
