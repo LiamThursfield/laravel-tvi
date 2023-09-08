@@ -1,6 +1,6 @@
 {
-    "/js/app.js": "/js/app.js?id=53f1932f84a34ee519a4a7203838b398",
+    "/js/app.js": "/js/app.js?id=f439ee64724c33a6331baebac70a0376",
     "/css/app.css": "/css/app.css?id=87508868f6c03517188eea7628959c6a",
-    "/vendor/tinymce/skins/tvi/skin.min.css": "/vendor/tinymce/skins/tvi/skin.min.css?id=6217d109f82b0f348376b5a28590e2b7",
-    "/vendor/tinymce/skins/tvi/content.min.css": "/vendor/tinymce/skins/tvi/content.min.css?id=c298a3f5ee6fffdbe8981ecf8713b33c"
+    "/vendor/tinymce/skins/sigi/skin.min.css": "/vendor/tinymce/skins/sigi/skin.min.css?id=6217d109f82b0f348376b5a28590e2b7",
+    "/vendor/tinymce/skins/sigi/content.min.css": "/vendor/tinymce/skins/sigi/content.min.css?id=c298a3f5ee6fffdbe8981ecf8713b33c"
 }
