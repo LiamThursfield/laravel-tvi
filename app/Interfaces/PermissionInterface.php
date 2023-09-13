@@ -49,6 +49,12 @@ class PermissionInterface
     const EDIT_CRM_ORGANISATION_UNITS      = 'edit crm_organisation_units';
     const VIEW_CRM_ORGANISATION_UNITS      = 'view crm_organisation_units';
 
+    // EDU Course Permissions
+    const CREATE_EDU_COURSE  = 'create course';
+    const DELETE_EDU_COURSE  = 'delete course';
+    const EDIT_EDU_COURSE    = 'edit course';
+    const VIEW_EDU_COURSE    = 'view course';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -102,6 +108,12 @@ class PermissionInterface
             'delete'    => self::DELETE_CRM_ORGANISATION_UNITS,
             'edit'      => self::EDIT_CRM_ORGANISATION_UNITS,
             'view'      => self::VIEW_CRM_ORGANISATION_UNITS,
+        ],
+        'edu_courses' => [
+            'create' => self::CREATE_EDU_COURSE,
+            'delete' => self::DELETE_EDU_COURSE,
+            'edit' => self::EDIT_EDU_COURSE,
+            'view' => self::VIEW_EDU_COURSE,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

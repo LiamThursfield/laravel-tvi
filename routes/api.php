@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\CMS\PageController;
 use App\Http\Controllers\Api\CRM\FormSubmissionController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

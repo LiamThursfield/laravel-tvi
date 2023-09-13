@@ -156,6 +156,11 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::DELETE_USERS,
                 PermissionInterface::EDIT_USERS,
                 PermissionInterface::VIEW_USERS,
+                // EDU Courses
+                PermissionInterface::CREATE_EDU_COURSE,
+                PermissionInterface::DELETE_EDU_COURSE,
+                PermissionInterface::EDIT_EDU_COURSE,
+                PermissionInterface::VIEW_EDU_COURSE,
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [

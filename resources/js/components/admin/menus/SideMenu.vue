@@ -289,6 +289,22 @@
                         requiresAnyPermissions: ["crm_forms.create", "crm_forms.view", "crm_contacts.create", "crm_contacts.view", "crm_organisation_units.create", "crm_organisation_units.view"],
                         showLabel: true,
                     },
+                    edu: {
+                        children : {
+                            course: {
+                                children: false,
+                                icon: "icon-folders",
+                                label: "Courses",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["course.view"],
+                                route: 'admin.course.index',
+                            }
+                        },
+                        label: "Courses",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["course.view"],
+                        showLabel: true,
+                    },
                     utilities: {
                         children : {
                             file_manager: {
