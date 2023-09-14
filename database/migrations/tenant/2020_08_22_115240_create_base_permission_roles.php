@@ -96,6 +96,25 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::DELETE_CRM_ORGANISATION_UNITS,
             PermissionInterface::EDIT_CRM_ORGANISATION_UNITS,
             PermissionInterface::VIEW_CRM_ORGANISATION_UNITS,
+
+            // EDU Courses
+            PermissionInterface::CREATE_EDU_COURSE,
+            PermissionInterface::DELETE_EDU_COURSE,
+            PermissionInterface::EDIT_EDU_COURSE,
+            PermissionInterface::VIEW_EDU_COURSE,
+
+            // EDU PROGRAMS
+            PermissionInterface::CREATE_EDU_PROGRAM,
+            PermissionInterface::DELETE_EDU_PROGRAM,
+            PermissionInterface::EDIT_EDU_PROGRAM,
+            PermissionInterface::VIEW_EDU_PROGRAM,
+
+            // EDU Labels
+            PermissionInterface::CREATE_EDU_LABEL,
+            PermissionInterface::DELETE_EDU_LABEL,
+            PermissionInterface::EDIT_EDU_LABEL,
+            PermissionInterface::VIEW_EDU_LABEL,
+
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
             PermissionInterface::VIEW_FILE_MANAGER,
@@ -156,11 +175,24 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::DELETE_USERS,
                 PermissionInterface::EDIT_USERS,
                 PermissionInterface::VIEW_USERS,
+
                 // EDU Courses
                 PermissionInterface::CREATE_EDU_COURSE,
                 PermissionInterface::DELETE_EDU_COURSE,
                 PermissionInterface::EDIT_EDU_COURSE,
                 PermissionInterface::VIEW_EDU_COURSE,
+
+                // EDU PROGRAMS
+                PermissionInterface::CREATE_EDU_PROGRAM,
+                PermissionInterface::DELETE_EDU_PROGRAM,
+                PermissionInterface::EDIT_EDU_PROGRAM,
+                PermissionInterface::VIEW_EDU_PROGRAM,
+
+                // EDU Labels
+                PermissionInterface::CREATE_EDU_LABEL,
+                PermissionInterface::DELETE_EDU_LABEL,
+                PermissionInterface::EDIT_EDU_LABEL,
+                PermissionInterface::VIEW_EDU_LABEL,
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [

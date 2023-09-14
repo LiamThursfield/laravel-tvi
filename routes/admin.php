@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
 use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
-use App\Http\Controllers\Admin\EDU\Course\CourseController;
+use App\Http\Controllers\Admin\EDU\Course\LabelController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -49,7 +49,7 @@ Route::group([
     'as' => 'edu.',
     'prefix' => 'edu'
 ], function() {
-    Route::resource('courses', CourseController::class);
+    Route::resource('courses', LabelController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])

@@ -5,25 +5,44 @@ namespace App\Http\Controllers\Admin\EDU\Course;
 use App\Actions\EDU\Course\CourseQueryAction;
 use App\Actions\EDU\Course\CourseStoreAction;
 use App\Actions\EDU\Course\CourseUpdateAction;
-use App\Http\Controllers\AdminEDUController;
+use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class CourseController extends AdminEDUController
+class CourseController extends AdminController
 {
+
 
     public function __construct()
     {
         parent::__construct();
+        $this->addMetaTitleSection('EDU');
         $this->addMetaTitleSection('Courses');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_COURSE)
+        )->only(['create', 'store']);
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_COURSE)
+        )->only('destroy');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_COURSE)
+        )->only(['edit', 'update']);
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_COURSE)
+        )->only('index');
     }
 
     public function create() : Response
