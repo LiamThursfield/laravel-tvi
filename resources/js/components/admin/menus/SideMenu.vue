@@ -297,7 +297,7 @@
                                 label: "Courses",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["course.view"],
-                                route: 'admin.course.index',
+                                route: 'admin.edu.courses.index',
                             },
                             program: {
                                 children: false,
@@ -305,7 +305,7 @@
                                 label: "Programs",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["program.view"],
-                                route: 'admin.program.index',
+                                route: 'admin.edu.programs.index',
                             },
                             labels: {
                                 children: false,
@@ -313,7 +313,7 @@
                                 label: "Labels",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["label.view"],
-                                route: 'admin.label.index',
+                                route: 'admin.edu.labels.index',
                             }
                         },
                         label: "EDU",
