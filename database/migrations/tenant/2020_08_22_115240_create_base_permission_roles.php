@@ -104,10 +104,10 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::VIEW_EDU_COURSE,
 
             // EDU PROGRAMS
-            PermissionInterface::CREATE_EDU_PROGRAM,
-            PermissionInterface::DELETE_EDU_PROGRAM,
-            PermissionInterface::EDIT_EDU_PROGRAM,
-            PermissionInterface::VIEW_EDU_PROGRAM,
+            PermissionInterface::CREATE_EDU_PROGRAMME,
+            PermissionInterface::DELETE_EDU_PROGRAMME,
+            PermissionInterface::EDIT_EDU_PROGRAMME,
+            PermissionInterface::VIEW_EDU_PROGRAMME,
 
             // EDU Labels
             PermissionInterface::CREATE_EDU_LABEL,
@@ -183,10 +183,10 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::VIEW_EDU_COURSE,
 
                 // EDU PROGRAMS
-                PermissionInterface::CREATE_EDU_PROGRAM,
-                PermissionInterface::DELETE_EDU_PROGRAM,
-                PermissionInterface::EDIT_EDU_PROGRAM,
-                PermissionInterface::VIEW_EDU_PROGRAM,
+                PermissionInterface::CREATE_EDU_PROGRAMME,
+                PermissionInterface::DELETE_EDU_PROGRAMME,
+                PermissionInterface::EDIT_EDU_PROGRAMME,
+                PermissionInterface::VIEW_EDU_PROGRAMME,
 
                 // EDU Labels
                 PermissionInterface::CREATE_EDU_LABEL,

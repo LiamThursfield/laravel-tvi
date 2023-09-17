@@ -17,7 +17,6 @@ class CourseQueryAction extends AbstractQueryAction
 
     protected function getQueryBuilder(): Builder
     {
-
         return Course::query();
     }
 }

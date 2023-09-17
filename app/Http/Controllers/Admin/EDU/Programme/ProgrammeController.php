@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\EDU\Program;
+namespace App\Http\Controllers\Admin\EDU\Programme;
 
 use App\Actions\EDU\Course\CourseQueryAction;
 use App\Actions\EDU\Course\CourseStoreAction;
@@ -18,14 +18,14 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class ProgramController extends AdminController
+class ProgrammeController extends AdminController
 {
 
     public function __construct()
     {
         parent::__construct();
         $this->addMetaTitleSection('EDU');
-        $this->addMetaTitleSection('Courses');
+        $this->addMetaTitleSection('Programmes');
 
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_PROGRAM)

@@ -299,20 +299,20 @@
                                 requiresAnyPermissions: ["course.view"],
                                 route: 'admin.edu.courses.index',
                             },
-                            program: {
+                            programmes: {
                                 children: false,
                                 icon: "icon-folders",
-                                label: "Programs",
+                                label: "Programmes",
                                 requiresAllPermissions: [],
-                                requiresAnyPermissions: ["program.view"],
-                                route: 'admin.edu.programs.index',
+                                requiresAnyPermissions: ["edu.programme.view"],
+                                route: 'admin.edu.programmes.index',
                             },
                             labels: {
                                 children: false,
                                 icon: "icon-folders",
                                 label: "Labels",
                                 requiresAllPermissions: [],
-                                requiresAnyPermissions: ["label.view"],
+                                requiresAnyPermissions: ["edu.label.view"],
                                 route: 'admin.edu.labels.index',
                             }
                         },

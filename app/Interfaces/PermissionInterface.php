@@ -56,10 +56,10 @@ class PermissionInterface
     const VIEW_EDU_COURSE    = 'view course';
 
     // EDU Programs Permissions
-    const CREATE_EDU_PROGRAM  = 'create program';
-    const DELETE_EDU_PROGRAM  = 'delete program';
-    const EDIT_EDU_PROGRAM    = 'edit program';
-    const VIEW_EDU_PROGRAM    = 'view program';
+    const CREATE_EDU_PROGRAMME  = 'create programme';
+    const DELETE_EDU_PROGRAMME  = 'delete programme';
+    const EDIT_EDU_PROGRAMME    = 'edit programme';
+    const VIEW_EDU_PROGRAMME    = 'view programme';
 
     // EDU Labels Permissions
     const CREATE_EDU_LABEL  = 'create label';
@@ -127,11 +127,11 @@ class PermissionInterface
             'edit' => self::EDIT_EDU_COURSE,
             'view' => self::VIEW_EDU_COURSE,
         ],
-        'edu_programs' => [
-            'create' => self::CREATE_EDU_PROGRAM,
-            'delete' => self::DELETE_EDU_PROGRAM,
-            'edit' => self::EDIT_EDU_PROGRAM,
-            'view' => self::VIEW_EDU_PROGRAM,
+        'edu_programmes' => [
+            'create' => self::CREATE_EDU_PROGRAMME,
+            'delete' => self::DELETE_EDU_PROGRAMME,
+            'edit' => self::EDIT_EDU_PROGRAMME,
+            'view' => self::VIEW_EDU_PROGRAMME,
         ],
         'edu_labels' => [
             'create' => self::CREATE_EDU_LABEL,

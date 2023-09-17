@@ -8,12 +8,12 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('course.create')"
+                v-if="userCan('courses.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
                 "
-                :href="$route('admin.edu.course.create')"
+                :href="$route('admin.edu.courses.create')"
             >
                 <icon-plus class="w-5 md:mr-2"/>
 
@@ -103,7 +103,7 @@
                                 {{ item.description }}
                             </td>
                             <td>
-                                {{ item.creator.name }}
+                                {{ item.creator_id }}
                             </td>
                             <td>
                                 {{ item.content_length_video }}
@@ -111,13 +111,13 @@
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
-                                        v-if="userCan('course.edit')"
+                                        v-if="userCan('courses.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.course.edit', item.id)"
+                                        :href="$route('admin.edu.courses.edit', item.id)"
                                         title="Edit"
                                     >
                                         <icon-edit
@@ -126,7 +126,7 @@
                                     </inertia-link>
 
                                     <button
-                                        v-if="userCan('course.delete')"
+                                        v-if="userCan('courses.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -222,7 +222,7 @@
                 }
             },
             showActions() {
-                return this.userCan('course.edit') || this.userCan('course.delete');
+                return this.userCan('courses.edit') || this.userCan('courses.delete');
             },
             coursesData() {
                 if (!this.courses || !this.courses.data || this.courses.data.length < 1) {
@@ -248,7 +248,7 @@
                     return this.$errorToast('It\'s only possible to delete one item at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.edu.course.destroy', this.itemToDelete.id),
+                    this.$route('admin.edu.courses.destroy', this.itemToDelete.id),
                     {
                         only: [
                             'flash',
@@ -270,7 +270,7 @@
                 }
 
                 router.get(
-                    this.$route('admin.edu.course.index'),
+                    this.$route('admin.edu.courses.index'),
                     this.editableSearchOptions,
                     {
                         only: ['courses'],
