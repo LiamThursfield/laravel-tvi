@@ -10,7 +10,7 @@
 
 <script>
     export default {
-        name: "WebsiteLayout",
+        name: "CustomerLayout",
         metaInfo() {
             return {
                 title: 'SIGI',
