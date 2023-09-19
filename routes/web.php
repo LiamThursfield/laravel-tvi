@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\EDU\CourseController;
 use App\Http\Controllers\Website\HomeController;
 use App\Http\Controllers\Website\PageController;
 use Illuminate\Support\Facades\Route;
@@ -22,10 +23,21 @@ Auth::routes([
 
 // Website Routes
 Route::group([
-    'as'        => 'website.',
+    'as' => 'website.',
 ], function() {
     // If you want to use the CMS to control the home page - delete this route
     Route::get('/', [HomeController::class, 'index'])->name('index');
+
+    Route::group([
+        'as' => 'edu.',
+    ], function() {
+        Route::group([
+            'as' => 'courses.',
+            'prefix' => 'courses',
+        ], function() {
+            Route::get('/{course}', [CourseController::class, 'show'])->name('show');
+        });
+    });
 });
 
 /** Fallback admin route - ensures Auth() calls work as expected in the exception handler */
