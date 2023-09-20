@@ -18,7 +18,7 @@ class CourseController extends Controller
             'course' => [
                 'id' => $course,
                 'name' => 'Test Course: ' . $course,
-                'description' => 'This is a test course',
+                'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco.',
                 'price' => 2000,
                 'images' => ['https://i.imgur.com/EHyR2nP.png'],
                 'is_standalone' => true,

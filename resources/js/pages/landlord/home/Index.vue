@@ -108,7 +108,7 @@
 <script>
 export default {
     name: "Index",
-    layout: 'website-layout'
+    layout: 'home-layout'
 }
 </script>
 
