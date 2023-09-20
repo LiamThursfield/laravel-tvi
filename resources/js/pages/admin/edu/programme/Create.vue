@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('course.create')"
+            v-if="userCan('programme.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -13,12 +13,12 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('course.view')"
+                v-if="userCan('programme.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.edu.course.index')"
+                :href="$route('admin.edu.programme.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -52,12 +52,12 @@
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('name')"
-                input-autocomplete="course_name"
+                input-autocomplete="programme_name"
                 input-id="name"
                 input-name="name"
                 :input-required="true"
                 input-type="text"
-                label-text="Course Name"
+                label-text="Programme Name"
                 @errorHidden="clearPageErrorMessage('name')"
                 v-model="formData.name"
             />
@@ -67,12 +67,11 @@
 </template>
 
 <script>
-    import slugify from "slugify";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
 
     export default {
-        name: "AdminEDUCourseCreate",
+        name: "AdminEDUProgrammeCreate",
         components: {
             MenuItemsEditor,
             InputGroup,
@@ -94,7 +93,7 @@
         methods: {
             submit() {
               this.$inertia.post(
-                    this.$route('admin.edu.course.store'),
+                    this.$route('admin.edu.programme.store'),
                     this.formData
                 );
             }

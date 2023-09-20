@@ -4,16 +4,16 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Course
+                Programme
             </h1>
 
             <inertia-link
-                v-if="userCan('course.create')"
+                v-if="userCan('programme.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
                 "
-                :href="$route('admin.edu.course.create')"
+                :href="$route('admin.edu.programme.create')"
             >
                 <icon-plus class="w-5 md:mr-2"/>
 
@@ -49,15 +49,15 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input-autocomplete="course_name_search"
+                        input-autocomplete="programme_name_search"
                         input-class="form-control form-control-short"
-                        input-id="course_name"
-                        input-name="course_name"
-                        input-placeholder="Course Name"
+                        input-id="programme_name"
+                        input-name="programme_name"
+                        input-placeholder="Programme Name"
                         input-type="text"
                         :label-hidden="true"
-                        label-text="Course Name"
-                        v-model="editableSearchOptions.course_name"
+                        label-text="Programme Name"
+                        v-model="editableSearchOptions.programme_name"
                     />
                 </div>
             </div>
@@ -111,13 +111,13 @@
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
-                                        v-if="userCan('course.edit')"
+                                        v-if="userCan('programme.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.course.edit', item.id)"
+                                        :href="$route('admin.edu.programme.edit', item.id)"
                                         title="Edit"
                                     >
                                         <icon-edit
@@ -126,7 +126,7 @@
                                     </inertia-link>
 
                                     <button
-                                        v-if="userCan('course.delete')"
+                                        v-if="userCan('programme.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -151,7 +151,7 @@
                     v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
-                    <pagination :pagination="courses.pagination" />
+                    <pagination :pagination="programmes.pagination" />
                 </div>
             </template>
 
@@ -182,7 +182,7 @@
         },
         layout: 'admin-layout',
         props: {
-            courses: {
+            programmes: {
                 required: true,
                 type: Object,
             },
@@ -194,7 +194,7 @@
         data() {
             return {
                 editableSearchOptions: {
-                    course_name   : '',
+                    programme_name   : '',
                     per_page    : 15,
                 },
                 isInitialised: false,
@@ -216,20 +216,20 @@
             },
             showPagination() {
                 try {
-                    return this.courses.pagination.last_page > 1;
+                    return this.programmes.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
             showActions() {
-                return this.userCan('course.edit') || this.userCan('course.delete');
+                return this.userCan('programme.edit') || this.userCan('programme.delete');
             },
             coursesData() {
-                if (!this.courses || !this.courses.data || this.courses.data.length < 1) {
+                if (!this.programmes || !this.programmes.data || this.programmes.data.length < 1) {
                     return false;
                 }
 
-                return this.courses.data;
+                return this.programmes.data;
             }
         },
         methods: {
@@ -248,11 +248,11 @@
                     return this.$errorToast('It\'s only possible to delete one item at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.edu.course.destroy', this.itemToDelete.id),
+                    this.$route('admin.edu.programme.destroy', this.itemToDelete.id),
                     {
                         only: [
                             'flash',
-                            'courses'
+                            'programmes'
                         ]
                     }
                 );
@@ -270,17 +270,17 @@
                 }
 
                 router.get(
-                    this.$route('admin.edu.course.index'),
+                    this.$route('admin.edu.programme.index'),
                     this.editableSearchOptions,
                     {
-                        only: ['courses'],
+                        only: ['programmes'],
                         preserveState: true,
                     }
                 );
             }, 500),
             setSearchOptions(new_options = {}) {
                 let options = {
-                    course_name   : '',
+                    programme_name   : '',
                     per_page    : 15,
                 }
 

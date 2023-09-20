@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin\EDU\Course;
 
-use App\Actions\EDU\Course\CourseQueryAction;
-use App\Actions\EDU\Course\CourseStoreAction;
-use App\Actions\EDU\Course\CourseUpdateAction;
+use App\Actions\EDU\Course\ProgrammeQueryAction;
+use App\Actions\EDU\Course\ProgrammeStoreAction;
+use App\Actions\EDU\Course\ProgrammeUpdateAction;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
-use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
-use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
+use App\Http\Requests\Admin\EDU\Course\LabelIndexRequest;
+use App\Http\Requests\Admin\EDU\Course\LabelStoreRequest;
+use App\Http\Requests\Admin\EDU\Course\LabelUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
@@ -20,7 +20,6 @@ use Inertia\Response;
 
 class CourseController extends AdminController
 {
-
 
     public function __construct()
     {
@@ -74,7 +73,7 @@ class CourseController extends AdminController
         ]);
     }
 
-    public function index(CourseIndexRequest $request) : Response
+    public function index(LabelIndexRequest $request) : Response
     {
         $search_options = $request->validated();
 
@@ -82,7 +81,7 @@ class CourseController extends AdminController
 
         return Inertia::render('admin/edu/course/Index', [
             'courses' => function () use ($search_options) {
-                return app(CourseQueryAction::class)
+                return app(ProgrammeQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
@@ -90,17 +89,17 @@ class CourseController extends AdminController
         ]);
     }
 
-    public function store(CourseStoreRequest $request) : RedirectResponse
+    public function store(LabelStoreRequest $request) : RedirectResponse
     {
-        $course = app(CourseStoreAction::class)->handle($request->validated());
+        $course = app(ProgrammeStoreAction::class)->handle($request->validated());
 
         return Redirect::to(route('admin.edu.course.edit', $course))
             ->with('success', 'Created');
     }
 
-    public function update(CourseUpdateRequest $request, Course $course) : RedirectResponse
+    public function update(LabelUpdateRequest $request, Course $course) : RedirectResponse
     {
-        $course = app(CourseUpdateAction::class)->handle($course, $request->validated());
+        $course = app(ProgrammeUpdateAction::class)->handle($course, $request->validated());
 
         return Redirect::to(route('admin.edu.course.edit', $course))
             ->with('success', 'Updated');

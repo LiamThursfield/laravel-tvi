@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\Label;
+namespace App\Models\EDU\Label;
 
-use App\Models\Course\Course;
+use App\Models\EDU\Course\Course;
+use App\Models\EDU\Programme\Programme;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,6 +13,8 @@ class Label extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'edu_label';
+
     protected $guarded = [];
 
     protected $casts = [];
@@ -19,5 +22,10 @@ class Label extends Model
     public function courses() : BelongsToMany
     {
         return $this->belongsToMany(Course::class);
+    }
+
+    public function programmes() : BelongsToMany
+    {
+        return $this->belongsToMany(Programme::class);
     }
 }

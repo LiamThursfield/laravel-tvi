@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin\EDU\Label;
 
-use App\Actions\EDU\Course\CourseQueryAction;
-use App\Actions\EDU\Course\CourseStoreAction;
-use App\Actions\EDU\Course\CourseUpdateAction;
+use App\Actions\EDU\Label\LabelQueryAction;
+use App\Actions\EDU\Label\LabelStoreAction;
+use App\Actions\EDU\Label\LabelUpdateAction;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
-use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
-use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
-use App\Http\Resources\Admin\EDU\Course\CourseResource;
+use App\Http\Requests\Admin\EDU\Label\LabelIndexRequest;
+use App\Http\Requests\Admin\EDU\Label\LabelStoreRequest;
+use App\Http\Requests\Admin\EDU\Label\LabelUpdateRequest;
+use App\Http\Resources\Admin\EDU\Label\LabelResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
-use App\Models\EDU\Course\Course;
+use App\Models\EDU\Label\Label;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -25,7 +25,7 @@ class LabelController extends AdminController
     {
         parent::__construct();
         $this->addMetaTitleSection('EDU');
-        $this->addMetaTitleSection('Courses');
+        $this->addMetaTitleSection('Labels');
 
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_LABEL)
@@ -48,12 +48,12 @@ class LabelController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/course/Create', []) ;
+        return Inertia::render('admin/edu/label/Create', []) ;
     }
 
-    public function destroy(Course $course) : RedirectResponse
+    public function destroy(Label $label) : RedirectResponse
     {
-        $course->delete();
+        $label->delete();
 
         return Redirect::back(303)->with(
             'success',
@@ -61,27 +61,27 @@ class LabelController extends AdminController
         );
     }
 
-    public function edit(Course $course) : Response
+    public function edit(Label $label) : Response
     {
-        $this->addMetaTitleSection('Edit - ' . $course->name)->shareMeta();
+        $this->addMetaTitleSection('Edit - ' . $label->name)->shareMeta();
 
-        return Inertia::render('admin/edu/course/Edit', [
-            'course' => function () use ($course) {
-                CourseResource::withoutWrapping();
-                return CourseResource::make($course);
+        return Inertia::render('admin/edu/label/Edit', [
+            'label' => function () use ($label) {
+                LabelResource::withoutWrapping();
+                return LabelResource::make($label);
             }
         ]);
     }
 
-    public function index(CourseIndexRequest $request) : Response
+    public function index(LabelIndexRequest $request) : Response
     {
         $search_options = $request->validated();
 
         $this->shareMeta();
 
-        return Inertia::render('admin/edu/course/Index', [
+        return Inertia::render('admin/edu/label/Index', [
             'courses' => function () use ($search_options) {
-                return app(CourseQueryAction::class)
+                return app(LabelQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
@@ -89,19 +89,19 @@ class LabelController extends AdminController
         ]);
     }
 
-    public function store(CourseStoreRequest $request) : RedirectResponse
+    public function store(LabelStoreRequest $request) : RedirectResponse
     {
-        $course = app(CourseStoreAction::class)->handle($request->validated());
+        $label = app(LabelStoreAction::class)->handle($request->validated());
 
-        return Redirect::to(route('admin.edu.course.edit', $course))
+        return Redirect::to(route('admin.edu.label.edit', $label))
             ->with('success', 'Created');
     }
 
-    public function update(CourseUpdateRequest $request, Course $course) : RedirectResponse
+    public function update(LabelUpdateRequest $request, Label $label) : RedirectResponse
     {
-        $course = app(CourseUpdateAction::class)->handle($course, $request->validated());
+        $label = app(LabelUpdateAction::class)->handle($label, $request->validated());
 
-        return Redirect::to(route('admin.edu.course.edit', $course))
+        return Redirect::to(route('admin.edu.label.edit', $label))
             ->with('success', 'Updated');
     }
 }

@@ -5,20 +5,20 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('cms.edit')"
+            v-if="userCan('programme.edit')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit Menu - {{ menu.name }}
+                Edit - {{ programme.name }}
             </h1>
 
             <inertia-link
-                v-if="userCan('cms.view')"
+                v-if="userCan('programme.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.cms.menus.index')"
+                :href="$route('admin.programme.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -52,12 +52,12 @@
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('name')"
-                input-autocomplete="menu_name"
+                input-autocomplete="programme_name"
                 input-id="name"
                 input-name="name"
                 :input-required="true"
                 input-type="text"
-                label-text="Menu Name"
+                label-text="Programme Name"
                 @errorHidden="clearPageErrorMessage('name')"
                 @input="onNameInput"
                 v-model="formData.name"
@@ -66,23 +66,16 @@
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('slug')"
-                input-autocomplete="menu_slug"
+                input-autocomplete="programme_slug"
                 input-id="slug"
                 input-name="slug"
                 :input-required="true"
                 input-type="text"
-                label-text="Menu Slug"
+                label-text="Programme Slug"
                 @blur="onSlugBlur"
                 @errorHidden="clearPageErrorMessage('slug')"
                 @input="onSlugInput"
                 v-model="formData.slug"
-            />
-        </div>
-
-
-        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
-            <menu-items-editor
-                v-model="formData.menu_items"
             />
         </div>
 
@@ -92,17 +85,15 @@
 <script>
     import slugify from "slugify";
     import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
 
     export default {
-        name: "AdminCmsMenuEdit",
+        name: "AdminEDUProgrammeEdit",
         components: {
             InputGroup,
-            MenuItemsEditor,
         },
         layout: 'admin-layout',
         props: {
-            'menu': {
+            'programme': {
                 type: Object,
                 required: true,
             }
@@ -115,10 +106,10 @@
         },
         created() {
             this.formData = {
-                id:         this.menu.id,
-                menu_items: this.menu.menu_items ? _.cloneDeep(this.menu.menu_items) : [],
-                name:       this.menu.name,
-                slug:       this.menu.slug,
+                id:         this.programme.id,
+                programme_items: this.programme.programme_items ? _.cloneDeep(this.programme.programme_items) : [],
+                name:       this.programme.name,
+                slug:       this.programme.slug,
             };
         },
         methods: {
@@ -150,7 +141,7 @@
             },
             submit() {
               this.$inertia.put(
-                    this.$route('admin.cms.menus.update', this.menu.id),
+                    this.$route('admin.programme.update', this.programme.id),
                     this.formData
                 );
             }

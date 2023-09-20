@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Interfaces\PermissionInterface;
 use App\Interfaces\RoleInterface;
-use App\Models\Course\Label;
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Programme\Programme;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -105,5 +105,10 @@ class User extends Authenticatable
     public function courses() : HasMany
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function programmes() : HasMany
+    {
+        return $this->hasMany(Programme::class);
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
 use App\Http\Controllers\Admin\EDU\Course\CourseController;
 use App\Http\Controllers\Admin\EDU\Label\LabelController;
+use App\Http\Controllers\Admin\EDU\Programme\ProgrammeController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -51,6 +52,8 @@ Route::group([
     'prefix' => 'edu'
 ], function() {
     Route::resource('courses', CourseController::class);
+    Route::resource('programmes', ProgrammeController::class);
+    Route::resource('labels', LabelController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])
