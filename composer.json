@@ -20,6 +20,7 @@
         "spatie/laravel-permission": "^5.8",
         "spatie/laravel-settings": "^3.2",
         "stancl/tenancy": "^3.7",
+        "stripe/stripe-php": "^12.3",
         "tightenco/ziggy": "^1.5"
     },
     "require-dev": {

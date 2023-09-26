@@ -7,6 +7,7 @@ return [
      * put them (manually) here.
      */
     'settings' => [
+        \App\Models\Settings\EduSettings::class,
         \App\Models\Settings\ThirdPartySettings::class,
     ],
 

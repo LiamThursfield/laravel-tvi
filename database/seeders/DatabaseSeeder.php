@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
          $this->call(TemplateSeeder::class);
          $this->call(FormSeeder::class);
          $this->call(OrganisationUnitSeeder::class);
+         $this->call(ThirdPartySettingSeeder::class);
     }
 }
