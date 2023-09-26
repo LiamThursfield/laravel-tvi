@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CMS\PageController;
 use App\Http\Controllers\Api\CRM\FormSubmissionController;
+use App\Http\Controllers\Api\EDU\CourseCheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/form-submission/{form}', [FormSubmissionController::class, 'store'])->name('api.form-submission.store');
+Route::post('/form-submission/{form}', [FormSubmissionController::class, 'store'])->name('form-submission.store');
 
-Route::get('/page', [PageController::class, 'show'])->name('api.page');
+Route::get('/page', [PageController::class, 'show'])->name('page');
+
+Route::group([
+    'as' => 'edu.',
+    'prefix' => 'edu',
+], function() {
+    Route::group([
+        'as' => 'courses.',
+        'prefix' => 'courses',
+    ], function() {
+        Route::post('/{course}/checkout', CourseCheckoutController::class)->name('checkout');
+    });
+});

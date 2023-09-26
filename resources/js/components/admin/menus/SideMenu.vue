@@ -392,7 +392,7 @@
                         requiresAnyPermissions: ["file_manager.view"],
                         showLabel: true,
                     },
-                    settings: {
+                    admin: {
                         children : {
                             users: {
                                 activeRoutes: ["admin.users.index", "admin.users.create", "admin.users.edit"],
@@ -420,7 +420,7 @@
                                 route: false,
                             }
                         },
-                        label: "Settings",
+                        label: "Admin",
                         requiresAllPermissions: [],
                         requiresAnyPermissions: ["users.view", "users.create"],
                         showLabel: true,

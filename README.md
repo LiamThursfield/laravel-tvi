@@ -68,6 +68,27 @@
 
 ---------
 
+## Guides
+
+### Creating settings
+
+This project uses [Laravel Settings](https://github.com/spatie/laravel-settings) for it's settings. 
+So the process is inline with the package's documentation.
+
+1. Create a new settings class
+    ```bash
+    ./vendor/bin/sail artisan make:settings SettingsName --group=groupName --path=App/Models/Settings/
+    ```
+    1. Add the settings properties to the class
+2. Create the settings migration
+    ```bash
+    ./vendor/bin/sail artisan make:settings-migration CreateSettingsName
+    ```
+    1. Add the settings to the migration
+3. Add the settings class to the `config.settings.settings` config file
+
+
+---------
 
 ## Acknowledgements
 
