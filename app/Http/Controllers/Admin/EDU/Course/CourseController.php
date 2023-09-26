@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin\EDU\Course;
 
-use App\Actions\EDU\Course\ProgrammeQueryAction;
-use App\Actions\EDU\Course\ProgrammeStoreAction;
-use App\Actions\EDU\Course\ProgrammeUpdateAction;
+use App\Actions\EDU\Course\CourseQueryAction;
+use App\Actions\EDU\Course\CourseStoreAction;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests\Admin\EDU\Course\LabelIndexRequest;
-use App\Http\Requests\Admin\EDU\Course\LabelStoreRequest;
-use App\Http\Requests\Admin\EDU\Course\LabelUpdateRequest;
+use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
+use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
+use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
@@ -28,19 +27,19 @@ class CourseController extends AdminController
         $this->addMetaTitleSection('Courses');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_COURSE)
+            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_COURSES)
         )->only(['create', 'store']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_COURSE)
+            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_COURSES)
         )->only('destroy');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_COURSE)
+            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_COURSES)
         )->only(['edit', 'update']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_COURSE)
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_COURSES)
         )->only('index');
     }
 
@@ -48,7 +47,7 @@ class CourseController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/course/Create', []) ;
+        return Inertia::render('admin/edu/course/Create') ;
     }
 
     public function destroy(Course $course) : RedirectResponse
@@ -73,7 +72,7 @@ class CourseController extends AdminController
         ]);
     }
 
-    public function index(LabelIndexRequest $request) : Response
+    public function index(CourseIndexRequest $request) : Response
     {
         $search_options = $request->validated();
 
@@ -81,7 +80,7 @@ class CourseController extends AdminController
 
         return Inertia::render('admin/edu/course/Index', [
             'courses' => function () use ($search_options) {
-                return app(ProgrammeQueryAction::class)
+                return app(CourseQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
@@ -89,17 +88,17 @@ class CourseController extends AdminController
         ]);
     }
 
-    public function store(LabelStoreRequest $request) : RedirectResponse
+    public function store(CourseStoreRequest $request) : RedirectResponse
     {
-        $course = app(ProgrammeStoreAction::class)->handle($request->validated());
+        $course = app(CourseStoreAction::class)->handle($request->validated());
 
         return Redirect::to(route('admin.edu.course.edit', $course))
             ->with('success', 'Created');
     }
 
-    public function update(LabelUpdateRequest $request, Course $course) : RedirectResponse
+    public function update(CourseUpdateRequest $request, Course $course) : RedirectResponse
     {
-        $course = app(ProgrammeUpdateAction::class)->handle($course, $request->validated());
+        $course = app(CourseUpdateRequest::class)->handle($course, $request->validated());
 
         return Redirect::to(route('admin.edu.course.edit', $course))
             ->with('success', 'Updated');

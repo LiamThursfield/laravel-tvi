@@ -50,22 +50,22 @@ class PermissionInterface
     const VIEW_CRM_ORGANISATION_UNITS      = 'view crm_organisation_units';
 
     // EDU Course Permissions
-    const CREATE_EDU_COURSE  = 'create course';
-    const DELETE_EDU_COURSE  = 'delete course';
-    const EDIT_EDU_COURSE    = 'edit course';
-    const VIEW_EDU_COURSE    = 'view course';
+    const CREATE_EDU_COURSES  = 'create edu_courses';
+    const DELETE_EDU_COURSES  = 'delete edu_courses';
+    const EDIT_EDU_COURSES    = 'edit edu_courses';
+    const VIEW_EDU_COURSES    = 'view edu_courses';
 
     // EDU Programs Permissions
-    const CREATE_EDU_PROGRAMME  = 'create programme';
-    const DELETE_EDU_PROGRAMME  = 'delete programme';
-    const EDIT_EDU_PROGRAMME    = 'edit programme';
-    const VIEW_EDU_PROGRAMME    = 'view programme';
+    const CREATE_EDU_PROGRAMMES  = 'create edu_programmes';
+    const DELETE_EDU_PROGRAMMES  = 'delete edu_programmes';
+    const EDIT_EDU_PROGRAMMES    = 'edit edu_programmes';
+    const VIEW_EDU_PROGRAMMES    = 'view edu_programmes';
 
     // EDU Labels Permissions
-    const CREATE_EDU_LABEL  = 'create label';
-    const DELETE_EDU_LABEL  = 'delete label';
-    const EDIT_EDU_LABEL    = 'edit label';
-    const VIEW_EDU_LABEL    = 'view label';
+    const CREATE_EDU_LABELS  = 'create edu_labels';
+    const DELETE_EDU_LABELS  = 'delete edu_labels';
+    const EDIT_EDU_LABELS    = 'edit edu_labels';
+    const VIEW_EDU_LABELS    = 'view edu_labels';
 
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
@@ -122,22 +122,22 @@ class PermissionInterface
             'view'      => self::VIEW_CRM_ORGANISATION_UNITS,
         ],
         'edu_courses' => [
-            'create' => self::CREATE_EDU_COURSE,
-            'delete' => self::DELETE_EDU_COURSE,
-            'edit' => self::EDIT_EDU_COURSE,
-            'view' => self::VIEW_EDU_COURSE,
+            'create' => self::CREATE_EDU_COURSES,
+            'delete' => self::DELETE_EDU_COURSES,
+            'edit' => self::EDIT_EDU_COURSES,
+            'view' => self::VIEW_EDU_COURSES,
         ],
         'edu_programmes' => [
-            'create' => self::CREATE_EDU_PROGRAMME,
-            'delete' => self::DELETE_EDU_PROGRAMME,
-            'edit' => self::EDIT_EDU_PROGRAMME,
-            'view' => self::VIEW_EDU_PROGRAMME,
+            'create' => self::CREATE_EDU_PROGRAMMES,
+            'delete' => self::DELETE_EDU_PROGRAMMES,
+            'edit' => self::EDIT_EDU_PROGRAMMES,
+            'view' => self::VIEW_EDU_PROGRAMMES,
         ],
         'edu_labels' => [
-            'create' => self::CREATE_EDU_LABEL,
-            'delete' => self::DELETE_EDU_LABEL,
-            'edit' => self::EDIT_EDU_LABEL,
-            'view' => self::VIEW_EDU_LABEL,
+            'create' => self::CREATE_EDU_LABELS,
+            'delete' => self::DELETE_EDU_LABELS,
+            'edit' => self::EDIT_EDU_LABELS,
+            'view' => self::VIEW_EDU_LABELS,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

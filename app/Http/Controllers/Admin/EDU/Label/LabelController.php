@@ -28,19 +28,19 @@ class LabelController extends AdminController
         $this->addMetaTitleSection('Labels');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_LABEL)
+            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_LABELS)
         )->only(['create', 'store']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_LABEL)
+            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_LABELS)
         )->only('destroy');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_LABEL)
+            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_LABELS)
         )->only(['edit', 'update']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_LABEL)
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_LABELS)
         )->only('index');
     }
 
@@ -80,7 +80,7 @@ class LabelController extends AdminController
         $this->shareMeta();
 
         return Inertia::render('admin/edu/label/Index', [
-            'courses' => function () use ($search_options) {
+            'labels' => function () use ($search_options) {
                 return app(LabelQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));

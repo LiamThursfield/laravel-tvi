@@ -15,7 +15,7 @@ class Programme extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'edu_programme';
+    protected $table = 'edu_programmes';
 
     protected $guarded = [];
 

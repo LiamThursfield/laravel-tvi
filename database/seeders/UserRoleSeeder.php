@@ -27,7 +27,7 @@ class UserRoleSeeder extends Seeder
         $user->assignRole(Role::whereName(RoleInterface::ADMIN)->first());
         $user->assignRole(Role::whereName(RoleInterface::USER)->first());
 
-        $user = $user = User::factory()->create([
+        $user = User::factory()->create([
             'first_name'    => 'Super',
             'last_name'     => 'Account',
             'email'         => 'super@example.com',
@@ -37,7 +37,7 @@ class UserRoleSeeder extends Seeder
         $user->assignRole(Role::whereName(RoleInterface::SUPER)->first());
         $user->assignRole(Role::whereName(RoleInterface::USER)->first());
 
-        $user = $user = User::factory()->create([
+        $user = User::factory()->create([
             'first_name'    => 'User',
             'last_name'     => 'Account',
             'email'         => 'user@example.com',

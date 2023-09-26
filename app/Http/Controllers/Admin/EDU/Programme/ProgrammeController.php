@@ -28,19 +28,19 @@ class ProgrammeController extends AdminController
         $this->addMetaTitleSection('Programmes');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_PROGRAMME)
+            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_PROGRAMMES)
         )->only(['create', 'store']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_PROGRAMME)
+            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_PROGRAMMES)
         )->only('destroy');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_PROGRAMME)
+            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_PROGRAMMES)
         )->only(['edit', 'update']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_PROGRAMME)
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_PROGRAMMES)
         )->only('index');
     }
 

@@ -13,7 +13,7 @@ class Label extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'edu_label';
+    protected $table = 'edu_labels';
 
     protected $guarded = [];
 

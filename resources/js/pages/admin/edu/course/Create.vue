@@ -4,8 +4,9 @@
         autocomplete="off"
         @submit.prevent="submit"
     >
+        <p>YOYOYOY</p>
         <div
-            v-if="userCan('courses.create')"
+            v-if="userCan('course.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -67,7 +68,6 @@
 </template>
 
 <script>
-    import slugify from "slugify";
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
 

@@ -98,22 +98,22 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::VIEW_CRM_ORGANISATION_UNITS,
 
             // EDU Courses
-            PermissionInterface::CREATE_EDU_COURSE,
-            PermissionInterface::DELETE_EDU_COURSE,
-            PermissionInterface::EDIT_EDU_COURSE,
-            PermissionInterface::VIEW_EDU_COURSE,
+            PermissionInterface::CREATE_EDU_COURSES,
+            PermissionInterface::DELETE_EDU_COURSES,
+            PermissionInterface::EDIT_EDU_COURSES,
+            PermissionInterface::VIEW_EDU_COURSES,
 
             // EDU PROGRAMS
-            PermissionInterface::CREATE_EDU_PROGRAMME,
-            PermissionInterface::DELETE_EDU_PROGRAMME,
-            PermissionInterface::EDIT_EDU_PROGRAMME,
-            PermissionInterface::VIEW_EDU_PROGRAMME,
+            PermissionInterface::CREATE_EDU_PROGRAMMES,
+            PermissionInterface::DELETE_EDU_PROGRAMMES,
+            PermissionInterface::EDIT_EDU_PROGRAMMES,
+            PermissionInterface::VIEW_EDU_PROGRAMMES,
 
             // EDU Labels
-            PermissionInterface::CREATE_EDU_LABEL,
-            PermissionInterface::DELETE_EDU_LABEL,
-            PermissionInterface::EDIT_EDU_LABEL,
-            PermissionInterface::VIEW_EDU_LABEL,
+            PermissionInterface::CREATE_EDU_LABELS,
+            PermissionInterface::DELETE_EDU_LABELS,
+            PermissionInterface::EDIT_EDU_LABELS,
+            PermissionInterface::VIEW_EDU_LABELS,
 
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
@@ -177,22 +177,22 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::VIEW_USERS,
 
                 // EDU Courses
-                PermissionInterface::CREATE_EDU_COURSE,
-                PermissionInterface::DELETE_EDU_COURSE,
-                PermissionInterface::EDIT_EDU_COURSE,
-                PermissionInterface::VIEW_EDU_COURSE,
+                PermissionInterface::CREATE_EDU_COURSES,
+                PermissionInterface::DELETE_EDU_COURSES,
+                PermissionInterface::EDIT_EDU_COURSES,
+                PermissionInterface::VIEW_EDU_COURSES,
 
                 // EDU PROGRAMS
-                PermissionInterface::CREATE_EDU_PROGRAMME,
-                PermissionInterface::DELETE_EDU_PROGRAMME,
-                PermissionInterface::EDIT_EDU_PROGRAMME,
-                PermissionInterface::VIEW_EDU_PROGRAMME,
+                PermissionInterface::CREATE_EDU_PROGRAMMES,
+                PermissionInterface::DELETE_EDU_PROGRAMMES,
+                PermissionInterface::EDIT_EDU_PROGRAMMES,
+                PermissionInterface::VIEW_EDU_PROGRAMMES,
 
                 // EDU Labels
-                PermissionInterface::CREATE_EDU_LABEL,
-                PermissionInterface::DELETE_EDU_LABEL,
-                PermissionInterface::EDIT_EDU_LABEL,
-                PermissionInterface::VIEW_EDU_LABEL,
+                PermissionInterface::CREATE_EDU_LABELS,
+                PermissionInterface::DELETE_EDU_LABELS,
+                PermissionInterface::EDIT_EDU_LABELS,
+                PermissionInterface::VIEW_EDU_LABELS,
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [
