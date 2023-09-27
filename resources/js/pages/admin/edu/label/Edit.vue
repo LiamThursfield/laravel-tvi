@@ -5,20 +5,20 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('cms.edit')"
+            v-if="userCan('labels.edit')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit Menu - {{ menu.name }}
+                Edit - {{ label.label }}
             </h1>
 
             <inertia-link
-                v-if="userCan('cms.view')"
+                v-if="userCan('labels.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.cms.menus.index')"
+                :href="$route('admin.edu.labels.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -42,7 +42,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    Save
                 </span>
             </button>
         </div>
@@ -51,16 +51,16 @@
         <div class="bg-white p-6 shadow-subtle rounded-lg">
             <input-group
                 class="mt-4"
-                :error-message="getPageErrorMessage('name')"
-                input-autocomplete="menu_name"
-                input-id="name"
-                input-name="name"
+                :error-message="getPageErrorMessage('label')"
+                input-autocomplete="label"
+                input-id="label"
+                input-name="label"
                 :input-required="true"
                 input-type="text"
-                label-text="Menu Name"
-                @errorHidden="clearPageErrorMessage('name')"
+                label-text="label"
+                @errorHidden="clearPageErrorMessage('label')"
                 @input="onNameInput"
-                v-model="formData.name"
+                v-model="formData.label"
             />
 
             <input-group
@@ -79,30 +79,21 @@
             />
         </div>
 
-
-        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
-            <menu-items-editor
-                v-model="formData.menu_items"
-            />
-        </div>
-
     </form>
 </template>
 
 <script>
     import slugify from "slugify";
     import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
 
     export default {
         name: "AdminCmsMenuEdit",
         components: {
-            InputGroup,
-            MenuItemsEditor,
+            InputGroup
         },
         layout: 'admin-layout',
         props: {
-            'menu': {
+            'label': {
                 type: Object,
                 required: true,
             }
@@ -115,10 +106,9 @@
         },
         created() {
             this.formData = {
-                id:         this.menu.id,
-                menu_items: this.menu.menu_items ? _.cloneDeep(this.menu.menu_items) : [],
-                name:       this.menu.name,
-                slug:       this.menu.slug,
+                id:         this.label.id,
+                label:      this.label.label,
+                slug:       this.label.slug,
             };
         },
         methods: {
@@ -150,7 +140,7 @@
             },
             submit() {
               this.$inertia.put(
-                    this.$route('admin.cms.menus.update', this.menu.id),
+                    this.$route('admin.labels.labels.update', this.label.id),
                     this.formData
                 );
             }

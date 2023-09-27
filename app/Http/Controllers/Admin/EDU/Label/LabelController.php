@@ -63,7 +63,7 @@ class LabelController extends AdminController
 
     public function edit(Label $label) : Response
     {
-        $this->addMetaTitleSection('Edit - ' . $label->name)->shareMeta();
+        $this->addMetaTitleSection('Edit - ' . $label->label)->shareMeta();
 
         return Inertia::render('admin/edu/label/Edit', [
             'label' => function () use ($label) {
@@ -93,7 +93,7 @@ class LabelController extends AdminController
     {
         $label = app(LabelStoreAction::class)->handle($request->validated());
 
-        return Redirect::to(route('admin.edu.label.edit', $label))
+        return Redirect::to(route('admin.edu.labels.edit', $label))
             ->with('success', 'Created');
     }
 
@@ -101,7 +101,7 @@ class LabelController extends AdminController
     {
         $label = app(LabelUpdateAction::class)->handle($label, $request->validated());
 
-        return Redirect::to(route('admin.edu.label.edit', $label))
+        return Redirect::to(route('admin.edu.labels.edit', $label))
             ->with('success', 'Updated');
     }
 }

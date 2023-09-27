@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\EDU\Course;
 
 use App\Actions\EDU\Course\CourseQueryAction;
 use App\Actions\EDU\Course\CourseStoreAction;
+use App\Actions\EDU\Course\CourseUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
@@ -92,15 +93,15 @@ class CourseController extends AdminController
     {
         $course = app(CourseStoreAction::class)->handle($request->validated());
 
-        return Redirect::to(route('admin.edu.course.edit', $course))
+        return Redirect::to(route('admin.edu.courses.edit', $course))
             ->with('success', 'Created');
     }
 
     public function update(CourseUpdateRequest $request, Course $course) : RedirectResponse
     {
-        $course = app(CourseUpdateRequest::class)->handle($course, $request->validated());
+        $course = app(CourseUpdateAction::class)->handle($course, $request->validated());
 
-        return Redirect::to(route('admin.edu.course.edit', $course))
+        return Redirect::to(route('admin.edu.courses.edit', $course))
             ->with('success', 'Updated');
     }
 }

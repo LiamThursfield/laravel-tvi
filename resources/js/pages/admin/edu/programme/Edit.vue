@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('programme.edit')"
+            v-if="userCan('programmes.edit')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -13,12 +13,12 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('programme.view')"
+                v-if="userCan('programmes.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.programme.index')"
+                :href="$route('admin.programmes.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -107,7 +107,6 @@
         created() {
             this.formData = {
                 id:         this.programme.id,
-                programme_items: this.programme.programme_items ? _.cloneDeep(this.programme.programme_items) : [],
                 name:       this.programme.name,
                 slug:       this.programme.slug,
             };
@@ -141,7 +140,7 @@
             },
             submit() {
               this.$inertia.put(
-                    this.$route('admin.programme.update', this.programme.id),
+                    this.$route('admin.programmes.update', this.programme.id),
                     this.formData
                 );
             }

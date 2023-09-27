@@ -4,16 +4,16 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Course
+                Labels
             </h1>
 
             <inertia-link
-                v-if="userCan('course.create')"
+                v-if="userCan('labels.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
                 "
-                :href="$route('admin.edu.course.create')"
+                :href="$route('admin.edu.labels.create')"
             >
                 <icon-plus class="w-5 md:mr-2"/>
 
@@ -49,21 +49,21 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input-autocomplete="course_name_search"
+                        input-autocomplete="label_name_search"
                         input-class="form-control form-control-short"
-                        input-id="course_name"
-                        input-name="course_name"
-                        input-placeholder="Course Name"
+                        input-id="label_name"
+                        input-name="label_name"
+                        input-placeholder="Name"
                         input-type="text"
                         :label-hidden="true"
-                        label-text="Course Name"
-                        v-model="editableSearchOptions.course_name"
+                        label-text="Name"
+                        v-model="editableSearchOptions.label_name"
                     />
                 </div>
             </div>
 
             <p
-                v-if="!coursesData"
+                v-if="!labelsData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No results
@@ -76,48 +76,32 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Summary</th>
-                            <th>Description</th>
-                            <th>Creator</th>
-                            <th>Length</th>
+                            <th>Label</th>
+                            <th>Slug</th>
                             <th v-if="showActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(item, index) in coursesData"
+                            v-for="(item, index) in labelsData"
                             :key="`item-${item.id}`"
                         >
                             <td>
-                                {{ item.name }}
+                                {{ item.label }}
                             </td>
                             <td>
-                                {{ item.status }}
-                            </td>
-                            <td>
-                                {{ item.summary }}
-                            </td>
-                            <td>
-                                {{ item.description }}
-                            </td>
-                            <td>
-                                {{ item.creator.name }}
-                            </td>
-                            <td>
-                                {{ item.content_length_video }}
+                                {{ item.slug }}
                             </td>
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
-                                        v-if="userCan('course.edit')"
+                                        v-if="userCan('labels.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.course.edit', item.id)"
+                                        :href="$route('admin.edu.labels.edit', item.id)"
                                         title="Edit"
                                     >
                                         <icon-edit
@@ -126,7 +110,7 @@
                                     </inertia-link>
 
                                     <button
-                                        v-if="userCan('course.delete')"
+                                        v-if="userCan('labels.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -151,7 +135,7 @@
                     v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
-                    <pagination :pagination="courses.pagination" />
+                    <pagination :pagination="labels.pagination" />
                 </div>
             </template>
 
@@ -175,14 +159,14 @@
     import InputGroup from "../../../../components/core/forms/InputGroup";
 
     export default {
-        name: "AdminEDUCourseIndex",
+        name: "AdminEDULabelsIndex",
         components: {
             ConfirmationModal,
             InputGroup,
         },
         layout: 'admin-layout',
         props: {
-            courses: {
+            labels: {
                 required: true,
                 type: Object,
             },
@@ -194,7 +178,7 @@
         data() {
             return {
                 editableSearchOptions: {
-                    course_name   : '',
+                    label_name   : '',
                     per_page    : 15,
                 },
                 isInitialised: false,
@@ -216,20 +200,20 @@
             },
             showPagination() {
                 try {
-                    return this.courses.pagination.last_page > 1;
+                    return this.labels.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
             showActions() {
-                return this.userCan('course.edit') || this.userCan('course.delete');
+                return this.userCan('labels.edit') || this.userCan('labels.delete');
             },
-            coursesData() {
-                if (!this.courses || !this.courses.data || this.courses.data.length < 1) {
+            labelsData() {
+                if (!this.labels || !this.labels.data || this.labels.data.length < 1) {
                     return false;
                 }
 
-                return this.courses.data;
+                return this.labels.data;
             }
         },
         methods: {
@@ -248,11 +232,11 @@
                     return this.$errorToast('It\'s only possible to delete one item at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.edu.course.destroy', this.itemToDelete.id),
+                    this.$route('admin.edu.labels.destroy', this.itemToDelete.id),
                     {
                         only: [
                             'flash',
-                            'courses'
+                            'labels'
                         ]
                     }
                 );
@@ -264,23 +248,23 @@
                     this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.coursesData) {
+                    if (this.labelsData) {
                         return;
                     }
                 }
 
                 router.get(
-                    this.$route('admin.edu.course.index'),
+                    this.$route('admin.edu.labels.index'),
                     this.editableSearchOptions,
                     {
-                        only: ['courses'],
+                        only: ['labels'],
                         preserveState: true,
                     }
                 );
             }, 500),
             setSearchOptions(new_options = {}) {
                 let options = {
-                    course_name   : '',
+                    label_name   : '',
                     per_page    : 15,
                 }
 

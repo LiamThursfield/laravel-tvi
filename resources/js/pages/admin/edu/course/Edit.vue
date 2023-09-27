@@ -5,20 +5,20 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('cms.edit')"
+            v-if="userCan('courses.edit')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit Menu - {{ menu.name }}
+                Edit - {{ course.name }}
             </h1>
 
             <inertia-link
-                v-if="userCan('cms.view')"
+                v-if="userCan('courses.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.cms.menus.index')"
+                :href="$route('admin.edu.courses.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -42,7 +42,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    Save
                 </span>
             </button>
         </div>
@@ -52,12 +52,12 @@
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('name')"
-                input-autocomplete="menu_name"
+                input-autocomplete="course_name"
                 input-id="name"
                 input-name="name"
                 :input-required="true"
                 input-type="text"
-                label-text="Menu Name"
+                label-text="Name"
                 @errorHidden="clearPageErrorMessage('name')"
                 @input="onNameInput"
                 v-model="formData.name"
@@ -66,26 +66,83 @@
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('slug')"
-                input-autocomplete="menu_slug"
+                input-autocomplete="course_slug"
                 input-id="slug"
                 input-name="slug"
                 :input-required="true"
                 input-type="text"
-                label-text="Menu Slug"
+                label-text="Slug"
                 @blur="onSlugBlur"
                 @errorHidden="clearPageErrorMessage('slug')"
                 @input="onSlugInput"
                 v-model="formData.slug"
             />
-        </div>
 
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('summary')"
+                input-autocomplete="course_summary"
+                input-id="summary"
+                input-name="summary"
+                :input-required="false"
+                input-type="text"
+                label-text="Summary"
+                @errorHidden="clearPageErrorMessage('summary')"
+                v-model="formData.summary"
+            />
 
-        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
-            <menu-items-editor
-                v-model="formData.menu_items"
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('description')"
+                input-autocomplete="course_description"
+                input-id="description"
+                input-name="description"
+                :input-required="false"
+                input-type="text"
+                label-text="Description"
+                @errorHidden="clearPageErrorMessage('description')"
+                v-model="formData.description"
+            />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('content_length_video')"
+                input-autocomplete="course_content_length_video"
+                input-id="content_length_video"
+                input-name="content_length_video"
+                :input-required="false"
+                input-type="text"
+                label-text="Total content length in hours"
+                @errorHidden="clearPageErrorMessage('content_length_video')"
+                v-model="formData.content_length_video"
+            />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('creator_id')"
+                input-autocomplete="course_creator_id"
+                input-id="creator_id"
+                input-name="creator_id"
+                :input-required="false"
+                input-type="text"
+                label-text="Creator ID"
+                @errorHidden="clearPageErrorMessage('creator_id')"
+                v-model="formData.creator_id"
+            />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('banner')"
+                input-autocomplete="banner"
+                input-id="banner"
+                input-name="banner"
+                :input-required="false"
+                input-type="text"
+                label-text="Banner"
+                @errorHidden="clearPageErrorMessage('banner')"
+                v-model="formData.banner"
             />
         </div>
-
     </form>
 </template>
 
@@ -95,14 +152,14 @@
     import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
 
     export default {
-        name: "AdminCmsMenuEdit",
+        name: "AdminEduCourseEdit",
         components: {
             InputGroup,
             MenuItemsEditor,
         },
         layout: 'admin-layout',
         props: {
-            'menu': {
+            'course': {
                 type: Object,
                 required: true,
             }
@@ -115,10 +172,15 @@
         },
         created() {
             this.formData = {
-                id:         this.menu.id,
-                menu_items: this.menu.menu_items ? _.cloneDeep(this.menu.menu_items) : [],
-                name:       this.menu.name,
-                slug:       this.menu.slug,
+                id:          this.course.id,
+                name:        this.course.name,
+                slug:        this.course.slug,
+                summary:     this.course.summary,
+                description: this.course.description,
+                status:      this.course.status,
+                content_length_video:      this.course.content_length_video,
+                creator_id:      this.course.creator_id,
+                banner:      this.course.banner,
             };
         },
         methods: {
@@ -150,7 +212,7 @@
             },
             submit() {
               this.$inertia.put(
-                    this.$route('admin.cms.menus.update', this.menu.id),
+                    this.$route('admin.edu.courses.update', this.course.id),
                     this.formData
                 );
             }

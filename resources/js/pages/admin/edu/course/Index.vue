@@ -76,6 +76,7 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
+                            <th>Banner</th>
                             <th>Name</th>
                             <th>Status</th>
                             <th>Summary</th>
@@ -90,6 +91,9 @@
                             v-for="(item, index) in coursesData"
                             :key="`item-${item.id}`"
                         >
+                            <td>
+                                <img :src="item.banner" alt="Banner" class="col-4"/>
+                            </td>
                             <td>
                                 {{ item.name }}
                             </td>

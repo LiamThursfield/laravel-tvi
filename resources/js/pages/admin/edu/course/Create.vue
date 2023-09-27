@@ -4,9 +4,8 @@
         autocomplete="off"
         @submit.prevent="submit"
     >
-        <p>YOYOYOY</p>
         <div
-            v-if="userCan('course.create')"
+            v-if="userCan('courses.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -19,7 +18,7 @@
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.edu.course.index')"
+                :href="$route('admin.edu.courses.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -58,10 +57,75 @@
                 input-name="name"
                 :input-required="true"
                 input-type="text"
-                label-text="Course Name"
+                label-text="Name"
                 @errorHidden="clearPageErrorMessage('name')"
                 v-model="formData.name"
             />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('summary')"
+                input-autocomplete="course_summary"
+                input-id="summary"
+                input-name="summary"
+                :input-required="true"
+                input-type="text"
+                label-text="Summary"
+                @errorHidden="clearPageErrorMessage('summary')"
+                v-model="formData.summary"
+            />
+
+            <text-area-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('description')"
+                input-id="description"
+                input-name="description"
+                input-rows="2"
+                input-type="text"
+                label-text="Describe the course"
+                @errorHidden="clearPageErrorMessage('description')"
+                v-model="formData.description"
+            />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('content_length_video')"
+                input-autocomplete="course_content_length_video"
+                input-id="content_length_video"
+                input-name="content_length_video"
+                :input-required="true"
+                input-type="text"
+                label-text="Total content length in hours"
+                @errorHidden="clearPageErrorMessage('content_length_video')"
+                v-model="formData.content_length_video"
+            />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('creator_id')"
+                input-autocomplete="course_creator_id"
+                input-id="creator_id"
+                input-name="creator_id"
+                :input-required="true"
+                input-type="text"
+                label-text="Creator ID"
+                @errorHidden="clearPageErrorMessage('creator_id')"
+                v-model="formData.creator_id"
+            />
+
+            <input-group
+                class="mt-4"
+                :error-message="getPageErrorMessage('banner')"
+                input-autocomplete="course_banner"
+                input-id="banner"
+                input-name="banner"
+                :input-required="true"
+                input-type="text"
+                label-text="Banner"
+                @errorHidden="clearPageErrorMessage('banner')"
+                v-model="formData.banner"
+            />
+
         </div>
 
     </form>
@@ -70,10 +134,12 @@
 <script>
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
 
     export default {
         name: "AdminEDUCourseCreate",
         components: {
+            TextAreaGroup,
             MenuItemsEditor,
             InputGroup,
         },
@@ -86,15 +152,15 @@
                     summary: '',
                     description: '',
                     creator_id: '',
-                    status: '',
                     content_length_video: '',
+                    banner: '',
                 }
             }
         },
         methods: {
             submit() {
               this.$inertia.post(
-                    this.$route('admin.edu.course.store'),
+                    this.$route('admin.edu.courses.store'),
                     this.formData
                 );
             }

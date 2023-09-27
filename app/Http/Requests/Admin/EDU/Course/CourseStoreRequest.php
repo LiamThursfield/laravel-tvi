@@ -12,7 +12,7 @@ class CourseStoreRequest extends BaseIndexRequest
             'name'     => 'required|string',
             'summary'     => 'nullable|string',
             'description'     => 'nullable|string',
-            'creator_id'     => 'required|exists:users,id',
+            'creator_id'     => 'sometimes|exists:users,id',
             'status'     => 'nullable|string',
             'content_length_video' => 'nullable|string',
         ]);

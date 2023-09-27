@@ -8,12 +8,12 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('programme.create')"
+                v-if="userCan('programmes.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
                 "
-                :href="$route('admin.edu.programme.create')"
+                :href="$route('admin.edu.programmes.create')"
             >
                 <icon-plus class="w-5 md:mr-2"/>
 
@@ -63,7 +63,7 @@
             </div>
 
             <p
-                v-if="!coursesData"
+                v-if="!programmeData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No results
@@ -87,7 +87,7 @@
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(item, index) in coursesData"
+                            v-for="(item, index) in programmeData"
                             :key="`item-${item.id}`"
                         >
                             <td>
@@ -175,7 +175,7 @@
     import InputGroup from "../../../../components/core/forms/InputGroup";
 
     export default {
-        name: "AdminEDUCourseIndex",
+        name: "AdminEDUProgrammeIndex",
         components: {
             ConfirmationModal,
             InputGroup,
@@ -222,9 +222,9 @@
                 }
             },
             showActions() {
-                return this.userCan('programme.edit') || this.userCan('programme.delete');
+                return this.userCan('programmes.edit') || this.userCan('programmes.delete');
             },
-            coursesData() {
+            programmeData() {
                 if (!this.programmes || !this.programmes.data || this.programmes.data.length < 1) {
                     return false;
                 }
@@ -248,7 +248,7 @@
                     return this.$errorToast('It\'s only possible to delete one item at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.edu.programme.destroy', this.itemToDelete.id),
+                    this.$route('admin.edu.programmes.destroy', this.itemToDelete.id),
                     {
                         only: [
                             'flash',
@@ -264,13 +264,13 @@
                     this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.coursesData) {
+                    if (this.programmeData) {
                         return;
                     }
                 }
 
                 router.get(
-                    this.$route('admin.edu.programme.index'),
+                    this.$route('admin.edu.programmes.index'),
                     this.editableSearchOptions,
                     {
                         only: ['programmes'],

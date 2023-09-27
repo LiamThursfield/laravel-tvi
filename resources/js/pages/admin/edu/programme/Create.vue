@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('programme.create')"
+            v-if="userCan('programmes.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -13,12 +13,12 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('programme.view')"
+                v-if="userCan('programmes.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.edu.programme.index')"
+                :href="$route('admin.edu.programmes.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -93,7 +93,7 @@
         methods: {
             submit() {
               this.$inertia.post(
-                    this.$route('admin.edu.programme.store'),
+                    this.$route('admin.edu.programmes.store'),
                     this.formData
                 );
             }

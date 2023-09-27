@@ -307,7 +307,7 @@
                                         label: "Create Course",
                                         requiresAllPermissions: ["edu_courses.create"],
                                         requiresAnyPermissions: [],
-                                        route: "admin.edu_courses.create",
+                                        route: "admin.edu.courses.create",
                                     }
                                 },
                                 icon: "icon-forms",
@@ -331,7 +331,7 @@
                                         label: "Create Programme",
                                         requiresAllPermissions: ["edu_programmes.create"],
                                         requiresAnyPermissions: [],
-                                        route: "admin.edu_programmes.create",
+                                        route: "admin.edu.programmes.create",
                                     }
                                 },
                                 icon: "icon-forms",
@@ -355,7 +355,7 @@
                                         label: "Create Course",
                                         requiresAllPermissions: ["edu_labels.create"],
                                         requiresAnyPermissions: [],
-                                        route: "admin.edu_labels.create",
+                                        route: "admin.edu.labels.create",
                                     }
                                 },
                                 icon: "icon-forms",

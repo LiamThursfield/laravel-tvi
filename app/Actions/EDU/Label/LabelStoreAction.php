@@ -2,12 +2,12 @@
 
 namespace App\Actions\EDU\Label;
 
-use App\Models\EDU\Course\Course;
+use App\Models\EDU\Label\Label;
 
 class LabelStoreAction
 {
-    public function handle(array $data) : Course
+    public function handle(array $data) : Label
     {
-        return Course::create($data);
+        return Label::create($data);
     }
 }
