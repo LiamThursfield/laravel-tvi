@@ -12,7 +12,7 @@ use App\Http\Requests\Admin\EDU\Programme\ProgrammeUpdateRequest;
 use App\Http\Resources\Admin\EDU\Programme\ProgrammeResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
-use App\Models\EDU\Programme\Programme;
+use App\Models\EDU\Programme\Announcement;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -51,7 +51,7 @@ class ProgrammeController extends AdminController
         return Inertia::render('admin/edu/programme/Create', []) ;
     }
 
-    public function destroy(Programme $programme) : RedirectResponse
+    public function destroy(Announcement $programme) : RedirectResponse
     {
         $programme->delete();
 
@@ -61,7 +61,7 @@ class ProgrammeController extends AdminController
         );
     }
 
-    public function edit(Programme $programme) : Response
+    public function edit(Announcement $programme) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $programme->name)->shareMeta();
 
@@ -97,7 +97,7 @@ class ProgrammeController extends AdminController
             ->with('success', 'Created');
     }
 
-    public function update(ProgrammeUpdateRequest $request, Programme $programme) : RedirectResponse
+    public function update(ProgrammeUpdateRequest $request, Announcement $programme) : RedirectResponse
     {
         $programme = app(ProgrammeUpdateAction::class)->handle($programme, $request->validated());
 

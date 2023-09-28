@@ -2,7 +2,7 @@
 
 namespace App\Actions\EDU\Course;
 
-use App\Interfaces\Course\CourseInterface;
+use App\Interfaces\EDU\Course\CourseInterface;
 use App\Models\EDU\Course\Course;
 use Illuminate\Support\Str;
 

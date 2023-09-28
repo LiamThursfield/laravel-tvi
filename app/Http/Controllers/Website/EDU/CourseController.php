@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Website\EDU;
 use App\Actions\CMS\Page\PageQueryAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Web\CMS\FullPageResource;
+use App\Models\EDU\Course\Course;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -14,6 +15,8 @@ class CourseController extends Controller
     // TODO: Once courses are implemented, bolster this out
     public function show(Request $request, $course): Response
     {
+        $course = Course::find($course);
+
         return Inertia::render('website/edu/course/Show', [
             'course' => [
                 'id' => $course,

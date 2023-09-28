@@ -92,7 +92,7 @@
                             :key="`item-${item.id}`"
                         >
                             <td>
-                                <img :src="item.banner" alt="Banner" class="col-4"/>
+                                <img :src="item.banner" :alt="item.name" class="w-32 square-full"/>
                             </td>
                             <td>
                                 {{ item.name }}
@@ -125,6 +125,20 @@
                                         title="Edit"
                                     >
                                         <icon-edit
+                                            class="w-4"
+                                        />
+                                    </inertia-link>
+                                    <inertia-link
+                                        v-if="userCan('courses.view')"
+                                        class="
+                                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                                            focus:outline-none focus:ring
+                                            hover:bg-theme-info hover:text-theme-info-contrast
+                                        "
+                                        :href="$route('admin.edu.courses.edit', item.id)"
+                                        title="Preview"
+                                    >
+                                        <icon-eye
                                             class="w-4"
                                         />
                                     </inertia-link>

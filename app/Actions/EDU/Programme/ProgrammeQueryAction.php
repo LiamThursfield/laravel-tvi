@@ -3,7 +3,7 @@
 namespace App\Actions\EDU\Programme;
 
 use App\Actions\AbstractQueryAction;
-use App\Models\EDU\Programme\Programme;
+use App\Models\EDU\Programme\Announcement;
 use Illuminate\Database\Eloquent\Builder;
 
 class ProgrammeQueryAction extends AbstractQueryAction
@@ -17,6 +17,6 @@ class ProgrammeQueryAction extends AbstractQueryAction
 
     protected function getQueryBuilder(): Builder
     {
-        return Programme::query();
+        return Announcement::query();
     }
 }

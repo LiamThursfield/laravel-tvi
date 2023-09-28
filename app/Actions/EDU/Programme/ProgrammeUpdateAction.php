@@ -2,11 +2,11 @@
 
 namespace App\Actions\EDU\Programme;
 
-use App\Models\EDU\Programme\Programme;
+use App\Models\EDU\Programme\Announcement;
 
 class ProgrammeUpdateAction
 {
-    public function handle(Programme $course, array $data): ?Programme
+    public function handle(Announcement $course, array $data): ?Announcement
     {
         $course->update($data);
 
