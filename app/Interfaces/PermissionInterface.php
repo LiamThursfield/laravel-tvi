@@ -49,6 +49,24 @@ class PermissionInterface
     const EDIT_CRM_ORGANISATION_UNITS      = 'edit crm_organisation_units';
     const VIEW_CRM_ORGANISATION_UNITS      = 'view crm_organisation_units';
 
+    // EDU Course Permissions
+    const CREATE_EDU_COURSES  = 'create edu_courses';
+    const DELETE_EDU_COURSES  = 'delete edu_courses';
+    const EDIT_EDU_COURSES    = 'edit edu_courses';
+    const VIEW_EDU_COURSES    = 'view edu_courses';
+
+    // EDU Programs Permissions
+    const CREATE_EDU_PROGRAMMES  = 'create edu_programmes';
+    const DELETE_EDU_PROGRAMMES  = 'delete edu_programmes';
+    const EDIT_EDU_PROGRAMMES    = 'edit edu_programmes';
+    const VIEW_EDU_PROGRAMMES    = 'view edu_programmes';
+
+    // EDU Labels Permissions
+    const CREATE_EDU_LABELS  = 'create edu_labels';
+    const DELETE_EDU_LABELS  = 'delete edu_labels';
+    const EDIT_EDU_LABELS    = 'edit edu_labels';
+    const VIEW_EDU_LABELS    = 'view edu_labels';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -102,6 +120,24 @@ class PermissionInterface
             'delete'    => self::DELETE_CRM_ORGANISATION_UNITS,
             'edit'      => self::EDIT_CRM_ORGANISATION_UNITS,
             'view'      => self::VIEW_CRM_ORGANISATION_UNITS,
+        ],
+        'edu_courses' => [
+            'create' => self::CREATE_EDU_COURSES,
+            'delete' => self::DELETE_EDU_COURSES,
+            'edit' => self::EDIT_EDU_COURSES,
+            'view' => self::VIEW_EDU_COURSES,
+        ],
+        'edu_programmes' => [
+            'create' => self::CREATE_EDU_PROGRAMMES,
+            'delete' => self::DELETE_EDU_PROGRAMMES,
+            'edit' => self::EDIT_EDU_PROGRAMMES,
+            'view' => self::VIEW_EDU_PROGRAMMES,
+        ],
+        'edu_labels' => [
+            'create' => self::CREATE_EDU_LABELS,
+            'delete' => self::DELETE_EDU_LABELS,
+            'edit' => self::EDIT_EDU_LABELS,
+            'view' => self::VIEW_EDU_LABELS,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

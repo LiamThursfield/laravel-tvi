@@ -289,6 +289,93 @@
                         requiresAnyPermissions: ["crm_forms.create", "crm_forms.view", "crm_contacts.create", "crm_contacts.view", "crm_organisation_units.create", "crm_organisation_units.view"],
                         showLabel: true,
                     },
+                    edu: {
+                        children : {
+                            courses: {
+                                activeRoutes: ["admin.edu.courses.index", "admin.edu.courses.create", "admin.edu.courses.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Courses",
+                                        requiresAllPermissions: ["edu_courses.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.courses.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Course",
+                                        requiresAllPermissions: ["edu_courses.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.courses.create",
+                                    }
+                                },
+                                icon: "icon-forms",
+                                label: "Courses",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_courses.create", "edu_courses.view"],
+                            },
+                            programmes: {
+                                activeRoutes: ["admin.edu.programmes.index", "admin.edu.programmes.create", "admin.edu.programmes.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Programmes",
+                                        requiresAllPermissions: ["edu_programmes.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.programmes.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Programme",
+                                        requiresAllPermissions: ["edu_programmes.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.programmes.create",
+                                    }
+                                },
+                                icon: "icon-forms",
+                                label: "Programmes",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_programmes.create", "edu_programmes.view"],
+                            },
+                            labels: {
+                                activeRoutes: ["admin.edu.labels.index", "admin.edu.labels.create", "admin.edu.labels.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Labels",
+                                        requiresAllPermissions: ["edu_labels.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.labels.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Course",
+                                        requiresAllPermissions: ["edu_labels.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.labels.create",
+                                    }
+                                },
+                                icon: "icon-forms",
+                                label: "Labels",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_labels.create", "edu_labels.view"],
+                            },
+                        },
+                        label: "EDU",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: [
+                            'edu_courses.create',
+                            'edu_courses.view',
+                            'edu_programmes.create',
+                            'edu_programmes.view',
+                            'edu_labels.create',
+                            'edu_labels.view',
+                        ],
+                        showLabel: true,
+                    },
                     utilities: {
                         children : {
                             file_manager: {

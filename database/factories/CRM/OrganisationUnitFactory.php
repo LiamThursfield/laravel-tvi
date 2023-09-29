@@ -23,7 +23,7 @@ class OrganisationUnitFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->company();
+        $name = $this->faker->name();
         $type = $this->faker->shuffleArray(OrganisationUnitInterface::TYPE_ENUM)[0];
 
         return [

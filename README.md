@@ -60,6 +60,11 @@
     ./vendor/bin/sail artisan tenants:seed
     ```
 
+11. Migrate tenants
+    ```bash
+    ./vendor/bin/sail artisan tenants:migrate
+    ```
+
 
 ---------
 
