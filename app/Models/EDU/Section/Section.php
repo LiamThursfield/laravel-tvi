@@ -3,6 +3,7 @@
 namespace App\Models\EDU\Section;
 
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Webinar\Webinar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,5 +22,10 @@ class Section extends Model
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class,'course_id');
+    }
+
+    public function webinar(): BelongsTo
+    {
+        return $this->belongsTo(Webinar::class,'section_id');
     }
 }

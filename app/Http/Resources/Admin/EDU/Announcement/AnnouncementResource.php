@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Http\Resources\Admin\EDU\Course;
+namespace App\Http\Resources\Admin\EDU\Announcement;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CourseResource extends JsonResource
+class AnnouncementResource extends JsonResource
 {
 
     public function toArray($request)
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->title,
             'slug' => $this->slug,
-            'summary' => $this->summary,
             'description' => $this->description,
             'creator_id' => $this->creator_id,
             'creator' => $this->whenLoaded('creator'),
             'status' => $this->status,
-            'content_length_video' => $this->content_length_video,
+            'platform' => $this->platform,
+            'email' => $this->email,
+            'sms' => $this->sms,
         ];
     }
 }

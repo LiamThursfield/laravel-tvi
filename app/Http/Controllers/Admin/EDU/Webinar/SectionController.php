@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin\EDU\Course;
+namespace App\Http\Controllers\Admin\EDU\Section;
 
-use App\Actions\EDU\Course\CourseQueryAction;
-use App\Actions\EDU\Course\CourseStoreAction;
-use App\Actions\EDU\Course\CourseUpdateAction;
+use App\Actions\EDU\Course\SectionQueryAction;
+use App\Actions\EDU\Course\SectionStoreAction;
+use App\Actions\EDU\Course\SectionUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
-use App\Http\Resources\Admin\EDU\Course\CourseResource;
+use App\Http\Resources\Admin\EDU\Course\AnnouncementResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class CourseController extends AdminController
+class SectionController extends AdminController
 {
 
     public function __construct()
@@ -44,14 +44,14 @@ class CourseController extends AdminController
         )->only('index');
     }
 
-    public function create(): Response
+    public function create() : Response
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/course/Create');
+        return Inertia::render('admin/edu/course/Create') ;
     }
 
-    public function destroy(Course $course): RedirectResponse
+    public function destroy(Course $course) : RedirectResponse
     {
         $course->delete();
 
@@ -61,19 +61,19 @@ class CourseController extends AdminController
         );
     }
 
-    public function edit(Course $course): Response
+    public function edit(Course $course) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $course->name)->shareMeta();
 
         return Inertia::render('admin/edu/course/Edit', [
             'course' => function () use ($course) {
-                CourseResource::withoutWrapping();
-                return CourseResource::make($course);
+                AnnouncementResource::withoutWrapping();
+                return AnnouncementResource::make($course);
             }
         ]);
     }
 
-    public function index(CourseIndexRequest $request): Response
+    public function index(CourseIndexRequest $request) : Response
     {
         $search_options = $request->validated();
 
@@ -81,7 +81,7 @@ class CourseController extends AdminController
 
         return Inertia::render('admin/edu/course/Index', [
             'courses' => function () use ($search_options) {
-                return app(CourseQueryAction::class)
+                return app(SectionQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
@@ -89,17 +89,17 @@ class CourseController extends AdminController
         ]);
     }
 
-    public function store(CourseStoreRequest $request): RedirectResponse
+    public function store(CourseStoreRequest $request) : RedirectResponse
     {
-        $course = app(CourseStoreAction::class)->handle($request->validated());
+        $course = app(SectionStoreAction::class)->handle($request->validated());
 
         return Redirect::to(route('admin.edu.courses.edit', $course))
             ->with('success', 'Created');
     }
 
-    public function update(CourseUpdateRequest $request, Course $course): RedirectResponse
+    public function update(CourseUpdateRequest $request, Course $course) : RedirectResponse
     {
-        $course = app(CourseUpdateAction::class)->handle($course, $request->validated());
+        $course = app(SectionUpdateAction::class)->handle($course, $request->validated());
 
         return Redirect::to(route('admin.edu.courses.edit', $course))
             ->with('success', 'Updated');

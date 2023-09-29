@@ -67,6 +67,30 @@ class PermissionInterface
     const EDIT_EDU_LABELS    = 'edit edu_labels';
     const VIEW_EDU_LABELS    = 'view edu_labels';
 
+    // EDU Sections Permissions
+    const CREATE_EDU_SECTIONS  = 'create edu_sections';
+    const DELETE_EDU_SECTIONS  = 'delete edu_sections';
+    const EDIT_EDU_SECTIONS    = 'edit edu_sections';
+    const VIEW_EDU_SECTIONS    = 'view edu_sections';
+
+    // EDU Lectures Permissions
+    const CREATE_EDU_LECTURES  = 'create edu_lectures';
+    const DELETE_EDU_LECTURES  = 'delete edu_lectures';
+    const EDIT_EDU_LECTURES    = 'edit edu_lectures';
+    const VIEW_EDU_LECTURES    = 'view edu_lectures';
+
+    // EDU Announcements Permissions
+    const CREATE_EDU_ANNOUNCEMENTS  = 'create edu_announcements';
+    const DELETE_EDU_ANNOUNCEMENTS  = 'delete edu_announcements';
+    const EDIT_EDU_ANNOUNCEMENTS    = 'edit edu_announcements';
+    const VIEW_EDU_ANNOUNCEMENTS    = 'view edu_announcements';
+
+    // EDU Announcements Permissions
+    const CREATE_EDU_WEBINARS  = 'create edu_webinars';
+    const DELETE_EDU_WEBINARS  = 'delete edu_webinars';
+    const EDIT_EDU_WEBINARS    = 'edit edu_webinars';
+    const VIEW_EDU_WEBINARS    = 'view edu_webinars';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';

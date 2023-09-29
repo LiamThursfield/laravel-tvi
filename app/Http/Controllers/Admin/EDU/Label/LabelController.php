@@ -44,14 +44,14 @@ class LabelController extends AdminController
         )->only('index');
     }
 
-    public function create() : Response
+    public function create(): Response
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/label/Create', []) ;
+        return Inertia::render('admin/edu/label/Create', []);
     }
 
-    public function destroy(Label $label) : RedirectResponse
+    public function destroy(Label $label): RedirectResponse
     {
         $label->delete();
 
@@ -61,7 +61,7 @@ class LabelController extends AdminController
         );
     }
 
-    public function edit(Label $label) : Response
+    public function edit(Label $label): Response
     {
         $this->addMetaTitleSection('Edit - ' . $label->label)->shareMeta();
 
@@ -73,7 +73,7 @@ class LabelController extends AdminController
         ]);
     }
 
-    public function index(LabelIndexRequest $request) : Response
+    public function index(LabelIndexRequest $request): Response
     {
         $search_options = $request->validated();
 
@@ -89,7 +89,7 @@ class LabelController extends AdminController
         ]);
     }
 
-    public function store(LabelStoreRequest $request) : RedirectResponse
+    public function store(LabelStoreRequest $request): RedirectResponse
     {
         $label = app(LabelStoreAction::class)->handle($request->validated());
 
@@ -97,7 +97,7 @@ class LabelController extends AdminController
             ->with('success', 'Created');
     }
 
-    public function update(LabelUpdateRequest $request, Label $label) : RedirectResponse
+    public function update(LabelUpdateRequest $request, Label $label): RedirectResponse
     {
         $label = app(LabelUpdateAction::class)->handle($label, $request->validated());
 
