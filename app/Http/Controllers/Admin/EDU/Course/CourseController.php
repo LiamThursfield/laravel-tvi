@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\EDU\Course\CourseInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
 use Illuminate\Http\RedirectResponse;
@@ -48,7 +49,11 @@ class CourseController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/course/Create');
+        return Inertia::render('admin/edu/course/Create', [
+                'currencies' => function () {
+                    return CourseInterface::CURRENCIES;
+                }
+        ]);
     }
 
     public function destroy(Course $course): RedirectResponse
@@ -69,6 +74,9 @@ class CourseController extends AdminController
             'course' => function () use ($course) {
                 CourseResource::withoutWrapping();
                 return CourseResource::make($course);
+            },
+            'currencies' => function () {
+                return CourseInterface::CURRENCIES;
             }
         ]);
     }
@@ -103,5 +111,15 @@ class CourseController extends AdminController
 
         return Redirect::to(route('admin.edu.courses.edit', $course))
             ->with('success', 'Updated');
+    }
+
+    public function preview(Course $course): Response
+    {
+        return Inertia::render('admin/edu/course/Preview', [
+            'course' => function () use ($course) {
+                CourseResource::withoutWrapping();
+                return CourseResource::make($course);
+            }
+        ]);
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
 use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
-use App\Http\Controllers\Admin\EDU\Course\SectionController;
+use App\Http\Controllers\Admin\EDU\Course\CourseController;
 use App\Http\Controllers\Admin\EDU\Label\LabelController;
 use App\Http\Controllers\Admin\EDU\Programme\ProgrammeController;
 use App\Http\Controllers\Admin\FileManagerController;
@@ -51,7 +51,8 @@ Route::group([
     'as' => 'edu.',
     'prefix' => 'edu'
 ], function() {
-    Route::resource('courses', SectionController::class);
+    Route::resource('courses', CourseController::class);
+        Route::get('/courses/preview/{course}', [CourseController::class, 'preview'])->name('courses.preview');
     Route::resource('programmes', ProgrammeController::class);
     Route::resource('labels', LabelController::class);
 });

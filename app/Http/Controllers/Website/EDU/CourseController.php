@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Website\EDU;
 
-use App\Actions\CMS\Page\PageQueryAction;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Web\CMS\FullPageResource;
 use App\Models\EDU\Course\Course;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
