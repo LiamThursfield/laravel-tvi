@@ -36,6 +36,7 @@ class CourseResource extends JsonResource
             'has_student_discount' => (bool)$this->has_student_discount,
             'has_pdfs' => (bool)$this->has_pdfs,
             'has_free_seo_exposure' => (bool)$this->has_free_seo_exposure,
+            'sections' => $this->sections,
         ];
     }
 }

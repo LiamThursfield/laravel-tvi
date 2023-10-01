@@ -37,7 +37,7 @@
                         "
                         title="Add Child Section Item"
                         type="button"
-                        @click="addMenuItem(key)"
+                        @click="addItem(key)"
                     >
                         <icon-plus
                             class="w-4"
@@ -52,7 +52,7 @@
                         "
                         title="Edit Section Item"
                         type="button"
-                        @click="editMenuItem(key)"
+                        @click="editItem(key, sectionItem)"
                     >
                         <icon-edit
                             class="w-4"
@@ -98,7 +98,7 @@
         />
 
         <section-item-modal
-            :is-create="!isEditingMenuItem"
+            :is-create="!isEditingSectionItem"
             :section-item="sectionItemToEdit"
             :show-modal="showEditModal"
             @cancelAction="cancelEdit"
@@ -107,12 +107,12 @@
         />
 
         <lecture-item-modal
-            :is-create="!isEditingMenuItem"
+            :is-create="!isEditingSectionItem"
             :section-item="sectionItemToEdit"
             :show-modal="showLectureModal"
-            @cancelAction="cancelEdit"
-            @closeModal="cancelEdit"
-            @confirmAction="confirmEdit"
+            @cancelAction="cancelLectureEdit"
+            @closeModal="cancelLectureEdit"
+            @confirmAction="confirmEditLecture"
         />
     </div>
 </template>
@@ -141,7 +141,7 @@
         data() {
             return {
                 isDragging: false,
-                isEditingMenuItem: false,
+                isEditingSectionItem: false,
                 sectionItemIndexToDelete: null,
                 sectionItemIndexToEdit: null,
                 showDeleteModal: false,
@@ -157,13 +157,6 @@
                     return 'Do you really want to delete this section item?';
                 }
             },
-            isMenuItems() {
-                try {
-                    return this.sectionItems.length;
-                } catch (e) {
-                    return false;
-                }
-            },
             sectionItemToDelete() {
                 try {
                     return this.sectionItems[this.sectionItemIndexToDelete];
@@ -173,7 +166,7 @@
             },
             sectionItemToEdit() {
                 try {
-                    if (!this.isEditingMenuItem) {
+                    if (!this.isEditingSectionItem) {
                         return {};
                     }
                     return this.sectionItems[this.sectionItemIndexToEdit];
@@ -183,8 +176,8 @@
             }
         },
         methods: {
-            addMenuItem(index) {
-                this.isEditingMenuItem = false;
+            addItem(index) {
+                this.isEditingSectionItem = false;
                 this.showEditModal = false;
                 this.showLectureModal = true;
                 this.sectionItemIndexToEdit = index;
@@ -197,12 +190,16 @@
                 this.showEditModal = false;
                 this.sectionItemIndexToEdit = false;
             },
+            cancelLectureEdit() {
+                this.showLectureModal = false;
+                this.sectionItemIndexToEdit = false;
+            },
             checkDelete(index) {
                 this.sectionItemIndexToDelete = index;
                 this.showDeleteModal = true;
             },
             confirmEdit(sectionItem) {
-                if (this.isEditingMenuItem) {
+                if (this.isEditingSectionItem) {
                     // This is an existing item, update it
                     this.$set(this.sectionItems, this.sectionItemIndexToEdit, _.cloneDeep(sectionItem));
                 } else {
@@ -211,7 +208,20 @@
                 }
 
                 this.showEditModal = false;
-                this.isEditingMenuItem = false;
+                this.isEditingSectionItem = false;
+                this.sectionItemIndexToEdit = false;
+            },
+            confirmEditLecture(sectionItem) {
+                if (this.isEditingSectionItem) {
+                    // This is an existing item, update it
+                    this.$set(this.sectionItems, this.sectionItemIndexToEdit, _.cloneDeep(sectionItem));
+                } else {
+                    // This is a new item, add it as a child
+                    this.sectionItems[this.sectionItemIndexToEdit].child_items.push(_.cloneDeep(sectionItem));
+                }
+
+                this.showLectureModal = false;
+                this.isEditingSectionItem = false;
                 this.sectionItemIndexToEdit = false;
             },
             confirmDelete() {
@@ -225,10 +235,18 @@
                     this.sectionItemIndexToDelete = null;
                 }
             },
-            editMenuItem(index) {
+            editItem(index, sectionItem) {
                 this.sectionItemIndexToEdit = index;
-                this.isEditingMenuItem = true;
-                this.showEditModal = true;
+                this.isEditingSectionItem = true;
+
+                if (sectionItem.item_type === 'lecture') {
+                    this.showLectureModal = true;
+                    console.log('showLectureModal');
+                    console.log(this.sectionItemToEdit);
+                } else {
+                    this.showEditModal = true;
+                    console.log(this.sectionItemToEdit);
+                }
             },
             onDraggableEnd() {
                 this.isDragging = false;

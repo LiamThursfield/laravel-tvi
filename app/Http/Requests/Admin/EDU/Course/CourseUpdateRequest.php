@@ -32,6 +32,7 @@ class CourseUpdateRequest extends BaseIndexRequest
             'has_student_discount' => 'nullable|boolean',
             'has_pdfs' => 'nullable|boolean',
             'has_free_seo_exposure' => 'nullable|boolean',
+            'sections' => 'nullable|array',
         ]);
     }
 }

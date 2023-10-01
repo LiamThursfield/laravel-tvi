@@ -94,14 +94,14 @@
                             v-model="editableLectureItem.content_length"
                         />
 
-                        <input-group
-                            :input-autofocus="true"
-                            input-id="lecture_item_item_type"
-                            input-name="lecture_item_item_type"
-                            input-placeholder="Item Type"
-                            label-text="Item Type"
-                            v-model="editableLectureItem.item_type"
-                        />
+<!--                        <input-group-->
+<!--                            :input-autofocus="true"-->
+<!--                            input-id="lecture_item_item_type"-->
+<!--                            input-name="lecture_item_item_type"-->
+<!--                            input-placeholder="Item Type"-->
+<!--                            label-text="Item Type"-->
+<!--                            v-model="editableLectureItem.item_type"-->
+<!--                        />-->
 
                     </div>
                 </div>
@@ -173,13 +173,14 @@
             lectureItem: {
                 default: () => {
                     return {
+                        id: '',
                         title: '',
                         description: '',
-                        can_be_previewed: '',
+                        can_be_previewed: false,
                         preview_url: '',
                         video_url: '',
                         content_length: '',
-                        item_type: '',
+                        item_type: 'lecture',
                         child_items: [],
                     };
                 }
@@ -196,23 +197,25 @@
         data() {
             return {
                 defaultLectureItem: {
+                    id: '',
                     title: '',
                     description: '',
-                    can_be_previewed: '',
+                    can_be_previewed: false,
                     preview_url: '',
                     video_url: '',
                     content_length: '',
-                    item_type: '',
+                    item_type: 'lecture',
                     child_items: [],
                 },
                 editableLectureItem: {
+                    id: '',
                     title: '',
                     description: '',
-                    can_be_previewed: '',
+                    can_be_previewed: false,
                     preview_url: '',
                     video_url: '',
                     content_length: '',
-                    item_type: '',
+                    item_type: 'lecture',
                     child_items: [],
                 },
             }
@@ -255,18 +258,24 @@
                 this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
             },
             onLectureItemChange() {
+                console.log('first');
+                console.log(this.lectureItem);
                 this.editableLectureItem = _.cloneDeep(this.lectureItem);
                 try {
                     _.forEach(this.defaultLectureItem, (value, key) => {
                         if (!this.editableLectureItem.hasOwnProperty(key)) {
+                            console.log('yoyo');
                             this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
                         }
                     });
                 } catch (e) {
-                    this.editableLectureItem = _.cloneDeep(defaultLectureItem);
+                    console.log('lol');
+                    this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
                 }
             },
             onShowModal() {
+                console.log('onshowModal');
+                console.log(this.editableLectureItem);
                 try {
                     let body = document.getElementsByTagName('body')[0];
 

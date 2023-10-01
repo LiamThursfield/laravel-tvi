@@ -348,23 +348,29 @@
                 />
             </div>
         </div>
+
+        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
+            <section-items-editor
+                v-model="formData.sections"
+            />
+        </div>
     </form>
 </template>
 
 <script>
     import slugify from "slugify";
     import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
     import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
     import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
+    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
 
     export default {
         name: "AdminEduCourseEdit",
         components: {
             TextAreaGroup,
-            MenuItemsEditor,
+            SectionItemsEditor,
             InputGroup,
             CheckboxGroup,
             SelectGroup,
@@ -413,6 +419,7 @@
                 has_student_discount: this.course.has_student_discount,
                 has_pdfs: this.course.has_pdfs,
                 has_free_seo_exposure: this.course.has_free_seo_exposure,
+                sections: this.course.sections,
             };
         },
         methods: {
