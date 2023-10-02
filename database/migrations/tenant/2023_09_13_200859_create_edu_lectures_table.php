@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->index();
-            $table->string('description')->index();
+            $table->string('description')->index()->nullable();
             $table->boolean('can_be_previewed')->default(false);
             $table->longText('preview_url')->nullable();
             $table->longText('video_url')->nullable();

@@ -12,7 +12,7 @@
         >
             <div
                 v-for="(sectionItem, key) in sectionItems"
-                :key="`section-item-${key}`"
+                :key="`section-item-${sectionItem.title}-${key}`"
             >
                 <div
                     class="border-2 border-theme-base-subtle flex flex-row items-center px-4 py-1 rounded"
@@ -26,16 +26,18 @@
                     </span>
 
                     <small class="mr-2 ml-auto">
-                        {{ sectionItem.lecture_count }} lectures | {{ sectionItem.content_length }} mins
+                        {{ sectionItem.lecture_count ?  sectionItem.lecture_count + ' lectures | ':'' }}
+                        {{ sectionItem.content_length ?  sectionItem.content_length + ' mins':'' }}
                     </small>
 
                     <button
+                        v-if="sectionItem.hasOwnProperty('lecture_count')"
                         class="
                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                             focus:outline-none focus:ring
                             hover:bg-theme-primary-subtle hover:text-theme-primary-subtle-contrast
                         "
-                        title="Add Child Section Item"
+                        title="Add"
                         type="button"
                         @click="addItem(key)"
                     >
@@ -50,7 +52,7 @@
                             focus:outline-none focus:ring
                             hover:bg-theme-info hover:text-theme-info-contrast
                         "
-                        title="Edit Section Item"
+                        title="Edit"
                         type="button"
                         @click="editItem(key, sectionItem)"
                     >
@@ -65,7 +67,7 @@
                             focus:outline-none focus:ring
                             hover:bg-theme-danger hover:text-theme-danger-contrast
                         "
-                        title="Delete Section Item"
+                        title="Delete"
                         type="button"
                         @click="checkDelete(key)"
                     >
@@ -108,7 +110,7 @@
 
         <lecture-item-modal
             :is-create="!isEditingSectionItem"
-            :section-item="sectionItemToEdit"
+            :lecture-item="sectionItemToEdit"
             :show-modal="showLectureModal"
             @cancelAction="cancelLectureEdit"
             @closeModal="cancelLectureEdit"
@@ -152,9 +154,9 @@
         computed: {
             deleteModalText() {
                 try {
-                    return 'Do you really want to delete the \'' + this.sectionItemToDelete.title + '\' section item?'
+                    return 'Do you really want to delete \'' + this.sectionItemToDelete.title + '\'? This action cannot be reversed!'
                 } catch (e) {
-                    return 'Do you really want to delete this section item?';
+                    return 'Do you really want to delete this section item? This action cannot be reversed!';
                 }
             },
             sectionItemToDelete() {
@@ -226,7 +228,20 @@
             },
             confirmDelete() {
                 try {
+                    let item = this.sectionItems[this.sectionItemIndexToDelete];
                     this.$delete(this.sectionItems, this.sectionItemIndexToDelete)
+
+                    if (item.hasOwnProperty('course_id') && item.id) {
+                        this.$inertia.delete(
+                            this.$route('admin.edu.sections.destroy', item.id)
+                        );
+                    }
+
+                    if (item.hasOwnProperty('section_id') && item.id) {
+                        this.$inertia.delete(
+                            this.$route('admin.edu.lectures.destroy', item.id)
+                        );
+                    }
                 } catch (e) {
                     this.$errorToast('Failed to delete section item.');
                     console.log(e);
@@ -239,7 +254,7 @@
                 this.sectionItemIndexToEdit = index;
                 this.isEditingSectionItem = true;
 
-                if (sectionItem.item_type === 'lecture') {
+                if (sectionItem.hasOwnProperty('section_id')) {
                     this.showLectureModal = true;
                     console.log('showLectureModal');
                     console.log(this.sectionItemToEdit);

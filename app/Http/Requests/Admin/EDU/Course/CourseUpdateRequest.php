@@ -14,7 +14,7 @@ class CourseUpdateRequest extends BaseIndexRequest
             'summary' => 'nullable|string',
             'description' => 'nullable|string',
             'status' => 'nullable|string',
-            'available_from' => 'nullable|date_format:Y-m-d H:i|before:available_to',
+            'available_from' => 'nullable|date_format:Y-m-d H:i:s|before:available_to',
             'available_to' => 'nullable|date_format:Y-m-d H:i|after:available_from',
             'content_length_video' => 'nullable|string',
             'banner' => 'nullable|string',

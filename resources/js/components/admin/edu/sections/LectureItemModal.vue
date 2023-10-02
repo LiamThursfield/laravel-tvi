@@ -76,6 +76,14 @@
                             v-model="editableLectureItem.preview_url"
                         />
 
+                        <div
+                            v-if="editableLectureItem.preview_url"
+                            class="px-4 space-y-2"
+                        >
+                            <h2>Preview</h2>
+                            <iframe :src="editableLectureItem.preview_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+
                         <input-group
                             :input-autofocus="true"
                             input-id="lecture_item_video_url"
@@ -103,6 +111,14 @@
 <!--                            v-model="editableLectureItem.item_type"-->
 <!--                        />-->
 
+                    </div>
+
+                    <div
+                        v-if="editableLectureItem.video_url"
+                        class="px-4 space-y-2"
+                    >
+                        <h2>Video</h2>
+                        <iframe :src="editableLectureItem.video_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
 

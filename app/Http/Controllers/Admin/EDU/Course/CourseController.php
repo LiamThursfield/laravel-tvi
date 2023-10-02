@@ -70,7 +70,7 @@ class CourseController extends AdminController
     {
         $this->addMetaTitleSection('Edit - ' . $course->name)->shareMeta();
         $course->load('sections');
-//        dd($course->toArray());
+
         return Inertia::render('admin/edu/course/Edit', [
             'course' => function () use ($course) {
                 CourseResource::withoutWrapping();

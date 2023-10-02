@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin\EDU\Lecture;
 
-use App\Actions\EDU\Section\SectionQueryAction;
-use App\Actions\EDU\Section\SectionStoreAction;
-use App\Actions\EDU\Section\SectionUpdateAction;
+use App\Actions\EDU\Lecture\LectureQueryAction;
+use App\Actions\EDU\Lecture\LectureStoreAction;
+use App\Actions\EDU\Lecture\LectureUpdateAction;
 use App\Http\Controllers\AdminController;
-use App\Http\Requests\Admin\EDU\Section\SectionIndexRequest;
-use App\Http\Requests\Admin\EDU\Section\SectionStoreRequest;
-use App\Http\Requests\Admin\EDU\Section\SectionUpdateRequest;
+use App\Http\Requests\Admin\EDU\Lecture\LectureIndexRequest;
+use App\Http\Requests\Admin\EDU\Lecture\LectureStoreRequest;
+use App\Http\Requests\Admin\EDU\Lecture\LectureUpdateRequest;
 use App\Http\Resources\Admin\EDU\Lecture\LectureResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
-use App\Models\EDU\Section\Section;
+use App\Models\EDU\Lecture\Lecture;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -51,7 +51,7 @@ class LectureController extends AdminController
         return Inertia::render('admin/edu/lecture/Create') ;
     }
 
-    public function destroy(Section $lecture) : RedirectResponse
+    public function destroy(Lecture $lecture) : RedirectResponse
     {
         $lecture->delete();
 
@@ -61,7 +61,7 @@ class LectureController extends AdminController
         );
     }
 
-    public function edit(Section $lecture) : Response
+    public function edit(Lecture $lecture) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $lecture->title)->shareMeta();
 
@@ -73,7 +73,7 @@ class LectureController extends AdminController
         ]);
     }
 
-    public function index(SectionIndexRequest $request) : Response
+    public function index(LectureIndexRequest $request) : Response
     {
         $search_options = $request->validated();
 
@@ -81,7 +81,7 @@ class LectureController extends AdminController
 
         return Inertia::render('admin/edu/lecture/Index', [
             'lectures' => function () use ($search_options) {
-                return app(SectionQueryAction::class)
+                return app(LectureQueryAction::class)
                     ->handle($search_options)
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
@@ -89,17 +89,17 @@ class LectureController extends AdminController
         ]);
     }
 
-    public function store(SectionStoreRequest $request) : RedirectResponse
+    public function store(LectureStoreRequest $request) : RedirectResponse
     {
-        $lecture = app(SectionStoreAction::class)->handle($request->validated());
+        $lecture = app(LectureStoreAction::class)->handle($request->validated());
 
         return Redirect::to(route('admin.edu.lectures.edit', $lecture))
             ->with('success', 'Created');
     }
 
-    public function update(SectionUpdateRequest $request, Section $lecture) : RedirectResponse
+    public function update(LectureUpdateRequest $request, Lecture $lecture) : RedirectResponse
     {
-        $lecture = app(SectionUpdateAction::class)->handle($lecture, $request->validated());
+        $lecture = app(LectureUpdateAction::class)->handle($lecture, $request->validated());
 
         return Redirect::to(route('admin.edu.lectures.edit', $lecture))
             ->with('success', 'Updated');

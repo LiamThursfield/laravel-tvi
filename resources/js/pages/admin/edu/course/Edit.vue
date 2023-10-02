@@ -365,6 +365,7 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
+    import _ from "lodash";
 
     export default {
         name: "AdminEduCourseEdit",
@@ -382,7 +383,7 @@
                 type: Object,
                 required: true,
             },
-            currencies: {
+            'currencies': {
                 required: true,
                 type: Object|Array,
             },
@@ -394,6 +395,7 @@
             }
         },
         created() {
+            this.transformSections();
             this.formData = {
                 id: this.course.id,
                 name: this.course.name,
@@ -423,6 +425,17 @@
             };
         },
         methods: {
+            transformSections() {
+                let sections = this.course.sections;
+
+                _.forEach(sections, (section, key) => {
+                    _.forEach(section.child_items, (item, key) => {
+                        item.child_items = [];
+                    });
+                });
+
+                this.course.sections = sections;
+            },
             onNameInput() {
                 if (!this.autoUpdateSlug) {
                     return;

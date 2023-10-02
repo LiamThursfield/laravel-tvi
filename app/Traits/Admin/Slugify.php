@@ -25,4 +25,9 @@ trait Slugify
     {
         return Str::slug($data) . '-' . Carbon::now()->toIso8601String();
     }
+
+    public function slugifyWithUnix(string $data): string
+    {
+        return Str::slug($data) . '-' . Carbon::now()->unix();
+    }
 }
