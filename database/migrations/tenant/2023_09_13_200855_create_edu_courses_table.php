@@ -1,6 +1,7 @@
 <?php
 
 use App\Interfaces\EDU\Course\CourseInterface;
+use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -32,7 +33,7 @@ return new class extends Migration
             // Price
             $table->string('price')->nullable();
             $table->string('discount_price')->nullable();
-            $table->string('currency')->nullable()->default(CourseInterface::CURRENCY_GB);
+            $table->string('currency')->nullable()->default(PurchaseInterface::CURRENCY_GB);
 
             // Webinars
             $table->boolean('has_webinars')->nullable()->default(false);
