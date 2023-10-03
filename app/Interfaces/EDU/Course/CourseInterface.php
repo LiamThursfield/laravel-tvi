@@ -21,14 +21,4 @@ class CourseInterface
         self::STATUS_IN_PROGRESS => 'In Progress',
         self::STATUS_PUBLISHED => 'Published',
     ];
-
-    public const CURRENCY_RO = 'LEI';
-    public const CURRENCY_GB = 'GBP';
-    public const CURRENCY_EU = 'E';
-
-    public const CURRENCIES = [
-        self::CURRENCY_RO => 'Lei',
-        self::CURRENCY_GB => '£',
-        self::CURRENCY_EU => '€',
-    ];
 }

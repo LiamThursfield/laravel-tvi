@@ -50,6 +50,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
         $this->mapAdminApiRoutes();
+        $this->mapWebhookRoutes();
     }
 
 
@@ -115,6 +116,22 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware(['web', 'tenant'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * Define the "webhook" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapWebhookRoutes()
+    {
+        Route::middleware(['webhook', 'tenant'])
+            ->namespace($this->namespace)
+            ->as('webhook.')
+            ->prefix('webhook')
+            ->group(base_path('routes/webhook.php'));
     }
 
     protected function mapLandlordWebRoutes()

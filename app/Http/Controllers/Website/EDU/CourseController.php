@@ -13,20 +13,19 @@ use Inertia\Response;
 class CourseController extends Controller
 {
     // TODO: Once courses are implemented, bolster this out
-    public function show(Request $request, $course): Response
+    public function show(Request $request, Course $course): Response
     {
-        $course = Course::find($course);
 
         return Inertia::render('website/edu/course/Show', [
             'course' => [
-                'id' => $course,
-                'name' => 'Test Course: ' . $course,
+                'id' => $course->id,
+                'name' => $course->name,
                 'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco.',
                 'price' => 2000,
                 'images' => ['https://i.imgur.com/EHyR2nP.png'],
                 'is_standalone' => true,
 
-                'programs' => [
+                'programmes' => [
                     [
                         'id' => 1,
                         'name' => 'Test Program 1',
