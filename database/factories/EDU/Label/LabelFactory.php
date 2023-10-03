@@ -22,7 +22,7 @@ class LabelFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->name();
+        $name = $this->faker->jobTitle();
 
         return [
             'label' => $name,

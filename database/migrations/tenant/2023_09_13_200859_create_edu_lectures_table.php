@@ -19,9 +19,9 @@ return new class extends Migration
             $table->boolean('can_be_previewed')->default(false);
             $table->longText('preview_url')->nullable();
             $table->longText('video_url')->nullable();
-            $table->longText('content_length')->nullable();
-            $table->longText('index')->nullable();
-            $table->longText('item_type')->nullable(); // Lecture OR Quiz
+            $table->string('content_length')->nullable();
+            $table->string('index')->nullable();
+            $table->string('item_type')->nullable(); // Lecture OR Quiz
             $table->unsignedBigInteger('section_id')->index();
             $table->softDeletes();
             $table->timestamps();

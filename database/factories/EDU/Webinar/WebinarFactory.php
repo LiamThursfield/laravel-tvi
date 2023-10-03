@@ -23,7 +23,7 @@ class WebinarFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->text();
+        $name = 'Webinar - ' . $this->faker->safeColorName();
 
         return [
             'name' => $name,

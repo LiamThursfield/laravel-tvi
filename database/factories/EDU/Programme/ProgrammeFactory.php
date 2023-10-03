@@ -2,7 +2,7 @@
 
 namespace Database\Factories\EDU\Programme;
 
-use App\Models\EDU\Programme\Announcement;
+use App\Models\EDU\Programme\Programme;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -13,7 +13,7 @@ class ProgrammeFactory extends Factory
      *
      * @var string
      */
-    protected $model = Announcement::class;
+    protected $model = Programme::class;
 
     /**
      * Define the model's default state.

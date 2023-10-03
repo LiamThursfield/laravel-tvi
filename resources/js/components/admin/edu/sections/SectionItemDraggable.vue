@@ -26,7 +26,9 @@
                     </span>
 
                     <small class="mr-2 ml-auto">
-                        {{ sectionItem.lecture_count ?  sectionItem.lecture_count + ' lectures | ':'' }}
+                        <span v-if="sectionItem.lecture_count">
+                            {{ sectionItem.child_items ? sectionItem.child_items.length + ' lectures | ':'' }}
+                        </span>
                         {{ sectionItem.content_length ?  sectionItem.content_length + ' mins':'' }}
                     </small>
 
@@ -175,7 +177,7 @@
                 } catch (e) {
                     return {}
                 }
-            }
+            },
         },
         methods: {
             addItem(index) {
@@ -256,11 +258,8 @@
 
                 if (sectionItem.hasOwnProperty('section_id')) {
                     this.showLectureModal = true;
-                    console.log('showLectureModal');
-                    console.log(this.sectionItemToEdit);
                 } else {
                     this.showEditModal = true;
-                    console.log(this.sectionItemToEdit);
                 }
             },
             onDraggableEnd() {
@@ -274,7 +273,6 @@
                 this.isDragging = true;
             },
         },
-
     }
 </script>
 

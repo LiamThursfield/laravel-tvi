@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\AppInterface;
-use App\Interfaces\EDU\Course\CourseInterface;
+use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
 use Illuminate\Http\RedirectResponse;
@@ -51,7 +51,7 @@ class CourseController extends AdminController
 
         return Inertia::render('admin/edu/course/Create', [
                 'currencies' => function () {
-                    return CourseInterface::CURRENCIES;
+                    return PurchaseInterface::CURRENCIES;
                 }
         ]);
     }
@@ -77,7 +77,7 @@ class CourseController extends AdminController
                 return CourseResource::make($course);
             },
             'currencies' => function () {
-                return CourseInterface::CURRENCIES;
+                return PurchaseInterface::CURRENCIES;
             }
         ]);
     }
