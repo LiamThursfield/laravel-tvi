@@ -53,7 +53,6 @@ class SectionController extends AdminController
 
     public function destroy(Section $section) : RedirectResponse
     {
-        dd($section);
         $section->delete();
 
         return Redirect::back(200)->with(
