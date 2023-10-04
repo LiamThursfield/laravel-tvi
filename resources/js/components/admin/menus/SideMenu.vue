@@ -291,6 +291,30 @@
                     },
                     edu: {
                         children : {
+                            announcements: {
+                                activeRoutes: ["admin.edu.announcements.index", "admin.edu.announcements.create", "admin.edu.announcements.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View",
+                                        requiresAllPermissions: ["edu_announcements.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.announcements.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create",
+                                        requiresAllPermissions: ["edu_announcements.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.announcements.create",
+                                    }
+                                },
+                                icon: "icon-speaker",
+                                label: "Announcements",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_announcements.create", "edu_announcements.view"],
+                            },
                             courses: {
                                 activeRoutes: ["admin.edu.courses.index", "admin.edu.courses.create", "admin.edu.courses.edit"],
                                 children: {
@@ -310,7 +334,7 @@
                                         route: "admin.edu.courses.create",
                                     }
                                 },
-                                icon: "icon-forms",
+                                icon: "icon-chalkboard",
                                 label: "Courses",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_courses.create", "edu_courses.view"],
@@ -334,7 +358,7 @@
                                         route: "admin.edu.programmes.create",
                                     }
                                 },
-                                icon: "icon-forms",
+                                icon: "icon-box-multiple",
                                 label: "Programmes",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_programmes.create", "edu_programmes.view"],
@@ -358,7 +382,7 @@
                                         route: "admin.edu.labels.create",
                                     }
                                 },
-                                icon: "icon-forms",
+                                icon: "icon-tags",
                                 label: "Labels",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_labels.create", "edu_labels.view"],
@@ -367,6 +391,8 @@
                         label: "EDU",
                         requiresAllPermissions: [],
                         requiresAnyPermissions: [
+                            'edu_announcements.create',
+                            'edu_announcements.view',
                             'edu_courses.create',
                             'edu_courses.view',
                             'edu_programmes.create',
