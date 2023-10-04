@@ -4,8 +4,77 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea7a6884b308d1389ab3d20b21df59ba",
+    "content-hash": "821bfa811358ab774a5c4c56af1ba80f",
     "packages": [
+        {
+            "name": "ankitpokhrel/tus-php",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ankitpokhrel/tus-php.git",
+                "reference": "20671422b433aa45196f89906acf7c4328043ab8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ankitpokhrel/tus-php/zipball/20671422b433aa45196f89906acf7c4328043ab8",
+                "reference": "20671422b433aa45196f89906acf7c4328043ab8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "nesbot/carbon": "^1.26.3 || ^2.0",
+                "php": "^7.2.5 || ^8.0",
+                "predis/predis": "^1.1 || ^2.0",
+                "ramsey/uuid": "^3.7 || ^4.0",
+                "symfony/console": "^5.0 || ^6.0",
+                "symfony/event-dispatcher": "^5.0 || ^6.0",
+                "symfony/http-foundation": "^5.0.7 || ^6.0",
+                "symfony/mime": "^5.0.9 || ^6.0"
+            },
+            "require-dev": {
+                "ext-pcntl": "*",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.3.4 || ^1.4.2",
+                "phpunit/phpunit": "^8.5.19 || ^9.4"
+            },
+            "bin": [
+                "bin/tus"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TusPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ankit Pokhrel",
+                    "email": "hello@ankit.pl"
+                }
+            ],
+            "description": "A pure PHP server and client for the tus resumable upload protocol v1.0.0",
+            "support": {
+                "issues": "https://github.com/ankitpokhrel/tus-php/issues",
+                "source": "https://github.com/ankitpokhrel/tus-php/tree/v2.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/pokharelankit",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-09-18T08:52:10+00:00"
+        },
         {
             "name": "aws/aws-crt-php",
             "version": "v1.2.1",
@@ -751,6 +820,76 @@
                 }
             ],
             "time": "2022-02-20T15:07:15+00:00"
+        },
+        {
+            "name": "graham-campbell/manager",
+            "version": "v5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+                "reference": "f1cf95a0bb11ba086387b8049e0e40b82d01588d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/f1cf95a0bb11ba086387b8049e0e40b82d01588d",
+                "reference": "f1cf95a0bb11ba086387b8049e0e40b82d01588d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.75 || ^9.0 || ^10.0",
+                "illuminate/support": "^8.75 || ^9.0 || ^10.0",
+                "php": "^7.4.15 || ^8.0.2"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^4.0",
+                "graham-campbell/testbench-core": "^4.0",
+                "mockery/mockery": "^1.5.1",
+                "phpunit/phpunit": "^9.6.3 || ^10.0.12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\Manager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                }
+            ],
+            "description": "Manager Provides Some Manager Functionality For Laravel",
+            "keywords": [
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Manager",
+                "Laravel-Manager",
+                "connector",
+                "framework",
+                "interface",
+                "laravel",
+                "manager"
+            ],
+            "support": {
+                "issues": "https://github.com/GrahamCampbell/Laravel-Manager/issues",
+                "source": "https://github.com/GrahamCampbell/Laravel-Manager/tree/v5.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/graham-campbell/manager",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-25T23:53:34+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -2999,6 +3138,59 @@
             "time": "2023-09-07T20:46:32+00:00"
         },
         {
+            "name": "pimple/pimple",
+            "version": "v3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silexphp/Pimple.git",
+                "reference": "a94b3a4db7fb774b3d78dad2315ddc07629e1bed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a94b3a4db7fb774b3d78dad2315ddc07629e1bed",
+                "reference": "a94b3a4db7fb774b3d78dad2315ddc07629e1bed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "psr/container": "^1.1 || ^2.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^5.4@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Pimple": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Pimple, a simple Dependency Injection Container",
+            "homepage": "https://pimple.symfony.com",
+            "keywords": [
+                "container",
+                "dependency injection"
+            ],
+            "support": {
+                "source": "https://github.com/silexphp/Pimple/tree/v3.5.0"
+            },
+            "time": "2021-10-28T11:13:42+00:00"
+        },
+        {
             "name": "predis/predis",
             "version": "v1.1.10",
             "source": {
@@ -3730,6 +3922,68 @@
             "time": "2023-04-15T23:01:58+00:00"
         },
         {
+            "name": "spatie/backtrace",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/backtrace.git",
+                "reference": "ec4dd16476b802dbdc6b4467f84032837e316b8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/backtrace/zipball/ec4dd16476b802dbdc6b4467f84032837e316b8c",
+                "reference": "ec4dd16476b802dbdc6b4467f84032837e316b8c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "phpunit/phpunit": "^9.3",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
+                "symfony/var-dumper": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Backtrace\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van de Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A better backtrace",
+            "homepage": "https://github.com/spatie/backtrace",
+            "keywords": [
+                "Backtrace",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/backtrace/tree/1.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2023-03-04T08:57:24+00:00"
+        },
+        {
             "name": "spatie/laravel-permission",
             "version": "5.10.1",
             "source": {
@@ -3810,6 +4064,91 @@
                 }
             ],
             "time": "2023-04-12T17:08:32+00:00"
+        },
+        {
+            "name": "spatie/laravel-ray",
+            "version": "1.33.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-ray.git",
+                "reference": "5028ae44a09451b26eb44490e3471998650788e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/5028ae44a09451b26eb44490e3471998650788e3",
+                "reference": "5028ae44a09451b26eb44490e3471998650788e3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/contracts": "^7.20|^8.19|^9.0|^10.0",
+                "illuminate/database": "^7.20|^8.19|^9.0|^10.0",
+                "illuminate/queue": "^7.20|^8.19|^9.0|^10.0",
+                "illuminate/support": "^7.20|^8.19|^9.0|^10.0",
+                "php": "^7.4|^8.0",
+                "spatie/backtrace": "^1.0",
+                "spatie/ray": "^1.37",
+                "symfony/stopwatch": "4.2|^5.1|^6.0",
+                "zbateson/mail-mime-parser": "^1.3.1|^2.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.3",
+                "laravel/framework": "^7.20|^8.19|^9.0|^10.0",
+                "orchestra/testbench-core": "^5.0|^6.0|^7.0|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpstan/phpstan": "^0.12.93",
+                "phpunit/phpunit": "^9.3",
+                "spatie/pest-plugin-snapshots": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.29.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Spatie\\LaravelRay\\RayServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelRay\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily debug Laravel apps",
+            "homepage": "https://github.com/spatie/laravel-ray",
+            "keywords": [
+                "laravel-ray",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-ray/issues",
+                "source": "https://github.com/spatie/laravel-ray/tree/1.33.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2023-09-04T10:16:53+00:00"
         },
         {
             "name": "spatie/laravel-settings",
@@ -3897,6 +4236,132 @@
                 }
             ],
             "time": "2023-07-05T12:22:20+00:00"
+        },
+        {
+            "name": "spatie/macroable",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/macroable.git",
+                "reference": "ec2c320f932e730607aff8052c44183cf3ecb072"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/macroable/zipball/ec2c320f932e730607aff8052c44183cf3ecb072",
+                "reference": "ec2c320f932e730607aff8052c44183cf3ecb072",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0|^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Macroable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A trait to dynamically add methods to a class",
+            "homepage": "https://github.com/spatie/macroable",
+            "keywords": [
+                "macroable",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/macroable/issues",
+                "source": "https://github.com/spatie/macroable/tree/2.0.0"
+            },
+            "time": "2021-03-26T22:39:02+00:00"
+        },
+        {
+            "name": "spatie/ray",
+            "version": "1.39.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/ray.git",
+                "reference": "7ab6bd01dc6a8ecdd836b3182d40a04308ae0c75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/7ab6bd01dc6a8ecdd836b3182d40a04308ae0c75",
+                "reference": "7ab6bd01dc6a8ecdd836b3182d40a04308ae0c75",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": "^7.3|^8.0",
+                "ramsey/uuid": "^3.0|^4.1",
+                "spatie/backtrace": "^1.1",
+                "spatie/macroable": "^1.0|^2.0",
+                "symfony/stopwatch": "^4.0|^5.1|^6.0",
+                "symfony/var-dumper": "^4.2|^5.1|^6.0"
+            },
+            "require-dev": {
+                "illuminate/support": "6.x|^8.18|^9.0",
+                "nesbot/carbon": "^2.63",
+                "pestphp/pest": "^1.22",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.5",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Spatie\\Ray\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Debug with Ray to fix problems faster",
+            "homepage": "https://github.com/spatie/ray",
+            "keywords": [
+                "ray",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/ray/issues",
+                "source": "https://github.com/spatie/ray/tree/1.39.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2023-09-18T10:36:07+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -5145,6 +5610,89 @@
             "time": "2022-11-03T14:55:06+00:00"
         },
         {
+            "name": "symfony/polyfill-iconv",
+            "version": "v1.28.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-iconv.git",
+                "reference": "6de50471469b8c9afc38164452ab2b6170ee71c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/6de50471469b8c9afc38164452ab2b6170ee71c1",
+                "reference": "6de50471469b8c9afc38164452ab2b6170ee71c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-iconv": "*"
+            },
+            "suggest": {
+                "ext-iconv": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.28-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Iconv\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Iconv extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "iconv",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-iconv/tree/v1.28.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-01-26T09:26:14+00:00"
+        },
+        {
             "name": "symfony/polyfill-intl-grapheme",
             "version": "v1.27.0",
             "source": {
@@ -6023,6 +6571,68 @@
             "time": "2023-05-23T14:45:45+00:00"
         },
         {
+            "name": "symfony/stopwatch",
+            "version": "v6.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/stopwatch.git",
+                "reference": "fc47f1015ec80927ff64ba9094dfe8b9d48fe9f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/fc47f1015ec80927ff64ba9094dfe8b9d48fe9f2",
+                "reference": "fc47f1015ec80927ff64ba9094dfe8b9d48fe9f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/service-contracts": "^2.5|^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Stopwatch\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides a way to profile code",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/stopwatch/tree/v6.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-16T10:14:28+00:00"
+        },
+        {
             "name": "symfony/string",
             "version": "v6.3.0",
             "source": {
@@ -6557,6 +7167,133 @@
             "time": "2023-01-03T09:29:04+00:00"
         },
         {
+            "name": "vimeo/laravel",
+            "version": "5.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vimeo/laravel.git",
+                "reference": "c0ba374d1ff2ad8e0aa7fee62a2d8b9aa242eede"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vimeo/laravel/zipball/c0ba374d1ff2ad8e0aa7fee62a2d8b9aa242eede",
+                "reference": "c0ba374d1ff2ad8e0aa7fee62a2d8b9aa242eede",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/manager": "^5.0",
+                "illuminate/contracts": "^5.8|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.2|^8.0",
+                "vimeo/vimeo-api": "^3.0"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^2.0|^3.1",
+                "graham-campbell/testbench": "^5.2",
+                "laravel/framework": "^5.8|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "laravel/lumen-framework": "^5.7",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.0|^9.5.10",
+                "psalm/plugin-laravel": "^1.4.0|^1.1|^2.7",
+                "vimeo/psalm": "^3.17|^4.19|^5.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vimeo\\Laravel\\VimeoServiceProvider"
+                    ],
+                    "aliases": {
+                        "Vimeo": "Vimeo\\Laravel\\Facades\\Vimeo"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vimeo\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Ursenbach",
+                    "email": "jonu@vimeo.com"
+                },
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com",
+                    "homepage": "https://vinkla.com"
+                }
+            ],
+            "description": "A Vimeo bridge for Laravel",
+            "keywords": [
+                "laravel",
+                "video",
+                "vimeo"
+            ],
+            "support": {
+                "issues": "https://github.com/vimeo/laravel/issues",
+                "source": "https://github.com/vimeo/laravel/tree/5.8.0"
+            },
+            "time": "2023-03-02T13:55:42+00:00"
+        },
+        {
+            "name": "vimeo/vimeo-api",
+            "version": "3.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vimeo/vimeo.php.git",
+                "reference": "79885b642594b17f6c356dc949d3e4a58c356c9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vimeo/vimeo.php/zipball/79885b642594b17f6c356dc949d3e4a58c356c9b",
+                "reference": "79885b642594b17f6c356dc949d3e4a58c356c9b",
+                "shasum": ""
+            },
+            "require": {
+                "ankitpokhrel/tus-php": "^v1.0.0 || ^v2.0.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^1.0",
+                "phpunit/phpunit": "^7.4",
+                "vimeo/psalm": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vimeo\\": "src/Vimeo"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vimeo",
+                    "homepage": "http://vimeo.com"
+                }
+            ],
+            "description": "Official PHP library for the Vimeo API.",
+            "homepage": "https://github.com/vimeo/vimeo.php",
+            "keywords": [
+                "video",
+                "vimeo"
+            ],
+            "support": {
+                "issues": "https://github.com/vimeo/vimeo.php/issues",
+                "source": "https://github.com/vimeo/vimeo.php/tree/3.0.10"
+            },
+            "time": "2022-02-18T14:05:55+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.5.0",
             "source": {
@@ -6771,6 +7508,213 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "zbateson/mail-mime-parser",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zbateson/mail-mime-parser.git",
+                "reference": "20b3e48eb799537683780bc8782fbbe9bc25934a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zbateson/mail-mime-parser/zipball/20b3e48eb799537683780bc8782fbbe9bc25934a",
+                "reference": "20b3e48eb799537683780bc8782fbbe9bc25934a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.7.0|^2.0",
+                "php": ">=7.1",
+                "pimple/pimple": "^3.0",
+                "zbateson/mb-wrapper": "^1.0.1",
+                "zbateson/stream-decorators": "^1.0.6"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "*",
+                "mikey179/vfsstream": "^1.6.0",
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "<10"
+            },
+            "suggest": {
+                "ext-iconv": "For best support/performance",
+                "ext-mbstring": "For best support/performance"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZBateson\\MailMimeParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Zaahid Bateson"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/zbateson/mail-mime-parser/graphs/contributors"
+                }
+            ],
+            "description": "MIME email message parser",
+            "homepage": "https://mail-mime-parser.org",
+            "keywords": [
+                "MimeMailParser",
+                "email",
+                "mail",
+                "mailparse",
+                "mime",
+                "mimeparse",
+                "parser",
+                "php-imap"
+            ],
+            "support": {
+                "docs": "https://mail-mime-parser.org/#usage-guide",
+                "issues": "https://github.com/zbateson/mail-mime-parser/issues",
+                "source": "https://github.com/zbateson/mail-mime-parser"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/zbateson",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-14T22:58:03+00:00"
+        },
+        {
+            "name": "zbateson/mb-wrapper",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zbateson/mb-wrapper.git",
+                "reference": "faf35dddfacfc5d4d5f9210143eafd7a7fe74334"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zbateson/mb-wrapper/zipball/faf35dddfacfc5d4d5f9210143eafd7a7fe74334",
+                "reference": "faf35dddfacfc5d4d5f9210143eafd7a7fe74334",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "symfony/polyfill-iconv": "^1.9",
+                "symfony/polyfill-mbstring": "^1.9"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "*",
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "<=9.0"
+            },
+            "suggest": {
+                "ext-iconv": "For best support/performance",
+                "ext-mbstring": "For best support/performance"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZBateson\\MbWrapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Zaahid Bateson"
+                }
+            ],
+            "description": "Wrapper for mbstring with fallback to iconv for encoding conversion and string manipulation",
+            "keywords": [
+                "charset",
+                "encoding",
+                "http",
+                "iconv",
+                "mail",
+                "mb",
+                "mb_convert_encoding",
+                "mbstring",
+                "mime",
+                "multibyte",
+                "string"
+            ],
+            "support": {
+                "issues": "https://github.com/zbateson/mb-wrapper/issues",
+                "source": "https://github.com/zbateson/mb-wrapper/tree/1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/zbateson",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-11T23:05:44+00:00"
+        },
+        {
+            "name": "zbateson/stream-decorators",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zbateson/stream-decorators.git",
+                "reference": "783b034024fda8eafa19675fb2552f8654d3a3e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zbateson/stream-decorators/zipball/783b034024fda8eafa19675fb2552f8654d3a3e9",
+                "reference": "783b034024fda8eafa19675fb2552f8654d3a3e9",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^1.9 | ^2.0",
+                "php": ">=7.2",
+                "zbateson/mb-wrapper": "^1.0.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "*",
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "<10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZBateson\\StreamDecorators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Zaahid Bateson"
+                }
+            ],
+            "description": "PHP psr7 stream decorators for mime message part streams",
+            "keywords": [
+                "base64",
+                "charset",
+                "decorators",
+                "mail",
+                "mime",
+                "psr7",
+                "quoted-printable",
+                "stream",
+                "uuencode"
+            ],
+            "support": {
+                "issues": "https://github.com/zbateson/stream-decorators/issues",
+                "source": "https://github.com/zbateson/stream-decorators/tree/1.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/zbateson",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-05-30T22:51:52+00:00"
         }
     ],
     "packages-dev": [
@@ -9132,68 +10076,6 @@
             "time": "2023-02-07T11:34:05+00:00"
         },
         {
-            "name": "spatie/backtrace",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/backtrace.git",
-                "reference": "ec4dd16476b802dbdc6b4467f84032837e316b8c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/backtrace/zipball/ec4dd16476b802dbdc6b4467f84032837e316b8c",
-                "reference": "ec4dd16476b802dbdc6b4467f84032837e316b8c",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "ext-json": "*",
-                "phpunit/phpunit": "^9.3",
-                "spatie/phpunit-snapshot-assertions": "^4.2",
-                "symfony/var-dumper": "^5.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Backtrace\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van de Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A better backtrace",
-            "homepage": "https://github.com/spatie/backtrace",
-            "keywords": [
-                "Backtrace",
-                "spatie"
-            ],
-            "support": {
-                "source": "https://github.com/spatie/backtrace/tree/1.4.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/spatie",
-                    "type": "github"
-                },
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "other"
-                }
-            ],
-            "time": "2023-03-04T08:57:24+00:00"
-        },
-        {
             "name": "spatie/flare-client-php",
             "version": "1.3.6",
             "source": {
@@ -9565,5 +10447,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

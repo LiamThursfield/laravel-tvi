@@ -22,7 +22,7 @@ class SectionFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->text();
+        $name = 'Section ' . $this->faker->colorName();
 
         return [
             'title' => $name,

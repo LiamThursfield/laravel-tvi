@@ -40,7 +40,9 @@ class Course extends Model
 
     public function sections(): HasMany
     {
-        return $this->hasMany(Section::class);
+        return $this->hasMany(Section::class)
+            ->with('childItems')
+            ->orderBy('index');
     }
 
     public function webinars(): HasMany

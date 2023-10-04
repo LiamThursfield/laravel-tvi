@@ -2,17 +2,14 @@
 
 namespace App\Actions\EDU\Course;
 
-use App\Interfaces\EDU\Course\CourseInterface;
-use App\Models\EDU\Course\Course;
-use Illuminate\Support\Str;
+use App\Traits\Admin\EDU\CourseActions;
 
 class CourseStoreAction
 {
-    public function handle(array $data) : Course
-    {
-        $data['slug'] = Str::slug($data['name']);
-        $data['status'] = CourseInterface::STATUS_DRAFT;
+    use CourseActions;
 
-        return Course::create($data);
+    public function handle(array $data)
+    {
+        return $this->createCourse($data);
     }
 }

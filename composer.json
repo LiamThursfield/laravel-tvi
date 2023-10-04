@@ -18,10 +18,12 @@
         "league/flysystem-aws-s3-v3": "^3.1",
         "predis/predis": "^1.0",
         "spatie/laravel-permission": "^5.8",
+        "spatie/laravel-ray": "^1.33",
         "spatie/laravel-settings": "^3.2",
         "stancl/tenancy": "^3.7",
         "stripe/stripe-php": "^12.3",
-        "tightenco/ziggy": "^1.5"
+        "tightenco/ziggy": "^1.5",
+        "vimeo/laravel": "^5.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

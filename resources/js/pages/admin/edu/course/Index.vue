@@ -135,7 +135,7 @@
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.courses.edit', item.id)"
+                                        :href="$route('admin.edu.courses.preview', item.id)"
                                         title="Preview"
                                     >
                                         <icon-eye

@@ -115,6 +115,30 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::EDIT_EDU_LABELS,
             PermissionInterface::VIEW_EDU_LABELS,
 
+            // EDU Sections
+            PermissionInterface::CREATE_EDU_SECTIONS,
+            PermissionInterface::DELETE_EDU_SECTIONS,
+            PermissionInterface::EDIT_EDU_SECTIONS,
+            PermissionInterface::VIEW_EDU_SECTIONS,
+
+            // EDU Lectures
+            PermissionInterface::CREATE_EDU_LECTURES,
+            PermissionInterface::DELETE_EDU_LECTURES,
+            PermissionInterface::EDIT_EDU_LECTURES,
+            PermissionInterface::VIEW_EDU_LECTURES,
+
+            // EDU Webinars
+            PermissionInterface::CREATE_EDU_WEBINARS,
+            PermissionInterface::DELETE_EDU_WEBINARS,
+            PermissionInterface::EDIT_EDU_WEBINARS,
+            PermissionInterface::VIEW_EDU_WEBINARS,
+
+            // EDU Announcements
+            PermissionInterface::CREATE_EDU_ANNOUNCEMENTS,
+            PermissionInterface::DELETE_EDU_ANNOUNCEMENTS,
+            PermissionInterface::EDIT_EDU_ANNOUNCEMENTS,
+            PermissionInterface::VIEW_EDU_ANNOUNCEMENTS,
+
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
             PermissionInterface::VIEW_FILE_MANAGER,
@@ -193,6 +217,30 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::DELETE_EDU_LABELS,
                 PermissionInterface::EDIT_EDU_LABELS,
                 PermissionInterface::VIEW_EDU_LABELS,
+
+                // EDU Sections
+                PermissionInterface::CREATE_EDU_SECTIONS,
+                PermissionInterface::DELETE_EDU_SECTIONS,
+                PermissionInterface::EDIT_EDU_SECTIONS,
+                PermissionInterface::VIEW_EDU_SECTIONS,
+
+                // EDU Lectures
+                PermissionInterface::CREATE_EDU_LECTURES,
+                PermissionInterface::DELETE_EDU_LECTURES,
+                PermissionInterface::EDIT_EDU_LECTURES,
+                PermissionInterface::VIEW_EDU_LECTURES,
+
+                // EDU Webinars
+                PermissionInterface::CREATE_EDU_WEBINARS,
+                PermissionInterface::DELETE_EDU_WEBINARS,
+                PermissionInterface::EDIT_EDU_WEBINARS,
+                PermissionInterface::VIEW_EDU_WEBINARS,
+
+                // EDU Announcements
+                PermissionInterface::CREATE_EDU_ANNOUNCEMENTS,
+                PermissionInterface::DELETE_EDU_ANNOUNCEMENTS,
+                PermissionInterface::EDIT_EDU_ANNOUNCEMENTS,
+                PermissionInterface::VIEW_EDU_ANNOUNCEMENTS,
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [

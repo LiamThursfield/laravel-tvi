@@ -16,7 +16,9 @@ class Lecture extends Model
 
     protected $guarded = [];
 
-    protected $casts = [];
+    protected $casts = [
+        'can_be_previewed' => 'bool'
+    ];
 
     public function section(): BelongsTo
     {

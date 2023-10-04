@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Website;
+namespace App\Http\Controllers\Customer;
 
 use App\Actions\CMS\Page\PageQueryAction;
 use App\Http\Controllers\Controller;

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\EDU;
 
-use App\Models\EDU\Course\Course;
+use App\Models\EDU\Programme\Programme;
 use Illuminate\Database\Seeder;
 
 class ProgrammeSeeder extends Seeder
@@ -14,6 +14,6 @@ class ProgrammeSeeder extends Seeder
      */
     public function run()
     {
-        Course::factory()->count(2)->create();
+        Programme::factory()->count(2)->create();
     }
 }

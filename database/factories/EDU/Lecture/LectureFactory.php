@@ -22,7 +22,7 @@ class LectureFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->text();
+        $name = 'Lecture ' . $this->faker->jobTitle();
 
         return [
             'title' => $name,
@@ -31,7 +31,7 @@ class LectureFactory extends Factory
             'can_be_previewed' => $this->faker->boolean,
             'preview_url' =>  $this->faker->url,
             'video_url' =>  $this->faker->url,
-            'content_length' =>  $this->faker->randomDigit(),
+            'content_length' =>  $this->faker->randomDigitNotZero(),
             'index' =>  $this->faker->randomDigit(),
             'item_type' => 'lecture',
             'section_id' =>  1,
