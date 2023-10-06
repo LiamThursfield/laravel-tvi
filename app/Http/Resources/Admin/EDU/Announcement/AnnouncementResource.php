@@ -17,9 +17,9 @@ class AnnouncementResource extends JsonResource
             'creator_id' => $this->creator_id,
             'creator' => $this->whenLoaded('creator'),
             'status' => $this->status,
-            'platform' => $this->platform,
-            'email' => $this->email,
-            'sms' => $this->sms,
+            'platform' => (bool)$this->platform,
+            'email' => (bool)$this->email,
+            'sms' => (bool) $this->sms,
         ];
     }
 }

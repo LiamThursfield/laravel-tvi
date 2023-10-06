@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 class AnnouncementQueryAction extends AbstractQueryAction
 {
     protected array $searchable_fields_likes = [
-        'title' => 'lecture_title',
-        'slug' => 'lecture_slug',
+        'title' => 'announcement_title',
+        'slug' => 'announcement_slug',
     ];
 
     protected string $order_by = 'title';

@@ -88,6 +88,7 @@ class AnnouncementController extends AdminController
             'announcements' => function () use ($search_options) {
                 return app(AnnouncementQueryAction::class)
                     ->handle($search_options)
+                    ->with('creator')
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'searchOptions' => $search_options
