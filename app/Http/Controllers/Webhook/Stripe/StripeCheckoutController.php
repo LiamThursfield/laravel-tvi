@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Webhook\Stripe;
 
+use App\Actions\EDU\Purchase\RedeemUserPurchasesAction;
 use App\Http\Controllers\Controller;
 use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use App\Models\EDU\Purchase\Purchase;
@@ -53,6 +54,11 @@ class StripeCheckoutController extends Controller
                 'payment_response' => $event->toArray(),
             ]
         );
+
+        // Redeem the user's purchases if they already exist
+        if ($user) {
+            app(RedeemUserPurchasesAction::class)->handle($user);
+        }
 
         return response()->json([
             'success' => true,
