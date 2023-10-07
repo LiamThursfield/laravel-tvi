@@ -2,6 +2,9 @@
 
 namespace App\Models\EDU\Purchase;
 
+use App\Models\EDU\Course\Course;
+use App\Models\EDU\Programme\Programme;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,5 +28,19 @@ class PurchaseItem extends Model
     public function purchasable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function redeem(User $user): void
+    {
+        switch ($this->purchasable_type) {
+            case Course::class:
+                $user->purchasedCourses()->attach($this->purchasable_id);
+                break;
+            case Programme::class:
+                $user->purchasedProgrammes()->attach($this->purchasable_id);
+                break;
+            default:
+                throw new \Exception('Invalid purchasable type: ' . $this->purchasable_type);
+        }
     }
 }

@@ -5,8 +5,12 @@ namespace App\Models;
 use App\Interfaces\PermissionInterface;
 use App\Interfaces\RoleInterface;
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Programme\Programme;
+use App\Models\EDU\Programme\ProgrammeUser;
+use App\Models\EDU\Purchase\Purchase;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -110,5 +114,26 @@ class User extends Authenticatable
     public function programmes() : HasMany
     {
         return $this->hasMany(Programme::class);
+    }
+
+    public function purchases(): HasMany
+    {
+        return $this->hasMany(Purchase::class);
+    }
+
+    public function purchasedCourses(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Course::class,
+            CourseUser::class,
+        )->withTimestamps();
+    }
+
+    public function purchasedProgrammes(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Programme::class,
+            ProgrammeUser::class
+        )->withTimestamps();
     }
 }
