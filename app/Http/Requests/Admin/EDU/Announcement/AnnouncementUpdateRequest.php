@@ -13,9 +13,9 @@ class AnnouncementUpdateRequest extends BaseIndexRequest
             'description' => 'nullable|string',
             'creator_id' => 'sometimes|exists:users,id',
             'status' => 'nullable|string',
-            'platform' => 'nullable|string',
-            'email' => 'nullable|string',
-            'sms' => 'nullable|string',
+            'platform' => 'nullable|bool',
+            'email' => 'nullable|bool',
+            'sms' => 'nullable|bool',
         ]);
     }
 }

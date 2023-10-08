@@ -6,11 +6,11 @@ use App\Http\Requests\BaseIndexRequest;
 
 class LabelUpdateRequest extends BaseIndexRequest
 {
-    public function rules() : array
+    public function rules(): array
     {
         return array_merge(parent::rules(), [
-            'label'     => 'required|string',
-            'slug'     => 'required|string|unique:edu_labels',
+            'name' => 'required|string|unique:edu_labels',
+            'slug' => 'required|string|unique:edu_labels',
         ]);
     }
 }

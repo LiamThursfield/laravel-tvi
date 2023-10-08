@@ -3,7 +3,7 @@
 namespace App\Models\EDU\Label;
 
 use App\Models\EDU\Course\Course;
-use App\Models\EDU\Programme\Announcement;
+use App\Models\EDU\Programme\Programme;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -26,6 +26,6 @@ class Label extends Model
 
     public function programmes() : BelongsToMany
     {
-        return $this->belongsToMany(Announcement::class);
+        return $this->belongsToMany(Programme::class);
     }
 }

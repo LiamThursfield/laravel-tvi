@@ -63,7 +63,7 @@ class LabelController extends AdminController
 
     public function edit(Label $label): Response
     {
-        $this->addMetaTitleSection('Edit - ' . $label->label)->shareMeta();
+        $this->addMetaTitleSection('Edit - ' . $label->name)->shareMeta();
 
         return Inertia::render('admin/edu/label/Edit', [
             'label' => function () use ($label) {

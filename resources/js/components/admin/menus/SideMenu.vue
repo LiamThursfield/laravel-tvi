@@ -376,7 +376,7 @@
                                     create: {
                                         children: false,
                                         icon: false,
-                                        label: "Create Course",
+                                        label: "Create Label",
                                         requiresAllPermissions: ["edu_labels.create"],
                                         requiresAnyPermissions: [],
                                         route: "admin.edu.labels.create",
