@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('payment_status');
             $table->string('email_address')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->dateTime('redeemed_at')->nullable();
             $table->string('payment_currency')->default(PurchaseInterface::CURRENCY_GB);
             $table->string('payment_total');
             $table->string('payment_gateway')->nullable();
@@ -33,6 +34,7 @@ return new class extends Migration
 
             $table->index('email_address');
             $table->index('payment_status');
+            $table->index('redeemed_at');
         });
 
         Schema::create('edu_purchase_items', function (Blueprint $table) {
