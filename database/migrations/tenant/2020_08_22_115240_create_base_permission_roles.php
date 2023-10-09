@@ -145,6 +145,9 @@ class CreateBasePermissionRoles extends Migration
             // Profile
             PermissionInterface::EDIT_PROFILE,
             PermissionInterface::VIEW_PROFILE,
+            // Settings
+            PermissionInterface::EDIT_SETTINGS,
+            PermissionInterface::VIEW_SETTINGS,
             // Telescope
             PermissionInterface::VIEW_TELESCOPE,
             // Users
@@ -194,6 +197,9 @@ class CreateBasePermissionRoles extends Migration
                 // Profile
                 PermissionInterface::EDIT_PROFILE,
                 PermissionInterface::VIEW_PROFILE,
+                // Settings
+                PermissionInterface::EDIT_SETTINGS,
+                PermissionInterface::VIEW_SETTINGS,
                 // Users
                 PermissionInterface::CREATE_USERS,
                 PermissionInterface::DELETE_USERS,
