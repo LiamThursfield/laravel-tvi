@@ -21,6 +21,8 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->unsignedBigInteger('creator_id')->index();
             $table->string('status')->default(CourseInterface::STATUS_DRAFT);
+            $table->dateTime('available_from')->nullable();
+            $table->dateTime('available_to')->nullable();
 
             // Image and Video
             $table->string('content_length_video')->nullable();

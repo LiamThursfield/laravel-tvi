@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -28,9 +29,9 @@ class Course extends Model
         return $this->belongsTo(Programme::class);
     }
 
-    public function labels(): HasMany
+    public function labels(): BelongsToMany
     {
-        return $this->hasMany(Label::class);
+        return $this->belongsToMany(Label::class, 'edu_course_labels', 'course_id');
     }
 
     public function creator(): BelongsTo
@@ -48,5 +49,10 @@ class Course extends Model
     public function webinars(): HasMany
     {
         return $this->hasMany(Webinar::class);
+    }
+
+    public function participants(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'edu_programme_users', 'course_id');
     }
 }

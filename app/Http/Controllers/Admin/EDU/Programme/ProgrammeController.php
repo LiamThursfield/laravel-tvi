@@ -12,6 +12,8 @@ use App\Http\Requests\Admin\EDU\Programme\ProgrammeStoreRequest;
 use App\Http\Requests\Admin\EDU\Programme\ProgrammeUpdateRequest;
 use App\Http\Resources\Admin\EDU\Programme\ProgrammeResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\EDU\Course\CourseInterface;
+use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Programme\Programme;
 use Illuminate\Http\RedirectResponse;
@@ -53,7 +55,11 @@ class ProgrammeController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/programme/Create', []);
+        return Inertia::render('admin/edu/programme/Create', [
+            'currencies' => function () {
+                return PurchaseInterface::CURRENCIES;
+            }
+        ]);
     }
 
     public function destroy(Programme $programme): RedirectResponse
@@ -69,11 +75,18 @@ class ProgrammeController extends AdminController
     public function edit(Programme $programme): Response
     {
         $this->addMetaTitleSection('Edit - ' . $programme->name)->shareMeta();
+        $programme->load('courses');
 
         return Inertia::render('admin/edu/programme/Edit', [
             'programme' => function () use ($programme) {
                 ProgrammeResource::withoutWrapping();
                 return ProgrammeResource::make($programme);
+            },
+            'currencies' => function () {
+                return PurchaseInterface::CURRENCIES;
+            },
+            'statuses' => function () {
+                return CourseInterface::STATUSES;
             }
         ]);
     }
@@ -88,6 +101,8 @@ class ProgrammeController extends AdminController
             'programmes' => function () use ($search_options) {
                 return app(ProgrammeQueryAction::class)
                     ->handle($search_options)
+                    ->with(['creator', 'courses', 'labels', 'participants'])
+                    ->withCount(['courses', 'participants'])
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'searchOptions' => $search_options
@@ -108,6 +123,16 @@ class ProgrammeController extends AdminController
 
         return Redirect::to(route('admin.edu.programme.edit', $programme))
             ->with('success', 'Updated');
+    }
+
+    public function preview(Programme $programme): Response
+    {
+        return Inertia::render('admin/edu/programme/Preview', [
+            'programme' => function () use ($programme) {
+                ProgrammeResource::withoutWrapping();
+                return ProgrammeResource::make($programme);
+            }
+        ]);
     }
 
     public function publish(Programme $programme): RedirectResponse

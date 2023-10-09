@@ -61,6 +61,8 @@ Route::group([
         ->name('announcements.publish');
 
     Route::resource('programmes', ProgrammeController::class);
+    Route::get('/programmes/preview/{programme}', [ProgrammeController::class, 'preview'])
+        ->name('programmes.preview');
     Route::patch('/programmes/publish/{programme}', [ProgrammeController::class, 'publish'])
         ->name('programmes.publish');
 
