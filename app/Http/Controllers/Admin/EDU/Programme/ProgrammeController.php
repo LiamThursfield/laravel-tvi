@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\EDU\Programme;
 
+use App\Actions\EDU\Programme\ProgrammePublishAction;
 use App\Actions\EDU\Programme\ProgrammeQueryAction;
 use App\Actions\EDU\Programme\ProgrammeStoreAction;
 use App\Actions\EDU\Programme\ProgrammeUpdateAction;
@@ -42,6 +43,10 @@ class ProgrammeController extends AdminController
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_PROGRAMMES)
         )->only('index');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::PUBLISH_EDU_PROGRAMMES)
+        )->only('publish');
     }
 
     public function create(): Response
@@ -103,5 +108,16 @@ class ProgrammeController extends AdminController
 
         return Redirect::to(route('admin.edu.programme.edit', $programme))
             ->with('success', 'Updated');
+    }
+
+    public function publish(Programme $programme): RedirectResponse
+    {
+
+        app(ProgrammePublishAction::class)->handle($programme);
+
+        return Redirect::back(303)->with(
+            'success',
+            'Published.'
+        );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\EDU\Announcement;
 
+use App\Actions\EDU\Announcement\AnnouncementPublishAction;
 use App\Actions\EDU\Announcement\AnnouncementQueryAction;
 use App\Actions\EDU\Announcement\AnnouncementStoreAction;
 use App\Actions\EDU\Announcement\AnnouncementUpdateAction;
@@ -42,6 +43,10 @@ class AnnouncementController extends AdminController
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_ANNOUNCEMENTS)
         )->only('index');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::PUBLISH_EDU_ANNOUNCEMENTS)
+        )->only('publish');
     }
 
     public function create() : Response
@@ -83,6 +88,7 @@ class AnnouncementController extends AdminController
             'announcements' => function () use ($search_options) {
                 return app(AnnouncementQueryAction::class)
                     ->handle($search_options)
+                    ->with('creator')
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'searchOptions' => $search_options
@@ -103,5 +109,16 @@ class AnnouncementController extends AdminController
 
         return Redirect::to(route('admin.edu.announcements.edit', $announcement))
             ->with('success', 'Updated');
+    }
+
+    public function publish(Announcement $announcement): RedirectResponse
+    {
+
+        app(AnnouncementPublishAction::class)->handle($announcement);
+
+        return Redirect::back(303)->with(
+            'success',
+            'Published.'
+        );
     }
 }

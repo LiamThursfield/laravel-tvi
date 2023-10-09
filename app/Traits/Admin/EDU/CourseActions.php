@@ -166,4 +166,9 @@ trait CourseActions
 
         return $data;
     }
+
+    public function publishCourse($course)
+    {
+        return Course::where('id', $course->id)->update(['status'=> CourseInterface::STATUS_PUBLISHED]);
+    }
 }

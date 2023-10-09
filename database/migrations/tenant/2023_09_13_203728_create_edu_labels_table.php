@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('edu_labels', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
+            $table->string('name');
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();

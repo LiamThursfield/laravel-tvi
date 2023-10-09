@@ -87,7 +87,7 @@
                             :key="`item-${item.id}`"
                         >
                             <td>
-                                {{ item.label }}
+                                {{ item.name }}
                             </td>
                             <td>
                                 {{ item.slug }}

@@ -9,7 +9,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Create Form
+                Create
             </h1>
 
             <inertia-link
@@ -43,7 +43,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Create Form
+                    Create
                 </span>
             </button>
         </div>
@@ -52,31 +52,16 @@
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <input-group
-                    :error-message="getPageErrorMessage('label')"
-                    input-autocomplete="label"
-                    input-id="label"
-                    input-name="label"
+                    :error-message="getPageErrorMessage('name')"
+                    input-autocomplete="name"
+                    input-id="name"
+                    input-name="name"
                     :input-required="true"
                     input-type="text"
                     label-text="Label"
-                    @errorHidden="clearPageErrorMessage('label')"
+                    @errorHidden="clearPageErrorMessage('name')"
                     @input="onNameInput"
-                    v-model="formData.label"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('slug')"
-                    input-autocomplete="form_slug"
-                    input-id="slug"
-                    input-name="slug"
-                    :input-required="true"
-                    input-type="text"
-                    label-text="Form Slug"
-                    @blur="onSlugBlur"
-                    @errorHidden="clearPageErrorMessage('slug')"
-                    @input="onSlugInput"
-                    v-model="formData.slug"
+                    v-model="formData.name"
                 />
             </div>
         </div>
@@ -87,26 +72,20 @@
 <script>
     import slugify from 'slugify';
     import ArrayGroup from "../../../../components/core/forms/ArrayGroup.";
-    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor";
-    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
     import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
 
     export default {
         name: "AdminEduLabelCreate",
         components: {
             ArrayGroup,
-            FormFieldEditor,
-            InlineCheckboxGroup,
             InputGroup,
-            TextAreaGroup,
         },
         layout: 'admin-layout',
         data() {
             return {
                 autoUpdateSlug: true,
                 formData: {
-                    label: '',
+                    name: '',
                     slug: '',
                 },
             }
@@ -117,7 +96,7 @@
                     return;
                 }
 
-                this.formData.slug = this.slugify(this.formData.label);
+                this.formData.slug = this.slugify(this.formData.name);
             },
             onSlugBlur() {
                 this.formData.slug = this.slugify(this.formData.slug)

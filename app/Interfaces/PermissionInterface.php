@@ -54,12 +54,14 @@ class PermissionInterface
     const DELETE_EDU_COURSES  = 'delete edu_courses';
     const EDIT_EDU_COURSES    = 'edit edu_courses';
     const VIEW_EDU_COURSES    = 'view edu_courses';
+    const PUBLISH_EDU_COURSES    = 'publish edu_courses';
 
-    // EDU Programs Permissions
+    // EDU Programmes Permissions
     const CREATE_EDU_PROGRAMMES  = 'create edu_programmes';
     const DELETE_EDU_PROGRAMMES  = 'delete edu_programmes';
     const EDIT_EDU_PROGRAMMES    = 'edit edu_programmes';
     const VIEW_EDU_PROGRAMMES    = 'view edu_programmes';
+    const PUBLISH_EDU_PROGRAMMES    = 'publish edu_programmes';
 
     // EDU Labels Permissions
     const CREATE_EDU_LABELS  = 'create edu_labels';
@@ -84,12 +86,19 @@ class PermissionInterface
     const DELETE_EDU_ANNOUNCEMENTS  = 'delete edu_announcements';
     const EDIT_EDU_ANNOUNCEMENTS    = 'edit edu_announcements';
     const VIEW_EDU_ANNOUNCEMENTS    = 'view edu_announcements';
+    const PUBLISH_EDU_ANNOUNCEMENTS = 'publish edu_announcements';
 
-    // EDU Announcements Permissions
+    // EDU Webinars Permissions
     const CREATE_EDU_WEBINARS  = 'create edu_webinars';
     const DELETE_EDU_WEBINARS  = 'delete edu_webinars';
     const EDIT_EDU_WEBINARS    = 'edit edu_webinars';
     const VIEW_EDU_WEBINARS    = 'view edu_webinars';
+
+    // EDU Purchases Permissions
+    const CREATE_EDU_PURCHASES  = 'create edu_purchases';
+    const DELETE_EDU_PURCHASES  = 'delete edu_purchases';
+    const EDIT_EDU_PURCHASES    = 'edit edu_purchases';
+    const VIEW_EDU_PURCHASES    = 'view edu_purchases';
 
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
@@ -149,23 +158,56 @@ class PermissionInterface
             'edit'      => self::EDIT_CRM_ORGANISATION_UNITS,
             'view'      => self::VIEW_CRM_ORGANISATION_UNITS,
         ],
+        'edu_announcements' => [
+            'create' => self::CREATE_EDU_ANNOUNCEMENTS,
+            'delete' => self::DELETE_EDU_ANNOUNCEMENTS,
+            'edit' => self::EDIT_EDU_ANNOUNCEMENTS,
+            'view' => self::VIEW_EDU_ANNOUNCEMENTS,
+            'publish' => self::PUBLISH_EDU_ANNOUNCEMENTS,
+        ],
         'edu_courses' => [
             'create' => self::CREATE_EDU_COURSES,
             'delete' => self::DELETE_EDU_COURSES,
             'edit' => self::EDIT_EDU_COURSES,
             'view' => self::VIEW_EDU_COURSES,
+            'publish' => self::PUBLISH_EDU_COURSES,
         ],
         'edu_programmes' => [
             'create' => self::CREATE_EDU_PROGRAMMES,
             'delete' => self::DELETE_EDU_PROGRAMMES,
             'edit' => self::EDIT_EDU_PROGRAMMES,
             'view' => self::VIEW_EDU_PROGRAMMES,
+            'publish' => self::PUBLISH_EDU_PROGRAMMES,
         ],
         'edu_labels' => [
             'create' => self::CREATE_EDU_LABELS,
             'delete' => self::DELETE_EDU_LABELS,
             'edit' => self::EDIT_EDU_LABELS,
             'view' => self::VIEW_EDU_LABELS,
+        ],
+        'edu_sections' => [
+            'create' => self::CREATE_EDU_SECTIONS,
+            'delete' => self::DELETE_EDU_SECTIONS,
+            'edit' => self::EDIT_EDU_SECTIONS,
+            'view' => self::VIEW_EDU_SECTIONS,
+        ],
+        'edu_lectures' => [
+            'create' => self::CREATE_EDU_LECTURES,
+            'delete' => self::DELETE_EDU_LECTURES,
+            'edit' => self::EDIT_EDU_LECTURES,
+            'view' => self::VIEW_EDU_LECTURES,
+        ],
+        'edu_webinars' => [
+            'create' => self::CREATE_EDU_WEBINARS,
+            'delete' => self::DELETE_EDU_WEBINARS,
+            'edit' => self::EDIT_EDU_WEBINARS,
+            'view' => self::VIEW_EDU_WEBINARS,
+        ],
+        'edu_purchases' => [
+            'create' => self::CREATE_EDU_PURCHASES,
+            'delete' => self::DELETE_EDU_PURCHASES,
+            'edit' => self::EDIT_EDU_PURCHASES,
+            'view' => self::VIEW_EDU_PURCHASES,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,

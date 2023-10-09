@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Builder;
 class LabelQueryAction extends AbstractQueryAction
 {
     protected array $searchable_fields_likes = [
-        'label' => 'label_label',
+        'name' => 'label_name',
         'slug' => 'label_slug',
     ];
 
-    protected string $order_by = 'label';
+    protected string $order_by = 'name';
 
     protected function getQueryBuilder(): Builder
     {

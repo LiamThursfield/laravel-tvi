@@ -8,11 +8,13 @@ use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
 use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
+use App\Http\Controllers\Admin\EDU\Announcement\AnnouncementController;
 use App\Http\Controllers\Admin\EDU\Course\CourseController;
 use App\Http\Controllers\Admin\EDU\Label\LabelController;
 use App\Http\Controllers\Admin\EDU\Lecture\LectureController;
 use App\Http\Controllers\Admin\EDU\Programme\ProgrammeController;
 use App\Http\Controllers\Admin\EDU\Section\SectionController;
+use App\Http\Controllers\Admin\EDU\Webinar\WebinarController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -31,7 +33,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::group([
     'as' => 'cms.',
     'prefix' => 'cms'
-], function() {
+], function () {
     Route::resource('layouts', LayoutController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('pages', PageController::class);
@@ -41,7 +43,7 @@ Route::group([
 Route::group([
     'as' => 'crm.',
     'prefix' => 'crm'
-], function() {
+], function () {
     Route::resource('contacts', ContactController::class);
     Route::resource('form-submissions', FormSubmissionController::class)->only([
         'index', 'show'
@@ -53,13 +55,23 @@ Route::group([
 Route::group([
     'as' => 'edu.',
     'prefix' => 'edu'
-], function() {
+], function () {
+    Route::resource('announcements', AnnouncementController::class);
+    Route::patch('/announcements/publish/{course}', [AnnouncementController::class, 'publish'])
+        ->name('announcements.publish');
+
+    Route::resource('programmes', ProgrammeController::class);
+    Route::patch('/programmes/publish/{programme}', [ProgrammeController::class, 'publish'])
+        ->name('programmes.publish');
+
     Route::resource('courses', CourseController::class);
     Route::get('/courses/preview/{course}', [CourseController::class, 'preview'])->name('courses.preview');
+    Route::patch('/courses/publish/{course}', [CourseController::class, 'publish'])->name('courses.publish');
+
     Route::resource('sections', SectionController::class);
     Route::resource('lectures', LectureController::class);
-    Route::resource('programmes', ProgrammeController::class);
     Route::resource('labels', LabelController::class);
+    Route::resource('webinars', WebinarController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])
@@ -69,7 +81,7 @@ Route::get('/file-manager', [FileManagerController::class, 'index'])
 Route::group([
     'as' => 'profile.',
     'prefix' => 'profile'
-], function() {
+], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
     Route::put('/', [ProfileController::class, 'update'])->name('update');

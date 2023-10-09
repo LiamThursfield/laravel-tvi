@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\EDU\Course;
 
+use App\Actions\EDU\Course\CoursePublishAction;
 use App\Actions\EDU\Course\CourseQueryAction;
 use App\Actions\EDU\Course\CourseStoreAction;
 use App\Actions\EDU\Course\CourseUpdateAction;
@@ -11,6 +12,7 @@ use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\EDU\Course\CourseInterface;
 use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
@@ -43,6 +45,10 @@ class CourseController extends AdminController
         $this->middleware(
             PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_COURSES)
         )->only('index');
+
+        $this->middleware(
+            PermissionInterface::getMiddlewareString(PermissionInterface::PUBLISH_EDU_COURSES)
+        )->only('publish');
     }
 
     public function create(): Response
@@ -78,6 +84,9 @@ class CourseController extends AdminController
             },
             'currencies' => function () {
                 return PurchaseInterface::CURRENCIES;
+            },
+            'statuses' => function () {
+                return CourseInterface::STATUSES;
             }
         ]);
     }
@@ -92,6 +101,7 @@ class CourseController extends AdminController
             'courses' => function () use ($search_options) {
                 return app(CourseQueryAction::class)
                     ->handle($search_options)
+                    ->with('creator')
                     ->paginate(AppInterface::getSearchPaginationParam($search_options));
             },
             'searchOptions' => $search_options
@@ -122,5 +132,16 @@ class CourseController extends AdminController
                 return CourseResource::make($course);
             }
         ]);
+    }
+
+    public function publish(Course $course): RedirectResponse
+    {
+
+        app(CoursePublishAction::class)->handle($course);
+
+        return Redirect::back(303)->with(
+            'success',
+            'Published.'
+        );
     }
 }

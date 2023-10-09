@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Admin\EDU\Webinar;
 
-use App\Actions\EDU\Course\SectionQueryAction;
-use App\Actions\EDU\Course\SectionStoreAction;
-use App\Actions\EDU\Course\SectionUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
-use App\Http\Resources\Admin\EDU\Course\AnnouncementResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
@@ -28,19 +24,19 @@ class WebinarController extends AdminController
         $this->addMetaTitleSection('Courses');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_COURSES)
+            PermissionInterface::getMiddlewareString(PermissionInterface::CREATE_EDU_WEBINARS)
         )->only(['create', 'store']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_COURSES)
+            PermissionInterface::getMiddlewareString(PermissionInterface::DELETE_EDU_WEBINARS)
         )->only('destroy');
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_COURSES)
+            PermissionInterface::getMiddlewareString(PermissionInterface::EDIT_EDU_WEBINARS)
         )->only(['edit', 'update']);
 
         $this->middleware(
-            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_COURSES)
+            PermissionInterface::getMiddlewareString(PermissionInterface::VIEW_EDU_WEBINARS)
         )->only('index');
     }
 

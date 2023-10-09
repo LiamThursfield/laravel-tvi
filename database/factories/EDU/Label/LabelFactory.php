@@ -25,7 +25,7 @@ class LabelFactory extends Factory
         $name = $this->faker->jobTitle();
 
         return [
-            'label' => $name,
+            'name' => $name,
             'slug' => Str::slug($name),
         ];
     }

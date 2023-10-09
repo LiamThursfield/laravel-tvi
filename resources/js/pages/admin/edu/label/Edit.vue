@@ -9,7 +9,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit - {{ label.label }}
+                Edit - <b>{{ label.name }}</b>
             </h1>
 
             <inertia-link
@@ -51,31 +51,16 @@
         <div class="bg-white p-6 shadow-subtle rounded-lg">
             <input-group
                 class="mt-4"
-                :error-message="getPageErrorMessage('label')"
-                input-autocomplete="label"
-                input-id="label"
-                input-name="label"
+                :error-message="getPageErrorMessage('name')"
+                input-autocomplete="name"
+                input-id="name"
+                input-name="name"
                 :input-required="true"
                 input-type="text"
-                label-text="label"
-                @errorHidden="clearPageErrorMessage('label')"
+                label-text="Label"
+                @errorHidden="clearPageErrorMessage('name')"
                 @input="onNameInput"
-                v-model="formData.label"
-            />
-
-            <input-group
-                class="mt-4"
-                :error-message="getPageErrorMessage('slug')"
-                input-autocomplete="menu_slug"
-                input-id="slug"
-                input-name="slug"
-                :input-required="true"
-                input-type="text"
-                label-text="Menu Slug"
-                @blur="onSlugBlur"
-                @errorHidden="clearPageErrorMessage('slug')"
-                @input="onSlugInput"
-                v-model="formData.slug"
+                v-model="formData.name"
             />
         </div>
 
@@ -87,7 +72,7 @@
     import InputGroup from "../../../../components/core/forms/InputGroup";
 
     export default {
-        name: "AdminCmsMenuEdit",
+        name: "AdminEduLabelUpdate",
         components: {
             InputGroup
         },
@@ -100,15 +85,15 @@
         },
         data() {
             return {
-                autoUpdateSlug: false,
+                autoUpdateSlug: true,
                 formData: {}
             }
         },
         created() {
             this.formData = {
-                id:         this.label.id,
-                label:      this.label.label,
-                slug:       this.label.slug,
+                id: this.label.id,
+                name: this.label.name,
+                slug: this.label.slug,
             };
         },
         methods: {
@@ -139,8 +124,9 @@
                 );
             },
             submit() {
+                console.log(this.formData);
               this.$inertia.put(
-                    this.$route('admin.labels.labels.update', this.label.id),
+                    this.$route('admin.edu.labels.update', this.label.id),
                     this.formData
                 );
             }
