@@ -108,6 +108,10 @@ class PermissionInterface
     const EDIT_PROFILE = 'edit profile';
     const VIEW_PROFILE = 'view profile';
 
+    // Setting Permissions
+    const EDIT_SETTINGS = 'edit settings';
+    const VIEW_SETTINGS = 'view settings';
+
     // Telescope Permissions
     const VIEW_TELESCOPE = 'view telescope';
 
@@ -212,6 +216,10 @@ class PermissionInterface
         'profile' => [
             'edit' => self::EDIT_PROFILE,
             'view' => self::VIEW_PROFILE,
+        ],
+        'settings' => [
+            'edit' => self::EDIT_SETTINGS,
+            'view' => self::VIEW_SETTINGS,
         ],
         'telescope' => [
             'view'  => self::VIEW_TELESCOPE

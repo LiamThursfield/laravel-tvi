@@ -420,6 +420,31 @@
                     },
                     admin: {
                         children : {
+                            settings: {
+                                activeRoutes: ["admin.settings.edit"],
+                                children: {
+                                    edu: {
+                                        icon: false,
+                                        label: "Edu",
+                                        requiresAllPermissions: ["settings.edit"],
+                                        requiresAnyPermissions: [],
+                                        route: ["admin.settings.edit", 'edu'],
+                                    },
+                                    thirdParty: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Third Party",
+                                        requiresAllPermissions: ["settings.edit"],
+                                        requiresAnyPermissions: [],
+                                        route: ["admin.settings.edit", 'third-party'],
+                                    },
+                                },
+                                icon: "icon-settings",
+                                label: "Settings",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["settings.edit"],
+                                route: false,
+                            },
                             users: {
                                 activeRoutes: ["admin.users.index", "admin.users.create", "admin.users.edit"],
                                 children: {
@@ -444,7 +469,8 @@
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["users.view", "users.create"],
                                 route: false,
-                            }
+                            },
+
                         },
                         label: "Admin",
                         requiresAllPermissions: [],
@@ -480,8 +506,12 @@
         methods: {
             canViewMenu(menu) {
                 // If there is a route, ensure it exists
-                if (menu.route && menu.route.length && !this.$routeCheck(menu.route)) {
-                    return false;
+                if (menu.route && menu.route.length) {
+                    if (Array.isArray(menu.route) && !this.$routeCheck(menu.route[0], menu.route[1])) {
+                        return false;
+                    } else if (!Array.isArray(menu.route) && !this.$routeCheck(menu.route)) {
+                        return false;
+                    }
                 }
 
                 return this.userCanAny(menu.requiresAnyPermissions) && this.userCanAll(menu.requiresAllPermissions);

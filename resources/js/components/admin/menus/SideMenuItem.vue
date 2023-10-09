@@ -129,8 +129,14 @@
 
                 let isActive = false;
                 _.forEach(activeRoutes, route => {
-                    if (this.$routeCurrent(route)) {
-                        isActive = true;
+                    if (Array.isArray(route)) {
+                        if (this.$routeCurrent(route[0], route[1])) {
+                            isActive = true;
+                        }
+                    } else {
+                        if (this.$routeCurrent(route)) {
+                            isActive = true;
+                        }
                     }
                 });
 
@@ -141,6 +147,9 @@
             },
             routeHref() {
                 try {
+                    if (Array.isArray(this.menuItem.route)) {
+                        return this.$route(this.menuItem.route[0], this.menuItem.route[1]);
+                    }
                     return this.$route(this.menuItem.route);
                 } catch (e) {
                     // If the route doesn't exist, return as string
