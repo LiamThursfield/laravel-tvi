@@ -15,6 +15,7 @@ use App\Interfaces\AppInterface;
 use App\Interfaces\EDU\Course\CourseInterface;
 use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use App\Interfaces\PermissionInterface;
+use App\Models\EDU\Course\Course;
 use App\Models\EDU\Programme\Programme;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -58,6 +59,9 @@ class ProgrammeController extends AdminController
         return Inertia::render('admin/edu/programme/Create', [
             'currencies' => function () {
                 return PurchaseInterface::CURRENCIES;
+            },
+            'courses' => function () {
+                return Course::all()->pluck('name', 'id');
             }
         ]);
     }
@@ -75,7 +79,7 @@ class ProgrammeController extends AdminController
     public function edit(Programme $programme): Response
     {
         $this->addMetaTitleSection('Edit - ' . $programme->name)->shareMeta();
-        $programme->load('courses');
+//        $programme->load('courses');
 
         return Inertia::render('admin/edu/programme/Edit', [
             'programme' => function () use ($programme) {
@@ -87,7 +91,8 @@ class ProgrammeController extends AdminController
             },
             'statuses' => function () {
                 return CourseInterface::STATUSES;
-            }
+            },
+            'courses' => Course::select(['id', 'name'])->get(),
         ]);
     }
 

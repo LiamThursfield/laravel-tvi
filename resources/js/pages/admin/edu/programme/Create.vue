@@ -315,10 +315,43 @@
             </div>
         </div>
 
-        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
-            <section-items-editor
-                v-model="formData.courses"
-            />
+        <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
+            <h2>Courses</h2>
+            <p>
+                Please select the courses that you'd like to link to this programme.
+            </p>
+
+            <div
+                v-if="courses"
+                class="mt-4"
+            >
+                <div class="grid grid-cols-4 gap-4">
+                    <p>Courses selected: {{ formData.courses.length }}</p>
+                </div>
+                <div
+                    v-for="(course, key, index) in courses"
+                    :key="'course-p-' + index"
+                    class="grid grid-cols-2 gap-3 mt-2 mb-2"
+                >
+                    <label
+                        class="no-style"
+                        :for="'course-label-' + index"
+                    >
+                        <span>{{ course }}</span>
+                    </label>
+                    <input
+                        :id="'course-input-' + index"
+                        class="custom-checkbox"
+                        type="checkbox"
+                        name="courses[]"
+                        :value="key"
+                        v-model="formData.courses"
+                    />
+                </div>
+            </div>
+            <div v-else>
+                <p>No courses found.</p>
+            </div>
         </div>
 
     </form>
@@ -331,10 +364,12 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
+    import SelectMultipleGroup from "../../../../components/core/forms/SelectMultipleGroup";
 
     export default {
         name: "AdminEDUProgrammeCreate",
         components: {
+            SelectMultipleGroup,
             TextAreaGroup,
             SectionItemsEditor,
             InputGroup,
@@ -345,6 +380,10 @@
         layout: 'admin-layout',
         props: {
             currencies: {
+                required: true,
+                type: Object|Array,
+            },
+            courses: {
                 required: true,
                 type: Object|Array,
             },

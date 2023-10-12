@@ -349,10 +349,24 @@
             </div>
         </div>
 
-        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
-            <section-items-editor
-                v-model="formData.courses"
-            />
+        <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
+            <h2>Courses</h2>
+            <div class="grid grid-cols-4 gap-4">
+                <select-multiple-group
+                    class="mt-4"
+                    :label-hidden="true"
+                    label-text="Courses"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Courses"
+                    input-class="form-control form-control-short"
+                    input-id="courses"
+                    input-name="courses"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-options="courses"
+                    v-model="formData.courses"
+                />
+            </div>
         </div>
     </form>
 </template>
@@ -366,10 +380,12 @@
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
     import _ from "lodash";
+    import SelectMultipleGroup from "../../../../components/core/forms/SelectMultipleGroup";
 
     export default {
         name: "AdminEduProgrammeEdit",
         components: {
+            SelectMultipleGroup,
             TextAreaGroup,
             SectionItemsEditor,
             InputGroup,
@@ -386,6 +402,10 @@
             'currencies': {
                 required: true,
                 type: Object|Array,
+            },
+            'courses': {
+                required: true,
+                type: Object,
             },
         },
         data() {
