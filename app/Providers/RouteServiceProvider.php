@@ -161,7 +161,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapStudentAdminRoutes()
     {
-        Route::middleware(['admin','tenant'])
+        Route::middleware(['student-admin','tenant'])
             ->namespace($this->namespace)
             ->as('student.admin.')
             ->prefix('student')

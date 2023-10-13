@@ -69,6 +69,8 @@ class CreateBasePermissionRoles extends Migration
     protected function getNewPermissions()
     {
         return [
+            // Admin
+            PermissionInterface::VIEW_ADMIN,
             // CMS
             PermissionInterface::CREATE_CMS,
             PermissionInterface::DELETE_CMS,
@@ -167,7 +169,7 @@ class CreateBasePermissionRoles extends Migration
 
 
             // Student
-            PermissionInterface::VIEW_EDU_STUDENT_GENERAL,
+            PermissionInterface::VIEW_STUDENT_ADMIN,
         ];
     }
 
@@ -180,6 +182,8 @@ class CreateBasePermissionRoles extends Migration
     {
         return [
             RoleInterface::ADMIN => [
+                // Admin
+                PermissionInterface::VIEW_ADMIN,
                 // CMS
                 PermissionInterface::CREATE_CMS,
                 PermissionInterface::DELETE_CMS,
@@ -271,6 +275,8 @@ class CreateBasePermissionRoles extends Migration
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [
+                // Admin
+                PermissionInterface::VIEW_ADMIN,
                 // CMS
                 PermissionInterface::VIEW_CMS,
                 // File Manager
@@ -279,7 +285,7 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::VIEW_PROFILE,
             ],
             RoleInterface::STUDENT => [
-                PermissionInterface::VIEW_EDU_STUDENT_GENERAL,
+                PermissionInterface::VIEW_STUDENT_ADMIN,
             ]
         ];
     }

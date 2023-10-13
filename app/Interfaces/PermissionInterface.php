@@ -16,6 +16,9 @@ namespace App\Interfaces;
  */
 class PermissionInterface
 {
+    // Admin Permissions
+    const VIEW_ADMIN = 'view admin';
+
     // CMS Permissions
     const CREATE_CMS  = 'create cms';
     const DELETE_CMS  = 'delete cms';
@@ -121,12 +124,17 @@ class PermissionInterface
     const EDIT_USERS    = 'edit users';
     const VIEW_USERS    = 'view users';
 
-    // Student level permissions
-    const VIEW_EDU_STUDENT_GENERAL = 'view edu_student_general';
+
+    // Student Admin Permissions
+    const VIEW_STUDENT_ADMIN = 'view student_admin';
+
 
     // All Permissions
     // This is used in User()->all_permissions
     const ALL_PERMISSIONS = [
+        'admin' => [
+            'view' => self::VIEW_ADMIN,
+        ],
         'cms' => [
             'create'    => self::CREATE_CMS,
             'delete'    => self::DELETE_CMS,
@@ -231,6 +239,10 @@ class PermissionInterface
             'delete'    => self::DELETE_USERS,
             'edit'      => self::EDIT_USERS,
             'view'      => self::VIEW_USERS,
+        ],
+
+        'student_admin' => [
+            'view' => self::VIEW_STUDENT_ADMIN,
         ]
     ];
 
