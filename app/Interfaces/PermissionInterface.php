@@ -121,6 +121,8 @@ class PermissionInterface
     const EDIT_USERS    = 'edit users';
     const VIEW_USERS    = 'view users';
 
+    // Student level permissions
+    const VIEW_EDU_STUDENT_GENERAL = 'view edu_student_general';
 
     // All Permissions
     // This is used in User()->all_permissions

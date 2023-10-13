@@ -164,6 +164,10 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::DELETE_USERS,
             PermissionInterface::EDIT_USERS,
             PermissionInterface::VIEW_USERS,
+
+
+            // Student
+            PermissionInterface::VIEW_EDU_STUDENT_GENERAL,
         ];
     }
 
@@ -274,6 +278,9 @@ class CreateBasePermissionRoles extends Migration
                 // Profile
                 PermissionInterface::VIEW_PROFILE,
             ],
+            RoleInterface::STUDENT => [
+                PermissionInterface::VIEW_EDU_STUDENT_GENERAL,
+            ]
         ];
     }
 

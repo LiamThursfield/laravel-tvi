@@ -14,16 +14,20 @@ class RoleInterface
     const SUPER = 'super';
     const USER  = 'user';
 
+    const STUDENT = 'student';
+
     const ALL_ROLES = [
         self::ADMIN,
         self::SUPER,
         self::USER,
+        self::STUDENT,
     ];
 
     const ALL_ROLES_LABELLED = [
         self::ADMIN => 'Admin',
         self::SUPER => 'Super',
         self::USER  => 'User',
+        self::STUDENT => 'Student',
     ];
 
 
@@ -41,6 +45,8 @@ class RoleInterface
 
     const USER_SELECTABLE_ROLES = [];
 
+    const STUDENT_SELECTABLE_ROLES = [];
+
 
 
     /**
@@ -55,6 +61,7 @@ class RoleInterface
             self::ADMIN => self::ADMIN_SELECTABLE_ROLES,
             self::SUPER => self::SUPER_SELECTABLE_ROLES,
             self::USER => self::USER_SELECTABLE_ROLES,
+            self::STUDENT => self::STUDENT_SELECTABLE_ROLES,
         ];
 
         $selectable_roles = Arr::get($roles, $current_role, []);
