@@ -67,7 +67,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\Authenticate::class,
+            \App\Http\Middleware\AuthenticateStudent::class,
             HandleInertiaRequests::class,
             'can:' . PermissionInterface::VIEW_STUDENT_ADMIN,
         ],
