@@ -44,5 +44,14 @@ class UserRoleSeeder extends Seeder
             'password'      => Hash::make('UserPassword')
         ]);
         $user->assignRole(Role::whereName(RoleInterface::USER)->first());
+
+
+        $user = User::factory()->create([
+            'first_name'    => 'Student',
+            'last_name'     => 'Account',
+            'email'         => 'student@example.com',
+            'password'      => Hash::make('StudentPassword')
+        ]);
+        $user->assignRole(Role::whereName(RoleInterface::STUDENT)->first());
     }
 }

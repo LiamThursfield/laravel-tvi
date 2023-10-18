@@ -17,11 +17,18 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = null;
 
     /**
-     * The path to the "admin" route for your application.
+     * The path to the core "admin" route for your application.
      *
      * @var string
      */
     public const ADMIN = '/admin';
+
+    /**
+     * The path to the student "admin" route for your application.
+     *
+     * @var string
+     */
+    public const ADMIN_STUDENT = '/student';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -45,12 +52,30 @@ class RouteServiceProvider extends ServiceProvider
         // Landlord routes
         $this->mapLandlordWebRoutes();
 
+
         // Tenant routes
         $this->mapApiRoutes();
+
         $this->mapWebRoutes();
+
         $this->mapAdminRoutes();
         $this->mapAdminApiRoutes();
+
+        $this->mapStudentWebRoutes();
+        $this->mapStudentAdminRoutes();
+
         $this->mapWebhookRoutes();
+    }
+
+
+    protected function mapLandlordWebRoutes()
+    {
+        foreach ($this->centralDomains() as $domain) {
+            Route::middleware('web')
+                ->domain($domain)
+                ->namespace($this->namespace)
+                ->group(base_path('routes/landlord/web.php'));
+        }
     }
 
 
@@ -119,6 +144,31 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
+     * Define the tenant's "student web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapStudentWebRoutes()
+    {
+        Route::middleware(['web', 'tenant'])
+            ->namespace($this->namespace)
+            ->as('student.')
+            ->prefix('student')
+            ->group(base_path('routes/student-web.php'));
+    }
+
+    protected function mapStudentAdminRoutes()
+    {
+        Route::middleware(['student-admin','tenant'])
+            ->namespace($this->namespace)
+            ->as('student.admin.')
+            ->prefix('student')
+            ->group(base_path('routes/student-admin.php'));
+    }
+
+    /**
      * Define the "webhook" routes for the application.
      *
      * These routes are typically stateless.
@@ -132,16 +182,6 @@ class RouteServiceProvider extends ServiceProvider
             ->as('webhook.')
             ->prefix('webhook')
             ->group(base_path('routes/webhook.php'));
-    }
-
-    protected function mapLandlordWebRoutes()
-    {
-        foreach ($this->centralDomains() as $domain) {
-            Route::middleware('web')
-                ->domain($domain)
-                ->namespace($this->namespace)
-                ->group(base_path('routes/landlord/web.php'));
-        }
     }
 
     protected function centralDomains(): array
