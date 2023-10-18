@@ -33,7 +33,7 @@ import FileManagerModal from "../../components/admin/modals/FileManagerModal";
 import PageAlerts from "../../components/core/alerts/PageAlerts";
 
 export default {
-    name: "AdminLayout",
+    name: "StudentAdminLayout",
     components: {
         FileManagerModal,
         PageAlerts
@@ -56,8 +56,8 @@ export default {
                     children: {
                         dashboard: {
                             children: false,
-                            icon: "icon-home",
-                            label: "Dashboard",
+                            icon: "icon-chalkboard",
+                            label: "Courses",
                             requiresAllPermissions: [],
                             requiresAnyPermissions: [],
                             route: "student.admin.index",

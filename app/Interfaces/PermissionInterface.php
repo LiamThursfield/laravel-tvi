@@ -127,6 +127,7 @@ class PermissionInterface
 
     // Student Admin Permissions
     const VIEW_STUDENT_ADMIN = 'view student_admin';
+    const EDIT_STUDENT_ADMIN = 'edit student_admin';
 
 
     // All Permissions
@@ -243,6 +244,7 @@ class PermissionInterface
 
         'student_admin' => [
             'view' => self::VIEW_STUDENT_ADMIN,
+            'edit' => self::EDIT_STUDENT_ADMIN,
         ]
     ];
 

@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AuthenticateStudent::class,
             HandleInertiaRequests::class,
             'can:' . PermissionInterface::VIEW_STUDENT_ADMIN,
+            'can:' . PermissionInterface::EDIT_STUDENT_ADMIN,
         ],
 
         'webhook' => [
