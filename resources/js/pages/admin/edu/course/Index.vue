@@ -84,7 +84,7 @@
                             <th>Created By</th>
                             <th>Length</th>
                             <th>Total Sold</th>
-                            <th>Total Customers</th>
+                            <th>Total Participants</th>
                             <th v-if="showActions"></th>
                         </tr>
                         </thead>
@@ -166,7 +166,6 @@
                                             class="w-4"
                                         />
                                     </inertia-link>
-
                                     <button
                                         v-if="userCan('courses.delete')"
                                         class="

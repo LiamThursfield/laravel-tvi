@@ -3,6 +3,7 @@
 namespace Database\Seeders\EDU;
 
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Label\Label;
 use App\Models\EDU\Lecture\Lecture;
 use App\Models\EDU\Programme\Programme;
 use App\Models\EDU\Section\Section;
@@ -45,19 +46,17 @@ class CourseSeeder extends Seeder
             ]);
         }
 
-        $programme = Programme::all()->first();
-
-        DB::table('edu_course_programmes')
-            ->insert([
-                'course_id' => $courses->first()->id,
-                'programme_id' => $programme->first()->id,
-            ]);
-
         foreach ($sections as $section) {
             $query = Lecture::where('section_id', $section->id);
             $section->content_length = $query->sum('content_length');
             $section->lecture_count = $query->count();
             $section->save();
+        }
+
+        $labels = Label::all()->pluck('id');
+        foreach ($courses as $course) {
+            $course->labels()->attach($labels);
+            break;
         }
     }
 }

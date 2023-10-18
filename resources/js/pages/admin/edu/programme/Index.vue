@@ -77,11 +77,14 @@
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Price</th>
                             <th>Status</th>
                             <th>Summary</th>
-                            <th>Description</th>
-                            <th>Creator</th>
+                            <th>Created By</th>
                             <th>Length</th>
+                            <th>Total Courses</th>
+                            <th>Total Participants</th>
+                            <th>Total Sold</th>
                             <th v-if="showActions"></th>
                         </tr>
                         </thead>
@@ -92,41 +95,79 @@
                         >
                             <td>
                                 {{ item.name }}
+                                <br>
+                                <small>{{ item.slug}}</small>
+                            </td>
+                            <td>
+                                {{ item.price + ' ' + item.currency }}
                             </td>
                             <td>
                                 {{ item.status }}
                             </td>
                             <td>
-                                {{ item.summary }}
+                                {{ item.summary.length > 60 ? item.summary.substring(0,60) + ' ...':'' }}
                             </td>
                             <td>
-                                {{ item.description }}
-                            </td>
-                            <td>
-                                {{ item.creator.name }}
+                                {{ item.creator ? item.creator.first_name + ' ' + item.creator.last_name:'' }}
                             </td>
                             <td>
                                 {{ item.content_length_video }}
                             </td>
+                            <td>
+                                {{ item.courses_count ?? 0 }}
+                            </td>
+                            <td>
+                                {{ item.participants_count ?? 0 }}
+                            </td>
+                            <td>
+                                {{ item.total_sold ?? 0 }}
+                            </td>
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
+                                    <button
+                                        v-if="userCan('programmes.publish')"
+                                        class="
+                                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                                            focus:outline-none focus:ring
+                                            hover:bg-theme-success hover:text-theme-success-contrast
+                                        "
+                                        title="Publish"
+                                        @click="checkPublishProgramme(item)"
+                                    >
+                                        <icon-check
+                                            class="w-4"
+                                        />
+                                    </button>
                                     <inertia-link
-                                        v-if="userCan('programme.edit')"
+                                        v-if="userCan('programmes.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.programme.edit', item.id)"
+                                        :href="$route('admin.edu.programmes.edit', item.id)"
                                         title="Edit"
                                     >
                                         <icon-edit
                                             class="w-4"
                                         />
                                     </inertia-link>
-
+                                    <inertia-link
+                                        v-if="userCan('programmes.view')"
+                                        class="
+                                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                                            focus:outline-none focus:ring
+                                            hover:bg-theme-info hover:text-theme-info-contrast
+                                        "
+                                        :href="$route('admin.edu.programmes.preview', item.id)"
+                                        title="Preview"
+                                    >
+                                        <icon-eye
+                                            class="w-4"
+                                        />
+                                    </inertia-link>
                                     <button
-                                        v-if="userCan('programme.delete')"
+                                        v-if="userCan('programmes.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -164,6 +205,16 @@
                 @closeModal="cancelDelete"
                 @confirmAction="confirmDelete"
             />
+
+            <confirmation-modal
+                confirm-text="Publish"
+                confirm-type="success"
+                :show-modal="showConfirmPublishModal"
+                :message-text="publishModalText"
+                @cancelAction="cancelPublish"
+                @closeModal="cancelPublish"
+                @confirmAction="confirmPublish"
+            />
         </div>
     </section>
 </template>
@@ -199,14 +250,24 @@
                 },
                 isInitialised: false,
                 isLoadingDelete: false,
+                isLoadingPublish: false,
                 showDeleteModal: false,
                 itemToDelete: null,
+                showConfirmPublishModal: null,
+                itemToPublish: null,
             }
         },
         mounted() {
             this.setSearchOptions(this.searchOptions);
         },
         computed: {
+            publishModalText() {
+                try {
+                    return 'Do you really want to publish \'' + this.itemToPublish.name + '\'?';
+                } catch (e) {
+                    return 'Do you really want to perform this action?'
+                }
+            },
             deleteModalText() {
                 try {
                     return 'Do you really want to delete \'' + this.itemToDelete.name + '\'?';
@@ -233,6 +294,32 @@
             }
         },
         methods: {
+            checkPublishCourse(item) {
+                this.showConfirmPublishModal = true;
+                this.itemToPublish = item;
+            },
+            confirmPublish() {
+                if (this.isLoadingPublish) {
+                    return this.$errorToast('It\'s only possible to publish one item at a time.');
+                }
+                this.$inertia.patch(
+                    this.$route('admin.edu.programmes.publish', this.itemToPublish.id),
+                    {
+                        only: [
+                            'flash',
+                            'programmes'
+                        ]
+                    }
+                );
+                this.itemToPublish = null;
+                this.showConfirmPublishModal = false;
+            },
+            cancelPublish() {
+                if (!this.isLoadingPublish) {
+                    this.showConfirmPublishModal = false;
+                    this.itemToPublish = null;
+                }
+            },
             cancelDelete() {
                 if (!this.isLoadingDelete) {
                     this.showDeleteModal = false;

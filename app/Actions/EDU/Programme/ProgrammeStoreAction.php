@@ -2,12 +2,12 @@
 
 namespace App\Actions\EDU\Programme;
 
-use App\Models\EDU\Programme\Announcement;
+use App\Models\EDU\Programme\Programme;
 
 class ProgrammeStoreAction
 {
     public function handle(array $data)
     {
-        return Announcement::create($data);
+        return Programme::create($data);
     }
 }
