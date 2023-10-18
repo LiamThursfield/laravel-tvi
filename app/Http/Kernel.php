@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Interfaces\PermissionInterface;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -49,12 +50,26 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Authenticate::class,
-            HandleInertiaRequests::class
+            HandleInertiaRequests::class,
+            'can:' . PermissionInterface::VIEW_ADMIN,
         ],
 
         'api' => [
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'student-admin' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\AuthenticateStudent::class,
+            HandleInertiaRequests::class,
+            'can:' . PermissionInterface::VIEW_STUDENT_ADMIN,
         ],
 
         'webhook' => [

@@ -9,6 +9,7 @@ use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Programme\Programme;
 use App\Models\EDU\Programme\ProgrammeUser;
 use App\Models\EDU\Purchase\Purchase;
+use App\Notifications\Auth\ResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -135,5 +136,10 @@ class User extends Authenticatable
             Programme::class,
             ProgrammeUser::class
         )->withTimestamps();
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 }
