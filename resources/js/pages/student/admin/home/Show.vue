@@ -1,54 +1,175 @@
 <template>
     <div>
-        <div
-            class="flex flex-row items-center mb-6"
-        >
+        <div class="mb-4">
             <h1 class="font-semibold mr-auto text-3xl">
                 {{ course.name }}
             </h1>
+            <small>By <b>{{ course.creator.name }}</b></small>
         </div>
 
-        <p
-            v-if="!course"
-            class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
-        >
-            No results
-        </p>
+        <div class="grid grid-rows-1 md:grid-rows-2 grid-flow-col gap-x-2">
+            <div class="bg-white p-6 shadow-subtle rounded-lg row-span-2 ...">
+                <h2 class="font-semibold">Course Content</h2>
+                <hr
+                    class="my-2 h-px border-t-0 bg-transparent bg-gradient-to-r from-black via-neutral-500 to-transparent opacity-25 dark:opacity-100"
+                />
 
-        <template v-else>
-            <div class="grid grid-cols-3 gap-3">
-                <div class="bqg ab lx yr adg adt aez afu alo">
-                    <div class="max-w-sm">
-                        <img :src="course.primary_image" :alt="course.name" class="w-auto square-full"/>
-                    </div>
-                    <div class="bg-white p-4 shadow-subtle hover:bg-blue-50 text-center lg:text-left">
-                        <h2 class="font-semibold text-black-850 pt-2 pb-2 text-lg">
-                            {{ course.name.length > 40 ? course.name.substring(0,60) + ' ...':course.name }}
-                        </h2>
-                        <p class="font-light">
-                            {{ course.summary.length > 100 ? course.summary.substring(0,100) + ' ...':course.summary }}
+                <div
+                    v-for="(menuSection, menuSectionKey) in course.sections"
+                    :key="menuSectionKey"
+                    class="menu-section"
+                >
+                    <button
+                        class="menu-subheading font-semibold"
+                    >
+                        {{ menuSection.title }}
+                        <small class="font-weight-light">
+                            {{ menuSection.lecture_count + ' lectures' + ' | ' + menuSection.content_length + ' minutes'}}
+                        </small>
+                    </button>
+
+                    <template class="root-menu" v-show="menuSection.child_items.length">
+                        <collapse-transition dimension="height">
+                            <ul
+                                class="sub-menu"
+                            >
+                                <course-side-menu-item
+                                    v-for="(child, key) in menuSection.child_items"
+                                    :key="`${menuSectionKey}.${key}`"
+                                    class="sub-menu-item"
+                                    :menu-item="child"
+                                    :menu-item-key="`${menuSectionKey}.${key}`"
+                                    :selected-lecture="lecture"
+                                    :menu-item-level="2"
+                                    :toggled-items="toggledItems"
+                                    @openItem="onMenuItemOpened"
+                                    @toggleItem="onMenuItemToggled(child, key)"
+                                />
+                            </ul>
+                        </collapse-transition>
+                    </template>
+
+                    <div
+                        class="menu-separator"
+                    ></div>
+                </div>
+            </div>
+
+            <div class="col-span-3 ...">
+                <div v-if="isLoadingLecture">
+                    <icon-loader-circle class="animate-spin-slow w-5"/>
+                </div>
+                <div
+                    v-if="lecture && !isLoadingLecture"
+                    class="bg-white p-6 shadow-subtle rounded-lg row-span-2"
+                >
+                    <h2 class="font-semibold">{{ lecture.title }}</h2>
+                    <hr
+                        class="my-2 h-px border-t-0 bg-transparent bg-gradient-to-r from-black via-neutral-500 to-transparent opacity-25 dark:opacity-100"
+                    />
+
+                    <div class="container max-w-screen-lg mx-auto">
+                        <div class="text-center">
+                            <iframe :src="lecture.video_url" width="960" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <hr
+                            class="my-6 h-px border-t-0 bg-transparent bg-gradient-to-r from-black via-neutral-500 to-transparent opacity-25 dark:opacity-100"
+                        />
+                        <div class="mb-4">
+                            <button
+                                class="
+                                    button button-default-responsive button-primary
+                                    flex flex-row items-center
+                                "
+                                onclick="markLectureComplete"
+                            >
+                                <icon-square-check class="w-5 md:mr-2"/>
+
+                                <span
+                                    class="hidden md:inline"
+                                >
+                                    Mark Complete
+                                </span>
+                            </button>
+                        </div>
+                        <p
+                            v-if="lecture.description"
+                            class="font-weight-light"
+                        >
+                            {{ lecture.description }}
                         </p>
-                    </div>
-                    <div v-for="section in course.sections">
-                        {{ section.title }}
+                        <p
+                            v-else
+                            class="font-weight-light"
+                        >
+                            {{ course.description }}
+                        </p>
                     </div>
                 </div>
             </div>
-        </template>
-
+        </div>
     </div>
 </template>
 
 <script>
 
+import CourseSideMenuItem from "../../../../components/student/menus/CourseSideMenuItem";
+import IconSquareCheck from "../../../../components/core/icons/IconSquareCheck";
+import CollapseTransition from "@ivanv/vue-collapse-transition";
+
+
 export default {
     name: "StudentAdminCourseShow",
     layout: 'student-admin-layout',
+    components: {
+        IconSquareCheck,
+        CourseSideMenuItem,
+        CollapseTransition
+    },
     props: {
         course: {
             required: true,
             type: Object | Array,
         },
     },
+    data() {
+        return {
+            mountedItems: {},
+            toggledItems: {},
+            lecture: null,
+            isLoadingLecture: false,
+        }
+    },
+    computed: {
+        isToggled() {
+            return !!this.toggledItems[this.menuItemKey];
+        },
+
+    },
+    mounted() {
+        this.isLoadingLecture = true;
+        this.lecture = this.course.sections[0].child_items[0];
+        this.isLoadingLecture = false;
+    },
+    methods: {
+        onMenuItemOpened(item, itemKey) {
+            this.$set(this.toggledItems, itemKey, true);
+        },
+        onMenuItemToggled(item, itemKey) {
+            this.isLoadingLecture = true;
+            if (this.toggledItems[itemKey]) {
+                this.$set(this.toggledItems, itemKey, false);
+            } else {
+                this.$set(this.toggledItems, itemKey, true);
+            }
+            this.lecture = item;
+            this.isLoadingLecture = false;
+        },
+        markLectureComplete() {
+            this.$inertia.put(
+                this.$route('student.edu.courses.update', this.lecture.id),
+            );
+        }
+    }
 }
 </script>

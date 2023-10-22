@@ -23,7 +23,7 @@
                     class="bqg ab lx yr adg adt aez afu alo"
                 >
                     <inertia-link
-                        :href="$route('student.admin.view', item.id)"
+                        :href="$route('student.admin.show', item.id)"
                         title="View Course"
                     >
                         <div class="max-w-sm">
@@ -46,8 +46,6 @@
 </template>
 
 <script>
-
-import { router } from '@inertiajs/vue2'
 
 export default {
     name: "StudentAdminHomeIndex",

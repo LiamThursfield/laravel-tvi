@@ -8,6 +8,7 @@ use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class HomeController extends AdminController
 {
@@ -42,7 +43,7 @@ class HomeController extends AdminController
         ]);
     }
 
-    public function show(Course $course)
+    public function show(Course $course): Response
     {
         $this->shareMeta();
 
