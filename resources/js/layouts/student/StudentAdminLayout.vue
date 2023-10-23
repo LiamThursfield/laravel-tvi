@@ -4,13 +4,8 @@
             id="admin-layout"
             class="flex min-h-screen"
         >
-            <side-menu
-                :url="url()"
-                :menu="sideMenu"
-            />
-
             <div class="flex flex-1 flex-col max-w-full">
-                <top-menu />
+                <student-top-menu />
 
                 <page-alerts />
 
@@ -18,25 +13,20 @@
                     <slot/>
                 </div>
             </div>
-
-
-            <!-- Singleton Modals -->
-            <file-manager-modal class="z-30" />
         </main>
     </div>
 </template>
 
 <script>
-import { router } from '@inertiajs/vue2'
-
-import FileManagerModal from "../../components/admin/modals/FileManagerModal";
 import PageAlerts from "../../components/core/alerts/PageAlerts";
+
+import StudentTopMenu from "../../components/student/admin/menus/StudentTopMenu.vue";
 
 export default {
     name: "StudentAdminLayout",
     components: {
-        FileManagerModal,
-        PageAlerts
+        PageAlerts,
+        StudentTopMenu,
     },
     metaInfo() {
         return {
@@ -51,24 +41,6 @@ export default {
     },
     data() {
         return {
-            sideMenu: {
-                main: {
-                    children: {
-                        dashboard: {
-                            children: false,
-                            icon: "icon-chalkboard",
-                            label: "Courses",
-                            requiresAllPermissions: [],
-                            requiresAnyPermissions: [],
-                            route: "student.admin.index",
-                        },
-                    },
-                    label: "Main",
-                    requiresAllPermissions: [],
-                    requiresAnyPermissions: [],
-                    showLabel: false,
-                },
-            },
         }
     },
     computed: {
@@ -85,11 +57,6 @@ export default {
             );
         }
     },
-    mounted() {
-        router.on('success', event => {
-            this.hideMobileSideMenu();
-        })
-    },
     methods: {
         getMetaDataField(slug, fallback = '') {
             try {
@@ -101,11 +68,6 @@ export default {
         },
         url() {
             return location.pathname.substr(1)
-        },
-        hideMobileSideMenu() {
-            if (this.$store.state.isMobileSideMenuOpen) {
-                this.$store.commit('hideMobileSideMenu');
-            }
         },
     }
 }
