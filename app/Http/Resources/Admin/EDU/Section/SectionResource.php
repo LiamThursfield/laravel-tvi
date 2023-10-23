@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Admin\EDU\Section;
 
+use App\Http\Resources\Admin\EDU\Lecture\LectureResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SectionResource extends JsonResource
@@ -18,6 +19,7 @@ class SectionResource extends JsonResource
             'content_length' => $this->content_length,
             'index' => $this->index,
             'course_id' => $this->course_id,
+            'child_items' => LectureResource::collection($this->whenLoaded('childItems')),
         ];
     }
 }

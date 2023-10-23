@@ -75,20 +75,43 @@
                         <hr
                             class="my-6 h-px border-t-0 bg-transparent bg-gradient-to-r from-black via-neutral-500 to-transparent opacity-25 dark:opacity-100"
                         />
-                        <div class="mb-4">
+                        <div class="mb-4 grid grid-cols-4 gap-4">
                             <button
                                 class="
                                     button button-default-responsive button-primary
                                     flex flex-row items-center
                                 "
-                                onclick="markLectureComplete"
+                                title="Mark Lecture Complete"
+                                @click="checkMarkComplete(lecture)"
+                                :disabled="lecture.completed"
                             >
-                                <icon-square-check class="w-5 md:mr-2"/>
+                                <icon-square-check-filled
+                                    v-if="lecture.completed"
+                                    class="w-5 md:mr-2"
+                                />
+                                <icon-square-check
+                                    v-else
+                                    class="w-5 md:mr-2"
+                                />
 
-                                <span
-                                    class="hidden md:inline"
-                                >
-                                    Mark Complete
+                                <span class="hidden md:inline">
+                                    {{ lecture.completed ? 'Completed':'Mark Complete' }}
+                                </span>
+                            </button>
+
+                            <button
+                                class="
+                                    button button-default-responsive button-primary-subtle
+                                    flex flex-row items-center
+                                "
+                                title="Download PDFs"
+                                @click="downloadPDFs(lecture)"
+                            >
+                                <icon-book-download
+                                    class="w-5 md:mr-2"
+                                />
+                                <span class="hidden md:inline">
+                                    Download PDFs
                                 </span>
                             </button>
                         </div>
@@ -108,6 +131,16 @@
                 </div>
             </div>
         </div>
+
+        <confirmation-modal
+            confirm-text="Mark Complete"
+            confirm-type="success"
+            :show-modal="showConfirmMarkCompleteModal"
+            :message-text="markCompleteModalText"
+            @cancelAction="cancelMarkComplete"
+            @closeModal="cancelMarkComplete"
+            @confirmAction="confirmMarkComplete"
+        />
     </div>
 </template>
 
@@ -116,15 +149,21 @@
 import CourseSideMenuItem from "../../../../components/student/menus/CourseSideMenuItem";
 import IconSquareCheck from "../../../../components/core/icons/IconSquareCheck";
 import CollapseTransition from "@ivanv/vue-collapse-transition";
+import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
+import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
+import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 
 
 export default {
     name: "StudentAdminCourseShow",
     layout: 'student-admin-layout',
     components: {
+        IconBookDownload,
+        IconSquareCheckFilled,
         IconSquareCheck,
         CourseSideMenuItem,
-        CollapseTransition
+        CollapseTransition,
+        ConfirmationModal
     },
     props: {
         course: {
@@ -138,13 +177,27 @@ export default {
             toggledItems: {},
             lecture: null,
             isLoadingLecture: false,
+            isLoadingMarkComplete: false,
+            showConfirmMarkCompleteModal: null,
+            itemToMarkComplete: null,
         }
     },
     computed: {
         isToggled() {
             return !!this.toggledItems[this.menuItemKey];
         },
-
+        markCompleteModalText() {
+            try {
+                if (this.itemToMarkComplete.index === '0') {
+                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?'
+                        + ' A refund won\'t be available once you move to the next step';
+                } else {
+                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?';
+                }
+            } catch (e) {
+                return 'Do you really want to perform this action?'
+            }
+        },
     },
     mounted() {
         this.isLoadingLecture = true;
@@ -165,10 +218,35 @@ export default {
             this.lecture = item;
             this.isLoadingLecture = false;
         },
-        markLectureComplete() {
-            this.$inertia.put(
-                this.$route('student.edu.courses.update', this.lecture.id),
+        checkMarkComplete(item) {
+            this.showConfirmMarkCompleteModal = true;
+            this.itemToMarkComplete = item;
+        },
+        confirmMarkComplete() {
+            if (this.isLoadingMarkComplete) {
+                return this.$errorToast('It\'s only possible to mark it complete once.');
+            }
+            this.$inertia.patch(
+                this.$route('student.admin.lectures.complete', this.itemToMarkComplete.id),
+                {
+                    only: [
+                        'flash',
+                        'course'
+                    ]
+                }
             );
+            this.lecture.completed = true;
+            this.itemToMarkComplete = null;
+            this.showConfirmMarkCompleteModal = false;
+        },
+        cancelMarkComplete() {
+            if (!this.isLoadingPublish) {
+                this.showConfirmPublishModal = false;
+                this.itemToPublish = null;
+            }
+        },
+        downloadPDFs(lecture) {
+
         }
     }
 }

@@ -11,6 +11,15 @@
             }"
             @click="toggleItem(menuItemKey)"
         >
+            <icon-square-check-filled
+                v-if="menuItem.completed"
+                class="w-5 md:mr-2 text-green-600"
+            />
+            <icon-square-check
+                v-else
+                class="w-5 md:mr-2 text-green-600"
+            />
+
             <span v-if="menuItem.video_url">
                 <component
                     :is="'icon-alert-video'"
@@ -36,10 +45,14 @@
     import CollapseTransition from '@ivanv/vue-collapse-transition';
     import _ from 'lodash';
     import IconChevronRight from "../../core/icons/IconChevronRight";
+    import IconSquareCheckFilled from "../../core/icons/IconSquareCheckFilled";
+    import IconSquareCheck from "../../core/icons/IconSquareCheck";
 
     export default {
         name: "SideMenuItem",
         components: {
+            IconSquareCheck,
+            IconSquareCheckFilled,
             'collapse-transition': CollapseTransition,
             IconChevronRight
         },
