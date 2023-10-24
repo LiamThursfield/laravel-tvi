@@ -3,11 +3,14 @@
 namespace Database\Seeders\EDU;
 
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Label\Label;
 use App\Models\EDU\Lecture\Lecture;
+use App\Models\EDU\Lecture\LectureUser;
 use App\Models\EDU\Programme\Programme;
 use App\Models\EDU\Section\Section;
 use App\Models\EDU\Webinar\Webinar;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -58,5 +61,36 @@ class CourseSeeder extends Seeder
             $course->labels()->attach($labels);
             break;
         }
+
+        $studentUser = User::where('email', 'student@example.com')->first();
+
+        $courseUser = new CourseUser();
+
+        $courseUser->fill([
+            'course_id' => $courses->first()->id,
+            'user_id' => $studentUser->id,
+        ]);
+
+        $courseUser->save();
+
+        $lectures = Lecture::all();
+
+        // One lecture complete
+        $lectureUser = new LectureUser();
+        $lectureUser->fill([
+            'lecture_id' => $lectures->first()->id,
+            'user_id' => $studentUser->id,
+            'completed' => true,
+        ]);
+        $lectureUser->save();
+
+        // One lecture incomplete
+        $lectureUser = new LectureUser();
+        $lectureUser->fill([
+            'lecture_id' => $lectures->last()->id,
+            'user_id' => $studentUser->id,
+            'completed' => false,
+        ]);
+        $lectureUser->save();
     }
 }
