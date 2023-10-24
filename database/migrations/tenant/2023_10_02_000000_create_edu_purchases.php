@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('payment_gateway')->nullable();
             $table->string('payment_gateway_response_id')->nullable();
             $table->json('payment_response')->nullable();
+             $table->boolean('is_refundable');
 
             $table->timestamps();
 
