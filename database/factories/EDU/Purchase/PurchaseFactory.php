@@ -34,7 +34,7 @@ class PurchaseFactory extends Factory
             'payment_total' => $this->faker->randomFloat(2, 15, 45),
             'payment_gateway' => $this->faker->shuffleArray(array_keys(PurchaseInterface::PAYMENT_GATEWAYS))[0],
             'payment_gateway_response_id' => $this->faker->bothify("#####???###???"),
-            'is_refundable' => $this->faker->boolean(20),
+            'is_refundable' => $this->faker->boolean(85),
         ];
     }
 }

@@ -32,8 +32,9 @@ class PurchaseSeeder extends Seeder
             $purchases = Purchase::factory()->count(1)->create([
                 'redeemed_at' => now(),
                 'email_address' => $user->email,
+                'is_refundable' => true,
                 'user_id' => $user->id,
-                'payment_status' => PurchaseInterface::PAYMENT_STATUS_PAID
+                'payment_status' => PurchaseInterface::PAYMENT_STATUS_PAID,
             ]);
 
             $this->addItemsToPurchases($purchases, $user);
