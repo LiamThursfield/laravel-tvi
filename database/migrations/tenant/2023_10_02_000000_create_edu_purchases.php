@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('edu_purchases', function (Blueprint $table) {
             $table->id();
             $table->string('payment_status');
+            $table->boolean('is_refundable');
             $table->string('email_address')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->dateTime('redeemed_at')->nullable();
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->string('payment_gateway')->nullable();
             $table->string('payment_gateway_response_id')->nullable();
             $table->json('payment_response')->nullable();
-             $table->boolean('is_refundable');
 
             $table->timestamps();
 
