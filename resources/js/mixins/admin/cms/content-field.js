@@ -9,7 +9,7 @@ export const contentFieldMixin = {
             required: true,
         },
         templateField: {
-            required: true,
+            required: false,
             type: Object
         }
     },
@@ -48,7 +48,7 @@ export const contentFieldMixin = {
             }
         },
         inputName() {
-            return 'content.' + this.templateField.id;
+            return 'content.' + this.templateField.id ?? 0;
         }
     },
     created() {

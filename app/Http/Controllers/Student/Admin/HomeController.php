@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student\Admin;
 
 use App\Actions\EDU\Course\Student\StudentCourseShowAction;
 use App\Actions\EDU\Lecture\Student\LectureCompleteAction;
+use App\Actions\EDU\Lecture\Student\LectureDownloadPdfsAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\PermissionInterface;
@@ -71,7 +72,7 @@ class HomeController extends AdminController
 
     public function downloadLecturePDFs(Lecture $lecture): RedirectResponse
     {
-        app(LectureCompleteAction::class)->handle($lecture);
+        app(LectureDownloadPdfsAction::class)->handle($lecture);
 
         return Redirect::back(303)->with(
             'success',

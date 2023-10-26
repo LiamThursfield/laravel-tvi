@@ -124,7 +124,6 @@
                 );
             },
             submit() {
-                console.log(this.formData);
               this.$inertia.put(
                     this.$route('admin.edu.labels.update', this.label.id),
                     this.formData

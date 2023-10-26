@@ -47,12 +47,17 @@
                             v-model="editableLectureItem.title"
                         />
 
-                        <text-area-group
+<!--                        <text-area-group-->
+<!--                            :input-autofocus="true"-->
+<!--                            input-id="lecture_item_description"-->
+<!--                            input-name="lecture_item_description"-->
+<!--                            input-placeholder="Description"-->
+<!--                            label-text="Description"-->
+<!--                            v-model="editableLectureItem.description"-->
+<!--                        />-->
+
+                        <wysiwyg-field
                             :input-autofocus="true"
-                            input-id="lecture_item_description"
-                            input-name="lecture_item_description"
-                            input-placeholder="Description"
-                            label-text="Description"
                             v-model="editableLectureItem.description"
                         />
 
@@ -170,6 +175,7 @@
     import InputGroup from "../../../core/forms/InputGroup";
     import CheckboxGroup from "../../../core/forms/CheckboxGroup";
     import TextAreaGroup from "../../../core/forms/TextAreaGroup";
+    import WysiwygField from "../../cms/content/content_fields/WysiwygField";
 
     export default {
         name: "LectureItemModal",
@@ -177,6 +183,7 @@
             clickaway
         ],
         components: {
+            WysiwygField,
             InputGroup,
             CheckboxGroup,
             TextAreaGroup,
@@ -198,6 +205,7 @@
                         content_length: '',
                         item_type: 'lecture',
                         child_items: [],
+                        templateField: { type: 'wysiwyg'}
                     };
                 }
             },

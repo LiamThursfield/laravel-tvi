@@ -240,10 +240,8 @@ export default {
             this.showConfirmMarkCompleteModal = false;
         },
         cancelMarkComplete() {
-            if (!this.isLoadingPublish) {
-                this.showConfirmPublishModal = false;
-                this.itemToPublish = null;
-            }
+            this.showConfirmMarkCompleteModal = false;
+            this.itemToMarkComplete = null;
         },
         downloadPDFs(lecture) {
 
