@@ -1,6 +1,6 @@
 <template>
     <inertia-link
-        class="flex flex-1 flex-col relative"
+        class="flex flex-1 flex-col group relative"
         :href="$route('student.admin.show', course.id)"
         :title="`View course: ${course.name}`"
     >
@@ -13,18 +13,28 @@
             "
         >
             <div>
-                <div class="image-container w-full ">
+                <div class="image-container relative w-full ">
                     <img
                         class="bg-gray-100 h-full object-cover w-full"
                         alt="Course preview image"
                         :src="course.primary_image"
                     />
+
+                    <div class="
+                            absolute flex h-full inset-0 items-center justify-center opacity-0 w-full
+                            ease-in-out duration-300 transition-opacity
+                            group-hover:opacity-100
+                        "
+                    >
+                        <span class="absolute bg-black h-full inset-0 opacity-40 w-full" />
+                        <icon-player-play-filled class="h-12 relative text-white w-12"/>
+                    </div>
                 </div>
             </div>
 
             <section class="px-6 mt-3">
                 <h2
-                    class="font-semibold"
+                    class="font-semibold group-hover:underline"
                     :title="course.name"
                 >
                     {{ formattedCourseName }}
@@ -48,8 +58,11 @@
 </template>
 
 <script>
+    import IconPlus from "../../../core/icons/IconPlus.vue";
+
     export default {
         name: "CourseCard",
+        components: {IconPlus},
         props: {
             course: {
                 required: true,
