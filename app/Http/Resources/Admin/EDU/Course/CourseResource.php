@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Admin\EDU\Course;
 
+use App\Http\Resources\Admin\EDU\Creator\CreatorResource;
 use App\Http\Resources\Admin\EDU\Section\SectionResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +18,7 @@ class CourseResource extends JsonResource
             'summary' => $this->summary,
             'description' => $this->description,
             'creator_id' => $this->creator_id,
-            'creator' => $this->whenLoaded('creator'),
+            'creator' => CreatorResource::make($this->whenLoaded('creator')),
             'status' => $this->status,
             'available_from' => $this->available_from,
             'available_to' => $this->available_to,

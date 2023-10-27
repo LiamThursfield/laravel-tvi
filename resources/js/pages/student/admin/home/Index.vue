@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="max-w-screen-2xl mx-auto">
         <div
             class="flex flex-row items-center mb-6"
         >
@@ -16,29 +16,18 @@
         </p>
 
         <template v-else>
-            <div class="grid grid-cols-3 gap-3">
-                <div
-                    v-for="(item, index) in coursesData"
-                    :key="'course-' + item.id + index"
-                    class="bqg ab lx yr adg adt aez afu alo"
-                >
-                    <inertia-link
-                        :href="$route('student.admin.show', item.id)"
-                        title="View Course"
-                    >
-                        <div class="max-w-sm">
-                            <img :src="item.primary_image" :alt="item.name" class="w-auto square-full"/>
-                        </div>
-                        <div class="bg-white p-4 shadow-subtle hover:bg-blue-50 text-center lg:text-left">
-                            <h2 class="font-semibold text-black-850 pt-2 pb-2 text-lg">
-                                {{ item.name.length > 40 ? item.name.substring(0,60) + ' ...':item.name }}
-                            </h2>
-                            <p class="font-light">
-                                {{ item.summary.length > 100 ? item.summary.substring(0,100) + ' ...':item.summary }}
-                            </p>
-                        </div>
-                    </inertia-link>
-                </div>
+            <div class="
+                    grid grid-cols-1 gap-3
+                    md:grid-cols-2
+                    lg:grid-cols-3
+                    xl:grid-cols-4
+                "
+            >
+                <course-card
+                    v-for="(course, index) in coursesData"
+                    :key="index + course.slug"
+                    :course="course"
+                />
             </div>
         </template>
 
@@ -47,8 +36,13 @@
 
 <script>
 
+import CourseCard from "../../../../components/student/admin/course/CourseCard.vue";
+
 export default {
     name: "StudentAdminHomeIndex",
+    components: {
+        CourseCard
+    },
     layout: 'student-admin-layout',
     props: {
         courses: {

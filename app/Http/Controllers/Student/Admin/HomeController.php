@@ -38,7 +38,7 @@ class HomeController extends AdminController
         $this->shareMeta();
 
         $user = Auth::user();
-        $user->load('courses');
+        $user->load(['courses', 'courses.creator']);
         $courses = $user->courses;
 
         CourseResource::withoutWrapping();
