@@ -35,13 +35,32 @@ class FileManagerFileController extends AbstractFileManagerController
         return response()->json(compact('files'));
     }
 
+    // TODO:: Show file from s3 for lecture?
+    public function show(Request $request, $lecture): JsonResponse
+    {
+        $file = collect(Storage::disk($this->storage_disk)
+            ->listContents('PDFs')
+            ->filter(fn (StorageAttributes $attributes) => $attributes->isFile())
+            ->map(function (StorageAttributes $attributes)  {
+                $meta = $this->getFileMetadata($attributes);
+                // Get presigned url available for 5 minutes
+                $url = Storage::disk($this->storage_disk)->temporaryUrl(
+                    $attributes->path(), Carbon::now()->addMinutes(5)
+                );
+                return compact('meta', 'url');
+            }));
+
+        return response()->json(compact('file'));
+    }
+
     public function store(Request $request)
     {
         if (!config('sigi.file_manager.uploads.enabled')) {
             abort(403, 'Uploads are disabled.');
         }
 
-        $directory = $request->get('directory', "");
+        $tenantId = tenant()->id;
+        $directory = $tenantId . '/' . $request->get('directory', "");
         $file = $request->file('file');
 
         $action = new FileManagerFileStoreAction($this->storage_disk);

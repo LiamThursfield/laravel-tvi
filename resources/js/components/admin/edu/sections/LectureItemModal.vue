@@ -107,14 +107,14 @@
                             v-model="editableLectureItem.content_length"
                         />
 
-<!--                        <input-group-->
-<!--                            :input-autofocus="true"-->
-<!--                            input-id="lecture_item_item_type"-->
-<!--                            input-name="lecture_item_item_type"-->
-<!--                            input-placeholder="Item Type"-->
-<!--                            label-text="Item Type"-->
-<!--                            v-model="editableLectureItem.item_type"-->
-<!--                        />-->
+                        <!-- TODO:: Create a new uploader that only uploads when Add is clicked? -->
+                        <file-manager-file-uploader
+                            class="mt-4"
+                            :directory="uploaderDirectory"
+                            :url="$route('admin.api.file-manager.files.store')"
+                            @filesAdded="onFileUploaderFilesAdded"
+                            @queueCompleted="onFileUploaderCompleted"
+                        />
 
                     </div>
 
@@ -126,7 +126,6 @@
                         <iframe :src="editableLectureItem.video_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
-
 
                 <div
                     class="
@@ -176,6 +175,7 @@
     import CheckboxGroup from "../../../core/forms/CheckboxGroup";
     import TextAreaGroup from "../../../core/forms/TextAreaGroup";
     import WysiwygField from "../../cms/content/content_fields/WysiwygField";
+    import FileManagerFileUploader from "../../file_manager/partials/FileManagerFileUploader";
 
     export default {
         name: "LectureItemModal",
@@ -187,6 +187,7 @@
             InputGroup,
             CheckboxGroup,
             TextAreaGroup,
+            FileManagerFileUploader,
         },
         props: {
             isCreate: {
@@ -220,6 +221,8 @@
         },
         data() {
             return {
+                currentDirectory: '/',
+                isLoadingFileUpload: false,
                 defaultLectureItem: {
                     id: '',
                     title: '',
@@ -261,9 +264,59 @@
                 return this.isCreate ?
                     'Add Lecture' :
                     'Update Lecture';
-            }
+            },
+            showFileUploader() {
+                return this.canUploadFiles && this.userCan('file_manager.edit');
+            },
+            uploaderDirectory() {
+                let url = 'PDFs';
+
+                if (this.currentDirectory !== '/') {
+                    url += this.currentDirectory;
+                }
+
+                return url;
+            },
+            // loadFile() {
+            //     if (this.isLoadingFiles) {
+            //         return;
+            //     }
+            //
+            //     this.isLoadingFiles = true;
+            //     this.files = [];
+            //
+            //     let params = {
+            //         directory: this.currentDirectory
+            //     };
+            //
+            //     axios.get(
+            //         this.$route('admin.api.file-manager.files.show'),
+            //         {
+            //             params,
+            //             cancelToken: filesCancelToken.token
+            //         }
+            //     ).then(response => {
+            //         if (response.data.hasOwnProperty('files')) {
+            //             this.files = response.data.files;
+            //         }
+            //     }).catch(e => {
+            //         if (!axios.isCancel(e)) {
+            //             this.$errorToast('Failed to load files');
+            //         }
+            //     }).finally(() => {
+            //         this.isLoadingFiles = false;
+            //     });
+            //
+            // },
         },
         methods: {
+            onFileUploaderFilesAdded() {
+                this.isLoadingFileUpload = true;
+            },
+            onFileUploaderCompleted() {
+                this.isLoadingFileUpload = false;
+                // this.loadFile();
+            },
             cancelAction() {
                 this.$emit('cancelAction');
             },
@@ -288,18 +341,14 @@
                 try {
                     _.forEach(this.defaultLectureItem, (value, key) => {
                         if (!this.editableLectureItem.hasOwnProperty(key)) {
-                            console.log('yoyo');
                             this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
                         }
                     });
                 } catch (e) {
-                    console.log('lol');
                     this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
                 }
             },
             onShowModal() {
-                console.log('onshowModal');
-                console.log(this.editableLectureItem);
                 try {
                     let body = document.getElementsByTagName('body')[0];
 
