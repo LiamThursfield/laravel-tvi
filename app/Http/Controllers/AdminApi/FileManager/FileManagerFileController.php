@@ -6,6 +6,7 @@ use App\Actions\FileManager\FileManagerFileStoreAction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\StorageAttributes;
 
@@ -24,7 +25,10 @@ class FileManagerFileController extends AbstractFileManagerController
             ->filter(fn (StorageAttributes $attributes) => $attributes->isFile())
             ->map(function (StorageAttributes $attributes)  {
                 $meta = $this->getFileMetadata($attributes);
-                $url = Storage::disk($this->storage_disk)->url($attributes->path());
+                // Get presigned url available for 5 minutes
+                $url = Storage::disk($this->storage_disk)->temporaryUrl(
+                    $attributes->path(), Carbon::now()->addMinutes(5)
+                );
                 return compact('meta', 'url');
             }));
 

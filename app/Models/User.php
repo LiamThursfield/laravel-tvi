@@ -107,9 +107,9 @@ class User extends Authenticatable
         return $permissions_array;
     }
 
-    public function courses() : HasMany
+    public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class, 'edu_course_users');
     }
 
     public function programmes() : HasMany

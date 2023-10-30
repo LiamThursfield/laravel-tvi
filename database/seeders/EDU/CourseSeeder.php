@@ -3,13 +3,15 @@
 namespace Database\Seeders\EDU;
 
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Label\Label;
 use App\Models\EDU\Lecture\Lecture;
-use App\Models\EDU\Programme\Programme;
+use App\Models\EDU\Lecture\LectureUser;
 use App\Models\EDU\Section\Section;
 use App\Models\EDU\Webinar\Webinar;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class CourseSeeder extends Seeder
 {
@@ -18,22 +20,26 @@ class CourseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(array $options = [])
     {
-       Course::factory()->count(2)->create();
+       Course::factory()->count(
+           Arr::get($options, 'course_count', 2)
+       )->create();
 
        $courses = Course::all();
        foreach ($courses as $key => $course) {
            Section::factory()->count(2)->create([
                'course_id' => $course->id,
-               'lecture_count' => 2,
+               'lecture_count' => Arr::get($options, 'lecture_count', 2),
                'index' => $key,
            ]);
        }
 
         $sections = Section::all();
         foreach ($sections as $index => $section) {
-            Lecture::factory()->count(2)->create([
+            Lecture::factory()->count(
+                Arr::get($options, 'lecture_count', 2)
+            )->create([
                 'preview_url' => 'https://player.vimeo.com/video/439035104?h=8a93ad7e59',
                 'video_url' => 'https://player.vimeo.com/video/465991951?h=f7f7feb73d',
                 'section_id' => $section->id,
@@ -58,5 +64,36 @@ class CourseSeeder extends Seeder
             $course->labels()->attach($labels);
             break;
         }
+
+        $studentUser = User::where('email', Arr::get($options, 'user_email', 'student@example.com'))->first();
+
+        $courseUser = new CourseUser();
+
+        $courseUser->fill([
+            'course_id' => $courses->first()->id,
+            'user_id' => $studentUser->id,
+        ]);
+
+        $courseUser->save();
+
+        $lectures = Lecture::all();
+
+        // One lecture complete
+        $lectureUser = new LectureUser();
+        $lectureUser->fill([
+            'lecture_id' => $lectures->first()->id,
+            'user_id' => $studentUser->id,
+            'completed' => true,
+        ]);
+        $lectureUser->save();
+
+        // One lecture incomplete
+        $lectureUser = new LectureUser();
+        $lectureUser->fill([
+            'lecture_id' => $lectures->last()->id,
+            'user_id' => $studentUser->id,
+            'completed' => false,
+        ]);
+        $lectureUser->save();
     }
 }

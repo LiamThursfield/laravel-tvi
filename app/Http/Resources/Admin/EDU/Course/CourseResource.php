@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\Admin\EDU\Course;
 
+use App\Http\Resources\Admin\EDU\Creator\CreatorResource;
+use App\Http\Resources\Admin\EDU\Section\SectionResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CourseResource extends JsonResource
@@ -16,7 +18,7 @@ class CourseResource extends JsonResource
             'summary' => $this->summary,
             'description' => $this->description,
             'creator_id' => $this->creator_id,
-            'creator' => $this->whenLoaded('creator'),
+            'creator' => CreatorResource::make($this->whenLoaded('creator')),
             'status' => $this->status,
             'available_from' => $this->available_from,
             'available_to' => $this->available_to,
@@ -36,7 +38,7 @@ class CourseResource extends JsonResource
             'has_student_discount' => (bool)$this->has_student_discount,
             'has_pdfs' => (bool)$this->has_pdfs,
             'has_free_seo_exposure' => (bool)$this->has_free_seo_exposure,
-            'sections' => $this->sections,
+            'sections' => SectionResource::collection($this->whenLoaded('sections')),
         ];
     }
 }

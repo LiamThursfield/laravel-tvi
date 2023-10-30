@@ -170,6 +170,7 @@ class CreateBasePermissionRoles extends Migration
 
             // Student
             PermissionInterface::VIEW_STUDENT_ADMIN,
+            PermissionInterface::EDIT_STUDENT_ADMIN,
         ];
     }
 
@@ -286,6 +287,7 @@ class CreateBasePermissionRoles extends Migration
             ],
             RoleInterface::STUDENT => [
                 PermissionInterface::VIEW_STUDENT_ADMIN,
+                PermissionInterface::EDIT_STUDENT_ADMIN,
             ]
         ];
     }

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('edu_course_users', function (Blueprint $table) {
+        Schema::create('edu_lecture_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('lecture_id');
             $table->unsignedBigInteger('user_id');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('edu_course_users');
+        Schema::dropIfExists('edu_lecture_users');
     }
 };
