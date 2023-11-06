@@ -38,31 +38,37 @@
                         v-if="editableLectureItem"
                         class="mt-6"
                     >
+
                         <input-group
                             :input-autofocus="true"
                             input-id="lecture_item_title"
                             input-name="lecture_item_title"
                             input-placeholder="Title"
                             label-text="Title"
+                            class="mb-4"
                             v-model="editableLectureItem.title"
                         />
 
-<!--                        <text-area-group-->
-<!--                            :input-autofocus="true"-->
-<!--                            input-id="lecture_item_description"-->
-<!--                            input-name="lecture_item_description"-->
-<!--                            input-placeholder="Description"-->
-<!--                            label-text="Description"-->
-<!--                            v-model="editableLectureItem.description"-->
-<!--                        />-->
-
                         <wysiwyg-field
+                            class="mb-4"
                             :input-autofocus="true"
                             v-model="editableLectureItem.description"
                         />
 
+                        <input-group
+                            :input-autofocus="true"
+                            input-id="lecture_item_content_length"
+                            input-name="lecture_item_content_length"
+                            input-placeholder="Content Length in minutes"
+                            label-text="Content Length in minutes"
+                            v-model="editableLectureItem.content_length"
+                            class="mb-4"
+                        />
+
+                        <hr class="py-4">
+
                         <checkbox-group
-                            class="mt-4"
+                            class="mb-4"
                             :error-message="getPageErrorMessage('can_be_previewed')"
                             :input-id="`can_be_previewed`"
                             :input-name="`can_be_previewed`"
@@ -79,15 +85,20 @@
                             input-placeholder="Preview URL"
                             label-text="Preview URL"
                             v-model="editableLectureItem.preview_url"
+                            class="mb-4"
                         />
 
                         <div
                             v-if="editableLectureItem.preview_url"
-                            class="px-4 space-y-2"
+                            class="mb-4"
                         >
-                            <h2>Preview</h2>
-                            <iframe :src="editableLectureItem.preview_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                            <h2 class="font-weight-bolder">Preview</h2>
+                            <div class="px-4 space-y-2">
+                                <iframe :src="editableLectureItem.preview_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                            </div>
                         </div>
+
+                        <hr class="py-4">
 
                         <input-group
                             :input-autofocus="true"
@@ -96,34 +107,60 @@
                             input-placeholder="Video URL"
                             label-text="Video URL"
                             v-model="editableLectureItem.video_url"
+                            class="mb-4"
                         />
 
-                        <input-group
-                            :input-autofocus="true"
-                            input-id="lecture_item_content_length"
-                            input-name="lecture_item_content_length"
-                            input-placeholder="Content Length in minutes"
-                            label-text="Content Length in minutes"
-                            v-model="editableLectureItem.content_length"
-                        />
-
-                        <!-- TODO:: Create a new uploader that only uploads when Add is clicked? -->
-                        <file-manager-file-uploader
-                            class="mt-4"
-                            :directory="uploaderDirectory"
-                            :url="$route('admin.api.file-manager.files.store')"
-                            @filesAdded="onFileUploaderFilesAdded"
-                            @queueCompleted="onFileUploaderCompleted"
-                        />
-
+                        <section
+                            v-if="editableLectureItem.video_url"
+                            class="px-4 space-y-2"
+                        >
+                            <h2>Video</h2>
+                            <iframe :src="editableLectureItem.video_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </section>
                     </div>
 
-                    <div
-                        v-if="editableLectureItem.video_url"
-                        class="px-4 space-y-2"
-                    >
-                        <h2>Video</h2>
-                        <iframe :src="editableLectureItem.video_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    <hr class="py-4">
+
+                    <div class="px-4 space-y-2" v-if="editableLectureItem.id">
+                        <!-- TODO:: Create a new uploader that only uploads when Add is clicked? -->
+                        <label for="file-uploader">Upload course PDFs</label>
+                        <file-manager-file-uploader
+                            id="file-uploader"
+                            :directory="uploaderDirectory"
+                            :url="$route('admin.api.file-manager.files.store', {'lecture': editableLectureItem.id})"
+                            @filesAdded="onFileUploaderFilesAdded"
+                            @queueCompleted="onFileUploaderCompleted"
+                            class="mb-4"
+                        />
+                    </div>
+
+                    <div>
+                        <p>Files</p>
+                        <ul class="list-group">
+                            <li
+                                v-for="file in editableLectureItem.files"
+                                :key="`file-` + file.id"
+                                class="list-group-item"
+                            >
+                                {{ file.file_path}}
+                                <!-- Open file in new tab -->
+                                <a
+                                    v-if="file.url"
+                                    class="
+                                        flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
+                                        ease-in-out duration-300 transition-colors
+                                        focus:text-theme-primary focus:outline-none
+                                        hover:text-theme-primary
+                                    "
+                                    :href="file.url"
+                                    rel="noreferrer noopener nofollow"
+                                    target="_blank"
+                                    @click.stop=""
+                                >
+                                    <icon-external-link class="w-5" />
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -206,7 +243,8 @@
                         content_length: '',
                         item_type: 'lecture',
                         child_items: [],
-                        templateField: { type: 'wysiwyg'}
+                        templateField: { type: 'wysiwyg'},
+                        section_id: null,
                     };
                 }
             },
@@ -233,6 +271,7 @@
                     content_length: '',
                     item_type: 'lecture',
                     child_items: [],
+                    section_id: null,
                 },
                 editableLectureItem: {
                     id: '',
@@ -244,6 +283,7 @@
                     content_length: '',
                     item_type: 'lecture',
                     child_items: [],
+                    section_id: null,
                 },
             }
         },
@@ -277,37 +317,37 @@
 
                 return url;
             },
-            // loadFile() {
-            //     if (this.isLoadingFiles) {
-            //         return;
-            //     }
-            //
-            //     this.isLoadingFiles = true;
-            //     this.files = [];
-            //
-            //     let params = {
-            //         directory: this.currentDirectory
-            //     };
-            //
-            //     axios.get(
-            //         this.$route('admin.api.file-manager.files.show'),
-            //         {
-            //             params,
-            //             cancelToken: filesCancelToken.token
-            //         }
-            //     ).then(response => {
-            //         if (response.data.hasOwnProperty('files')) {
-            //             this.files = response.data.files;
-            //         }
-            //     }).catch(e => {
-            //         if (!axios.isCancel(e)) {
-            //             this.$errorToast('Failed to load files');
-            //         }
-            //     }).finally(() => {
-            //         this.isLoadingFiles = false;
-            //     });
-            //
-            // },
+            loadFiles() {
+                if (this.isLoadingFiles) {
+                    return;
+                }
+
+                this.isLoadingFiles = true;
+                this.files = [];
+
+                let params = {
+                    directory: this.currentDirectory
+                };
+
+                axios.get(
+                    this.$route('admin.api.file-manager.files.show'),
+                    {
+                        params,
+                        cancelToken: filesCancelToken.token
+                    }
+                ).then(response => {
+                    if (response.data.hasOwnProperty('files')) {
+                        this.editableLectureItem.files = response.data.files;
+                    }
+                }).catch(e => {
+                    if (!axios.isCancel(e)) {
+                        this.$errorToast('Failed to load files');
+                    }
+                }).finally(() => {
+                    this.isLoadingFiles = false;
+                });
+
+            },
         },
         methods: {
             onFileUploaderFilesAdded() {
@@ -315,7 +355,6 @@
             },
             onFileUploaderCompleted() {
                 this.isLoadingFileUpload = false;
-                // this.loadFile();
             },
             cancelAction() {
                 this.$emit('cancelAction');
@@ -335,13 +374,12 @@
                 this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
             },
             onLectureItemChange() {
-                console.log('first');
-                console.log(this.lectureItem);
                 this.editableLectureItem = _.cloneDeep(this.lectureItem);
                 try {
                     _.forEach(this.defaultLectureItem, (value, key) => {
                         if (!this.editableLectureItem.hasOwnProperty(key)) {
                             this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
+                            this.loadFiles();
                         }
                     });
                 } catch (e) {

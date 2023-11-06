@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminApi\FileManager;
 
 use App\Actions\FileManager\FileManagerFileStoreAction;
+use App\Models\EDU\Lecture\LectureFiles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -35,22 +36,17 @@ class FileManagerFileController extends AbstractFileManagerController
         return response()->json(compact('files'));
     }
 
-    // TODO:: Show file from s3 for lecture?
-    public function show(Request $request, $lecture): JsonResponse
+    public function show(Request $request, $lecture_id): JsonResponse
     {
-        $file = collect(Storage::disk($this->storage_disk)
-            ->listContents('PDFs')
-            ->filter(fn (StorageAttributes $attributes) => $attributes->isFile())
-            ->map(function (StorageAttributes $attributes)  {
-                $meta = $this->getFileMetadata($attributes);
-                // Get presigned url available for 5 minutes
-                $url = Storage::disk($this->storage_disk)->temporaryUrl(
-                    $attributes->path(), Carbon::now()->addMinutes(5)
-                );
-                return compact('meta', 'url');
-            }));
+        $files = LectureFiles::where('lecture_id', $lecture_id)->get();
 
-        return response()->json(compact('file'));
+        foreach ($files as $file) {
+            $file->url = Storage::disk($this->storage_disk)->temporaryUrl(
+                $file->file_path, Carbon::now()->addMinutes(5)
+            );
+        }
+
+        return response()->json(compact('files'));
     }
 
     public function store(Request $request)
@@ -64,7 +60,18 @@ class FileManagerFileController extends AbstractFileManagerController
         $file = $request->file('file');
 
         $action = new FileManagerFileStoreAction($this->storage_disk);
-        return $action->handle($directory, $file);
+        $filePath = $action->handle($directory, $file);
+
+        if ($request->has('lecture')) {
+            $lectureFiles = new LectureFiles();
+            $lectureFiles->fill([
+                'lecture_id' => $request->input('lecture'),
+                'file_path' => $filePath,
+            ]);
+            $lectureFiles->save();
+        }
+
+        return $filePath;
     }
 
 

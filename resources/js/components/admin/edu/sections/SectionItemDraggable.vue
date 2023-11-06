@@ -33,7 +33,7 @@
                     </small>
 
                     <button
-                        v-if="sectionItem.hasOwnProperty('lecture_count')"
+                        v-if="sectionItem.hasOwnProperty('lecture_count') && !sectionItem.hasOwnProperty('section_id')"
                         class="
                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                             focus:outline-none focus:ring

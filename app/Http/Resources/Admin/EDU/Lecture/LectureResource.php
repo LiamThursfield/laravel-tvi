@@ -2,7 +2,10 @@
 
 namespace App\Http\Resources\Admin\EDU\Lecture;
 
+use App\Models\EDU\Lecture\LectureFiles;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class LectureResource extends JsonResource
 {
@@ -24,6 +27,24 @@ class LectureResource extends JsonResource
             'item_type' => $this->item_type,
             'section_id' => $this->section_id,
             'completed' => (bool)$this->completed,
+            'files' => $this->getFiles() ?? null,
         ];
+    }
+
+    protected function getFiles()
+    {
+        if (!$this->files) {
+            return null;
+        }
+
+        $files = $this->files;
+
+        foreach ($files as $file) {
+            $file->url = Storage::disk('file_manager')->temporaryUrl(
+                $file->file_path, Carbon::now()->addMinutes(5)
+            );
+        }
+
+        return $files;
     }
 }
