@@ -16,7 +16,7 @@
         "@tailwindcss/typography": "^0.4.0",
         "@tinymce/tinymce-vue": "^3",
         "autoprefixer": "^10.1.0",
-        "axios": "^0.21.1",
+        "axios": "^1.6.0",
         "cross-env": "^7.0",
         "dayjs": "^1.10.3",
         "es6-promise": "^4.2.8",
