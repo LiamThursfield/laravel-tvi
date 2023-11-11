@@ -54,113 +54,6 @@
                             :input-autofocus="true"
                             v-model="editableLectureItem.description"
                         />
-
-                        <input-group
-                            :input-autofocus="true"
-                            input-id="lecture_item_content_length"
-                            input-name="lecture_item_content_length"
-                            input-placeholder="Content Length in minutes"
-                            label-text="Content Length in minutes"
-                            v-model="editableLectureItem.content_length"
-                            class="mb-4"
-                        />
-
-                        <hr class="py-4">
-
-                        <checkbox-group
-                            class="mb-4"
-                            :error-message="getPageErrorMessage('can_be_previewed')"
-                            :input-id="`can_be_previewed`"
-                            :input-name="`can_be_previewed`"
-                            label-text="Lecture can be previewed?"
-                            @errorHidden="clearPageErrorMessage('can_be_previewed')"
-                            v-model="editableLectureItem.can_be_previewed"
-                        />
-
-                        <input-group
-                            v-if="editableLectureItem.can_be_previewed"
-                            :input-autofocus="true"
-                            input-id="lecture_item_preview_url"
-                            input-name="lecture_item_preview_url"
-                            input-placeholder="Preview URL"
-                            label-text="Preview URL"
-                            v-model="editableLectureItem.preview_url"
-                            class="mb-4"
-                        />
-
-                        <div
-                            v-if="editableLectureItem.preview_url"
-                            class="mb-4"
-                        >
-                            <h2 class="font-weight-bolder">Preview</h2>
-                            <div class="px-4 space-y-2">
-                                <iframe :src="editableLectureItem.preview_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-
-                        <hr class="py-4">
-
-                        <input-group
-                            :input-autofocus="true"
-                            input-id="lecture_item_video_url"
-                            input-name="lecture_item_video_url"
-                            input-placeholder="Video URL"
-                            label-text="Video URL"
-                            v-model="editableLectureItem.video_url"
-                            class="mb-4"
-                        />
-
-                        <section
-                            v-if="editableLectureItem.video_url"
-                            class="px-4 space-y-2"
-                        >
-                            <h2>Video</h2>
-                            <iframe :src="editableLectureItem.video_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                        </section>
-                    </div>
-
-                    <hr class="py-4">
-
-                    <div class="px-4 space-y-2" v-if="editableLectureItem.id">
-                        <!-- TODO:: Create a new uploader that only uploads when Add is clicked? -->
-                        <label for="file-uploader">Upload course PDFs</label>
-                        <file-manager-file-uploader
-                            id="file-uploader"
-                            :directory="uploaderDirectory"
-                            :url="$route('admin.api.file-manager.files.store', {'lecture': editableLectureItem.id})"
-                            @filesAdded="onFileUploaderFilesAdded"
-                            @queueCompleted="onFileUploaderCompleted"
-                            class="mb-4"
-                        />
-                    </div>
-
-                    <div>
-                        <p>Files</p>
-                        <ul class="list-group">
-                            <li
-                                v-for="file in editableLectureItem.files"
-                                :key="`file-` + file.id"
-                                class="list-group-item"
-                            >
-                                {{ file.file_path}}
-                                <!-- Open file in new tab -->
-                                <a
-                                    v-if="file.url"
-                                    class="
-                                        flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
-                                        ease-in-out duration-300 transition-colors
-                                        focus:text-theme-primary focus:outline-none
-                                        hover:text-theme-primary
-                                    "
-                                    :href="file.url"
-                                    rel="noreferrer noopener nofollow"
-                                    target="_blank"
-                                    @click.stop=""
-                                >
-                                    <icon-external-link class="w-5" />
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
 
@@ -209,10 +102,7 @@
     import _ from 'lodash';
     import { mixin as clickaway } from 'vue-clickaway';
     import InputGroup from "../../../core/forms/InputGroup";
-    import CheckboxGroup from "../../../core/forms/CheckboxGroup";
-    import TextAreaGroup from "../../../core/forms/TextAreaGroup";
     import WysiwygField from "../../cms/content/content_fields/WysiwygField";
-    import FileManagerFileUploader from "../../file_manager/partials/FileManagerFileUploader";
 
     export default {
         name: "LectureItemModal",
@@ -222,15 +112,8 @@
         components: {
             WysiwygField,
             InputGroup,
-            CheckboxGroup,
-            TextAreaGroup,
-            FileManagerFileUploader,
         },
         props: {
-            isCreate: {
-                default: true,
-                type: Boolean,
-            },
             lectureItem: {
                 default: () => {
                     return {
@@ -289,9 +172,7 @@
         },
         computed: {
             confirmText() {
-                return this.isCreate ?
-                    'Add' :
-                    'Update';
+                return 'Add';
             },
             isLectureItemValid() {
                 try {
@@ -301,61 +182,10 @@
                 }
             },
             headerText() {
-                return this.isCreate ?
-                    'Add Lecture' :
-                    'Update Lecture';
-            },
-            showFileUploader() {
-                return this.canUploadFiles && this.userCan('file_manager.edit');
-            },
-            uploaderDirectory() {
-                let url = 'PDFs';
-
-                if (this.currentDirectory !== '/') {
-                    url += this.currentDirectory;
-                }
-
-                return url;
-            },
-            loadFiles() {
-                if (this.isLoadingFiles) {
-                    return;
-                }
-
-                this.isLoadingFiles = true;
-                this.files = [];
-
-                let params = {
-                    directory: this.currentDirectory
-                };
-
-                axios.get(
-                    this.$route('admin.api.file-manager.files.show'),
-                    {
-                        params,
-                        cancelToken: filesCancelToken.token
-                    }
-                ).then(response => {
-                    if (response.data.hasOwnProperty('files')) {
-                        this.editableLectureItem.files = response.data.files;
-                    }
-                }).catch(e => {
-                    if (!axios.isCancel(e)) {
-                        this.$errorToast('Failed to load files');
-                    }
-                }).finally(() => {
-                    this.isLoadingFiles = false;
-                });
-
+                return 'Add Lecture';
             },
         },
         methods: {
-            onFileUploaderFilesAdded() {
-                this.isLoadingFileUpload = true;
-            },
-            onFileUploaderCompleted() {
-                this.isLoadingFileUpload = false;
-            },
             cancelAction() {
                 this.$emit('cancelAction');
             },
@@ -379,7 +209,6 @@
                     _.forEach(this.defaultLectureItem, (value, key) => {
                         if (!this.editableLectureItem.hasOwnProperty(key)) {
                             this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
-                            this.loadFiles();
                         }
                     });
                 } catch (e) {

@@ -60,18 +60,8 @@ class FileManagerFileController extends AbstractFileManagerController
         $file = $request->file('file');
 
         $action = new FileManagerFileStoreAction($this->storage_disk);
-        $filePath = $action->handle($directory, $file);
 
-        if ($request->has('lecture')) {
-            $lectureFiles = new LectureFiles();
-            $lectureFiles->fill([
-                'lecture_id' => $request->input('lecture'),
-                'file_path' => $filePath,
-            ]);
-            $lectureFiles->save();
-        }
-
-        return $filePath;
+        return $action->handle($directory, $file, $request);
     }
 
 

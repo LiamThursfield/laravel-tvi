@@ -100,7 +100,7 @@ trait CourseActions
         return $updateSection;
     }
 
-    public function updateLecture($lecture, $index, $sectionId): Lecture
+    public function updateLecture($lecture, $index, $sectionId)
     {
         if (!Arr::get($lecture, 'id')) {
             unset($lecture['child_items']);
@@ -108,13 +108,6 @@ trait CourseActions
         } else {
             $updateLecture = Lecture::findOrFail($lecture['id']);
             $updateLecture->fill([
-                'title' => $lecture['title'],
-                'slug' => $lecture['slug'],
-                'description' => $lecture['description'],
-                'can_be_previewed' => $lecture['can_be_previewed'],
-                'preview_url' => $lecture['preview_url'],
-                'video_url' => $lecture['video_url'],
-                'content_length' => $lecture['content_length'],
                 'index' => $index,
                 'section_id' => $lecture['section_id'],
             ]);

@@ -49,6 +49,7 @@
                     </button>
 
                     <button
+                        v-if="!sectionItem.hasOwnProperty('section_id')"
                         class="
                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                             focus:outline-none focus:ring
@@ -61,6 +62,37 @@
                         <icon-edit
                             class="w-4"
                         />
+                    </button>
+
+                    <a
+                        v-if="sectionItem.hasOwnProperty('section_id') && sectionItem.id"
+                        class="
+                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                            focus:outline-none focus:ring
+                            hover:bg-theme-info hover:text-theme-info-contrast
+                        "
+                        :href="$route('admin.edu.lectures.edit', sectionItem.id)"
+                        target="_blank"
+                    >
+                        <icon-edit
+                            class="w-4"
+                        />
+                    </a>
+
+                    <button
+                        v-if="sectionItem.hasOwnProperty('section_id') && !sectionItem.id"
+                        class="
+                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                            focus:outline-none focus:ring
+                            hover:bg-theme-info hover:text-theme-info-contrast
+                        "
+                        title="Save Course before you can edit"
+                        type="button"
+                        disabled
+                    >
+                        <icon-edit
+                            class="w-4"
+                        /> DRAFT
                     </button>
 
                     <button
@@ -111,7 +143,6 @@
         />
 
         <lecture-item-modal
-            :is-create="!isEditingSectionItem"
             :lecture-item="sectionItemToEdit"
             :show-modal="showLectureModal"
             @cancelAction="cancelLectureEdit"

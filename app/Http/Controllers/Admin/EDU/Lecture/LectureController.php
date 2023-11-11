@@ -64,6 +64,8 @@ class LectureController extends AdminController
     public function edit(Lecture $lecture) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $lecture->title)->shareMeta();
+        $lecture->load('files');
+        $lecture->load('section', 'section.course');
 
         return Inertia::render('admin/edu/lecture/Edit', [
             'lecture' => function () use ($lecture) {
