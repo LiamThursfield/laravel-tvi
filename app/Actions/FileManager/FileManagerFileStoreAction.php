@@ -3,6 +3,7 @@
 namespace App\Actions\FileManager;
 
 
+use App\Models\EDU\Lecture\LectureFiles;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -26,12 +27,23 @@ class FileManagerFileStoreAction
     /**
      * @param string $directory
      * @param UploadedFile $file
+     * @param $request
      * @return false|string
      */
-    public function handle(string $directory, UploadedFile $file)
+    public function handle(string $directory, UploadedFile $file, $request)
     {
         $directory = $this->formatDirectory($directory);
         $filename = $this->getFileName($directory, $file);
+
+        if ($request->has('lecture')) {
+            $lectureFiles = new LectureFiles();
+            $lectureFiles->fill([
+                'lecture_id' => $request->input('lecture'),
+                'file_path' => $directory . $filename,
+                'file_name' => $filename,
+            ]);
+            $lectureFiles->save();
+        }
 
         return $file->storeAs($directory, $filename, $this->storage_disk);
     }

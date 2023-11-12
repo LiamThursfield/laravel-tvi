@@ -38,95 +38,24 @@
                         v-if="editableLectureItem"
                         class="mt-6"
                     >
+
                         <input-group
                             :input-autofocus="true"
                             input-id="lecture_item_title"
                             input-name="lecture_item_title"
                             input-placeholder="Title"
                             label-text="Title"
+                            class="mb-4"
                             v-model="editableLectureItem.title"
                         />
 
-<!--                        <text-area-group-->
-<!--                            :input-autofocus="true"-->
-<!--                            input-id="lecture_item_description"-->
-<!--                            input-name="lecture_item_description"-->
-<!--                            input-placeholder="Description"-->
-<!--                            label-text="Description"-->
-<!--                            v-model="editableLectureItem.description"-->
-<!--                        />-->
-
                         <wysiwyg-field
+                            class="mb-4"
                             :input-autofocus="true"
                             v-model="editableLectureItem.description"
                         />
-
-                        <checkbox-group
-                            class="mt-4"
-                            :error-message="getPageErrorMessage('can_be_previewed')"
-                            :input-id="`can_be_previewed`"
-                            :input-name="`can_be_previewed`"
-                            label-text="Lecture can be previewed?"
-                            @errorHidden="clearPageErrorMessage('can_be_previewed')"
-                            v-model="editableLectureItem.can_be_previewed"
-                        />
-
-                        <input-group
-                            v-if="editableLectureItem.can_be_previewed"
-                            :input-autofocus="true"
-                            input-id="lecture_item_preview_url"
-                            input-name="lecture_item_preview_url"
-                            input-placeholder="Preview URL"
-                            label-text="Preview URL"
-                            v-model="editableLectureItem.preview_url"
-                        />
-
-                        <div
-                            v-if="editableLectureItem.preview_url"
-                            class="px-4 space-y-2"
-                        >
-                            <h2>Preview</h2>
-                            <iframe :src="editableLectureItem.preview_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-
-                        <input-group
-                            :input-autofocus="true"
-                            input-id="lecture_item_video_url"
-                            input-name="lecture_item_video_url"
-                            input-placeholder="Video URL"
-                            label-text="Video URL"
-                            v-model="editableLectureItem.video_url"
-                        />
-
-                        <input-group
-                            :input-autofocus="true"
-                            input-id="lecture_item_content_length"
-                            input-name="lecture_item_content_length"
-                            input-placeholder="Content Length in minutes"
-                            label-text="Content Length in minutes"
-                            v-model="editableLectureItem.content_length"
-                        />
-
-<!--                        <input-group-->
-<!--                            :input-autofocus="true"-->
-<!--                            input-id="lecture_item_item_type"-->
-<!--                            input-name="lecture_item_item_type"-->
-<!--                            input-placeholder="Item Type"-->
-<!--                            label-text="Item Type"-->
-<!--                            v-model="editableLectureItem.item_type"-->
-<!--                        />-->
-
-                    </div>
-
-                    <div
-                        v-if="editableLectureItem.video_url"
-                        class="px-4 space-y-2"
-                    >
-                        <h2>Video</h2>
-                        <iframe :src="editableLectureItem.video_url" width="540" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
-
 
                 <div
                     class="
@@ -170,57 +99,24 @@
 </template>
 
 <script>
-    import _ from 'lodash';
-    import { mixin as clickaway } from 'vue-clickaway';
-    import InputGroup from "../../../core/forms/InputGroup";
-    import CheckboxGroup from "../../../core/forms/CheckboxGroup";
-    import TextAreaGroup from "../../../core/forms/TextAreaGroup";
-    import WysiwygField from "../../cms/content/content_fields/WysiwygField";
+import _ from 'lodash';
+import { mixin as clickaway } from 'vue-clickaway';
+import InputGroup from "../../../core/forms/InputGroup";
+import WysiwygField from "../../cms/content/content_fields/WysiwygField";
 
-    export default {
-        name: "LectureItemModal",
-        mixins: [
-            clickaway
-        ],
-        components: {
-            WysiwygField,
-            InputGroup,
-            CheckboxGroup,
-            TextAreaGroup,
-        },
-        props: {
-            isCreate: {
-                default: true,
-                type: Boolean,
-            },
-            lectureItem: {
-                default: () => {
-                    return {
-                        id: '',
-                        title: '',
-                        description: '',
-                        can_be_previewed: false,
-                        preview_url: '',
-                        video_url: '',
-                        content_length: '',
-                        item_type: 'lecture',
-                        child_items: [],
-                        templateField: { type: 'wysiwyg'}
-                    };
-                }
-            },
-            resetOnClose: {
-                default: false,
-                type: Boolean,
-            },
-            showModal: {
-                default: true,
-                type: Boolean
-            }
-        },
-        data() {
-            return {
-                defaultLectureItem: {
+export default {
+    name: "LectureItemModal",
+    mixins: [
+        clickaway
+    ],
+    components: {
+        WysiwygField,
+        InputGroup,
+    },
+    props: {
+        lectureItem: {
+            default: () => {
+                return {
                     id: '',
                     title: '',
                     description: '',
@@ -230,102 +126,121 @@
                     content_length: '',
                     item_type: 'lecture',
                     child_items: [],
-                },
-                editableLectureItem: {
-                    id: '',
-                    title: '',
-                    description: '',
-                    can_be_previewed: false,
-                    preview_url: '',
-                    video_url: '',
-                    content_length: '',
-                    item_type: 'lecture',
-                    child_items: [],
-                },
+                    templateField: { type: 'wysiwyg'},
+                    section_id: null,
+                };
             }
         },
-        computed: {
-            confirmText() {
-                return this.isCreate ?
-                    'Add' :
-                    'Update';
+        resetOnClose: {
+            default: false,
+            type: Boolean,
+        },
+        showModal: {
+            default: true,
+            type: Boolean
+        }
+    },
+    data() {
+        return {
+            currentDirectory: '/',
+            isLoadingFileUpload: false,
+            defaultLectureItem: {
+                id: '',
+                title: '',
+                description: '',
+                can_be_previewed: false,
+                preview_url: '',
+                video_url: '',
+                content_length: '',
+                item_type: 'lecture',
+                child_items: [],
+                section_id: null,
             },
-            isLectureItemValid() {
-                try {
-                    return this.editableLectureItem.title.length;
-                } catch (e) {
-                    return false;
+            editableLectureItem: {
+                id: '',
+                title: '',
+                description: '',
+                can_be_previewed: false,
+                preview_url: '',
+                video_url: '',
+                content_length: '',
+                item_type: 'lecture',
+                child_items: [],
+                section_id: null,
+            },
+        }
+    },
+    computed: {
+        confirmText() {
+            return 'Add';
+        },
+        isLectureItemValid() {
+            try {
+                return this.editableLectureItem.title.length;
+            } catch (e) {
+                return false;
+            }
+        },
+        headerText() {
+            return 'Add Lecture';
+        },
+    },
+    methods: {
+        cancelAction() {
+            this.$emit('cancelAction');
+        },
+        closeModal() {
+            this.$emit('closeModal');
+        },
+        confirmAction(showError = true) {
+            if (!this.isLectureItemValid) {
+                if (showError) {
+                    this.$errorToast('Lecture data is invalid.');
                 }
-            },
-            headerText() {
-                return this.isCreate ?
-                    'Add Lecture' :
-                    'Update Lecture';
+                return;
             }
+
+            this.$emit('confirmAction', this.editableLectureItem);
+            this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
         },
-        methods: {
-            cancelAction() {
-                this.$emit('cancelAction');
-            },
-            closeModal() {
-                this.$emit('closeModal');
-            },
-            confirmAction(showError = true) {
-                if (!this.isLectureItemValid) {
-                    if (showError) {
-                        this.$errorToast('Lecture data is invalid.');
+        onLectureItemChange() {
+            this.editableLectureItem = _.cloneDeep(this.lectureItem);
+            try {
+                _.forEach(this.defaultLectureItem, (value, key) => {
+                    if (!this.editableLectureItem.hasOwnProperty(key)) {
+                        this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
                     }
-                    return;
-                }
-
-                this.$emit('confirmAction', this.editableLectureItem);
+                });
+            } catch (e) {
                 this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
-            },
-            onLectureItemChange() {
-                console.log('first');
-                console.log(this.lectureItem);
-                this.editableLectureItem = _.cloneDeep(this.lectureItem);
-                try {
-                    _.forEach(this.defaultLectureItem, (value, key) => {
-                        if (!this.editableLectureItem.hasOwnProperty(key)) {
-                            console.log('yoyo');
-                            this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
-                        }
-                    });
-                } catch (e) {
-                    console.log('lol');
-                    this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
-                }
-            },
-            onShowModal() {
-                console.log('onshowModal');
-                console.log(this.editableLectureItem);
-                try {
-                    let body = document.getElementsByTagName('body')[0];
-
-                    if (this.showModal) {
-                        body.classList.add('overflow-y-hidden');
-                    } else {
-                        body.classList.remove('overflow-y-hidden');
-
-                        if (this.resetOnClose) {
-                            this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
-                        }
-                    }
-                } catch (e) {
-                    console.error(e);
-                }
             }
         },
-        watch: {
-            lectureItem: {
-                handler: 'onLectureItemChange',
-                deep: true,
-            },
-            showModal: {
-                handler: 'onShowModal'
+        onShowModal() {
+            try {
+                let body = document.getElementsByTagName('body')[0];
+
+                if (this.showModal) {
+                    body.classList.add('overflow-y-hidden');
+                } else {
+                    body.classList.remove('overflow-y-hidden');
+
+                    if (this.resetOnClose) {
+                        this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
+                    }
+                }
+            } catch (e) {
+                console.error(e);
             }
         }
+    },
+    watch: {
+        lectureItem: {
+            handler: 'onLectureItemChange',
+            deep: true,
+        },
+        showModal: {
+            handler: 'onShowModal'
+        }
     }
+}
 </script>
-

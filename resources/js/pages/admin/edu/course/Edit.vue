@@ -109,18 +109,13 @@
                 v-model="formData.summary"
             />
 
-            <input-group
-                class="mt-4"
-                :error-message="getPageErrorMessage('description')"
-                input-autocomplete="course_description"
-                input-id="description"
-                input-name="description"
-                :input-required="false"
-                input-type="text"
-                label-text="Description"
-                @errorHidden="clearPageErrorMessage('description')"
-                v-model="formData.description"
-            />
+            <div class="mt-4">
+                <label>Description</label>
+                <wysiwyg-field
+                    :input-autofocus="true"
+                    v-model="formData.description"
+                />
+            </div>
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
@@ -366,10 +361,12 @@
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
     import _ from "lodash";
+    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
 
     export default {
         name: "AdminEduCourseEdit",
         components: {
+            WysiwygField,
             TextAreaGroup,
             SectionItemsEditor,
             InputGroup,
@@ -463,9 +460,12 @@
                 );
             },
             submit() {
-              this.$inertia.put(
+                this.$inertia.put(
                     this.$route('admin.edu.courses.update', this.course.id),
                     this.formData
+                );
+                this.$inertia.get(
+                    this.$route('admin.edu.courses.edit', this.course.id)
                 );
             }
         }

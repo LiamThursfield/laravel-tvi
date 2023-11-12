@@ -12,9 +12,12 @@ class LectureUpdateRequest extends BaseIndexRequest
             'title' => 'required|string',
             'description' => 'nullable|string',
             'lecture_count' => 'nullable|string',
+            'can_be_previewed' => 'nullable|bool',
+            'preview_url' => 'nullable|string',
+            'video_url' => 'nullable|string',
             'content_length' => 'nullable|string',
             'index' => 'nullable|string',
-            'course_id' => 'required|exists:edu_courses',
+            'section_id' => 'required|exists:edu_sections,id',
         ]);
     }
 }
