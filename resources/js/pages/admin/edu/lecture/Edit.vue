@@ -188,10 +188,10 @@
                         v-for="file in formData.files"
                         :key="`file-` + file.id"
                         class="
-                                    flex flex-row items-start justify-between py-2 space-x-4
-                                    ease-in-out duration-300 transition-all
-                                    hover:bg-gray-100
-                                "
+                            flex flex-row items-start justify-between py-2 space-x-4
+                            ease-in-out duration-300 transition-all
+                            hover:bg-gray-100
+                        "
                     >
                         <div class="flex flex-row items-start">
                             {{ file.file_name}}
@@ -202,11 +202,11 @@
                             <a
                                 v-if="file.url"
                                 class="
-                                            flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
-                                            ease-in-out duration-300 transition-colors
-                                            focus:text-theme-primary focus:outline-none
-                                            hover:text-theme-primary
-                                        "
+                                    flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
+                                    ease-in-out duration-300 transition-colors
+                                    focus:text-theme-primary focus:outline-none
+                                    hover:text-theme-primary
+                                "
                                 :href="file.url"
                                 rel="noreferrer noopener nofollow"
                                 target="_blank"

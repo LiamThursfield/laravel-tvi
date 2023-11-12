@@ -41,6 +41,10 @@ class HomeController extends AdminController
         $user->load(['courses', 'courses.creator']);
         $courses = $user->courses;
 
+        // For each course get the total sections
+
+        // calculate percentage of completion out of all sections
+
         CourseResource::withoutWrapping();
         $data = CourseResource::collection($courses);
 

@@ -100,6 +100,7 @@
                             </button>
 
                             <button
+                                v-if="lecture.files && lecture.files.length"
                                 class="
                                     button button-default-responsive button-primary-subtle
                                     flex flex-row items-center
@@ -114,6 +115,40 @@
                                     Download PDFs
                                 </span>
                             </button>
+                        </div>
+                        <div class="mb-4 px-2 space-y-2 mt-4" v-if="lecture.id === lectureToViewId && lecture.files && showPDFPanel">
+                            <h2 class="font-semibold">Files</h2>
+                            <ul class="list-group">
+                                <li
+                                    v-for="file in lecture.files"
+                                    :key="`file-` + file.id"
+                                    class="
+                                        flex flex-row items-start justify-between py-2 space-x-4
+                                        ease-in-out duration-300 transition-all
+                                        hover:bg-gray-100
+                                    "
+                                >
+                                    <div class="flex flex-row items-start">
+                                        <!-- Open file in new tab -->
+                                        <a
+                                            v-if="file.url"
+                                            class="
+                                                flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
+                                                ease-in-out duration-300 transition-colors
+                                                focus:text-theme-primary focus:outline-none
+                                                hover:text-theme-primary
+                                            "
+                                            :href="file.url"
+                                            rel="noreferrer noopener nofollow"
+                                            target="_blank"
+                                            @click.stop=""
+                                        >
+                                            <icon-external-link class="w-5 mr-2" />
+                                            {{ file.file_name }}
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                         <p
                             v-if="lecture.description"
@@ -180,6 +215,8 @@ export default {
             isLoadingMarkComplete: false,
             showConfirmMarkCompleteModal: null,
             itemToMarkComplete: null,
+            showPDFPanel: false,
+            lectureToViewId: null,
         }
     },
     computed: {
@@ -244,7 +281,8 @@ export default {
             this.itemToMarkComplete = null;
         },
         downloadPDFs(lecture) {
-
+            this.lectureToViewId = lecture.id;
+            this.showPDFPanel = true;
         }
     }
 }
