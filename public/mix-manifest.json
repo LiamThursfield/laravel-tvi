@@ -1,6 +1,8 @@
 {
-    "/js/app.js": "/js/app.js?id=1b78082d1c5cbe3cb8bbde8d3696b06e",
-    "/css/app.css": "/css/app.css?id=35f539f79e3b6b9163705c13e2fc863d",
-    "/vendor/tinymce/skins/sigi/skin.min.css": "/vendor/tinymce/skins/sigi/skin.min.css?id=60a11fce9c5bc75d91258cb21baeb055",
-    "/vendor/tinymce/skins/sigi/content.min.css": "/vendor/tinymce/skins/sigi/content.min.css?id=b724f2327bc1de0b0020d5e3f27282a8"
+    "/js/app.js": "/js/app.js?id=b96eed840eab43a09122dbc0458dbba5",
+    "/js/landlord/app.js": "/js/landlord/app.js?id=b940247f480b46266efb3079ed9ad562",
+    "/css/landlord/app.css": "/css/landlord/app.css?id=260c5957ed9bc04a40d3338de21ba52e",
+    "/css/app.css": "/css/app.css?id=2ac40501b2bbf4a42dad8797d955b99c",
+    "/vendor/tinymce/skins/sigi/skin.min.css": "/vendor/tinymce/skins/sigi/skin.min.css?id=44cad401b79c32a4eea69f6543b2cc17",
+    "/vendor/tinymce/skins/sigi/content.min.css": "/vendor/tinymce/skins/sigi/content.min.css?id=0a84ef5a12bcd58488e4179b803076a6"
 }

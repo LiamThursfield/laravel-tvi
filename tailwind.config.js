@@ -24,6 +24,7 @@ module.exports = {
     theme: {
         fontFamily: {
             'sans': ['Poppins', ...defaultTheme.fontFamily.sans],
+            'sans-landlord': ['Inter', ...defaultTheme.fontFamily.sans],
         },
         extend: {
             animation: {
