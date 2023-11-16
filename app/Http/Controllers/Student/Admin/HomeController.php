@@ -43,7 +43,9 @@ class HomeController extends AdminController
         $user = Auth::user();
         $user->load(['courses', 'courses.creator']);
         $courses = $user->courses;
-        $announcements = Announcement::where('status', AnnouncementInterface::STATUS_PUBLISHED)->get();
+        $announcements = Announcement::where('status', AnnouncementInterface::STATUS_PUBLISHED)
+            ->where('platform', true)
+            ->get();
 
         // TODO:: Logic to calculate completion percentage
         // For each course get the total sections

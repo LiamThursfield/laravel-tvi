@@ -465,9 +465,6 @@
                     this.$route('admin.edu.courses.update', this.course.id),
                     this.formData
                 );
-                this.$inertia.get(
-                    this.$route('admin.edu.courses.edit', this.course.id)
-                );
             }
         }
     }

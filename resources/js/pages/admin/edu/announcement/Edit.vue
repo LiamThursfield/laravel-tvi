@@ -62,18 +62,13 @@
                 v-model="formData.title"
             />
 
-            <input-group
-                class="mt-4"
-                :error-message="getPageErrorMessage('description')"
-                input-autocomplete="course_description"
-                input-id="description"
-                input-name="description"
-                :input-required="false"
-                input-type="text"
-                label-text="Description"
-                @errorHidden="clearPageErrorMessage('description')"
-                v-model="formData.description"
-            />
+            <div class="mt-4">
+                <label>Description</label>
+                <wysiwyg-field
+                    :input-autofocus="true"
+                    v-model="formData.description"
+                />
+            </div>
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
@@ -117,10 +112,12 @@
     import InputGroup from "../../../../components/core/forms/InputGroup";
     import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
     import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
+    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
 
     export default {
         name: "AdminEduAnnouncementEdit",
         components: {
+            WysiwygField,
             TextAreaGroup,
             InputGroup,
             CheckboxGroup,
