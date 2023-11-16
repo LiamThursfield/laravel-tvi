@@ -40,6 +40,7 @@ class Section extends Model
     public function childItems(): HasMany
     {
         return $this->hasMany(Lecture::class)
+            ->with('files')
             ->orderBy('index');
     }
 }

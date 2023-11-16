@@ -33,7 +33,7 @@
                     </small>
 
                     <button
-                        v-if="sectionItem.hasOwnProperty('lecture_count')"
+                        v-if="sectionItem.hasOwnProperty('lecture_count') && !sectionItem.hasOwnProperty('section_id')"
                         class="
                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                             focus:outline-none focus:ring
@@ -49,6 +49,7 @@
                     </button>
 
                     <button
+                        v-if="!sectionItem.hasOwnProperty('section_id')"
                         class="
                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                             focus:outline-none focus:ring
@@ -61,6 +62,37 @@
                         <icon-edit
                             class="w-4"
                         />
+                    </button>
+
+                    <a
+                        v-if="sectionItem.hasOwnProperty('section_id') && sectionItem.id"
+                        class="
+                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                            focus:outline-none focus:ring
+                            hover:bg-theme-info hover:text-theme-info-contrast
+                        "
+                        :href="$route('admin.edu.lectures.edit', sectionItem.id)"
+                        target="_blank"
+                    >
+                        <icon-edit
+                            class="w-4"
+                        />
+                    </a>
+
+                    <button
+                        v-if="sectionItem.hasOwnProperty('section_id') && !sectionItem.id"
+                        class="
+                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
+                            focus:outline-none focus:ring
+                            hover:bg-theme-info hover:text-theme-info-contrast
+                        "
+                        title="Save Course before you can edit"
+                        type="button"
+                        disabled
+                    >
+                        <icon-edit
+                            class="w-4"
+                        /> DRAFT
                     </button>
 
                     <button
@@ -111,7 +143,6 @@
         />
 
         <lecture-item-modal
-            :is-create="!isEditingSectionItem"
             :lecture-item="sectionItemToEdit"
             :show-modal="showLectureModal"
             @cancelAction="cancelLectureEdit"
@@ -122,174 +153,174 @@
 </template>
 
 <script>
-    import _ from 'lodash';
-    import draggable from 'vuedraggable';
-    import ConfirmationModal from "../../../core/modals/ConfirmationModal";
-    import SectionItemModal from "./SectionItemModal";
-    import LectureItemModal from "./LectureItemModal";
+import _ from 'lodash';
+import draggable from 'vuedraggable';
+import ConfirmationModal from "../../../core/modals/ConfirmationModal";
+import SectionItemModal from "./SectionItemModal";
+import LectureItemModal from "./LectureItemModal";
 
-    export default {
-        name: 'SectionItemDraggable',
-        components: {
-            ConfirmationModal,
-            draggable,
-            SectionItemModal,
-            LectureItemModal
-        },
-        props: {
-            sectionItems: {
-                required: true,
-                type: Array,
+export default {
+    name: 'SectionItemDraggable',
+    components: {
+        ConfirmationModal,
+        draggable,
+        SectionItemModal,
+        LectureItemModal
+    },
+    props: {
+        sectionItems: {
+            required: true,
+            type: Array,
+        }
+    },
+    data() {
+        return {
+            isDragging: false,
+            isEditingSectionItem: false,
+            sectionItemIndexToDelete: null,
+            sectionItemIndexToEdit: null,
+            showDeleteModal: false,
+            showEditModal: false,
+            showLectureModal: false,
+        }
+    },
+    computed: {
+        deleteModalText() {
+            try {
+                return 'Do you really want to delete \'' + this.sectionItemToDelete.title + '\'? This action cannot be reversed!'
+            } catch (e) {
+                return 'Do you really want to delete this section item? This action cannot be reversed!';
             }
         },
-        data() {
-            return {
-                isDragging: false,
-                isEditingSectionItem: false,
-                sectionItemIndexToDelete: null,
-                sectionItemIndexToEdit: null,
-                showDeleteModal: false,
-                showEditModal: false,
-                showLectureModal: false,
+        sectionItemToDelete() {
+            try {
+                return this.sectionItems[this.sectionItemIndexToDelete];
+            } catch (e) {
+                return false;
             }
         },
-        computed: {
-            deleteModalText() {
-                try {
-                    return 'Do you really want to delete \'' + this.sectionItemToDelete.title + '\'? This action cannot be reversed!'
-                } catch (e) {
-                    return 'Do you really want to delete this section item? This action cannot be reversed!';
+        sectionItemToEdit() {
+            try {
+                if (!this.isEditingSectionItem) {
+                    return {};
                 }
-            },
-            sectionItemToDelete() {
-                try {
-                    return this.sectionItems[this.sectionItemIndexToDelete];
-                } catch (e) {
-                    return false;
-                }
-            },
-            sectionItemToEdit() {
-                try {
-                    if (!this.isEditingSectionItem) {
-                        return {};
-                    }
-                    return this.sectionItems[this.sectionItemIndexToEdit];
-                } catch (e) {
-                    return {}
-                }
-            },
+                return this.sectionItems[this.sectionItemIndexToEdit];
+            } catch (e) {
+                return {}
+            }
         },
-        methods: {
-            addItem(index) {
-                this.isEditingSectionItem = false;
-                this.showEditModal = false;
-                this.showLectureModal = true;
-                this.sectionItemIndexToEdit = index;
-            },
-            cancelDelete() {
+    },
+    methods: {
+        addItem(index) {
+            this.isEditingSectionItem = false;
+            this.showEditModal = false;
+            this.showLectureModal = true;
+            this.sectionItemIndexToEdit = index;
+        },
+        cancelDelete() {
+            this.showDeleteModal = false;
+            this.sectionItemIndexToDelete = null;
+        },
+        cancelEdit() {
+            this.showEditModal = false;
+            this.sectionItemIndexToEdit = false;
+        },
+        cancelLectureEdit() {
+            this.showLectureModal = false;
+            this.sectionItemIndexToEdit = false;
+        },
+        checkDelete(index) {
+            this.sectionItemIndexToDelete = index;
+            this.showDeleteModal = true;
+        },
+        confirmEdit(sectionItem) {
+            if (this.isEditingSectionItem) {
+                // This is an existing item, update it
+                this.$set(this.sectionItems, this.sectionItemIndexToEdit, _.cloneDeep(sectionItem));
+            } else {
+                // This is a new item, add it as a child
+                this.sectionItems[this.sectionItemIndexToEdit].child_items.push(_.cloneDeep(sectionItem));
+            }
+
+            this.showEditModal = false;
+            this.isEditingSectionItem = false;
+            this.sectionItemIndexToEdit = false;
+        },
+        confirmEditLecture(sectionItem) {
+            if (this.isEditingSectionItem) {
+                // This is an existing item, update it
+                this.$set(this.sectionItems, this.sectionItemIndexToEdit, _.cloneDeep(sectionItem));
+            } else {
+                // This is a new item, add it as a child
+                this.sectionItems[this.sectionItemIndexToEdit].child_items.push(_.cloneDeep(sectionItem));
+            }
+
+            this.showLectureModal = false;
+            this.isEditingSectionItem = false;
+            this.sectionItemIndexToEdit = false;
+        },
+        confirmDelete() {
+            try {
+                let item = this.sectionItems[this.sectionItemIndexToDelete];
+                this.$delete(this.sectionItems, this.sectionItemIndexToDelete)
+
+                if (item.hasOwnProperty('course_id') && item.id) {
+                    this.$inertia.delete(
+                        this.$route('admin.edu.sections.destroy', item.id)
+                    );
+                }
+
+                if (item.hasOwnProperty('section_id') && item.id) {
+                    this.$inertia.delete(
+                        this.$route('admin.edu.lectures.destroy', item.id)
+                    );
+                }
+            } catch (e) {
+                this.$errorToast('Failed to delete section item.');
+                console.log(e);
+            } finally {
                 this.showDeleteModal = false;
                 this.sectionItemIndexToDelete = null;
-            },
-            cancelEdit() {
-                this.showEditModal = false;
-                this.sectionItemIndexToEdit = false;
-            },
-            cancelLectureEdit() {
-                this.showLectureModal = false;
-                this.sectionItemIndexToEdit = false;
-            },
-            checkDelete(index) {
-                this.sectionItemIndexToDelete = index;
-                this.showDeleteModal = true;
-            },
-            confirmEdit(sectionItem) {
-                if (this.isEditingSectionItem) {
-                    // This is an existing item, update it
-                    this.$set(this.sectionItems, this.sectionItemIndexToEdit, _.cloneDeep(sectionItem));
-                } else {
-                    // This is a new item, add it as a child
-                    this.sectionItems[this.sectionItemIndexToEdit].child_items.push(_.cloneDeep(sectionItem));
-                }
-
-                this.showEditModal = false;
-                this.isEditingSectionItem = false;
-                this.sectionItemIndexToEdit = false;
-            },
-            confirmEditLecture(sectionItem) {
-                if (this.isEditingSectionItem) {
-                    // This is an existing item, update it
-                    this.$set(this.sectionItems, this.sectionItemIndexToEdit, _.cloneDeep(sectionItem));
-                } else {
-                    // This is a new item, add it as a child
-                    this.sectionItems[this.sectionItemIndexToEdit].child_items.push(_.cloneDeep(sectionItem));
-                }
-
-                this.showLectureModal = false;
-                this.isEditingSectionItem = false;
-                this.sectionItemIndexToEdit = false;
-            },
-            confirmDelete() {
-                try {
-                    let item = this.sectionItems[this.sectionItemIndexToDelete];
-                    this.$delete(this.sectionItems, this.sectionItemIndexToDelete)
-
-                    if (item.hasOwnProperty('course_id') && item.id) {
-                        this.$inertia.delete(
-                            this.$route('admin.edu.sections.destroy', item.id)
-                        );
-                    }
-
-                    if (item.hasOwnProperty('section_id') && item.id) {
-                        this.$inertia.delete(
-                            this.$route('admin.edu.lectures.destroy', item.id)
-                        );
-                    }
-                } catch (e) {
-                    this.$errorToast('Failed to delete section item.');
-                    console.log(e);
-                } finally {
-                    this.showDeleteModal = false;
-                    this.sectionItemIndexToDelete = null;
-                }
-            },
-            editItem(index, sectionItem) {
-                this.sectionItemIndexToEdit = index;
-                this.isEditingSectionItem = true;
-
-                if (sectionItem.hasOwnProperty('section_id')) {
-                    this.showLectureModal = true;
-                } else {
-                    this.showEditModal = true;
-                }
-            },
-            onDraggableEnd() {
-                this.isDragging = false;
-            },
-            onDraggableSort() {
-                // Clear page errors as indexes have changed
-                this.$page.props.errors = {};
-            },
-            onDraggableStart() {
-                this.isDragging = true;
-            },
+            }
         },
-    }
+        editItem(index, sectionItem) {
+            this.sectionItemIndexToEdit = index;
+            this.isEditingSectionItem = true;
+
+            if (sectionItem.hasOwnProperty('section_id')) {
+                this.showLectureModal = true;
+            } else {
+                this.showEditModal = true;
+            }
+        },
+        onDraggableEnd() {
+            this.isDragging = false;
+        },
+        onDraggableSort() {
+            // Clear page errors as indexes have changed
+            this.$page.props.errors = {};
+        },
+        onDraggableStart() {
+            this.isDragging = true;
+        },
+    },
+}
 </script>
 
 <style scoped>
-    .ghost {
-        opacity: 0.35;
-    }
+.ghost {
+    opacity: 0.35;
+}
 
-    .flip-field-move {
-        transition: transform 0.5s;
-    }
+.flip-field-move {
+    transition: transform 0.5s;
+}
 
-    .no-move {
-        transition: transform 0s;
-    }
+.no-move {
+    transition: transform 0s;
+}
 
-    .inner-draggable {
-        min-height: 18px;
-    }
+.inner-draggable {
+    min-height: 18px;
+}
 </style>

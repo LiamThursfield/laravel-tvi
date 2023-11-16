@@ -76,17 +76,13 @@
                 v-model="formData.summary"
             />
 
-            <text-area-group
-                class="mt-4"
-                :error-message="getPageErrorMessage('description')"
-                input-id="description"
-                input-name="description"
-                input-rows="2"
-                input-type="text"
-                label-text="Describe the course"
-                @errorHidden="clearPageErrorMessage('description')"
-                v-model="formData.description"
-            />
+            <div class="mt-4">
+                <label>Description</label>
+                <wysiwyg-field
+                    :input-autofocus="true"
+                    v-model="formData.description"
+                />
+            </div>
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
@@ -331,6 +327,7 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
+    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
 
     export default {
         name: "AdminEDUCourseCreate",
@@ -341,6 +338,7 @@
             CheckboxGroup,
             SelectGroup,
             DateTimePickerGroup,
+            WysiwygField,
         },
         layout: 'admin-layout',
         props: {
@@ -375,6 +373,7 @@
                     has_pdfs: '',
                     has_free_seo_exposure: '',
                     sections: [],
+                    templateField: { type: 'wysiwyg'}
                 }
             }
         },
