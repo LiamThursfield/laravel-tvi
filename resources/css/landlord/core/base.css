@@ -1,0 +1,28 @@
+/**
+ * Core - Base Styles
+ */
+
+ .html-base {
+    @apply bg-theme-base font-sans-landlord text-theme-base-contrast;
+}
+
+::selection {
+    /* WebKit/Blink Browsers */
+    background: var(--selection-color);
+    color: var(--selection-color-contrast);
+}
+::-moz-selection {
+    /* Gecko Browsers */
+    background: var(--selection-color);
+    color: var(--selection-color-contrast);
+}
+
+:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.mobile-nav-scroll-lock {
+    @apply overflow-hidden;
+    @apply md:overflow-auto;
+}

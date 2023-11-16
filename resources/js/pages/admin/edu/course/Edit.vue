@@ -419,6 +419,7 @@
                 has_pdfs: this.course.has_pdfs,
                 has_free_seo_exposure: this.course.has_free_seo_exposure,
                 sections: this.course.sections,
+                templateField: { type: 'wysiwyg'}
             };
         },
         methods: {

@@ -1,0 +1,137 @@
+/**
+ * Core - Theme
+ * Define colors, shadows etc.
+ */
+
+:root {
+    /**
+     * Colors (Tailwind config)
+     */
+    --color-base: theme('colors.white');
+    --color-base-contrast: theme('colors.black');
+    --color-base-subtle: theme('colors.gray.200');
+    --color-base-subtle-contrast: theme('colors.gray.500');
+    --color-card: theme('colors.white');
+    --color-card-contrast: theme('colors.black');
+    --color-danger: theme('colors.red.100');
+    --color-danger-contrast: theme('colors.red.500');
+    --color-danger-hover: theme('colors.red.200');
+    --color-danger-hover-contrast: theme('colors.red.600');
+    --color-info: theme('colors.yellow.100');
+    --color-info-contrast: theme('colors.yellow.500');
+    --color-info-hover: theme('colors.yellow.200');
+    --color-info-hover-contrast: theme('colors.yellow.600');
+    --color-primary: theme('colors.black');
+    --color-primary-contrast: theme('colors.white');
+    --color-primary-hover: theme('colors.gray.800');
+    --color-primary-hover-contrast: theme('colors.white');
+    --color-primary-subtle: theme('colors.gray.100');
+    --color-primary-subtle-contrast: theme('colors.gray.600');
+    --color-primary-subtle-hover: theme('colors.gray.200');
+    --color-primary-subtle-hover-contrast: theme('colors.gray.600');
+    --color-success: theme('colors.green.100');
+    --color-success-contrast: theme('colors.green.500');
+    --color-success-hover: theme('colors.green.200');
+    --color-success-hover-contrast: theme('colors.green.600');
+    --color-warning: theme('colors.orange.100');
+    --color-warning-contrast: theme('colors.orange.500');
+    --color-warning-hover: theme('colors.orange.200');
+    --color-warning-hover-contrast: theme('colors.orange.600');
+
+    /**
+     * Dropdown
+     */
+    --dropdown-color-base: theme('colors.white');
+    --dropdown-color-base-contrast: theme('colors.theme.base-contrast');
+    --dropdown-color-hover: theme('colors.theme.primary-subtle');
+    --dropdown-color-hover-contrast: theme('colors.theme.primary-subtle-contrast');
+    --dropdown-color-separator: theme('colors.gray.200');
+    --dropdown-color-subheading: theme('colors.white');
+    --dropdown-color-subheading-contrast: theme('colors.navy.300');
+
+    /**
+     * Menu - Side
+     */
+    --side-menu-color-active: theme('colors.blue.100');
+    --side-menu-color-active-contrast: theme('colors.theme.primary');
+    --side-menu-color-base: theme('colors.white');
+    --side-menu-color-base-contrast: theme('colors.navy.400');
+    --side-menu-color-hover: theme('colors.blue.100');
+    --side-menu-color-hover-contrast: theme('colors.theme.primary');
+    --side-menu-color-logo: theme('colors.navy.900');
+    --side-menu-color-logo-active: theme('colors.theme.primary');
+    --side-menu-color-separator: theme('colors.theme.base');
+    --side-menu-color-sub-menu-active: theme('colors.white');
+    --side-menu-color-sub-menu-active-contrast: theme('colors.theme.primary');
+    --side-menu-color-sub-menu-base: theme('colors.white');
+    --side-menu-color-sub-menu-base-contrast: theme('colors.navy.400');
+    --side-menu-color-sub-menu-hover: theme('colors.white');
+    --side-menu-color-sub-menu-hover-contrast: theme('colors.theme.primary');
+    --side-menu-color-subheading: theme('colors.navy.300');
+    --side-menu-color-toggle: theme('colors.theme.base-contrast');
+    --side-menu-color-toggle-active: theme('colors.theme.primary');
+
+    /**
+     * Menu - Header
+     */
+    --top-menu-color-base: theme('colors.white');
+    --top-menu-color-base-contrast: theme('colors.theme.base-contrast');
+    --top-menu-color-hover: theme('colors.white');
+    --top-menu-color-hover-contrast: theme('colors.theme.primary');
+
+
+    /**
+     * NProgress
+     */
+    --nprogress-color: theme('colors.black');
+
+    /**
+     * DatePicker
+     */
+    --datepicker-color-primary: theme('colors.theme.primary');
+
+    /**
+     * Pagination
+     */
+    --pagination-color-active: theme('colors.theme.primary');
+    --pagination-color-active-border: theme('colors.theme.primary');
+    --pagination-color-active-contrast: theme('colors.theme.primary-contrast');
+    --pagination-color-base: theme('colors.white');
+    --pagination-color-base-border: theme('colors.white');
+    --pagination-color-base-contrast: theme('colors.theme.base-subtle-contrast');
+    --pagination-color-hover: theme('colors.theme.primary-subtle');
+    --pagination-color-hover-border: theme('colors.theme.primary-subtle');
+    --pagination-color-hover-contrast: theme('colors.theme.primary-subtle-contrast');
+
+    /**
+     * Table
+     */
+    --table-color-alt-body: theme('colors.gray.100');
+    --table-color-alt-body-contrast: theme('colors.theme.base-contrast');
+    --table-color-body: none;
+    --table-color-body-border: theme('colors.gray.200');
+    --table-color-body-contrast: theme('colors.theme.base-contrast');
+    --table-color-body-hover: theme('colors.gray.200');
+    --table-color-body-hover-contrast: theme('colors.theme.base-contrast');
+    --table-color-header: theme('colors.gray.100');
+    --table-color-header-border: theme('colors.gray.200');
+    --table-color-header-contrast: theme('colors.gray.600');
+    --table-padding-body-x: theme('spacing.6');
+    --table-padding-body-x-slim: theme('spacing.3');
+    --table-padding-body-y: theme('spacing.1');
+    --table-padding-header-x: theme('spacing.6');
+    --table-padding-header-x-slim: theme('spacing.3');
+    --table-padding-header-y: 0.375rem; /** theme('spacing.1.5'); **/
+
+    /**
+     * Selection
+     */
+    --selection-color: theme('colors.black');
+    --selection-color-contrast: theme('colors.white');
+
+    /**
+     * Shadows
+     */
+    --ring-color-primary: rgba(255, 130, 246, var(--tw-ring-opacity));
+
+}

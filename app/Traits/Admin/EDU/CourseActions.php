@@ -100,7 +100,7 @@ trait CourseActions
         return $updateSection;
     }
 
-    public function updateLecture($lecture, $index, $sectionId): Lecture
+    public function updateLecture($lecture, $index, $sectionId)
     {
         if (!Arr::get($lecture, 'id')) {
             unset($lecture['child_items']);

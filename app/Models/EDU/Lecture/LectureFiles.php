@@ -15,7 +15,7 @@ class LectureFiles extends Model
     protected $guarded = [];
 
     protected $casts = [];
-
+    
     public function lecture(): BelongsTo
     {
         return $this->belongsTo(Lecture::class);
