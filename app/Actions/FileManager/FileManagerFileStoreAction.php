@@ -27,7 +27,6 @@ class FileManagerFileStoreAction
     /**
      * @param string $directory
      * @param UploadedFile $file
-     * @param $request
      * @return false|string
      */
     public function handle(string $directory, UploadedFile $file, $request)
@@ -45,7 +44,7 @@ class FileManagerFileStoreAction
             $lectureFiles->save();
         }
 
-        return $file->storeAs($directory, $filename, $this->storage_disk);
+        return $file->storeAs($directory, $filename, $this->storage_disk);;
     }
 
     /**

@@ -36,7 +36,6 @@ class FileManagerFileController extends AbstractFileManagerController
         return response()->json(compact('files'));
     }
 
-    // TODO:: Show file from s3 for lecture?
     public function show(Request $request, $lecture_id): JsonResponse
     {
         $files = LectureFiles::where('lecture_id', $lecture_id)->get();
@@ -61,6 +60,7 @@ class FileManagerFileController extends AbstractFileManagerController
         $file = $request->file('file');
 
         $action = new FileManagerFileStoreAction($this->storage_disk);
+
         return $action->handle($directory, $file, $request);
     }
 

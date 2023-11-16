@@ -332,6 +332,7 @@
     export default {
         name: "AdminEDUCourseCreate",
         components: {
+            WysiwygField,
             TextAreaGroup,
             SectionItemsEditor,
             InputGroup,

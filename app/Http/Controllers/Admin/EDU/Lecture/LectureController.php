@@ -64,6 +64,8 @@ class LectureController extends AdminController
     public function edit(Lecture $lecture) : Response
     {
         $this->addMetaTitleSection('Edit - ' . $lecture->title)->shareMeta();
+        $lecture->load('files');
+        $lecture->load('section', 'section.course');
 
         $lecture->load('files');
         $lecture->load('section', 'section.course');

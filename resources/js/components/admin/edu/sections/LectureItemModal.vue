@@ -99,24 +99,52 @@
 </template>
 
 <script>
-import _ from 'lodash';
-import { mixin as clickaway } from 'vue-clickaway';
-import InputGroup from "../../../core/forms/InputGroup";
-import WysiwygField from "../../cms/content/content_fields/WysiwygField";
+    import _ from 'lodash';
+    import { mixin as clickaway } from 'vue-clickaway';
+    import InputGroup from "../../../core/forms/InputGroup";
+    import WysiwygField from "../../cms/content/content_fields/WysiwygField";
 
-export default {
-    name: "LectureItemModal",
-    mixins: [
-        clickaway
-    ],
-    components: {
-        WysiwygField,
-        InputGroup,
-    },
-    props: {
-        lectureItem: {
-            default: () => {
-                return {
+    export default {
+        name: "LectureItemModal",
+        mixins: [
+            clickaway
+        ],
+        components: {
+            WysiwygField,
+            InputGroup,
+        },
+        props: {
+            lectureItem: {
+                default: () => {
+                    return {
+                        id: '',
+                        title: '',
+                        description: '',
+                        can_be_previewed: false,
+                        preview_url: '',
+                        video_url: '',
+                        content_length: '',
+                        item_type: 'lecture',
+                        child_items: [],
+                        templateField: { type: 'wysiwyg'},
+                        section_id: null,
+                    };
+                }
+            },
+            resetOnClose: {
+                default: false,
+                type: Boolean,
+            },
+            showModal: {
+                default: true,
+                type: Boolean
+            }
+        },
+        data() {
+            return {
+                currentDirectory: '/',
+                isLoadingFileUpload: false,
+                defaultLectureItem: {
                     id: '',
                     title: '',
                     description: '',
@@ -126,121 +154,94 @@ export default {
                     content_length: '',
                     item_type: 'lecture',
                     child_items: [],
-                    templateField: { type: 'wysiwyg'},
                     section_id: null,
-                };
+                },
+                editableLectureItem: {
+                    id: '',
+                    title: '',
+                    description: '',
+                    can_be_previewed: false,
+                    preview_url: '',
+                    video_url: '',
+                    content_length: '',
+                    item_type: 'lecture',
+                    child_items: [],
+                    section_id: null,
+                },
             }
         },
-        resetOnClose: {
-            default: false,
-            type: Boolean,
-        },
-        showModal: {
-            default: true,
-            type: Boolean
-        }
-    },
-    data() {
-        return {
-            currentDirectory: '/',
-            isLoadingFileUpload: false,
-            defaultLectureItem: {
-                id: '',
-                title: '',
-                description: '',
-                can_be_previewed: false,
-                preview_url: '',
-                video_url: '',
-                content_length: '',
-                item_type: 'lecture',
-                child_items: [],
-                section_id: null,
+        computed: {
+            confirmText() {
+                return 'Add';
             },
-            editableLectureItem: {
-                id: '',
-                title: '',
-                description: '',
-                can_be_previewed: false,
-                preview_url: '',
-                video_url: '',
-                content_length: '',
-                item_type: 'lecture',
-                child_items: [],
-                section_id: null,
-            },
-        }
-    },
-    computed: {
-        confirmText() {
-            return 'Add';
-        },
-        isLectureItemValid() {
-            try {
-                return this.editableLectureItem.title.length;
-            } catch (e) {
-                return false;
-            }
-        },
-        headerText() {
-            return 'Add Lecture';
-        },
-    },
-    methods: {
-        cancelAction() {
-            this.$emit('cancelAction');
-        },
-        closeModal() {
-            this.$emit('closeModal');
-        },
-        confirmAction(showError = true) {
-            if (!this.isLectureItemValid) {
-                if (showError) {
-                    this.$errorToast('Lecture data is invalid.');
+            isLectureItemValid() {
+                try {
+                    return this.editableLectureItem.title.length;
+                } catch (e) {
+                    return false;
                 }
-                return;
-            }
-
-            this.$emit('confirmAction', this.editableLectureItem);
-            this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
+            },
+            headerText() {
+                return 'Add Lecture';
+            },
         },
-        onLectureItemChange() {
-            this.editableLectureItem = _.cloneDeep(this.lectureItem);
-            try {
-                _.forEach(this.defaultLectureItem, (value, key) => {
-                    if (!this.editableLectureItem.hasOwnProperty(key)) {
-                        this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
+        methods: {
+            cancelAction() {
+                this.$emit('cancelAction');
+            },
+            closeModal() {
+                this.$emit('closeModal');
+            },
+            confirmAction(showError = true) {
+                if (!this.isLectureItemValid) {
+                    if (showError) {
+                        this.$errorToast('Lecture data is invalid.');
                     }
-                });
-            } catch (e) {
+                    return;
+                }
+
+                this.$emit('confirmAction', this.editableLectureItem);
                 this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
-            }
-        },
-        onShowModal() {
-            try {
-                let body = document.getElementsByTagName('body')[0];
-
-                if (this.showModal) {
-                    body.classList.add('overflow-y-hidden');
-                } else {
-                    body.classList.remove('overflow-y-hidden');
-
-                    if (this.resetOnClose) {
-                        this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
-                    }
+            },
+            onLectureItemChange() {
+                this.editableLectureItem = _.cloneDeep(this.lectureItem);
+                try {
+                    _.forEach(this.defaultLectureItem, (value, key) => {
+                        if (!this.editableLectureItem.hasOwnProperty(key)) {
+                            this.$set(this.editableLectureItem, key, this.defaultLectureItem[key]);
+                        }
+                    });
+                } catch (e) {
+                    this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
                 }
-            } catch (e) {
-                console.error(e);
+            },
+            onShowModal() {
+                try {
+                    let body = document.getElementsByTagName('body')[0];
+
+                    if (this.showModal) {
+                        body.classList.add('overflow-y-hidden');
+                    } else {
+                        body.classList.remove('overflow-y-hidden');
+
+                        if (this.resetOnClose) {
+                            this.editableLectureItem = _.cloneDeep(this.defaultLectureItem);
+                        }
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
             }
-        }
-    },
-    watch: {
-        lectureItem: {
-            handler: 'onLectureItemChange',
-            deep: true,
         },
-        showModal: {
-            handler: 'onShowModal'
+        watch: {
+            lectureItem: {
+                handler: 'onLectureItemChange',
+                deep: true,
+            },
+            showModal: {
+                handler: 'onShowModal'
+            }
         }
     }
-}
 </script>
+

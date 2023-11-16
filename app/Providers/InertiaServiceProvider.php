@@ -22,7 +22,6 @@ class InertiaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->setView();
         $this->versionAssets();
         $this->shareData();
         $this->registerLengthAwarePaginator();
@@ -113,15 +112,6 @@ class InertiaServiceProvider extends ServiceProvider
                 }
             };
         });
-    }
-
-
-    /**
-     * Set the root view
-     */
-    protected function setView()
-    {
-        Inertia::setRootView('app');
     }
 
 

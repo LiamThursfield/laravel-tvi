@@ -6,8 +6,19 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .version();
 
+mix.js('resources/js/landlord/app.js', 'public/js/landlord')
+    .vue()
+    .version();
+
 /** CSS **/
 mix.postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('postcss-nested'),
+    tailwindcss('./tailwind.config.js'),
+    require('autoprefixer')
+]).version();
+
+mix.postCss('resources/css/landlord/app.css', 'public/css/landlord', [
     require('postcss-import'),
     require('postcss-nested'),
     tailwindcss('./tailwind.config.js'),
