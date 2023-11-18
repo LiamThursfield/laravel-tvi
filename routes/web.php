@@ -35,7 +35,7 @@ Route::group([
             'as' => 'courses.',
             'prefix' => 'courses',
         ], function() {
-            Route::get('/{course}', [CourseController::class, 'show'])->name('show');
+            Route::get('/{course:slug}', [CourseController::class, 'show'])->name('show');
         });
     });
 });

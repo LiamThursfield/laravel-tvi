@@ -12,6 +12,7 @@ Vue.component('inertia-link', Link);
 Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
 Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);
 Vue.component('student-admin-layout', require('./layouts/student/StudentAdminLayout.vue').default);
+Vue.component('home-layout', require('./layouts/website/HomeLayout.vue').default);
 Vue.component('website-layout', require('./layouts/website/WebsiteLayout.vue').default);
 
 // Admin
