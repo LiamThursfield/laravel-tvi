@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\EDU;
 
+use App\Interfaces\EDU\Course\CourseInterface;
 use App\Models\EDU\Course\Course;
 use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Label\Label;
@@ -22,9 +23,19 @@ class CourseSeeder extends Seeder
      */
     public function run(array $options = [])
     {
-       Course::factory()->count(
-           Arr::get($options, 'course_count', 2)
-       )->create();
+        // Random course statuses
+        Course::factory()->count(
+            Arr::get($options, 'course_count', 10)
+        )->create();
+
+        // Live courses
+        Course::factory()->count(
+            Arr::get($options, 'live_course_count', 3)
+        )->create([
+            'status' => CourseInterface::STATUS_PUBLISHED,
+            'available_from' => now(),
+            'available_to' => now()->addDecade()
+        ]);
 
        $courses = Course::all();
        foreach ($courses as $key => $course) {

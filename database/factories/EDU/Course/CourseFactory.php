@@ -32,7 +32,7 @@ class CourseFactory extends Factory
             'summary' => $this->faker->text(),
             'description' => $this->faker->realText(),
             'creator_id' => 1,
-            'status' => CourseInterface::STATUS_DRAFT,
+            'status' => $this->faker->randomElement(array_keys(CourseInterface::STATUSES)),
             'available_from' => now(),
             'available_to' => null,
 
