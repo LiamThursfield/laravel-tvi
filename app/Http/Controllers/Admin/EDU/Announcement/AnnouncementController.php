@@ -113,7 +113,6 @@ class AnnouncementController extends AdminController
 
     public function publish(Announcement $announcement): RedirectResponse
     {
-
         app(AnnouncementPublishAction::class)->handle($announcement);
 
         return Redirect::back(303)->with(

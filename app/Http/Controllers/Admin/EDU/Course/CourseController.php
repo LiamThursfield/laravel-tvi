@@ -136,7 +136,6 @@ class CourseController extends AdminController
 
     public function publish(Course $course): RedirectResponse
     {
-
         app(CoursePublishAction::class)->handle($course);
 
         return Redirect::back(303)->with(

@@ -57,7 +57,7 @@ Route::group([
     'prefix' => 'edu'
 ], function () {
     Route::resource('announcements', AnnouncementController::class);
-    Route::patch('/announcements/publish/{course}', [AnnouncementController::class, 'publish'])
+    Route::patch('/announcements/publish/{announcement}', [AnnouncementController::class, 'publish'])
         ->name('announcements.publish');
 
     Route::resource('programmes', ProgrammeController::class);

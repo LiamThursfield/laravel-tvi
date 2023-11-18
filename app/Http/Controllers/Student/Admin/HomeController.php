@@ -6,8 +6,11 @@ use App\Actions\EDU\Course\Student\StudentCourseShowAction;
 use App\Actions\EDU\Lecture\Student\LectureCompleteAction;
 use App\Actions\EDU\Lecture\Student\LectureDownloadPdfsAction;
 use App\Http\Controllers\AdminController;
+use App\Http\Resources\Admin\EDU\Announcement\AnnouncementResource;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
+use App\Interfaces\EDU\Announcement\AnnouncementInterface;
 use App\Interfaces\PermissionInterface;
+use App\Models\EDU\Announcement\Announcement;
 use App\Models\EDU\Course\Course;
 use App\Models\EDU\Lecture\Lecture;
 use Illuminate\Http\RedirectResponse;
@@ -40,16 +43,20 @@ class HomeController extends AdminController
         $user = Auth::user();
         $user->load(['courses', 'courses.creator']);
         $courses = $user->courses;
+        $announcements = Announcement::where('status', AnnouncementInterface::STATUS_PUBLISHED)
+            ->where('platform', true)
+            ->get();
 
+        // TODO:: Logic to calculate completion percentage
         // For each course get the total sections
-
         // calculate percentage of completion out of all sections
 
         CourseResource::withoutWrapping();
-        $data = CourseResource::collection($courses);
+        AnnouncementResource::withoutWrapping();
 
         return Inertia::render('student/admin/home/Index', [
-            'courses' => $data
+            'courses' => CourseResource::collection($courses),
+            'announcements' => AnnouncementResource::collection($announcements),
         ]);
     }
 

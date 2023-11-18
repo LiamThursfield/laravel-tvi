@@ -27,11 +27,61 @@
                         <h1 class="text-3xl font-bold text-white md:text-4xl">{{ course.name }}</h1>
                         <p class="mt-4 text-gray-400">{{ course.summary }}</p>
                         <div class="text-white">
-                            <ul>
-                                <li>Feature 1</li>
-                                <li>Feature 2</li>
-                                <li>Feature 3</li>
-                                <li>Feature 3</li>
+                            <ul class="py-3">
+                                <li v-if="course.has_webinars" class="flex flex-row items-center">
+                                    <icon-camera-check
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Webinars
+                                </li>
+                                <li v-if="course.has_money_back_guarantee" class="flex flex-row items-center">
+                                    <icon-money-bag
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Money Back Guarantee
+                                </li>
+                                <li v-if="course.languages" class="flex flex-row items-center">
+                                    <icon-language
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Multiple Languages
+                                </li>
+                                <li v-if="course.has_cerfiticate" class="flex flex-row items-center">
+                                    <icon-certificate
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Certificate
+                                </li>
+                                <li v-if="course.has_captions" class="flex flex-row items-center">
+                                    <icon-text-caption
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Captions
+                                </li>
+                                <li v-if="course.has_lifetime_access" class="flex flex-row items-center">
+                                    <icon-check
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Lifetime Access
+                                </li>
+                                <li v-if="course.has_student_discount" class="flex flex-row items-center">
+                                    <icon-discount
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Student Discount Available
+                                </li>
+                                <li v-if="course.has_pdfs" class="flex flex-row items-center">
+                                    <icon-book-download
+                                        class="w-5 md:mr-2"
+                                    />
+                                    PDF Resources
+                                </li>
+                                <li v-if="course.has_seo" class="flex flex-row items-center">
+                                    <icon-speaker
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Has SEO Exposure
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -93,7 +143,7 @@
         </section>
 
         <section class="bg-white px-4 py-6 shadow-subtle mt-4">
-            <div class="container max-w-screen-lg mx-auto">
+            <div class="container max-w-screen-lg mx-auto flex flex-row justify-center">
                 <div class="text-center">
                     <iframe :src="course.video_preview" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
@@ -103,8 +153,7 @@
         <section class="bg-white px-4 py-6 shadow-subtle">
             <div class="container max-w-screen-lg mx-auto">
                 <div class="text-center">
-                    <p>
-                        {{ course.description}}
+                    <p v-html="course.description">
                     </p>
                 </div>
             </div>
@@ -113,8 +162,19 @@
 </template>
 
 <script>
+import IconCameraCheck from "../../../../components/core/icons/IconCameraCheck";
+import IconMoneyBag from "../../../../components/core/icons/IconMoneyBag";
+import IconCertificate from "../../../../components/core/icons/IconCertificate";
+import IconLanguage from "../../../../components/core/icons/IconLanguage";
+import IconCheck from "../../../../components/core/icons/IconCheck";
+import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
+import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
+import IconTextCaption from "../../../../components/core/icons/IconTextCaption";
 export default {
     name: "EduCourseShow",
+    components: {
+        IconTextCaption,
+        IconSpeaker, IconBookDownload, IconCheck, IconLanguage, IconCertificate, IconMoneyBag, IconCameraCheck},
     layout: 'website-layout',
     props: {
         course: {
