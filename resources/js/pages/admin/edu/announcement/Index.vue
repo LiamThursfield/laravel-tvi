@@ -95,7 +95,7 @@
                                 {{ item.title }}
                             </td>
                             <td>
-                                {{ item.description }}
+                                <span v-html="item.description"></span>
                             </td>
                             <td>
                                 {{ item.creator ? item.creator.first_name + ' ' + item.creator.last_name:'' }}

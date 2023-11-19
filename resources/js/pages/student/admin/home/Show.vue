@@ -88,7 +88,10 @@
 
             <transition name="slide-right">
                 <div v-if="lecture && !isLoadingLecture" class="w-full">
-                    <div class="bg-white overflow-hidden relative rounded-lg shadow-subtle">
+                    <div
+                        v-if="!showAudioPanel"
+                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                    >
                         <iframe
                             class="aspect-ratio-16-9 w-full"
                             :src="lecture.video_url"
@@ -96,6 +99,13 @@
                             allow="autoplay; fullscreen; picture-in-picture"
                             frameborder="0"
                         />
+                    </div>
+
+                    <div
+                        v-if="showAudioPanel"
+                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                    >
+                        <course-audio-card></course-audio-card>
                     </div>
 
                     <div class="bg-white mt-4 p-6 overflow-hidden relative rounded-lg shadow-subtle ">
@@ -106,6 +116,21 @@
                                 {{ lecture.title }}
                             </h2>
 
+                            <button
+                                v-if="showPDFPanel || (lecture.files && lecture.files.length)"
+                                class="button button-primary-subtle button-small flex flex-row items-center text-sm"
+                                title="Audio Only"
+                                @click="showAudioOnly(lecture)"
+                            >
+                                <icon-book-download
+                                    class="w-5 md:mr-2"
+                                />
+                                <span
+                                    class="hidden md:inline"
+                                >
+                                    {{ (showAudioPanel) ? 'Video' : 'Audio Only' }}
+                                </span>
+                            </button>
                             <button
                                 v-if="showPDFPanel || (lecture.files && lecture.files.length)"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
@@ -189,6 +214,7 @@ import ConfirmationModal from "../../../../components/core/modals/ConfirmationMo
 import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconPlus from "../../../../components/core/icons/IconPlus";
+import CourseAudioCard from "../../../../components/student/admin/course/CourseAudioCard.vue";
 
 
 export default {
@@ -201,7 +227,8 @@ export default {
         IconSquareCheck,
         CourseSideMenuItem,
         CollapseTransition,
-        ConfirmationModal
+        ConfirmationModal,
+        CourseAudioCard
     },
     props: {
         course: {
@@ -227,6 +254,7 @@ export default {
             itemToMarkComplete: null,
             showPDFPanel: false,
             lectureToViewId: null,
+            showAudioPanel: false,
         }
     },
     computed: {
@@ -317,6 +345,10 @@ export default {
         downloadPDFs(lecture) {
             this.lectureToViewId = lecture.id;
             this.showPDFPanel = !this.showPDFPanel;
+        },
+        showAudioOnly(lecture) {
+            this.lectureToViewId = lecture.id;
+            this.showAudioPanel = !this.showAudioPanel;
         }
     }
 }

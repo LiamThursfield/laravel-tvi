@@ -66,7 +66,15 @@
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg">
-            <h2>General details</h2>
+            <h2>
+                General details
+                <span
+                    v-if="course.status === 'PUBLISHED'"
+                    class="bg-red-600 p-1 text-white"
+                >
+                    {{ course.status }}
+                </span>
+            </h2>
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('name')"
@@ -94,6 +102,22 @@
                 @errorHidden="clearPageErrorMessage('slug')"
                 @input="onSlugInput"
                 v-model="formData.slug"
+            />
+
+            <select-group
+                v-if="course.status === 'PUBLISHED'"
+                class="mt-4"
+                :label-hidden="true"
+                label-text="Status"
+                :input-any-option-enabled="true"
+                input-any-option-label="Status"
+                input-class="form-control form-control-short"
+                input-id="status"
+                input-name="status"
+                input-option-label-key="name"
+                input-option-value-key="id"
+                :input-options="statuses"
+                v-model="formData.status"
             />
 
             <input-group
@@ -381,6 +405,10 @@
                 required: true,
             },
             'currencies': {
+                required: true,
+                type: Object|Array,
+            },
+            'statuses': {
                 required: true,
                 type: Object|Array,
             },

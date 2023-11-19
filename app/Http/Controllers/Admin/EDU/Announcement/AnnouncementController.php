@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\EDU\Announcement\AnnouncementStoreRequest;
 use App\Http\Requests\Admin\EDU\Announcement\AnnouncementUpdateRequest;
 use App\Http\Resources\Admin\EDU\Announcement\AnnouncementResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\EDU\Announcement\AnnouncementInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Announcement\Announcement;
 use Illuminate\Http\RedirectResponse;
@@ -74,6 +75,9 @@ class AnnouncementController extends AdminController
             'announcement' => function () use ($announcement) {
                 AnnouncementResource::withoutWrapping();
                 return AnnouncementResource::make($announcement);
+            },
+            'statuses' => function () {
+                return AnnouncementInterface::STATUSES;
             }
         ]);
     }

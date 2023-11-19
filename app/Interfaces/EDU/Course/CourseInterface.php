@@ -21,4 +21,9 @@ class CourseInterface
         self::STATUS_IN_PROGRESS => 'In Progress',
         self::STATUS_PUBLISHED => 'Published',
     ];
+
+    public const STATUSES_EDIT = [
+        self::STATUS_DRAFT => 'Draft',
+        self::STATUS_PUBLISHED => 'Published',
+    ];
 }

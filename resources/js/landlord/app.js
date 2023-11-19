@@ -8,6 +8,7 @@ import { createInertiaApp } from '@inertiajs/vue2'
 require('../plugins/vue-cookies');
 require('../plugins/vue-meta');
 require('../plugins/ziggy');
+require('../plugins/audiovisual');
 
 require('./component-registration');
 

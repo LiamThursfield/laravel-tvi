@@ -10,6 +10,7 @@ require('./plugins/vue2-datepicker');
 require('./plugins/vue-cookies');
 require('./plugins/vue-meta');
 require('./plugins/ziggy');
+require('./plugins/audiovisual');
 
 require('./filters/date-times');
 
