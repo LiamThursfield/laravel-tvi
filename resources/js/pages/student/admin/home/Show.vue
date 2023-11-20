@@ -101,11 +101,21 @@
                         />
                     </div>
 
+                    <div
+                        v-if="showAudioPanel && lecture.audio_url"
+                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                    >
+                        <Wavesurfer
+                            :audio-url="lecture.audio_url"
+                            :media-controls="true"
+                        ></Wavesurfer>
+                    </div>
+
                     <div class="bg-white mt-4 p-6 overflow-hidden relative rounded-lg shadow-subtle ">
                         <div
                             class="flex items-center justify-content-between space-x-6"
                         >
-                            <h2 class="flex-1 font-semibold">
+                            <h2 class="flex-1 font-semibold text-lg">
                                 {{ lecture.title }}
                             </h2>
 
@@ -115,13 +125,27 @@
                                 title="Audio Only"
                                 @click="showAudioOnly(lecture)"
                             >
-                                <icon-book-download
-                                    class="w-5 md:mr-2"
-                                />
                                 <span
-                                    class="hidden md:inline"
+                                    class="flex flex-row items-center"
+                                    v-if="showAudioPanel"
                                 >
-                                    {{ (showAudioPanel) ? 'Video' : 'Audio Only' }}
+                                     <icon-video
+                                         class="w-5 md:mr-auto"
+                                     />
+                                     <span class="hidden md:inline">
+                                        Video
+                                    </span>
+                                </span>
+                                <span
+                                    class="flex flex-row items-center"
+                                    v-else
+                                >
+                                      <icon-headphones
+                                          class="w-5 md:mr-auto"
+                                      />
+                                      <span class="hidden md:inline">
+                                        Audio
+                                      </span>
                                 </span>
                             </button>
                             <button
@@ -176,7 +200,7 @@
                                 v-else
                                 key="description"
                             >
-                                <p class="mt-2">{{ lecture.description }}</p>
+                                <p class="mt-2" v-html="lecture.description"></p>
                             </div>
                         </transition-group>
                     </div>
@@ -207,12 +231,19 @@ import ConfirmationModal from "../../../../components/core/modals/ConfirmationMo
 import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconPlus from "../../../../components/core/icons/IconPlus";
+import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
+import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
+import IconVideo from "../../../../components/core/icons/IconAlertVideo";
+import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
 
 
 export default {
     name: "StudentAdminCourseShow",
     layout: 'student-admin-layout',
     components: {
+        IconHeadphones,
+        IconVideo,
+        IconSpeaker,
         IconPlus,
         IconBookDownload,
         IconSquareCheckFilled,
@@ -220,6 +251,7 @@ export default {
         CourseSideMenuItem,
         CollapseTransition,
         ConfirmationModal,
+        Wavesurfer
     },
     props: {
         course: {
@@ -280,6 +312,7 @@ export default {
             this.activeSectionLecture = lectureIndex;
             this.lecture = _.cloneDeep(lecture);
             this.showPDFPanel = false;
+            this.showAudioPanel = false;
 
             // Make it look as if it is loading, as (although counter-intuitive) it's a better UX
             // As it makes it more obvious that the active course has changed

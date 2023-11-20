@@ -12,6 +12,19 @@
                 <div class="bg-theme-base flex-1 p-8">
                     <slot/>
                 </div>
+
+                <!-- TODO:: Move to component and design it nicer? -->
+                <footer
+                    class="bg-neutral-200 text-center dark:bg-neutral-700 lg:text-left">
+                    <div class="p-4 text-center text-neutral-700 dark:text-neutral-200">
+                        © 2023 Copyright:
+                        <a
+                            class="text-neutral-800 dark:text-neutral-400"
+                            href="/"
+                        >SIGI.RO </a
+                        >
+                    </div>
+                </footer>
             </div>
         </main>
     </div>

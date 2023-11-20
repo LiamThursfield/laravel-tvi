@@ -28,7 +28,25 @@ class LectureResource extends JsonResource
             'section' => $this->section,
             'completed' => (bool)$this->completed,
             'files' => $this->getFiles() ?? null,
+            'audio_url' => $this->getAudioUrl()
         ];
+    }
+
+    /**
+     * Should only ever be one audio per lecture - the audio of the lecture (video_url)
+     *
+     * @return mixed
+     */
+    protected function getAudioUrl()
+    {
+        $audioFile = $this->getFiles()->filter(function ($item) {
+            if ($item->type_audio === true) {
+                return $item->url;
+            }
+            return $item->type_audio === true;
+        })->values();
+
+        return count($audioFile) ? $audioFile->first()->url:null;
     }
 
     protected function getFiles()
@@ -43,6 +61,9 @@ class LectureResource extends JsonResource
             $file->url = Storage::disk('file_manager')->temporaryUrl(
                 $file->file_path, Carbon::now()->addHour()
             );
+            if (str_contains($file->file_name, '.mp3')) {
+                $file->type_audio = true;
+            }
         }
 
         return $files;
