@@ -117,10 +117,10 @@
                                 {{ item.content_length_video }}
                             </td>
                             <td>
-                                {{ item.total_sold ?? 10 }}
+                                {{ item.total_quantity_sold }}
                             </td>
                             <td>
-                                {{ item.total_customers ?? 10 }}
+                                {{ item.total_profit }}
                             </td>
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">

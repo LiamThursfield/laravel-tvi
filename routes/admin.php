@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
 use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
-use App\Http\Controllers\Admin\EDU\Announcement\AnnouncementController;
+use App\Http\Controllers\Admin\EDU\Announcement\PurchasesController;
 use App\Http\Controllers\Admin\EDU\Course\CourseController;
 use App\Http\Controllers\Admin\EDU\Label\LabelController;
 use App\Http\Controllers\Admin\EDU\Lecture\LectureController;
@@ -56,8 +56,8 @@ Route::group([
     'as' => 'edu.',
     'prefix' => 'edu'
 ], function () {
-    Route::resource('announcements', AnnouncementController::class);
-    Route::patch('/announcements/publish/{announcement}', [AnnouncementController::class, 'publish'])
+    Route::resource('announcements', PurchasesController::class);
+    Route::patch('/announcements/publish/{announcement}', [PurchasesController::class, 'publish'])
         ->name('announcements.publish');
 
     Route::resource('programmes', ProgrammeController::class);

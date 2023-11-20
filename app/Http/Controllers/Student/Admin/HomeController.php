@@ -6,7 +6,7 @@ use App\Actions\EDU\Course\Student\StudentCourseShowAction;
 use App\Actions\EDU\Lecture\Student\LectureCompleteAction;
 use App\Actions\EDU\Lecture\Student\LectureDownloadPdfsAction;
 use App\Http\Controllers\AdminController;
-use App\Http\Resources\Admin\EDU\Announcement\AnnouncementResource;
+use App\Http\Resources\Admin\EDU\Announcement\PurchaseResource;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
 use App\Interfaces\EDU\Announcement\AnnouncementInterface;
 use App\Interfaces\PermissionInterface;
@@ -52,11 +52,11 @@ class HomeController extends AdminController
         // calculate percentage of completion out of all sections
 
         CourseResource::withoutWrapping();
-        AnnouncementResource::withoutWrapping();
+        PurchaseResource::withoutWrapping();
 
         return Inertia::render('student/admin/home/Index', [
             'courses' => CourseResource::collection($courses),
-            'announcements' => AnnouncementResource::collection($announcements),
+            'announcements' => PurchaseResource::collection($announcements),
         ]);
     }
 

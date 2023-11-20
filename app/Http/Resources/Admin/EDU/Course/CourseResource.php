@@ -39,6 +39,8 @@ class CourseResource extends JsonResource
             'has_pdfs' => (bool)$this->has_pdfs,
             'has_free_seo_exposure' => (bool)$this->has_free_seo_exposure,
             'sections' => SectionResource::collection($this->whenLoaded('sections')),
+            'total_quantity_sold' => $this->totalQuantitySold ?? 0,
+            'total_profit' => $this->totalProfit ?? 0,
         ];
     }
 }
