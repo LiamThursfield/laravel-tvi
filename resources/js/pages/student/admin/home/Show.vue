@@ -101,13 +101,6 @@
                         />
                     </div>
 
-                    <div
-                        v-if="showAudioPanel"
-                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
-                    >
-                        <course-audio-card></course-audio-card>
-                    </div>
-
                     <div class="bg-white mt-4 p-6 overflow-hidden relative rounded-lg shadow-subtle ">
                         <div
                             class="flex items-center justify-content-between space-x-6"
@@ -214,7 +207,6 @@ import ConfirmationModal from "../../../../components/core/modals/ConfirmationMo
 import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconPlus from "../../../../components/core/icons/IconPlus";
-import CourseAudioCard from "../../../../components/student/admin/course/CourseAudioCard.vue";
 
 
 export default {
@@ -228,7 +220,6 @@ export default {
         CourseSideMenuItem,
         CollapseTransition,
         ConfirmationModal,
-        CourseAudioCard
     },
     props: {
         course: {
@@ -243,8 +234,6 @@ export default {
             toggledSections: {
                 0: true
             },
-
-
             mountedItems: {},
             toggledItems: {},
             lecture: null,
