@@ -69,6 +69,21 @@
                     v-model="formData.description"
                 />
             </div>
+
+            <select-group
+                class="mt-4"
+                :label-hidden="true"
+                label-text="Status"
+                :input-any-option-enabled="true"
+                input-any-option-label="Status"
+                input-class="form-control form-control-short"
+                input-id="status"
+                input-name="status"
+                input-option-label-key="name"
+                input-option-value-key="id"
+                :input-options="statuses"
+                v-model="formData.status"
+            />
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
@@ -113,6 +128,7 @@
     import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
     import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
     import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup";
 
     export default {
         name: "AdminEduAnnouncementEdit",
@@ -121,12 +137,17 @@
             TextAreaGroup,
             InputGroup,
             CheckboxGroup,
+            SelectGroup
         },
         layout: 'admin-layout',
         props: {
             'announcement': {
                 type: Object,
                 required: true,
+            },
+            'statuses': {
+                required: true,
+                type: Object|Array,
             },
         },
         data() {
@@ -141,6 +162,7 @@
                 platform: this.announcement.platform,
                 email: this.announcement.email,
                 sms: this.announcement.sms,
+                status: this.announcement.status,
             };
         },
         methods: {

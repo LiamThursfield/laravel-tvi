@@ -28,6 +28,12 @@
                         <p class="mt-4 text-gray-400">{{ course.summary }}</p>
                         <div class="text-white">
                             <ul class="py-3">
+                                <li class="flex flex-row items-center">
+                                    <icon-device-mobile
+                                        class="w-5 md:mr-2"
+                                    />
+                                    Access on Mobile
+                                </li>
                                 <li v-if="course.has_webinars" class="flex flex-row items-center">
                                     <icon-camera-check
                                         class="w-5 md:mr-2"
@@ -91,47 +97,21 @@
 
         <section class="px-4 py-6">
             <div class="container max-w-screen-lg mx-auto">
-                <p class="opacity-50">
-                    Course/Programme Selection
-                </p>
-
-                <div class="flex flex-row mt-2 space-x-4">
-                    <button
-                        :class="purchaseSelectionClass('standalone')"
-                        type="button"
-                        @click="purchaseSelection = 'standalone'"
-                    >
-                        <span>Standalone</span>
-                        <span class="text-sm">Start now!</span>
-                    </button>
-
-                    <button
-                        :class="purchaseSelectionClass('programme_1')"
-                        type="button"
-                        @click="purchaseSelection = 'programme_1'"
-                    >
-                        <span>Programme 1</span>
-                        <span class="text-sm">Start date: 01/11/2023</span>
-                    </button>
-
-                    <button
-                        :class="purchaseSelectionClass('programme_2')"
-                        type="button"
-                        @click="purchaseSelection = 'programme_2'"
-                    >
-                        <span>Programme 2</span>
-                        <span class="text-sm">Start date: 01/12/2023</span>
-                    </button>
-                </div>
-
                 <div class="flex flex-row justify-center">
                     <button
                         class="button button-primary flex flex-row justify-center mt-6 text-xl"
                         style="min-width: 300px"
-                        :disabled="!purchaseSelection || isLoadingCheckout"
+                        :disabled="isLoadingCheckout"
                         @click="purchaseCourse"
                     >
-                        £{{ course.price }} | Purchase
+                        <span
+                            v-if="course.currency === 'GBP'"
+                        >
+                             {{ course.currency + ' ' + course.price }} | Purchase
+                        </span>
+                        <span v-else-if="course.currency === 'Lei'">
+                             {{ course.price + ' ' +  course.currency }}
+                        </span>
 
                         <icon-loader-circle
                             v-if="isLoadingCheckout"
@@ -158,6 +138,54 @@
                 </div>
             </div>
         </section>
+
+        <section class="px-4 py-6 shadow-subtle">
+            <div class="container max-w-screen-lg mx-auto">
+                <ul class="divide-y divide-gray-300 max-w-sm mt-6 mb-6 mx-auto px-4 border">
+
+                    <li class="py-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-lg font-bold">Course Content</span>
+                        </div>
+
+                        <ul class="divide-y divide-gray-300 bg-gray-50 rounded-md px-4 py-2 mt-4">
+                            <li
+                                v-for="section in course.sections"
+                                :key="'section-' + section.title"
+                                class="py-2"
+                            >
+                                <div class="flex items-center space-x-4">
+                                    {{ section.title }}
+                                    <small class="mr-2 ml-auto">
+                                        <span v-if="section.lecture_count">
+                                            {{ section.child_items ? section.child_items.length + ' lectures | ':'' }}
+                                        </span>
+                                        {{ section.content_length ?  section.content_length + ' mins':'' }}
+                                    </small>
+                                </div>
+
+                                <ul class="divide-y divide-gray-300 bg-gray-100 rounded-md px-4 py-2 mt-2">
+                                    <li
+                                        v-for="lecture in section.child_items"
+                                        :key="'lecture-' + lecture.title"
+                                        class="py-2"
+                                    >
+                                        <div class="flex items-center space-x-4">
+                                            <span class="text-sm font-medium">
+                                                 {{ lecture.title }}
+                                                <small class="mr-2 ml-auto">
+                                                    {{ lecture.content_length ?  lecture.content_length + ' mins':'' }}
+                                                </small>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </section>
 </template>
 
@@ -170,9 +198,11 @@ import IconCheck from "../../../../components/core/icons/IconCheck";
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 import IconTextCaption from "../../../../components/core/icons/IconTextCaption";
+import IconDeviceMobile from "../../../../components/core/icons/IconDeviceMobile";
 export default {
     name: "EduCourseShow",
     components: {
+        IconDeviceMobile,
         IconTextCaption,
         IconSpeaker, IconBookDownload, IconCheck, IconLanguage, IconCertificate, IconMoneyBag, IconCameraCheck},
     layout: 'website-layout',

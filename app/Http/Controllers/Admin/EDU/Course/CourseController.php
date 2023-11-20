@@ -86,7 +86,7 @@ class CourseController extends AdminController
                 return PurchaseInterface::CURRENCIES;
             },
             'statuses' => function () {
-                return CourseInterface::STATUSES;
+                return CourseInterface::STATUSES_EDIT;
             }
         ]);
     }
@@ -126,6 +126,7 @@ class CourseController extends AdminController
 
     public function preview(Course $course): Response
     {
+        $course->load('sections');
         return Inertia::render('admin/edu/course/Preview', [
             'course' => function () use ($course) {
                 CourseResource::withoutWrapping();

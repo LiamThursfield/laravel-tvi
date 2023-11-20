@@ -88,7 +88,10 @@
 
             <transition name="slide-right">
                 <div v-if="lecture && !isLoadingLecture" class="w-full">
-                    <div class="bg-white overflow-hidden relative rounded-lg shadow-subtle">
+                    <div
+                        v-if="!showAudioPanel"
+                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                    >
                         <iframe
                             class="aspect-ratio-16-9 w-full"
                             :src="lecture.video_url"
@@ -98,14 +101,53 @@
                         />
                     </div>
 
+                    <div
+                        v-if="showAudioPanel && lecture.audio_url"
+                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                    >
+                        <Wavesurfer
+                            :audio-url="lecture.audio_url"
+                            :media-controls="true"
+                        ></Wavesurfer>
+                    </div>
+
                     <div class="bg-white mt-4 p-6 overflow-hidden relative rounded-lg shadow-subtle ">
                         <div
                             class="flex items-center justify-content-between space-x-6"
                         >
-                            <h2 class="flex-1 font-semibold">
+                            <h2 class="flex-1 font-semibold text-lg">
                                 {{ lecture.title }}
                             </h2>
 
+                            <button
+                                v-if="showPDFPanel || (lecture.files && lecture.files.length)"
+                                class="button button-primary-subtle button-small flex flex-row items-center text-sm"
+                                title="Audio Only"
+                                @click="showAudioOnly(lecture)"
+                            >
+                                <span
+                                    class="flex flex-row items-center"
+                                    v-if="showAudioPanel"
+                                >
+                                     <icon-video
+                                         class="w-5 md:mr-auto"
+                                     />
+                                     <span class="hidden md:inline">
+                                        Video
+                                    </span>
+                                </span>
+                                <span
+                                    class="flex flex-row items-center"
+                                    v-else
+                                >
+                                      <icon-headphones
+                                          class="w-5 md:mr-auto"
+                                      />
+                                      <span class="hidden md:inline">
+                                        Audio
+                                      </span>
+                                </span>
+                            </button>
                             <button
                                 v-if="showPDFPanel || (lecture.files && lecture.files.length)"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
@@ -158,7 +200,7 @@
                                 v-else
                                 key="description"
                             >
-                                <p class="mt-2">{{ lecture.description }}</p>
+                                <p class="mt-2" v-html="lecture.description"></p>
                             </div>
                         </transition-group>
                     </div>
@@ -189,19 +231,27 @@ import ConfirmationModal from "../../../../components/core/modals/ConfirmationMo
 import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconPlus from "../../../../components/core/icons/IconPlus";
+import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
+import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
+import IconVideo from "../../../../components/core/icons/IconAlertVideo";
+import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
 
 
 export default {
     name: "StudentAdminCourseShow",
     layout: 'student-admin-layout',
     components: {
+        IconHeadphones,
+        IconVideo,
+        IconSpeaker,
         IconPlus,
         IconBookDownload,
         IconSquareCheckFilled,
         IconSquareCheck,
         CourseSideMenuItem,
         CollapseTransition,
-        ConfirmationModal
+        ConfirmationModal,
+        Wavesurfer
     },
     props: {
         course: {
@@ -216,8 +266,6 @@ export default {
             toggledSections: {
                 0: true
             },
-
-
             mountedItems: {},
             toggledItems: {},
             lecture: null,
@@ -227,6 +275,7 @@ export default {
             itemToMarkComplete: null,
             showPDFPanel: false,
             lectureToViewId: null,
+            showAudioPanel: false,
         }
     },
     computed: {
@@ -263,6 +312,7 @@ export default {
             this.activeSectionLecture = lectureIndex;
             this.lecture = _.cloneDeep(lecture);
             this.showPDFPanel = false;
+            this.showAudioPanel = false;
 
             // Make it look as if it is loading, as (although counter-intuitive) it's a better UX
             // As it makes it more obvious that the active course has changed
@@ -317,6 +367,10 @@ export default {
         downloadPDFs(lecture) {
             this.lectureToViewId = lecture.id;
             this.showPDFPanel = !this.showPDFPanel;
+        },
+        showAudioOnly(lecture) {
+            this.lectureToViewId = lecture.id;
+            this.showAudioPanel = !this.showAudioPanel;
         }
     }
 }
