@@ -28,7 +28,7 @@ class PurchaseItem extends Model
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class, 'purchasable_id', 'id')
-            ->where('purchasable_type', 'App\Models\EDU\Course\Course');
+            ;
     }
 
     public function purchasable(): MorphTo

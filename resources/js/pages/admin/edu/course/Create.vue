@@ -339,7 +339,6 @@
             CheckboxGroup,
             SelectGroup,
             DateTimePickerGroup,
-            WysiwygField,
         },
         layout: 'admin-layout',
         props: {

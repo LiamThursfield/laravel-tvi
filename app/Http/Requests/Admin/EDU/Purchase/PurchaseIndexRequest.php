@@ -9,7 +9,8 @@ class PurchaseIndexRequest extends BaseIndexRequest
     public function rules(): array
     {
         return array_merge(parent::rules(), [
-            'payment_status' => 'nullable|string'
+            'payment_status' => 'nullable|string',
+            'email_address' => 'nullable|string'
         ]);
     }
 }

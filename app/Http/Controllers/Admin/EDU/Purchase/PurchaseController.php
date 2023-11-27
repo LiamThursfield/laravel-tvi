@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\EDU\Purchase\PurchaseIndexRequest;
 use App\Http\Requests\Admin\EDU\Purchase\PurchaseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Purchase\PurchaseResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\EDU\Purchase\PurchaseInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Purchase\Purchase;
 use Illuminate\Http\RedirectResponse;
@@ -69,14 +70,15 @@ class PurchaseController extends AdminController
 
         $this->shareMeta();
 
+        $data = app(PurchaseQueryAction::class)
+            ->handle($search_options)
+            ->with(['user', 'purchaseItems', 'purchaseItems.course'])
+            ->paginate(AppInterface::getSearchPaginationParam($search_options));
+
         return Inertia::render('admin/edu/purchase/Index', [
-            'purchases' => function () use ($search_options) {
-                return app(PurchaseQueryAction::class)
-                    ->handle($search_options)
-                    ->with('creator')
-                    ->paginate(AppInterface::getSearchPaginationParam($search_options));
-            },
-            'searchOptions' => $search_options
+            'purchases' => $data,
+            'searchOptions' => $search_options,
+            'statuses' => PurchaseInterface::PAYMENT_STATUSES,
         ]);
     }
 

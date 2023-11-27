@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Builder;
 class PurchaseQueryAction extends AbstractQueryAction
 {
     protected array $searchable_fields_likes = [
-        'title' => 'payment_status',
+        'payment_status' => 'payment_status',
+        'email_address' => 'email_address',
     ];
 
     protected string $order_by = 'created_at';

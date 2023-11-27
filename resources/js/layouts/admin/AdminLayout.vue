@@ -358,6 +358,22 @@
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_labels.create", "edu_labels.view"],
                             },
+                            purchases: {
+                                activeRoutes: ["admin.edu.purchases.index", "admin.edu.purchases.create", "admin.edu.purchases.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View",
+                                        requiresAllPermissions: ["edu_purchases.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.purchases.index",
+                                    }
+                                },
+                                icon: "icon-money-bag",
+                                label: "Purchases",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_purchases.create", "edu_purchases.view"],
+                            },
                         },
                         label: "EDU",
                         requiresAllPermissions: [],
@@ -370,6 +386,7 @@
                             'edu_programmes.view',
                             'edu_labels.create',
                             'edu_labels.view',
+                            'edu_purchases.view',
                         ],
                         showLabel: true,
                     },
