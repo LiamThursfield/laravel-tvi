@@ -78,15 +78,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Course</th>
-                            <th>Section</th>
                             <th>Status</th>
-                            <th>Starts At</th>
-                            <th>Ends At</th>
-                            <th>Link</th>
-                            <th>Reservation</th>
-                            <th>Recorded</th>
-                            <th>Summary</th>
-                            <th>Description</th>
+                            <th>Scheduled At</th>
                             <th>Created By</th>
                             <th v-if="showActions"></th>
                         </tr>
@@ -98,39 +91,19 @@
                         >
                             <td>
                                 {{ item.name }}
-                                <br>
-                                <small>{{ item.slug}}</small>
                             </td>
                             <td>
                                 {{ item.course ? item.course.name:'' }}
-                            </td>
-                            <td>
-                                {{ item.section ? item.section.title:'' }}
+                                <br>
+                                <small><b>Section:</b> {{ item.section ? item.section.title:'' }}</small>
                             </td>
                             <td>
                                 {{ item.status }}
                             </td>
                             <td>
-                                {{ item.date_time_from }}
+                                {{ item.date_time_from }} / {{ item.date_time_to }}
                             </td>
-                            <td>
-                                {{ item.date_time_to }}
-                            </td>
-                            <td>
-                                {{ item.webinar_url }}
-                            </td>
-                            <td>
-                                {{ item.can_users_reserve ? 'Yes':'No' }}
-                            </td>
-                            <td>
-                                {{ item.is_recorded ? 'Yes':'No' }}
-                            </td>
-                            <td>
-                                {{ item.summary.length > 60 ? item.summary.substring(0,60) + ' ...':'' }}
-                            </td>
-                            <td>
-                                {{ item.description.length > 60 ? item.description.substring(0,60) + ' ...':'' }}
-                            </td>
+
                             <td>
                                 {{ item.creator ? item.creator.first_name + ' ' + item.creator.last_name:'' }}
                             </td>
