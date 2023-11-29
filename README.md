@@ -1,4 +1,4 @@
-# SIGI
+ # SIGI
 
 
 ## About SIGI
@@ -47,7 +47,7 @@
     ```
 8. Run database migrations for the landlord/central database
     ```bash
-    ./vendor/bin/sail artisan migrate
+    ./vendor/bin/sail artisan migrate --path=database/migrations/landlord
     ```
 9. Create a sample tenant
     ```bash
