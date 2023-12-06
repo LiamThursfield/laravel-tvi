@@ -25,8 +25,8 @@ class WebinarResource extends JsonResource
             'date_time_from' => $this->date_time_from,
             'date_time_to' => $this->date_time_to,
             'webinar_url' => $this->webinar_url,
-            'can_users_reserve' => $this->webinar_url,
-            'is_recorded' => $this->webinar_url,
+            'can_users_reserve' => $this->can_users_reserve,
+            'is_recorded' => $this->is_recorded,
         ];
     }
 }

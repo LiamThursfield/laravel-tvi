@@ -110,7 +110,7 @@
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <button
-                                        v-if="userCan('webinars.publish')"
+                                        v-if="userCan('webinars.publish') && item.status !== 'PUBLISHED'"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring

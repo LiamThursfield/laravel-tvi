@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\EDU\Webinar;
 
+use App\Actions\EDU\Webinar\WebinarPublishAction;
 use App\Actions\EDU\Webinar\WebinarQueryAction;
 use App\Actions\EDU\Webinar\WebinarStoreAction;
 use App\Actions\EDU\Webinar\WebinarUpdateAction;
@@ -11,6 +12,7 @@ use App\Http\Requests\Admin\EDU\Webinar\WebinarStoreRequest;
 use App\Http\Requests\Admin\EDU\Webinar\WebinarUpdateRequest;
 use App\Http\Resources\Admin\EDU\Webinar\WebinarResource;
 use App\Interfaces\AppInterface;
+use App\Interfaces\EDU\Webinar\WebinarInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Webinar\Webinar;
 use Illuminate\Http\RedirectResponse;
@@ -69,6 +71,9 @@ class WebinarController extends AdminController
             'webinar' => function () use ($webinar) {
                 WebinarResource::withoutWrapping();
                 return WebinarResource::make($webinar);
+            },
+            'statuses' => function () {
+                return WebinarInterface::STATUSES_EDIT;
             }
         ]);
     }
@@ -104,5 +109,15 @@ class WebinarController extends AdminController
 
         return Redirect::to(route('admin.edu.webinars.edit', $webinar))
             ->with('success', 'Updated');
+    }
+
+    public function publish(Webinar $webinar): RedirectResponse
+    {
+        app(WebinarPublishAction::class)->handle($webinar);
+
+        return Redirect::back(303)->with(
+            'success',
+            'Published.'
+        );
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models\EDU\Course;
 
 use App\Interfaces\EDU\Purchase\PurchaseInterface;
+use App\Interfaces\EDU\Webinar\WebinarInterface;
 use App\Models\EDU\Label\Label;
 use App\Models\EDU\Programme\Programme;
 use App\Models\EDU\Purchase\PurchaseItem;
@@ -111,7 +112,7 @@ class Course extends Model
 
     public function webinars(): HasMany
     {
-        return $this->hasMany(Webinar::class);
+        return $this->hasMany(Webinar::class)->where('status', WebinarInterface::STATUS_PUBLISHED);
     }
 
     public function participants(): BelongsToMany

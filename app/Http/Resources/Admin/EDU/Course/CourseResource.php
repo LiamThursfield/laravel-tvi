@@ -4,6 +4,7 @@ namespace App\Http\Resources\Admin\EDU\Course;
 
 use App\Http\Resources\Admin\EDU\Creator\CreatorResource;
 use App\Http\Resources\Admin\EDU\Section\SectionResource;
+use App\Http\Resources\Admin\EDU\Webinar\WebinarResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CourseResource extends JsonResource
@@ -39,6 +40,7 @@ class CourseResource extends JsonResource
             'has_pdfs' => (bool)$this->has_pdfs,
             'has_free_seo_exposure' => (bool)$this->has_free_seo_exposure,
             'sections' => SectionResource::collection($this->whenLoaded('sections')),
+            'webinars' => WebinarResource::collection($this->whenLoaded('webinars')),
             'total_quantity_sold' => $this->totalQuantitySold ?? 0,
             'total_profit' => $this->totalProfit ?? 0,
         ];

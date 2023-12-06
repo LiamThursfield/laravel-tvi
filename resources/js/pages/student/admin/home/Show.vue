@@ -120,7 +120,7 @@
                             </h2>
 
                             <button
-                                v-if="showPDFPanel || (lecture.files && lecture.files.length)"
+                                v-if="lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Audio Only"
                                 @click="showAudioOnly(lecture)"
@@ -149,7 +149,7 @@
                                 </span>
                             </button>
                             <button
-                                v-if="showPDFPanel || (lecture.files && lecture.files.length)"
+                                v-if="lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Download PDFs"
                                 @click="downloadPDFs(lecture)"
@@ -200,6 +200,17 @@
                                 v-else
                                 key="description"
                             >
+                                <div v-if="lectureWebinarsFromSection.length">
+                                    <p v-for="webinar in lectureWebinarsFromSection">
+                                        <b>
+                                            {{ webinar.name }} from {{ webinar.date_time_from | humanFriendlyDateTime }}
+                                            to {{ webinar.date_time_to | humanFriendlyDateTime}}.
+                                        </b>
+                                        <br>
+                                        {{webinar.summary}}
+                                    </p>
+                                </div>
+                                <br>
                                 <p class="mt-2" v-html="lecture.description"></p>
                             </div>
                         </transition-group>
@@ -294,6 +305,12 @@ export default {
                 return 'Do you really want to perform this action?'
             }
         },
+        courseWebinars() {
+            return this.course ? this.course.webinars:[];
+        },
+        lectureWebinarsFromSection() {
+            return this.courseWebinars.filter(webinar => webinar.section_id === this.lecture.section.id);
+        }
     },
     mounted() {
         this.isLoadingLecture = true;

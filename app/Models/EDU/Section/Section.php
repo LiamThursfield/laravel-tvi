@@ -2,6 +2,7 @@
 
 namespace App\Models\EDU\Section;
 
+use App\Interfaces\EDU\Webinar\WebinarInterface;
 use App\Models\EDU\Course\Course;
 use App\Models\EDU\Lecture\Lecture;
 use App\Models\EDU\Webinar\Webinar;
@@ -26,9 +27,9 @@ class Section extends Model
         return $this->belongsTo(Course::class,'course_id');
     }
 
-    public function webinar(): BelongsTo
+    public function webinars(): HasMany
     {
-        return $this->belongsTo(Webinar::class,'section_id');
+        return $this->hasMany(Webinar::class)->where('status', WebinarInterface::STATUS_PUBLISHED);
     }
 
     public function lectures(): HasMany

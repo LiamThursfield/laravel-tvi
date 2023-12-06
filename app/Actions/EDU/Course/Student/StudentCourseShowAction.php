@@ -14,6 +14,7 @@ class StudentCourseShowAction
     {
         $course->load([
             'sections',
+            'sections.webinars',
             'webinars',
             'creator',
             'labels',
