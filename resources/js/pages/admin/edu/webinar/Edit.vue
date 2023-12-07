@@ -49,6 +49,43 @@
 
         <div class="bg-white p-6 shadow-subtle rounded-lg">
             <h2>
+                Course and Section
+            </h2>
+            <div class="grid grid-cols-2 gap-2">
+                <select-group
+                    class="mt-4 md:flex-1"
+                    :label-hidden="true"
+                    label-text="Course"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Course"
+                    input-class="form-control form-control-short"
+                    input-id="course"
+                    input-name="course"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-options="courseOptions"
+                    v-model="formData.course_id"
+                    :input-required="true"
+                />
+                <select-group
+                    class="mt-4 md:flex-1"
+                    :label-hidden="true"
+                    label-text="Section"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Section"
+                    input-class="form-control form-control-short"
+                    input-id="section"
+                    input-name="section"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-options="sectionOptions"
+                    v-model="formData.section_id"
+                />
+            </div>
+        </div>
+
+        <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
+            <h2>
                 General details
             </h2>
             <input-group
@@ -193,8 +230,8 @@
     import SelectGroup from "../../../../components/core/forms/SelectGroup";
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
-    import _ from "lodash";
     import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
+    import _ from "lodash";
 
     export default {
         name: "AdminEduWebinarEdit",
@@ -209,15 +246,15 @@
         },
         layout: 'admin-layout',
         props: {
-            'webinar': {
+            webinar: {
                 type: Object,
                 required: true,
             },
-            'currencies': {
+            statuses: {
                 required: true,
                 type: Object|Array,
             },
-            'statuses': {
+            courses: {
                 required: true,
                 type: Object|Array,
             },
@@ -225,52 +262,45 @@
         data() {
             return {
                 autoUpdateSlug: false,
-                formData: {}
+                formData: {},
+                sectionOptions: null,
+            }
+        },
+        computed: {
+            courseOptions() {
+                if (!this.courses.length) {
+                    return;
+                }
+
+                let courses = {};
+                _.forEach(this.courses, course => {
+                    courses[course.id] = course.name;
+                });
+
+                return courses;
             }
         },
         created() {
-            this.transformSections();
             this.formData = {
                 id: this.webinar.id,
                 name: this.webinar.name,
                 slug: this.webinar.slug,
                 summary: this.webinar.summary,
                 description: this.webinar.description,
+                creator_id: this.webinar.creator_id,
+                course_id: this.webinar.course_id,
+                section_id: this.webinar.section_id,
                 status: this.webinar.status,
-                available_from: this.webinar.available_from,
-                available_to: this.webinar.available_to,
-                content_length_video: this.webinar.content_length_video,
-                banner: this.webinar.banner,
-                primary_image: this.webinar.primary_image,
-                video_preview: this.webinar.video_preview,
-                price: this.webinar.price,
-                discount_price: this.webinar.discount_price,
-                currency: this.webinar.currency,
-                languages: this.webinar.languages,
-                has_webinars: this.webinar.has_webinars,
-                has_money_back_guarantee: this.webinar.has_money_back_guarantee,
-                has_certificate: this.webinar.has_certificate,
-                has_captions: this.webinar.has_captions,
-                has_lifetime_access: this.webinar.has_lifetime_access,
-                has_student_discount: this.webinar.has_student_discount,
-                has_pdfs: this.webinar.has_pdfs,
-                has_free_seo_exposure: this.webinar.has_free_seo_exposure,
-                sections: this.webinar.sections,
+                date_time_from: this.webinar.date_time_from,
+                date_time_to: this.webinar.date_time_to,
+                webinar_url: this.webinar.webinar_url,
+                can_users_reserve: this.webinar.can_users_reserve,
+                is_recorded: this.webinar.is_recorded,
+                recording_url: this.webinar.recording_url,
                 templateField: { type: 'wysiwyg'}
             };
         },
         methods: {
-            transformSections() {
-                let sections = this.webinar.sections;
-
-                _.forEach(sections, (section, key) => {
-                    _.forEach(section.child_items, (item, key) => {
-                        item.child_items = [];
-                    });
-                });
-
-                this.webinar.sections = sections;
-            },
             onNameInput() {
                 if (!this.autoUpdateSlug) {
                     return;
@@ -297,11 +327,34 @@
                     }
                 );
             },
+            getSectionOptions() {
+                if (!this.courses.length) {
+                    return;
+                }
+
+                let sections = {};
+                _.forEach(this.courses, course => {
+                    _.forEach(course.sections, section => {
+                        if (section.course_id == this.formData.course_id) {
+                            sections[section.id] = section.title;
+                        }
+                    })
+                });
+
+                this.sectionOptions = sections;
+            },
             submit() {
                 this.$inertia.put(
                     this.$route('admin.edu.webinars.update', this.webinar.id),
                     this.formData
                 );
+            }
+        },
+        watch: {
+            ['formData.course_id'](value) {
+                if (null !== value) {
+                    this.getSectionOptions();
+                }
             }
         }
     }

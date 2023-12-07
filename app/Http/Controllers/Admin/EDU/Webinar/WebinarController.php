@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\EDU\Webinar;
 
+use App\Actions\EDU\Course\CourseQueryAction;
 use App\Actions\EDU\Webinar\WebinarPublishAction;
 use App\Actions\EDU\Webinar\WebinarQueryAction;
 use App\Actions\EDU\Webinar\WebinarStoreAction;
@@ -14,6 +15,7 @@ use App\Http\Resources\Admin\EDU\Webinar\WebinarResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\EDU\Webinar\WebinarInterface;
 use App\Interfaces\PermissionInterface;
+use App\Models\EDU\Course\Course;
 use App\Models\EDU\Webinar\Webinar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -50,7 +52,9 @@ class WebinarController extends AdminController
     {
         $this->addMetaTitleSection('Create')->shareMeta();
 
-        return Inertia::render('admin/edu/webinar/Create') ;
+        return Inertia::render('admin/edu/webinar/Create', [
+            'courses' => $this->getCourses(),
+        ]) ;
     }
 
     public function destroy(Webinar $webinar) : RedirectResponse
@@ -74,7 +78,8 @@ class WebinarController extends AdminController
             },
             'statuses' => function () {
                 return WebinarInterface::STATUSES_EDIT;
-            }
+            },
+            'courses' => $this->getCourses(),
         ]);
     }
 
@@ -119,5 +124,15 @@ class WebinarController extends AdminController
             'success',
             'Published.'
         );
+    }
+
+    protected function getCourses()
+    {
+        return Course::select(['id', 'name'])->with('sections')->get();
+    }
+
+    protected function getSections()
+    {
+        return Course::select(['id', 'name'])->with('sections')->get();
     }
 }

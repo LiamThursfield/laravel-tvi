@@ -95,7 +95,7 @@
                             <td>
                                 {{ item.course ? item.course.name:'' }}
                                 <br>
-                                <small><b>Section:</b> {{ item.section ? item.section.title:'' }}</small>
+                                <small v-if="item.section"><b>Section:</b> {{ item.section.title }}</small>
                             </td>
                             <td>
                                 {{ item.status }}

@@ -200,15 +200,25 @@
                                 v-else
                                 key="description"
                             >
-                                <div v-if="lectureWebinarsFromSection.length">
-                                    <p v-for="webinar in lectureWebinarsFromSection">
-                                        <b>
-                                            {{ webinar.name }} from {{ webinar.date_time_from | humanFriendlyDateTime }}
-                                            to {{ webinar.date_time_to | humanFriendlyDateTime}}.
+                                <div
+                                    v-if="lectureWebinarsFromSection.length"
+                                    class="bg-gray-200 rounded-xl shadow-subtle p-2"
+                                >
+                                    <div v-for="webinar in lectureWebinarsFromSection">
+                                        <b class="flex flex-row">
+                                            <icon-speaker
+                                                class="w-5 mr-1"
+                                            />
+                                            <a :href="webinar.webinar_url" target="_blank" class="page-link">{{ webinar.name }}</a>
                                         </b>
-                                        <br>
-                                        {{webinar.summary}}
-                                    </p>
+
+                                        <p class="pt-1">
+                                            <strong>Dates:</strong>
+                                            {{ webinar.date_time_from | humanFriendlyDateTime }} to {{ webinar.date_time_to | humanFriendlyDateTime}}
+                                        </p>
+
+                                        <p class="pt-1">{{webinar.summary}}</p>
+                                    </div>
                                 </div>
                                 <br>
                                 <p class="mt-2" v-html="lecture.description"></p>
@@ -309,7 +319,7 @@ export default {
             return this.course ? this.course.webinars:[];
         },
         lectureWebinarsFromSection() {
-            return this.courseWebinars.filter(webinar => webinar.section_id === this.lecture.section.id);
+            return this.courseWebinars.filter(webinar => webinar.section_id == this.lecture.section.id);
         }
     },
     mounted() {

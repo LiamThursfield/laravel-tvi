@@ -5,7 +5,7 @@
         @submit.prevent="submit"
     >
         <div
-            v-if="userCan('courses.create')"
+            v-if="userCan('webinars.create')"
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
@@ -13,12 +13,12 @@
             </h1>
 
             <inertia-link
-                v-if="userCan('course.view')"
+                v-if="userCan('webinar.view')"
                 class="
                     button button-default-responsive button-primary-subtle
                     flex flex-row items-center mr-2
                 "
-                :href="$route('admin.edu.courses.index')"
+                :href="$route('admin.edu.webinars.index')"
             >
                 <icon-chevron-left
                     class="w-5 md:mr-2"
@@ -47,13 +47,52 @@
             </button>
         </div>
 
-
         <div class="bg-white p-6 shadow-subtle rounded-lg">
-            <h2>General details</h2>
+            <h2>
+                Course and Section
+            </h2>
+            <div class="grid grid-cols-2 gap-2">
+                <select-group
+                    class="mt-4 md:flex-1"
+                    :label-hidden="true"
+                    label-text="Course"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Course"
+                    input-class="form-control form-control-short"
+                    input-id="course"
+                    input-name="course"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-options="courseOptions"
+                    v-model="formData.course_id"
+                    :input-required="true"
+                />
+                <select-group
+                    class="mt-4 md:flex-1"
+                    :label-hidden="true"
+                    label-text="Section"
+                    :input-any-option-enabled="true"
+                    input-any-option-label="Section"
+                    input-class="form-control form-control-short"
+                    input-id="section"
+                    input-name="section"
+                    input-option-label-key="name"
+                    input-option-value-key="id"
+                    :input-options="sectionOptions"
+                    v-model="formData.section_id"
+                />
+            </div>
+        </div>
+
+        <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
+            <h2>
+                General details
+            </h2>
+
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('name')"
-                input-autocomplete="course_name"
+                input-autocomplete="webinar_name"
                 input-id="name"
                 input-name="name"
                 :input-required="true"
@@ -66,10 +105,10 @@
             <input-group
                 class="mt-4"
                 :error-message="getPageErrorMessage('summary')"
-                input-autocomplete="course_summary"
+                input-autocomplete="webinar_summary"
                 input-id="summary"
                 input-name="summary"
-                :input-required="true"
+                :input-required="false"
                 input-type="text"
                 label-text="Summary"
                 @errorHidden="clearPageErrorMessage('summary')"
@@ -90,231 +129,80 @@
             <div class="grid grid-cols-2 gap-2">
                 <date-time-picker-group
                     class="mt-4 md:flex-1"
-                    :error-message="getPageErrorMessage('available_from')"
-                    input-id="available_from"
-                    input-name="available_from"
+                    :error-message="getPageErrorMessage('date_time_from')"
+                    input-id="date_time_from"
+                    input-name="date_time_from"
                     label-text="Available From"
-                    @errorHidden="clearPageErrorMessage('available_from')"
-                    v-model="formData.available_from"
+                    @errorHidden="clearPageErrorMessage('date_time_from')"
+                    v-model="formData.date_time_from"
                 />
 
                 <date-time-picker-group
                     class="mt-4 md:flex-1"
-                    :error-message="getPageErrorMessage('available_to')"
-                    input-id="available_to"
-                    input-name="available_to"
+                    :error-message="getPageErrorMessage('date_time_to')"
+                    input-id="date_time_to"
+                    input-name="date_time_to"
                     label-text="Available To"
-                    @errorHidden="clearPageErrorMessage('available_to')"
-                    v-model="formData.available_to"
+                    @errorHidden="clearPageErrorMessage('date_time_to')"
+                    v-model="formData.date_time_to"
                 />
             </div>
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
-            <h2>Image & Video details</h2>
+            <h2>More Details</h2>
             <div class="grid grid-cols-2 gap-2">
                 <input-group
                     class="mt-4"
-                    :error-message="getPageErrorMessage('content_length_video')"
-                    input-autocomplete="course_content_length_video"
-                    input-id="content_length_video"
-                    input-name="content_length_video"
+                    :error-message="getPageErrorMessage('webinar_url')"
+                    input-autocomplete="webinar_url"
+                    input-id="webinar_url"
+                    input-name="webinar_url"
                     :input-required="false"
                     input-type="text"
-                    label-text="Total content length in hours"
-                    @errorHidden="clearPageErrorMessage('content_length_video')"
-                    v-model="formData.content_length_video"
+                    label-text="Webinar URL"
+                    @errorHidden="clearPageErrorMessage('webinar_url')"
+                    v-model="formData.webinar_url"
                 />
 
                 <input-group
                     class="mt-4"
-                    :error-message="getPageErrorMessage('banner')"
-                    input-autocomplete="course_banner"
-                    input-id="banner"
-                    input-name="banner"
+                    :error-message="getPageErrorMessage('recording_url')"
+                    input-autocomplete="recording_url"
+                    input-id="recording_url"
+                    input-name="recording_url"
                     :input-required="false"
                     input-type="text"
-                    label-text="Banner"
-                    @errorHidden="clearPageErrorMessage('banner')"
-                    v-model="formData.banner"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('primary_image')"
-                    input-autocomplete="primary_image"
-                    input-id="primary_image"
-                    input-name="primary_image"
-                    :input-required="false"
-                    input-type="text"
-                    label-text="Primary Image"
-                    @errorHidden="clearPageErrorMessage('primary_image')"
-                    v-model="formData.primary_image"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('video_preview')"
-                    input-autocomplete="video_preview"
-                    input-id="video_preview"
-                    input-name="video_preview"
-                    :input-required="false"
-                    input-type="text"
-                    label-text="Video Preview"
-                    @errorHidden="clearPageErrorMessage('video_preview')"
-                    v-model="formData.video_preview"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('languages')"
-                    input-autocomplete="languages"
-                    input-id="languages"
-                    input-name="languages"
-                    :input-required="false"
-                    input-type="text"
-                    label-text="The language/s of the content"
-                    @errorHidden="clearPageErrorMessage('languages')"
-                    v-model="formData.languages"
+                    label-text="Recording URL"
+                    @errorHidden="clearPageErrorMessage('recording_url')"
+                    v-model="formData.recording_url"
                 />
             </div>
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
-            <h2>Price details</h2>
-            <div class="grid grid-cols-3 gap-3">
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('price')"
-                    input-autocomplete="price"
-                    input-id="price"
-                    input-name="price"
-                    :input-required="false"
-                    input-type="text"
-                    label-text="Price"
-                    @errorHidden="clearPageErrorMessage('price')"
-                    v-model="formData.price"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('discount_price')"
-                    input-autocomplete="discount_price"
-                    input-id="discount_price"
-                    input-name="discount_price"
-                    :input-required="false"
-                    input-type="text"
-                    label-text="Discount Price"
-                    @errorHidden="clearPageErrorMessage('discount_price')"
-                    v-model="formData.discount_price"
-                />
-
-                <select-group
-                    class="mt-4"
-                    :label-hidden="true"
-                    label-text="Currency"
-                    :input-any-option-enabled="true"
-                    input-any-option-label="Currency"
-                    input-class="form-control form-control-short"
-                    input-id="currency"
-                    input-name="currency"
-                    input-option-label-key="name"
-                    input-option-value-key="id"
-                    :input-options="currencies"
-                    v-model="formData.currency"
-                />
-            </div>
-        </div>
-
-        <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
-            <h2>Features Offered</h2>
+            <h2>Features</h2>
             <div class="grid grid-cols-4 gap-4">
                 <checkbox-group
                     class="mt-4"
-                    :error-message="getPageErrorMessage('has_webinars')"
-                    :input-id="`has_webinars`"
-                    :input-name="`has_webinars`"
-                    label-text="Has Webinars?"
-                    @errorHidden="clearPageErrorMessage('has_webinars')"
-                    v-model="formData.has_webinars"
+                    :error-message="getPageErrorMessage('is_recorded')"
+                    :input-id="`is_recorded`"
+                    :input-name="`is_recorded`"
+                    label-text="Is Recorded?"
+                    @errorHidden="clearPageErrorMessage('is_recorded')"
+                    v-model="formData.is_recorded"
                 />
 
                 <checkbox-group
                     class="mt-4"
-                    :error-message="getPageErrorMessage('has_money_back_guarantee')"
-                    :input-id="`has_money_back_guarantee`"
-                    :input-name="`has_money_back_guarantee`"
-                    label-text="Has Money Back Guarantee?"
-                    @errorHidden="clearPageErrorMessage('has_money_back_guarantee')"
-                    v-model="formData.has_money_back_guarantee"
-                />
-
-                <checkbox-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('has_certificate')"
-                    :input-id="`has_certificate`"
-                    :input-name="`has_certificate`"
-                    label-text="Has Certificate?"
-                    @errorHidden="clearPageErrorMessage('has_certificate')"
-                    v-model="formData.has_certificate"
-                />
-
-                <checkbox-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('has_captions')"
-                    :input-id="`has_captions`"
-                    :input-name="`has_captions`"
-                    label-text="Videos have captions?"
-                    @errorHidden="clearPageErrorMessage('has_captions')"
-                    v-model="formData.has_captions"
-                />
-
-                <checkbox-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('has_lifetime_access')"
-                    :input-id="`has_lifetime_access`"
-                    :input-name="`has_lifetime_access`"
-                    label-text="Has Lifetime Access?"
-                    @errorHidden="clearPageErrorMessage('has_lifetime_access')"
-                    v-model="formData.has_lifetime_access"
-                />
-
-                <checkbox-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('has_student_discount')"
-                    :input-id="`has_student_discount`"
-                    :input-name="`has_student_discount`"
-                    label-text="Has Student Discount?"
-                    @errorHidden="clearPageErrorMessage('has_student_discount')"
-                    v-model="formData.has_student_discount"
-                />
-
-                <checkbox-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('has_pdfs')"
-                    :input-id="`has_pdfs`"
-                    :input-name="`has_pdfs`"
-                    label-text="Has PDFs?"
-                    @errorHidden="clearPageErrorMessage('has_pdfs')"
-                    v-model="formData.has_pdfs"
-                />
-
-                <checkbox-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('has_free_seo_exposure')"
-                    :input-id="`has_free_seo_exposure`"
-                    :input-name="`has_free_seo_exposure`"
-                    label-text="Has Free SEO Exposure?"
-                    @errorHidden="clearPageErrorMessage('has_free_seo_exposure')"
-                    v-model="formData.has_free_seo_exposure"
+                    :error-message="getPageErrorMessage('can_users_reserve')"
+                    :input-id="`can_users_reserve`"
+                    :input-name="`can_users_reserve`"
+                    label-text="Can users reserve access in advance?"
+                    @errorHidden="clearPageErrorMessage('can_users_reserve')"
+                    v-model="formData.can_users_reserve"
                 />
             </div>
-        </div>
-
-        <div class="bg-white mt-6 p-6 shadow-subtle rounded-lg">
-            <section-items-editor
-                v-model="formData.sections"
-            />
         </div>
 
     </form>
@@ -328,9 +216,10 @@
     import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
     import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
     import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
+    import _ from "lodash";
 
     export default {
-        name: "AdminEDUCourseCreate",
+        name: "AdminEDUWebinarCreate",
         components: {
             WysiwygField,
             TextAreaGroup,
@@ -342,7 +231,7 @@
         },
         layout: 'admin-layout',
         props: {
-            currencies: {
+            courses: {
                 required: true,
                 type: Object|Array,
             },
@@ -354,36 +243,65 @@
                     name: '',
                     summary: '',
                     description: '',
-                    available_from: '',
-                    available_to: '',
-                    content_length_video: '',
-                    banner: '',
-                    primary_image: '',
-                    video_preview: '',
-                    price: '',
-                    discount_price: '',
-                    currency: '',
-                    languages: '',
-                    has_webinars: '',
-                    has_money_back_guarantee: '',
-                    has_certificate: '',
-                    has_captions: '',
-                    has_lifetime_access: '',
-                    has_student_discount: '',
-                    has_pdfs: '',
-                    has_free_seo_exposure: '',
-                    sections: [],
+                    creator_id: '',
+                    course_id: '',
+                    section_id: '',
+                    status: '',
+                    date_time_from: '',
+                    date_time_to: '',
+                    webinar_url: '',
+                    can_users_reserve: '',
+                    is_recorded: '',
+                    recording_url: '',
                     templateField: { type: 'wysiwyg'}
+                },
+                sectionOptions: null,
+            }
+        },
+        computed: {
+            courseOptions() {
+                if (!this.courses.length) {
+                    return;
                 }
+
+                let courses = {};
+                _.forEach(this.courses, course => {
+                   courses[course.id] = course.name;
+                });
+
+                return courses;
             }
         },
         methods: {
             submit() {
               this.$inertia.post(
-                    this.$route('admin.edu.courses.store'),
+                    this.$route('admin.edu.webinars.store'),
                     this.formData
                 );
+            },
+            getSectionOptions() {
+                if (!this.courses.length) {
+                    return;
+                }
+
+                let sections = {};
+                _.forEach(this.courses, course => {
+                    _.forEach(course.sections, section => {
+                        if (section.course_id == this.formData.course_id) {
+                            sections[section.id] = section.title;
+                        }
+                    })
+                });
+
+                this.sectionOptions = sections;
+            },
+        },
+        watch: {
+            ['formData.course_id'](value) {
+                if (null !== value) {
+                    this.getSectionOptions();
+                }
             }
+        },
         }
-    }
 </script>
