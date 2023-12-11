@@ -1,5 +1,6 @@
 <?php
 
+use App\Interfaces\EDU\Course\CoursePurchaseInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('edu_course_edu_course_payments', function (Blueprint $table) {
+        Schema::create('edu_course_purchase_payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_purchase_id');
             $table->string('status'); // PENDING | PAID | REFUNDED | FAILED | NOT_DUE | OVERDUE
-            $table->string('type'); // FULL | INSTALMENT
             $table->string('price');
-            $table->dateTime('due_date');
+            $table->string('currency')->default(CoursePurchaseInterface::CURRENCY_GB);
+            $table->date('due_date');
             $table->dateTime('paid_at')->nullable();
             $table->string('payment_gateway_response_id')->nullable();
             $table->json('payment_gateway_response')->nullable();
@@ -30,7 +31,6 @@ return new class extends Migration
                 ->on('edu_courses');
 
             $table->index('status');
-            $table->index('type');
             $table->index('due_date');
         });
     }

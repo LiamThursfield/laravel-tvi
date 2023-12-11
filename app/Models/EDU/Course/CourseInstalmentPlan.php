@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $instalment_price
  * @property null|string $instalment_discount_price
  * @property null|string $instalment_current_price
+ * @property string $currency
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
@@ -37,6 +38,6 @@ class CourseInstalmentPlan extends Model
 
     public function getInstalmentCurrentPriceAttribute(): string
     {
-        return $this->instalment_discount_price ?? $this->instalment_price;
+        return $this->instalment_discount_price ? $this->instalment_discount_price : $this->instalment_price;
     }
 }

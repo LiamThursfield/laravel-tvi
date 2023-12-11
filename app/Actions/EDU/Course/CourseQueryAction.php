@@ -26,12 +26,7 @@ class CourseQueryAction extends AbstractQueryAction
 
     protected function isPurchasable()
     {
-        $this->query->where('status', CourseInterface::STATUS_PUBLISHED)
-            ->where('available_from', '<=', now())
-            ->where(function(Builder $query) {
-                $query->whereNull('available_to')
-                    ->orWhere('available_to', '>', now());
-            });
+        $this->query->isPurchasable();
     }
 
     protected function getQueryBuilder(): Builder

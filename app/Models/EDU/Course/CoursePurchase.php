@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon $redeemed_at
  * @property bool $is_redeemed
  * @property string $total_price_due
+ * @property string $currency
  * @property string $total_price_paid
  * @property string $total_price_outstanding
  * @property Carbon $full_price_paid_at
@@ -56,6 +58,11 @@ class CoursePurchase extends Model
     public function instalmentPlan(): HasOne
     {
         return $this->hasOne(CourseInstalmentPlan::class, 'instalment_plan_id');
+    }
+
+    public function purchasePayments(): HasMany
+    {
+        return $this->hasMany(CoursePurchasePayment::class, 'course_purchase_id');
     }
 
     public function getIsRedeemedAttribute(): bool

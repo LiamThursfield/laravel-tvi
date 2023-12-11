@@ -1,5 +1,6 @@
 <?php
 
+use App\Interfaces\EDU\Course\CoursePurchaseInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,6 +18,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('instalment_count');
             $table->string('instalment_price');
             $table->string('instalment_discount_price')->nullable();
+            $table->string('currency')->default(CoursePurchaseInterface::CURRENCY_GB);
             $table->timestamps();
             $table->softDeletes();
 

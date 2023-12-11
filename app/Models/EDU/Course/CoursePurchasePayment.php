@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $status
  * @property string $type
  * @property string $price
+ * @property string $currency
  * @property Carbon $due_date
  * @property Carbon $paid_at
  * @property string $payment_gateway_response_id
@@ -22,16 +23,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
-class CoursePayment extends Model
+class CoursePurchasePayment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'edu_course_instalment_plans';
+    protected $table = 'edu_course_purchase_payments';
 
     protected $guarded = [];
 
     protected $casts = [
-        'due_date'                  => 'datetime',
+        'due_date'                  => 'date',
         'paid_at'                   => 'datetime',
         'payment_gateway_response'  => 'json'
     ];
