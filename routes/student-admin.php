@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Student\Admin\HomeController;
+use App\Http\Controllers\Student\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,12 @@ Route::patch('/lectures/{lecture}/complete', [HomeController::class, 'completeLe
     ->name('lectures.complete');
 Route::get('/lectures/{lecture}/downloadPdf', [HomeController::class, 'downloadLecturePDFs'])
     ->name('lectures.downloadPdf');
+
+Route::group([
+    'as' => 'profile.',
+    'prefix' => 'profile'
+], function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('index');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+    Route::put('/', [ProfileController::class, 'update'])->name('update');
+});

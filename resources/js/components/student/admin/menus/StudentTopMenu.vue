@@ -47,7 +47,7 @@
             <inertia-link
                 v-if="userCan('profile.view')"
                 class="dropdown-link"
-                :href="$route('admin.profile.index')"
+                :href="$route('student.admin.profile.index')"
                 @click="closeUserDropdown"
             >
                 Profile
@@ -81,10 +81,6 @@ export default {
                     label: "Courses",
                     route: "student.admin.index",
                 },
-                programmes: {
-                    label: "Programmes",
-                    route: "website.index",
-                }
             }
         }
     },

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->longText('webinar_url')->nullable();
             $table->boolean('can_users_reserve')->nullable();
             $table->boolean('is_recorded')->nullable();
+            $table->longText('recording_url')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

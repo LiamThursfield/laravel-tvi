@@ -120,7 +120,7 @@
                             </h2>
 
                             <button
-                                v-if="showPDFPanel || (lecture.files && lecture.files.length)"
+                                v-if="lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Audio Only"
                                 @click="showAudioOnly(lecture)"
@@ -149,7 +149,7 @@
                                 </span>
                             </button>
                             <button
-                                v-if="showPDFPanel || (lecture.files && lecture.files.length)"
+                                v-if="lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Download PDFs"
                                 @click="downloadPDFs(lecture)"
@@ -200,6 +200,27 @@
                                 v-else
                                 key="description"
                             >
+                                <div
+                                    v-if="lectureWebinarsFromSection.length"
+                                    class="bg-gray-200 rounded-xl shadow-subtle p-2"
+                                >
+                                    <div v-for="webinar in lectureWebinarsFromSection">
+                                        <b class="flex flex-row">
+                                            <icon-speaker
+                                                class="w-5 mr-1"
+                                            />
+                                            <a :href="webinar.webinar_url" target="_blank" class="page-link">{{ webinar.name }}</a>
+                                        </b>
+
+                                        <p class="pt-1">
+                                            <strong>Dates:</strong>
+                                            {{ webinar.date_time_from | humanFriendlyDateTime }} to {{ webinar.date_time_to | humanFriendlyDateTime}}
+                                        </p>
+
+                                        <p class="pt-1">{{webinar.summary}}</p>
+                                    </div>
+                                </div>
+                                <br>
                                 <p class="mt-2" v-html="lecture.description"></p>
                             </div>
                         </transition-group>
@@ -294,6 +315,12 @@ export default {
                 return 'Do you really want to perform this action?'
             }
         },
+        courseWebinars() {
+            return this.course ? this.course.webinars:[];
+        },
+        lectureWebinarsFromSection() {
+            return this.courseWebinars.filter(webinar => webinar.section_id == this.lecture.section.id);
+        }
     },
     mounted() {
         this.isLoadingLecture = true;

@@ -75,6 +75,9 @@ Route::group([
     Route::resource('lectures', LectureController::class);
     Route::resource('labels', LabelController::class);
     Route::resource('webinars', WebinarController::class);
+    Route::patch('/webinars/publish/{webinar}', [WebinarController::class, 'publish'])
+        ->name('webinars.publish');
+
     Route::resource('purchases', PurchaseController::class);
 });
 

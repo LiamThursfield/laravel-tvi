@@ -288,6 +288,9 @@ class CreateBasePermissionRoles extends Migration
             RoleInterface::STUDENT => [
                 PermissionInterface::VIEW_STUDENT_ADMIN,
                 PermissionInterface::EDIT_STUDENT_ADMIN,
+                // Profile
+                PermissionInterface::EDIT_PROFILE,
+                PermissionInterface::VIEW_PROFILE,
             ]
         ];
     }
