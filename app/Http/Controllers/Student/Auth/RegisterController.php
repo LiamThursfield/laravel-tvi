@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Student\Auth;
 
+use App\Actions\EDU\Course\Purchase\RedeemUserCoursePurchasesAction;
 use App\Actions\EDU\Purchase\RedeemUserPurchasesAction;
 use App\Http\Controllers\Controller;
 use App\Interfaces\RoleInterface;
@@ -90,7 +91,7 @@ class RegisterController extends Controller
 
         $user->assignRole(Role::whereName(RoleInterface::STUDENT)->first());
 
-        app(RedeemUserPurchasesAction::class)->handle($user);
+        app(RedeemUserCoursePurchasesAction::class)->handle($user);
 
         return $user;
     }

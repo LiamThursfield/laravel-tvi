@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Webhook\Stripe\StripeCheckoutController;
+use App\Http\Controllers\Webhook\Stripe\StripeCourseCheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +18,6 @@ Route::group([
     'as' => 'stripe.',
     'prefix' => 'stripe',
 ], function() {
-    Route::post('/checkout', StripeCheckoutController::class)->name('checkout');
+    Route::post('/course/checkout', StripeCourseCheckoutController::class)->name('course.checkout');
 });
 

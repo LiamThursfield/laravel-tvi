@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class CoursePurchasePayment extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'edu_course_purchase_payments';
 
@@ -39,6 +39,6 @@ class CoursePurchasePayment extends Model
 
     public function purchase(): BelongsTo
     {
-        return $this->belongsTo(CoursePurchase::class);
+        return $this->belongsTo(CoursePurchase::class, 'course_purchase_id');
     }
 }

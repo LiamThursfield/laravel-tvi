@@ -3,7 +3,7 @@
 namespace Database\Factories\EDU\Course;
 
 use App\Interfaces\EDU\Course\CourseInterface;
-use App\Interfaces\EDU\Purchase\PurchaseInterface;
+use App\Interfaces\EDU\Course\CoursePurchaseInterface;
 use App\Models\EDU\Course\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -43,7 +43,7 @@ class CourseFactory extends Factory
 
             'price' => $this->faker->numberBetween(50, 200) * 100,
             'discount_price' => null,
-            'currency' => PurchaseInterface::CURRENCY_GB,
+            'currency' => CoursePurchaseInterface::CURRENCY_GB,
 
             'has_webinars' => $this->faker->boolean,
 
