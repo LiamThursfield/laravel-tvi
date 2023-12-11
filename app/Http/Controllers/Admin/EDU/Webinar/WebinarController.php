@@ -130,9 +130,4 @@ class WebinarController extends AdminController
     {
         return Course::select(['id', 'name'])->with('sections')->get();
     }
-
-    protected function getSections()
-    {
-        return Course::select(['id', 'name'])->with('sections')->get();
-    }
 }
