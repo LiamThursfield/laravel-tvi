@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\EDU\Course\CourseController;
 use App\Http\Controllers\Admin\EDU\Label\LabelController;
 use App\Http\Controllers\Admin\EDU\Lecture\LectureController;
 use App\Http\Controllers\Admin\EDU\Programme\ProgrammeController;
+use App\Http\Controllers\Admin\EDU\Purchase\PurchaseController;
 use App\Http\Controllers\Admin\EDU\Section\SectionController;
 use App\Http\Controllers\Admin\EDU\Webinar\WebinarController;
 use App\Http\Controllers\Admin\FileManagerController;
@@ -74,6 +75,10 @@ Route::group([
     Route::resource('lectures', LectureController::class);
     Route::resource('labels', LabelController::class);
     Route::resource('webinars', WebinarController::class);
+    Route::patch('/webinars/publish/{webinar}', [WebinarController::class, 'publish'])
+        ->name('webinars.publish');
+
+    Route::resource('purchases', PurchaseController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])

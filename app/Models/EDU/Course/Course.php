@@ -3,8 +3,11 @@
 namespace App\Models\EDU\Course;
 
 use App\Interfaces\EDU\Course\CourseInterface;
+use App\Interfaces\EDU\Purchase\PurchaseInterface;
+use App\Interfaces\EDU\Webinar\WebinarInterface;
 use App\Models\EDU\Label\Label;
 use App\Models\EDU\Programme\Programme;
+use App\Models\EDU\Purchase\PurchaseItem;
 use App\Models\EDU\Section\Section;
 use App\Models\EDU\Webinar\Webinar;
 use App\Models\User;
@@ -78,6 +81,67 @@ class Course extends Model
         'has_webinars' => 'boolean',
     ];
 
+    public function getTotalQuantitySoldAttribute()
+    {
+        return $this->purchases()
+            ->whereHas('purchase', function ($query) {
+                return $query->where('payment_status', '=', PurchaseInterface::PAYMENT_STATUS_PAID);
+            })
+            ->count();
+    }
+
+    public function getTotalQuantityRefundedAttribute()
+    {
+        return $this->purchases()
+            ->whereHas('purchase', function ($query) {
+                return $query->where('payment_status', '=', PurchaseInterface::PAYMENT_STATUS_REFUNDED);
+            })
+            ->count();
+    }
+
+    public function getTotalQuantityPendingAttribute()
+    {
+        return $this->purchases()
+            ->whereHas('purchase', function ($query) {
+                return $query->where('payment_status', '=', PurchaseInterface::PAYMENT_STATUS_PENDING);
+            })
+            ->count();
+    }
+
+    public function getTotalProfitAttribute()
+    {
+        return $this->purchases()
+            ->whereHas('purchase', function ($query) {
+                return $query->where('payment_status', '=', PurchaseInterface::PAYMENT_STATUS_PAID);
+            })
+            ->sum('total_price');
+    }
+
+    public function getTotalRefundedAttribute()
+    {
+        return $this->purchases()
+            ->whereHas('purchase', function ($query) {
+                return $query->where('payment_status', '=', PurchaseInterface::PAYMENT_STATUS_REFUNDED);
+            })
+            ->sum('total_price');
+    }
+
+    public function getTotalProfitPendingAttribute()
+    {
+        return $this->purchases()
+            ->whereHas('purchase', function ($query) {
+                return $query->where('payment_status', '=', PurchaseInterface::PAYMENT_STATUS_PENDING);
+            })
+            ->sum('total_price');
+    }
+
+    public function purchases(): BelongsTo
+    {
+        return $this->belongsTo(PurchaseItem::class,'id', 'purchasable_id')
+            ->where('purchasable_type', 'App\Models\EDU\Course\Course')
+            ->with('purchase');
+    }
+
     public function programme(): BelongsTo
     {
         return $this->belongsTo(Programme::class);
@@ -102,7 +166,7 @@ class Course extends Model
 
     public function webinars(): HasMany
     {
-        return $this->hasMany(Webinar::class);
+        return $this->hasMany(Webinar::class)->where('status', WebinarInterface::STATUS_PUBLISHED);
     }
 
     public function participants(): BelongsToMany
@@ -129,7 +193,6 @@ class Course extends Model
                 ->orWhereDate('available_to', '>=', now());
         });
     }
-
 
     public function getIsPurchasableAttribute(): bool
     {

@@ -25,6 +25,12 @@ class PurchaseItem extends Model
         return $this->belongsTo(Purchase::class);
     }
 
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'purchasable_id', 'id')
+            ;
+    }
+
     public function purchasable(): MorphTo
     {
         return $this->morphTo();

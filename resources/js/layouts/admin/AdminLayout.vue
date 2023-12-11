@@ -358,6 +358,46 @@
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_labels.create", "edu_labels.view"],
                             },
+                            purchases: {
+                                activeRoutes: ["admin.edu.purchases.index", "admin.edu.purchases.create", "admin.edu.purchases.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View",
+                                        requiresAllPermissions: ["edu_purchases.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.purchases.index",
+                                    }
+                                },
+                                icon: "icon-money-bag",
+                                label: "Purchases",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_purchases.create", "edu_purchases.view"],
+                            },
+                            webinars: {
+                                activeRoutes: ["admin.edu.webinars.index", "admin.edu.webinars.create", "admin.edu.webinars.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View",
+                                        requiresAllPermissions: ["edu_webinars.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.webinars.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create",
+                                        requiresAllPermissions: ["edu_webinars.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.edu.webinars.create",
+                                    }
+                                },
+                                icon: "icon-camera-check",
+                                label: "Webinars",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["edu_webinars.create", "edu_webinars.view"],
+                            },
                         },
                         label: "EDU",
                         requiresAllPermissions: [],
@@ -370,6 +410,9 @@
                             'edu_programmes.view',
                             'edu_labels.create',
                             'edu_labels.view',
+                            'edu_purchases.view',
+                            'edu_webinars.view',
+                            'edu_webinars.create',
                         ],
                         showLabel: true,
                     },

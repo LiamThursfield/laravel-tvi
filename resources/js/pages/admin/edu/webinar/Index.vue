@@ -4,16 +4,16 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Courses
+                Webinars
             </h1>
 
             <inertia-link
-                v-if="userCan('courses.create')"
+                v-if="userCan('webinars.create')"
                 class="
                     button button-default-responsive button-primary
                     flex flex-row items-center
                 "
-                :href="$route('admin.edu.courses.create')"
+                :href="$route('admin.edu.webinars.create')"
             >
                 <icon-plus class="w-5 md:mr-2"/>
 
@@ -49,21 +49,21 @@
             >
                 <div class="w-full md:w-1/3">
                     <input-group
-                        input-autocomplete="course_name_search"
+                        input-autocomplete="webinar_name_search"
                         input-class="form-control form-control-short"
-                        input-id="course_name"
-                        input-name="course_name"
-                        input-placeholder="Course Name"
+                        input-id="webinar_name"
+                        input-name="webinar_name"
+                        input-placeholder="Webinar Name"
                         input-type="text"
                         :label-hidden="true"
-                        label-text="Course Name"
-                        v-model="editableSearchOptions.course_name"
+                        label-text="Webinar Name"
+                        v-model="editableSearchOptions.webinar_name"
                     />
                 </div>
             </div>
 
             <p
-                v-if="!coursesData"
+                v-if="!webinarsData"
                 class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
             >
                 No results
@@ -76,98 +76,69 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
-                            <th>Image</th>
                             <th>Name</th>
-                            <th>Price</th>
+                            <th>Course</th>
                             <th>Status</th>
-                            <th>Summary</th>
+                            <th>Scheduled At</th>
                             <th>Created By</th>
-                            <th>Length</th>
-                            <th>Total Sold</th>
-                            <th>Total Participants</th>
                             <th v-if="showActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(item, index) in coursesData"
+                            v-for="(item, index) in webinarsData"
                             :key="`item-${item.id}`"
                         >
                             <td>
-                                <img :src="item.primary_image" :alt="item.name" class="w-32 square-full"/>
-                            </td>
-                            <td>
                                 {{ item.name }}
-                                <br>
-                                <small>{{ item.slug}}</small>
                             </td>
                             <td>
-                                {{ item.price + ' ' + item.currency }}
+                                {{ item.course ? item.course.name:'' }}
+                                <br>
+                                <small v-if="item.section"><b>Section:</b> {{ item.section.title }}</small>
                             </td>
                             <td>
                                 {{ item.status }}
                             </td>
                             <td>
-                                {{ item.summary.length > 60 ? item.summary.substring(0,60) + ' ...':'' }}
+                                {{ item.date_time_from }} / {{ item.date_time_to }}
                             </td>
+
                             <td>
                                 {{ item.creator ? item.creator.first_name + ' ' + item.creator.last_name:'' }}
-                            </td>
-                            <td>
-                                {{ item.content_length_video }}
-                            </td>
-                            <td>
-                                {{ item.total_quantity_sold }}
-                            </td>
-                            <td>
-                                {{ item.total_profit }}
                             </td>
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <button
-                                        v-if="userCan('courses.publish')"
+                                        v-if="userCan('webinars.publish') && item.status !== 'PUBLISHED'"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-success hover:text-theme-success-contrast
                                         "
                                         title="Publish"
-                                        @click="checkPublishCourse(item)"
+                                        @click="checkPublishWebinar(item)"
                                     >
                                         <icon-check
                                             class="w-4"
                                         />
                                     </button>
                                     <inertia-link
-                                        v-if="userCan('courses.edit')"
+                                        v-if="userCan('webinars.edit')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.courses.edit', item.id)"
+                                        :href="$route('admin.edu.webinars.edit', item.id)"
                                         title="Edit"
                                     >
                                         <icon-edit
                                             class="w-4"
                                         />
                                     </inertia-link>
-                                    <inertia-link
-                                        v-if="userCan('courses.view')"
-                                        class="
-                                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
-                                            focus:outline-none focus:ring
-                                            hover:bg-theme-info hover:text-theme-info-contrast
-                                        "
-                                        :href="$route('admin.edu.courses.preview', item.id)"
-                                        title="Preview"
-                                    >
-                                        <icon-eye
-                                            class="w-4"
-                                        />
-                                    </inertia-link>
                                     <button
-                                        v-if="userCan('courses.delete')"
+                                        v-if="userCan('webinars.delete')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
@@ -192,7 +163,7 @@
                     v-if="showPagination"
                     class="flex flex-row justify-center mt-12 px-6"
                 >
-                    <pagination :pagination="courses.pagination" />
+                    <pagination :pagination="webinars.pagination" />
                 </div>
             </template>
 
@@ -228,7 +199,7 @@
     import IconCheck from "../../../../components/core/icons/IconCheck";
 
     export default {
-        name: "AdminEDUCourseIndex",
+        name: "AdminEDUWebinarIndex",
         components: {
             IconCheck,
             IconSave,
@@ -237,7 +208,7 @@
         },
         layout: 'admin-layout',
         props: {
-            courses: {
+            webinars: {
                 required: true,
                 type: Object,
             },
@@ -249,7 +220,7 @@
         data() {
             return {
                 editableSearchOptions: {
-                    course_name   : '',
+                    webinar_name   : '',
                     per_page    : 15,
                 },
                 isInitialised: false,
@@ -281,24 +252,24 @@
             },
             showPagination() {
                 try {
-                    return this.courses.pagination.last_page > 1;
+                    return this.webinars.pagination.last_page > 1;
                 } catch (e) {
                     return false;
                 }
             },
             showActions() {
-                return this.userCan('courses.edit') || this.userCan('courses.delete');
+                return this.userCan('webinars.edit') || this.userCan('webinars.delete');
             },
-            coursesData() {
-                if (!this.courses || !this.courses.data || this.courses.data.length < 1) {
+            webinarsData() {
+                if (!this.webinars || !this.webinars.data || this.webinars.data.length < 1) {
                     return false;
                 }
 
-                return this.courses.data;
+                return this.webinars.data;
             }
         },
         methods: {
-            checkPublishCourse(item) {
+            checkPublishWebinar(item) {
                 this.showConfirmPublishModal = true;
                 this.itemToPublish = item;
             },
@@ -307,11 +278,11 @@
                     return this.$errorToast('It\'s only possible to publish one item at a time.');
                 }
                 this.$inertia.patch(
-                    this.$route('admin.edu.courses.publish', this.itemToPublish.id),
+                    this.$route('admin.edu.webinars.publish', this.itemToPublish.id),
                     {
                         only: [
                             'flash',
-                            'courses'
+                            'webinars'
                         ]
                     }
                 );
@@ -339,11 +310,11 @@
                     return this.$errorToast('It\'s only possible to delete one item at a time.');
                 }
                 this.$inertia.delete(
-                    this.$route('admin.edu.courses.destroy', this.itemToDelete.id),
+                    this.$route('admin.edu.webinars.destroy', this.itemToDelete.id),
                     {
                         only: [
                             'flash',
-                            'courses'
+                            'webinars'
                         ]
                     }
                 );
@@ -355,23 +326,23 @@
                     this.isInitialised = true;
 
                     // If there are already search results, don't attempt search
-                    if (this.coursesData) {
+                    if (this.webinarsData) {
                         return;
                     }
                 }
 
                 router.get(
-                    this.$route('admin.edu.courses.index'),
+                    this.$route('admin.edu.webinars.index'),
                     this.editableSearchOptions,
                     {
-                        only: ['courses'],
+                        only: ['webinars'],
                         preserveState: true,
                     }
                 );
             }, 500),
             setSearchOptions(new_options = {}) {
                 let options = {
-                    course_name   : '',
+                    webinar_name   : '',
                     per_page    : 15,
                 }
 
