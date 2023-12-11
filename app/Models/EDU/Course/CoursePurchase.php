@@ -74,4 +74,9 @@ class CoursePurchase extends Model
     {
         return (int) $this->total_price_due - (int) $this->total_price_paid;
     }
+
+    public function redeem(User $user): void
+    {
+        $user->courses()->attach($this->course_id);
+    }
 }

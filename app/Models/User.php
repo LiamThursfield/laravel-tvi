@@ -5,13 +5,11 @@ namespace App\Models;
 use App\Interfaces\PermissionInterface;
 use App\Interfaces\RoleInterface;
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CoursePurchase;
 use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Programme\Programme;
-use App\Models\EDU\Programme\ProgrammeUser;
-use App\Models\EDU\Purchase\Purchase;
 use App\Notifications\Auth\ResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -109,7 +107,10 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'edu_course_users');
+        return $this->belongsToMany(
+            Course::class,
+            CourseUser::class
+        )->withTimestamps();
     }
 
     public function programmes() : HasMany
@@ -117,25 +118,13 @@ class User extends Authenticatable
         return $this->hasMany(Programme::class);
     }
 
-    public function purchases(): HasMany
+    public function coursePurchases(): HasMany
     {
-        return $this->hasMany(Purchase::class);
-    }
-
-    public function purchasedCourses(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            Course::class,
-            CourseUser::class,
-        )->withTimestamps();
-    }
-
-    public function purchasedProgrammes(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            Programme::class,
-            ProgrammeUser::class
-        )->withTimestamps();
+        return $this->hasMany(
+        CoursePurchase::class,
+            'user_id',
+            'id'
+        );
     }
 
     public function sendPasswordResetNotification($token)
