@@ -9,7 +9,7 @@ class CourseCheckoutRequest extends FormRequest
     public function rules() : array
     {
         return [
-            // TODO: Once Courses are implemented
+            'instalment_plan_id' => 'nullable|int'
         ];
     }
 }

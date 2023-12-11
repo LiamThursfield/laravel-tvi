@@ -19,7 +19,7 @@
                 <div class="flex flex-col items-center md:flex-row md:items-start">
                     <img
                         class="rounded-lg w-48"
-                        :src="course.images[0]"
+                        :src="course.primary_image"
                         alt="Course image preview"
                     />
 
@@ -33,47 +33,54 @@
 
         <section class="px-4 py-6">
             <div class="container max-w-screen-lg mx-auto">
-                <p class="opacity-50">
-                    Course/Programme Selection
-                </p>
+                <!-- If there are instalment plans, show selection -->
+                <template v-if="orderedInstalmentPlans">
+                    <p class="opacity-50">
+                        Payment options
+                    </p>
 
-                <div class="flex flex-row mt-2 space-x-4">
-                    <button
-                        :class="purchaseSelectionClass('standalone')"
-                        type="button"
-                        @click="purchaseSelection = 'standalone'"
-                    >
-                        <span>Standalone</span>
-                        <span class="text-sm">Start now!</span>
-                    </button>
+                    <div class="flex flex-row mt-2 space-x-4">
+                        <button
+                            :class="paymentSelectionClass('full')"
+                            type="button"
+                            @click="selectPaymentType('full')"
+                        >
+                            <span>Pay in full</span>
+                            <span class="text-sm">£{{ course.current_price | priceDecimal }}</span>
+                        </button>
 
-                    <button
-                        :class="purchaseSelectionClass('programme_1')"
-                        type="button"
-                        @click="purchaseSelection = 'programme_1'"
-                    >
-                        <span>Programme 1</span>
-                        <span class="text-sm">Start date: 01/11/2023</span>
-                    </button>
-
-                    <button
-                        :class="purchaseSelectionClass('programme_2')"
-                        type="button"
-                        @click="purchaseSelection = 'programme_2'"
-                    >
-                        <span>Programme 2</span>
-                        <span class="text-sm">Start date: 01/12/2023</span>
-                    </button>
-                </div>
+                        <button
+                            v-for="instalmentPlan in orderedInstalmentPlans"
+                            :key="`instalment_plan_${instalmentPlan.id}`"
+                            :class="paymentSelectionClass('instalment', instalmentPlan)"
+                            type="button"
+                            @click="selectPaymentType('instalment', instalmentPlan)"
+                        >
+                            <span>{{ instalmentPlan.instalment_count }} Instalments</span>
+                            <span class="text-sm">£{{ instalmentPlan.instalment_current_price | priceDecimal }}</span>
+                        </button>
+                    </div>
+                </template>
 
                 <div class="flex flex-row justify-center">
                     <button
                         class="button button-primary flex flex-row justify-center mt-6 text-xl"
                         style="min-width: 300px"
-                        :disabled="!purchaseSelection || isLoadingCheckout"
+                        :disabled="!paymentType || isLoadingCheckout"
                         @click="purchaseCourse"
                     >
-                        £{{ course.price }} | Purchase
+                        Purchase
+
+
+                        <template
+                            v-if="paymentType === 'full'"
+                            class="text-sm"
+                        >
+                            £{{ course.current_price | priceDecimal }}
+                        </template>
+                        <template v-else>
+                            {{ instalmentSelection.instalment_count }} months x £{{ instalmentSelection.instalment_current_price | priceDecimal }}
+                        </template>
 
                         <icon-loader-circle
                             v-if="isLoadingCheckout"
@@ -100,6 +107,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
     name: "EduCourseShow",
     layout: 'website-layout',
@@ -111,11 +120,20 @@ export default {
     },
     data() {
         return {
-            showCourseJson: false,
             isLoadingCheckout: false,
             checkoutErrors: null,
             checkoutResponse: null,
-            purchaseSelection: null,
+            paymentType: 'full',
+            instalmentSelection: null,
+        }
+    },
+    computed: {
+        orderedInstalmentPlans() {
+            try {
+                return _.orderBy(this.course.instalment_plans, 'instalment_count');
+            } catch (e) {
+                return false;
+            }
         }
     },
     mounted() {
@@ -146,7 +164,10 @@ export default {
             this.isLoadingCheckout = true;
 
             axios.post(
-                this.$route('api.edu.courses.checkout', this.course.id)
+                this.$route('api.edu.courses.checkout', this.course.id),
+                {
+                    instalment_plan_id: this.instalmentSelection?.id
+                }
             ).then(response => {
                 if (!response.data.url) {
                     this.checkoutErrors = 'No checkout URL returned from server.';
@@ -160,16 +181,21 @@ export default {
                 this.isLoadingCheckout = false;
             })
         },
-        toggleCourseJson() {
-            this.showCourseJson = !this.showCourseJson;
-        },
-        purchaseSelectionClass(selection) {
+        paymentSelectionClass(payment_type, instalment_id = null) {
             let base = 'cursor-pointer border flex flex-col px-8 py-2 rounded space-y-1 w-full items-center justify-center';
-            if (selection === this.purchaseSelection) {
+
+            if (
+                (payment_type === 'full' && this.paymentType === 'full') ||
+                (payment_type === 'instalment' && this.instalmentSelection === instalment_id)
+            ) {
                 return base + ' border-theme-primary text-theme-primary';
             }
 
             return base + ' border-gray-200 bg-grey-100 text-gray-500 hover:bg-gray-100';
+        },
+        selectPaymentType(payment_type, instalment = null) {
+            this.paymentType = payment_type;
+            this.instalmentSelection = instalment;
         }
     }
 }

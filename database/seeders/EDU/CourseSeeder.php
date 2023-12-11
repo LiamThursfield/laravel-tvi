@@ -4,6 +4,7 @@ namespace Database\Seeders\EDU;
 
 use App\Interfaces\EDU\Course\CourseInterface;
 use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CourseInstalmentPlan;
 use App\Models\EDU\Course\CourseUser;
 use App\Models\EDU\Label\Label;
 use App\Models\EDU\Lecture\Lecture;
@@ -44,6 +45,18 @@ class CourseSeeder extends Seeder
                'lecture_count' => Arr::get($options, 'lecture_count', 2),
                'index' => $key,
            ]);
+
+           // Create some instalment plans
+           $instalment_counts = [
+               6, 12, 18
+           ];
+           foreach ($instalment_counts as $instalment_count) {
+               CourseInstalmentPlan::factory()->create([
+                   'course_id' => $course->id,
+                   'instalment_count' => $instalment_count,
+                   'instalment_price' => (int) (($course->price * 1.5) / $instalment_count)
+               ]);
+           }
        }
 
         $sections = Section::all();

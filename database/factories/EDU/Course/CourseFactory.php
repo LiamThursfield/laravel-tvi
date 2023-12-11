@@ -41,7 +41,7 @@ class CourseFactory extends Factory
             'primary_image' => 'https://images.unsplash.com/photo-1695649920693-58e7aec67ae2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80',
             'video_preview' => 'https://player.vimeo.com/video/439035104?h=8a93ad7e59',
 
-            'price' => $this->faker->randomNumber(3),
+            'price' => $this->faker->numberBetween(50, 200) * 100,
             'discount_price' => null,
             'currency' => PurchaseInterface::CURRENCY_GB,
 
