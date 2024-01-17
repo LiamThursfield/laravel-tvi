@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Database\Seeders\EDU\AnnouncementSeeder;
+use Database\Seeders\EDU\CourseInstalmentPlanSeeder;
+use Database\Seeders\EDU\CoursePurchasePaymentSeeder;
+use Database\Seeders\EDU\CoursePurchaseSeeder;
 use Database\Seeders\EDU\CourseSeeder;
 use Database\Seeders\EDU\LabelSeeder;
 use Database\Seeders\EDU\ProgrammeSeeder;
@@ -28,9 +31,9 @@ class DatabaseSeeder extends Seeder
             $this->call(LabelSeeder::class);
             $this->call(ProgrammeSeeder::class);
             $this->call(CourseSeeder::class);
-//        $this->call(SectionSeeder::class);
-//        $this->call(LectureSeeder::class);
-//        $this->call(WebinarSeeder::class);
+            $this->call(CourseInstalmentPlanSeeder::class);
+            $this->call(CoursePurchasePaymentSeeder::class);
+            $this->call(CoursePurchaseSeeder::class);
 
             $this->call(ThirdPartySettingSeeder::class);
     }
