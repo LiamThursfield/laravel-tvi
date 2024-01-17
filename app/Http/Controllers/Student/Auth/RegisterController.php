@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Student\Auth;
 
 use App\Actions\EDU\Course\Purchase\RedeemUserCoursePurchasesAction;
-use App\Actions\EDU\Purchase\RedeemUserPurchasesAction;
 use App\Http\Controllers\Controller;
 use App\Interfaces\RoleInterface;
 use App\Models\User;

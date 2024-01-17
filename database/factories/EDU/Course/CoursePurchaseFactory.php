@@ -26,7 +26,7 @@ class CoursePurchaseFactory extends Factory
     {
         $price = $this->faker->numberBetween(50, 200) * 100;
         $currency = CoursePurchaseInterface::CURRENCY_GB;
-        $status = $this->faker->randomElement(CoursePurchaseInterface::PURCHASE_PAYMENT_STATUSES);
+        $status = $this->faker->randomElement(CoursePurchaseInterface::PAYMENT_STATUSES_FOR_PURCHASES);
 
         $price_paid = match ($status) {
             CoursePurchaseInterface::PAYMENT_STATUS_PAID, CoursePurchaseInterface::PAYMENT_STATUS_REFUNDED => $price,

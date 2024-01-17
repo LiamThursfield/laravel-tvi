@@ -30,6 +30,38 @@
                     md:flex-row md:space-y-0 md:space-x-8
                 "
             >
+                <div class="w-full md:w-1/6">
+                    <select-group
+                        :label-hidden="true"
+                        label-text="Status"
+                        :input-any-option-enabled="true"
+                        input-any-option-label="Status (All)"
+                        input-class="form-control form-control-short"
+                        input-id="status"
+                        input-name="status"
+                        input-option-label-key="name"
+                        input-option-value-key="id"
+                        :input-options="statuses"
+                        v-model="editableSearchOptions.course_purchase_status"
+                    />
+                </div>
+
+                <div class="w-full md:w-1/6">
+                    <select-group
+                        :label-hidden="true"
+                        label-text="Type"
+                        :input-any-option-enabled="true"
+                        input-any-option-label="Types (All)"
+                        input-class="form-control form-control-short"
+                        input-id="type"
+                        input-name="type"
+                        input-option-label-key="name"
+                        input-option-value-key="id"
+                        :input-options="types"
+                        v-model="editableSearchOptions.course_purchase_type"
+                    />
+                </div>
+
                 <div class="w-full md:w-1/3">
                     <input-group
                         input-autocomplete="email_address_search"
@@ -40,23 +72,7 @@
                         input-type="text"
                         :label-hidden="true"
                         label-text="Email Address"
-                        v-model="editableSearchOptions.email_address"
-                    />
-                </div>
-
-                <div class="w-full md:w-1/6">
-                    <select-group
-                        :label-hidden="true"
-                        label-text="All"
-                        :input-any-option-enabled="true"
-                        input-any-option-label="All"
-                        input-class="form-control form-control-short"
-                        input-id="status"
-                        input-name="status"
-                        input-option-label-key="name"
-                        input-option-value-key="id"
-                        :input-options="statuses"
-                        v-model="editableSearchOptions.payment_status"
+                        v-model="editableSearchOptions.course_purchase_email_address"
                     />
                 </div>
             </div>
@@ -75,80 +91,68 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
-                            <th>Status</th>
-                            <th>Refundable</th>
+                            <th>Course</th>
                             <th>Email</th>
-                            <th>Redeemed At</th>
-                            <th>Payment Total</th>
-                            <th>Gateway</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
-                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Price Due</th>
+                            <th>Price Paid</th>
+                            <th>Refundable</th>
                             <th v-if="showActions"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr
-                            v-for="(item, index) in purchaseData"
-                            :key="`item-${item.id}`"
+                            v-for="(purchase) in purchaseData"
+                            :key="`purchase-${purchase.id}`"
                         >
                             <td>
-                               {{ item.payment_status}}
+                                {{ purchase.course.name }}
                             </td>
                             <td>
-                                {{ item.is_refundable }}
+                                {{ purchase.email_address }}
                             </td>
                             <td>
-                                {{ item.email_address }}
+                                {{
+                                    statuses.hasOwnProperty(purchase.status) ?
+                                        statuses[purchase.status] : purchase.status
+                                }}
                             </td>
                             <td>
-                                {{ item.redeemed_at }}
+                                {{
+                                    types.hasOwnProperty(purchase.type) ?
+                                        types[purchase.type] : purchase.type
+                                }}
                             </td>
                             <td>
-                                {{ item.payment_total + ' ' + item.payment_currency }}
+                                {{ purchase.currency | currencySymbol }}{{ purchase.total_price_due | priceDecimal }}
                             </td>
                             <td>
-                                {{ item.payment_gateway }}
+                                {{ purchase.currency | currencySymbol }}{{ purchase.total_price_paid | priceDecimal }}
                             </td>
                             <td>
-                                Item Name
+                                <component
+                                    :is="purchase.is_refundable ? 'icon-check' : 'icon-close'"
+                                    class="w-4"
+                                />
                             </td>
-                            <td>
-                               Item Price
-                            </td>
-                            <td>
-                                Item Total Price
-                            </td>
+
                             <td v-if="showActions">
                                 <div class="flex flex-row items-center justify-end -mx-1">
                                     <inertia-link
-                                        v-if="userCan('purchases.edit')"
+                                        v-if="userCan('edu_course_purchases.show')"
                                         class="
                                             flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
                                             focus:outline-none focus:ring
                                             hover:bg-theme-info hover:text-theme-info-contrast
                                         "
-                                        :href="$route('admin.edu.purchases.edit', item.id)"
-                                        title="Edit"
+                                        :href="$route('admin.edu.course-purchases.show', purchase.id)"
+                                        title="View"
                                     >
                                         <icon-eye
                                             class="w-4"
                                         />
                                     </inertia-link>
-                                    <button
-                                        v-if="userCan('purchases.delete')"
-                                        class="
-                                            flex flex-row items-center inline-flex mx-1 px-2 py-1 rounded text-theme-base-subtle-contrast text-sm tracking-wide
-                                            focus:outline-none focus:ring
-                                            hover:bg-theme-danger hover:text-theme-danger-contrast
-                                        "
-                                        title="Delete"
-                                        @click="checkDelete(item)"
-                                    >
-                                        <icon-trash
-                                            class="w-4"
-                                        />
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -164,16 +168,6 @@
                     <pagination :pagination="purchases.pagination" />
                 </div>
             </template>
-
-            <confirmation-modal
-                confirm-text="Delete"
-                confirm-type="danger"
-                :show-modal="showDeleteModal"
-                :message-text="deleteModalText"
-                @cancelAction="cancelDelete"
-                @closeModal="cancelDelete"
-                @confirmAction="confirmDelete"
-            />
         </div>
     </section>
 </template>
@@ -181,14 +175,14 @@
 <script>
     import _ from 'lodash';
     import { router } from '@inertiajs/vue2'
-    import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import IconSave from "../../../../components/core/icons/IconSave";
-    import IconCheck from "../../../../components/core/icons/IconCheck";
+    import ConfirmationModal from "../../../../../components/core/modals/ConfirmationModal";
+    import SelectGroup from "../../../../../components/core/forms/SelectGroup";
+    import InputGroup from "../../../../../components/core/forms/InputGroup";
+    import IconSave from "../../../../../components/core/icons/IconSave";
+    import IconCheck from "../../../../../components/core/icons/IconCheck";
 
     export default {
-        name: "AdminEDUCourseIndex",
+        name: "AdminEDUCoursePurchaseIndex",
         components: {
             IconCheck,
             IconSave,
@@ -208,33 +202,30 @@
             },
             statuses: {
                 required: true,
-                type: Object | Array,
+                type: Object,
+            },
+            types: {
+                required: true,
+                type: Object,
             }
         },
         data() {
             return {
                 editableSearchOptions: {
-                    email_address: '',
-                    payment_status: null,
+                    course_purchase_course_id: '',
+                    course_purchase_email_address: '',
+                    course_purchase_status: '',
+                    course_purchase_type: '',
+                    course_purchase_user_id: '',
                     per_page: 25,
                 },
                 isInitialised: false,
-                isLoadingDelete: false,
-                showDeleteModal: false,
-                itemToDelete: null,
             }
         },
         mounted() {
             this.setSearchOptions(this.searchOptions);
         },
         computed: {
-            deleteModalText() {
-                try {
-                    return 'Do you really want to delete purchase invoice from \'' + this.itemToDelete.email_address + '\'?';
-                } catch (e) {
-                    return 'Do you really want to delete this?'
-                }
-            },
             showPagination() {
                 try {
                     return this.purchases.pagination.last_page > 1;
@@ -243,7 +234,7 @@
                 }
             },
             showActions() {
-                return this.userCan('purchases.edit') || this.userCan('purchases.delete');
+                return this.userCan('edu_course_purchases.show');
             },
             purchaseData() {
                 if (!this.purchases || !this.purchases.data || this.purchases.data.length < 1) {
@@ -254,32 +245,6 @@
             }
         },
         methods: {
-            cancelDelete() {
-                if (!this.isLoadingDelete) {
-                    this.showDeleteModal = false;
-                    this.itemToDelete = null;
-                }
-            },
-            checkDelete(item) {
-                this.showDeleteModal = true;
-                this.itemToDelete = item;
-            },
-            confirmDelete() {
-                if (this.isLoadingDelete) {
-                    return this.$errorToast('It\'s only possible to delete one item at a time.');
-                }
-                this.$inertia.delete(
-                    this.$route('admin.edu.purchases.destroy', this.itemToDelete.id),
-                    {
-                        only: [
-                            'flash',
-                            'purchases'
-                        ]
-                    }
-                );
-                this.itemToDelete = null;
-                this.showDeleteModal = false;
-            },
             onSearchOptionsUpdate: _.debounce(function () {
                 if (!this.isInitialised) {
                     this.isInitialised = true;
@@ -291,7 +256,7 @@
                 }
 
                 router.get(
-                    this.$route('admin.edu.purchases.index'),
+                    this.$route('admin.edu.course-purchases.index'),
                     this.editableSearchOptions,
                     {
                         only: ['purchases'],

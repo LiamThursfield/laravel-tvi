@@ -13,7 +13,7 @@ use App\Http\Requests\Admin\EDU\Programme\ProgrammeUpdateRequest;
 use App\Http\Resources\Admin\EDU\Programme\ProgrammeResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\EDU\Course\CourseInterface;
-use App\Interfaces\EDU\Purchase\PurchaseInterface;
+use App\Interfaces\EDU\Course\CoursePurchaseInterface;
 use App\Interfaces\PermissionInterface;
 use App\Models\EDU\Course\Course;
 use App\Models\EDU\Programme\Programme;
@@ -58,7 +58,7 @@ class ProgrammeController extends AdminController
 
         return Inertia::render('admin/edu/programme/Create', [
             'currencies' => function () {
-                return PurchaseInterface::CURRENCIES;
+                return CoursePurchaseInterface::CURRENCIES;
             },
             'courses' => function () {
                 return Course::all()->pluck('name', 'id');
@@ -87,7 +87,7 @@ class ProgrammeController extends AdminController
                 return ProgrammeResource::make($programme);
             },
             'currencies' => function () {
-                return PurchaseInterface::CURRENCIES;
+                return CoursePurchaseInterface::CURRENCIES;
             },
             'statuses' => function () {
                 return CourseInterface::STATUSES;

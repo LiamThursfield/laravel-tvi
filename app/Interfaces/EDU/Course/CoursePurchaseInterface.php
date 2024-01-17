@@ -40,7 +40,7 @@ class CoursePurchaseInterface
     ];
 
     // STATUSES for COURSE PURCHASES
-    public const PURCHASE_PAYMENT_STATUSES = [
+    public const PAYMENT_STATUSES_FOR_PURCHASES = [
         self::PAYMENT_STATUS_PAID,
         self::PAYMENT_STATUS_PARTIALLY_PAID,
         self::PAYMENT_STATUS_PENDING,
@@ -48,7 +48,7 @@ class CoursePurchaseInterface
     ];
 
     // Statuses for COURSE PAYMENTS
-    public const PAYMENT_PAYMENT_STATUSES = [
+    public const PAYMENT_STATUSES_FOR_PAYMENTS = [
         self::PAYMENT_STATUS_FAILED,
         self::PAYMENT_NOT_DUE,
         self::PAYMENT_OVERDUE,

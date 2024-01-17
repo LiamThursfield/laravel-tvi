@@ -19,7 +19,7 @@ Vue.filter('humanFriendlyDate', function (value) {
     }
 
     try {
-        return dayjs(value).format('D MMM YYYY HH:mm')
+        return dayjs(value).format('D MMM YYYY')
     } catch (e) {
         return value;
     }

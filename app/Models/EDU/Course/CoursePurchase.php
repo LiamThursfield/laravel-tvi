@@ -42,6 +42,7 @@ class CoursePurchase extends Model
 
     protected $casts = [
         'full_price_paid_at'    => 'datetime',
+        'is_refundable'         => 'bool',
         'redeemed_at'           => 'datetime',
     ];
 
@@ -57,7 +58,8 @@ class CoursePurchase extends Model
 
     public function instalmentPlan(): HasOne
     {
-        return $this->hasOne(CourseInstalmentPlan::class, 'instalment_plan_id');
+        return $this->hasOne(CourseInstalmentPlan::class, 'id', 'instalment_plan_id')
+            ->withTrashed();
     }
 
     public function purchasePayments(): HasMany

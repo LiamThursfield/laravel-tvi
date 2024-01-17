@@ -10,10 +10,10 @@ use App\Http\Controllers\Admin\CRM\FormSubmissionController;
 use App\Http\Controllers\Admin\CRM\OrganisationUnitController;
 use App\Http\Controllers\Admin\EDU\Announcement\AnnouncementController;
 use App\Http\Controllers\Admin\EDU\Course\CourseController;
+use App\Http\Controllers\Admin\EDU\Course\CoursePurchaseController;
 use App\Http\Controllers\Admin\EDU\Label\LabelController;
 use App\Http\Controllers\Admin\EDU\Lecture\LectureController;
 use App\Http\Controllers\Admin\EDU\Programme\ProgrammeController;
-use App\Http\Controllers\Admin\EDU\Purchase\PurchaseController;
 use App\Http\Controllers\Admin\EDU\Section\SectionController;
 use App\Http\Controllers\Admin\EDU\Webinar\WebinarController;
 use App\Http\Controllers\Admin\FileManagerController;
@@ -70,6 +70,8 @@ Route::group([
     Route::resource('courses', CourseController::class);
     Route::get('/courses/preview/{course}', [CourseController::class, 'preview'])->name('courses.preview');
     Route::patch('/courses/publish/{course}', [CourseController::class, 'publish'])->name('courses.publish');
+    Route::resource('course-purchases', CoursePurchaseController::class)
+        ->only(['index', 'show']);
 
     Route::resource('sections', SectionController::class);
     Route::resource('lectures', LectureController::class);
@@ -77,8 +79,6 @@ Route::group([
     Route::resource('webinars', WebinarController::class);
     Route::patch('/webinars/publish/{webinar}', [WebinarController::class, 'publish'])
         ->name('webinars.publish');
-
-    Route::resource('purchases', PurchaseController::class);
 });
 
 Route::get('/file-manager', [FileManagerController::class, 'index'])
