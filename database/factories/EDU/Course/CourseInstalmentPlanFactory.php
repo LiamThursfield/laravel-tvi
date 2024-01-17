@@ -23,7 +23,7 @@ class CourseInstalmentPlanFactory extends Factory
     public function definition()
     {
         $course = Course::factory()->create();
-        $price = $course->discount_price ? $course->discount_price : $course->price;
+        $price = $course->discount_price ?: $course->price;
 
         $instalment_count = $this->faker->numberBetween(6, 24);
 

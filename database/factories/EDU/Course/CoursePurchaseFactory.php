@@ -40,7 +40,7 @@ class CoursePurchaseFactory extends Factory
                 'discount_price' => null,
                 'currency' => $currency,
             ]),
-            'status' => null,
+            'status' => $status,
             'type' => CoursePurchaseInterface::PURCHASE_TYPE_FULL,
             'instalment_plan_id' => null,
             'email_address' => $this->faker->email,
