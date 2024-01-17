@@ -17,14 +17,14 @@ class CourseQueryAction extends AbstractQueryAction
 
     protected string $order_by = 'name';
 
-    protected function addCustomSearchOptions()
+    protected function addCustomSearchOptions(): void
     {
         if (Arr::get($this->search_options, 'is_purchasable')) {
             $this->isPurchasable();
         }
     }
 
-    protected function isPurchasable()
+    protected function isPurchasable(): void
     {
         $this->query->isPurchasable();
     }

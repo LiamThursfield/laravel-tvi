@@ -25,7 +25,7 @@ class CoursePurchasePaymentFactory extends Factory
     {
         $purchase = CoursePurchase::factory()->create();
 
-        $status = $this->faker->randomElement(CoursePurchaseInterface::PAYMENT_PAYMENT_STATUSES);
+        $status = $this->faker->randomElement(CoursePurchaseInterface::PAYMENT_STATUSES_FOR_PAYMENTS);
         $paid = match ($status) {
             CoursePurchaseInterface::PAYMENT_STATUS_PAID, CoursePurchaseInterface::PAYMENT_STATUS_REFUNDED => true,
             default => false,
@@ -33,7 +33,7 @@ class CoursePurchasePaymentFactory extends Factory
 
         return [
             'course_purchase_id' => $purchase->id,
-            'status' => $this->faker->randomElement(CoursePurchaseInterface::PAYMENT_PAYMENT_STATUSES),
+            'status' => $this->faker->randomElement(CoursePurchaseInterface::PAYMENT_STATUSES_FOR_PAYMENTS),
             'price' => $this->faker->numberBetween(10, 100) * 100,
             'currency' => CoursePurchaseInterface::CURRENCY_GB,
             'due_date' => $paid ? $this->faker->dateTime() : $this->faker->dateTimeBetween('+1 day', '+300 days'),

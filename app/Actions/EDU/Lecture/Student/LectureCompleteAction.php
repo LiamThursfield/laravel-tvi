@@ -2,10 +2,8 @@
 
 namespace App\Actions\EDU\Lecture\Student;
 
-use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CoursePurchase;
 use App\Models\EDU\Lecture\Lecture;
-use App\Models\EDU\Purchase\Purchase;
-use App\Models\EDU\Purchase\PurchaseItem;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +11,7 @@ class LectureCompleteAction
 {
     public function handle(Lecture $lecture): void
     {
+        /** @var User $user */
         $user = Auth::user();
 
         $this->markCoursesAsNonRefundable($user, $lecture);
@@ -20,14 +19,10 @@ class LectureCompleteAction
     }
 
 
-    protected function markCoursesAsNonRefundable(User $user, Lecture $lecture)
+    protected function markCoursesAsNonRefundable(User $user, Lecture $lecture): void
     {
-        $purchaseItems = PurchaseItem::where('purchasable_id', $lecture->section->course_id)
-            ->where('purchasable_type', Course::class)
-            ->pluck('purchase_id');
-
-        $purchases = Purchase::where('user_id', $user->id)
-            ->whereIn('id', $purchaseItems)
+        $purchases = CoursePurchase::where('user_id', $user->id)
+            ->where('course_id', $lecture->section->course_id)
             ->get();
 
         foreach ($purchases as $purchase) {

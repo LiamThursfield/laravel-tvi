@@ -145,10 +145,7 @@ class CreateBasePermissionRoles extends Migration
             PermissionInterface::PUBLISH_EDU_ANNOUNCEMENTS,
 
             // EDU Purchases
-            PermissionInterface::CREATE_EDU_PURCHASES,
-            PermissionInterface::DELETE_EDU_PURCHASES,
-            PermissionInterface::EDIT_EDU_PURCHASES,
-            PermissionInterface::VIEW_EDU_PURCHASES,
+            PermissionInterface::VIEW_EDU_COURSE_PURCHASES,
 
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
@@ -269,10 +266,7 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::VIEW_EDU_ANNOUNCEMENTS,
 
                 // EDU Purchases
-                PermissionInterface::CREATE_EDU_PURCHASES,
-                PermissionInterface::DELETE_EDU_PURCHASES,
-                PermissionInterface::EDIT_EDU_PURCHASES,
-                PermissionInterface::VIEW_EDU_PURCHASES,
+                PermissionInterface::VIEW_EDU_COURSE_PURCHASES,
             ],
             RoleInterface::SUPER => [],
             RoleInterface::USER => [

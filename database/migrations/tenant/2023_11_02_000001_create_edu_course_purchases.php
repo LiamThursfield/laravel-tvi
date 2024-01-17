@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email_address')->nullable(); // Required to make a purchase
             $table->unsignedBigInteger('user_id')->nullable(); // Set once a purchase is redeemed by an account
             $table->dateTime('redeemed_at')->nullable(); // Set once a purchase is redeemed by an account
+            $table->boolean('is_refundable')->default(true);
             $table->string('total_price_due');
             $table->string('currency')->default(CoursePurchaseInterface::CURRENCY_GB);
             $table->string('total_price_paid')->default(0);

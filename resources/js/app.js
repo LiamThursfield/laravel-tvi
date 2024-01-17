@@ -12,8 +12,10 @@ require('./plugins/vue-meta');
 require('./plugins/ziggy');
 
 require('./filters/date-times');
+require('./filters/prices');
 
 require('./mixins/page-error');
+
 
 require('./component-registration');
 

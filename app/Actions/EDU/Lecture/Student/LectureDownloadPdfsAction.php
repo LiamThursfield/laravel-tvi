@@ -2,17 +2,15 @@
 
 namespace App\Actions\EDU\Lecture\Student;
 
-use App\Models\EDU\Course\Course;
 use App\Models\EDU\Lecture\Lecture;
-use App\Models\EDU\Purchase\Purchase;
-use App\Models\EDU\Purchase\PurchaseItem;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class LectureDownloadPdfsAction
+class LectureDownloadPdfsAction extends LectureCompleteAction
 {
     public function handle(Lecture $lecture): void
     {
+        /** @var User $user */
         $user = Auth::user();
 
         // check user has access

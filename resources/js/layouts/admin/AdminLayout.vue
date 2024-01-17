@@ -359,20 +359,21 @@
                                 requiresAnyPermissions: ["edu_labels.create", "edu_labels.view"],
                             },
                             purchases: {
-                                activeRoutes: ["admin.edu.purchases.index", "admin.edu.purchases.create", "admin.edu.purchases.edit"],
+                                activeRoutes: ["admin.edu.course-purchases.index", "admin.edu.course-purchases.show"],
                                 children: {
                                     index: {
                                         icon: false,
                                         label: "View",
-                                        requiresAllPermissions: ["edu_purchases.view"],
+                                        activeRoutes: ["admin.edu.course-purchases.index", "admin.edu.course-purchases.show"],
+                                        requiresAllPermissions: ["edu_course_purchases.view"],
                                         requiresAnyPermissions: [],
-                                        route: "admin.edu.purchases.index",
+                                        route: "admin.edu.course-purchases.index",
                                     }
                                 },
                                 icon: "icon-money-bag",
                                 label: "Purchases",
                                 requiresAllPermissions: [],
-                                requiresAnyPermissions: ["edu_purchases.create", "edu_purchases.view"],
+                                requiresAnyPermissions: ["edu_course_purchases.view"],
                             },
                             webinars: {
                                 activeRoutes: ["admin.edu.webinars.index", "admin.edu.webinars.create", "admin.edu.webinars.edit"],
@@ -410,7 +411,7 @@
                             'edu_programmes.view',
                             'edu_labels.create',
                             'edu_labels.view',
-                            'edu_purchases.view',
+                            'edu_course_purchases.view',
                             'edu_webinars.view',
                             'edu_webinars.create',
                         ],

@@ -59,6 +59,9 @@ class PermissionInterface
     const VIEW_EDU_COURSES    = 'view edu_courses';
     const PUBLISH_EDU_COURSES    = 'publish edu_courses';
 
+    // EDU Course Purchases Permissions
+    const VIEW_EDU_COURSE_PURCHASES    = 'view edu_course_purchases';
+
     // EDU Programmes Permissions
     const CREATE_EDU_PROGRAMMES  = 'create edu_programmes';
     const DELETE_EDU_PROGRAMMES  = 'delete edu_programmes';
@@ -96,12 +99,6 @@ class PermissionInterface
     const DELETE_EDU_WEBINARS  = 'delete edu_webinars';
     const EDIT_EDU_WEBINARS    = 'edit edu_webinars';
     const VIEW_EDU_WEBINARS    = 'view edu_webinars';
-
-    // EDU Purchases Permissions
-    const CREATE_EDU_PURCHASES  = 'create edu_purchases';
-    const DELETE_EDU_PURCHASES  = 'delete edu_purchases';
-    const EDIT_EDU_PURCHASES    = 'edit edu_purchases';
-    const VIEW_EDU_PURCHASES    = 'view edu_purchases';
 
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
@@ -214,11 +211,8 @@ class PermissionInterface
             'edit' => self::EDIT_EDU_WEBINARS,
             'view' => self::VIEW_EDU_WEBINARS,
         ],
-        'edu_purchases' => [
-            'create' => self::CREATE_EDU_PURCHASES,
-            'delete' => self::DELETE_EDU_PURCHASES,
-            'edit' => self::EDIT_EDU_PURCHASES,
-            'view' => self::VIEW_EDU_PURCHASES,
+        'edu_course_purchases' => [
+            'view' => self::VIEW_EDU_COURSE_PURCHASES,
         ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,
