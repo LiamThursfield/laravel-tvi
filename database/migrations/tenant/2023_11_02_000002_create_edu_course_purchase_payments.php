@@ -28,7 +28,7 @@ return new class extends Migration
             // Indexes
             $table->foreign('course_purchase_id')
                 ->references('id')
-                ->on('edu_courses');
+                ->on('edu_course_purchases');
 
             $table->index('status');
             $table->index('due_date');
