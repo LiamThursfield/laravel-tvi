@@ -70,10 +70,18 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapLandlordWebRoutes()
     {
+         $domainCount = 0;
         foreach ($this->centralDomains() as $domain) {
+            // Add the domain count to the route name if there are more than one central domains
+            // Otherwise we cannot cache routes
+
+            $as = ($domainCount > 0) ? 'landlord.' . $domainCount . '.' : 'landlord.';
+            $domainCount++;
+
             Route::middleware('web')
                 ->domain($domain)
                 ->namespace($this->namespace)
+                ->as($as)
                 ->group(base_path('routes/landlord/web.php'));
         }
     }

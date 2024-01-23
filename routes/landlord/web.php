@@ -12,8 +12,5 @@ use Illuminate\Support\Facades\Route;
 | These routes are loaded by the TenantRouteServiceProvider.
 |
 */
-Route::group([
-    'as'        => 'landlord.',
-], function() {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-});
+
+Route::get('/', [HomeController::class, 'index'])->name('index');
