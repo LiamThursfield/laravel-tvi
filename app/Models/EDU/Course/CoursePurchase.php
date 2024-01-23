@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $instalment_plan_id
  * @property CourseInstalmentPlan $instalmentPlan
  * @property string $email_address
+ * @property string $notification_email
+ * @property ?string $notification_name
  * @property int $user_id
  * @property User $user
  * @property Carbon $redeemed_at
@@ -75,6 +77,20 @@ class CoursePurchase extends Model
     public function getTotalPriceOutstandingAttribute(): string
     {
         return (int) $this->total_price_due - (int) $this->total_price_paid;
+    }
+
+    public function getNotificationEmailAttribute(): string
+    {
+        // If there is an attached user, use that email in case they have changed it
+        // Otherwise, fallback to the email used on initial purchase
+        return $this->user->email ?? $this->email_address;
+    }
+
+    public function getNotificationNameAttribute(): ?string
+    {
+        // If there is an attached user, use their details
+        // Otherwise, we have no name to use
+        return $this->user->name ?? null;
     }
 
     public function redeem(User $user): void

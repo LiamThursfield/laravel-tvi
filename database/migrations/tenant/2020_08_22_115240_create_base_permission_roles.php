@@ -28,7 +28,7 @@ class CreateBasePermissionRoles extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
@@ -53,7 +53,7 @@ class CreateBasePermissionRoles extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         // Delete the new Permissions and Roles
         Permission::whereIn('name', $this->getNewPermissions())->delete();
@@ -66,21 +66,24 @@ class CreateBasePermissionRoles extends Migration
      *
      * @return array
      */
-    protected function getNewPermissions()
+    protected function getNewPermissions(): array
     {
         return [
             // Admin
             PermissionInterface::VIEW_ADMIN,
+
             // CMS
             PermissionInterface::CREATE_CMS,
             PermissionInterface::DELETE_CMS,
             PermissionInterface::EDIT_CMS,
             PermissionInterface::VIEW_CMS,
+
             // Advanced CMS
             PermissionInterface::CREATE_CMS_ADVANCED,
             PermissionInterface::DELETE_CMS_ADVANCED,
             PermissionInterface::EDIT_CMS_ADVANCED,
             PermissionInterface::VIEW_CMS_ADVANCED,
+
             // CRM Contacts
             PermissionInterface::CREATE_CRM_CONTACTS,
             PermissionInterface::DELETE_CRM_CONTACTS,
@@ -147,23 +150,29 @@ class CreateBasePermissionRoles extends Migration
             // EDU Purchases
             PermissionInterface::VIEW_EDU_COURSE_PURCHASES,
 
+            // Email Preview
+            PermissionInterface::VIEW_EMAIL_PREVIEW,
+
             // File Manager
             PermissionInterface::EDIT_FILE_MANAGER,
             PermissionInterface::VIEW_FILE_MANAGER,
+
             // Profile
             PermissionInterface::EDIT_PROFILE,
             PermissionInterface::VIEW_PROFILE,
+
             // Settings
             PermissionInterface::EDIT_SETTINGS,
             PermissionInterface::VIEW_SETTINGS,
+
             // Telescope
             PermissionInterface::VIEW_TELESCOPE,
+
             // Users
             PermissionInterface::CREATE_USERS,
             PermissionInterface::DELETE_USERS,
             PermissionInterface::EDIT_USERS,
             PermissionInterface::VIEW_USERS,
-
 
             // Student
             PermissionInterface::VIEW_STUDENT_ADMIN,
@@ -176,7 +185,7 @@ class CreateBasePermissionRoles extends Migration
      *
      * @return array[]
      */
-    protected function getNewRoles()
+    protected function getNewRoles(): array
     {
         return [
             RoleInterface::ADMIN => [
@@ -288,6 +297,4 @@ class CreateBasePermissionRoles extends Migration
             ]
         ];
     }
-
-
 }

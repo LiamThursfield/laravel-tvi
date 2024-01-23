@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Tenant;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        if (Tenant::current()){
+            $schedule->command('course:process-purchase-payments-due')
+                ->dailyAt('05:00');
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Models\EDU\Course\CoursePurchase;
 use App\Models\EDU\Course\CoursePurchasePayment;
 use App\Models\Settings\EduSettings;
 use App\Models\Settings\ThirdPartySettings;
+use Exception;
 use Illuminate\Support\Collection;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -33,6 +34,22 @@ trait  CreatesCheckoutSessionForCourse
         return $this->buildCourseCheckoutSession($course, $purchase, $payment);
     }
 
+    protected function buildCourseCheckoutSessionForPayment(CoursePurchasePayment $payment): Session
+    {
+        $this->setStripeKey();
+
+        $purchase = $payment->purchase;
+        if (!$purchase) {
+            throw new Exception('Payment belongs to an invalid purchase.');
+        }
+
+        $course = $purchase->course;
+        if (!$course) {
+            throw new Exception('Payment belongs to an invalid course.');
+        }
+
+        return $this->buildCourseCheckoutSession($course, $purchase, $payment);
+    }
 
     protected function setStripeKey(): void
     {

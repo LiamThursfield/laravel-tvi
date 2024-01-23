@@ -485,6 +485,23 @@
                                 requiresAnyPermissions: ["users.view", "users.create"],
                                 route: false,
                             },
+                            email_preview: {
+                                activeRoutes: ["admin.email.preview.index", "admin.email.preview.show"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Emails",
+                                        requiresAllPermissions: ["email_preview.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.email.preview.index",
+                                    },
+                                },
+                                icon: "icon-mail",
+                                label: "Email Preview",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["admin.email.preview.index", "admin.email.preview.show"],
+                                route: false,
+                            },
 
                         },
                         label: "Admin",

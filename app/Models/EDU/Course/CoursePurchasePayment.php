@@ -2,11 +2,11 @@
 
 namespace App\Models\EDU\Course;
 
+use App\Interfaces\EDU\Course\CoursePurchaseInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property array $payment_gateway_response
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property bool $is_payable
+ * @property string $checkout_url
  */
 class CoursePurchasePayment extends Model
 {
@@ -36,6 +38,39 @@ class CoursePurchasePayment extends Model
         'paid_at'                   => 'datetime',
         'payment_gateway_response'  => 'json'
     ];
+
+    public function getIsPayableAttribute(): bool
+    {
+        if ($this->due_date > now()->format('Y-m-d')) {
+            return false;
+        }
+
+        if (!is_null($this->paid_at)) {
+            return false;
+        }
+
+        if (in_array($this->status, [
+            CoursePurchaseInterface::PAYMENT_NOT_DUE,
+            CoursePurchaseInterface::PAYMENT_STATUS_PAID,
+            CoursePurchaseInterface::PAYMENT_STATUS_REFUNDED,
+        ])) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getCheckoutUrlAttribute(): string
+    {
+        return route(
+            'website.edu.courses.purchases.payments.checkout',
+            [
+                'course' => $this->purchase->course->slug,
+                'payment' => $this->id,
+                'timestamp' => $this->created_at->timestamp,
+            ]
+        );
+    }
 
     public function purchase(): BelongsTo
     {
