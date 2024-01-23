@@ -4,7 +4,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Emails Preview
+                Email Preview
             </h1>
         </div>
 
