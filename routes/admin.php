@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\EDU\Lecture\LectureController;
 use App\Http\Controllers\Admin\EDU\Programme\ProgrammeController;
 use App\Http\Controllers\Admin\EDU\Section\SectionController;
 use App\Http\Controllers\Admin\EDU\Webinar\WebinarController;
+use App\Http\Controllers\Admin\EmailPreviewController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -30,6 +31,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::group([
+    'as' => 'email.preview.',
+    'prefix' => 'email/preview'
+], function () {
+    Route::get('/', [EmailPreviewController::class, 'index'])->name('index');
+    Route::get('/{email}', [EmailPreviewController::class, 'show'])->name('show');
+});
 
 Route::group([
     'as' => 'cms.',

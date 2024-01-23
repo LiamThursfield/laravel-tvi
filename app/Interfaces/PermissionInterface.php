@@ -100,6 +100,9 @@ class PermissionInterface
     const EDIT_EDU_WEBINARS    = 'edit edu_webinars';
     const VIEW_EDU_WEBINARS    = 'view edu_webinars';
 
+    // Email Preview
+    const VIEW_EMAIL_PREVIEW = 'view email_preview';
+
     // File Manager Permissions
     const EDIT_FILE_MANAGER = 'edit file_manager';
     const VIEW_FILE_MANAGER = 'view file_manager';
@@ -214,6 +217,9 @@ class PermissionInterface
         'edu_course_purchases' => [
             'view' => self::VIEW_EDU_COURSE_PURCHASES,
         ],
+        'email_preview' => [
+            'view' => self::VIEW_EMAIL_PREVIEW,
+        ],
         'file_manager' => [
             'edit' => self::EDIT_FILE_MANAGER,
             'view' => self::VIEW_FILE_MANAGER,
@@ -235,7 +241,6 @@ class PermissionInterface
             'edit'      => self::EDIT_USERS,
             'view'      => self::VIEW_USERS,
         ],
-
         'student_admin' => [
             'view' => self::VIEW_STUDENT_ADMIN,
             'edit' => self::EDIT_STUDENT_ADMIN,

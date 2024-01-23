@@ -2,6 +2,8 @@
 
 namespace App\Interfaces\EDU\Course;
 
+use Illuminate\Support\Arr;
+
 class CoursePurchaseInterface
 {
     public const CURRENCY_RO = 'LEI';
@@ -64,4 +66,12 @@ class CoursePurchaseInterface
         self::PURCHASE_TYPE_FULL => "Full",
         self::PURCHASE_TYPE_INSTALMENTS => "Instalments"
     ];
+
+    static function getPriceWithCurrency(string $currency, string|int $price): string
+    {
+        $currency = Arr::get(self::CURRENCIES, $currency, $currency);
+        $price = number_format($price / 100, 2);
+
+        return $currency . $price;
+    }
 }
