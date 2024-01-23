@@ -29,9 +29,9 @@ class AnnouncementFactory extends Factory
             'slug' => Str::slug($name),
             'description' => $this->faker->realText(),
             'creator_id' => 1,
-            'platform' => $this->faker->boolean,
-            'email' =>  $this->faker->boolean,
-            'sms' =>  $this->faker->boolean,
+            'platform' => $this->faker->boolean(),
+            'email' =>  $this->faker->boolean(),
+            'sms' =>  $this->faker->boolean(),
         ];
     }
 }

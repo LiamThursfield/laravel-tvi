@@ -33,11 +33,11 @@ class WebinarFactory extends Factory
             'creator_id' => 1,
             'course_id' => 1,
             'section_id' => 1,
-            'date_time_from' =>  $this->faker->dateTime,
+            'date_time_from' =>  $this->faker->dateTime(),
             'date_time_to' =>  $this->faker->dateTime->add(DateInterval::createFromDateString('1 hour')),
-            'webinar_url' =>  $this->faker->url,
-            'can_users_reserve' =>  $this->faker->boolean,
-            'is_recorded' =>  $this->faker->boolean,
+            'webinar_url' =>  $this->faker->url(),
+            'can_users_reserve' =>  $this->faker->boolean(),
+            'is_recorded' =>  $this->faker->boolean(),
         ];
     }
 }

@@ -45,14 +45,14 @@ class ProgrammeFactory extends Factory
             'discount_price' => null,
             'currency' => CoursePurchaseInterface::CURRENCY_GB,
 
-            'has_webinars' => $this->faker->boolean,
+            'has_webinars' => $this->faker->boolean(),
 
-            'languages' => $this->faker->boolean,
-            'has_money_back_guarantee' => $this->faker->boolean,
-            'has_captions' => $this->faker->boolean,
-            'has_lifetime_access' => $this->faker->boolean,
-            'has_student_discount' => $this->faker->boolean,
-            'has_pdfs' => $this->faker->boolean,
-            'has_free_seo_exposure' => $this->faker->boolean,        ];
+            'languages' => $this->faker->boolean(),
+            'has_money_back_guarantee' => $this->faker->boolean(),
+            'has_captions' => $this->faker->boolean(),
+            'has_lifetime_access' => $this->faker->boolean(),
+            'has_student_discount' => $this->faker->boolean(),
+            'has_pdfs' => $this->faker->boolean(),
+            'has_free_seo_exposure' => $this->faker->boolean(),        ];
     }
 }

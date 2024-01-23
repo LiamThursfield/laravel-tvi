@@ -43,7 +43,7 @@ class CoursePurchaseFactory extends Factory
             'status' => $status,
             'type' => CoursePurchaseInterface::PURCHASE_TYPE_FULL,
             'instalment_plan_id' => null,
-            'email_address' => $this->faker->email,
+            'email_address' => $this->faker->email(),
             'user_id' => User::factory(),
             'redeemed_at' => null,
             'total_price_due' => $price,
