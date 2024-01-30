@@ -1,15 +1,21 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import { store } from './store/index'
+import { store } from '../store/admin'
 
 import { createInertiaApp } from '@inertiajs/vue2'
 
+require('../plugins/toasted');
+require('../plugins/vue2-datepicker');
 require('../plugins/vue-cookies');
 require('../plugins/vue-meta');
 require('../plugins/ziggy');
 
 require('./component-registration');
+
+require('../filters/date-times');
+
+require('../mixins/page-error');
 
 const app = createInertiaApp({
     progress: {

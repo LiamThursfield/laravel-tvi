@@ -3,9 +3,11 @@
 
 @import "tailwindcss/base";
 @import './core/base.css';
+@import './admin/overrides/admin-layout.css';
 
 @import "tailwindcss/components";
 
 @import "./core/custom-includes.css";
+@import "./admin/custom-includes.css";
 
 @import "tailwindcss/utilities";
