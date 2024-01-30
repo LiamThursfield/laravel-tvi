@@ -46,6 +46,17 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'landlord-web' => [
+            'driver' => 'session',
+            'provider' => 'landlord-users',
+        ],
+
+        'landlord-api' => [
+            'driver' => 'token',
+            'provider' => 'landlord-users',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,6 +80,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'landlord-users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Landlord\User::class,
         ],
 
         // 'users' => [

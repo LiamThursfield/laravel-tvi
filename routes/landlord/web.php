@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Landlord\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,5 +13,10 @@ use Illuminate\Support\Facades\Route;
 | These routes are loaded by the TenantRouteServiceProvider.
 |
 */
+
+Auth::routes([
+    'register'  => false,
+    'verify'    => false
+]);
 
 Route::get('/', [HomeController::class, 'index'])->name('index');

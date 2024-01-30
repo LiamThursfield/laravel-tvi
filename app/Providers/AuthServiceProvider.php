@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Interfaces\RoleInterface;
+use App\Interfaces\Landlord\RoleInterface as LandlordRoleInterface;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -26,7 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         // Implicitly grant "Super" role all permissions
         Gate::before(function ($user, $ability) {
-            return $user->hasRole(RoleInterface::SUPER) ? true : null;
+            return (
+                $user->hasRole(RoleInterface::SUPER) ||
+                $user->hasRole(LandlordRoleInterface::SUPER)
+            ) ? true : null;
         });
     }
 }

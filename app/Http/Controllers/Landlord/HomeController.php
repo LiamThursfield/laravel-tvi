@@ -13,7 +13,7 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('website/home/Index');
     }
