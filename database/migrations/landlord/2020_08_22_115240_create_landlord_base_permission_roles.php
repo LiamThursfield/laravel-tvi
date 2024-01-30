@@ -30,6 +30,9 @@ class CreateLandlordBasePermissionRoles extends Migration
      */
     public function up(): void
     {
+        $originalDriver = auth()->getDefaultDriver();
+        auth()->setDefaultDriver('web');
+
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
@@ -46,6 +49,8 @@ class CreateLandlordBasePermissionRoles extends Migration
                 $role->givePermissionTo($permission);
             }
         }
+
+        auth()->setDefaultDriver($originalDriver);
     }
 
     /**

@@ -17,6 +17,8 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
+        $originalDriver = auth()->getDefaultDriver();
+        auth()->setDefaultDriver('web');
 
         $user = User::factory()->create([
             'first_name'    => 'Admin',
@@ -53,5 +55,7 @@ class UserRoleSeeder extends Seeder
             'password'      => Hash::make('StudentPassword')
         ]);
         $user->assignRole(Role::whereName(RoleInterface::STUDENT)->first());
+
+        auth()->setDefaultDriver($originalDriver);
     }
 }

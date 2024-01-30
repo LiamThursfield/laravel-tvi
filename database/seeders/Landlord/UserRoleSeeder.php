@@ -17,6 +17,7 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
+        $originalDriver = auth()->getDefaultDriver();
         auth()->setDefaultDriver('landlord-web');
 
         $user = User::factory()->create([
@@ -35,5 +36,7 @@ class UserRoleSeeder extends Seeder
         ]);
         $user->assignRole(Role::whereName(RoleInterface::ADMIN)->first());
         $user->assignRole(Role::whereName(RoleInterface::SUPER)->first());
+
+        auth()->setDefaultDriver($originalDriver);
     }
 }
