@@ -9,8 +9,8 @@
      */
     --color-base: theme('colors.white');
     --color-base-contrast: theme('colors.black');
-    --color-base-subtle: theme('colors.gray.200');
-    --color-base-subtle-contrast: theme('colors.gray.500');
+    --color-base-subtle: theme('colors.mono.200');
+    --color-base-subtle-contrast: theme('colors.mono.500');
     --color-card: theme('colors.white');
     --color-card-contrast: theme('colors.black');
     --color-danger: theme('colors.red.100');
@@ -23,12 +23,12 @@
     --color-info-hover-contrast: theme('colors.yellow.600');
     --color-primary: theme('colors.black');
     --color-primary-contrast: theme('colors.white');
-    --color-primary-hover: theme('colors.gray.800');
+    --color-primary-hover: theme('colors.mono.800');
     --color-primary-hover-contrast: theme('colors.white');
-    --color-primary-subtle: theme('colors.gray.100');
-    --color-primary-subtle-contrast: theme('colors.gray.600');
-    --color-primary-subtle-hover: theme('colors.gray.200');
-    --color-primary-subtle-hover-contrast: theme('colors.gray.600');
+    --color-primary-subtle: theme('colors.mono.100');
+    --color-primary-subtle-contrast: theme('colors.mono.600');
+    --color-primary-subtle-hover: theme('colors.mono.200');
+    --color-primary-subtle-hover-contrast: theme('colors.mono.600');
     --color-success: theme('colors.green.100');
     --color-success-contrast: theme('colors.green.500');
     --color-success-hover: theme('colors.green.200');
@@ -45,29 +45,29 @@
     --dropdown-color-base-contrast: theme('colors.theme.base-contrast');
     --dropdown-color-hover: theme('colors.theme.primary-subtle');
     --dropdown-color-hover-contrast: theme('colors.theme.primary-subtle-contrast');
-    --dropdown-color-separator: theme('colors.gray.200');
+    --dropdown-color-separator: theme('colors.mono.200');
     --dropdown-color-subheading: theme('colors.white');
-    --dropdown-color-subheading-contrast: theme('colors.navy.300');
+    --dropdown-color-subheading-contrast: theme('colors.mono.300');
 
     /**
      * Menu - Side
      */
-    --side-menu-color-active: theme('colors.blue.100');
-    --side-menu-color-active-contrast: theme('colors.theme.primary');
+    --side-menu-color-active: theme('colors.black');
+    --side-menu-color-active-contrast: theme('colors.white');
     --side-menu-color-base: theme('colors.white');
-    --side-menu-color-base-contrast: theme('colors.navy.400');
-    --side-menu-color-hover: theme('colors.blue.100');
-    --side-menu-color-hover-contrast: theme('colors.theme.primary');
-    --side-menu-color-logo: theme('colors.navy.900');
+    --side-menu-color-base-contrast: theme('colors.mono.600');
+    --side-menu-color-hover: theme('colors.black');
+    --side-menu-color-hover-contrast: theme('colors.white');
+    --side-menu-color-logo: theme('colors.black');
     --side-menu-color-logo-active: theme('colors.theme.primary');
-    --side-menu-color-separator: theme('colors.theme.base');
+    --side-menu-color-separator: theme('colors.mono.200');
     --side-menu-color-sub-menu-active: theme('colors.white');
     --side-menu-color-sub-menu-active-contrast: theme('colors.theme.primary');
     --side-menu-color-sub-menu-base: theme('colors.white');
-    --side-menu-color-sub-menu-base-contrast: theme('colors.navy.400');
+    --side-menu-color-sub-menu-base-contrast: theme('colors.mono.600');
     --side-menu-color-sub-menu-hover: theme('colors.white');
     --side-menu-color-sub-menu-hover-contrast: theme('colors.theme.primary');
-    --side-menu-color-subheading: theme('colors.navy.300');
+    --side-menu-color-subheading: theme('colors.mono.400');
     --side-menu-color-toggle: theme('colors.theme.base-contrast');
     --side-menu-color-toggle-active: theme('colors.theme.primary');
 
@@ -106,16 +106,16 @@
     /**
      * Table
      */
-    --table-color-alt-body: theme('colors.gray.100');
+    --table-color-alt-body: theme('colors.mono.100');
     --table-color-alt-body-contrast: theme('colors.theme.base-contrast');
     --table-color-body: none;
-    --table-color-body-border: theme('colors.gray.200');
+    --table-color-body-border: theme('colors.mono.200');
     --table-color-body-contrast: theme('colors.theme.base-contrast');
-    --table-color-body-hover: theme('colors.gray.200');
+    --table-color-body-hover: theme('colors.mono.200');
     --table-color-body-hover-contrast: theme('colors.theme.base-contrast');
-    --table-color-header: theme('colors.gray.100');
-    --table-color-header-border: theme('colors.gray.200');
-    --table-color-header-contrast: theme('colors.gray.600');
+    --table-color-header: theme('colors.mono.100');
+    --table-color-header-border: theme('colors.mono.200');
+    --table-color-header-contrast: theme('colors.mono.600');
     --table-padding-body-x: theme('spacing.6');
     --table-padding-body-x-slim: theme('spacing.3');
     --table-padding-body-y: theme('spacing.1');

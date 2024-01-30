@@ -53,24 +53,14 @@
                 <ul class="flex flex-row items-center -mx-4">
                     <li class="mx-4">
                         <inertia-link
-                            class="focus:text-theme-primary-hover hover:text-theme-primary-hover hover:underline"
-                            title="Log In"
-                            href="/login"
-                        >
-                            Log In
-                        </inertia-link>
-                    </li>
-
-                    <li class="mx-4">
-                        <inertia-link
                             class="
                                 bg-theme-primary border-2 border-transparent px-4 py-2 ring-offset-2 ring-theme-primary-subtle-hover rounded text-center text-theme-primary-contrast transition
                                 focus-visible:ring-2 hover:bg-theme-primary-hover hover:text-theme-primary-hover-contrast
                             "
-                            title="Sign Up"
+                            title="Enquire"
                             href="/#"
                         >
-                            Sign Up
+                            Enquire
                         </inertia-link>
                     </li>
                 </ul>

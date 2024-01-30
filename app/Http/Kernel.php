@@ -3,7 +3,9 @@
 namespace App\Http;
 
 use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\SetLandlordGuard;
 use App\Interfaces\PermissionInterface;
+use App\Interfaces\Landlord\PermissionInterface as LandlordPermissionInterface;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -82,6 +84,20 @@ class Kernel extends HttpKernel
             \Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain::class,
             \Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains::class,
         ],
+
+        'landlord-admin' => [
+            SetLandlordGuard::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Authenticate::class,
+            HandleInertiaRequests::class,
+            'can:' . LandlordPermissionInterface::VIEW_ADMIN,
+        ],
     ];
 
     /**
@@ -102,5 +118,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'landlord.set-guard' => SetLandlordGuard::class,
     ];
 }

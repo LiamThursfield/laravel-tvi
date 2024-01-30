@@ -2,8 +2,8 @@
     <div class="max-w-screen-xl mx-auto px-5">
 
         <hero-with-svg
-            header="The one-stop platform for your business"
-            content="SIGI is the last product you'll need to manage your entire web presence including:Website, Course Platform, etc. You name it, we have it!"
+            header="The one-stop platform for your courses"
+            content="SIGI is the last product you'll need to manage your entire web presence including: Website, Course Platform, etc. You name it, we have it!"
         >
             <template v-slot:svg>
                 <astronaut-on-moon />
@@ -36,8 +36,8 @@
 
         <simple-banner
             class="mt-16 md:mt-0"
-            header="Everything you need to start a website"
-            content="SIGI comes batteries included. It takes the best parts of state-of-the-art tools and adds its own innovations."
+            header="Everything you need to start selling courses"
+            content="SIGI comes batteries included. It takes the best parts of state-of-the-art tools and adds its own innovations, allowing you to create & sell courses with ease."
         />
 
         <banner-grid class="mt-16"/>

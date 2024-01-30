@@ -1,0 +1,12 @@
+/* purgecss start ignore */
+
+/*
+ * Most styles should be added via the tinymce/content & skin files
+ * This is for applying TW specific styles to Tiny MCE
+ */
+
+.mce-content-body {
+    @apply prose;
+}
+
+/* purgecss end ignore */

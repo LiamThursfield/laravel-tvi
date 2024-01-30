@@ -1,0 +1,26 @@
+.dropdown-link {
+    @apply block px-4 py-1 text-left w-full;
+    background: var(--dropdown-color-base);
+    color: var(--dropdown-color-base-contrast);
+
+    &:focus,
+    &:hover {
+        outline: none;
+    }
+
+    &:hover {
+        background: var(--dropdown-color-hover);
+        color: var(--dropdown-color-hover-contrast);
+    }
+}
+
+.dropdown-separator {
+    @apply block border-t my-2;
+    border-color: var(--dropdown-color-separator);
+}
+
+.dropdown-subheading {
+    @apply text-sm px-4;
+    background: var(--dropdown-color-subheading);
+    color: var(--dropdown-color-subheading-contrast);
+}
