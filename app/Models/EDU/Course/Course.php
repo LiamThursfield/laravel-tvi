@@ -31,6 +31,8 @@ use Illuminate\Support\Collection;
  * @property string $current_price
  * @property string $description
  * @property string $discount_price
+ * @property string $vat
+ * @property string $price_vat
  * @property bool $has_certificate
  * @property bool $has_captions
  * @property bool $has_free_seo_exposure
