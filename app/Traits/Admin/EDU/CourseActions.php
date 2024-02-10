@@ -85,17 +85,22 @@ trait CourseActions
 
     public function updateSection($section, $index, $courseId)
     {
-        $updateSection = Section::findOrFail($section['id']);
-        $updateSection->fill([
-            'title' => $section['title'],
-            'slug' => $section['slug'],
-            'lecture_count' => $section['lecture_count'],
-            'content_length' => $section['content_length'],
-            'index' => $index,
-            'course_id' => $courseId,
-        ]);
-        $updateSection->save();
-        $updateSection->fresh();
+        if (!isset($section['id'])) {
+            $updateSection = $this->createSection($section, $index, $courseId);
+        } else {
+            $updateSection = Section::findOrFail($section['id']);
+
+            $updateSection->fill([
+                'title' => $section['title'],
+                'slug' => $section['slug'],
+                'lecture_count' => $section['lecture_count'],
+                'content_length' => $section['content_length'],
+                'index' => $index,
+                'course_id' => $courseId,
+            ]);
+            $updateSection->save();
+            $updateSection->fresh();
+        }
 
         return $updateSection;
     }

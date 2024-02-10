@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('courses.edit')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 course-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit - <b>{{ course.name }}</b>
@@ -37,6 +37,7 @@
                     flex flex-row items-center mr-2
                 "
                 :href="$route('admin.edu.courses.preview', course.id)"
+                target="_blank"
             >
                 <icon-eye
                     class="w-5 md:mr-2"
@@ -462,6 +463,14 @@
 
                 this.course.sections = sections;
             },
+            /**
+             * We use this to update the sections when the update returns back after submit, avoids strange bug
+             * with duplicated lectures.
+             */
+            updateFormDataSections() {
+                this.transformSections();
+                this.formData.sections = this.course.sections;
+            },
             onNameInput() {
                 if (!this.autoUpdateSlug) {
                     return;
@@ -494,6 +503,11 @@
                     this.formData
                 );
             }
-        }
+        },
+        watch: {
+            course: {
+                handler: 'updateFormDataSections'
+            }
+        },
     }
 </script>
