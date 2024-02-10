@@ -29,6 +29,8 @@ class CourseResource extends JsonResource
             'video_preview' => $this->video_preview,
             'price' => $this->price,
             'discount_price' => $this->discount_price,
+            'vat' => $this->vat,
+            'price_vat' => $this->price_vat,
             'currency' => $this->currency,
             'languages' => $this->languages,
             'has_webinars' => (bool)$this->has_webinars,

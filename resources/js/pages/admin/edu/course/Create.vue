@@ -209,13 +209,38 @@
                     v-model="formData.discount_price"
                 />
 
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('vat')"
+                    input-autocomplete="vat"
+                    input-id="vat"
+                    input-name="vat"
+                    :input-required="false"
+                    input-type="text"
+                    label-text="VAT"
+                    @errorHidden="clearPageErrorMessage('vat')"
+                    v-model="formData.vat"
+                />
+
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('price_vat')"
+                    input-autocomplete="price_vat"
+                    input-id="price_vat"
+                    input-name="price_vat"
+                    :input-required="false"
+                    input-type="text"
+                    label-text="Price VAT"
+                    @errorHidden="clearPageErrorMessage('price_vat')"
+                    v-model="formData.price_vat"
+                />
+
                 <select-group
                     class="mt-4"
-                    :label-hidden="true"
                     label-text="Currency"
                     :input-any-option-enabled="true"
                     input-any-option-label="Currency"
-                    input-class="form-control form-control-short"
+                    input-class="input-group-input"
                     input-id="currency"
                     input-name="currency"
                     input-option-label-key="name"
@@ -362,6 +387,8 @@
                     video_preview: '',
                     price: '',
                     discount_price: '',
+                    vat: '',
+                    price_vat: '',
                     currency: '',
                     languages: '',
                     has_webinars: '',

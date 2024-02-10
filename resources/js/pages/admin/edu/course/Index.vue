@@ -94,12 +94,14 @@
                             :key="`item-${item.id}`"
                         >
                             <td>
-                                <img :src="item.primary_image" :alt="item.name" class="w-32 square-full"/>
+                                <img
+                                    :src="item.primary_image"
+                                    :alt="item.name"
+                                    class="w-32 square-full"
+                                />
                             </td>
                             <td>
                                 {{ item.name }}
-                                <br>
-                                <small>{{ item.slug}}</small>
                             </td>
                             <td>
                                 {{ item.price + ' ' + item.currency }}

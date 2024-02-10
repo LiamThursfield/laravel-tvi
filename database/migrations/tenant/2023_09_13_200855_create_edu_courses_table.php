@@ -33,6 +33,8 @@ return new class extends Migration
             // Price
             $table->string('price')->nullable();
             $table->string('discount_price')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('price_vat')->nullable();
             $table->string('currency')->nullable()->default(CoursePurchaseInterface::CURRENCY_GB);
 
             // Webinars

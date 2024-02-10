@@ -46,12 +46,15 @@
                                     />
                                     Money Back Guarantee
                                 </li>
-                                <li v-if="course.languages" class="flex flex-row items-center">
-                                    <icon-language
-                                        class="w-5 md:mr-2"
-                                    />
-                                    Multiple Languages
-                                </li>
+<!--                                <li-->
+<!--                                    v-if="course.languages && course.languages.length > 1"-->
+<!--                                    class="flex flex-row items-center"-->
+<!--                                >-->
+<!--                                    <icon-language-->
+<!--                                        class="w-5 md:mr-2"-->
+<!--                                    />-->
+<!--                                    Multiple Languages-->
+<!--                                </li>-->
                                 <li v-if="course.has_cerfiticate" class="flex flex-row items-center">
                                     <icon-certificate
                                         class="w-5 md:mr-2"
@@ -110,6 +113,9 @@
                              {{ course.currency + ' ' + course.price }} | Purchase
                         </span>
                         <span v-else-if="course.currency === 'Lei'">
+                             {{ course.price + ' ' +  course.currency }}
+                        </span>
+                        <span v-else-if="course.currency === 'E'">
                              {{ course.price + ' ' +  course.currency }}
                         </span>
 

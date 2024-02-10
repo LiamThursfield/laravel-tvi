@@ -55,7 +55,7 @@ class SectionController extends AdminController
     {
         $section->delete();
 
-        return Redirect::back(200)->with(
+        return Redirect::back(303)->with(
             'success',
             'Deleted.'
         );

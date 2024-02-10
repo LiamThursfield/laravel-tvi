@@ -22,6 +22,8 @@ class CourseUpdateRequest extends BaseIndexRequest
             'video_preview' => 'nullable|string',
             'price' => 'nullable|string',
             'discount_price' => 'nullable|string',
+            'vat' => 'nullable|string',
+            'price_vat' => 'nullable|string',
             'currency' => 'nullable|string',
             'languages' => 'nullable|string',
             'has_webinars' => 'nullable|boolean',
