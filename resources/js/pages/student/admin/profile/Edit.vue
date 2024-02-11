@@ -7,7 +7,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit Profile
+                {{ __('messages.edit-profile') }}
             </h1>
             <inertia-link
                 v-if="userCan('profile.view')"
@@ -23,7 +23,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Back
+                    {{ __('messages.back') }}
                 </span>
             </inertia-link>
 
@@ -40,7 +40,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    {{ __('messages.save-changes') }}
                 </span>
             </button>
         </div>

@@ -5,7 +5,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                My Profile
+                {{ __('messages.my-profile') }}
             </h1>
 
             <inertia-link
@@ -24,7 +24,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Edit Profile
+                   {{ __('messages.edit-profile') }}
                 </span>
             </inertia-link>
         </div>
@@ -33,13 +33,13 @@
             <div class="block px-6 w-full">
                 <p>
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                        First Name
+                        {{ __('messages.first-name') }}
                     </span>
                     {{ profile.first_name }}
                 </p>
                 <p class="mt-2">
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                        Last Name
+                       {{ __('messages.last-name') }}
                     </span>
                     {{ profile.last_name }}
                 </p>
@@ -68,7 +68,7 @@
                     <span
                         class="hidden md:inline"
                     >
-                    Request Refund
+                    {{ __('messages.request-refund') }}
                 </span>
                 </button>
             </div>

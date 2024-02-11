@@ -4,14 +4,14 @@
             <h1 class="font-semibold mr-auto text-3xl">
                 {{ course.name }}
             </h1>
-            <small>By <b>{{ course.creator.name }}</b></small>
+            <small>{{ __('messages.by') }} <b>{{ course.creator.name }}</b></small>
         </div>
 
         <div class="flex flex-row space-x-4">
             <div class="max-w-sm w-full ">
                 <div class="bg-white rounded-xl shadow-subtle">
                     <h2 class="border-b font-semibold px-6 py-3">
-                        Course Content
+                        {{ __('messages.course-content') }}
                     </h2>
 
                     <div
@@ -160,19 +160,19 @@
                                 <span
                                     class="hidden md:inline"
                                 >
-                                    {{ (showPDFPanel) ? 'Cancel' : 'Download PDFs' }}
+                                    {{ (showPDFPanel) ? __('messages.back') : __('messages.download-pdfs') }}
                                 </span>
                             </button>
                         </div>
                         <transition-group
                             class="mt-4"
-                            name="slide-left"
+                            name="slide-left"a
                             tag="div"
                         >
                             <div v-if="showPDFPanel"
                                 key="downloads"
                             >
-                                <h3 class="font-semibold">Files</h3>
+                                <h3 class="font-semibold">{{ __('messages.files') }}</h3>
                                 <ul class="mt-2">
                                     <li
                                         v-for="(file, index) in lecture.files"

@@ -49,7 +49,7 @@
                     <div class="bg-theme-primary h-full rounded-full" :style="`width: ${progress}%`" />
                 </div>
                 <p class="mt-1 text-xs">
-                    {{ progress }}% Complete
+                    {{ progress }}% {{ __('messages.complete') }}
                 </p>
             </section>
 
