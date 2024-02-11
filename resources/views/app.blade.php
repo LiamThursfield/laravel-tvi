@@ -10,6 +10,10 @@
 
         @routes
         <script src="{{ mix('/js/app.js') }}" defer></script>
+
+        <script>
+            window.locale = '{{ app()->getLocale() }}';
+        </script>
     </head>
 
     <body>

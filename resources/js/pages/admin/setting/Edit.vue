@@ -9,7 +9,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit {{ settingsName }} Settings
+                {{ __('settings.edit', {setting: settingsName}) }}
             </h1>
 
             <button
@@ -28,7 +28,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    {{ __('form.buttons.save') }}
                 </span>
             </button>
         </div>
@@ -119,8 +119,12 @@
 
                 this.$inertia.put(
                     this.$route('admin.settings.update', this.settingsGroup),
-                    formattedSettings
-                );
+                    formattedSettings,
+                    {
+                        // Some settings may need a page reload to take effect
+                        onSuccess: () => { window.location.reload() }
+                    }
+                )
             }
         },
     }
