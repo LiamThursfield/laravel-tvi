@@ -1,0 +1,203 @@
+/*
+ * Admin - Side Menu
+ */
+
+#admin-layout {
+    .side-menu {
+        /** Mobile View **/
+        @apply fixed inset-0 overflow-y-auto z-20;
+
+
+        @apply min-h-full pb-8 px-4 w-full;
+        @apply duration-300 ease-in-out transition-transform;
+
+        background: var(--side-menu-color-base);
+
+        &:not(.side-menu-open) {
+            transform: translateX(-100%);
+        }
+
+        .logo {
+            @apply flex font-semibold h-14 items-center justify-center text-xl;
+            color: var(--side-menu-color-logo);
+            transition: color 400ms ease-in-out;
+
+            &:hover {
+                color: var(--side-menu-color-logo-active);
+
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    svg {
+                        animation: wobble 1s ease 1;
+                    }
+                }
+            }
+        }
+
+        .menu-link-parent {
+            &.toggled {
+                .indicator {
+                    transform: rotate(90deg);
+                }
+            }
+
+            .indicator {
+                @apply ml-auto;
+                @apply duration-300 transition-transform;
+                transform: rotate(0deg);
+            }
+        }
+
+        .menu-section {
+            @apply mt-1;
+        }
+
+        .menu-separator {
+            @apply border-b mx-4 my-6;
+            border-color: var(--side-menu-color-separator);
+        }
+
+        .menu-subheading {
+            @apply px-4 text-xs tracking-widest uppercase;
+            color: var(--side-menu-color-subheading);
+        }
+
+        .menu-toggle {
+            @apply pr-4 py-4 transition-default transition-colors;
+            color: var(--side-menu-color-toggle);
+
+            &:focus {
+                @apply outline-none;
+            }
+
+            &:focus,
+            &:hover {
+                color: var(--side-menu-color-toggle-active);
+            }
+        }
+
+        .root-menu-item {
+            >.menu-link,
+            >.menu-link-parent {
+                @apply flex flex-row font-medium items-center mt-1 px-4 py-2 rounded text-sm w-full;
+                @apply ease-in-out duration-300;
+
+                background: var(--side-menu-color-base);
+                color: var(--side-menu-color-base-contrast);
+                transition-property: background-color, border-color, color, fill, padding, stroke;
+
+                &:focus {
+                    @apply outline-none ring ring-primary;
+                }
+
+                &:hover {
+                    background: var(--side-menu-color-hover);
+                    color: var(--side-menu-color-hover-contrast);
+                }
+
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    &:hover {
+                        @apply pl-6;
+                    }
+                }
+
+
+                &.menu-link-active,
+                &.menu-link-active:hover {
+                    background: var(--side-menu-color-active);
+                    color: var(--side-menu-color-active-contrast);
+                }
+            }
+        }
+
+        .sub-menu-item {
+            >.menu-link,
+            >.menu-link-parent {
+                @apply flex flex-row font-medium items-center mt-1 px-4 py-1 rounded text-sm w-full;
+                @apply ease-in-out duration-150;
+
+                background: var(--side-menu-color-sub-menu-base);
+                color: var(--side-menu-color-sub-menu-base-contrast);
+                transition-property: background-color, border-color, color, fill, padding, stroke;
+
+                &:focus {
+                    @apply font-semibold outline-none;
+                }
+
+                &:hover {
+                    background: var(--side-menu-color-sub-menu-hover);
+                    color: var(--side-menu-color-sub-menu-hover-contrast);
+                }
+
+                &.menu-link-active,
+                &.menu-link-active:hover {
+                    background: var(--side-menu-color-sub-menu-active);
+                    color: var(--side-menu-color-sub-menu-active-contrast);
+                }
+
+                @media screen and (prefers-reduced-motion: no-preference) {
+                    &:hover {
+                        @apply pl-6;
+                    }
+                }
+            }
+        }
+
+        .menu-item-level-3 {
+            >.menu-link,
+            >.menu-link-parent {
+                @apply pl-10;
+            }
+        }
+    }
+}
+
+/** Desktop View **/
+@screen lg {
+    #admin-layout {
+        .side-menu {
+            @apply border-gray-200 border-r inset-auto overflow-hidden pb-2 px-2 relative w-64;
+
+            &:not(.side-menu-open) {
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
+
+/** Animations **/
+
+/** Wobble is taken from: https://csslab.app/animations/wobble **/
+@keyframes wobble {
+    0%, 100% {
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        -webkit-transform: translateX(-2px) rotate(-10deg);
+        transform: translateX(-2px) rotate(-10deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(calc(2px / 2)) rotate(10deg);
+        transform: translateX(calc(2px / 2)) rotate(10deg);
+    }
+
+    45% {
+        -webkit-transform: translateX(calc(-2px / 2)) rotate(calc(-10deg / 1.8));
+        transform: translateX(calc(-2px / 2)) rotate(calc(-10deg / 1.8));
+    }
+
+    60% {
+        -webkit-transform: translateX(calc(2px / 3.3)) rotate(calc(10deg / 3));
+        transform: translateX(calc(2px / 3.3)) rotate(calc(10deg / 3));
+    }
+
+    75% {
+        -webkit-transform: translateX(calc(-2px / 5.5)) rotate(calc(-10deg / 5));
+        transform: translateX(calc(-2px / 5.5)) rotate(calc(-10deg / 5));
+    }
+}

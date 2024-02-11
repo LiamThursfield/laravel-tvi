@@ -29,10 +29,10 @@ class ContactFactory extends Factory
     {
         return [
            'title' => $this->faker->title,
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'telephone' => $this->faker->phoneNumber,
-            'email' => $this->faker->unique()->safeEmail,
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'telephone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->unique()->safeEmail(),
             'marketing_email' => $this->faker->boolean(),
             'marketing_sms' => $this->faker->boolean(),
             'marketing_telephone' => $this->faker->boolean(),

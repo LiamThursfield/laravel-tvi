@@ -16,10 +16,7 @@ return [
      *
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
-    'central_domains' => [
-        '127.0.0.1',
-        'localhost',
-    ],
+    'central_domains' => explode(',', env('SIGI_CENTRAL_DOMAINS', '127.0.0.1,localhost')),
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
@@ -33,6 +30,7 @@ return [
         Stancl\Tenancy\Bootstrappers\FilesystemTenancyBootstrapper::class,
         Stancl\Tenancy\Bootstrappers\QueueTenancyBootstrapper::class,
         // Stancl\Tenancy\Bootstrappers\RedisTenancyBootstrapper::class, // Note: phpredis is needed
+        \App\Bootstrappers\ConfigTenancyBootstrapper::class
     ],
 
     /**
@@ -166,7 +164,7 @@ return [
         // Stancl\Tenancy\Features\UserImpersonation::class,
          Stancl\Tenancy\Features\TelescopeTags::class,
         // Stancl\Tenancy\Features\UniversalRoutes::class,
-        // Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
+         Stancl\Tenancy\Features\TenantConfig::class, // https://tenancyforlaravel.com/docs/v3/features/tenant-config
         // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancyforlaravel.com/docs/v3/features/cross-domain-redirect
         // Stancl\Tenancy\Features\ViteBundler::class,
     ],
@@ -193,7 +191,7 @@ return [
      * Parameters used by the tenants:seed command.
      */
     'seeder_parameters' => [
-        '--class' => 'DatabaseSeeder', // root seeder class
+        '--class' => 'TenantDatabaseSeeder', // root seeder class
         // '--force' => true,
     ],
 ];

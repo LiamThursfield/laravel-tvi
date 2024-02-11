@@ -6,6 +6,7 @@ use App\Interfaces\RoleInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\UrlWindow;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
@@ -22,7 +23,6 @@ class InertiaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->setView();
         $this->versionAssets();
         $this->shareData();
         $this->registerLengthAwarePaginator();
@@ -62,7 +62,7 @@ class InertiaServiceProvider extends ServiceProvider
 
                 public function links($view = null, $data = [])
                 {
-                    $this->onEachSide(\config('tvi.pagination.links_on_each_side', 1));
+                    $this->onEachSide(\config('sigi.pagination.links_on_each_side', 1));
                     $this->appends(Request::all());
 
                     $window = UrlWindow::make($this);
@@ -117,15 +117,6 @@ class InertiaServiceProvider extends ServiceProvider
 
 
     /**
-     * Set the root view
-     */
-    protected function setView()
-    {
-        Inertia::setRootView('app');
-    }
-
-
-    /**
      * Share base data with inertia, including:
      *  - App data
      *  - Auth data
@@ -134,12 +125,15 @@ class InertiaServiceProvider extends ServiceProvider
     protected function shareData()
     {
         Inertia::share([
-            'app' => [
-                'name' => Config::get('app.name'),
-                'config' => [
-                    'file_manager_uploads_enabled' => Config::get('tvi.file_manager.uploads.enabled', false),
-                ],
-            ],
+            'app' => function () {
+                return [
+                    'name' => Config::get('app.name'),
+                    'config' => [
+                        'file_manager_uploads_enabled' => Config::get('sigi.file_manager.uploads.enabled', false),
+                    ],
+                    'locale' => App::getLocale(),
+                ];
+            },
             'auth' => function () {
                 return [
                     'user' => Auth::user() ? [
@@ -166,6 +160,11 @@ class InertiaServiceProvider extends ServiceProvider
                     'warning'   => Session::get('warning'),
                 ];
             },
+            'tenant' => function () {
+                return [
+                    'id' => tenant()->id ?? null,
+                ];
+            }
         ]);
     }
 

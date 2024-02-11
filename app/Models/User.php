@@ -4,7 +4,13 @@ namespace App\Models;
 
 use App\Interfaces\PermissionInterface;
 use App\Interfaces\RoleInterface;
+use App\Models\EDU\Course\Course;
+use App\Models\EDU\Course\CoursePurchase;
+use App\Models\EDU\Course\CourseUser;
+use App\Models\EDU\Programme\Programme;
+use App\Notifications\Auth\ResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -97,5 +103,32 @@ class User extends Authenticatable
         }
 
         return $permissions_array;
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(
+            Course::class,
+            CourseUser::class
+        )->withTimestamps();
+    }
+
+    public function programmes() : HasMany
+    {
+        return $this->hasMany(Programme::class);
+    }
+
+    public function coursePurchases(): HasMany
+    {
+        return $this->hasMany(
+        CoursePurchase::class,
+            'user_id',
+            'id'
+        );
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 }

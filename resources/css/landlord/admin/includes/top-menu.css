@@ -1,0 +1,24 @@
+/*
+ * Admin - Top Menu
+ */
+
+#admin-layout {
+    .top-menu {
+        @apply flex flex-row h-14 items-center px-4 relative shadow-subtle z-10;
+        background: var(--top-menu-color-base);
+        color: var(--top-menu-color-base-contrast);
+
+        .menu-link {
+            @apply font-medium;
+
+            color: var(--top-menu-color-base-contrast);
+
+            &:focus,
+            &:hover {
+                background: var(--top-menu-color-hover);
+                color: var(--top-menu-color-hover-contrast);
+                outline: none;
+            }
+        }
+    }
+}

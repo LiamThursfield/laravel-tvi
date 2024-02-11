@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Landlord\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return 'This is a landlord domain';
-});
+Auth::routes([
+    'register'  => false,
+    'verify'    => false
+]);
+
+Route::get('/', [HomeController::class, 'index'])->name('index');

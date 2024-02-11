@@ -81,6 +81,7 @@ return [
     */
 
     'locale' => 'en',
+    'landlord.locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\TenancyServiceProvider::class,
+        Vimeo\Laravel\VimeoServiceProvider::class
 
     ],
 
@@ -229,6 +231,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Vimeo' => Vimeo\Laravel\Facades\Vimeo::class
 
     ],
 

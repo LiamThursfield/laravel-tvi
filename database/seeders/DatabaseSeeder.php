@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Landlord\UserRoleSeeder as LandlordUserRoleSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,10 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserRoleSeeder::class);
-         $this->call(UserSeeder::class);
-         $this->call(TemplateSeeder::class);
-         $this->call(FormSeeder::class);
-         $this->call(OrganisationUnitSeeder::class);
+        $this->call(LandlordUserRoleSeeder::class);
     }
 }
