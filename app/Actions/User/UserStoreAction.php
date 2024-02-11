@@ -18,7 +18,7 @@ class UserStoreAction
         try {
             DB::beginTransaction();
 
-            $user_data = Hash::make($user_data['password']);
+            $user_data['password'] = Hash::make($user_data['password']);
 
             $user = User::create($user_data);
             $user = app(UserSetRolesAction::class)->handle($user, $roles_data);
