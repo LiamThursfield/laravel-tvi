@@ -148,7 +148,7 @@ class Course extends Model
     {
         return $this->hasMany(Section::class)
             ->with('childItems')
-            ->orderBy('index');
+            ->orderBy('index', 'asc');
     }
 
     public function webinars(): HasMany

@@ -495,8 +495,8 @@
              * with duplicated lectures.
              */
             updateFormDataSections() {
-                this.transformSections();
-                this.formData.sections = this.course.sections;
+                // this.transformSections();
+                // this.formData.sections = this.course.sections;
             },
             onNameInput() {
                 if (!this.autoUpdateSlug) {

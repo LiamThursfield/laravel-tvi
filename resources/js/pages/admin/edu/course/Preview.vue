@@ -116,7 +116,7 @@
                              {{ course.price + ' ' +  course.currency }}
                         </span>
                         <span v-else-if="course.currency === 'E'">
-                             {{ course.price + ' ' +  course.currency }}
+                             {{ course.price + ' Euro' }}
                         </span>
 
                         <icon-loader-circle
