@@ -35,19 +35,38 @@
 
         <div class="bg-white py-6 shadow-subtle rounded-lg">
             <div class="block -mt-4 px-6 w-full">
-                <input-group
+                <template
                     v-for="(setting, key) in settings"
-                    :key="key"
-                    class="mt-4"
-                    :error-message="getPageErrorMessage(key)"
-                    input-autocomplete="off"
-                    :input-id="key"
-                    :input-name="key"
-                    :input-type="setting.type"
-                    :label-text="setting.label"
-                    @errorHidden="clearPageErrorMessage(key)"
-                    v-model="formData[key]"
-                />
+                >
+                    <select-group
+                        v-if="setting.type === 'select'"
+                        class="mt-4"
+                        :key="key"
+                        :error-message="getPageErrorMessage(key)"
+                        input-autocomplete="off"
+                        :input-id="key"
+                        :input-name="key"
+                        :input-type="setting.type"
+                        :label-text="setting.label"
+                        :input-options="setting.options"
+                        @errorHidden="clearPageErrorMessage(key)"
+                        v-model="formData[key]"
+                    />
+
+                    <input-group
+                        v-else
+                        class="mt-4"
+                        :key="key"
+                        :error-message="getPageErrorMessage(key)"
+                        input-autocomplete="off"
+                        :input-id="key"
+                        :input-name="key"
+                        :input-type="setting.type"
+                        :label-text="setting.label"
+                        @errorHidden="clearPageErrorMessage(key)"
+                        v-model="formData[key]"
+                    />
+                </template>
             </div>
         </div>
     </form>
@@ -56,10 +75,11 @@
 <script>
     import _ from 'lodash';
     import InputGroup from "../../../components/core/forms/InputGroup.vue";
+    import SelectGroup from "../../../components/core/forms/SelectGroup.vue";
 
     export default {
         name: "AdminSettingEdit",
-        components: {InputGroup},
+        components: {SelectGroup, InputGroup},
         layout: 'admin-layout',
         props: {
             settings: {
