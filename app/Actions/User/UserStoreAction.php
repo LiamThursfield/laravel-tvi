@@ -5,6 +5,7 @@ namespace App\Actions\User;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserStoreAction
 {
@@ -16,6 +17,8 @@ class UserStoreAction
 
         try {
             DB::beginTransaction();
+
+            $user_data['password'] = Hash::make($user_data['password']);
 
             $user = User::create($user_data);
             $user = app(UserSetRolesAction::class)->handle($user, $roles_data);

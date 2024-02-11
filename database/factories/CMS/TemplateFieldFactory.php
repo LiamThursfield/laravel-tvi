@@ -36,8 +36,8 @@ class TemplateFieldFactory extends Factory
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
-            'description' => $this->faker->paragraph,
-            'is_required' => $this->faker->boolean,
+            'description' => $this->faker->paragraph(),
+            'is_required' => $this->faker->boolean(),
             'order' => $this->faker->numberBetween(0, 100),
             'settings' => null, // TODO: Look into setting default settings per type
             'deleted_at' => $this->faker->boolean ? Carbon::now() : null,

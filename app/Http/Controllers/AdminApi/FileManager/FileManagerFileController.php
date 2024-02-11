@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\AdminApi\FileManager;
 
 use App\Actions\FileManager\FileManagerFileStoreAction;
+use App\Models\EDU\Lecture\LectureFiles;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\StorageAttributes;
 
@@ -24,24 +26,42 @@ class FileManagerFileController extends AbstractFileManagerController
             ->filter(fn (StorageAttributes $attributes) => $attributes->isFile())
             ->map(function (StorageAttributes $attributes)  {
                 $meta = $this->getFileMetadata($attributes);
-                $url = Storage::disk($this->storage_disk)->url($attributes->path());
+                // Get presigned url available for 5 minutes
+                $url = Storage::disk($this->storage_disk)->temporaryUrl(
+                    $attributes->path(), Carbon::now()->addMinutes(5)
+                );
                 return compact('meta', 'url');
             }));
 
         return response()->json(compact('files'));
     }
 
+    public function show(Request $request, $lecture_id): JsonResponse
+    {
+        $files = LectureFiles::where('lecture_id', $lecture_id)->get();
+
+        foreach ($files as $file) {
+            $file->url = Storage::disk($this->storage_disk)->temporaryUrl(
+                $file->file_path, Carbon::now()->addMinutes(5)
+            );
+        }
+
+        return response()->json(compact('files'));
+    }
+
     public function store(Request $request)
     {
-        if (!config('tvi.file_manager.uploads.enabled')) {
+        if (!config('sigi.file_manager.uploads.enabled')) {
             abort(403, 'Uploads are disabled.');
         }
 
-        $directory = $request->get('directory', "");
+        $tenantId = tenant()->id;
+        $directory = $tenantId . '/' . $request->get('directory', "");
         $file = $request->file('file');
 
         $action = new FileManagerFileStoreAction($this->storage_disk);
-        return $action->handle($directory, $file);
+
+        return $action->handle($directory, $file, $request);
     }
 
 

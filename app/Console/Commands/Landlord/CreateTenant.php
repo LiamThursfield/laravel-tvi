@@ -38,6 +38,7 @@ class CreateTenant extends Command
             return;
         }
 
+        $this->info('Creating the tenant database, this may take a while.');
         $tenant = Tenant::create(['id' => $id]);
 
         $domainCount = 0;

@@ -14,6 +14,11 @@
                 background: var(--color-danger);
                 color: var(--color-danger-contrast);
             }
+
+            &.success {
+                background: var(--color-success);
+                color: var(--color-success-contrast);
+            }
         }
     }
 }

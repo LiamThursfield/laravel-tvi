@@ -17,11 +17,18 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = null;
 
     /**
-     * The path to the "admin" route for your application.
+     * The path to the core "admin" route for your application.
      *
      * @var string
      */
     public const ADMIN = '/admin';
+
+    /**
+     * The path to the student "admin" route for your application.
+     *
+     * @var string
+     */
+    public const ADMIN_STUDENT = '/student';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -30,8 +37,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
     }
 
@@ -44,24 +49,20 @@ class RouteServiceProvider extends ServiceProvider
     {
         // Landlord routes
         $this->mapLandlordWebRoutes();
+        $this->mapLandlordAdminRoutes();
+        $this->mapLandlordAdminApiRoutes();
 
         // Tenant routes
         $this->mapApiRoutes();
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
         $this->mapAdminApiRoutes();
+        $this->mapStudentWebRoutes();
+        $this->mapStudentAdminRoutes();
+        $this->mapWebhookRoutes();
     }
 
-
-    /**
-     * Define the "admin" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     * They also require authentication
-     *
-     * @return void
-     */
-    protected function mapAdminRoutes()
+    protected function mapAdminRoutes(): void
     {
         Route::middleware(['admin','tenant'])
             ->namespace($this->namespace)
@@ -70,15 +71,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/admin.php'));
     }
 
-    /**
-     * Define the "admin api" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     * They also require authentication
-     *
-     * @return void
-     */
-    protected function mapAdminApiRoutes()
+    protected function mapAdminApiRoutes(): void
     {
         Route::middleware(['admin','tenant'])
             ->namespace($this->namespace)
@@ -87,47 +80,99 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/admin-api.php'));
     }
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiRoutes()
+    protected function mapApiRoutes(): void
     {
-        Route::prefix('api')
-            ->middleware(['api', 'tenant'])
+        Route::middleware(['api', 'tenant'])
             ->namespace($this->namespace)
+            ->as('api.')
+            ->prefix('api')
             ->group(base_path('routes/api.php'));
     }
 
-    /**
-     * Define the tenant's "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
+    protected function mapWebRoutes(): void
     {
         Route::middleware(['web', 'tenant'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
     }
 
-    protected function mapLandlordWebRoutes()
+    protected function mapStudentWebRoutes(): void
     {
-        foreach ($this->centralDomains() as $domain) {
-            Route::middleware('web')
-                ->domain($domain)
-                ->namespace($this->namespace)
-                ->group(base_path('routes/landlord/web.php'));
-        }
+        Route::middleware(['web', 'tenant'])
+            ->namespace($this->namespace)
+            ->as('student.')
+            ->prefix('student')
+            ->group(base_path('routes/student-web.php'));
+    }
+
+    protected function mapStudentAdminRoutes(): void
+    {
+        Route::middleware(['student-admin','tenant'])
+            ->namespace($this->namespace)
+            ->as('student.admin.')
+            ->prefix('student')
+            ->group(base_path('routes/student-admin.php'));
+    }
+
+    protected function mapWebhookRoutes(): void
+    {
+        Route::middleware(['webhook', 'tenant'])
+            ->namespace($this->namespace)
+            ->as('webhook.')
+            ->prefix('webhook')
+            ->group(base_path('routes/webhook.php'));
+    }
+
+    protected function mapLandlordWebRoutes(): void
+    {
+        $this->buildLandlordRoutes(
+            ['web', 'landlord.set-guard'],
+            'landlord',
+            'routes/landlord/web.php'
+        );
+    }
+
+    protected function mapLandlordAdminRoutes(): void
+    {
+        $this->buildLandlordRoutes(
+            ['landlord-admin'],
+            'landlord.admin',
+            'routes/landlord/admin.php',
+            'admin'
+        );
+    }
+
+    protected function mapLandlordAdminApiRoutes(): void
+    {
+        $this->buildLandlordRoutes(
+            ['landlord-admin'],
+            'landlord.admin.api',
+            'routes/landlord/admin-api.php',
+            'admin/api'
+        );
     }
 
     protected function centralDomains(): array
     {
         return config('tenancy.central_domains');
+    }
+
+    protected function buildLandlordRoutes(string|array $middleware, string $as, string $path, string $prefix = ''): void
+    {
+        $domainCount = 0;
+        foreach ($this->centralDomains() as $domain) {
+            // Add the domain count to the route name if there is more than one central domain
+            // Otherwise we cannot cache routes
+
+            $computedAs = ($domainCount > 0) ? $as . '.' . $domainCount . '.' : $as . '.';
+            $domainCount++;
+
+            Route::middleware($middleware)
+                ->namespace($this->namespace)
+                ->domain($domain)
+                ->as($computedAs)
+                ->prefix($prefix)
+                ->group(base_path($path));
+        }
     }
 }

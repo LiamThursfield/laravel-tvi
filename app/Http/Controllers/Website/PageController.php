@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function show(Request $request): Response
     {
-        if (!config('tvi.web.enabled')) {
+        if (!config('sigi.web.enabled')) {
             abort(404);
         }
 
@@ -30,9 +30,13 @@ class PageController extends Controller
             ]
         ];
 
-        $page = app(PageQueryAction::class)
-            ->handle($search_options)
-            ->firstOrFail();
+        try {
+            $page = app(PageQueryAction::class)
+                ->handle($search_options)
+                ->firstOrFail();
+        } catch (\Exception $e) {
+            abort(404);
+        }
 
         return Inertia::render('website/page/Show', [
             'page' => function () use ($page) {

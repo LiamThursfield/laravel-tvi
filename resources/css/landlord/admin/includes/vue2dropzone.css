@@ -1,0 +1,42 @@
+/* purgecss start ignore */
+
+@import "vue2-dropzone/dist/vue2Dropzone.min.css";
+
+/** Dropzone Style Overrides **/
+
+.vue-dropzone {
+    background: unset;
+    border-color: theme('colors.gray.500');
+    border-radius: theme('borderRadius.DEFAULT');
+    border-style: dashed;
+    color: var(--color-base-contrast);
+    min-height: 100px;
+    padding: theme('spacing.2');
+
+    &:hover {
+        background: theme('colors.gray.300');
+    }
+
+    .dz-preview {
+        margin: theme('spacing.2');
+        border-radius: theme('borderRadius.DEFAULT');
+        overflow: hidden;
+
+        .dz-image {
+            max-height: 100px;
+            max-width: 100px;
+
+            & img:not([src]) {
+                max-height: 100px;
+                max-width: 100px;
+            }
+        }
+    }
+}
+
+.vue-dropzone>.dz-preview .dz-details {
+    background-color: var(--color-base-contrast);
+    color: var(--color-base);
+}
+
+/* purgecss end ignore */

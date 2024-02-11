@@ -1,0 +1,33 @@
+/**
+ * Admin - Auth pages
+ */
+
+#auth-layout {
+
+    --color-primary: theme('colors.mono.900');
+    --color-base: theme('colors.mono.100');
+
+    .auth-background-container {
+        height: 35vh;
+    }
+
+    .auth-card {
+        @apply bg-theme-base rounded-md shadow-md;
+    }
+
+    .auth-card-container {
+        @apply max-w-md w-full;
+    }
+
+    .auth-header {
+        @apply font-semibold pb-6 pt-8 px-6 text-center text-theme-base-contrast text-2xl tracking-wide;
+    }
+
+    .auth-input {
+        @apply border-transparent font-medium rounded shadow mt-2 px-3 py-2 w-full;
+
+        &:focus {
+            @apply border-transparent outline-none ring ring-primary
+        }
+    }
+}
