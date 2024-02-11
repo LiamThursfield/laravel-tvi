@@ -91,7 +91,7 @@ So the process is inline with the package's documentation.
 
 1. Generate the JS translation files (if any have been added/updated)
    ```bash
-    ./vendor/bin/sail artisan zoro:generate
+    ./vendor/bin/sail artisan zora:generate
     ```
 2. Production-ify JS/CSS
    ```bash
