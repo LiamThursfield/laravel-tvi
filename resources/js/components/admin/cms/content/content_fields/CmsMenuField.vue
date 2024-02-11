@@ -15,6 +15,7 @@
             :input-autocomplete="inputName"
             :input-id="inputName"
             :input-name="inputName"
+            :input-option-force-formatting="true"
             input-option-label-key="name"
             input-option-value-key="id"
             :input-options="menuItems"
