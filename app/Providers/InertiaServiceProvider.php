@@ -6,6 +6,7 @@ use App\Interfaces\RoleInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\UrlWindow;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
@@ -124,12 +125,15 @@ class InertiaServiceProvider extends ServiceProvider
     protected function shareData()
     {
         Inertia::share([
-            'app' => [
-                'name' => Config::get('app.name'),
-                'config' => [
-                    'file_manager_uploads_enabled' => Config::get('sigi.file_manager.uploads.enabled', false),
-                ],
-            ],
+            'app' => function () {
+                return [
+                    'name' => Config::get('app.name'),
+                    'config' => [
+                        'file_manager_uploads_enabled' => Config::get('sigi.file_manager.uploads.enabled', false),
+                    ],
+                    'locale' => App::getLocale(),
+                ];
+            },
             'auth' => function () {
                 return [
                     'user' => Auth::user() ? [

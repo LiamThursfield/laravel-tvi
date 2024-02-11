@@ -438,6 +438,13 @@
                             settings: {
                                 activeRoutes: ["admin.settings.edit"],
                                 children: {
+                                    core: {
+                                        icon: false,
+                                        label: "Core",
+                                        requiresAllPermissions: ["settings.edit"],
+                                        requiresAnyPermissions: [],
+                                        route: ["admin.settings.edit", 'core'],
+                                    },
                                     edu: {
                                         icon: false,
                                         label: "Edu",
