@@ -22,6 +22,7 @@ return [
     'back' => 'Inapoi',
     'first-name' => 'Nume',
     'last-name' => 'Prenume',
+    'email' => 'Email',
     'request-refund' => 'Cere rambursare',
 
     'by' => 'De',

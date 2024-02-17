@@ -12,7 +12,7 @@
                 class="hover:text-theme-primary-hover"
                 :href="$route(item.route)"
             >
-                {{ item.label }}
+                {{__('messages.' + item.label) }}
             </inertia-link>
         </menu>
 
@@ -78,7 +78,7 @@ export default {
             userDropDown: null,
             menu: {
                 courses: {
-                    label: "Courses",
+                    label: "courses",
                     route: "student.admin.index",
                 },
             }

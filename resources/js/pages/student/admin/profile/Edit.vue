@@ -56,7 +56,7 @@
                     input-name="first_name"
                     :input-required="true"
                     input-type="text"
-                    label-text="First Name"
+                    :label-text="__('messages.first-name')"
                     @errorHidden="clearPageErrorMessage('first_name')"
                     v-model="formData.first_name"
                 />
@@ -69,7 +69,7 @@
                     input-name="last_name"
                     :input-required="true"
                     input-type="text"
-                    label-text="Last Name"
+                    :label-text="__('messages.last-name')"
                     @errorHidden="clearPageErrorMessage('last_name')"
                     v-model="formData.last_name"
                 />
@@ -82,7 +82,7 @@
                     input-name="email"
                     :input-required="true"
                     input-type="email"
-                    label-text="Email"
+                    :label-text="__('messages.email')"
                     @errorHidden="clearPageErrorMessage('email')"
                     v-model="formData.email"
                 />

@@ -18,7 +18,7 @@
                                 class="hover:text-theme-primary-hover"
                                 href="#"
                             >
-                                Courses
+                                __('messages.courses')
                             </inertia-link>
                         </li>
                         <li>

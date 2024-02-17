@@ -33,7 +33,10 @@
             ></span>
 
             <span class="ml-2">
-                {{ menuItem.title }} <small class="font-weight-light">{{ menuItem.content_length }} {{ __('messages.minutes') }}</small>
+                {{ menuItem.title }}
+                <small class="font-weight-light">
+                    {{ menuItem.content_length }} {{ __('messages.minutes') }}
+                </small>
             </span>
 
             <icon-chevron-right class="indicator h-5 w-5" />
