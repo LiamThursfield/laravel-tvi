@@ -6,9 +6,12 @@ return [
     'my-courses' => 'My Courses',
     'courses' => 'Courses',
     'course' => 'Course',
+    'lecture' => 'Lecture',
+    'lectures' => 'lectures',
     'homepage' => 'Homepage',
     'logout' => 'Log out',
     'about' => 'About',
+    'contact' => 'Contact',
     'home' => 'Home',
     'complete' => 'Complete',
 
@@ -23,15 +26,17 @@ return [
     'last-name' => 'Last Name',
     'request-refund' => 'Request Refund',
 
-    'by' => 'By',
+    'created-by' => 'Created by',
     'course-content' => 'Course content',
     'download-pdfs' => 'Download PDFs',
+    'resources-pdfs' => 'PDF Resources',
     'files' => 'Files',
     'cancel' => 'Cancel',
     'are-you-sure' => 'Are you sure',
-    'mark-course-lecture-complete-default' => 'Do you really want to mark as complete',
+    'perform-action-check' => 'Do you really want to perform this action?',
+    'mark-course-lecture-complete-default' => 'Do you really want to mark as complete?',
     'mark-course-lecture-complete-refund-warning' => 'Do you really want to mark as complete :name? A refund will not
-    be available once you move to the next step',
+    be available once you move to the next step.',
     'mark-complete' => 'Mark Complete',
     'minutes' => 'minutes',
 
@@ -66,4 +71,14 @@ return [
     'payment-due' => 'Payment due',
     'amount-due' => 'Amount due',
     'make-payment' => 'Pay now',
+
+    // Course features
+    'access-on-mobile' => 'Access on mobile',
+    'money-back-gurantee' => 'Money back guarantee',
+    'multiple-languages' => 'Multiple languages',
+    'certificate' => 'Certificate',
+    'captions' => 'Captions',
+    'lifetime-access' => 'Lifetime access',
+    'student-discount' => 'Student discount available',
+    'seo-exposure' => 'SEO Exposure',
 ];

@@ -46,7 +46,6 @@
 
 <script>
     import CollapseTransition from '@ivanv/vue-collapse-transition';
-    import _ from 'lodash';
     import IconChevronRight from "../../core/icons/IconChevronRight";
     import IconSquareCheckFilled from "../../core/icons/IconSquareCheckFilled";
     import IconSquareCheck from "../../core/icons/IconSquareCheck";

@@ -39,7 +39,7 @@
 
             <inertia-link
                 class="dropdown-link"
-                :href="$route('website.index')"
+                :href="$route('student.admin.index')"
             >
                 {{ __('messages.homepage') }}
             </inertia-link>
