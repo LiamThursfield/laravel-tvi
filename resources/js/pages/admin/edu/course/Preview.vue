@@ -32,19 +32,19 @@
                                     <icon-device-mobile
                                         class="w-5 md:mr-2"
                                     />
-                                    Access on Mobile
+                                    {{ __('messages.access-on-mobile') }}
                                 </li>
                                 <li v-if="course.has_webinars" class="flex flex-row items-center">
                                     <icon-camera-check
                                         class="w-5 md:mr-2"
                                     />
-                                    Webinars
+                                    {{ __('messages.webinars') }}
                                 </li>
                                 <li v-if="course.has_money_back_guarantee" class="flex flex-row items-center">
                                     <icon-money-bag
                                         class="w-5 md:mr-2"
                                     />
-                                    Money Back Guarantee
+                                    {{ __('messages.money-back-gurantee') }}
                                 </li>
 <!--                                <li-->
 <!--                                    v-if="course.languages && course.languages.length > 1"-->
@@ -53,43 +53,43 @@
 <!--                                    <icon-language-->
 <!--                                        class="w-5 md:mr-2"-->
 <!--                                    />-->
-<!--                                    Multiple Languages-->
+<!--                                    {{ __('messages.multiple-languages') }} -->
 <!--                                </li>-->
                                 <li v-if="course.has_cerfiticate" class="flex flex-row items-center">
                                     <icon-certificate
                                         class="w-5 md:mr-2"
                                     />
-                                    Certificate
+                                    {{ __('messages.certificate') }}
                                 </li>
                                 <li v-if="course.has_captions" class="flex flex-row items-center">
                                     <icon-text-caption
                                         class="w-5 md:mr-2"
                                     />
-                                    Captions
+                                    {{ __('messages.captions') }}
                                 </li>
                                 <li v-if="course.has_lifetime_access" class="flex flex-row items-center">
                                     <icon-check
                                         class="w-5 md:mr-2"
                                     />
-                                    Lifetime Access
+                                    {{ __('messages.lifetime-access') }}
                                 </li>
                                 <li v-if="course.has_student_discount" class="flex flex-row items-center">
                                     <icon-discount
                                         class="w-5 md:mr-2"
                                     />
-                                    Student Discount Available
+                                    {{ __('messages.student-discount') }}
                                 </li>
                                 <li v-if="course.has_pdfs" class="flex flex-row items-center">
                                     <icon-book-download
                                         class="w-5 md:mr-2"
                                     />
-                                    PDF Resources
+                                    {{ __('messages.resources-pdfs') }}
                                 </li>
                                 <li v-if="course.has_seo" class="flex flex-row items-center">
                                     <icon-speaker
                                         class="w-5 md:mr-2"
                                     />
-                                    Has SEO Exposure
+                                    {{ __('messages.seo-exposure') }}
                                 </li>
                             </ul>
                         </div>
@@ -110,13 +110,13 @@
                         <span
                             v-if="course.currency === 'GBP'"
                         >
-                             {{ course.currency + ' ' + course.price }} | Purchase
+                             {{ course.currency + ' ' + course.price }}
                         </span>
                         <span v-else-if="course.currency === 'Lei'">
                              {{ course.price + ' ' +  course.currency }}
                         </span>
                         <span v-else-if="course.currency === 'E'">
-                             {{ course.price + ' ' +  course.currency }}
+                             {{ course.price + ' Euro' }}
                         </span>
 
                         <icon-loader-circle
@@ -151,7 +151,7 @@
 
                     <li class="py-4">
                         <div class="flex items-center space-x-4">
-                            <span class="text-lg font-bold">Course Content</span>
+                            <span class="text-lg font-bold">{{ __('messages.course-content') }}</span>
                         </div>
 
                         <ul class="divide-y divide-gray-300 bg-gray-50 rounded-md px-4 py-2 mt-4">
@@ -161,10 +161,10 @@
                                 class="py-2"
                             >
                                 <div class="flex items-center space-x-4">
-                                    {{ section.title }}
+                                    <strong>{{ section.title }}</strong>
                                     <small class="mr-2 ml-auto">
                                         <span v-if="section.lecture_count">
-                                            {{ section.child_items ? section.child_items.length + ' lectures | ':'' }}
+                                            {{ section.child_items ? section.child_items.length + ' ' +__('messages.lectures') + ' | ':'' }}
                                         </span>
                                         {{ section.content_length ?  section.content_length + ' mins':'' }}
                                     </small>

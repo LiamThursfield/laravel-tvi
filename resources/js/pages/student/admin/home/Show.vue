@@ -4,14 +4,14 @@
             <h1 class="font-semibold mr-auto text-3xl">
                 {{ course.name }}
             </h1>
-            <small>By <b>{{ course.creator.name }}</b></small>
+            <small>{{ __('messages.created-by') }} <b>{{ course.creator.name }}</b></small>
         </div>
 
         <div class="flex flex-row space-x-4">
             <div class="max-w-sm w-full ">
                 <div class="bg-white rounded-xl shadow-subtle">
                     <h2 class="border-b font-semibold px-6 py-3">
-                        Course Content
+                        {{ __('messages.course-content') }}
                     </h2>
 
                     <div
@@ -151,7 +151,7 @@
                             <button
                                 v-if="lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
-                                title="Download PDFs"
+                                :title="__('messages.resources-pdfs')"
                                 @click="downloadPDFs(lecture)"
                             >
                                 <icon-book-download
@@ -160,19 +160,19 @@
                                 <span
                                     class="hidden md:inline"
                                 >
-                                    {{ (showPDFPanel) ? 'Cancel' : 'Download PDFs' }}
+                                    {{ (showPDFPanel) ? __('messages.course') : __('messages.resources-pdfs') }}
                                 </span>
                             </button>
                         </div>
                         <transition-group
                             class="mt-4"
-                            name="slide-left"
+                            name="slide-left"a
                             tag="div"
                         >
                             <div v-if="showPDFPanel"
                                 key="downloads"
                             >
-                                <h3 class="font-semibold">Files</h3>
+                                <h3 class="font-semibold">{{ __('messages.files') }}</h3>
                                 <ul class="mt-2">
                                     <li
                                         v-for="(file, index) in lecture.files"
@@ -231,10 +231,12 @@
         </div>
 
         <confirmation-modal
-            confirm-text="Mark Complete"
+            :confirm-text="__('messages.mark-complete')"
+            :cancel-text="__('messages.cancel')"
+            :message-title="__('messages.are-you-sure') + '?'"
             confirm-type="success"
             :show-modal="showConfirmMarkCompleteModal"
-            :message-text="markCompleteModalText"
+            :message-text="__(markCompleteModalText[0], {'name': markCompleteModalText[1]})"
             @cancelAction="cancelMarkComplete"
             @closeModal="cancelMarkComplete"
             @confirmAction="confirmMarkComplete"
@@ -256,6 +258,7 @@ import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
 import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 import IconVideo from "../../../../components/core/icons/IconAlertVideo";
 import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
+import {Zora} from "../../../../zora";
 
 
 export default {
@@ -272,7 +275,8 @@ export default {
         CourseSideMenuItem,
         CollapseTransition,
         ConfirmationModal,
-        Wavesurfer
+        Wavesurfer,
+        Zora
     },
     props: {
         course: {
@@ -305,14 +309,13 @@ export default {
         },
         markCompleteModalText() {
             try {
-                if (this.itemToMarkComplete.index === '0') {
-                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?'
-                        + ' A refund won\'t be available once you move to the next step';
+                if (this.itemToMarkComplete?.index === '0') {
+                    return ['messages.mark-course-lecture-complete-refund-warning', this.itemToMarkComplete.title];
                 } else {
-                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?';
+                    return ['messages.mark-course-lecture-complete-default', this.itemToMarkComplete?.title];
                 }
             } catch (e) {
-                return 'Do you really want to perform this action?'
+                return ['messages.perform-action-check'];
             }
         },
         courseWebinars() {
