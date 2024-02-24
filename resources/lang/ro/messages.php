@@ -43,9 +43,15 @@ return [
     'minutes' => 'minute',
 
     // Payments
-    'pay-in-full' => 'Plateste integral',
+    'pay-in-full' => 'Plătesc integral',
+    'pay-in-instalments' => 'Plătesc în rate',
     'purchase' => 'Comandă',
+    'purchase-success' => 'Comandă plasată',
+    'purchase-cancel' => 'Comandă anulată',
     'payment-options' => 'Opțiuni de plată',
+    'payment-instalments' => 'Rate',
+    'sign-up' => 'Mă înscriu',
+    'this-course-includes' => 'Acest curs include',
 
     // Menu items
     'settings' => 'Setări',

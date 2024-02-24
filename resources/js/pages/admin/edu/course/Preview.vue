@@ -25,7 +25,9 @@
 
                     <section class="mt-8 text-center md:ml-8 md:mt-0 md:text-left">
                         <h1 class="text-3xl font-bold text-white md:text-4xl">{{ course.name }}</h1>
+
                         <p class="mt-4 text-gray-400">{{ course.summary }}</p>
+
                         <div class="text-white">
                             <ul class="py-3">
                                 <li class="flex flex-row items-center">
@@ -205,6 +207,7 @@ import IconBookDownload from "../../../../components/core/icons/IconBookDownload
 import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 import IconTextCaption from "../../../../components/core/icons/IconTextCaption";
 import IconDeviceMobile from "../../../../components/core/icons/IconDeviceMobile";
+
 export default {
     name: "EduCourseShow",
     components: {
