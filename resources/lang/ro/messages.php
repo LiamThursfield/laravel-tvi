@@ -89,4 +89,8 @@ return [
     'lifetime-access' => 'Acces pe viață',
     'student-discount' => 'Reducere pentru studenți disponibilă',
     'seo-exposure' => 'Expunerea SEO',
+
+    'faq' => 'Întrebări frecvente',
+    'testimonials' => 'Testimoniale',
+    'about-author' => 'Despre autor',
 ];
