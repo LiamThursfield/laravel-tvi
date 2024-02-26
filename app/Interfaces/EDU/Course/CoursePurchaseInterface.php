@@ -6,12 +6,12 @@ use Illuminate\Support\Arr;
 
 class CoursePurchaseInterface
 {
-    public const CURRENCY_RO = 'LEI';
+    public const CURRENCY_RO = 'RON';
     public const CURRENCY_GB = 'GBP';
-    public const CURRENCY_EU = 'E';
+    public const CURRENCY_EU = 'EUR';
 
     public const CURRENCIES = [
-        self::CURRENCY_RO => 'Lei',
+        self::CURRENCY_RO => 'RON',
         self::CURRENCY_GB => '£',
         self::CURRENCY_EU => '€',
     ];

@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\EDU\Course\CourseIndexRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseStoreRequest;
 use App\Http\Requests\Admin\EDU\Course\CourseUpdateRequest;
 use App\Http\Resources\Admin\EDU\Course\CourseResource;
+use App\Http\Resources\Web\EDU\CourseShowResource;
 use App\Interfaces\AppInterface;
 use App\Interfaces\EDU\Course\CourseInterface;
 use App\Interfaces\EDU\Course\CoursePurchaseInterface;
@@ -126,11 +127,16 @@ class CourseController extends AdminController
 
     public function preview(Course $course): Response
     {
-        $course->load('sections');
-        return Inertia::render('admin/edu/course/Preview', [
+        return Inertia::render('website/edu/course/Show', [
             'course' => function () use ($course) {
-                CourseResource::withoutWrapping();
-                return CourseResource::make($course);
+                $course->load([
+                    'instalmentPlans',
+                    'sections',
+                    'creator'
+                ]);
+
+                CourseShowResource::withoutWrapping();
+                return CourseShowResource::make($course);
             }
         ]);
     }

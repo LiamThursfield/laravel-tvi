@@ -1,17 +1,19 @@
 <template>
     <section class="px-4 py-6">
-        <div
-            v-if="checkoutResponse === 'success'"
-            class="bg-theme-success text-theme-success-contrast px-4 py-2 text-center"
-        >
-            {{__('messages.purchase-success') }}
-        </div>
+        <div class="container max-w-screen-lg mx-auto">
+            <div
+                v-if="checkoutResponse === 'success'"
+                class="bg-theme-success text-theme-success-contrast px-4 py-2 text-center"
+            >
+                {{__('messages.purchase-success') }}
+            </div>
 
-        <div
-            v-else-if="checkoutResponse === 'cancel'"
-            class="bg-theme-warning text-theme-warning-contrast px-4 py-2 text-center"
-        >
-            {{__('messages.purchase-cancel') }}
+            <div
+                v-else-if="checkoutResponse === 'cancel'"
+                class="bg-theme-warning text-theme-warning-contrast px-4 py-2 text-center"
+            >
+                {{__('messages.purchase-cancel') }}
+            </div>
         </div>
 
         <div class="container max-w-screen-lg mx-auto">
@@ -32,20 +34,20 @@
                             v-if="course.currency === 'GBP'"
                             class="text-sm"
                         >
-                                 {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimal }}
-                            </span>
+                             {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimal }}
+                        </span>
                         <span
-                            v-else-if="course.currency === 'Lei'"
+                            v-else-if="course.currency === 'RON'"
                             class="text-sm"
                         >
-                                {{ course.current_price }}  {{ course.currency | priceDecimal }}
-                            </span>
+                            {{ course.current_price | priceDecimal }} Lei
+                        </span>
                         <span
-                            v-else-if="course.currency === 'E'"
+                            v-else-if="course.currency === 'EUR'"
                             class="text-sm"
                         >
-                                 {{ course.current_price | priceDecimal }} Euro
-                            </span>
+                             {{ course.current_price | priceDecimal }} Euro
+                        </span>
                     </button>
 
                     <button
@@ -74,21 +76,21 @@
                         v-if="paymentType === 'full'"
                         class="text-sm"
                     >
-                            <span
-                                v-if="course.currency === 'GBP'"
-                            >
-                                 {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimal }}
-                            </span>
+                        <span
+                            v-if="course.currency === 'GBP'"
+                        >
+                             {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimal }}
+                        </span>
                         <span
                             v-else-if="course.currency === 'Lei'"
                         >
-                                {{ course.current_price }}  {{ course.currency | priceDecimal }}
-                            </span>
+                            {{ course.current_price }}  {{ course.currency | priceDecimal }}
+                        </span>
                         <span
-                            v-else-if="course.currency === 'E'"
+                            v-else-if="course.currency === 'EUR'"
                         >
-                                 {{ course.current_price | priceDecimal }} Euro
-                            </span>
+                             {{ course.current_price | priceDecimal }} Euro
+                        </span>
                     </template>
                     <template v-else>
                         {{ instalmentSelection.instalment_count }} months x £{{ instalmentSelection.instalment_current_price | priceDecimal }}
@@ -104,7 +106,7 @@
 
         <div
             v-if="checkoutErrors"
-            class="flex flex-col min-h-screen min-w-screen"
+            class="container max-w-screen-lg mx-auto min-h-screen min-w-screen"
         >
             <section
                 class="bg-theme-danger mx-4 my-6 px-4 py-2 rounded text-theme-danger-contrast"

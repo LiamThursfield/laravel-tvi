@@ -5,7 +5,7 @@ Vue.filter('priceDecimal', function (value) {
         return value;
     }
 
-    return value;
+    return (value / 100).toFixed(2);
 });
 
 Vue.filter('currencySymbol', function (value) {
