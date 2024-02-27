@@ -27,6 +27,7 @@ return [
     'last-name' => 'Prenume',
     'email' => 'Email',
     'request-refund' => 'Cere rambursare',
+    'request-refund-text' => 'Pentru a cere o rambursare te rugam sa trimiti un email la ',
 
     'created-by' => 'Creat de',
     'course-content' => 'Conținutul cursului',
