@@ -6,7 +6,7 @@
             <h1
                 class="auth-header"
             >
-                Password Reset
+                {{ __('messages.password-reset') }}
             </h1>
 
             <form
@@ -23,7 +23,7 @@
                     input-name="email"
                     :input-required="true"
                     input-type="email"
-                    label-text="Email"
+                    :label-text="__('messages.email')"
                     @errorHidden="clearPageErrorMessage('email')"
                     v-model="form.email"
                 />
@@ -38,7 +38,7 @@
                     input-name="password"
                     :input-required="true"
                     input-type="password"
-                    label-text="Password"
+                    :label-text="__('messages.password')"
                     @errorHidden="clearPageErrorMessage('password')"
                     v-model="form.password"
                 />
@@ -52,7 +52,7 @@
                     input-name="password_confirmation"
                     :input-required="true"
                     input-type="password"
-                    label-text="Confirm Password"
+                    :label-text="__('messages.confirm-password')"
                     @errorHidden="clearPageErrorMessage('password_confirmation')"
                     v-model="form.password_confirmation"
                 />
@@ -67,7 +67,7 @@
                         "
                         type="submit"
                     >
-                        Reset Password
+                        {{ __('messages.password-reset') }}
                     </button>
                 </div>
             </form>
@@ -81,7 +81,7 @@
                 "
                 :href="$route('student.login')"
             >
-                Login
+                {{ __('messages.login') }}
             </inertia-link>
 
             <inertia-link
@@ -92,7 +92,7 @@
                 "
                 :href="$route('student.register')"
             >
-                Register
+                {{ __('messages.register') }}
             </inertia-link>
         </div>
 
