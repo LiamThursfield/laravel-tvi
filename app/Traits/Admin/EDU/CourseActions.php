@@ -131,8 +131,6 @@ trait CourseActions
             $sections = $data['sections'];
             unset($data['sections']);
 
-            // Create course
-            $data['status'] = CourseInterface::STATUS_DRAFT;
             $course->update($data);
 
             if (count($sections)) {

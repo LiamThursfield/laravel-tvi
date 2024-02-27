@@ -203,6 +203,6 @@ class Course extends Model
 
     public function getCurrentPriceAttribute(): string
     {
-        return $this->discount_price ? $this->discount_price : $this->price;
+        return ($this->discount_price ?: $this->price) * 100;
     }
 }
