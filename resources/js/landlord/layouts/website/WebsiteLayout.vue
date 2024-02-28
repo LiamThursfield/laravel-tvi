@@ -1,7 +1,7 @@
 <template>
     <div>
         <main
-            id="landlord-layout"
+            id="website-layout"
             class="bg-white"
         >
             <header-menu />
