@@ -36,7 +36,9 @@ return [
     'back' => 'Back',
     'first-name' => 'First Name',
     'last-name' => 'Last Name',
+    'email' => 'Email',
     'request-refund' => 'Request Refund',
+    'request-refund-text' => 'To request a refund please send an email to',
 
     'created-by' => 'Created by',
     'course-content' => 'Course content',
@@ -54,8 +56,14 @@ return [
 
     // Payments
     'pay-in-full' => 'Pay in full',
+    'pay-in-instalments' => 'Pay in instalments',
     'purchase' => 'Purchase',
     'payment-options' => 'Payment Options',
+    'purchase-success' => 'Purchase success',
+    'purchase-cancel' => 'Purchase cancel',
+    'payment-instalments' => 'Rate',
+    'sign-up' => 'Sign Up',
+    'this-course-includes' => 'This course includes',
 
     // Menu items
     'settings' => 'Settings',
@@ -93,4 +101,8 @@ return [
     'lifetime-access' => 'Lifetime access',
     'student-discount' => 'Student discount available',
     'seo-exposure' => 'SEO Exposure',
+
+    'faq' => 'FAQ',
+    'testimonials' => 'Testimonials',
+    'about-author' => 'About author',
 ];
