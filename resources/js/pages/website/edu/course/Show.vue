@@ -19,6 +19,8 @@
 
         <testimonials></testimonials>
 
+        <course-footer></course-footer>
+
     </section>
 </template>
 
@@ -32,6 +34,7 @@ import CourseDescription from "../../../../components/website/CourseDescription"
 import VideoPreview from "../../../../components/website/VideoPreview";
 import CourseFeatures from "../../../../components/website/CourseFeatures";
 import CourseHeader from "../../../../components/website/CourseHeader";
+import CourseFooter from "../../../../components/website/CourseFooter";
 
 export default {
     name: "EduCourseShow",
@@ -44,7 +47,8 @@ export default {
         CourseDescription,
         VideoPreview,
         CourseFeatures,
-        CourseHeader
+        CourseHeader,
+        CourseFooter
     },
     layout: 'website-layout',
     props: {
