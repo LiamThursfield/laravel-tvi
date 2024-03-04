@@ -50,27 +50,11 @@
                     {{ profile.email }}
                 </p>
 
-                <button
-                    v-if="showRefundButton"
-                    class="
-                    mt-4
-                    button button-default-responsive button-primary-subtle
-                    flex flex-row items-center
-                "
-                    @click="requestRefund"
-                >
-                    <icon-receipt-refund
-                        class="
-                        w-5
-                        md:mr-2
-                    "
-                    />
-                    <span
-                        class="hidden md:inline"
-                    >
-                    {{ __('messages.request-refund') }}
-                </span>
-                </button>
+
+                <p class="mt-2">
+                    {{ __('messages.request-refund-text') }}
+                    <a href="mailto:webmaster@example.com" class="font-semibold">info@minducate.us</a>
+                </p>
             </div>
         </div>
     </section>

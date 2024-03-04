@@ -34,7 +34,7 @@
         >
 
             <p class="dropdown-subheading mb-2">
-                {{ __('messages.hello', {name: $page.props.auth.user.first_name}) }}
+                {{ __('messages.hello', { name: $page.props.auth.user.first_name }) }}
             </p>
 
             <inertia-link

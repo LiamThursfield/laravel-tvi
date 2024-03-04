@@ -6,7 +6,7 @@
             <h1
                 class="auth-header"
             >
-                Welcome
+                {{ __('messages.welcome-general') }}
             </h1>
 
 
@@ -30,7 +30,7 @@
                         input-name="first_name"
                         :input-required="true"
                         input-type="first_name"
-                        label-text="First Name"
+                        :label-text="__('messages.first-name')"
                         @errorHidden="clearPageErrorMessage('first_name')"
                         v-model="form.first_name"
                     />
@@ -44,7 +44,7 @@
                         input-name="last_name"
                         :input-required="true"
                         input-type="last_name"
-                        label-text="Last Name"
+                        :label-text="__('messages.last-name')"
                         @errorHidden="clearPageErrorMessage('last_name')"
                         v-model="form.last_name"
                     />
@@ -59,7 +59,7 @@
                     input-name="email"
                     :input-required="true"
                     input-type="email"
-                    label-text="Email"
+                    :label-text="__('messages.email')"
                     @errorHidden="clearPageErrorMessage('email')"
                     v-model="form.email"
                 />
@@ -73,7 +73,7 @@
                     input-name="password"
                     :input-required="true"
                     input-type="password"
-                    label-text="Password"
+                    :label-text="__('messages.password')"
                     @errorHidden="clearPageErrorMessage('password')"
                     v-model="form.password"
                 />
@@ -87,7 +87,7 @@
                     input-name="password_confirmation"
                     :input-required="true"
                     input-type="password"
-                    label-text="Confirm Password"
+                    :label-text="__('messages.confirm-password')"
                     @errorHidden="clearPageErrorMessage('password_confirmation')"
                     v-model="form.password_confirmation"
                 />
@@ -102,7 +102,7 @@
                         "
                         type="submit"
                     >
-                        Register
+                        {{ __('messages.register') }}
                     </button>
 
                     <inertia-link
@@ -113,7 +113,7 @@
                         "
                         :href="$route('student.login')"
                     >
-                        Already registered?
+                        {{ __('messages.already-registered') }}
                     </inertia-link>
                 </div>
             </form>
