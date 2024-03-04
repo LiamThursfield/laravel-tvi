@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webhook\Stripe;
 use App\Actions\EDU\Course\Purchase\RedeemUserCoursePurchasesAction;
 use App\Http\Controllers\Controller;
 use App\Interfaces\EDU\Course\CoursePurchaseInterface;
+use App\Jobs\EDU\Course\ProcessCoursePurchaseRegister;
 use App\Models\EDU\Course\CoursePurchasePayment;
 use App\Models\User;
 use Exception;
@@ -81,6 +82,9 @@ class StripeCourseCheckoutController extends Controller
         // Redeem the user's purchases if they already exist
         if ($user) {
             app(RedeemUserCoursePurchasesAction::class)->handle($user);
+        } else {
+            // Send email to customer to register an account
+            dispatch(new ProcessCoursePurchaseRegister($payment));
         }
 
         DB::commit();
