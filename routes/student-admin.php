@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/courses/{course}', [HomeController::class, 'show'])->name('show');
-Route::get('/cursuri/{course}', [HomeController::class, 'show'])->name('show');
 Route::patch('/lectures/{lecture}/complete', [HomeController::class, 'completeLecture'])
     ->name('lectures.complete');
 Route::get('/lectures/{lecture}/downloadPdf', [HomeController::class, 'downloadLecturePDFs'])
