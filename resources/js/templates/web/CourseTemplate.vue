@@ -96,7 +96,6 @@
                 }
             },
             getLayoutFieldData(slug, defaultValue = null) {
-                console.log(this.layout);
                 // Example method used to get page content, with a fallback value
                 try {
                     return this.layout?.content[slug].data ? this.layout.content[slug].data : defaultValue;
