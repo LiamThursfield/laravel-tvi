@@ -43,7 +43,12 @@
                 :selected="isOptionSelected(option.value)"
                 :value="option.value"
             >
-                {{ option.label }}
+                <slot
+                    name="option.label"
+                    :option="inputOptions[key]"
+                >
+                    {{ option.label }}
+                </slot>
             </option>
         </select>
 

@@ -24,7 +24,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-semibold mr-auto text-3xl">
-                My Courses
+                {{ __('messages.my-courses') }}
             </h1>
         </div>
 
@@ -32,7 +32,7 @@
             v-if="!coursesData"
             class="bg-theme-base-subtle mt-8 mx-6 px-6 py-4 rounded text-center text-theme-base-subtle-contrast"
         >
-            No results
+            {{ __('messages.no-results') }}
         </p>
 
         <template v-else>
@@ -58,12 +58,10 @@
 
 import CourseCard from "../../../../components/student/admin/course/CourseCard.vue";
 import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
-import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 
 export default {
     name: "StudentAdminHomeIndex",
     components: {
-        IconSpeaker,
         CourseCard,
         WysiwygField
     },

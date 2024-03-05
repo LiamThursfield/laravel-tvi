@@ -16,7 +16,7 @@ class LectureUpdateRequest extends BaseIndexRequest
             'preview_url' => 'nullable|string',
             'video_url' => 'nullable|string',
             'content_length' => 'nullable|string',
-            'index' => 'nullable|string',
+            'index' => 'nullable|integer',
             'section_id' => 'required|exists:edu_sections,id',
         ]);
     }

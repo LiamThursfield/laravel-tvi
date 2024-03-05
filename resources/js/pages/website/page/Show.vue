@@ -20,9 +20,15 @@
 </template>
 
 <script>
+    import CourseLayout from "../../../layouts/website/CourseLayout.vue";
+    import CourseTemplate from "../../../templates/web/CourseTemplate.vue";
 
     export default {
         name: 'PageShow',
+        components: {
+            CourseLayout,
+            CourseTemplate,
+        },
         props: {
             page: {
                 required: true,
@@ -45,18 +51,12 @@
                 }
             },
             layoutComponent() {
-                // This is just stub code intended to be implemented for the specific website
-                // Note: You will also have to import the components
-
-                /**
                 switch (this.layoutSlug) {
-                    case 'blog-layout':
-                        return 'BlogLayout';
-                    case 'default-layout':
-                    default:
-                        return 'DefaultLayout';
+                    case 'course-layout':
+                        return 'course-layout';
                 }
-                 **/
+
+                console.log('No layout found');
             },
             layoutSlug() {
                 try {
@@ -73,18 +73,12 @@
                 }
             },
             templateComponent() {
-                // This is just stub code intended to be implemented for the specific website
-                // Note: You will also have to import the components
-
-                /**
                  switch (this.templateSlug) {
-                    case 'home-template':
-                        return 'HomeTemplate';
-                    case 'default-template':
-                    default:
-                        return 'DefaultTemplate';
+                    case 'course-template':
+                        return 'course-template';
                 }
-                 **/
+
+                console.log('No template found');
             },
             templateSlug() {
                 try {

@@ -38,6 +38,12 @@ class Section extends Model
             ->orderBy('index');
     }
 
+    public function lecturesCompleted(): HasMany
+    {
+        return $this->hasMany(Lecture::class)
+            ->where('');
+    }
+
     public function childItems(): HasMany
     {
         return $this->hasMany(Lecture::class)
