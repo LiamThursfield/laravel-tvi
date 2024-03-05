@@ -206,7 +206,7 @@
                                 >
                                     <div v-for="webinar in lectureWebinarsFromSection">
                                         <b class="flex flex-row">
-                                            <icon-speaker
+                                            <icon-speaker-phone
                                                 class="w-5 mr-1"
                                             />
                                             <a :href="webinar.webinar_url" target="_blank" class="page-link">{{ webinar.name }}</a>
@@ -255,7 +255,6 @@ import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareC
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconPlus from "../../../../components/core/icons/IconPlus";
 import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
-import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 import IconVideo from "../../../../components/core/icons/IconAlertVideo";
 import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
 import {Zora} from "../../../../zora";
@@ -267,7 +266,6 @@ export default {
     components: {
         IconHeadphones,
         IconVideo,
-        IconSpeaker,
         IconPlus,
         IconBookDownload,
         IconSquareCheckFilled,

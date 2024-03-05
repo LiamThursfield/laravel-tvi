@@ -370,7 +370,7 @@
                                         route: "admin.edu.course-purchases.index",
                                     }
                                 },
-                                icon: "icon-money-bag",
+                                icon: "icon-moneybag",
                                 label: "Purchases",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_course_purchases.view"],

@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-gray-800 px-4 py-12">
+    <header class="bg-theme-base-contrast px-4 py-12">
         <div class="container max-w-screen-lg mx-auto">
             <div class="flex flex-col items-center md:flex-row md:items-start">
                 <img
@@ -9,10 +9,10 @@
                 />
 
                 <section class="mt-8 text-center md:ml-8 md:mt-0 md:text-left">
-                    <strong class="text-sm font-light text-white md:text-sm pb-2">{{ course.creator.name }}</strong>
-                    <h1 class="text-2xl font-bold text-white md:text-2xl">{{ course.name }}</h1>
+                    <strong class="text-sm font-light text-theme-base md:text-sm pb-2">{{ course.creator.name }}</strong>
+                    <h1 class="text-2xl font-bold text-theme-base md:text-2xl">{{ course.name }}</h1>
 
-                    <p class="mt-4 text-gray-400">{{ course.summary }}</p>
+                    <p class="mt-4 opacity-50 theme-base">{{ course.summary }}</p>
                 </section>
             </div>
         </div>

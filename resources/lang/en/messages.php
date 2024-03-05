@@ -42,6 +42,7 @@ return [
 
     'created-by' => 'Created by',
     'course-content' => 'Course content',
+    'additional-course-details' => 'Additional course details',
     'download-pdfs' => 'Download PDFs',
     'resources-pdfs' => 'PDF Resources',
     'files' => 'Files',
@@ -53,6 +54,7 @@ return [
     be available once you move to the next step.',
     'mark-complete' => 'Mark Complete',
     'minutes' => 'minutes',
+    'course-preview' => 'Course Preview',
 
     // Payments
     'pay-in-full' => 'Pay in full',

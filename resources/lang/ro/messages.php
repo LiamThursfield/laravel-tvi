@@ -43,6 +43,7 @@ return [
 
     'created-by' => 'Creat de',
     'course-content' => 'Conținutul cursului',
+    'additional-course-details' => 'Additional course details {RO TRANSLATION NEEDED}',
     'download-pdfs' => 'Descarcă PDFs',
     'resources-pdfs' => 'Resurse PDF',
     'files' => 'Fișiere',
@@ -54,6 +55,7 @@ return [
     O rambursare nu va fi disponibilă odată ce treceți la pasul următor.',
     'mark-complete' => 'Completează',
     'minutes' => 'minute',
+    'course-preview' => 'Course Preview {RO TRANSLATION NEEDED}',
 
     // Payments
     'pay-in-full' => 'Plătesc integral',
