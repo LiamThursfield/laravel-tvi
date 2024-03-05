@@ -1,5 +1,8 @@
 <template>
-    <section class="px-4 py-6">
+    <section
+        id="purchase"
+        class="px-4 py-12"
+    >
         <div class="container max-w-screen-lg mx-auto">
             <div
                 v-if="checkoutResponse === 'success'"
@@ -19,7 +22,7 @@
         <div class="container max-w-screen-lg mx-auto">
             <!-- If there are instalment plans, show selection -->
             <template v-if="orderedInstalmentPlans">
-                <p class="opacity-50">
+                <p class="font-bold mb-4 text-lg">
                     {{__('messages.payment-options') }}
                 </p>
 

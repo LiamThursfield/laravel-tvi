@@ -1,60 +1,72 @@
 <template>
-    <section class="px-4 py-6 shadow-subtle">
+    <section
+        v-if="sections"
+        class="px-4 py-12"
+    >
         <div class="container max-w-screen-lg mx-auto">
-            <div class="flex items-center space-x-4">
-                <span class="text-lg font-bold">{{ __('messages.course-content') }}:</span>
-            </div>
-            <section class="divide-y divide-gray-300 max-w-full mt-6 mb-6 mx-auto px-4 border">
-                <ul class="divide-y divide-gray-300 bg-gray-50 rounded-md px-4 py-2 mt-4">
-                    <li
-                        v-for="section in course.sections"
-                        :key="'section-' + section.title"
-                        class="py-2"
-                    >
-                        <button
-                            type="button"
-                            @click="hideShowSection(section.id)"
-                        >
-                            <div class="flex items-center space-x-4">
-                                <strong>{{ section.title }}</strong>
-                                <small class="mr-2 ml-auto">
-                                    <span v-if="section.lecture_count">
-                                        {{ section.child_items ? section.child_items.length + ' ' +__('messages.lectures') + ' | ':'' }}
-                                    </span>
-                                    {{ section.content_length ?  section.content_length + ' mins':'' }}
-                                </small>
-                            </div>
-                        </button>
+            <div class="max-w-screen-md">
+                <p class="font-bold mb-4 text-lg">
+                    {{ __('messages.course-content') }}:
+                </p>
 
+                <div
+                    v-for="section in sections"
+                    class="overflow-hidden "
+                    :key="`section-${section.id}`"
+                >
+                    <div
+                        class="
+                            flex flex-row justify-between relative rounded px-4 py-2 z-10
+                            ease-in-out duration-300 transition-colors
+                        "
+                        :class="{
+                            'hover:bg-theme-base-contrast hover:text-theme-base' : sectionHasChildren(section),
+                            'bg-theme-base-contrast text-theme-base' : (sectionHasChildren(section) && toggledSections[section.index]),
+                            'bg-white text-theme-base-contrast' : !toggledSections[section.index],
+                        }"
+                        @click="toggleSection(section.index)"
+                    >
+                        <span class="font-semibold">
+                            {{ parseInt(section.index) + 1 }}. {{ section.title }}
+                        </span>
+                        <span v-if="section.content_length">
+                            {{ section.content_length + ' mins' }}
+                        </span>
+                    </div>
+                    <transition
+                        name="slide-down"
+                    >
                         <ul
-                            class="divide-y divide-gray-300 bg-gray-100 rounded-md px-4 py-2 mt-2"
-                            :class="{'hidden ease-in-out duration-300 transition-colors': section.id === sectionToShow  }"
+                            v-if="toggledSections[section.index] && sectionHasChildren(section)"
+                            class="my-1"
                         >
                             <li
-                                v-for="(lecture, index) in section.child_items"
-                                :key="'lecture-' + lecture.title"
-                                class="p-2 ease-in-out duration-300 transition-colors
-                                       focus:outline-none focus:ring focus:ring-primary
-                                       hover:bg-theme-base-subtle"
+                                v-for="lecture in section.child_items"
+                                :key="`section-${section.index}-lecture-${lecture.index}`"
+                                class="
+                                    flex flex-row justify-between pl-8 pr-4 py-2 rounded text-sm z-0
+                                    ease-in-out duration-300 transition-colors
+                                    hover:bg-theme-base-subtle hover:text-theme-base-subtle-contrast
+                                "
                             >
-                                <div class="grid grid-cols-2 space-x-4">
-                                        <span class="text-sm font-medium">
-                                             {{ index + ' ' + lecture.title }}
-                                        </span>
-                                    <span class="text-sm font-medium text-right">
-                                            {{ lecture.content_length ?  lecture.content_length + ' mins':'' }}
-                                        </span>
-                                </div>
+                                <span>
+                                    {{ parseInt(lecture.index) + 1 }}. {{ lecture.title }}
+                                </span>
+                                <span v-if="lecture.content_length">
+                                    {{ lecture.content_length + ' mins' }}
+                                </span>
                             </li>
                         </ul>
-                    </li>
-                </ul>
-            </section>
+                    </transition>
+                </div>
+            </div>
         </div>
     </section>
 </template>
 
 <script>
+    import _ from "lodash";
+
     export default {
         name: "CourseContent",
         props: {
@@ -66,12 +78,38 @@
         data() {
             return {
                 sectionToShow: false,
+                toggledSections: {},
             }
         },
+        computed: {
+            sections() {
+                try {
+                    if (!this.course.sections.length) {
+                        return false;
+                    }
+
+                    return _.cloneDeep(this.course.sections);
+                } catch (e) {
+                    return false;
+                }
+            }
+        },
+        mounted() {
+            _.forEach(this.sections, (section) => {
+                this.$set(this.toggledSections, section.index, false);
+            });
+        },
         methods: {
-            hideShowSection(sectionId) {
-                this.sectionToShow = sectionId;
+            toggleSection(sectionIndex) {
+                this.$set(this.toggledSections, sectionIndex, !this.toggledSections[sectionIndex]);
             },
+            sectionHasChildren(section) {
+                try {
+                    return section.child_items.length
+                } catch (e) {
+                    return false;
+                }
+            }
         }
     }
 </script>

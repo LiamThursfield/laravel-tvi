@@ -1,9 +1,14 @@
 <template>
-    <section class="bg-white px-4 py-6 shadow-subtle">
+    <section class="px-4 py-12">
         <div class="container max-w-screen-lg mx-auto">
-            <div class="text-center">
-                <p v-html="course.description">
+            <div class="max-w-screen-md">
+                <p class="font-bold mb-4 text-lg">
+                    {{__('messages.additional-course-details') }}:
                 </p>
+
+                <div class="prose">
+                    <p v-html="course.description" />
+                </div>
             </div>
         </div>
     </section>

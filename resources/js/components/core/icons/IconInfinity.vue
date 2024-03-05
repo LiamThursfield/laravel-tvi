@@ -12,14 +12,12 @@
         stroke-linejoin="round"
     >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z"/>
-        <path d="M11 4h2"/>
-        <path d="M12 17v.01"/>
+        <path d="M9.828 9.172a4 4 0 1 0 0 5.656a10 10 0 0 0 2.172 -2.828a10 10 0 0 1 2.172 -2.828a4 4 0 1 1 0 5.656a10 10 0 0 1 -2.172 -2.828a10 10 0 0 0 -2.172 -2.828" />
     </svg>
 </template>
 
 <script>
     export default {
-        name: "IconDeviceMobile",
+        name: "IconInfinity",
     }
 </script>

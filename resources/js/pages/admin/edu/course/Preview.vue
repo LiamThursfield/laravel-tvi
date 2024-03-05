@@ -43,7 +43,7 @@
                                     {{ __('messages.webinars') }}
                                 </li>
                                 <li v-if="course.has_money_back_guarantee" class="flex flex-row items-center">
-                                    <icon-money-bag
+                                    <icon-moneybag
                                         class="w-5 md:mr-2"
                                     />
                                     {{ __('messages.money-back-gurantee') }}
@@ -64,7 +64,7 @@
                                     {{ __('messages.certificate') }}
                                 </li>
                                 <li v-if="course.has_captions" class="flex flex-row items-center">
-                                    <icon-text-caption
+                                    <icon-badge-cc
                                         class="w-5 md:mr-2"
                                     />
                                     {{ __('messages.captions') }}
@@ -88,7 +88,7 @@
                                     {{ __('messages.resources-pdfs') }}
                                 </li>
                                 <li v-if="course.has_seo" class="flex flex-row items-center">
-                                    <icon-speaker
+                                    <icon-speaker-phone
                                         class="w-5 md:mr-2"
                                     />
                                     {{ __('messages.seo-exposure') }}
@@ -198,22 +198,8 @@
 </template>
 
 <script>
-import IconCameraCheck from "../../../../components/core/icons/IconCameraCheck";
-import IconMoneyBag from "../../../../components/core/icons/IconMoneyBag";
-import IconCertificate from "../../../../components/core/icons/IconCertificate";
-import IconLanguage from "../../../../components/core/icons/IconLanguage";
-import IconCheck from "../../../../components/core/icons/IconCheck";
-import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
-import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
-import IconTextCaption from "../../../../components/core/icons/IconTextCaption";
-import IconDeviceMobile from "../../../../components/core/icons/IconDeviceMobile";
-
 export default {
     name: "EduCourseShow",
-    components: {
-        IconDeviceMobile,
-        IconTextCaption,
-        IconSpeaker, IconBookDownload, IconCheck, IconLanguage, IconCertificate, IconMoneyBag, IconCameraCheck},
     layout: 'website-layout',
     props: {
         course: {

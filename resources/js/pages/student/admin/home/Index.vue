@@ -58,12 +58,10 @@
 
 import CourseCard from "../../../../components/student/admin/course/CourseCard.vue";
 import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
-import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 
 export default {
     name: "StudentAdminHomeIndex",
     components: {
-        IconSpeaker,
         CourseCard,
         WysiwygField
     },

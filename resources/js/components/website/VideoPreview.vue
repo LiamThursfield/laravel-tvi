@@ -1,15 +1,22 @@
 <template>
-    <section class="bg-grey-800 px-4 py-6 shadow-subtle mt-4">
-        <div class="container max-w-screen-lg mx-auto flex flex-row justify-center">
-            <div class="text-center">
+    <section
+        v-if="course.video_preview"
+        class="bg-grey-800 px-4 py-12"
+    >
+        <div class="container max-w-screen-lg mx-auto">
+            <div class="max-w-screen-md">
+                <p class="font-bold mb-4 text-lg">
+                    {{__('messages.course-preview') }}:
+                </p>
+            </div>
+            <div class="aspect-ratio-16-9 max-w-xl relative w-full">
                 <iframe
                     :src="course.video_preview"
-                    width="800"
-                    height="360"
+                    class="h-full w-full"
                     frameborder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowfullscreen
-                ></iframe>
+                />
             </div>
         </div>
     </section>

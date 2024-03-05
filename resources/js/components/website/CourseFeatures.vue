@@ -1,99 +1,43 @@
 <template>
-    <section class="bg-blue-600 px-4 py-6">
+    <section
+        v-if="activeFeatureList"
+        class="bg-blue-600 px-4 py-12"
+    >
         <div class="container max-w-screen-lg mx-auto text-white">
+            <div class="max-w-screen-md">
+                <p class="font-bold mb-4 text-lg">
+                    {{__('messages.this-course-includes') }}:
+                </p>
 
-            <p class="font-bold">{{__('messages.this-course-includes') }}:</p>
-
-            <div class="grid grid-cols-3 items-center md:flex-row md:items-start">
-                <ul class="py-3 col-auto mr-6">
-                    <li class="flex flex-row items-center pb-2">
-                        <icon-device-mobile
-                            class="w-5 md:mr-2"
+                <div
+                    class="
+                        gap-x-4 grid gap-y-3 opacity-75
+                        md:grid-cols-2
+                        lg:grid-cols-3
+                    "
+                >
+                    <div
+                        v-for="(feature, key) in activeFeatureList"
+                        :key="`feature-${key}`"
+                        class="flex flex-row"
+                    >
+                        <component
+                            :is="feature.icon"
+                            class="mr-2 w-5"
                         />
-                        {{ __('messages.access-on-mobile') }}
-                    </li>
-                    <li v-if="course.has_webinars" class="flex flex-row items-center pb-2">
-                        <icon-camera-check
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.webinars') }}
-                    </li>
-                    <li v-if="course.has_money_back_guarantee" class="flex flex-row items-center pb-2">
-                        <icon-money-bag
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.money-back-gurantee') }}
-                    </li>
-                </ul>
-                <ul class="py-3 col-auto mr-6">
-                    <li v-if="course.has_captions" class="flex flex-row items-center pb-2">
-                        <icon-text-caption
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.captions') }}
-                    </li>
-                    <li v-if="course.has_lifetime_access" class="flex flex-row items-center pb-2">
-                        <icon-check
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.lifetime-access') }}
-                    </li>
-                    <li v-if="course.has_pdfs" class="flex flex-row items-center pb-2">
-                        <icon-book-download
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.resources-pdfs') }}
-                    </li>
-                </ul>
-                <ul class="py-3 col-auto mr-6">
-                    <li v-if="course.has_student_discount" class="flex flex-row items-center pb-2">
-                        <icon-discount
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.student-discount') }}
-                    </li>
-                    <li v-if="course.has_cerfiticate" class="flex flex-row items-center pb-2">
-                        <icon-certificate
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.certificate') }}
-                    </li>
-                    <li v-if="course.has_seo" class="flex flex-row items-center pb-2">
-                        <icon-speaker
-                            class="w-5 md:mr-2"
-                        />
-                        {{ __('messages.seo-exposure') }}
-                    </li>
-                </ul>
+                        <span>{{ __(feature.label) }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </template>
 
 <script>
-    import IconDeviceMobile from "../core/icons/IconDeviceMobile";
-    import IconTextCaption from "../core/icons/IconTextCaption";
-    import IconSpeaker from "../core/icons/IconSpeaker";
-    import IconBookDownload from "../core/icons/IconBookDownload";
-    import IconCheck from "../core/icons/IconCheck";
-    import IconLanguage from "../core/icons/IconLanguage";
-    import IconCertificate from "../core/icons/IconCertificate";
-    import IconMoneyBag from "../core/icons/IconMoneyBag";
-    import IconCameraCheck from "../core/icons/IconCameraCheck";
+    import _ from "lodash";
 
     export default {
         name: "CourseFeatures",
-        components: {
-            IconDeviceMobile,
-            IconTextCaption,
-            IconSpeaker,
-            IconBookDownload,
-            IconCheck,
-            IconLanguage,
-            IconCertificate,
-            IconMoneyBag,
-            IconCameraCheck,
-        },
         props: {
             course: {
                 required: true,
@@ -102,13 +46,76 @@
         },
         data() {
             return {
-                sectionToShow: false,
+                featureList: [
+                    {
+                        force_active: true,
+                        icon: 'icon-device-mobile',
+                        label: 'messages.access-on-mobile'
+                    },
+                    {
+                        feature_name: 'has_webinars',
+                        icon: 'icon-camera-check',
+                        label: 'messages.webinars'
+                    },
+                    {
+                        feature_name: 'has_money_back_guarantee',
+                        icon: 'icon-moneybag',
+                        label: 'messages.money-back-gurantee'
+                    },
+                    {
+                        feature_name: 'has_captions',
+                        icon: 'icon-badge-cc',
+                        label: 'messages.captions'
+                    },
+                    {
+                        feature_name: 'has_lifetime_access',
+                        icon: 'icon-check',
+                        label: 'messages.lifetime-access'
+                    },
+                    {
+                        feature_name: 'has_pdfs',
+                        icon: 'icon-book-download',
+                        label: 'messages.resources-pdfs'
+                    },
+                    {
+                        feature_name: 'has_student_discount',
+                        icon: 'icon-discount',
+                        label: 'messages.student-discount'
+                    },
+                    {
+                        feature_name: 'has_certificate',
+                        icon: 'icon-certificate',
+                        label: 'messages.certificate'
+                    },
+                    {
+                        feature_name: 'has_seo',
+                        icon: 'icon-speaker-phone',
+                        label: 'messages.seo-exposure'
+                    }
+                ]
+            }
+        },
+        computed: {
+            activeFeatureList() {
+                try {
+                    return _.filter(this.featureList, (feature) => {
+                        return this.isFeatureActive(feature);
+                    });
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
             }
         },
         methods: {
-            showSection(sectionId) {
-                this.sectionToShow = sectionId;
-            },
-        }
+            isFeatureActive(feature) {
+                try {
+                    return feature.force_active || (this.course[feature.feature_name] === true)
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            }
+        },
     }
 </script>
