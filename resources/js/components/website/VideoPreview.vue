@@ -4,11 +4,11 @@
         class="bg-grey-800 px-4 py-12"
     >
         <div class="container max-w-screen-lg mx-auto">
-            <div class="max-w-screen-md">
-                <p class="font-bold mb-4 text-lg">
-                    {{__('messages.course-preview') }}:
-                </p>
-            </div>
+<!--            <div class="max-w-screen-md">-->
+<!--                <p class="font-bold mb-4 text-lg">-->
+<!--                    {{__('messages.course-preview') }}:-->
+<!--                </p>-->
+<!--            </div>-->
             <div class="aspect-ratio-16-9 max-w-xl relative w-full">
                 <iframe
                     :src="course.video_preview"
