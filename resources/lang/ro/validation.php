@@ -168,8 +168,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'exists' => 'Email-ul nu a fost gasit.',
         ],
     ],
 
