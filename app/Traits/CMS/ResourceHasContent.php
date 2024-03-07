@@ -2,6 +2,7 @@
 
 namespace App\Traits\CMS;
 
+use App\Http\Resources\Admin\CRM\OrganisationUnitResource;
 use App\Http\Resources\Web\CMS\ContentResource;
 use App\Http\Resources\Web\CMS\MenuResource;
 use App\Http\Resources\Web\CRM\FormResource;
@@ -9,6 +10,7 @@ use App\Http\Resources\Web\EDU\CourseShowResource;
 use App\Interfaces\CMS\TemplateFieldInterface;
 use App\Models\CMS\Menu;
 use App\Models\CRM\Form;
+use App\Models\CRM\OrganisationUnit;
 use App\Models\EDU\Course\Course;
 
 trait ResourceHasContent
@@ -21,6 +23,7 @@ trait ResourceHasContent
         $menu_fields = [];
         $course_fields = [];
         $form_fields = [];
+        $organisation_unit_fields = [];
 
         foreach ($content as $template_field_slug => $c) {
             if ($c->template_field_type === TemplateFieldInterface::TYPE_CMS_MENU) {
@@ -29,6 +32,8 @@ trait ResourceHasContent
                 $course_fields[$template_field_slug] = $c->data;
             } elseif ($c->template_field_type === TemplateFieldInterface::TYPE_CRM_FORM) {
                 $form_fields[$template_field_slug] = $c->data;
+            } elseif ($c->template_field_type === TemplateFieldInterface::TYPE_CRM_ORGANISATION_UNIT) {
+                $organisation_unit_fields[$template_field_slug] = $c->data;
             }
         }
 
@@ -74,6 +79,25 @@ trait ResourceHasContent
             foreach ($form_fields as $template_field_slug => $form_id) {
                 $content[$template_field_slug]['data'] = $forms->get($form_id) ?
                     FormResource::make($forms->get($form_id)) :
+                    null;
+            }
+        }
+
+        // Load any organisation units
+        $organisation_unit_ids = array_unique($organisation_unit_fields);
+        if (count($organisation_unit_fields)) {
+            $organisation_units = OrganisationUnit::whereIn('id', $organisation_unit_ids)
+                ->with([
+                    'location',
+                    'company',
+                    'children',
+                ])
+                ->get()
+                ->keyBy('id');
+
+            foreach ($organisation_unit_fields as $template_field_slug => $organisation_unit_id) {
+                $content[$template_field_slug]['data'] = $organisation_units->get($organisation_unit_id) ?
+                    OrganisationUnitResource::make($organisation_units->get($organisation_unit_id)) :
                     null;
             }
         }
