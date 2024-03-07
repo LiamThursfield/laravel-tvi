@@ -281,7 +281,7 @@
                                         route: "admin.edu.announcements.create",
                                     }
                                 },
-                                icon: "icon-speaker",
+                                icon: "icon-speaker-phone",
                                 label: "Announcements",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_announcements.create", "edu_announcements.view"],
