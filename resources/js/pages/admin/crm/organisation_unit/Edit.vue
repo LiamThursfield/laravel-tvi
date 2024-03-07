@@ -66,7 +66,6 @@
                     :input-required="true"
                     label-text="Type"
                     @errorHidden="clearPageErrorMessage('type')"
-                    @input="onTypeInput"
                     v-model="formData.type"
                 />
 
@@ -87,7 +86,6 @@
                     :input-required="true"
                     label-text="Company"
                     @errorHidden="clearPageErrorMessage('company_id')"
-                    @input="onCompanyInput"
                     v-model="formData.company_id"
                 />
 
@@ -108,7 +106,6 @@
                     :input-required="true"
                     label-text="Location"
                     @errorHidden="clearPageErrorMessage('location_id')"
-                    @input="onLocationInput"
                     v-model="formData.location_id"
                 />
             </div>
@@ -363,6 +360,13 @@
                 }).finally(() => {
                     this.isLoadingLocations = false;
                 });
+            },
+            onNameInput() {
+                if (!this.autoUpdateSlug) {
+                    return;
+                }
+
+                this.formData.slug = this.slugify(this.formData.name);
             },
             onSlugBlur() {
                 this.formData.slug = this.slugify(this.formData.slug)
