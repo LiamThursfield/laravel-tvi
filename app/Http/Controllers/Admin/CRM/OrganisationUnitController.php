@@ -99,7 +99,7 @@ class OrganisationUnitController extends AdminController
     public function store(OrganisationUnitStoreRequest $request) : RedirectResponse
     {
         $organisationUnit = app(OrganisationUnitStoreAction::class)->handle($request->validated());
-        return Redirect::to(route('admin.crm.organisation-units.edit'. $organisationUnit->id))
+        return Redirect::to(route('admin.crm.organisation-units.edit', $organisationUnit->id))
             ->with('success', 'Organisation Unit created.');
     }
 
