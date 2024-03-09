@@ -17,7 +17,6 @@ class StudentCourseShowAction
             'sections.webinars',
             'webinars',
             'creator',
-            'labels',
             'programme',
         ]);
 

@@ -41,6 +41,7 @@ return [
     'request-refund-text' => 'To request a refund please send an email to',
 
     'created-by' => 'Created by',
+    'author' => 'Author',
     'course-content' => 'Course content',
     'additional-course-details' => 'Additional course details',
     'download-pdfs' => 'Download PDFs',
@@ -55,6 +56,8 @@ return [
     'mark-complete' => 'Mark Complete',
     'minutes' => 'minutes',
     'course-preview' => 'Course Preview',
+    'dates' => 'Dates',
+    'to' => 'to',
 
     // Payments
     'pay-in-full' => 'Pay in full',

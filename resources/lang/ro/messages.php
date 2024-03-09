@@ -42,6 +42,7 @@ return [
     'request-refund-text' => 'Pentru a cere o rambursare te rugam sa trimiti un email la ',
 
     'created-by' => 'Creat de',
+    'author' => 'Autor',
     'course-content' => 'Conținutul cursului',
     'additional-course-details' => 'Desecriere curs',
     'download-pdfs' => 'Descarcă PDFs',
@@ -56,6 +57,8 @@ return [
     'mark-complete' => 'Completează',
     'minutes' => 'minute',
     'course-preview' => 'Preview curs',
+    'dates' => 'Data',
+    'to' => 'pana la',
 
     // Payments
     'pay-in-full' => 'Plătesc integral',

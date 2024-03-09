@@ -60,9 +60,10 @@ class HomeController extends AdminController
         ]);
     }
 
-    public function show(Course $course): Response
+    public function show($slug): Response
     {
         $this->shareMeta();
+        $course = Course::where('slug', $slug)->firstOrFail();
 
         return Inertia::render('student/admin/home/Show', [
             'course' => function () use ($course) {
