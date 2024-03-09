@@ -7,7 +7,7 @@ Vue.filter('humanFriendlyDateTime', function (value) {
     }
 
     try {
-        return dayjs(value).format('D MMM YYYY HH:mm')
+        return dayjs(value).format('D MMMM YYYY HH:mm')
     } catch (e) {
         return value;
     }

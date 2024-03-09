@@ -11,6 +11,7 @@ class MetadataResource extends JsonResource
         return [
             'canonical'         => $this->canonical,
             'description'       => $this->description,
+            'keywords'          => $this->keywords,
             'og_description'    => $this->og_description,
             'og_image'          => $this->og_image,
             'og_title'          => $this->og_title,

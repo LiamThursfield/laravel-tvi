@@ -15,7 +15,7 @@
 
         <faq></faq>
 
-        <about-author></about-author>
+        <about-author :course="course"></about-author>
 
         <testimonials></testimonials>
 

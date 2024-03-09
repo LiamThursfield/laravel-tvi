@@ -7,6 +7,7 @@ class TemplateFieldInterface
     // Template field types
     const TYPE_CMS_MENU = 'cms_menu';
     const TYPE_CRM_FORM = 'crm_form';
+    const TYPE_CRM_ORGANISATION_UNIT = 'crm_organisation_unit';
     const TYPE_EDU_COURSE = 'edu_course';
     const TYPE_IMAGE    = 'image';
     const TYPE_NUMBER   = 'number';
@@ -18,6 +19,7 @@ class TemplateFieldInterface
     const ALL_TYPES = [
         self::TYPE_CMS_MENU,
         self::TYPE_CRM_FORM,
+        self::TYPE_CRM_ORGANISATION_UNIT,
         self::TYPE_EDU_COURSE,
         self::TYPE_IMAGE,
         self::TYPE_NUMBER,
@@ -29,15 +31,16 @@ class TemplateFieldInterface
 
     // Labelled types - typically used for showing the types to a user
     const ALL_TYPES_LABELLED = [
-        self::TYPE_CMS_MENU     => "CMS Menu",
-        self::TYPE_CRM_FORM     => "CRM Form",
-        self::TYPE_EDU_COURSE   => "EDU Course",
-        self::TYPE_IMAGE        => "Image",
-        self::TYPE_NUMBER       => "Number",
-        self::TYPE_REPEATER     => "Repeater",
-        self::TYPE_TEXT         => "Text",
-        self::TYPE_TEXTAREA     => "Text Area",
-        self::TYPE_WYSIWYG      => "WYSIWYG",
+        self::TYPE_CMS_MENU                 => "CMS Menu",
+        self::TYPE_CRM_FORM                 => "CRM Form",
+        self::TYPE_CRM_ORGANISATION_UNIT    => "CRM Organisation Unit",
+        self::TYPE_EDU_COURSE               => "EDU Course",
+        self::TYPE_IMAGE                    => "Image",
+        self::TYPE_NUMBER                   => "Number",
+        self::TYPE_REPEATER                 => "Repeater",
+        self::TYPE_TEXT                     => "Text",
+        self::TYPE_TEXTAREA                 => "Text Area",
+        self::TYPE_WYSIWYG                  => "WYSIWYG",
     ];
 
     // Types that are allowed to be used in a repeater -- essentially any that don't have relationships
@@ -61,7 +64,7 @@ class TemplateFieldInterface
     }
 
     // Types that should be cast/stored as JSON
-    const JSON_TYPES =[
+    const JSON_TYPES = [
         self::TYPE_REPEATER
     ];
 
@@ -70,23 +73,24 @@ class TemplateFieldInterface
     const SETTINGS = [
         self::TYPE_CMS_MENU => [],
         self::TYPE_CRM_FORM => [],
+        self::TYPE_CRM_ORGANISATION_UNIT => [],
         self::TYPE_EDU_COURSE => [],
-        self::TYPE_IMAGE    => [],
-        self::TYPE_NUMBER   => [
+        self::TYPE_IMAGE => [],
+        self::TYPE_NUMBER => [
             'min' => null,
             'max' => null,
         ],
         self::TYPE_REPEATER => [
             'template_id' => '',
         ],
-        self::TYPE_TEXT     => [
+        self::TYPE_TEXT => [
             'max_length' => null,
         ],
         self::TYPE_TEXTAREA => [
             'max_length' => null,
             'rows'       => null,
         ],
-        self::TYPE_WYSIWYG  => [],
+        self::TYPE_WYSIWYG => [],
     ];
 
 

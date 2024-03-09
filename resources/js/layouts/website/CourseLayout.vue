@@ -40,17 +40,6 @@
                 type: Object
             }
         },
-        metaInfo() {
-            return {
-                title: 'SIGI',
-                meta: [
-                    {
-                        name: 'description',
-                        content: 'SIGI - powered by Laravel, Tailwind, Vue, and Inertia',
-                    }
-                ]
-            }
-        },
         computed: {
             isStickyHeader() {
                 // TODO: Use observers

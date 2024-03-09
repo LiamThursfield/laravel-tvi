@@ -16474,7 +16474,7 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].filter('humanFriendlyDateTime', func
     return value;
   }
   try {
-    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(value).format('D MMM YYYY HH:mm');
+    return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(value).format('D MMMM YYYY HH:mm');
   } catch (e) {
     return value;
   }

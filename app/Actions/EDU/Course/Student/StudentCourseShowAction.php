@@ -18,7 +18,6 @@ class StudentCourseShowAction
             'sections.files',
             'webinars',
             'creator',
-            'labels',
             'programme',
         ]);
 
@@ -33,7 +32,6 @@ class StudentCourseShowAction
                 }
             }
         }
-//        dd($course->toArray());
 
         CourseResource::withoutWrapping();
         return CourseResource::make($course);
