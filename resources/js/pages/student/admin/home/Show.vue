@@ -172,11 +172,12 @@
                             name="slide-left"a
                             tag="div"
                         >
-                            <div v-if="showPDFPanel"
+                            <div
+                                v-if="showPDFPanel"
                                 key="downloads"
                             >
-                                <h3 class="font-semibold">{{ __('messages.files') }}</h3>
-                                <ul class="mt-2">
+                                <h3 class="font-semibold mb-2">{{ __('messages.files') }}</h3>
+                                <ul>
                                     <li
                                         v-for="(file, index) in section.files"
                                         class="mt-1"
@@ -199,7 +200,7 @@
                                     </li>
                                 </ul>
 
-                                <ul class="mt-2">
+                                <ul>
                                     <li
                                         v-for="(file, index) in lecture.files"
                                         class="mt-1"
@@ -352,6 +353,7 @@ export default {
     },
     mounted() {
         this.isLoadingLecture = true;
+        this.section = this.course.sections[0];
         this.lecture = this.course.sections[0].child_items[0];
         this.isLoadingLecture = false;
     },
