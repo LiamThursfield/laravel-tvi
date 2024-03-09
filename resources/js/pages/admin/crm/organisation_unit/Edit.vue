@@ -151,7 +151,7 @@
                     input-autocomplete="organisation_unit_email"
                     input-id="email"
                     input-name="email"
-                    @input-required="true"
+                    :input-required="true"
                     input-type="email"
                     label-text="Email"
                     @errorHidden="clearPageErrorMessage('email')"
@@ -221,13 +221,41 @@
 
                     <input-group
                         class="mt-4 md:flex-1"
+                        :error-message="getPageErrorMessage('socials.snapchat')"
+                        input-autocomplete="snapchat_account"
+                        input-id="snapchat_account"
+                        input-name="snapchat_account"
+                        :input-required="false"
+                        input-type="text"
+                        label-text="Snapchat"
+                        @errorHidden="clearPageErrorMessage('socials.snapchat')"
+                        v-model="formData.socials.snapchat"
+                    />
+                </div>
+
+                <div class="flex flex-col md:flex-row md:space-x-4">
+                    <input-group
+                        class="mt-4 md:flex-1"
+                        :error-message="getPageErrorMessage('socials.tiktok')"
+                        input-autocomplete="tiktok_account"
+                        input-id="tiktok_account"
+                        input-name="tiktok_account"
+                        :input-required="false"
+                        input-type="text"
+                        label-text="TikTok"
+                        @errorHidden="clearPageErrorMessage('socials.tiktok')"
+                        v-model="formData.socials.tiktok"
+                    />
+
+                    <input-group
+                        class="mt-4 md:flex-1"
                         :error-message="getPageErrorMessage('socials.twitter')"
                         input-autocomplete="twitter_account"
                         input-id="twitter_account"
                         input-name="twitter_account"
                         :input-required="false"
                         input-type="text"
-                        label-text="Twitter"
+                        label-text="Twitter/X"
                         @errorHidden="clearPageErrorMessage('socials.twitter')"
                         v-model="formData.socials.twitter"
                     />
@@ -280,6 +308,14 @@
                 locations: [],
                 selected_company_id: null,
                 selected_location_id: null,
+                socials: [
+                    'facebook',
+                    'instagram',
+                    'linkedin',
+                    'snapchat',
+                    'tiktok',
+                    'twitter',
+                ]
             }
         },
         computed: {
@@ -308,8 +344,22 @@
                 this.selected_location_id = this.formData.location_id;
                 this.loadLocations();
             }
+
+            this.initialiseSocials();
         },
         methods: {
+
+            initialiseSocials() {
+                if (!this.formData.hasOwnProperty('socials')) {
+                    this.$set(this.formData, 'socials', {});
+                }
+
+                this.socials.forEach(social => {
+                    if (!this.formData.socials.hasOwnProperty(social)) {
+                        this.$set(this.formData.socials, social, '');
+                    }
+                });
+            },
             loadCompanies() {
                 if (this.isLoadingCompanies) {
                     companiesCancelToken.cancel('Companies load cancelled');
