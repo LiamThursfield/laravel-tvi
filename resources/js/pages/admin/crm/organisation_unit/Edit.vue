@@ -232,6 +232,7 @@
                         v-model="formData.socials.snapchat"
                     />
                 </div>
+
                 <div class="flex flex-col md:flex-row md:space-x-4">
                     <input-group
                         class="mt-4 md:flex-1"
