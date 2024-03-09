@@ -5,13 +5,13 @@
     >
         <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-md">
-                <p class="font-bold mb-4 text-lg">
+                <p class="font-bold mb-4 text-2xl">
                     {{ __('messages.course-content') }}:
                 </p>
 
                 <div
                     v-for="section in sections"
-                    class="overflow-hidden "
+                    class="overflow-hidden cursor-pointer "
                     :key="`section-${section.id}`"
                 >
                     <div

@@ -5,7 +5,7 @@
     >
         <div class="container max-w-screen-lg mx-auto text-white">
             <div class="max-w-screen-md">
-                <p class="font-bold mb-4 text-lg">
+                <p class="font-bold mb-4 text-2xl">
                     {{__('messages.this-course-includes') }}:
                 </p>
 

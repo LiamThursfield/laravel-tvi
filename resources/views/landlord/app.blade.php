@@ -8,6 +8,7 @@
 
         <link href="{{ mix('/css/landlord/app.css') }}" rel="stylesheet"></link>
 
+
         @routes
         <script src="{{ mix('/js/landlord/app.js') }}" defer></script>
     </head>

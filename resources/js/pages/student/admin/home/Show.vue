@@ -213,11 +213,11 @@
                                         </b>
 
                                         <p class="pt-1">
-                                            <strong>Dates:</strong>
-                                            {{ webinar.date_time_from | humanFriendlyDateTime }} to {{ webinar.date_time_to | humanFriendlyDateTime}}
+                                            <strong>{{__('messages.dates') }}:</strong>
+                                            {{ webinar.date_time_from | humanFriendlyDateTime }} {{__('messages.to') }} {{ webinar.date_time_to | humanFriendlyDateTime}}
                                         </p>
 
-                                        <p class="pt-1">{{webinar.summary}}</p>
+                                        <p class="pt-1">{{ webinar.summary }}</p>
                                     </div>
                                 </div>
                                 <br>
