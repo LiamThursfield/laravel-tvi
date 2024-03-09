@@ -15,6 +15,7 @@ class StudentCourseShowAction
         $course->load([
             'sections',
             'sections.webinars',
+            'sections.files',
             'webinars',
             'creator',
             'labels',
@@ -32,6 +33,7 @@ class StudentCourseShowAction
                 }
             }
         }
+//        dd($course->toArray());
 
         CourseResource::withoutWrapping();
         return CourseResource::make($course);
