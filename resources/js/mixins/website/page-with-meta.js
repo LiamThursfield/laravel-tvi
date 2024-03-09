@@ -9,6 +9,11 @@ export const pageWithMetaMixin = {
                     content: this.metaDescription,
                 },
                 {
+                    name: 'keywords',
+                    vmid: 'keywords',
+                    content: this.getMetaField('keywords'),
+                },
+                {
                     name: 'og:description',
                     vmid: 'og:description',
                     content: this.getMetaField('og_description', this.metaDescription),
