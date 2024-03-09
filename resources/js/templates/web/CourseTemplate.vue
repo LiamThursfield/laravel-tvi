@@ -27,6 +27,8 @@
 </template>
 
 <script>
+    import { pageWithMetaMixin } from "../../mixins/website/page-with-meta";
+
     import CourseHeader from "../../components/website/CourseHeader.vue";
     import CourseFeatures from "../../components/website/CourseFeatures.vue";
     import VideoPreview from "../../components/website/VideoPreview.vue";
@@ -40,6 +42,9 @@
 
     export default {
         name: "CourseTemplate",
+        mixins: [
+            pageWithMetaMixin
+        ],
         components: {
             CourseDescription,
             CourseContent,
@@ -85,6 +90,21 @@
             legals() {
                 return this.getLayoutFieldData('legals');
             },
+            metaTitle() {
+                try {
+                    if (this.getMetaField('title')) {
+                        return this.getMetaField('title');
+                    }
+
+                    if (this.course.name) {
+                        return this.course.name;
+                    }
+
+                    return this.page.data.name;
+                } catch (e) {
+                    return '';
+                }
+            }
         },
         methods: {
             getContentFieldData(slug, defaultValue = null) {

@@ -45,6 +45,7 @@
     import CmsMenuField from "./content_fields/CmsMenuField";
     import CrmFormField from "./content_fields/CrmFormField";
     import EduCourseField from "./content_fields/EduCourseField";
+    import CrmOrganisationUnitField from "./content_fields/CrmOrganisationUnitField";
     import ImageField from "./content_fields/ImageField";
     import NumberField from "./content_fields/NumberField";
     import RepeaterField from "./content_fields/RepeaterField";
@@ -57,6 +58,7 @@
         components: {
             CmsMenuField,
             CrmFormField,
+            CrmOrganisationUnitField,
             EduCourseField,
             ImageField,
             NumberField,
@@ -100,6 +102,8 @@
                         return 'CmsMenuField';
                     case 'crm_form':
                         return 'CrmFormField';
+                    case 'crm_organisation_unit':
+                        return 'CrmOrganisationUnitField';
                     case 'edu_course':
                         return 'EduCourseField';
                     case 'image':
