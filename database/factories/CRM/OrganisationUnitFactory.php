@@ -40,6 +40,8 @@ class OrganisationUnitFactory extends Factory
                 'facebook' => $this->faker->userName(),
                 'instagram' => $this->faker->userName(),
                 'linkedin' => $this->faker->userName(),
+                'snapchat' => $this->faker->userName(),
+                'tiktok' => $this->faker->userName(),
                 'twitter' => $this->faker->userName(),
             ],
             'company_id' => null, // Note this should be overridden at the factory create/make level for non-company types
