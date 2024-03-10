@@ -50,4 +50,9 @@ class Section extends Model
             ->with('files')
             ->orderBy('index');
     }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(SectionFiles::class, 'section_id');
+    }
 }

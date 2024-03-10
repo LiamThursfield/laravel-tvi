@@ -40,7 +40,7 @@
                             </div>
 
                             <p class="text-sm">
-                                0/{{ section.child_items.length }}| {{ section.content_length }} min
+                                0/{{ section.child_items.length }} | {{ section.content_length }} min
                             </p>
                         </div>
 
@@ -74,7 +74,7 @@
                                     </button>
 
                                     <div
-                                        @click="setActiveLecture(sectionIndex, lectureIndex, lecture)"
+                                        @click="setActiveLecture(sectionIndex, lectureIndex, lecture, section)"
                                     >
                                         <p class="text-sm">{{ (lectureIndex + 1) }}. {{ lecture.title }}</p>
                                         <p class="text-xs">{{ lecture.content_length}} min</p>
@@ -87,7 +87,10 @@
             </div>
 
             <transition name="slide-right">
-                <div v-if="lecture && !isLoadingLecture" class="w-full">
+                <div
+                    v-if="section && lecture && !isLoadingLecture"
+                    class="w-full"
+                >
                     <div
                         v-if="!showAudioPanel"
                         class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
@@ -120,7 +123,7 @@
                             </h2>
 
                             <button
-                                v-if="lecture.files && lecture.files.length"
+                                v-if="section.files && section.files.le || lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Audio Only"
                                 @click="showAudioOnly(lecture)"
@@ -149,7 +152,7 @@
                                 </span>
                             </button>
                             <button
-                                v-if="lecture.files && lecture.files.length"
+                                v-if="section.files && section.files.length || lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 :title="__('messages.resources-pdfs')"
                                 @click="downloadPDFs(lecture)"
@@ -169,11 +172,35 @@
                             name="slide-left"a
                             tag="div"
                         >
-                            <div v-if="showPDFPanel"
+                            <div
+                                v-if="showPDFPanel"
                                 key="downloads"
                             >
-                                <h3 class="font-semibold">{{ __('messages.files') }}</h3>
-                                <ul class="mt-2">
+                                <h3 class="font-semibold mb-2">{{ __('messages.files') }}</h3>
+                                <ul>
+                                    <li
+                                        v-for="(file, index) in section.files"
+                                        class="mt-1"
+                                        :key="`file-${index}`"
+                                    >
+                                        <a
+                                            v-if="file.url"
+                                            class="
+                                                flex flex-row items-center space-x-2 text-theme-primary
+                                                hover:text-theme-primary-hover
+                                            "
+                                            :href="file.url"
+                                            rel="noreferrer noopener nofollow"
+                                            target="_blank"
+                                            @click.stop=""
+                                        >
+                                            <icon-external-link class="w-4" />
+                                            <p class="text-sm font-semibold">{{ file.file_name }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <ul>
                                     <li
                                         v-for="(file, index) in lecture.files"
                                         class="mt-1"
@@ -292,6 +319,7 @@ export default {
             mountedItems: {},
             toggledItems: {},
             lecture: null,
+            section: null,
             isLoadingLecture: false,
             isLoadingMarkComplete: false,
             showConfirmMarkCompleteModal: null,
@@ -325,6 +353,7 @@ export default {
     },
     mounted() {
         this.isLoadingLecture = true;
+        this.section = this.course.sections[0];
         this.lecture = this.course.sections[0].child_items[0];
         this.isLoadingLecture = false;
     },
@@ -335,8 +364,9 @@ export default {
         isLectureActive(sectionIndex, lectureIndex) {
             return this.activeSection === sectionIndex && this.activeSectionLecture === lectureIndex
         },
-        setActiveLecture(sectionIndex, lectureIndex, lecture) {
+        setActiveLecture(sectionIndex, lectureIndex, lecture, section) {
             this.activeSection = sectionIndex;
+            this.section = _.cloneDeep(section);
             this.activeSectionLecture = lectureIndex;
             this.lecture = _.cloneDeep(lecture);
             this.showPDFPanel = false;

@@ -76,7 +76,7 @@ class CourseController extends AdminController
     public function edit(Course $course): Response
     {
         $this->addMetaTitleSection('Edit - ' . $course->name)->shareMeta();
-        $course->load('sections');
+        $course->load(['sections', 'sections.files']);
 
         return Inertia::render('admin/edu/course/Edit', [
             'course' => function () use ($course) {

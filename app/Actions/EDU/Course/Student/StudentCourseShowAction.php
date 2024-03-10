@@ -15,6 +15,7 @@ class StudentCourseShowAction
         $course->load([
             'sections',
             'sections.webinars',
+            'sections.files',
             'webinars',
             'creator',
             'programme',

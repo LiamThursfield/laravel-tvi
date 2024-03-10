@@ -66,6 +66,60 @@
                         />
                     </div>
 
+                    <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
+                        <h2>Files details</h2>
+                        <div class="mt-4 px-4 space-y-2" v-if="editableSectionItem.id">
+                            <!-- TODO:: Create a new uploader that only uploads when Add is clicked? -->
+                            <label for="file-uploader">Upload resources (PDFs, etc...)</label>
+                            <file-manager-file-uploader
+                                id="file-uploader"
+                                :directory="uploaderDirectory"
+                                :url="$route('admin.api.file-manager.files.store', {'section': editableSectionItem.id})"
+                                @filesAdded="onFileUploaderFilesAdded"
+                                @queueCompleted="onFileUploaderCompleted"
+                                class="mb-4"
+                            />
+                        </div>
+
+                        <div class="mb-4 px-4 space-y-2 mt-4" v-if="editableSectionItem.files">
+                            <label>Files</label>
+                            <ul class="list-group">
+                                <li
+                                    v-for="file in editableSectionItem.files"
+                                    :key="`file-` + file.id"
+                                    class="
+                                        flex flex-row items-start justify-between py-2 space-x-4
+                                        ease-in-out duration-300 transition-all
+                                        hover:bg-gray-100
+                                    "
+                                >
+                                    <div class="flex flex-row items-start">
+                                        {{ file.file_name}}
+                                    </div>
+
+                                    <div class="flex flex-row items-center space-x-2">
+                                        <!-- Open file in new tab -->
+                                        <a
+                                            v-if="file.url"
+                                            class="
+                                                flex flex-row items-center justify-center rounded text-theme-base-subtle-contrast
+                                                ease-in-out duration-300 transition-colors
+                                                focus:text-theme-primary focus:outline-none
+                                                hover:text-theme-primary
+                                            "
+                                            :href="file.url"
+                                            rel="noreferrer noopener nofollow"
+                                            target="_blank"
+                                            @click.stop=""
+                                        >
+                                            <icon-external-link class="w-5" />
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -114,6 +168,10 @@
     import _ from 'lodash';
     import { mixin as clickaway } from 'vue-clickaway';
     import InputGroup from "../../../core/forms/InputGroup";
+    import FileManagerFileUploader from "../../../../components/admin/file_manager/partials/FileManagerFileUploader";
+
+    let CancelToken = axios.CancelToken;
+    let filesCancelToken = CancelToken.source();
 
     export default {
         name: "SectionItemModal",
@@ -121,7 +179,8 @@
             clickaway
         ],
         components: {
-            InputGroup
+            InputGroup,
+            FileManagerFileUploader,
         },
         props: {
             isCreate: {
@@ -149,6 +208,8 @@
         },
         data() {
             return {
+                currentDirectory: '/',
+                isLoadingFileUpload: false,
                 defaultSectionItem: {
                     title: '',
                     lecture_count: '',
@@ -180,9 +241,59 @@
                 return this.isCreate ?
                     'Add Section' :
                     'Update Section';
+            },
+            showFileUploader() {
+                return this.canUploadFiles && this.userCan('file_manager.edit');
+            },
+            uploaderDirectory() {
+                let url = 'PDFs';
+
+                if (this.currentDirectory !== '/') {
+                    url += this.currentDirectory;
+                }
+
+                return url;
             }
         },
         methods: {
+            onFileUploaderFilesAdded() {
+                this.isLoadingFileUpload = true;
+            },
+            onFileUploaderCompleted() {
+                this.isLoadingFileUpload = false;
+                this.loadFiles();
+            },
+            loadFiles() {
+                if (this.isLoadingFiles) {
+                    return;
+                }
+
+                this.isLoadingFiles = true;
+                this.formData.files = [];
+
+                let params = {
+                    directory: this.currentDirectory
+                };
+
+                axios.get(
+                    this.$route('admin.api.file-manager.files.show', this.formData.id),
+                    {
+                        params,
+                        cancelToken: filesCancelToken.token
+                    }
+                ).then(response => {
+                    if (response.data.hasOwnProperty('files')) {
+                        this.formData.files = response.data.files;
+                    }
+                }).catch(e => {
+                    if (!axios.isCancel(e)) {
+                        this.$errorToast('Failed to load files');
+                    }
+                }).finally(() => {
+                    this.isLoadingFiles = false;
+                });
+
+            },
             cancelAction() {
                 this.$emit('cancelAction');
             },
