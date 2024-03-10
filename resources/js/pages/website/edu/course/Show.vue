@@ -13,9 +13,9 @@
 
         <course-content :course="course"></course-content>
 
-        <faq></faq>
+<!--        <faq></faq>-->
 
-        <about-author :course="course"></about-author>
+<!--        <about-author :course="course"></about-author>-->
 
         <testimonials></testimonials>
 

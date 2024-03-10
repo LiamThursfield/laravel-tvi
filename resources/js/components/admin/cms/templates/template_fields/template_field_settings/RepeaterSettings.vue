@@ -15,6 +15,7 @@
             class="mt-4"
             :input-any-option-enabled="true"
             input-any-option-label="Please select a template"
+            :input-option-force-formatting="true"
             input-option-label-key="name"
             input-option-value-key="id"
             :input-id="`template-field-${templateField.order}-template-id`"

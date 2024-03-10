@@ -14,6 +14,7 @@
         <component
             v-if="templateComponent"
             :is="templateComponent"
+            :layout="layout"
             :page="page"
         />
     </component>

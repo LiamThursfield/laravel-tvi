@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const pageWithMetaMixin = {
     metaInfo() {
         return {
@@ -122,10 +124,45 @@ export const pageWithMetaMixin = {
         }
     },
     methods: {
+        formatRepeaterFieldData(repeaterFieldData) {
+            // Assumes data has been fetched via getContentFieldData/getLayoutFieldData
+            try {
+                let repeaterData = [];
+                console.log(repeaterFieldData)
+
+                _.forEach(repeaterFieldData, (repeaterRow) => {
+                    console.log(repeaterRow);
+                    let formattedRow = {};
+                    _.forEach(repeaterRow, (repeaterRowField) => {
+                        formattedRow[repeaterRowField.template_field_slug] = {
+                            slug: repeaterRowField.template_field_slug,
+                            order: repeaterRowField.template_field_order,
+                            type: repeaterRowField.template_field_type,
+                            data: repeaterRowField.data
+                        }
+                    });
+
+                    repeaterData.push(formattedRow);
+                });
+
+                return repeaterData;
+            } catch (e) {
+                console.error('Error parsing repeater data', e);
+                return null;
+            }
+        },
         getContentFieldData(slug, defaultValue = null) {
             // Example method used to get page content, with a fallback value
             try {
                 return this.content[slug].data ? this.content[slug].data : defaultValue;
+            } catch (e) {
+                return defaultValue;
+            }
+        },
+        getLayoutFieldData(slug, defaultValue = null) {
+            // Example method used to get page content, with a fallback value
+            try {
+                return this.layout?.content[slug].data ? this.layout.content[slug].data : defaultValue;
             } catch (e) {
                 return defaultValue;
             }
