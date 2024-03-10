@@ -1,11 +1,11 @@
 <template>
     <section
         v-if="activeFeatureList"
-        class="bg-blue-600 px-4 py-12"
+        class="bg-theme-accent text-theme-accent-contrast px-4 py-12"
     >
-        <div class="container max-w-screen-lg mx-auto text-white">
+        <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-md">
-                <p class="font-bold mb-4 text-2xl">
+                <p class="font-bold mb-4 text-xl">
                     {{__('messages.this-course-includes') }}:
                 </p>
 

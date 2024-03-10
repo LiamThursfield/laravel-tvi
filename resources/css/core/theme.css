@@ -29,6 +29,14 @@
     --color-primary-subtle-contrast: theme('colors.blue.600');
     --color-primary-subtle-hover: theme('colors.blue.200');
     --color-primary-subtle-hover-contrast: theme('colors.blue.600');
+    --color-secondary: theme('colors.navy.600');
+    --color-secondary-contrast: theme('colors.white');
+    --color-secondary-hover: theme('colors.navy.800');
+    --color-secondary-hover-contrast: theme('colors.white');
+    --color-accent: theme('colors.orange.600');
+    --color-accent-contrast: theme('colors.white');
+    --color-accent-hover: theme('colors.orange.800');
+    --color-accent-hover-contrast: theme('colors.white');
     --color-success: theme('colors.green.100');
     --color-success-contrast: theme('colors.green.500');
     --color-success-hover: theme('colors.green.200');

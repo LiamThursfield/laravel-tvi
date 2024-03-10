@@ -1,3 +1,7 @@
+@php
+    $theme = app(\App\Models\Settings\ThemeSettings::class);
+@endphp
+
 <!DOCTYPE html>
 <html class="html-base">
     <head>
@@ -11,6 +15,12 @@
 
         @routes
         <script src="{{ mix('/js/app.js') }}" defer></script>
+
+        <style>
+            #website-layout, #course-layout {
+                {{ $theme->getColorsAsCssString() }}
+            }
+        </style>
 
         <script>
             window.locale = '{{ app()->getLocale() }}';

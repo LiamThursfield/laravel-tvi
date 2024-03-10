@@ -48,6 +48,7 @@ return [
     'download-pdfs' => 'Descarcă PDFs',
     'resources-pdfs' => 'Resurse PDF',
     'files' => 'Fișiere',
+    'confirm' => 'TODO: Confirm',
     'cancel' => 'Anulează',
     'are-you-sure' => 'Esti sigur',
     'perform-action-check' => 'Sunteți sigur că doriți să efectuați această acțiune?',
@@ -111,4 +112,6 @@ return [
     'faq' => 'Întrebări frecvente',
     'testimonials' => 'Testimoniale',
     'about-author' => 'Despre autor',
+
+    'color-reset-confirm' => 'TODO: This will reset all colors to their default values. Save changes to take effect.',
 ];

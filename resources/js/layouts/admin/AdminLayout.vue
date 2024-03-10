@@ -452,6 +452,14 @@
                                         requiresAnyPermissions: [],
                                         route: ["admin.settings.edit", 'edu'],
                                     },
+                                    theme: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Theme",
+                                        requiresAllPermissions: ["settings.edit"],
+                                        requiresAnyPermissions: [],
+                                        route: ["admin.settings.edit", 'theme'],
+                                    },
                                     thirdParty: {
                                         children: false,
                                         icon: false,
