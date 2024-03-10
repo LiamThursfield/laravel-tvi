@@ -47,6 +47,7 @@ return [
     'download-pdfs' => 'Download PDFs',
     'resources-pdfs' => 'PDF Resources',
     'files' => 'Files',
+    'confirm' => 'Confirm',
     'cancel' => 'Cancel',
     'are-you-sure' => 'Are you sure',
     'perform-action-check' => 'Do you really want to perform this action?',
@@ -110,4 +111,6 @@ return [
     'faq' => 'FAQ',
     'testimonials' => 'Testimonials',
     'about-author' => 'About author',
+
+    'color-reset-confirm' => 'This will reset all colors to their default values. Save changes to take effect.',
 ];

@@ -1,5 +1,5 @@
 <template>
-    <main class="bg-white">
+    <main class="bg-theme-base text-theme-base-contrast">
         <course-header :course="course" />
 
         <course-features :course="course" />
@@ -7,7 +7,7 @@
         <video-preview :course="course" />
 
         <purchase
-            class="bg-gray-100"
+            class="bg-theme-base-subtle"
             :course="course"
         />
 

@@ -169,7 +169,7 @@
                         </div>
                         <transition-group
                             class="mt-4"
-                            name="slide-left"a
+                            name="slide-left"
                             tag="div"
                         >
                             <div

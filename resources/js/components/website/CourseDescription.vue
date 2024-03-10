@@ -2,7 +2,7 @@
     <section class="px-4 py-12">
         <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-md">
-                <p class="font-bold mb-4 text-xl">
+                <p class="font-bold mb-4 text-lg">
                     {{__('messages.additional-course-details') }}
                 </p>
 

@@ -6,13 +6,16 @@ use App\Actions\Setting\SettingUpdateAction;
 use App\Http\Controllers\AdminController;
 use App\Http\Requests\Admin\Setting\CoreSettingsUpdateRequest;
 use App\Http\Requests\Admin\Setting\EduSettingsUpdateRequest;
+use App\Http\Requests\Admin\Setting\ThemeSettingsUpdateRequest;
 use App\Http\Requests\Admin\Setting\ThirdPartySettingsUpdateRequest;
 use App\Http\Resources\Admin\Setting\CoreSettingEditResource;
 use App\Http\Resources\Admin\Setting\EduSettingEditResource;
+use App\Http\Resources\Admin\Setting\ThemeSettingEditResource;
 use App\Http\Resources\Admin\Setting\ThirdPartySettingEditResource;
 use App\Interfaces\PermissionInterface;
 use App\Models\Settings\CoreSettings;
 use App\Models\Settings\EduSettings;
+use App\Models\Settings\ThemeSettings;
 use App\Models\Settings\ThirdPartySettings;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -75,6 +78,8 @@ class SettingController extends AdminController
                 return CoreSettings::class;
             case 'edu':
                 return EduSettings::class;
+            case 'theme':
+                return ThemeSettings::class;
             case 'third-party':
                 return ThirdPartySettings::class;
             default:
@@ -95,6 +100,11 @@ class SettingController extends AdminController
                 return EduSettingEditResource::make(
                     app(EduSettings::class)
                 );
+            case ThemeSettings::class:
+                ThemeSettingEditResource::withoutWrapping();
+                return ThemeSettingEditResource::make(
+                    app(ThemeSettings::class)
+                );
             case ThirdPartySettings::class:
                 ThirdPartySettingEditResource::withoutWrapping();
                 return ThirdPartySettingEditResource::make(
@@ -112,6 +122,8 @@ class SettingController extends AdminController
                 return CoreSettingsUpdateRequest::class;
             case 'edu':
                 return EduSettingsUpdateRequest::class;
+            case 'theme':
+                return ThemeSettingsUpdateRequest::class;
             case 'third-party':
                 return ThirdPartySettingsUpdateRequest::class;
             default:

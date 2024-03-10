@@ -53,6 +53,15 @@
                         v-model="formData[key]"
                     />
 
+                    <colors-setting
+                        v-if="setting.type === 'colors'"
+                        class="mt-4"
+                        :colors="setting.colors"
+                        :default-colors="setting.defaultColors"
+                        :title="setting.label"
+                        v-model="formData[key]"
+                    />
+
                     <input-group
                         v-else
                         class="mt-4"
@@ -76,10 +85,11 @@
     import _ from 'lodash';
     import InputGroup from "../../../components/core/forms/InputGroup.vue";
     import SelectGroup from "../../../components/core/forms/SelectGroup.vue";
+    import ColorsSetting from "../../../components/admin/settings/ColorsSetting.vue";
 
     export default {
         name: "AdminSettingEdit",
-        components: {SelectGroup, InputGroup},
+        components: {ColorsSetting, SelectGroup, InputGroup},
         layout: 'admin-layout',
         props: {
             settings: {

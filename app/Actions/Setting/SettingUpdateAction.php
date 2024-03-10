@@ -4,6 +4,7 @@ namespace App\Actions\Setting;
 
 use App\Models\Settings\CoreSettings;
 use App\Models\Settings\EduSettings;
+use App\Models\Settings\ThemeSettings;
 use App\Models\Settings\ThirdPartySettings;
 use Exception;
 
@@ -27,6 +28,8 @@ class SettingUpdateAction
                 return CoreSettings::class;
             case 'edu':
                 return EduSettings::class;
+            case 'theme':
+                return ThemeSettings::class;
             case 'third-party':
                 return ThirdPartySettings::class;
             default:
