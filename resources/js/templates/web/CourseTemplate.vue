@@ -15,7 +15,7 @@
 
         <course-content :course="course" />
 
-        <faq :data="faqs"></faq>
+        <faq :faqs="faqs"></faq>
 
         <about-author :data="author"></about-author>
 
@@ -85,7 +85,13 @@
                 return this.getLayoutFieldData('author');
             },
             faqs() {
-                return this.getLayoutFieldData('faq');
+                try {
+                    return this.formatRepeaterFieldData(
+                        this.getLayoutFieldData('global-faqs')
+                    )
+                } catch (e) {
+                    return null;
+                }
             },
             legals() {
                 return this.getLayoutFieldData('legals');
@@ -107,22 +113,7 @@
             }
         },
         methods: {
-            getContentFieldData(slug, defaultValue = null) {
-                // Example method used to get page content, with a fallback value
-                try {
-                    return this.content[slug].data ? this.content[slug].data : defaultValue;
-                } catch (e) {
-                    return defaultValue;
-                }
-            },
-            getLayoutFieldData(slug, defaultValue = null) {
-                // Example method used to get page content, with a fallback value
-                try {
-                    return this.layout?.content[slug].data ? this.layout.content[slug].data : defaultValue;
-                } catch (e) {
-                    return defaultValue;
-                }
-            }
+
         }
     }
 </script>
