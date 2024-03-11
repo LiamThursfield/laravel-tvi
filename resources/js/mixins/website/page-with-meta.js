@@ -1,6 +1,14 @@
 import _ from 'lodash';
+import CourseLayout from "../../layouts/website/CourseLayout.vue";
+import CoursePage from "../../page-templates/web/CoursePage.vue";
 
 export const pageWithMetaMixin = {
+    components: {
+        // Layout Templates
+        CourseLayout,
+        // Page Templates
+        CoursePage,
+    },
     metaInfo() {
         return {
             title: this.metaTitle,
@@ -110,7 +118,8 @@ export const pageWithMetaMixin = {
         templateComponent() {
             switch (this.templateSlug) {
                 case 'course-template':
-                    return 'course-template';
+                case 'course-page':
+                    return 'course-page'; // TODO: Refactor to course-page
             }
 
             console.log('No template found');

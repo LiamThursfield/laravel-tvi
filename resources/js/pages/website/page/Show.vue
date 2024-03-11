@@ -24,17 +24,10 @@
 <script>
     import { pageWithMetaMixin } from "../../../mixins/website/page-with-meta";
 
-    import CourseLayout from "../../../layouts/website/CourseLayout.vue";
-    import CourseTemplate from "../../../templates/web/CourseTemplate.vue";
-
     export default {
         name: 'PageShow',
         mixins: [
             pageWithMetaMixin
         ],
-        components: {
-            CourseLayout,
-            CourseTemplate,
-        },
     }
 </script>

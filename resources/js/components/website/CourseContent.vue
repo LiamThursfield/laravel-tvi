@@ -20,8 +20,8 @@
                             ease-in-out duration-300 transition-colors
                         "
                         :class="{
-                            'hover:bg-theme-base-contrast hover:text-theme-base' : sectionHasChildren(section),
-                            'bg-theme-base-contrast text-theme-base' : (sectionHasChildren(section) && toggledSections[section.index]),
+                            'hover:bg-theme-secondary hover:text-theme-secondary-contrast' : sectionHasChildren(section),
+                            'bg-theme-secondary text-theme-secondary-contrast' : (sectionHasChildren(section) && toggledSections[section.index]),
                             'bg-theme-base text-theme-base-contrast' : !toggledSections[section.index],
                         }"
                         @click="toggleSection(section.index)"

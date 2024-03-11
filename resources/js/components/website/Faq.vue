@@ -18,10 +18,10 @@
                         class="
                             flex flex-row justify-between mt-2 relative rounded px-4 py-2 z-10
                             ease-in-out duration-300 transition-colors
-                            hover:bg-theme-base-contrast hover:text-theme-base
+                            hover:bg-theme-secondary hover:text-theme-secondary-contrast
                         "
                         :class="{
-                            'bg-theme-base-contrast text-theme-base' : toggledFaqs[key],
+                            'bg-theme-secondary text-theme-secondary-contrast' : toggledFaqs[key],
                             'bg-theme-base text-theme-base-contrast' : !toggledFaqs[key],
                         }"
                         @click="toggleFaq(key)"

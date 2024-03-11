@@ -15,13 +15,16 @@
 
         <course-content :course="course" />
 
-        <faq :faqs="faqs"></faq>
+        <faq :faqs="faqs" />
 
-        <about-author :data="author"></about-author>
+        <about-author
+            :bio="authorBio"
+            :name="authorName"
+        />
 
-        <testimonials></testimonials>
+        <testimonials :testimonials="testimonials" />
 
-        <course-footer></course-footer>
+        <course-footer :company-name="companyName" />
 
     </main>
 </template>
@@ -41,7 +44,7 @@
     import CourseFooter from "../../components/website/CourseFooter";
 
     export default {
-        name: "CourseTemplate",
+        name: "CoursePageTemplate",
         mixins: [
             pageWithMetaMixin
         ],
@@ -81,13 +84,35 @@
             course() {
                 return this.getContentFieldData('course');
             },
-            author() {
-                return this.getLayoutFieldData('author');
+            authorBio() {
+                return this.getLayoutFieldData('author-bio');
+            },
+            authorName() {
+                return this.getLayoutFieldData('author-name');
+            },
+            company() {
+                return this.getLayoutFieldData('company');
+            },
+            companyName() {
+                try {
+                    return this.company.name;
+                } catch (e) {
+                    return '';
+                }
             },
             faqs() {
                 try {
                     return this.formatRepeaterFieldData(
                         this.getLayoutFieldData('global-faqs')
+                    )
+                } catch (e) {
+                    return null;
+                }
+            },
+            testimonials() {
+                try {
+                    return this.formatRepeaterFieldData(
+                        this.getLayoutFieldData('global-testimonials')
                     )
                 } catch (e) {
                     return null;
