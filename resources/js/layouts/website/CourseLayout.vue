@@ -6,7 +6,7 @@
             <nav
                 class="bg-white px-4 py-3"
                 :class="{
-                    'sticky top-0 z-10': isStickyHeader
+                    'shadow-lg sticky top-0 z-50': isStickyHeader
                 }"
             >
                 <div class="container flex flex-row items-center justify-between mx-auto">

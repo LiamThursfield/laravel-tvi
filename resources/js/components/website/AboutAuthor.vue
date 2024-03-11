@@ -1,14 +1,25 @@
 <template>
-    <section class="px-4 py-6 shadow-subtle">
+    <section class="px-4 py-12">
         <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-md">
-                <p class="font-bold mb-4 text-2xl">
+                <p class="font-bold mb-4 text-lg">
                     {{ __('messages.about-author') }}
                 </p>
 
-                <div class="prose">
-                    <p v-html="data" />
-                </div>
+                <p
+                    v-if="name.length"
+                    class="font-bold"
+                >
+                    {{ name }}
+                </p>
+                <p
+                    v-if="bio.length"
+                    class="prose"
+                    :class="{
+                        'mt-2': name.length
+                    }"
+                    v-html="bio"
+                 />
             </div>
         </div>
     </section>
@@ -18,10 +29,15 @@
     export default {
         name: "AboutAuthor",
         props: {
-            data: {
-                required: true,
-                type: Object|null,
+            bio: {
                 default: '',
+                required: false,
+                type: String
+            },
+            name: {
+                default: '',
+                required: false,
+                type: String
             }
         },
     }
