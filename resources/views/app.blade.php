@@ -1,5 +1,9 @@
 @php
-    $theme = app(\App\Models\Settings\ThemeSettings::class);
+    try {
+        $theme = app(\App\Models\Settings\ThemeSettings::class);
+    } catch (\Exception $e) {
+        // Do nothing
+    }
 @endphp
 
 <!DOCTYPE html>
@@ -10,20 +14,22 @@
 
         <title>SIGI</title>
 
-        <link href="@php echo mix('/css/app.css') @endphp" rel="stylesheet"/>
+        <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
 
 
         @routes
-        <script src="@php echo  mix('/js/app.js') @endphp" defer></script>
+        <script src="{{ mix('/js/app.js') }}" defer></script>
 
+        @if($theme)
         <style>
             #website-layout, #course-layout {
-                @php echo $theme->getColorsAsCssString() @endphp
+                {{ $theme->getColorsAsCssString() }}
             }
         </style>
+        @endif
 
         <script>
-            window.locale = '@php echo app()->getLocale() @endphp';
+            window.locale = '{{ app()->getLocale() }}';
         </script>
     </head>
 
