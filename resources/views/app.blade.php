@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="html-base">
     <head>
@@ -6,23 +8,13 @@
 
         <title>SIGI</title>
 
-        <link href="@php echo mix('/css/app.css') @endphp" rel="stylesheet"/>
+        <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
 
 
         @routes
-        <script src="@php mix('/js/app.js') @endphp" defer></script>
-
-        @php
-            $theme = app(\App\Models\Settings\ThemeSettings::class);
-            dd($theme);
-        @endphp
+        <script src="{{ mix('/js/app.js') }}" defer></script>
 
 
-        <style>
-            #website-layout, #course-layout {
-                {{ $theme->getColorsAsCssString() }}
-            }
-        </style>
 
         <script>
             window.locale = '{{ app()->getLocale() }}';
