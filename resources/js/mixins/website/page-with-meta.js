@@ -1,14 +1,6 @@
 import _ from 'lodash';
-import CourseLayout from "../../layouts/website/CourseLayout.vue";
-import CoursePage from "../../page-templates/web/CoursePage.vue";
-
 export const pageWithMetaMixin = {
-    components: {
-        // Layout Templates
-        CourseLayout,
-        // Page Templates
-        CoursePage,
-    },
+
     metaInfo() {
         return {
             title: this.metaTitle,
@@ -137,10 +129,8 @@ export const pageWithMetaMixin = {
             // Assumes data has been fetched via getContentFieldData/getLayoutFieldData
             try {
                 let repeaterData = [];
-                console.log(repeaterFieldData)
 
                 _.forEach(repeaterFieldData, (repeaterRow) => {
-                    console.log(repeaterRow);
                     let formattedRow = {};
                     _.forEach(repeaterRow, (repeaterRowField) => {
                         formattedRow[repeaterRowField.template_field_slug] = {

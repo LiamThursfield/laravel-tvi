@@ -44,7 +44,7 @@
     import CourseFooter from "../../components/website/CourseFooter";
 
     export default {
-        name: "CoursePageTemplate",
+        name: "CoursePage",
         mixins: [
             pageWithMetaMixin
         ],

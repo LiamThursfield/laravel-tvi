@@ -22,12 +22,21 @@
 </template>
 
 <script>
+
     import { pageWithMetaMixin } from "../../../mixins/website/page-with-meta";
+    import CourseLayout from "../../../layouts/website/CourseLayout.vue";
+    import CoursePage from "../../../page-templates/web/CoursePage.vue";
 
     export default {
         name: 'PageShow',
         mixins: [
             pageWithMetaMixin
         ],
+        components: {
+            // Layout Templates
+            CourseLayout,
+            // Page Templates
+            CoursePage,
+        },
     }
 </script>
