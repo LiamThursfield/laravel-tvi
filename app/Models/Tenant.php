@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Settings\CoreSettings;
+use Exception;
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDatabase;
@@ -14,6 +15,11 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 
     public function getLocaleAttribute(): string
     {
-        return app()->make(CoreSettings::class)->locale;
+        try {
+            return app()->make(CoreSettings::class)->locale;
+        } catch (Exception $e) {
+            // For when a tenant is being created
+            return 'en';
+        }
     }
 }
