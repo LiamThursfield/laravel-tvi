@@ -6,11 +6,11 @@
 
         <title>SIGI</title>
 
-        <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
+        <link href="@php echo mix('/css/app.css') @endphp" rel="stylesheet"/>
 
 
         @routes
-        <script src="{{ mix('/js/app.js') }}" defer></script>
+        <script src="@php mix('/js/app.js') @endphp" defer></script>
 
         @php
             $theme = app(\App\Models\Settings\ThemeSettings::class);
