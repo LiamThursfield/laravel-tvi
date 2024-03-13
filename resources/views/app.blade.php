@@ -13,7 +13,7 @@
         <link href="@php echo mix('/css/app.css') @endphp" rel="stylesheet"/>
 
 
-        @routes()
+        @routes
         <script src="@php echo  mix('/js/app.js') @endphp" defer></script>
 
         <style>
@@ -28,6 +28,6 @@
     </head>
 
     <body>
-        @inertia()
+        @inertia
     </body>
 </html>
