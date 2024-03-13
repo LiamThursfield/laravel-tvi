@@ -14,6 +14,7 @@
 
         @php
             $theme = app(\App\Models\Settings\ThemeSettings::class);
+            dd($theme);
         @endphp
 
 
