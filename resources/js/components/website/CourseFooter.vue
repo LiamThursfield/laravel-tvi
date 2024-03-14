@@ -52,10 +52,10 @@
             <!-- TODO: Replace with CMS via repeater with {Image, Link, Label -->
             <div class="p-1 text-center" style="display: ruby-text;">
                 <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">
-                    <img width="150" height="35" src="https://sigi-prod.s3.eu-west-1.amazonaws.com/media/img-sol.webp" alt="ANPC SAL">
+                    <img width="150" height="35" src="https://sigi-media-pub.s3.eu-west-1.amazonaws.com/img-sol.webp" alt="ANPC SAL">
                 </a>
                 <a href="http://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">
-                    <img width="150" height="35" src="https://sigi-prod.s3.eu-west-1.amazonaws.com/media/sal-anpc-img.webp" alt="ANPC ODR">
+                    <img width="150" height="35" src="https://sigi-media-pub.s3.eu-west-1.amazonaws.com/sal-anpc-img.webp" alt="ANPC ODR">
                 </a>
             </div>
         </footer>
