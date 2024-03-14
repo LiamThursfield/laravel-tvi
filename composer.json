@@ -19,7 +19,7 @@
         "laravel/ui": "^4.0",
         "league/flysystem-aws-s3-v3": "^3.1",
         "predis/predis": "^1.0",
-        "spatie/laravel-ignition": "*",
+        "spatie/laravel-ignition": "^2.4",
         "spatie/laravel-permission": "^5.8",
         "spatie/laravel-ray": "^1.33",
         "spatie/laravel-settings": "^3.2",
