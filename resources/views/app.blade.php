@@ -22,7 +22,7 @@
 
         @if($theme)
         <style>
-            #website-layout, #course-layout {
+            #website-layout, #basic-layout, #course-layout {
                 {{ $theme->getColorsAsCssString() }}
             }
         </style>
