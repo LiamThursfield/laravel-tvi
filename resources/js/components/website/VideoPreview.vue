@@ -12,6 +12,7 @@
                     {{__('messages.course-preview') }}:
                 </p>
             </div>
+            <!-- TODO:: Text box and video aligned to the right on desktop. Mobile text up, video down -->
             <div class="aspect-ratio-16-9 max-w-xl relative w-full">
                 <iframe
                     :src="course.video_preview"

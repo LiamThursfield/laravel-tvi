@@ -11,7 +11,7 @@
 
                 <div
                     class="
-                        gap-x-4 grid gap-y-3 opacity-75
+                        gap-x-4 grid gap-y-3
                         md:grid-cols-2
                         lg:grid-cols-3
                     "

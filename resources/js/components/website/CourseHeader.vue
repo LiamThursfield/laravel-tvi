@@ -12,7 +12,7 @@
                     <strong class="text-sm font-light md:text-sm pb-2">{{ course.creator.name }}</strong>
                     <h1 class="text-2xl font-bold md:text-2xl">{{ course.name }}</h1>
 
-                    <p class="mt-4 opacity-50">{{ course.summary }}</p>
+                    <p class="mt-4">{{ course.summary }}</p>
                 </section>
             </div>
         </div>
