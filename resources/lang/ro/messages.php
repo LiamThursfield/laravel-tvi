@@ -64,7 +64,7 @@ return [
     // Payments
     'pay-in-full' => 'Plătesc integral',
     'pay-in-instalments' => 'Plătesc în rate',
-    'purchase' => 'Comandă',
+    'purchase' => 'Cumpară',
     'purchase-success' => 'Comandă plasată',
     'purchase-cancel' => 'Comandă anulată',
     'payment-options' => 'Opțiuni de plată',
