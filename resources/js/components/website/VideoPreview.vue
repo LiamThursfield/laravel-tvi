@@ -12,16 +12,25 @@
                     {{__('messages.course-preview') }}:
                 </p>
             </div>
-            <!-- TODO:: Text box and video aligned to the right on desktop. Mobile text up, video down -->
-            <div class="aspect-ratio-16-9 max-w-xl relative w-full">
-                <iframe
-                    :src="course.video_preview"
-                    class="h-full w-full"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                />
-            </div>
+
+            <section class=" grid grid-cols-1 gap-4
+                    sm:grid-cols-2
+                    lg:grid-cols-2"
+            >
+                <div class="align-left">
+                    <p v-html="videoPreviewText">
+                    </p>
+                </div>
+                <div class="aspect-ratio-16-9 max-w-xl relative w-full align-right">
+                    <iframe
+                        :src="course.video_preview"
+                        class="h-full w-full"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                    />
+                </div>
+            </section>
         </div>
     </section>
 </template>
@@ -38,6 +47,11 @@
                 default: false,
                 required: false,
                 type: Boolean
+            },
+            videoPreviewText: {
+                default: "Preview Video",
+                required: false,
+                type: String
             }
         },
     }
