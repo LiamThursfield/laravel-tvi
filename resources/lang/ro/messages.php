@@ -63,14 +63,16 @@ return [
 
     // Payments
     'pay-in-full' => 'Plătesc integral',
-    'pay-in-instalments' => 'Plătesc în rate',
-    'purchase' => 'Cumpără',
+    'pay-in-instalments' => 'Plătesc în :numberOfInstalments rate',
+    'purchase' => 'Comandă acum',
     'purchase-success' => 'Comandă plasată',
     'purchase-cancel' => 'Comandă anulată',
     'payment-options' => 'Opțiuni de plată',
     'payment-instalments' => 'Rate',
     'sign-up' => 'Mă înscriu',
     'this-course-includes' => 'Acest curs include',
+    'pay-in-instalments-note' => 'Facturat lunar x :numberOfInstalments luni',
+    'pay-in-full-note' => 'Economisesti :savingPercentage%',
 
     // Menu items
     'settings' => 'Setări',

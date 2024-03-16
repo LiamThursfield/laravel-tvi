@@ -62,7 +62,7 @@ return [
 
     // Payments
     'pay-in-full' => 'Pay in full',
-    'pay-in-instalments' => 'Pay in instalments',
+    'pay-in-instalments' => 'Pay in :numberOfInstalments instalments',
     'purchase' => 'Purchase',
     'payment-options' => 'Payment Options',
     'purchase-success' => 'Purchase success',
@@ -70,6 +70,9 @@ return [
     'payment-instalments' => 'Rate',
     'sign-up' => 'Sign Up',
     'this-course-includes' => 'This course includes',
+    'pay-in-instalments-note' => 'Paid monthly x :numberOfInstalments months',
+    'pay-in-full-note' => 'Save :savingPercentage%',
+
 
     // Menu items
     'settings' => 'Settings',

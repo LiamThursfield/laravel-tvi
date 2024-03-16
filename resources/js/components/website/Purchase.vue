@@ -32,7 +32,11 @@
                         type="button"
                         @click="selectPaymentType('full')"
                     >
-                        <span>{{__('messages.pay-in-full') }}</span>
+                        <span>
+                            <strong>
+                                {{__('messages.pay-in-full') }}
+                            </strong>
+                        </span>
                         <span
                             v-if="course.currency === 'GBP'"
                             class="text-sm"
@@ -51,6 +55,9 @@
                         >
                              {{ course.current_price | priceDecimal }} Euro
                         </span>
+                        <small>
+                            *{{ __('messages.pay-in-full-note', { savingPercentage: 40 }) }}
+                        </small>
                     </button>
 
                     <button
@@ -60,8 +67,33 @@
                         type="button"
                         @click="selectPaymentType('instalment', instalmentPlan)"
                     >
-                        <span>{{ instalmentPlan.instalment_count }} {{__('messages.pay-instalments') }}</span>
-                        <span class="text-sm">{{ instalmentPlan.instalment_current_price | priceDecimal }}</span>
+                        <span>
+                            <strong>
+                                {{ __('messages.pay-in-instalments', { numberOfInstalments: instalmentPlan.instalment_count }) }}
+                            </strong>
+                        </span>
+
+                        <span
+                            v-if="course.currency === 'GBP'"
+                            class="text-sm"
+                        >
+                             {{ course.currency | currencySymbol }} {{ instalmentPlan.instalment_current_price | priceDecimal }}
+                        </span>
+                        <span
+                            v-else-if="course.currency === 'RON'"
+                            class="text-sm"
+                        >
+                            {{ instalmentPlan.instalment_current_price | priceDecimal }} Lei
+                        </span>
+                        <span
+                            v-else-if="course.currency === 'EUR'"
+                            class="text-sm"
+                        >
+                             {{ instalmentPlan.instalment_current_price | priceDecimal }} Euro
+                        </span>
+                        <small>
+                            *{{__('messages.pay-in-instalments-note', { numberOfInstalments: instalmentPlan.instalment_count }) }}
+                        </small>
                     </button>
                 </div>
             </template>
@@ -73,31 +105,7 @@
                     :disabled="!paymentType || isLoadingCheckout"
                     @click="purchaseCourse"
                 >
-                    {{__('messages.purchase') }}&nbsp;
-
-                    <template
-                        v-if="paymentType === 'full'"
-                        class="text-sm"
-                    >
-                        <span
-                            v-if="course.currency === 'GBP'"
-                        >
-                             {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimal }}
-                        </span>
-                        <span
-                            v-else-if="course.currency === 'Lei'"
-                        >
-                            {{ course.current_price }}  {{ course.currency | priceDecimal }}
-                        </span>
-                        <span
-                            v-else-if="course.currency === 'EUR'"
-                        >
-                             {{ course.current_price | priceDecimal }} Euro
-                        </span>
-                    </template>
-                    <template v-else>
-                        {{ instalmentSelection.instalment_count }} months x £{{ instalmentSelection.instalment_current_price | priceDecimal }}
-                    </template>
+                    {{__('messages.purchase') }}
 
                     <icon-loader-circle
                         v-if="isLoadingCheckout"
