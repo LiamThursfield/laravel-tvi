@@ -66,6 +66,8 @@ export const pageWithMetaMixin = {
         },
         layoutComponent() {
             switch (this.layoutSlug) {
+                case 'basic-layout':
+                    return 'basic-layout';
                 case 'course-layout':
                     return 'course-layout';
             }
@@ -111,7 +113,9 @@ export const pageWithMetaMixin = {
             switch (this.templateSlug) {
                 case 'course-template':
                 case 'course-page':
-                    return 'course-page'; // TODO: Refactor to course-page
+                    return 'course-page';
+                case 'basic-page':
+                    return 'basic-page';
             }
 
             console.log('No template found');

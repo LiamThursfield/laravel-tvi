@@ -67,20 +67,6 @@
             }
         },
         computed: {
-            content() {
-                try {
-                    return this.page.data.content
-                } catch (e) {
-                    console.error('Failed to load template content', e)
-                }
-            },
-            layout() {
-                try {
-                    return this.page.data.layout
-                } catch (e) {
-                    console.error('Failed to load template layout', e)
-                }
-            },
             course() {
                 return this.getContentFieldData('course');
             },
@@ -118,24 +104,6 @@
                     return null;
                 }
             },
-            legals() {
-                return this.getLayoutFieldData('legals');
-            },
-            metaTitle() {
-                try {
-                    if (this.getMetaField('title')) {
-                        return this.getMetaField('title');
-                    }
-
-                    if (this.course.name) {
-                        return this.course.name;
-                    }
-
-                    return this.page.data.name;
-                } catch (e) {
-                    return '';
-                }
-            }
         },
         methods: {
 
