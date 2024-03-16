@@ -48,6 +48,7 @@
                             class="text-sm"
                         >
                             {{ course.current_price | priceDecimal }} Lei
+                            <small class="font-weight-lighter">(TVA inclus)</small>
                         </span>
                         <span
                             v-else-if="course.currency === 'EUR'"
@@ -55,7 +56,7 @@
                         >
                              {{ course.current_price | priceDecimal }} Euro
                         </span>
-                        <small>
+                        <small class="font-weight-lighter">
                             *{{ __('messages.pay-in-full-note', { savingPercentage: 40 }) }}
                         </small>
                     </button>
@@ -84,6 +85,7 @@
                             class="text-sm"
                         >
                             {{ instalmentPlan.instalment_current_price | priceDecimal }} Lei
+                            <small>(TVA inclus)</small>
                         </span>
                         <span
                             v-else-if="course.currency === 'EUR'"
