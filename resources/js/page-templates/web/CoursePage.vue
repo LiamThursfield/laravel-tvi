@@ -4,7 +4,10 @@
 
         <course-features :course="course" />
 
-        <video-preview :course="course" />
+        <video-preview
+            :course="course"
+            :video-preview-text="videoPreviewText"
+        />
 
         <purchase
             class="bg-theme-base-subtle"
@@ -85,6 +88,9 @@
                 } catch (e) {
                     return '';
                 }
+            },
+            videoPreviewText() {
+                return this.getLayoutFieldData('video-preview-text');
             },
             faqs() {
                 try {

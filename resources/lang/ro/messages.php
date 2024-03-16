@@ -44,11 +44,11 @@ return [
     'created-by' => 'Creat de',
     'author' => 'Autor',
     'course-content' => 'Conținutul cursului',
-    'additional-course-details' => 'Desecriere curs',
+    'additional-course-details' => 'Descriere curs',
     'download-pdfs' => 'Descarcă PDFs',
     'resources-pdfs' => 'Resurse PDF',
     'files' => 'Fișiere',
-    'confirm' => 'TODO: Confirm',
+    'confirm' => 'Confirm',
     'cancel' => 'Anulează',
     'are-you-sure' => 'Esti sigur',
     'perform-action-check' => 'Sunteți sigur că doriți să efectuați această acțiune?',
@@ -64,7 +64,7 @@ return [
     // Payments
     'pay-in-full' => 'Plătesc integral',
     'pay-in-instalments' => 'Plătesc în rate',
-    'purchase' => 'Cumpară',
+    'purchase' => 'Cumpără',
     'purchase-success' => 'Comandă plasată',
     'purchase-cancel' => 'Comandă anulată',
     'payment-options' => 'Opțiuni de plată',
@@ -113,5 +113,5 @@ return [
     'testimonials' => 'Testimoniale',
     'about-author' => 'Despre autor',
 
-    'color-reset-confirm' => 'TODO: This will reset all colors to their default values. Save changes to take effect.',
+    'color-reset-confirm' => 'Acestă actiune va reseta toate culorile la valorile lor implicite. Salvați modificările pentru a intra în vigoare.',
 ];
