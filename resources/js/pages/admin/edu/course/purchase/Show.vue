@@ -91,7 +91,7 @@
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
                         Instalment Plan
                     </span>
-                    {{ purchase.instalment_plan.instalment_count }} payments @ {{ purchase.currency | currencySymbol }}{{ instalmentPlanPrice | priceDecimal}}
+                    {{ purchase.instalment_plan.instalment_count }} payments @ {{ purchase.currency | currencySymbol }} {{ instalmentPlanPrice | priceDecimal}}
                 </p>
 
                 <p class="mt-2">
@@ -120,14 +120,14 @@
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
                         Total Price Due:
                     </span>
-                    {{ purchase.currency | currencySymbol }}{{ purchase.total_price_due | priceDecimal }}
+                    {{ purchase.currency | currencySymbol }} {{ purchase.total_price_due | priceDecimal }}
                 </p>
 
                 <p class="mt-2">
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
                         Total Price Paid:
                     </span>
-                    {{ purchase.currency | currencySymbol }}{{ purchase.total_price_paid | priceDecimal }}
+                    {{ purchase.currency | currencySymbol }} {{ purchase.total_price_paid | priceDecimal }}
                 </p>
 
                 <p

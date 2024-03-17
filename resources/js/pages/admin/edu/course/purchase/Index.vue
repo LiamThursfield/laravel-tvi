@@ -125,10 +125,10 @@
                                 }}
                             </td>
                             <td>
-                                {{ purchase.currency | currencySymbol }}{{ purchase.total_price_due | priceDecimal }}
+                                {{ purchase.currency | currencySymbol }} {{ purchase.total_price_due | priceDecimal }}
                             </td>
                             <td>
-                                {{ purchase.currency | currencySymbol }}{{ purchase.total_price_paid | priceDecimal }}
+                                {{ purchase.currency | currencySymbol }} {{ purchase.total_price_paid | priceDecimal }}
                             </td>
                             <td>
                                 <component
