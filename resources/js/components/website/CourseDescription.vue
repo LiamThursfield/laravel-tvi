@@ -1,7 +1,7 @@
 <template>
-    <section class="px-4 py-12">
+    <section class="bg-gray-100 px-4 py-12">
         <div class="container max-w-screen-lg mx-auto">
-            <div class="max-w-screen-md">
+            <div class="max-w-screen-lg">
                 <p class="font-bold mb-4 text-lg">
                     {{__('messages.additional-course-details') }}
                 </p>

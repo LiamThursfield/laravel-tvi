@@ -4,14 +4,14 @@
 
         <course-features :course="course" />
 
-        <video-preview
-            :course="course"
-            :video-preview-text="videoPreviewText"
-        />
-
         <purchase
             class="bg-theme-base-subtle"
             :course="course"
+        />
+
+        <video-preview
+            :course="course"
+            :video-preview-text="videoPreviewText"
         />
 
         <course-description :course="course" />
