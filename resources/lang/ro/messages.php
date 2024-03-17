@@ -103,7 +103,7 @@ return [
 
     // Course features
     'access-on-mobile' => 'Acces prin smartphone',
-    'money-back-gurantee' => 'Banii inapoi garantat',
+    'money-back-gurantee' => 'Banii înapoi garantat',
     'multiple-languages' => 'Mai multe limbi disponibile',
     'certificate' => 'Certificat',
     'captions' => 'Subtitrări',

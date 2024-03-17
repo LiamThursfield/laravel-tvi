@@ -13,6 +13,7 @@ class PageController extends Controller
 {
     public function show(Request $request): Response
     {
+//        dd('mf');
         if (!config('sigi.web.enabled')) {
             abort(404);
         }
@@ -30,6 +31,7 @@ class PageController extends Controller
             ]
         ];
 
+//        dd($search_options);
         try {
             $page = app(PageQueryAction::class)
                 ->handle($search_options)

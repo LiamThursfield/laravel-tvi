@@ -27,7 +27,10 @@
 
         <testimonials :testimonials="testimonials" />
 
-        <course-footer :company-name="companyName" />
+        <course-footer
+            :company="company"
+            :footer-menu="footerMenu"
+        />
 
     </main>
 </template>
@@ -82,15 +85,11 @@
             company() {
                 return this.getLayoutFieldData('company');
             },
-            companyName() {
-                try {
-                    return this.company.name;
-                } catch (e) {
-                    return '';
-                }
-            },
             videoPreviewText() {
                 return this.getLayoutFieldData('video-preview-text');
+            },
+            footerMenu() {
+                return this.getLayoutFieldData('footer-menu');
             },
             faqs() {
                 try {
