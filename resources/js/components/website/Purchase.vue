@@ -6,7 +6,7 @@
         <div class="container max-w-screen-lg mx-auto">
             <div
                 v-if="checkoutResponse === 'success'"
-                class="bg-theme-success text-theme-success-contrast px-4 py-2 text-center"
+                class="bg-theme-success-contrast text-theme-accent-contrast px-4 py-2 text-center"
             >
                 {{__('messages.purchase-success') }}
             </div>

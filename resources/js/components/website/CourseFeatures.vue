@@ -16,6 +16,10 @@
                         lg:grid-cols-3
                     "
                 >
+                    <div class="flex flex-row">
+                       <icon-video class="mr-2 w-5"/>
+                        <span>{{ totalCourseVideos }} videoclipuri</span>
+                    </div>
                     <div
                         v-for="(feature, key) in activeFeatureList"
                         :key="`feature-${key}`"
@@ -35,9 +39,11 @@
 
 <script>
     import _ from "lodash";
+    import IconVideo from "../core/icons/IconAlertVideo";
 
     export default {
         name: "CourseFeatures",
+        components: {IconVideo},
         props: {
             course: {
                 required: true,
@@ -105,6 +111,9 @@
                     console.log(e);
                     return false;
                 }
+            },
+            totalCourseVideos() {
+                return 34;
             }
         },
         methods: {

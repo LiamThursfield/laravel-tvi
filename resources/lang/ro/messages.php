@@ -50,7 +50,7 @@ return [
     'files' => 'Fișiere',
     'confirm' => 'Confirm',
     'cancel' => 'Anulează',
-    'are-you-sure' => 'Esti sigur',
+    'are-you-sure' => 'Ești sigur',
     'perform-action-check' => 'Sunteți sigur că doriți să efectuați această acțiune?',
     'mark-course-lecture-complete-default' => 'Sunteți sigur că doriți să marcați ca fiind completa aceasta sectiune?',
     'mark-course-lecture-complete-refund-warning' => 'Sunteți sigur că doriți să marcați ca fiind completa sectiunea :name?
@@ -72,7 +72,7 @@ return [
     'sign-up' => 'Mă înscriu',
     'this-course-includes' => 'Acest curs include',
     'pay-in-instalments-note' => 'Facturat lunar x :numberOfInstalments luni',
-    'pay-in-full-note' => 'Economisesti :savingPercentage%',
+    'pay-in-full-note' => 'Economisești :savingPercentage%',
 
     // Menu items
     'settings' => 'Setări',
