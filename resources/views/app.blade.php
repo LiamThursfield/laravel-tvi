@@ -1,9 +1,5 @@
 @php
-    try {
-        $theme = app(\App\Models\Settings\ThemeSettings::class);
-    } catch (\Exception $e) {
-        // Do nothing
-    }
+    $theme = tenant() ? app(\App\Models\Settings\ThemeSettings::class) : null;
 @endphp
 
 <!DOCTYPE html>
