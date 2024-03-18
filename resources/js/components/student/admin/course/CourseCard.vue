@@ -1,7 +1,7 @@
 <template>
     <inertia-link
         class="flex flex-1 flex-col group relative"
-        :href="$route('student.admin.show', course.id)"
+        :href="$route('student.admin.show', course.slug)"
         :title="`View course: ${course.name}`"
     >
         <article
@@ -32,26 +32,26 @@
                 </div>
             </div>
 
-            <section class="px-6 mt-3">
+            <section class="px-6 mt-3 mb-3">
                 <h2
-                    class="font-semibold group-hover:underline"
+                    class="font-semibold group-hover:underline text-xl"
                     :title="course.name"
                 >
                     {{ formattedCourseName }}
                 </h2>
                 <h3 class="opacity-40 text-sm">
-                    {{ course.creator.name }}
+                    {{__('messages.author') }}: <strong>{{ course.creator.name }}</strong>
                 </h3>
             </section>
 
-            <section class="flex flex-1 flex-col justify-end mt-4 pb-6 px-6">
-                <div class="bg-theme-primary-subtle h-2 rounded-full">
-                    <div class="bg-theme-primary h-full rounded-full" :style="`width: ${progress}%`" />
-                </div>
-                <p class="mt-1 text-xs">
-                    {{ progress }}% Complete
-                </p>
-            </section>
+<!--            <section class="flex flex-1 flex-col justify-end mt-4 pb-6 px-6">-->
+<!--                <div class="bg-theme-primary-subtle h-2 rounded-full">-->
+<!--                    <div class="bg-theme-primary h-full rounded-full" :style="`width: ${progress}%`" />-->
+<!--                </div>-->
+<!--                <p class="mt-1 text-xs">-->
+<!--                    {{ progress }}% {{ __('messages.complete') }}-->
+<!--                </p>-->
+<!--            </section>-->
 
         </article>
     </inertia-link>
@@ -71,7 +71,7 @@
         },
         computed: {
             formattedCourseName() {
-                let maxLength = 40;
+                let maxLength = 100;
                 if (this.course.name.length <= maxLength) {
                     return this.course.name;
                 }

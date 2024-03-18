@@ -490,14 +490,6 @@
 
                 this.course.sections = sections;
             },
-            /**
-             * We use this to update the sections when the update returns back after submit, avoids strange bug
-             * with duplicated lectures.
-             */
-            updateFormDataSections() {
-                this.transformSections();
-                this.formData.sections = this.course.sections;
-            },
             onNameInput() {
                 if (!this.autoUpdateSlug) {
                     return;
@@ -530,11 +522,6 @@
                     this.formData
                 );
             }
-        },
-        watch: {
-            course: {
-                handler: 'updateFormDataSections'
-            }
-        },
+        }
     }
 </script>

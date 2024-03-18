@@ -10,7 +10,10 @@ Vue.filter('priceDecimal', function (value) {
 
 Vue.filter('currencySymbol', function (value) {
     let symbolMap = {
-        'GBP': '£'
+        'GBP': '£',
+        'RON': 'RON',
+        'USD': '$',
+        'EUR': '€',
     }
 
     if (symbolMap.hasOwnProperty(value)) {

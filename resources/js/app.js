@@ -1,15 +1,19 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import { store } from './store/admin'
+import { store } from './store/admin';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ro';
+dayjs.locale('ro');
 
-import { createInertiaApp } from '@inertiajs/vue2'
+import { createInertiaApp } from '@inertiajs/vue2';
 
 require('./plugins/toasted');
 require('./plugins/vue2-datepicker');
 require('./plugins/vue-cookies');
 require('./plugins/vue-meta');
 require('./plugins/ziggy');
+require('./plugins/zora');
 
 require('./filters/date-times');
 require('./filters/prices');

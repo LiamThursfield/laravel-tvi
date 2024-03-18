@@ -281,7 +281,7 @@
                                         route: "admin.edu.announcements.create",
                                     }
                                 },
-                                icon: "icon-speaker",
+                                icon: "icon-speaker-phone",
                                 label: "Announcements",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_announcements.create", "edu_announcements.view"],
@@ -370,7 +370,7 @@
                                         route: "admin.edu.course-purchases.index",
                                     }
                                 },
-                                icon: "icon-money-bag",
+                                icon: "icon-moneybag",
                                 label: "Purchases",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_course_purchases.view"],
@@ -451,6 +451,14 @@
                                         requiresAllPermissions: ["settings.edit"],
                                         requiresAnyPermissions: [],
                                         route: ["admin.settings.edit", 'edu'],
+                                    },
+                                    theme: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Theme",
+                                        requiresAllPermissions: ["settings.edit"],
+                                        requiresAnyPermissions: [],
+                                        route: ["admin.settings.edit", 'theme'],
                                     },
                                     thirdParty: {
                                         children: false,

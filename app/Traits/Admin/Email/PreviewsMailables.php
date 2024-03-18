@@ -3,6 +3,7 @@
 namespace App\Traits\Admin\Email;
 
 use App\Mail\EDU\Course\CoursePurchasePaymentDue;
+use App\Mail\EDU\Course\CoursePurchaseRegister;
 use App\Models\EDU\Course\Course;
 use App\Models\EDU\Course\CoursePurchase;
 use App\Models\EDU\Course\CoursePurchasePayment;
@@ -18,6 +19,11 @@ trait PreviewsMailables
             'mailable' => 'getCoursePurchasePaymentDueMailable',
             'module' => 'EDU',
             'name' => 'Course Purchase Payment Due',
+        ],
+        'edu-course-purchase-register' => [
+            'mailable' => 'getCoursePurchaseRegisterMailable',
+            'module' => 'EDU',
+            'name' => 'Course Register',
         ],
     ];
 
@@ -64,5 +70,26 @@ trait PreviewsMailables
         );
 
         return new CoursePurchasePaymentDue($payment);
+    }
+
+    protected function getCoursePurchaseRegisterMailable(): Mailable
+    {
+        // Create a payment - ensuring no data is persisted in the DB
+        $payment = CoursePurchasePayment::factory()->make([
+            'id' => 0,
+            'course_purchase_id' => null,
+            'created_at' => now(),
+        ])->setRelation(
+            'purchase',
+            CoursePurchase::factory()->make([
+                'course_id' => null,
+                'user_id' => null
+            ])->setRelations([
+                'course' => Course::factory()->make(),
+                'user' => User::factory()->make(),
+            ])
+        );
+
+        return new CoursePurchaseRegister($payment);
     }
 }

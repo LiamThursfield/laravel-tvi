@@ -126,6 +126,16 @@
                     @input="onSlugInput"
                     v-model="formData.slug"
                 />
+
+                <input-group
+                    class="mt-4"
+                    input-id="slug"
+                    input-name="full_page_slug"
+                    :input-disabled="true"
+                    input-type="text"
+                    label-text="Full Page Slug"
+                    v-model="fullPageSlug"
+                />
             </div>
         </div>
 
@@ -216,6 +226,19 @@
             }
         },
         computed: {
+            fullPageSlug() {
+                if (!this.formData.slug) {
+                    return '';
+                }
+
+                let slug = this.formData.slug;
+
+                if (this.selectedParentPageUrl) {
+                    slug = this.selectedParentPageUrl + '/'  + slug;
+                }
+
+                return slug;
+            },
             parentPagesUrls() {
                 try {
                     if (!Object.keys(this.parentPages).length) {

@@ -4,14 +4,14 @@
             <h1 class="font-semibold mr-auto text-3xl">
                 {{ course.name }}
             </h1>
-            <small>By <b>{{ course.creator.name }}</b></small>
+            <small>{{ __('messages.created-by') }} <b>{{ course.creator.name }}</b></small>
         </div>
 
         <div class="flex flex-row space-x-4">
             <div class="max-w-sm w-full ">
                 <div class="bg-white rounded-xl shadow-subtle">
                     <h2 class="border-b font-semibold px-6 py-3">
-                        Course Content
+                        {{ __('messages.course-content') }}
                     </h2>
 
                     <div
@@ -40,7 +40,7 @@
                             </div>
 
                             <p class="text-sm">
-                                0/{{ section.child_items.length }}| {{ section.content_length }} min
+                                0/{{ section.child_items.length }} | {{ section.content_length }} min
                             </p>
                         </div>
 
@@ -74,7 +74,7 @@
                                     </button>
 
                                     <div
-                                        @click="setActiveLecture(sectionIndex, lectureIndex, lecture)"
+                                        @click="setActiveLecture(sectionIndex, lectureIndex, lecture, section)"
                                     >
                                         <p class="text-sm">{{ (lectureIndex + 1) }}. {{ lecture.title }}</p>
                                         <p class="text-xs">{{ lecture.content_length}} min</p>
@@ -87,7 +87,10 @@
             </div>
 
             <transition name="slide-right">
-                <div v-if="lecture && !isLoadingLecture" class="w-full">
+                <div
+                    v-if="section && lecture && !isLoadingLecture"
+                    class="w-full"
+                >
                     <div
                         v-if="!showAudioPanel"
                         class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
@@ -120,7 +123,7 @@
                             </h2>
 
                             <button
-                                v-if="lecture.files && lecture.files.length"
+                                v-if="section.files && section.files.le || lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Audio Only"
                                 @click="showAudioOnly(lecture)"
@@ -149,9 +152,9 @@
                                 </span>
                             </button>
                             <button
-                                v-if="lecture.files && lecture.files.length"
+                                v-if="section.files && section.files.length || lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
-                                title="Download PDFs"
+                                :title="__('messages.resources-pdfs')"
                                 @click="downloadPDFs(lecture)"
                             >
                                 <icon-book-download
@@ -160,7 +163,7 @@
                                 <span
                                     class="hidden md:inline"
                                 >
-                                    {{ (showPDFPanel) ? 'Cancel' : 'Download PDFs' }}
+                                    {{ (showPDFPanel) ? __('messages.course') : __('messages.resources-pdfs') }}
                                 </span>
                             </button>
                         </div>
@@ -169,11 +172,35 @@
                             name="slide-left"
                             tag="div"
                         >
-                            <div v-if="showPDFPanel"
+                            <div
+                                v-if="showPDFPanel"
                                 key="downloads"
                             >
-                                <h3 class="font-semibold">Files</h3>
-                                <ul class="mt-2">
+                                <h3 class="font-semibold mb-2">{{ __('messages.files') }}</h3>
+                                <ul>
+                                    <li
+                                        v-for="(file, index) in section.files"
+                                        class="mt-1"
+                                        :key="`file-${index}`"
+                                    >
+                                        <a
+                                            v-if="file.url"
+                                            class="
+                                                flex flex-row items-center space-x-2 text-theme-primary
+                                                hover:text-theme-primary-hover
+                                            "
+                                            :href="file.url"
+                                            rel="noreferrer noopener nofollow"
+                                            target="_blank"
+                                            @click.stop=""
+                                        >
+                                            <icon-external-link class="w-4" />
+                                            <p class="text-sm font-semibold">{{ file.file_name }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <ul>
                                     <li
                                         v-for="(file, index) in lecture.files"
                                         class="mt-1"
@@ -206,18 +233,18 @@
                                 >
                                     <div v-for="webinar in lectureWebinarsFromSection">
                                         <b class="flex flex-row">
-                                            <icon-speaker
+                                            <icon-speaker-phone
                                                 class="w-5 mr-1"
                                             />
                                             <a :href="webinar.webinar_url" target="_blank" class="page-link">{{ webinar.name }}</a>
                                         </b>
 
                                         <p class="pt-1">
-                                            <strong>Dates:</strong>
-                                            {{ webinar.date_time_from | humanFriendlyDateTime }} to {{ webinar.date_time_to | humanFriendlyDateTime}}
+                                            <strong>{{__('messages.dates') }}:</strong>
+                                            {{ webinar.date_time_from | humanFriendlyDateTime }} {{__('messages.to') }} {{ webinar.date_time_to | humanFriendlyDateTime}}
                                         </p>
 
-                                        <p class="pt-1">{{webinar.summary}}</p>
+                                        <p class="pt-1">{{ webinar.summary }}</p>
                                     </div>
                                 </div>
                                 <br>
@@ -231,10 +258,12 @@
         </div>
 
         <confirmation-modal
-            confirm-text="Mark Complete"
+            :confirm-text="__('messages.mark-complete')"
+            :cancel-text="__('messages.cancel')"
+            :message-title="__('messages.are-you-sure') + '?'"
             confirm-type="success"
             :show-modal="showConfirmMarkCompleteModal"
-            :message-text="markCompleteModalText"
+            :message-text="__(markCompleteModalText[0], {'name': markCompleteModalText[1]})"
             @cancelAction="cancelMarkComplete"
             @closeModal="cancelMarkComplete"
             @confirmAction="confirmMarkComplete"
@@ -253,9 +282,9 @@ import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareC
 import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
 import IconPlus from "../../../../components/core/icons/IconPlus";
 import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
-import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
 import IconVideo from "../../../../components/core/icons/IconAlertVideo";
 import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
+import {Zora} from "../../../../zora";
 
 
 export default {
@@ -264,7 +293,6 @@ export default {
     components: {
         IconHeadphones,
         IconVideo,
-        IconSpeaker,
         IconPlus,
         IconBookDownload,
         IconSquareCheckFilled,
@@ -272,7 +300,8 @@ export default {
         CourseSideMenuItem,
         CollapseTransition,
         ConfirmationModal,
-        Wavesurfer
+        Wavesurfer,
+        Zora
     },
     props: {
         course: {
@@ -290,6 +319,7 @@ export default {
             mountedItems: {},
             toggledItems: {},
             lecture: null,
+            section: null,
             isLoadingLecture: false,
             isLoadingMarkComplete: false,
             showConfirmMarkCompleteModal: null,
@@ -305,14 +335,13 @@ export default {
         },
         markCompleteModalText() {
             try {
-                if (this.itemToMarkComplete.index === '0') {
-                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?'
-                        + ' A refund won\'t be available once you move to the next step';
+                if (this.itemToMarkComplete?.index === '0') {
+                    return ['messages.mark-course-lecture-complete-refund-warning', this.itemToMarkComplete.title];
                 } else {
-                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?';
+                    return ['messages.mark-course-lecture-complete-default', this.itemToMarkComplete?.title];
                 }
             } catch (e) {
-                return 'Do you really want to perform this action?'
+                return ['messages.perform-action-check'];
             }
         },
         courseWebinars() {
@@ -324,6 +353,7 @@ export default {
     },
     mounted() {
         this.isLoadingLecture = true;
+        this.section = this.course.sections[0];
         this.lecture = this.course.sections[0].child_items[0];
         this.isLoadingLecture = false;
     },
@@ -334,8 +364,9 @@ export default {
         isLectureActive(sectionIndex, lectureIndex) {
             return this.activeSection === sectionIndex && this.activeSectionLecture === lectureIndex
         },
-        setActiveLecture(sectionIndex, lectureIndex, lecture) {
+        setActiveLecture(sectionIndex, lectureIndex, lecture, section) {
             this.activeSection = sectionIndex;
+            this.section = _.cloneDeep(section);
             this.activeSectionLecture = lectureIndex;
             this.lecture = _.cloneDeep(lecture);
             this.showPDFPanel = false;

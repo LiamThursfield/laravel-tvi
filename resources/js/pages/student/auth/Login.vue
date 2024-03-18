@@ -6,7 +6,7 @@
             <h1
                 class="auth-header"
             >
-                Welcome back
+                {{ __('messages.welcome-general') }}
             </h1>
 
             <form
@@ -37,7 +37,7 @@
                     input-name="password"
                     :input-required="true"
                     input-type="password"
-                    label-text="Password"
+                    :label-text="__('messages.password')"
                     @errorHidden="clearPageErrorMessage('password')"
                     v-model="form.password"
                 />
@@ -55,8 +55,8 @@
                             v-model="form.remember"
                         >
                         <span class="select-none text-sm">
-                            Remember Me
-                          </span>
+                            {{ __('messages.remember-me') }}
+                        </span>
                     </label>
                 </div>
 
@@ -70,7 +70,7 @@
                         "
                         type="submit"
                     >
-                        Sign In
+                        {{ __('messages.sign-in') }}
                     </button>
 
                     <inertia-link
@@ -81,7 +81,7 @@
                         "
                         :href="$route('student.password.request')"
                     >
-                        Forgot Password?
+                        {{ __('messages.forgot-password') }}
                     </inertia-link>
                 </div>
             </form>
@@ -96,7 +96,7 @@
                 "
                 :href="$route('student.register')"
             >
-                Create a new account
+                {{ __('messages.create-a-new-account') }}
             </inertia-link>
         </div>
     </div>

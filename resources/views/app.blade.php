@@ -1,3 +1,7 @@
+@php
+    $theme = tenant() ? app(\App\Models\Settings\ThemeSettings::class) : null;
+@endphp
+
 <!DOCTYPE html>
 <html class="html-base">
     <head>
@@ -8,8 +12,21 @@
 
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
 
+
         @routes
         <script src="{{ mix('/js/app.js') }}" defer></script>
+
+        @if($theme)
+        <style>
+            #website-layout, #basic-layout, #course-layout {
+                {{ $theme->getColorsAsCssString() }}
+            }
+        </style>
+        @endif
+
+        <script>
+            window.locale = '{{ app()->getLocale() }}';
+        </script>
     </head>
 
     <body>

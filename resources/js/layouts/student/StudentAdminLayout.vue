@@ -13,18 +13,9 @@
                     <slot/>
                 </div>
 
-                <!-- TODO:: Move to component and design it nicer? -->
-                <footer
-                    class="bg-neutral-200 text-center dark:bg-neutral-700 lg:text-left">
-                    <div class="p-4 text-center text-neutral-700 dark:text-neutral-200">
-                        © 2023 Copyright:
-                        <a
-                            class="text-neutral-800 dark:text-neutral-400"
-                            href="/"
-                        >SIGI.RO </a
-                        >
-                    </div>
-                </footer>
+               <tenant-footer
+                    :tenant-name="metaTenantName"
+               ></tenant-footer>
             </div>
         </main>
     </div>
@@ -32,7 +23,7 @@
 
 <script>
 import PageAlerts from "../../components/core/alerts/PageAlerts";
-
+import TenantFooter from "../../components/core/footer/Footer";
 import StudentTopMenu from "../../components/student/admin/menus/StudentTopMenu.vue";
 
 export default {
@@ -40,6 +31,7 @@ export default {
     components: {
         PageAlerts,
         StudentTopMenu,
+        TenantFooter
     },
     metaInfo() {
         return {
@@ -50,10 +42,6 @@ export default {
                     content: this.metaDescription,
                 }
             ]
-        }
-    },
-    data() {
-        return {
         }
     },
     computed: {
@@ -68,6 +56,12 @@ export default {
                 'title',
                 'SIGI'
             );
+        },
+        metaTenantName() {
+            return this.getMetaDataField(
+                'tenant',
+                'SIGI'
+            );
         }
     },
     methods: {
@@ -75,7 +69,6 @@ export default {
             try {
                 return this.$page.props.meta[slug] ?? fallback;
             } catch (e) {
-                console.log(e);
                 return fallback;
             }
         },

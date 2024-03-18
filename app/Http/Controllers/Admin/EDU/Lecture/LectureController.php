@@ -67,9 +67,6 @@ class LectureController extends AdminController
         $lecture->load('files');
         $lecture->load('section', 'section.course');
 
-        $lecture->load('files');
-        $lecture->load('section', 'section.course');
-
         return Inertia::render('admin/edu/lecture/Edit', [
             'lecture' => function () use ($lecture) {
                 LectureResource::withoutWrapping();

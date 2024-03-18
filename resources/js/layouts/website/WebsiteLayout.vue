@@ -9,7 +9,7 @@
                         class="font-semibold hover:text-theme-primary-hover"
                         href="/"
                     >
-                        Home
+                        {{ __('messages.homepage') }}
                     </inertia-link>
 
                     <ul class="flex flex-row space-x-4">
@@ -18,7 +18,7 @@
                                 class="hover:text-theme-primary-hover"
                                 href="#"
                             >
-                                Courses
+                                {{ __('messages.courses') }}
                             </inertia-link>
                         </li>
                         <li>
@@ -26,7 +26,7 @@
                                 class="hover:text-theme-primary-hover"
                                 href="#"
                             >
-                                About
+                                {{ __('messages.about') }}
                             </inertia-link>
                         </li>
                         <li>
@@ -34,7 +34,7 @@
                                 class="hover:text-theme-primary-hover"
                                 href="#"
                             >
-                                Contact
+                                {{ __('messages.contact') }}
                             </inertia-link>
                         </li>
                     </ul>

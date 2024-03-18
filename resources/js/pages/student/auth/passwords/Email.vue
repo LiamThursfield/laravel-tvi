@@ -6,7 +6,7 @@
             <h1
                 class="auth-header"
             >
-                Password Reset
+                {{ __('messages.password-reset') }}
             </h1>
 
             <p
@@ -31,7 +31,7 @@
                     input-name="email"
                     :input-required="true"
                     input-type="email"
-                    label-text="Email"
+                    :label-text="__('messages.email')"
                     @errorHidden="clearPageErrorMessage('email')"
                     v-model="form.email"
                 />
@@ -46,7 +46,7 @@
                         "
                         type="submit"
                     >
-                        Send Password Reset Link
+                        {{ __('messages.send-password-reset-link') }}
                     </button>
                 </div>
             </form>
@@ -60,7 +60,7 @@
                 "
                 :href="$route('student.login')"
             >
-                Login
+                {{ __('messages.login') }}
             </inertia-link>
 
             <inertia-link
@@ -71,7 +71,7 @@
                 "
                 :href="$route('student.register')"
             >
-                Register
+                {{ __('messages.register') }}
             </inertia-link>
         </div>
 

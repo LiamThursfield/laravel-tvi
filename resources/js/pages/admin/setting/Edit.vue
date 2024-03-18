@@ -9,7 +9,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit {{ settingsName }} Settings
+                {{ __('settings.edit', {setting: settingsName}) }}
             </h1>
 
             <button
@@ -28,7 +28,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    {{ __('form.buttons.save') }}
                 </span>
             </button>
         </div>
@@ -50,6 +50,15 @@
                         :label-text="setting.label"
                         :input-options="setting.options"
                         @errorHidden="clearPageErrorMessage(key)"
+                        v-model="formData[key]"
+                    />
+
+                    <colors-setting
+                        v-if="setting.type === 'colors'"
+                        class="mt-4"
+                        :colors="setting.colors"
+                        :default-colors="setting.defaultColors"
+                        :title="setting.label"
                         v-model="formData[key]"
                     />
 
@@ -76,10 +85,11 @@
     import _ from 'lodash';
     import InputGroup from "../../../components/core/forms/InputGroup.vue";
     import SelectGroup from "../../../components/core/forms/SelectGroup.vue";
+    import ColorsSetting from "../../../components/admin/settings/ColorsSetting.vue";
 
     export default {
         name: "AdminSettingEdit",
-        components: {SelectGroup, InputGroup},
+        components: {ColorsSetting, SelectGroup, InputGroup},
         layout: 'admin-layout',
         props: {
             settings: {
@@ -119,8 +129,12 @@
 
                 this.$inertia.put(
                     this.$route('admin.settings.update', this.settingsGroup),
-                    formattedSettings
-                );
+                    formattedSettings,
+                    {
+                        // Some settings may need a page reload to take effect
+                        onSuccess: () => { window.location.reload() }
+                    }
+                )
             }
         },
     }

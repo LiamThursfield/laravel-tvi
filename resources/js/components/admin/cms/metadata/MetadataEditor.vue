@@ -51,6 +51,17 @@
 
                 <input-group
                     class="mt-4"
+                    :error-message="getPageErrorMessage('metadata.keywords')"
+                    input-id="metadata_keywords"
+                    input-name="metadata_keywords"
+                    input-type="text"
+                    label-text="Meta Keywords"
+                    @errorHidden="clearPageErrorMessage('metadata.keywords')"
+                    v-model="editableMetadata.keywords"
+                />
+
+                <input-group
+                    class="mt-4"
                     :error-message="getPageErrorMessage('metadata.canonical')"
                     input-id="metadata_canonical"
                     input-name="metadata_canonical"
@@ -161,6 +172,7 @@
                 editableMetadata: {
                     canonical: '',
                     description: '',
+                    keywords: '',
                     title: '',
                     og_description: '',
                     og_image: '',
