@@ -79,6 +79,8 @@ class StripeCourseCheckoutController extends Controller
 
         $purchase->update();
 
+        DB::commit();
+
         // Redeem the user's purchases if they already exist
         if ($user) {
             app(RedeemUserCoursePurchasesAction::class)->handle($user);
@@ -86,8 +88,6 @@ class StripeCourseCheckoutController extends Controller
             // Send email to customer to register an account
             dispatch(new ProcessCoursePurchaseRegister($payment));
         }
-
-        DB::commit();
 
         return response()->json([
             'success' => true,
