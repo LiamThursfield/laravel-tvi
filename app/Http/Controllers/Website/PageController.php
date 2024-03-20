@@ -18,6 +18,7 @@ class PageController extends Controller
         }
 
         $search_options = [
+            'is_active' => true,
             'page_url'  => $request->getPathInfo(),
             'with'      => [
                 'content',
