@@ -54,7 +54,7 @@
                     />
 
                     <colors-setting
-                        v-if="setting.type === 'colors'"
+                        v-else-if="setting.type === 'colors'"
                         class="mt-4"
                         :colors="setting.colors"
                         :default-colors="setting.defaultColors"

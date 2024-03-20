@@ -20,8 +20,9 @@ require('./filters/prices');
 
 require('./mixins/page-error');
 
-
 require('./component-registration');
+
+require('./inertia-events');
 
 const app = createInertiaApp({
     progress: {
