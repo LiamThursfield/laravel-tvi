@@ -21,6 +21,12 @@ class ThirdPartySettingEditResource extends JsonResource
                'label' => 'Stripe Secret Key',
                'description' => 'The secret key for Stripe.',
            ],
+           'gtm_id' => [
+               'value' => $this->gtm_id,
+               'type' => 'text',
+               'label' => 'GTM ID',
+               'description' => 'The id for Google Tag Manager. Enables GTM if set.',
+           ],
        ];
     }
 }

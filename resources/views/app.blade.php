@@ -1,6 +1,4 @@
-@php
-    $theme = tenant() ? app(\App\Models\Settings\ThemeSettings::class) : null;
-@endphp
+
 
 <!DOCTYPE html>
 <html class="html-base">
@@ -12,16 +10,11 @@
 
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
 
-
         @routes
         <script src="{{ mix('/js/app.js') }}" defer></script>
 
-        @if($theme)
-        <style>
-            #website-layout, #basic-layout, #course-layout {
-                {{ $theme->getColorsAsCssString() }}
-            }
-        </style>
+        @if(tenant())
+            @include('partials.tenant-head')
         @endif
 
         <script>

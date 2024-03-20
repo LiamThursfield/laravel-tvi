@@ -9,6 +9,7 @@ class ThirdPartySettingsUpdateRequest extends BaseRequest
     public function rules() : array
     {
         return [
+            'gtm_id' => 'nullable|string',
             'stripe_publishable_key' => 'nullable|string',
             'stripe_secret_key' => 'nullable|string',
         ];
