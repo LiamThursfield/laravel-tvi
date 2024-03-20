@@ -41,13 +41,13 @@
                             v-if="course.currency === 'GBP'"
                             class="text-sm"
                         >
-                             {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimal }}
+                             {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimalUnlessWhole }}
                         </span>
                         <span
                             v-else-if="course.currency === 'RON'"
                             class="text-sm"
                         >
-                            {{ course.current_price | priceDecimal }} Lei
+                            {{ course.current_price | priceDecimalUnlessWhole }} Lei
                             <small class="font-weight-lighter">(TVA inclus)</small>
                         </span>
                         <span
@@ -78,20 +78,20 @@
                             v-if="course.currency === 'GBP'"
                             class="text-sm"
                         >
-                             {{ course.currency | currencySymbol }} {{ instalmentPlan.instalment_current_price | priceDecimal }}
+                             {{ course.currency | currencySymbol }} {{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }}
                         </span>
                         <span
                             v-else-if="course.currency === 'RON'"
                             class="text-sm"
                         >
-                            {{ instalmentPlan.instalment_current_price | priceDecimal }} Lei
+                            {{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }} Lei
                             <small>(TVA inclus)</small>
                         </span>
                         <span
                             v-else-if="course.currency === 'EUR'"
                             class="text-sm"
                         >
-                             {{ instalmentPlan.instalment_current_price | priceDecimal }} Euro
+                             {{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }} Euro
                         </span>
                         <small>
                             *{{__('messages.pay-in-instalments-note', { numberOfInstalments: instalmentPlan.instalment_count }) }}
