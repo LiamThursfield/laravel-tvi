@@ -155,9 +155,9 @@
 <script>
 import _ from 'lodash';
 import draggable from 'vuedraggable';
-import ConfirmationModal from "../../../core/modals/ConfirmationModal";
-import SectionItemModal from "./SectionItemModal";
-import LectureItemModal from "./LectureItemModal";
+import ConfirmationModal from "../../../core/modals/ConfirmationModal.vue";
+import SectionItemModal from "./SectionItemModal.vue";
+import LectureItemModal from "./LectureItemModal.vue";
 
 export default {
     name: 'SectionItemDraggable',

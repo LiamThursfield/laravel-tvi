@@ -151,7 +151,7 @@
 <script>
     import _ from 'lodash';
 
-    import InputGroup from '../../../core/forms/InputGroup';
+    import InputGroup from '../../../core/forms/InputGroup.vue';
 
     export default {
         name: 'MetadataEditor',

@@ -101,8 +101,8 @@
 <script>
     import _ from 'lodash';
     import { mixin as clickaway } from 'vue-clickaway';
-    import InputGroup from "../../../core/forms/InputGroup";
-    import WysiwygField from "../../cms/content/content_fields/WysiwygField";
+    import InputGroup from "../../../core/forms/InputGroup.vue";
+    import WysiwygField from "../../cms/content/content_fields/WysiwygField.vue";
 
     export default {
         name: "LectureItemModal",

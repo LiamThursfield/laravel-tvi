@@ -91,8 +91,8 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor.vue";
 
     export default {
         name: "AdminCmsMenuEdit",

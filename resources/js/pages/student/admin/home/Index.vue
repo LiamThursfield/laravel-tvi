@@ -57,7 +57,7 @@
 <script>
 
 import CourseCard from "../../../../components/student/admin/course/CourseCard.vue";
-import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
+import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField.vue";
 
 export default {
     name: "StudentAdminHomeIndex",

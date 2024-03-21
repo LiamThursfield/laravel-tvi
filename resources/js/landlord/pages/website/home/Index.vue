@@ -64,12 +64,12 @@
 </template>
 
 <script>
-import AstronautOnMoon from "../../../components/svgs/AstronautOnMoon";
-import BannerBlock from "../../../components/website/banners/BannerBlock";
-import BannerGrid from "../../../components/website/banners/BannerGrid";
-import BannerTechnologies from "../../../components/website/banners/BannerTechnologies";
-import HeroWithSvg from "../../../components/website/heroes/HeroWithSvg";
-import SimpleBanner from "../../../components/website/banners/SimpleBanner";
+import AstronautOnMoon from "../../../components/svgs/AstronautOnMoon.vue";
+import BannerBlock from "../../../components/website/banners/BannerBlock.vue";
+import BannerGrid from "../../../components/website/banners/BannerGrid.vue";
+import BannerTechnologies from "../../../components/website/banners/BannerTechnologies.vue";
+import HeroWithSvg from "../../../components/website/heroes/HeroWithSvg.vue";
+import SimpleBanner from "../../../components/website/banners/SimpleBanner.vue";
 
 export default {
     name: "Index",

@@ -30,7 +30,7 @@
 </template>
 <script>
     import { templateFieldSettingsMixin } from "../../../../../../mixins/admin/cms/template-field-settings";
-    import SelectGroup from "../../../../../core/forms/SelectGroup";
+    import SelectGroup from "../../../../../core/forms/SelectGroup.vue";
 
     export default {
         name: "TemplateFieldRepeaterSettings",

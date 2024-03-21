@@ -162,11 +162,11 @@
 
 <script>
     import slugify from 'slugify';
-    import ArrayGroup from "../../../../components/core/forms/ArrayGroup.";
-    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor";
-    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
+    import ArrayGroup from "../../../../components/core/forms/ArrayGroup.vue";
+    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor.vue";
+    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup.vue";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
 
     export default {
         name: "AdminCrmFormCreate",

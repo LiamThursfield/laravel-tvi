@@ -39,7 +39,7 @@
 
 <script>
     import _ from "lodash";
-    import IconVideo from "../core/icons/IconAlertVideo";
+    import IconVideo from "../core/icons/IconAlertVideo.vue";
 
     export default {
         name: "CourseFeatures",

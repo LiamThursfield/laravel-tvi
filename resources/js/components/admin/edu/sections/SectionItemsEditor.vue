@@ -38,8 +38,8 @@
 
 <script>
     import _ from 'lodash';
-    import SectionItemDraggable from "./SectionItemDraggable";
-    import SectionItemModal from "./SectionItemModal";
+    import SectionItemDraggable from "./SectionItemDraggable.vue";
+    import SectionItemModal from "./SectionItemModal.vue";
 
     export default {
         name: 'SectionItemsEditor',

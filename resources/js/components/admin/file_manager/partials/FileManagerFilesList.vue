@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import FileManagerFilesListFile from "./FileManagerFilesListFile";
+    import FileManagerFilesListFile from "./FileManagerFilesListFile.vue";
 
     export default {
         name: "FileManagerFilesList",

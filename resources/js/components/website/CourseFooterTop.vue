@@ -96,7 +96,7 @@ export default {
                 case 'twitter':
                     return 'icon-twitter';
                 case 'linkedin':
-                    return 'icon-linkedin';
+                    return 'icon-linked-in';
                 case 'youtube':
                     return 'icon-youtube';
                 case 'tiktok':

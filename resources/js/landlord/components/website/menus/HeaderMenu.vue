@@ -82,8 +82,8 @@
     </header>
 </template>
 <script>
-    import HamburgerButton from "../buttons/HamburgerButton";
-    import HeaderMenuMobile from "./HeaderMenuMobile";
+    import HamburgerButton from "../buttons/HamburgerButton.vue";
+    import HeaderMenuMobile from "./HeaderMenuMobile.vue";
 
     export default {
         components: {

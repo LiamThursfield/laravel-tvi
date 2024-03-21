@@ -25,16 +25,16 @@
 </template>
 
 <script>
-import Faq from "../../../../components/website/Faq";
-import AboutAuthor from "../../../../components/website/AboutAuthor";
-import Testimonials from "../../../../components/website/Testimonials";
-import CourseContent from "../../../../components/website/CourseContent";
-import Purchase from "../../../../components/website/Purchase";
-import CourseDescription from "../../../../components/website/CourseDescription";
-import VideoPreview from "../../../../components/website/VideoPreview";
-import CourseFeatures from "../../../../components/website/CourseFeatures";
-import CourseHeader from "../../../../components/website/CourseHeader";
-import CourseFooter from "../../../../components/website/CourseFooter";
+import Faq from "../../../../components/website/Faq.vue";
+import AboutAuthor from "../../../../components/website/AboutAuthor.vue";
+import Testimonials from "../../../../components/website/Testimonials.vue";
+import CourseContent from "../../../../components/website/CourseContent.vue";
+import Purchase from "../../../../components/website/Purchase.vue";
+import CourseDescription from "../../../../components/website/CourseDescription.vue";
+import VideoPreview from "../../../../components/website/VideoPreview.vue";
+import CourseFeatures from "../../../../components/website/CourseFeatures.vue";
+import CourseHeader from "../../../../components/website/CourseHeader.vue";
+import CourseFooter from "../../../../components/website/CourseFooter.vue";
 
 export default {
     name: "EduCourseShow",

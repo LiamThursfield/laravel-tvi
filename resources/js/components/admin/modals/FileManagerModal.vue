@@ -58,7 +58,7 @@
 </template>
 
 <script>
-    import FileManager from "../file_manager/FileManager";
+    import FileManager from "../file_manager/FileManager.vue";
     export default {
         name: "FileManagerModal",
         components: {FileManager},

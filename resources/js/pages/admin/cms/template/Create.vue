@@ -122,9 +122,9 @@
 
 <script>
     import slugify from 'slugify';
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import TemplateFieldEditor from "../../../../components/admin/cms/templates/TemplateFieldEditor"
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import TemplateFieldEditor from "../../../../components/admin/cms/templates/TemplateFieldEditor.vue"
 
     export default {
         name: "AdminCmsTemplateCreate",

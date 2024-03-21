@@ -97,9 +97,9 @@
     import _ from 'lodash';
     import slugify from "slugify";
 
-    import DateTimePickerGroup from '../../../core/forms/DateTimePickerGroup';
-    import InlineCheckboxGroup from "../../../core/forms/InlineCheckboxGroup";
-    import InputGroup from '../../../core/forms/InputGroup';
+    import DateTimePickerGroup from '../../../core/forms/DateTimePickerGroup.vue';
+    import InlineCheckboxGroup from "../../../core/forms/InlineCheckboxGroup.vue";
+    import InputGroup from '../../../core/forms/InputGroup.vue';
 
     let CancelToken = axios.CancelToken;
     let urlCheckCancelToken = CancelToken.source();

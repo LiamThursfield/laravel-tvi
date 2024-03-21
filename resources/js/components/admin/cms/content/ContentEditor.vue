@@ -42,16 +42,16 @@
 
 <script>
     import _ from 'lodash';
-    import CmsMenuField from "./content_fields/CmsMenuField";
-    import CrmFormField from "./content_fields/CrmFormField";
-    import EduCourseField from "./content_fields/EduCourseField";
-    import CrmOrganisationUnitField from "./content_fields/CrmOrganisationUnitField";
-    import ImageField from "./content_fields/ImageField";
-    import NumberField from "./content_fields/NumberField";
-    import RepeaterField from "./content_fields/RepeaterField";
-    import TextAreaField from "./content_fields/TextAreaField";
-    import TextField from "./content_fields/TextField";
-    import WysiwygField from "./content_fields/WysiwygField";
+    import CmsMenuField from "./content_fields/CmsMenuField.vue";
+    import CrmFormField from "./content_fields/CrmFormField.vue";
+    import EduCourseField from "./content_fields/EduCourseField.vue";
+    import CrmOrganisationUnitField from "./content_fields/CrmOrganisationUnitField.vue";
+    import ImageField from "./content_fields/ImageField.vue";
+    import NumberField from "./content_fields/NumberField.vue";
+    import RepeaterField from "./content_fields/RepeaterField.vue";
+    import TextAreaField from "./content_fields/TextAreaField.vue";
+    import TextField from "./content_fields/TextField.vue";
+    import WysiwygField from "./content_fields/WysiwygField.vue";
 
     export default {
         name: 'AdminCmsContentEditor',

@@ -38,8 +38,8 @@
 
 <script>
     import _ from 'lodash';
-    import MenuItemDraggable from "./MenuItemDraggable";
-    import MenuItemModal from "./MenuItemModal";
+    import MenuItemDraggable from "./MenuItemDraggable.vue";
+    import MenuItemModal from "./MenuItemModal.vue";
 
     export default {
         name: 'MenuItemsEditor',

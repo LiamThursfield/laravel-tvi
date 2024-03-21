@@ -165,10 +165,10 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor.vue";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();

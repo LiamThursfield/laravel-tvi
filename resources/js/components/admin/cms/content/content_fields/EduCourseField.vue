@@ -36,7 +36,7 @@
 <script>
     import _ from "lodash";
     import { contentFieldMixin } from "../../../../../mixins/admin/cms/content-field";
-    import SelectGroup from "../../../../core/forms/SelectGroup";
+    import SelectGroup from "../../../../core/forms/SelectGroup.vue";
 
     export default {
         name: "EduCourseField",

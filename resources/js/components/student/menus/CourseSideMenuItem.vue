@@ -46,9 +46,9 @@
 
 <script>
     import CollapseTransition from '@ivanv/vue-collapse-transition';
-    import IconChevronRight from "../../core/icons/IconChevronRight";
-    import IconSquareCheckFilled from "../../core/icons/IconSquareCheckFilled";
-    import IconSquareCheck from "../../core/icons/IconSquareCheck";
+    import IconChevronRight from "../../core/icons/IconChevronRight.vue";
+    import IconSquareCheckFilled from "../../core/icons/IconSquareCheckFilled.vue";
+    import IconSquareCheck from "../../core/icons/IconSquareCheck.vue";
 
     export default {
         name: "SideMenuItem",

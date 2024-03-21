@@ -2,7 +2,7 @@
  * Core - Base Styles
  */
 
- .html-base {
+.html-base {
     @apply bg-theme-base font-sans text-theme-base-contrast;
 }
 

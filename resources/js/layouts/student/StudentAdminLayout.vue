@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import PageAlerts from "../../components/core/alerts/PageAlerts";
-import TenantFooter from "../../components/core/footer/Footer";
+import PageAlerts from "../../components/core/alerts/PageAlerts.vue";
+import TenantFooter from "../../components/core/footer/Footer.vue";
 import StudentTopMenu from "../../components/student/admin/menus/StudentTopMenu.vue";
 
 export default {

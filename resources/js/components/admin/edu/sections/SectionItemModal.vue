@@ -167,8 +167,8 @@
 <script>
     import _ from 'lodash';
     import { mixin as clickaway } from 'vue-clickaway';
-    import InputGroup from "../../../core/forms/InputGroup";
-    import FileManagerFileUploader from "../../../../components/admin/file_manager/partials/FileManagerFileUploader";
+    import InputGroup from "../../../core/forms/InputGroup.vue";
+    import FileManagerFileUploader from "../../../../components/admin/file_manager/partials/FileManagerFileUploader.vue";
 
     let CancelToken = axios.CancelToken;
     let filesCancelToken = CancelToken.source();

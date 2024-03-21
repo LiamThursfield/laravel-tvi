@@ -1,13 +1,9 @@
 {
     "private": true,
     "scripts": {
-        "dev": "mix",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "mix --production",
-        "production": "mix --production"
+        "dev": "vite",
+        "prod": "vite build",
+        "build": "vite build"
     },
     "devDependencies": {
         "@inertiajs/vue2": "^1.0.2",
@@ -20,7 +16,6 @@
         "cross-env": "^7.0",
         "dayjs": "^1.10.3",
         "es6-promise": "^4.2.8",
-        "laravel-mix": "^6.0",
         "lodash": "^4.17.13",
         "object-path": "^0.11.5",
         "postcss": "^8.2.1",
@@ -31,7 +26,7 @@
         "slugify": "^1.4.6",
         "tailwindcss": "^2.0.4",
         "tippy.js": "^6.2.6",
-        "vue": "^2.5.17",
+        "vue": "^2.7.0",
         "vue-clickaway": "^2.2.2",
         "vue-cookies": "^1.7.4",
         "vue-loader": "^15.9.5",
@@ -42,7 +37,10 @@
         "vue2-dropzone": "^3.6.0",
         "vuedraggable": "^2.24.3",
         "vuex": "^3.5.1",
-        "webpack": "^5.10.0"
+        "webpack": "^5.10.0",
+        "vite": "^3.0.2",
+        "laravel-vite-plugin": "^0.6.0",
+        "@vitejs/plugin-vue2": "^1.1.2"
     },
     "peerDependencies": {
         "postcss": "^8.2.1"

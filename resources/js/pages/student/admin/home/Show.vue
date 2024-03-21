@@ -274,16 +274,16 @@
 <script>
 import _ from 'lodash';
 
-import CourseSideMenuItem from "../../../../components/student/menus/CourseSideMenuItem";
-import IconSquareCheck from "../../../../components/core/icons/IconSquareCheck";
+import CourseSideMenuItem from "../../../../components/student/menus/CourseSideMenuItem.vue";
+import IconSquareCheck from "../../../../components/core/icons/IconSquareCheck.vue";
 import CollapseTransition from "@ivanv/vue-collapse-transition";
-import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
-import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
-import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
-import IconPlus from "../../../../components/core/icons/IconPlus";
-import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
-import IconVideo from "../../../../components/core/icons/IconAlertVideo";
-import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
+import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal.vue";
+import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled.vue";
+import IconBookDownload from "../../../../components/core/icons/IconBookDownload.vue";
+import IconPlus from "../../../../components/core/icons/IconPlus.vue";
+import Wavesurfer from "../../../../components/core/audio/Wavesurfer.vue";
+import IconVideo from "../../../../components/core/icons/IconAlertVideo.vue";
+import IconHeadphones from "../../../../components/core/icons/IconHeadphones.vue";
 import {Zora} from "../../../../zora";
 
 

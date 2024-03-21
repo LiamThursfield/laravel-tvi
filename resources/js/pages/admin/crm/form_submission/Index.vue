@@ -132,8 +132,8 @@
 <script>
     import _ from 'lodash';
     import { router } from '@inertiajs/vue2';
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
 
     export default {
         name: "AdminCrmFormSubmissionIndex",

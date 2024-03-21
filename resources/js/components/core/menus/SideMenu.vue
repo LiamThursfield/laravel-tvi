@@ -68,9 +68,8 @@
 </template>
 
 <script>
-
     import _ from 'lodash';
-    import SideMenuItem from "./SideMenuItem";
+    import SideMenuItem from "./SideMenuItem.vue";
 
     export default {
         name: "SideMenu",

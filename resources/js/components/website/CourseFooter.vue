@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import CourseFooterTop from "./CourseFooterTop";
-import CourseFooterBottom from "./CourseFooterBottom";
+import CourseFooterTop from "./CourseFooterTop.vue";
+import CourseFooterBottom from "./CourseFooterBottom.vue";
 
 export default {
     name: "CourseFooter",

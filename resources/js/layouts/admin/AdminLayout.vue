@@ -29,8 +29,8 @@
 <script>
     import { router } from '@inertiajs/vue2'
 
-    import FileManagerModal from "../../components/admin/modals/FileManagerModal";
-    import PageAlerts from "../../components/core/alerts/PageAlerts";
+    import FileManagerModal from "../../components/admin/modals/FileManagerModal.vue";
+    import PageAlerts from "../../components/core/alerts/PageAlerts.vue";
 
     export default {
         name: "AdminLayout",

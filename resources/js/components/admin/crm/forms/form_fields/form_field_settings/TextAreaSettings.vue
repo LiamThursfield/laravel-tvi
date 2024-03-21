@@ -25,7 +25,7 @@
 </template>
 <script>
     import { formFieldSettingsMixin } from "../../../../../../mixins/admin/crm/form-field-settings";
-    import InputGroup from "../../../../../core/forms/InputGroup";
+    import InputGroup from "../../../../../core/forms/InputGroup.vue";
 
     export default {
         name: "FormFieldTextAreaSettings",

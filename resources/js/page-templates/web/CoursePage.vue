@@ -44,10 +44,10 @@
     import Purchase from "../../components/website/Purchase.vue";
     import CourseContent from "../../components/website/CourseContent.vue";
     import CourseDescription from "../../components/website/CourseDescription.vue";
-    import Faq from "../../components/website/Faq";
-    import AboutAuthor from "../../components/website/AboutAuthor";
-    import Testimonials from "../../components/website/Testimonials";
-    import CourseFooter from "../../components/website/CourseFooter";
+    import Faq from "../../components/website/Faq.vue";
+    import AboutAuthor from "../../components/website/AboutAuthor.vue";
+    import Testimonials from "../../components/website/Testimonials.vue";
+    import CourseFooter from "../../components/website/CourseFooter.vue";
 
     export default {
         name: "CoursePage",

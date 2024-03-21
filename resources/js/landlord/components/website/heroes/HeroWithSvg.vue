@@ -23,7 +23,7 @@
     </section>
 </template>
 <script>
-    import AstronautOnMoon from "../../svgs/AstronautOnMoon";
+    import AstronautOnMoon from "../../svgs/AstronautOnMoon.vue";
     export default {
         components: {AstronautOnMoon},
         props: {

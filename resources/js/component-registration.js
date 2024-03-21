@@ -9,22 +9,38 @@ import { Link } from "@inertiajs/vue2";
 Vue.component('inertia-link', Link);
 
 // Layouts
-Vue.component('admin-layout', require('./layouts/admin/AdminLayout.vue').default);
-Vue.component('auth-layout', require('./layouts/auth/AuthLayout.vue').default);
-Vue.component('student-admin-layout', require('./layouts/student/StudentAdminLayout.vue').default);
-Vue.component('home-layout', require('./layouts/website/HomeLayout.vue').default);
-Vue.component('website-layout', require('./layouts/website/WebsiteLayout.vue').default);
+import AdminLayout from './layouts/admin/AdminLayout.vue';
+Vue.component('admin-layout', AdminLayout);
+import AuthLayout from './layouts/auth/AuthLayout.vue';
+Vue.component('auth-layout', AuthLayout);
+import StudentAdminLayout from './layouts/student/StudentAdminLayout.vue';
+Vue.component('student-admin-layout', StudentAdminLayout);
+import HomeLayout from './layouts/website/HomeLayout.vue';
+Vue.component('home-layout', HomeLayout);
+import WebsiteLayout from './layouts/website/WebsiteLayout.vue';
+Vue.component('website-layout', WebsiteLayout);
 
 // Admin
-Vue.component('content-editor', require('./components/admin/cms/content/ContentEditor.vue').default);
+import ContentEditor from "./components/admin/cms/content/ContentEditor.vue";
+Vue.component('content-editor', ContentEditor);
 
 // Icons
 // Autoload any icons inside /components/core/icons
-const iconFiles = require.context('./components/core/icons', true, /\.vue$/i);
-iconFiles.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], iconFiles(key).default));
+const iconFiles = import.meta.globEager('./components/core/icons/*.vue');
+Object.entries(iconFiles).forEach(([path, m]) => {
+    const componentName = path.split('/').pop().split('.')[0];
+    Vue.component(componentName, m.default);
+});
 
 // Core
-Vue.component('side-menu', require('./components/core/menus/SideMenu.vue').default);
-Vue.component('top-menu', require('./components/core/menus/TopMenu.vue').default);
-Vue.component('pagination', require('./components/core/pagination/Pagination.vue').default);
-Vue.component('logo-light', require('./components/core/logos/LogoLight.vue').default);
+import SideMenu from "./components/core/menus/SideMenu.vue";
+Vue.component('side-menu', SideMenu);
+
+import TopMenu from "./components/core/menus/TopMenu.vue";
+Vue.component('top-menu', TopMenu);
+
+import Pagination from "./components/core/pagination/Pagination.vue";
+Vue.component('pagination', Pagination);
+
+import LogoLight from "./components/core/logos/LogoLight.vue";
+Vue.component('logo-light', LogoLight);

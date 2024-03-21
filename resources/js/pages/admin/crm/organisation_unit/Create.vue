@@ -277,8 +277,8 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
 
     let CancelToken = axios.CancelToken;
     let companiesCancelToken = CancelToken.source();

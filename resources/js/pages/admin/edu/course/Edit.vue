@@ -404,14 +404,14 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
-    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
-    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
+    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup.vue";
+    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor.vue";
     import _ from "lodash";
-    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
+    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField.vue";
 
     export default {
         name: "AdminEduCourseEdit",

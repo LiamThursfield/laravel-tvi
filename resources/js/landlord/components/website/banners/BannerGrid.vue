@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-    import IconCheck from "../../../../components/core/icons/IconCheck";
+    import IconCheck from "../../../../components/core/icons/IconCheck.vue";
     export default {
         name: "BannerGrid",
         components: {IconCheck},
