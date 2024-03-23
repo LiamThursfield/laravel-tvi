@@ -12,7 +12,7 @@
         "fakerphp/faker": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "honeybadger-io/honeybadger-laravel": "^3.18",
-        "inertiajs/inertia-laravel": "^0.6",
+        "inertiajs/inertia-laravel": "^1.0.0",
         "laravel/framework": "^10.0",
         "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.0",

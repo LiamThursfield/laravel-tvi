@@ -7,7 +7,10 @@
         <title>SIGI</title>
 
         @routes
+
         @vite('resources/js/app.js')
+
+        @inertiaHead
 
         @if(tenant())
             @include('partials.tenant-head')

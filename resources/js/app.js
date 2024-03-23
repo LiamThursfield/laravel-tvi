@@ -2,12 +2,10 @@ import './bootstrap';
 
 import Vue from 'vue';
 import { store } from './store/admin';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ro';
-dayjs.locale('ro');
 
 import { createInertiaApp } from '@inertiajs/vue2';
 
+import './plugins/dayjs';
 import './plugins/toasted';
 import './plugins/vue2-datepicker';
 import './plugins/vue-cookies';
