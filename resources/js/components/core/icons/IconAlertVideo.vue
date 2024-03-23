@@ -19,6 +19,6 @@
 
 <script>
     export default {
-        name: "IconVideo",
+        name: "IconAlertVideo",
     }
 </script>

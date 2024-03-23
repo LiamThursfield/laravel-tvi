@@ -79,6 +79,17 @@
                     v-model="formData.slug"
                 />
 
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('submit_button_text')"
+                    input-id="submit_button_text"
+                    input-name="submit_button_text"
+                    input-type="text"
+                    label-text="Submit Button Text (Leave blank for default)"
+                    @errorHidden="clearPageErrorMessage('submit_button_text')"
+                    v-model="formData.submit_button_text"
+                />
+
                 <text-area-group
                     class="mt-4"
                     :error-message="getPageErrorMessage('success_message')"
@@ -204,6 +215,7 @@
                     name: '',
                     redirect_url: '',
                     slug: '',
+                    submit_button_text: '',
                     success_message: '',
                 },
             }
