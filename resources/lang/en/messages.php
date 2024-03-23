@@ -59,6 +59,7 @@ return [
     'course-preview' => 'Course Preview',
     'dates' => 'Dates',
     'to' => 'to',
+    'videos' => 'videos',
 
     // Payments
     'pay-in-full' => 'Pay in full',

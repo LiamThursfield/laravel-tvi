@@ -60,6 +60,7 @@ return [
     'course-preview' => 'Preview curs',
     'dates' => 'Data',
     'to' => 'pana la',
+    'videos' => 'videoclipuri',
 
     // Payments
     'pay-in-full' => 'Plătesc integral',

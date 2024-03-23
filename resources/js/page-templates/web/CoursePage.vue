@@ -5,6 +5,7 @@
         <course-features :course="course" />
 
         <purchase
+            v-if="course.status === 'published'"
             class="bg-theme-base-subtle"
             :course="course"
         />
@@ -38,16 +39,16 @@
 <script>
     import { pageWithMetaMixin } from "../../mixins/website/page-with-meta";
 
-    import CourseHeader from "../../components/website/CourseHeader.vue";
-    import CourseFeatures from "../../components/website/CourseFeatures.vue";
-    import VideoPreview from "../../components/website/VideoPreview.vue";
-    import Purchase from "../../components/website/Purchase.vue";
-    import CourseContent from "../../components/website/CourseContent.vue";
-    import CourseDescription from "../../components/website/CourseDescription.vue";
-    import Faq from "../../components/website/Faq.vue";
-    import AboutAuthor from "../../components/website/AboutAuthor.vue";
-    import Testimonials from "../../components/website/Testimonials.vue";
-    import CourseFooter from "../../components/website/CourseFooter.vue";
+    import CourseHeader from "../../components/website/course/CourseHeader.vue";
+    import CourseFeatures from "../../components/website/course/CourseFeatures.vue";
+    import VideoPreview from "../../components/website/course/VideoPreview.vue";
+    import Purchase from "../../components/website/course/Purchase.vue";
+    import CourseContent from "../../components/website/course/CourseContent.vue";
+    import CourseDescription from "../../components/website/course/CourseDescription.vue";
+    import Faq from "../../components/website/course/Faq.vue";
+    import AboutAuthor from "../../components/website/course/AboutAuthor.vue";
+    import Testimonials from "../../components/website/course/Testimonials.vue";
+    import CourseFooter from "../../components/website/course/CourseFooter.vue";
 
     export default {
         name: "CoursePage",
