@@ -142,7 +142,7 @@
             }
         },
         mounted() {
-            // TODO:: Temoorary fix to redirect to the first course until there is a homepage
+            // TODO:: Temporary fix to redirect to the first course until there is a homepage
             router.get('/cursuri/' + this.courses[0].slug);
         }
     }

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="html-base">
     <head>
