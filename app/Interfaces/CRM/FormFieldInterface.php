@@ -32,12 +32,14 @@ class FormFieldInterface
 
     // Standard Form Field Types
     const TYPE_EMAIL    = 'email';
+    const TYPE_HIDDEN   = 'hidden';
     const TYPE_NUMBER   = 'number';
     const TYPE_TEXT     = 'text';
     const TYPE_TEXTAREA = 'textarea';
 
     const ALL_STANDARD_TYPES = [
         self::TYPE_EMAIL,
+        self::TYPE_HIDDEN,
         self::TYPE_NUMBER,
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
@@ -50,6 +52,7 @@ class FormFieldInterface
         self::TYPE_CRM_TITLE        => 'CRM Title',
         self::TYPE_CRM_TELEPHONE    => 'CRM Telephone',
         self::TYPE_EMAIL            => 'Email',
+        self::TYPE_HIDDEN           => 'Hidden',
         self::TYPE_NUMBER           => 'Number',
         self::TYPE_TEXT             => 'Text',
         self::TYPE_TEXTAREA         => 'Textarea',
@@ -63,6 +66,7 @@ class FormFieldInterface
         self::TYPE_CRM_TITLE        => [],
         self::TYPE_CRM_TELEPHONE    => [],
         self::TYPE_EMAIL            => [],
+        self::TYPE_HIDDEN           => [],
         self::TYPE_NUMBER           => [
             'min' => null,
             'max' => null,

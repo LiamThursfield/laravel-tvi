@@ -10,6 +10,13 @@
             :course="course"
         />
 
+        <course-interest-form
+            v-else-if="interestForm"
+            class="bg-theme-base-subtle "
+            :course="course"
+            :form="interestForm"
+        />
+
         <video-preview
             :course="course"
             :video-preview-text="videoPreviewText"
@@ -49,6 +56,8 @@
     import AboutAuthor from "../../components/website/edu/course/AboutAuthor.vue";
     import Testimonials from "../../components/website/edu/course/Testimonials.vue";
     import CourseFooter from "../../components/website/edu/course/CourseFooter.vue";
+    import StandardForm from "../../components/website/cms/forms/StandardForm.vue";
+    import CourseInterestForm from "../../components/website/edu/course/CourseInterestForm.vue";
 
     export default {
         name: "CoursePage",
@@ -56,6 +65,8 @@
             pageWithMetaMixin
         ],
         components: {
+            CourseInterestForm,
+            StandardForm,
             CourseDescription,
             CourseContent,
             Purchase,
@@ -91,6 +102,9 @@
             },
             footerMenu() {
                 return this.getLayoutFieldData('footer-menu');
+            },
+            interestForm() {
+                return this.getLayoutFieldData('course-interest-form');
             },
             faqs() {
                 try {

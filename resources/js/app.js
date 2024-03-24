@@ -17,6 +17,7 @@ import './filters/date-times';
 import './filters/prices';
 
 import './mixins/page-error';
+import './mixins/zora';
 
 import './component-registration';
 
