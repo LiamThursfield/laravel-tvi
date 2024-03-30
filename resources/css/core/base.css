@@ -22,7 +22,7 @@
     opacity: 0.5;
 }
 
-.course-menu {
+.sticky-menu {
     overflow: hidden;
     background-color: white;
     position: sticky;

@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('courses.create')"
-            class="flex flex-row items-center mb-6 course-menu"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Create

@@ -107,7 +107,7 @@
                     :disabled="!paymentType || isLoadingCheckout"
                     @click="purchaseCourse"
                 >
-                    {{__('messages.purchase') }}
+                    {{__('messages.sign-up') }}
 
                     <icon-loader-circle
                         v-if="isLoadingCheckout"

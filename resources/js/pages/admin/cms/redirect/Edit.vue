@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('cms_advanced.edit')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit Redirect - {{ redirect.url_from }}
