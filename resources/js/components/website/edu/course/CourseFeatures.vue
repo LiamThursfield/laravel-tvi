@@ -52,14 +52,19 @@
             return {
                 featureList: [
                     {
-                        force_active: true,
-                        icon: 'icon-device-mobile',
-                        label: 'messages.access-on-mobile'
+                        feature_name: 'has_pdfs',
+                        icon: 'icon-book-download',
+                        label: 'messages.resources-pdfs'
                     },
                     {
                         feature_name: 'has_webinars',
                         icon: 'icon-camera-check',
-                        label: 'messages.webinars'
+                        label: 'messages.weekly-webinars'
+                    },
+                    {
+                        force_active: true,
+                        icon: 'icon-device-mobile',
+                        label: 'messages.access-on-mobile'
                     },
                     {
                         feature_name: 'has_money_back_guarantee',
@@ -75,11 +80,6 @@
                         feature_name: 'has_lifetime_access',
                         icon: 'icon-check',
                         label: 'messages.lifetime-access'
-                    },
-                    {
-                        feature_name: 'has_pdfs',
-                        icon: 'icon-book-download',
-                        label: 'messages.resources-pdfs'
                     },
                     {
                         feature_name: 'has_student_discount',

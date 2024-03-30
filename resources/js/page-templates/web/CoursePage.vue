@@ -2,20 +2,9 @@
     <main class="bg-theme-base text-theme-base-contrast">
         <course-header :course="course" />
 
+        <course-call-to-action :data="courseCallToActionText" />
+
         <course-features :course="course" />
-
-        <purchase
-            v-if="course.status === 'PUBLISHED'"
-            class="bg-theme-base-subtle"
-            :course="course"
-        />
-
-        <course-interest-form
-            v-else-if="interestForm"
-            class="bg-theme-base-subtle "
-            :course="course"
-            :form="interestForm"
-        />
 
         <video-preview
             :course="course"
@@ -31,6 +20,19 @@
         <about-author
             :bio="authorBio"
             :name="authorName"
+        />
+
+        <purchase
+            v-if="course.status === 'PUBLISHED'"
+            class="bg-theme-base-subtle"
+            :course="course"
+        />
+
+        <course-interest-form
+            v-else-if="interestForm"
+            class="bg-theme-base-subtle "
+            :course="course"
+            :form="interestForm"
         />
 
         <testimonials :testimonials="testimonials" />
@@ -58,6 +60,7 @@
     import CourseFooter from "../../components/website/edu/course/CourseFooter.vue";
     import StandardForm from "../../components/website/cms/forms/StandardForm.vue";
     import CourseInterestForm from "../../components/website/edu/course/CourseInterestForm.vue";
+    import CourseCallToAction from "../../components/website/edu/course/CourseCallToAction.vue";
 
     export default {
         name: "CoursePage",
@@ -65,6 +68,7 @@
             pageWithMetaMixin
         ],
         components: {
+            CourseCallToAction,
             CourseInterestForm,
             StandardForm,
             CourseDescription,
@@ -87,6 +91,9 @@
         computed: {
             course() {
                 return this.getContentFieldData('course');
+            },
+            courseCallToActionText() {
+                return this.getLayoutFieldData('course-call-to-action');
             },
             authorBio() {
                 return this.getLayoutFieldData('author-bio');

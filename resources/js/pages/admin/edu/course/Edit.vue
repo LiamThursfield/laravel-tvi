@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('courses.edit')"
-            class="flex flex-row items-center mb-6 course-menu"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit - <b>{{ course.name }}</b>

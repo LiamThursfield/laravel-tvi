@@ -22,7 +22,7 @@
                         class="button button-small button-primary font-semibold"
                         href="#purchase"
                     >
-                        {{ __('messages.purchase') }}
+                        {{ __('messages.sign-up') }}
                     </a>
 
                     <a

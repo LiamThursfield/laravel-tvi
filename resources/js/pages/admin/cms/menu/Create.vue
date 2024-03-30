@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('cms.create')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Create Menu
