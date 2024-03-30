@@ -43,7 +43,7 @@ return [
 
     'created-by' => 'Creat de',
     'author' => 'Autor',
-    'course-content' => 'Conținutul cursului',
+    'course-content' => 'Conținutul programului',
     'additional-course-details' => 'Descriere program',
     'download-pdfs' => 'Descarcă PDFs',
     'resources-pdfs' => 'Resurse PDF',
@@ -63,8 +63,8 @@ return [
     'videos' => 'Videoclipuri',
 
     // Payments
-    'pay-in-full' => 'Plătesc integral',
-    'pay-in-instalments' => 'Plătesc în :numberOfInstalments rate',
+    'pay-in-full' => 'Plătește integral',
+    'pay-in-instalments' => 'Plătește în :numberOfInstalments rate',
     'purchase' => 'Comandă acum',
     'purchase-success' => 'Comandă plasată',
     'purchase-cancel' => 'Comandă anulată',

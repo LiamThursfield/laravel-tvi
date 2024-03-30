@@ -2,14 +2,14 @@
     <main class="bg-theme-base text-theme-base-contrast">
         <course-header :course="course" />
 
-        <course-call-to-action :data="courseCallToActionText" />
+<!--        <course-call-to-action :data="courseCallToActionText" />-->
 
         <course-features :course="course" />
 
-        <video-preview
-            :course="course"
-            :video-preview-text="videoPreviewText"
-        />
+<!--        <video-preview-->
+<!--            :course="course"-->
+<!--            :video-preview-text="videoPreviewText"-->
+<!--        />-->
 
         <course-description :course="course" />
 
