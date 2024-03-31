@@ -119,6 +119,7 @@ return [
         'numbers' => 'Parola trebuie să conțină cel puțin un număr.',
         'symbols' => 'Parola trebuie să conțină cel puțin un simbol.',
         'uncompromised' => 'Această parolă a apărut într-o scurgere de date. Vă rugăm să alegeți o altă parolă.',
+        'min' => 'Parola trebuie să conțină cel putin :min caractere.',
     ],
     'present' => 'The :attribute field must be present.',
     'present_if' => 'The :attribute field must be present when :other is :value.',

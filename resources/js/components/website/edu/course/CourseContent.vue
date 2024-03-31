@@ -1,12 +1,12 @@
 <template>
     <section
         v-if="sections"
-        class="px-4 py-12"
+        class="px-4 py-12 bg-theme-base"
     >
         <div class="container max-w-screen-lg mx-auto">
-            <div class="max-w-screen-md">
+            <div class="max-w-screen-lg">
                 <p class="font-bold mb-4 text-lg">
-                    {{ __('messages.course-content') }}:
+                    {{ __('messages.course-content') }}
                 </p>
 
                 <div

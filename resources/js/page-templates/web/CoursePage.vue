@@ -2,20 +2,15 @@
     <main class="bg-theme-base text-theme-base-contrast">
         <course-header :course="course" />
 
-        <course-call-to-action :data="courseCallToActionText" />
-
         <course-features :course="course" />
-
-        <video-preview
-            :course="course"
-            :video-preview-text="videoPreviewText"
-        />
-
-        <course-description :course="course" />
 
         <course-content :course="course" />
 
+        <course-description :course="course" />
+
         <faq :faqs="faqs" />
+
+        <course-call-to-action :data="courseCallToActionText" />
 
         <about-author
             :bio="authorBio"
