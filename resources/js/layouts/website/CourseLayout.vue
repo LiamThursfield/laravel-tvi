@@ -20,7 +20,7 @@
                     <a
                         v-if="course.status === 'PUBLISHED'"
                         class="button button-primary font-semibold"
-                        style="border-radius: 50px; animation: pulse 4.5s infinite;"
+                        style="border-radius: 50px; animation: example 4.5s infinite;"
                         href="#purchase"
                     >
                         {{ __('messages.sign-up') }}

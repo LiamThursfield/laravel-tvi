@@ -12,6 +12,7 @@ import './plugins/vue-cookies';
 import './plugins/vue-meta';
 import './plugins/ziggy';
 import './plugins/zora';
+import './plugins/anime'
 
 import './filters/date-times';
 import './filters/prices';
