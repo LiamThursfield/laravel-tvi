@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         Tenant::all()->each(function (Tenant $tenant) use ($schedule) {
             $schedule->command(
                 `course:process-purchase-payments-due {$tenant}`
-            )->dailyAt('05:00');
+            )->everyMinute();
         });
     }
 
