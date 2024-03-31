@@ -25,10 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        if (Tenant::current()){
-            $schedule->command('course:process-purchase-payments-due')
-                ->dailyAt('05:00');
-        }
+         // Tenant commands
+        Tenant::all()->each(function (Tenant $tenant) use ($schedule) {
+            $schedule->command(
+                `course:process-purchase-payments-due {$tenant}`
+            )->dailyAt('05:00');
+        });
     }
 
     /**
