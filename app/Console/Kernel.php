@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
             $schedule->command(
                 ProcessCoursePurchasePaymentsDue::class,
                 [$tenant->id]
-            )->everyMinute();
+            )->dailyAt('05:00');
         });
     }
 

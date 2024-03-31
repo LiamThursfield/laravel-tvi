@@ -27,7 +27,6 @@ class ProcessCoursePurchasePaymentsDue extends Command
 
     public function handle() : void
     {
-        throw new \Exception('Testing: ' . tenant()->id);
         dispatch(new \App\Jobs\EDU\Course\ProcessCoursePurchasePaymentsDue());
     }
 }
