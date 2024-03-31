@@ -102,8 +102,7 @@
 
             <div class="flex flex-row justify-center">
                 <button
-                    class="button button-primary flex flex-row justify-center mt-6 text-xl"
-                    style="min-width: 300px"
+                    class="button button-primary flex flex-row justify-center max-w-250px mt-6 rounded-full text-xl w-full"
                     :disabled="!paymentType || isLoadingCheckout"
                     @click="purchaseCourse"
                 >

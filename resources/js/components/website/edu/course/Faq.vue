@@ -1,8 +1,7 @@
 <template>
     <section
         v-if="isFaqs"
-        class="px-4"
-        style="padding-top: 3rem;"
+        class="px-4 py-12"
     >
         <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-lg">

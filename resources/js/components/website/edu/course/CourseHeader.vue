@@ -29,8 +29,7 @@
 
             <div class="flex flex-row justify-center mt-5">
                 <a
-                    class="button button-primary flex flex-row justify-center mt-6 text-xl w-1/2"
-                    style="border-radius: 50px; width: 250px;"
+                    class="button button-primary flex flex-row justify-center max-w-250px mt-6 rounded-full text-xl w-full"
                     href="#purchase"
                 >
                     {{ __('messages.sign-up') }}

@@ -1,5 +1,5 @@
 <template>
-    <section class="px-4" style="padding-top: 3rem; padding-bottom: 3rem;">
+    <section class="px-4 py-12">
         <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-lg">
                 <p class="font-bold mb-4 text-lg">
@@ -14,11 +14,11 @@
                 </p>
                 <p
                     v-if="bio.length"
+                    class="text-justify"
                     :class="{
                         'mt-2': name.length
                     }"
                     v-html="bio"
-                    style="text-align: justify;"
                  />
             </div>
         </div>

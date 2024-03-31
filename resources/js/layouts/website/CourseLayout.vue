@@ -19,8 +19,7 @@
 
                     <a
                         v-if="course.status === 'PUBLISHED'"
-                        class="button button-primary font-semibold"
-                        style="border-radius: 50px; animation: example 4.5s infinite;"
+                        class="animate-bg-primary-to-secondary button button-primary font-semibold rounded-full"
                         href="#purchase"
                     >
                         {{ __('messages.sign-up') }}
@@ -28,7 +27,7 @@
 
                     <a
                         v-else
-                        class="button button-small button-primary font-semibold"
+                        class="animate-bg-primary-to-secondary button button-primary font-semibold rounded-full"
                         href="#interest-form"
                     >
                         {{ transWithFallback('messages.register_interest', 'Register Interest') }}

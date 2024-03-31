@@ -83,6 +83,7 @@ return [
     'labels' => 'Labels',
     'purchases' => 'Purchases',
     'webinars' => 'Webinars',
+    'weekly-webinars' => 'Weekly Webinars',
     'file-manager' => 'File Manager',
     'view' => 'View',
     'create' => 'Create',

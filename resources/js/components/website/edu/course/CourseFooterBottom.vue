@@ -50,12 +50,7 @@
             </div>
 
             <!-- TODO: Replace with CMS via repeater with {Image, Link, Label -->
-            <div class="p-1 text-center"
-                 style="
-                    display: flex;
-                    justify-content: center;
-                    list-style-type:none;"
-            >
+            <div class="flex justify-center p-1 text-center">
                 <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">
                     <img width="150" height="35" src="https://sigi-media-pub.s3.eu-west-1.amazonaws.com/img-sol.webp" alt="ANPC SAL">
                 </a>

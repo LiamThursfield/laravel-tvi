@@ -6,7 +6,7 @@
                     {{__('messages.additional-course-details') }}
                 </p>
 
-                <div style="text-align: justify;">
+                <div class="text-justify">
                     <p v-html="course.description" />
                 </div>
             </div>

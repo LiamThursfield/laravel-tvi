@@ -15,7 +15,10 @@
                             :key="`menu-item-` + index"
                             class="pt-2"
                         >
-                            <a :href="item.href" style="text-transform: capitalize;">
+                            <a
+                                class="capitalize"
+                                :href="item.href"
+                            >
                                 {{ item.label }}
                             </a>
                         </li>
@@ -24,10 +27,7 @@
 
                 <div v-if="socials">
                     <h1 class="font-bold mb-2">Socials</h1>
-                    <ul style="
-                        display: flex;
-                        list-style-type:none;"
-                    >
+                    <ul class="flex list-none">
                         <li
                             v-for="(value, key, index) in socials"
                             :key="`social-` + index"
@@ -40,7 +40,10 @@
                                     :is="getIconComponent(key)"
                                     class="w-8 md:mr-2"
                                 />
-                                <span v-else style="text-transform: capitalize;">
+                                <span
+                                    v-else
+                                    class="capitalize"
+                                >
                                     {{ key }}
                                 </span>
                             </a>

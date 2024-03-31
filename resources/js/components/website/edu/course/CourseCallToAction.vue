@@ -6,8 +6,7 @@
             <div class="max-w-screen-lg">
                 <div class="flex flex-row justify-center">
                     <a
-                        class="button button-primary flex flex-row justify-center mt-6 text-xl"
-                        style="border-radius: 50px; width: 250px; animation: example 4.5s infinite;"
+                        class="animate-bg-primary-to-secondary button button-primary flex flex-row justify-center max-w-250px mt-6 rounded-full text-xl w-full"
                         href="#purchase"
                     >
                         {{ __('messages.sign-up') }}
