@@ -27,6 +27,7 @@ class StripeCourseCheckoutController extends Controller
             case Event::CHECKOUT_SESSION_COMPLETED:
                 return $this->handleSessionCompleted($event);
             case Event::CHARGE_EXPIRED:
+            case Event::CHECKOUT_SESSION_EXPIRED:
                 return $this->handleIgnoredEvent($event);
             default:
                 throw new MethodNotAllowedException(
