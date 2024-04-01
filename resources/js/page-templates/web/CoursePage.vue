@@ -8,9 +8,9 @@
 
         <course-description :course="course" />
 
-        <faq :faqs="faqs" />
-
         <course-call-to-action :data="courseCallToActionText" />
+
+        <faq :faqs="faqs" />
 
         <about-author
             :bio="authorBio"

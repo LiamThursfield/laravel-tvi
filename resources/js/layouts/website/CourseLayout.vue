@@ -11,10 +11,19 @@
             >
                 <div class="container flex flex-row items-center justify-between mx-auto">
                     <inertia-link
+                        v-if="!logoUrl"
                         class="font-semibold hover:text-theme-primary-hover"
                         href="/"
                     >
                         {{ __('messages.homepage') }}
+                    </inertia-link>
+
+                    <inertia-link
+                        v-else
+                        class="logo"
+                        href="/"
+                    >
+                        <img :src="logoUrl" class="mr-2 w-12"/>
                     </inertia-link>
 
                     <a
@@ -66,6 +75,13 @@
             course() {
                 return this.getContentFieldData('course');
             },
+            logoUrl() {
+                try {
+                    return this.page.data.logo_url;
+                } catch (e) {
+                    return null;
+                }
+            },
             isStickyHeader() {
                 // TODO: Use observers
                 return true;
@@ -79,7 +95,7 @@
                 } catch (e) {
                     return defaultValue;
                 }
-            },
+            }
         }
     }
 </script>

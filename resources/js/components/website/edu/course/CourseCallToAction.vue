@@ -1,6 +1,7 @@
 <template>
     <section
-        class="bg-gray-100 px-4 py-12"
+        class="bg-gray-100 px-4"
+        style="padding-bottom: 3rem;"
     >
         <div class="container max-w-screen-lg mx-auto">
             <div class="max-w-screen-lg">

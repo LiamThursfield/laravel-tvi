@@ -31,7 +31,7 @@
 }
 
 .animate-bg-primary-to-secondary {
-    animation: 4.5s ease 0s infinite normal none running bg-primary-to-secondary;
+    animation: 4.5s ease-in-out 1s infinite normal none running bg-primary-to-secondary;
 }
 
 @-webkit-keyframes move-forever1 {

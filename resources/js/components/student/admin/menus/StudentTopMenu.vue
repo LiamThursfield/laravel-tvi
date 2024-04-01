@@ -12,7 +12,13 @@
                 class="hover:text-theme-primary-hover"
                 :href="$route(item.route)"
             >
-                {{__('messages.' + item.label) }}
+                <span v-if="!logoUrl">{{__('messages.' + item.label) }}</span>
+                <span
+                    v-else
+                    class="logo"
+                >
+                    <img :src="logoUrl" class="mr-2 w-12"/>
+                </span>
             </inertia-link>
         </menu>
 
@@ -82,6 +88,12 @@ export default {
                     route: "student.admin.index",
                 },
             }
+        }
+    },
+    computed: {
+        logoUrl() {
+            // return this.$page.props.layout.logo_url;
+            return 'https://sigi-media-pub.s3.eu-west-1.amazonaws.com/logo-minducate.webp';
         }
     },
     mounted() {
