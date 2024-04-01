@@ -23,6 +23,30 @@ class ThemeSettings extends Settings
         return 'theme';
     }
 
+    public function getLogoUrl(): ?string
+    {
+        return $this->logo_url;
+    }
+
+    public function getFaviconUrl(): ?string
+    {
+        return $this->favicon_url;
+    }
+
+    public function getSiteName(): ?string
+    {
+        return $this->site_name;
+    }
+
+    public function getGeneralThemeSettingsArray(): array
+    {
+        return [
+            $this->favicon_url,
+            $this->logo_url,
+            $this->site_name,
+        ];
+    }
+
     public function getColorsAsCssArray(): array
     {
         $cssVars = ThemeInterface::ALL_COLORS_CSS_VARS;

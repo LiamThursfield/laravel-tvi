@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Website;
 use App\Actions\CMS\Page\PageQueryAction;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Web\CMS\FullPageResource;
+use App\Models\Settings\ThemeSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\LaravelSettings\Settings;
 
 class PageController extends Controller
 {
@@ -38,6 +40,8 @@ class PageController extends Controller
         } catch (\Exception $e) {
             abort(404);
         }
+
+        $page->logo_url = app(ThemeSettings::class)->getLogoUrl();
 
         return Inertia::render('website/page/Show', [
             'page' => function () use ($page) {

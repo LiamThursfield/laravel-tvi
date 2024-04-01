@@ -18,6 +18,7 @@ class FullPageResource extends BaseResource
             'slug'          => $this->slug,
             'template'      => TemplateResource::make($this->whenLoaded('template')),
             'url'           => UrlResource::make($this->whenLoaded('url')),
+            'logo_url'      => $this->logo_url ?? null,
         ];
 
         // Add content

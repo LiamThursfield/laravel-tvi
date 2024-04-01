@@ -18,6 +18,7 @@ class MetadataResource extends JsonResource
             'og_type'           => $this->og_type,
             'og_url'            => $this->og_url,
             'title'             => $this->title,
+            'logo'             => $this->title,
         ];
     }
 }
