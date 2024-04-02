@@ -15,9 +15,13 @@
                 <span v-if="!logoUrl">{{__('messages.' + item.label) }}</span>
                 <span
                     v-else
-                    class="logo"
+                    class="flex flex-col md:flex-row md:space-x-4"
                 >
-                    <img :src="logoUrl" class="mr-2 w-12"/>
+                    <img :src="logoUrl" class="logo w-12"/>
+                    <!-- TODO:: Make this more stylish and pass in the tenant name correctly -->
+                    <span style="justify-content: left; padding-top: 0.6rem; padding-left: 0; font-size: 1.2rem;">
+                         {{ tenantName }}
+                    </span>
                 </span>
             </inertia-link>
         </menu>
@@ -94,6 +98,9 @@ export default {
         logoUrl() {
             // return this.$page.props.layout.logo_url;
             return 'https://sigi-media-pub.s3.eu-west-1.amazonaws.com/logo-minducate.webp';
+        },
+        tenantName() {
+            return 'Minducate.Us';
         }
     },
     mounted() {

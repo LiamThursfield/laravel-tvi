@@ -78,7 +78,7 @@ class HomeController extends AdminController
 
         return Redirect::back(303)->with(
             'success',
-            'Completed.'
+            trans('messages.mark-complete-success')
         );
     }
 
@@ -88,7 +88,7 @@ class HomeController extends AdminController
 
         return Redirect::back(303)->with(
             'success',
-            'Completed.'
+            trans('messages.mark-complete-success')
         );
     }
 }

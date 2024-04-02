@@ -56,6 +56,7 @@ return [
     'mark-course-lecture-complete-refund-warning' => 'Sunteți sigur că doriți să marcați ca fiind completa sectiunea :name?
     O rambursare nu va fi disponibilă odată ce treceți la pasul următor.',
     'mark-complete' => 'Completează',
+    'mark-complete-success' => 'Completat cu succes.',
     'minutes' => 'minute',
     'course-preview' => 'Preview program',
     'dates' => 'Data',
