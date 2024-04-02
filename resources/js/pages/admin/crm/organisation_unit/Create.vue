@@ -184,6 +184,21 @@
                 <div class="flex flex-col md:flex-row md:space-x-4">
                     <input-group
                         class="mt-4 md:flex-1"
+                        :error-message="getPageErrorMessage('socials.youtube')"
+                        input-autocomplete="youtube_account"
+                        input-id="youtube_account"
+                        input-name="youtube_account"
+                        :input-required="false"
+                        input-type="text"
+                        label-text="Youtube"
+                        @errorHidden="clearPageErrorMessage('socials.youtube')"
+                        v-model="formData.socials.youtube"
+                    />
+                </div>
+
+                <div class="flex flex-col md:flex-row md:space-x-4">
+                    <input-group
+                        class="mt-4 md:flex-1"
                         :error-message="getPageErrorMessage('socials.facebook')"
                         input-autocomplete="facebook_account"
                         input-id="facebook_account"
@@ -316,6 +331,7 @@
                         snapchat: '',
                         tiktok: '',
                         twitter: '',
+                        youtube: '',
                     },
                     telephone: '',
                     type: '',
