@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.f5ec737c.js",
+    "file": "assets/app.c87722bf.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
@@ -147,7 +147,7 @@
     ]
   },
   "resources/js/pages/admin/cms/layout/Create.vue": {
-    "file": "assets/Create.fdac2116.js",
+    "file": "assets/Create.2ba0a17b.js",
     "src": "resources/js/pages/admin/cms/layout/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -159,7 +159,7 @@
     ]
   },
   "resources/js/pages/admin/cms/layout/Edit.vue": {
-    "file": "assets/Edit.3e8e21e9.js",
+    "file": "assets/Edit.c980f8e8.js",
     "src": "resources/js/pages/admin/cms/layout/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -171,7 +171,7 @@
     ]
   },
   "resources/js/pages/admin/cms/layout/Index.vue": {
-    "file": "assets/Index.276f50af.js",
+    "file": "assets/Index.464a6c8b.js",
     "src": "resources/js/pages/admin/cms/layout/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -239,7 +239,7 @@
     ]
   },
   "resources/js/pages/admin/cms/page/Create.vue": {
-    "file": "assets/Create.f063d0a6.js",
+    "file": "assets/Create.1070b468.js",
     "src": "resources/js/pages/admin/cms/page/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -283,7 +283,7 @@
     "file": "assets/checkbox-form-group.99a615f1.js"
   },
   "resources/js/pages/admin/cms/page/Edit.vue": {
-    "file": "assets/Edit.b5627d25.js",
+    "file": "assets/Edit.45406ac7.js",
     "src": "resources/js/pages/admin/cms/page/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -299,7 +299,7 @@
     ]
   },
   "resources/js/pages/admin/cms/page/Index.vue": {
-    "file": "assets/Index.5c550299.js",
+    "file": "assets/Index.fc9fa3c2.js",
     "src": "resources/js/pages/admin/cms/page/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -345,7 +345,7 @@
     ]
   },
   "resources/js/pages/admin/cms/redirect/Index.vue": {
-    "file": "assets/Index.a3eb45ff.js",
+    "file": "assets/Index.929e936a.js",
     "src": "resources/js/pages/admin/cms/redirect/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -357,14 +357,14 @@
     ]
   },
   "resources/js/pages/admin/cms/template/Create.vue": {
-    "file": "assets/Create.18276962.js",
+    "file": "assets/Create.b2d3a241.js",
     "src": "resources/js/pages/admin/cms/template/Create.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.c4aed689.js",
       "_InputGroup.a0b1f6ab.js",
       "resources/js/app.js",
-      "_TemplateFieldEditor.4da29499.js",
+      "_TemplateFieldEditor.7365965f.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
       "_vuedraggable.umd.67d6b640.js",
@@ -372,8 +372,8 @@
       "_checkbox-form-group.99a615f1.js"
     ]
   },
-  "_TemplateFieldEditor.4da29499.js": {
-    "file": "assets/TemplateFieldEditor.4da29499.js",
+  "_TemplateFieldEditor.7365965f.js": {
+    "file": "assets/TemplateFieldEditor.7365965f.js",
     "imports": [
       "_vendor.c4aed689.js",
       "_vuedraggable.umd.67d6b640.js",
@@ -387,14 +387,14 @@
     ]
   },
   "resources/js/pages/admin/cms/template/Edit.vue": {
-    "file": "assets/Edit.48b94342.js",
+    "file": "assets/Edit.4702aa4e.js",
     "src": "resources/js/pages/admin/cms/template/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.c4aed689.js",
       "_InputGroup.a0b1f6ab.js",
       "resources/js/app.js",
-      "_TemplateFieldEditor.4da29499.js",
+      "_TemplateFieldEditor.7365965f.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
       "_vuedraggable.umd.67d6b640.js",
@@ -403,7 +403,7 @@
     ]
   },
   "resources/js/pages/admin/cms/template/Index.vue": {
-    "file": "assets/Index.ba456a51.js",
+    "file": "assets/Index.6a3c0f4b.js",
     "src": "resources/js/pages/admin/cms/template/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -450,13 +450,13 @@
     ]
   },
   "resources/js/pages/admin/crm/form/Create.vue": {
-    "file": "assets/Create.6feb8d4d.js",
+    "file": "assets/Create.130a79fd.js",
     "src": "resources/js/pages/admin/crm/form/Create.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.c4aed689.js",
       "_ArrayGroup.f9e7a70a.js",
-      "_FormFieldEditor.db42aabe.js",
+      "_FormFieldEditor.aa68e5c0.js",
       "_InlineCheckboxGroup.a177775d.js",
       "_InputGroup.a0b1f6ab.js",
       "resources/js/app.js",
@@ -475,8 +475,8 @@
       "_LogoLight.682f8f67.js"
     ]
   },
-  "_FormFieldEditor.db42aabe.js": {
-    "file": "assets/FormFieldEditor.db42aabe.js",
+  "_FormFieldEditor.aa68e5c0.js": {
+    "file": "assets/FormFieldEditor.aa68e5c0.js",
     "imports": [
       "_vendor.c4aed689.js",
       "_vuedraggable.umd.67d6b640.js",
@@ -490,13 +490,13 @@
     ]
   },
   "resources/js/pages/admin/crm/form/Edit.vue": {
-    "file": "assets/Edit.a84c52a7.js",
+    "file": "assets/Edit.5b546749.js",
     "src": "resources/js/pages/admin/crm/form/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.c4aed689.js",
       "_ArrayGroup.f9e7a70a.js",
-      "_FormFieldEditor.db42aabe.js",
+      "_FormFieldEditor.aa68e5c0.js",
       "_InlineCheckboxGroup.a177775d.js",
       "_InputGroup.a0b1f6ab.js",
       "resources/js/app.js",
@@ -508,7 +508,7 @@
     ]
   },
   "resources/js/pages/admin/crm/form/Index.vue": {
-    "file": "assets/Index.7a358fa2.js",
+    "file": "assets/Index.cfe2ea9b.js",
     "src": "resources/js/pages/admin/crm/form/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -520,7 +520,7 @@
     ]
   },
   "resources/js/pages/admin/crm/form_submission/Index.vue": {
-    "file": "assets/Index.29dbd3df.js",
+    "file": "assets/Index.776d4dd2.js",
     "src": "resources/js/pages/admin/crm/form_submission/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -541,7 +541,7 @@
     ]
   },
   "resources/js/pages/admin/crm/organisation_unit/Create.vue": {
-    "file": "assets/Create.0d807843.js",
+    "file": "assets/Create.bb21469e.js",
     "src": "resources/js/pages/admin/crm/organisation_unit/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -553,7 +553,7 @@
     ]
   },
   "resources/js/pages/admin/crm/organisation_unit/Edit.vue": {
-    "file": "assets/Edit.7ae086e7.js",
+    "file": "assets/Edit.1019e92b.js",
     "src": "resources/js/pages/admin/crm/organisation_unit/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -565,7 +565,7 @@
     ]
   },
   "resources/js/pages/admin/crm/organisation_unit/Index.vue": {
-    "file": "assets/Index.9849ce89.js",
+    "file": "assets/Index.9c428480.js",
     "src": "resources/js/pages/admin/crm/organisation_unit/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -577,7 +577,7 @@
     ]
   },
   "resources/js/pages/admin/edu/announcement/Create.vue": {
-    "file": "assets/Create.ab918808.js",
+    "file": "assets/Create.61bcd5e1.js",
     "src": "resources/js/pages/admin/edu/announcement/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -591,7 +591,7 @@
     ]
   },
   "resources/js/pages/admin/edu/announcement/Edit.vue": {
-    "file": "assets/Edit.1e7b6264.js",
+    "file": "assets/Edit.893cd313.js",
     "src": "resources/js/pages/admin/edu/announcement/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -616,7 +616,7 @@
     ]
   },
   "resources/js/pages/admin/edu/course/Create.vue": {
-    "file": "assets/Create.d219bb34.js",
+    "file": "assets/Create.9d37ddf6.js",
     "src": "resources/js/pages/admin/edu/course/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -624,7 +624,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_LogoLight.682f8f67.js",
       "_vendor.c4aed689.js",
       "_ConfirmationModal.e511f35f.js",
@@ -632,8 +632,8 @@
       "_vuedraggable.umd.67d6b640.js"
     ]
   },
-  "_SectionItemsEditor.5b85e379.js": {
-    "file": "assets/SectionItemsEditor.5b85e379.js",
+  "_SectionItemsEditor.3723c1ca.js": {
+    "file": "assets/SectionItemsEditor.3723c1ca.js",
     "imports": [
       "_vendor.c4aed689.js",
       "_vuedraggable.umd.67d6b640.js",
@@ -647,7 +647,7 @@
     ]
   },
   "resources/js/pages/admin/edu/course/Edit.vue": {
-    "file": "assets/Edit.366a5ce9.js",
+    "file": "assets/Edit.129e90cc.js",
     "src": "resources/js/pages/admin/edu/course/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -656,7 +656,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
       "_checkbox-form-group.99a615f1.js",
@@ -684,7 +684,7 @@
     ]
   },
   "resources/js/pages/admin/edu/course/purchase/Index.vue": {
-    "file": "assets/Index.8c4384c7.js",
+    "file": "assets/Index.92a57660.js",
     "src": "resources/js/pages/admin/edu/course/purchase/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -745,7 +745,7 @@
     ]
   },
   "resources/js/pages/admin/edu/lecture/Create.vue": {
-    "file": "assets/Create.b3960927.js",
+    "file": "assets/Create.23acca11.js",
     "src": "resources/js/pages/admin/edu/lecture/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -753,7 +753,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_LogoLight.682f8f67.js",
       "_vendor.c4aed689.js",
       "_ConfirmationModal.e511f35f.js",
@@ -762,7 +762,7 @@
     ]
   },
   "resources/js/pages/admin/edu/lecture/Edit.vue": {
-    "file": "assets/Edit.b5d4d4be.js",
+    "file": "assets/Edit.b03929c9.js",
     "src": "resources/js/pages/admin/edu/lecture/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -770,7 +770,7 @@
       "_InputGroup.a0b1f6ab.js",
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
       "_checkbox-form-group.99a615f1.js",
@@ -798,7 +798,7 @@
     ]
   },
   "resources/js/pages/admin/edu/programme/Create.vue": {
-    "file": "assets/Create.c36b10fb.js",
+    "file": "assets/Create.2f628dc0.js",
     "src": "resources/js/pages/admin/edu/programme/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -806,7 +806,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_SelectMultipleGroup.7ec52105.js",
       "_LogoLight.682f8f67.js",
       "_vendor.c4aed689.js",
@@ -824,7 +824,7 @@
     ]
   },
   "resources/js/pages/admin/edu/programme/Edit.vue": {
-    "file": "assets/Edit.c0cc5e71.js",
+    "file": "assets/Edit.cc46113d.js",
     "src": "resources/js/pages/admin/edu/programme/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -833,7 +833,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_SelectMultipleGroup.7ec52105.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
@@ -862,7 +862,7 @@
     ]
   },
   "resources/js/pages/admin/edu/webinar/Create.vue": {
-    "file": "assets/Create.a59bea8d.js",
+    "file": "assets/Create.50c96788.js",
     "src": "resources/js/pages/admin/edu/webinar/Create.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -870,7 +870,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_vendor.c4aed689.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
@@ -879,7 +879,7 @@
     ]
   },
   "resources/js/pages/admin/edu/webinar/Edit.vue": {
-    "file": "assets/Edit.46f62663.js",
+    "file": "assets/Edit.3dd7ba1f.js",
     "src": "resources/js/pages/admin/edu/webinar/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -888,7 +888,7 @@
       "resources/js/app.js",
       "_CheckboxGroup.75dc7f59.js",
       "_DateTimePickerGroup.3c275842.js",
-      "_SectionItemsEditor.5b85e379.js",
+      "_SectionItemsEditor.3723c1ca.js",
       "_LogoLight.682f8f67.js",
       "_ConfirmationModal.e511f35f.js",
       "_checkbox-form-group.99a615f1.js",
@@ -925,7 +925,7 @@
     ]
   },
   "resources/js/pages/admin/file_manager/Index.vue": {
-    "file": "assets/Index.2e51c39b.js",
+    "file": "assets/Index.20aeac92.js",
     "src": "resources/js/pages/admin/file_manager/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -965,7 +965,7 @@
     ]
   },
   "resources/js/pages/admin/setting/Edit.vue": {
-    "file": "assets/Edit.4605dfd4.js",
+    "file": "assets/Edit.7cca2fc1.js",
     "src": "resources/js/pages/admin/setting/Edit.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1101,7 +1101,7 @@
     ]
   },
   "resources/js/pages/student/admin/home/Index.vue": {
-    "file": "assets/Index.f1355b10.js",
+    "file": "assets/Index.c1535188.js",
     "src": "resources/js/pages/student/admin/home/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1116,7 +1116,7 @@
     ]
   },
   "resources/js/pages/student/admin/home/Show.vue": {
-    "file": "assets/Show.e61ac855.js",
+    "file": "assets/Show.507deb8c.js",
     "src": "resources/js/pages/student/admin/home/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1222,7 +1222,7 @@
     ]
   },
   "resources/js/pages/website/page/Show.vue": {
-    "file": "assets/Show.5ba37c28.js",
+    "file": "assets/Show.336b6bd4.js",
     "src": "resources/js/pages/website/page/Show.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1362,6 +1362,14 @@
       "_vendor.c4aed689.js"
     ]
   },
+  "LogoLight.css": {
+    "file": "assets/LogoLight.fab1a1ae.css",
+    "src": "LogoLight.css"
+  },
+  "SectionItemsEditor.css": {
+    "file": "assets/SectionItemsEditor.28200d00.css",
+    "src": "SectionItemsEditor.css"
+  },
   "resources/js/pages/customer/home/Index.css": {
     "file": "assets/Index.e94fc6a9.css",
     "src": "resources/js/pages/customer/home/Index.css"
@@ -1370,32 +1378,24 @@
     "file": "assets/TemplateFieldEditor.d4d3e141.css",
     "src": "TemplateFieldEditor.css"
   },
-  "SectionItemsEditor.css": {
-    "file": "assets/SectionItemsEditor.28200d00.css",
-    "src": "SectionItemsEditor.css"
-  },
   "FormFieldEditor.css": {
     "file": "assets/FormFieldEditor.b347e16b.css",
     "src": "FormFieldEditor.css"
-  },
-  "MenuItemsEditor.css": {
-    "file": "assets/MenuItemsEditor.ac46952f.css",
-    "src": "MenuItemsEditor.css"
   },
   "resources/js/pages/student/admin/home/Index.css": {
     "file": "assets/Index.431eb08b.css",
     "src": "resources/js/pages/student/admin/home/Index.css"
   },
-  "LogoLight.css": {
-    "file": "assets/LogoLight.fab1a1ae.css",
-    "src": "LogoLight.css"
-  },
-  "resources/js/landlord/app.css": {
-    "file": "assets/app.cae0477d.css",
-    "src": "resources/js/landlord/app.css"
+  "MenuItemsEditor.css": {
+    "file": "assets/MenuItemsEditor.ac46952f.css",
+    "src": "MenuItemsEditor.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.1488b799.css",
     "src": "resources/js/app.css"
+  },
+  "resources/js/landlord/app.css": {
+    "file": "assets/app.cae0477d.css",
+    "src": "resources/js/landlord/app.css"
   }
 }

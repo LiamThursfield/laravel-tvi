@@ -154,12 +154,12 @@ trait  CreatesCheckoutSessionForCourse
             'success_url' => $eduSettings->formatCourseUrl(
                 $eduSettings->course_checkout_success_url,
                 $course,
-                route('website.edu.courses.show', ['course' => $course]) . '?checkout=success'
+                route('website.edu.courses.show', ['course' => $course]) . '?checkout=success#purchase'
             ),
             'cancel_url' => $eduSettings->formatCourseUrl(
                 $eduSettings->course_checkout_cancel_url,
                 $course,
-                route('website.edu.courses.show', ['course' => $course]) . '?checkout=cancel'
+                route('website.edu.courses.show', ['course' => $course]) . '?checkout=cancel#purchase'
             ),
         ]);
     }
