@@ -1,5 +1,6 @@
 <template>
-    <div class="bg-gray-100 flex flex-col min-h-screen min-w-screen">
+    <div v-if="!isLoading"
+        class="bg-gray-100 flex flex-col min-h-screen min-w-screen">
         <nav class="bg-white py-3">
             <div class="container flex flex-row justify-between mx-auto px-4">
                 <inertia-link
@@ -125,6 +126,8 @@
 </template>
 
 <script>
+    import {router} from "@inertiajs/vue2";
+
     export default {
         name: "Index",
         layout: 'home-layout',
@@ -132,6 +135,15 @@
             courses: {
                 type: Array
             }
+        },
+        data() {
+            return {
+                isLoading: true
+            }
+        },
+        mounted() {
+            // TODO:: Temporary fix to redirect to the first course until there is a homepage
+            router.get('/cursuri/' + this.courses[0].slug);
         }
     }
 </script>

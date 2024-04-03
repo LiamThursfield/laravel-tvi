@@ -4,114 +4,169 @@
             <h1 class="font-semibold mr-auto text-3xl">
                 {{ course.name }}
             </h1>
-            <small>By <b>{{ course.creator.name }}</b></small>
+            <small>{{ __('messages.created-by') }} <b>{{ course.creator.name }}</b></small>
         </div>
 
-        <div class="flex flex-row space-x-4">
-            <div class="max-w-sm w-full ">
+        <transition name="slide-right">
+            <div
+                v-if="section && lecture && !isLoadingLecture"
+                class="mb-6 w-full lg:hidden"
+            >
+                <div
+                    v-if="!showAudioPanel"
+                    class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                >
+                    <iframe
+                        class="aspect-ratio-16-9 w-full"
+                        :src="lecture.video_url"
+                        allowfullscreen
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        frameborder="0"
+                    />
+                </div>
+
+                <div
+                    v-if="showAudioPanel && lecture.audio_url"
+                    class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                >
+                    <Wavesurfer
+                        :audio-url="lecture.audio_url"
+                        :media-controls="true"
+                    ></Wavesurfer>
+                </div>
+            </div>
+        </transition>
+
+        <div
+            class="
+                flex flex-col overflow-x-hidden space-y-6
+                lg:flex-row lg:space-x-4 lg:space-y-0
+            "
+        >
+            <div class="overflow-hidden relative w-full z-10 lg:max-w-sm">
                 <div class="bg-white rounded-xl shadow-subtle">
-                    <h2 class="border-b font-semibold px-6 py-3">
-                        Course Content
-                    </h2>
-
                     <div
-                        v-for="(section, sectionIndex) in course.sections"
-                        :key="`section-${sectionIndex}`"
+                        class="bg-white cursor-pointer flex flex-row items-center justify-between px-6 py-3 relative rounded-xl z-10"
+                        @click="toggleCourseContent"
                     >
-                        <div
-                            class="
-                                cursor-pointer px-6 py-3
-                                hover:bg-theme-primary-subtle-hover
-                            "
-                            :class="{
-                                'bg-theme-primary-subtle-hover': sectionIndex === activeSection
-                            }"
-                            @click="toggleSection(sectionIndex)"
-                        >
-                            <div class="flex flex-1 flex-row items-center justify-between">
-                                <h3 class="font-bold">
-                                    {{ sectionIndex + 1 }}. {{ section.title }}
-                                </h3>
+                        <h2 class=" font-semibold">
+                            {{ __('messages.course-content') }}
+                        </h2>
 
-                                <component
-                                    :is="(toggledSections[sectionIndex]) ? 'icon-minus' : 'icon-plus'"
-                                    class="w-5"
-                                />
+                        <component
+                            :is="isCourseContentToggled ? 'icon-minus' : 'icon-plus'"
+                            class="w-5"
+                        />
+                    </div>
+
+                    <transition name="slide-down">
+                        <div v-if="isCourseContentToggled">
+                            <div
+                                v-for="(section, sectionIndex) in course.sections"
+                                :key="`section-${sectionIndex}`"
+                                class="border-t"
+                            >
+                            <div
+                                class="
+                                    cursor-pointer px-6 py-3
+                                    hover:bg-theme-primary-subtle-hover
+                                "
+                                :class="{
+                                    'bg-theme-primary-subtle-hover': sectionIndex === activeSection
+                                }"
+                                @click="toggleSection(sectionIndex)"
+                            >
+                                <div class="flex flex-1 flex-row items-center justify-between">
+                                    <h3 class="font-bold">
+                                        {{ sectionIndex + 1 }}. {{ section.title }}
+                                    </h3>
+
+                                    <component
+                                        :is="(toggledSections[sectionIndex]) ? 'icon-minus' : 'icon-plus'"
+                                        class="w-5"
+                                    />
+                                </div>
+
+                                <p class="text-sm">
+                                    0/{{ section.child_items.length }} | {{ section.content_length }} min
+                                </p>
                             </div>
 
-                            <p class="text-sm">
-                                0/{{ section.child_items.length }}| {{ section.content_length }} min
-                            </p>
-                        </div>
 
-
-                        <transition name="slide-left">
-                            <div
-                                v-if="toggledSections[sectionIndex]"
-                            >
+                            <transition name="slide-left">
                                 <div
-                                    v-for="(lecture, lectureIndex) in section.child_items"
-                                    :key="`lecture-${lectureIndex}`"
-                                    class="
-                                        cursor-pointer flex flex-row px-6 py-1 space-x-1
-                                        hover:bg-theme-primary-subtle-hover
-                                    "
-                                    :class="{
-                                        'bg-theme-primary-subtle-hover': isLectureActive(sectionIndex, lectureIndex)
-                                    }"
+                                    v-if="toggledSections[sectionIndex]"
                                 >
-                                    <button
-                                        type="button"
-                                        @click="checkMarkComplete(lecture)"
-                                    >
-                                        <component
-                                            :is="lecture.completed ? 'icon-square-check-filled' : 'icon-square-check'"
-                                            class="w-5"
-                                            :class="{
-                                                'text-theme-success-contrast' : lecture.completed
-                                            }"
-                                        />
-                                    </button>
-
                                     <div
-                                        @click="setActiveLecture(sectionIndex, lectureIndex, lecture)"
+                                        v-for="(lecture, lectureIndex) in section.child_items"
+                                        :key="`lecture-${lectureIndex}`"
+                                        class="
+                                            cursor-pointer flex flex-row px-6 py-1 space-x-1
+                                            hover:bg-theme-primary-subtle-hover
+                                        "
+                                        :class="{
+                                            'bg-theme-primary-subtle-hover': isLectureActive(sectionIndex, lectureIndex)
+                                        }"
                                     >
-                                        <p class="text-sm">{{ (lectureIndex + 1) }}. {{ lecture.title }}</p>
-                                        <p class="text-xs">{{ lecture.content_length}} min</p>
+                                        <button
+                                            type="button"
+                                            @click="checkMarkComplete(lecture)"
+                                        >
+                                            <component
+                                                :is="lecture.completed ? 'icon-square-check-filled' : 'icon-square-check'"
+                                                class="w-5"
+                                                :class="{
+                                                    'text-theme-success-contrast' : lecture.completed
+                                                }"
+                                            />
+                                        </button>
+
+                                        <div
+                                            @click="setActiveLecture(sectionIndex, lectureIndex, lecture, section)"
+                                        >
+                                            <p class="text-sm">{{ (lectureIndex + 1) }}. {{ lecture.title }}</p>
+                                            <p class="text-xs">{{ lecture.content_length}} min</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </transition>
-                    </div>
+                            </transition>
+                        </div>
+                        </div>
+                    </transition>
                 </div>
             </div>
 
             <transition name="slide-right">
-                <div v-if="lecture && !isLoadingLecture" class="w-full">
-                    <div
-                        v-if="!showAudioPanel"
-                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
-                    >
-                        <iframe
-                            class="aspect-ratio-16-9 w-full"
-                            :src="lecture.video_url"
-                            allowfullscreen
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            frameborder="0"
-                        />
+                <div
+                    v-if="section && lecture && !isLoadingLecture"
+                    class="w-full"
+                >
+                    <div class="hidden lg:block">
+                        <div
+                            v-if="!showAudioPanel"
+                            class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                        >
+                            <iframe
+                                class="aspect-ratio-16-9 w-full"
+                                :src="lecture.video_url"
+                                allowfullscreen
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                frameborder="0"
+                            />
+                        </div>
+
+                        <div
+                            v-if="showAudioPanel && lecture.audio_url"
+                            class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
+                        >
+                            <Wavesurfer
+                                :audio-url="lecture.audio_url"
+                                :media-controls="true"
+                            ></Wavesurfer>
+                        </div>
                     </div>
 
-                    <div
-                        v-if="showAudioPanel && lecture.audio_url"
-                        class="bg-white overflow-hidden relative rounded-lg shadow-subtle"
-                    >
-                        <Wavesurfer
-                            :audio-url="lecture.audio_url"
-                            :media-controls="true"
-                        ></Wavesurfer>
-                    </div>
-
-                    <div class="bg-white mt-4 p-6 overflow-hidden relative rounded-lg shadow-subtle ">
+                    <div class="bg-white p-6 overflow-hidden relative rounded-lg shadow-subtle lg:mt-4">
                         <div
                             class="flex items-center justify-content-between space-x-6"
                         >
@@ -120,7 +175,7 @@
                             </h2>
 
                             <button
-                                v-if="lecture.files && lecture.files.length"
+                                v-if="section.files && section.files.le || lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
                                 title="Audio Only"
                                 @click="showAudioOnly(lecture)"
@@ -149,9 +204,9 @@
                                 </span>
                             </button>
                             <button
-                                v-if="lecture.files && lecture.files.length"
+                                v-if="section.files && section.files.length || lecture.files && lecture.files.length"
                                 class="button button-primary-subtle button-small flex flex-row items-center text-sm"
-                                title="Download PDFs"
+                                :title="__('messages.resources-pdfs')"
                                 @click="downloadPDFs(lecture)"
                             >
                                 <icon-book-download
@@ -160,7 +215,7 @@
                                 <span
                                     class="hidden md:inline"
                                 >
-                                    {{ (showPDFPanel) ? 'Cancel' : 'Download PDFs' }}
+                                    {{ (showPDFPanel) ? __('messages.course') : __('messages.resources-pdfs') }}
                                 </span>
                             </button>
                         </div>
@@ -169,11 +224,35 @@
                             name="slide-left"
                             tag="div"
                         >
-                            <div v-if="showPDFPanel"
+                            <div
+                                v-if="showPDFPanel"
                                 key="downloads"
                             >
-                                <h3 class="font-semibold">Files</h3>
-                                <ul class="mt-2">
+                                <h3 class="font-semibold mb-2">{{ __('messages.files') }}</h3>
+                                <ul>
+                                    <li
+                                        v-for="(file, index) in section.files"
+                                        class="mt-1"
+                                        :key="`file-${index}`"
+                                    >
+                                        <a
+                                            v-if="file.url"
+                                            class="
+                                                flex flex-row items-center space-x-2 text-theme-primary
+                                                hover:text-theme-primary-hover
+                                            "
+                                            :href="file.url"
+                                            rel="noreferrer noopener nofollow"
+                                            target="_blank"
+                                            @click.stop=""
+                                        >
+                                            <icon-external-link class="w-4" />
+                                            <p class="text-sm font-semibold">{{ file.file_name }}</p>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <ul>
                                     <li
                                         v-for="(file, index) in lecture.files"
                                         class="mt-1"
@@ -206,18 +285,18 @@
                                 >
                                     <div v-for="webinar in lectureWebinarsFromSection">
                                         <b class="flex flex-row">
-                                            <icon-speaker
+                                            <icon-speaker-phone
                                                 class="w-5 mr-1"
                                             />
                                             <a :href="webinar.webinar_url" target="_blank" class="page-link">{{ webinar.name }}</a>
                                         </b>
 
                                         <p class="pt-1">
-                                            <strong>Dates:</strong>
-                                            {{ webinar.date_time_from | humanFriendlyDateTime }} to {{ webinar.date_time_to | humanFriendlyDateTime}}
+                                            <strong>{{__('messages.dates') }}:</strong>
+                                            {{ webinar.date_time_from | humanFriendlyDateTime }} {{__('messages.to') }} {{ webinar.date_time_to | humanFriendlyDateTime}}
                                         </p>
 
-                                        <p class="pt-1">{{webinar.summary}}</p>
+                                        <p class="pt-1">{{ webinar.summary }}</p>
                                     </div>
                                 </div>
                                 <br>
@@ -231,10 +310,12 @@
         </div>
 
         <confirmation-modal
-            confirm-text="Mark Complete"
+            :confirm-text="__('messages.mark-complete')"
+            :cancel-text="__('messages.cancel')"
+            :message-title="__('messages.are-you-sure') + '?'"
             confirm-type="success"
             :show-modal="showConfirmMarkCompleteModal"
-            :message-text="markCompleteModalText"
+            :message-text="__(markCompleteModalText[0], {'name': markCompleteModalText[1]})"
             @cancelAction="cancelMarkComplete"
             @closeModal="cancelMarkComplete"
             @confirmAction="confirmMarkComplete"
@@ -245,17 +326,17 @@
 <script>
 import _ from 'lodash';
 
-import CourseSideMenuItem from "../../../../components/student/menus/CourseSideMenuItem";
-import IconSquareCheck from "../../../../components/core/icons/IconSquareCheck";
+import CourseSideMenuItem from "../../../../components/student/menus/CourseSideMenuItem.vue";
+import IconSquareCheck from "../../../../components/core/icons/IconSquareCheck.vue";
 import CollapseTransition from "@ivanv/vue-collapse-transition";
-import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
-import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled";
-import IconBookDownload from "../../../../components/core/icons/IconBookDownload";
-import IconPlus from "../../../../components/core/icons/IconPlus";
-import Wavesurfer from "../../../../components/core/audio/Wavesurfer";
-import IconSpeaker from "../../../../components/core/icons/IconSpeaker";
-import IconVideo from "../../../../components/core/icons/IconAlertVideo";
-import IconHeadphones from "../../../../components/core/icons/IconHeadphones";
+import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal.vue";
+import IconSquareCheckFilled from "../../../../components/core/icons/IconSquareCheckFilled.vue";
+import IconBookDownload from "../../../../components/core/icons/IconBookDownload.vue";
+import IconPlus from "../../../../components/core/icons/IconPlus.vue";
+import Wavesurfer from "../../../../components/core/audio/Wavesurfer.vue";
+import IconVideo from "../../../../components/core/icons/IconAlertVideo.vue";
+import IconHeadphones from "../../../../components/core/icons/IconHeadphones.vue";
+import {Zora} from "../../../../zora";
 
 
 export default {
@@ -264,7 +345,6 @@ export default {
     components: {
         IconHeadphones,
         IconVideo,
-        IconSpeaker,
         IconPlus,
         IconBookDownload,
         IconSquareCheckFilled,
@@ -272,7 +352,8 @@ export default {
         CourseSideMenuItem,
         CollapseTransition,
         ConfirmationModal,
-        Wavesurfer
+        Wavesurfer,
+        Zora
     },
     props: {
         course: {
@@ -290,6 +371,8 @@ export default {
             mountedItems: {},
             toggledItems: {},
             lecture: null,
+            section: null,
+            isCourseContentToggled: true,
             isLoadingLecture: false,
             isLoadingMarkComplete: false,
             showConfirmMarkCompleteModal: null,
@@ -305,14 +388,13 @@ export default {
         },
         markCompleteModalText() {
             try {
-                if (this.itemToMarkComplete.index === '0') {
-                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?'
-                        + ' A refund won\'t be available once you move to the next step';
+                if (this.itemToMarkComplete?.index === '0') {
+                    return ['messages.mark-course-lecture-complete-refund-warning', this.itemToMarkComplete.title];
                 } else {
-                    return 'Do you really want to mark as complete \'' + this.itemToMarkComplete.title + '\'?';
+                    return ['messages.mark-course-lecture-complete-default', this.itemToMarkComplete?.title];
                 }
             } catch (e) {
-                return 'Do you really want to perform this action?'
+                return ['messages.perform-action-check'];
             }
         },
         courseWebinars() {
@@ -320,22 +402,28 @@ export default {
         },
         lectureWebinarsFromSection() {
             return this.courseWebinars.filter(webinar => webinar.section_id == this.lecture.section.id);
-        }
+        },
     },
     mounted() {
         this.isLoadingLecture = true;
+        this.section = this.course.sections[0];
         this.lecture = this.course.sections[0].child_items[0];
         this.isLoadingLecture = false;
     },
     methods: {
+        toggleCourseContent() {
+            console.log('here');
+            this.isCourseContentToggled = !this.isCourseContentToggled;
+        },
         toggleSection(section) {
             this.$set(this.toggledSections, section, !this.toggledSections[section]);
         },
         isLectureActive(sectionIndex, lectureIndex) {
             return this.activeSection === sectionIndex && this.activeSectionLecture === lectureIndex
         },
-        setActiveLecture(sectionIndex, lectureIndex, lecture) {
+        setActiveLecture(sectionIndex, lectureIndex, lecture, section) {
             this.activeSection = sectionIndex;
+            this.section = _.cloneDeep(section);
             this.activeSectionLecture = lectureIndex;
             this.lecture = _.cloneDeep(lecture);
             this.showPDFPanel = false;

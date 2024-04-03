@@ -103,7 +103,7 @@
 <script>
     import _ from 'lodash';
     import draggable from 'vuedraggable';
-    import TemplateField from "./template_fields/TemplateField";
+    import TemplateField from "./template_fields/TemplateField.vue";
 
     export default {
         name: 'TemplateFieldEditor',

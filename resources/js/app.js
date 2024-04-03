@@ -1,23 +1,32 @@
-require('./bootstrap');
+import './bootstrap';
 
 import Vue from 'vue';
-import { store } from './store/admin'
+import { store } from './store/admin';
 
-import { createInertiaApp } from '@inertiajs/vue2'
+import { createInertiaApp } from '@inertiajs/vue2';
 
-require('./plugins/toasted');
-require('./plugins/vue2-datepicker');
-require('./plugins/vue-cookies');
-require('./plugins/vue-meta');
-require('./plugins/ziggy');
+import './plugins/dayjs';
+import './plugins/toasted';
+import './plugins/vue2-datepicker';
+import './plugins/vue-cookies';
+import './plugins/vue-meta';
+import './plugins/ziggy';
+import './plugins/zora';
+import './plugins/anime'
 
-require('./filters/date-times');
-require('./filters/prices');
+import './filters/date-times';
+import './filters/prices';
 
-require('./mixins/page-error');
+import './mixins/page-error';
+import './mixins/zora';
 
+import './component-registration';
 
-require('./component-registration');
+import './inertia-events';
+
+import '../css/app.css';
+import '../css/tinymce/content.css';
+import '../css/tinymce/skin.css';
 
 const app = createInertiaApp({
     progress: {
@@ -32,7 +41,11 @@ const app = createInertiaApp({
         showSpinner: false,
 
     },
-    resolve: (name) => require(`./pages/${name}.vue`),
+    resolve: async (name) => {
+        const pages = import.meta.glob('./pages/**/*.vue');
+
+        return (await pages[`./pages/${name}.vue`]()).default;
+    },
     setup({ el, App, props, plugin }) {
         Vue.use(plugin)
 

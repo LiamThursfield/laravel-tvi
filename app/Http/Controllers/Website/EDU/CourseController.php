@@ -21,6 +21,8 @@ class CourseController extends Controller
             'course' => function () use ($course) {
                 $course->load([
                     'instalmentPlans',
+                    'sections',
+                    'creator'
                 ]);
 
                 CourseShowResource::withoutWrapping();

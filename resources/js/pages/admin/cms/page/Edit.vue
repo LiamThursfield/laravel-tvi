@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('cms.edit')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit Page
@@ -126,6 +126,16 @@
                     @input="onSlugInput"
                     v-model="formData.slug"
                 />
+
+                <input-group
+                    class="mt-4"
+                    input-id="slug"
+                    input-name="full_page_slug"
+                    :input-disabled="true"
+                    input-type="text"
+                    label-text="Full Page Slug"
+                    v-model="fullPageSlug"
+                />
             </div>
         </div>
 
@@ -168,10 +178,10 @@
 <script>
     import _ from 'lodash';
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor.vue";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();
@@ -216,6 +226,19 @@
             }
         },
         computed: {
+            fullPageSlug() {
+                if (!this.formData.slug) {
+                    return '';
+                }
+
+                let slug = this.formData.slug;
+
+                if (this.selectedParentPageUrl) {
+                    slug = this.selectedParentPageUrl + '/'  + slug;
+                }
+
+                return slug;
+            },
             parentPagesUrls() {
                 try {
                     if (!Object.keys(this.parentPages).length) {

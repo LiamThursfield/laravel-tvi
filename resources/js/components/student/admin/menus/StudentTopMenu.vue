@@ -12,7 +12,13 @@
                 class="hover:text-theme-primary-hover"
                 :href="$route(item.route)"
             >
-                {{ item.label }}
+                <span v-if="!logoUrl">{{__('messages.' + item.label) }}</span>
+                <span
+                    v-else
+                    class="logo"
+                >
+                    <img :src="logoUrl" class="mr-2 w-12"/>
+                </span>
             </inertia-link>
         </menu>
 
@@ -34,14 +40,14 @@
         >
 
             <p class="dropdown-subheading mb-2">
-                Hello, {{ $page.props.auth.user.first_name }}
+                {{ __('messages.hello', { name: $page.props.auth.user.first_name }) }}
             </p>
 
             <inertia-link
                 class="dropdown-link"
-                :href="$route('website.index')"
+                :href="$route('student.admin.index')"
             >
-                Homepage
+                {{ __('messages.homepage') }}
             </inertia-link>
 
             <inertia-link
@@ -50,7 +56,7 @@
                 :href="$route('student.admin.profile.index')"
                 @click="closeUserDropdown"
             >
-                Profile
+                {{ __('messages.profile') }}
             </inertia-link>
 
             <div class="dropdown-separator"></div>
@@ -61,7 +67,7 @@
                 :href="$route('logout')"
                 method="post"
             >
-                Logout
+                {{ __('messages.logout') }}
             </inertia-link>
         </div>
     </nav>
@@ -78,10 +84,16 @@ export default {
             userDropDown: null,
             menu: {
                 courses: {
-                    label: "Courses",
+                    label: "courses",
                     route: "student.admin.index",
                 },
             }
+        }
+    },
+    computed: {
+        logoUrl() {
+            // return this.$page.props.layout.logo_url;
+            return 'https://sigi-media-pub.s3.eu-west-1.amazonaws.com/logo-minducate.webp';
         }
     },
     mounted() {

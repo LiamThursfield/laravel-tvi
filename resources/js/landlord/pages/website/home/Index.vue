@@ -2,8 +2,8 @@
     <div class="max-w-screen-xl mx-auto px-5">
 
         <hero-with-svg
-            header="The one-stop platform for your courses"
-            content="SIGI is the last product you'll need to manage your entire web presence including: Website, Course Platform, etc. You name it, we have it!"
+            header="We digitalise your business."
+            content="SIGI is the only tool you'll need to manage your entire web presence, including: Website, Email Campaigns, Video Courses, and more..."
         >
             <template v-slot:svg>
                 <astronaut-on-moon />
@@ -64,12 +64,12 @@
 </template>
 
 <script>
-import AstronautOnMoon from "../../../components/svgs/AstronautOnMoon";
-import BannerBlock from "../../../components/website/banners/BannerBlock";
-import BannerGrid from "../../../components/website/banners/BannerGrid";
-import BannerTechnologies from "../../../components/website/banners/BannerTechnologies";
-import HeroWithSvg from "../../../components/website/heroes/HeroWithSvg";
-import SimpleBanner from "../../../components/website/banners/SimpleBanner";
+import AstronautOnMoon from "../../../components/svgs/AstronautOnMoon.vue";
+import BannerBlock from "../../../components/website/banners/BannerBlock.vue";
+import BannerGrid from "../../../components/website/banners/BannerGrid.vue";
+import BannerTechnologies from "../../../components/website/banners/BannerTechnologies.vue";
+import HeroWithSvg from "../../../components/website/heroes/HeroWithSvg.vue";
+import SimpleBanner from "../../../components/website/banners/SimpleBanner.vue";
 
 export default {
     name: "Index",

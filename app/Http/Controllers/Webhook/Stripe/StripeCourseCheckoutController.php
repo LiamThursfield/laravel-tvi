@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Webhook\Stripe;
 use App\Actions\EDU\Course\Purchase\RedeemUserCoursePurchasesAction;
 use App\Http\Controllers\Controller;
 use App\Interfaces\EDU\Course\CoursePurchaseInterface;
+use App\Jobs\EDU\Course\ProcessCoursePurchaseRegister;
 use App\Models\EDU\Course\CoursePurchasePayment;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\Event;
@@ -24,6 +26,9 @@ class StripeCourseCheckoutController extends Controller
         switch ($event->type) {
             case Event::CHECKOUT_SESSION_COMPLETED:
                 return $this->handleSessionCompleted($event);
+            case Event::CHARGE_EXPIRED:
+            case Event::CHECKOUT_SESSION_EXPIRED:
+                return $this->handleIgnoredEvent($event);
             default:
                 throw new MethodNotAllowedException(
                     [Event::CHECKOUT_SESSION_COMPLETED],
@@ -32,7 +37,7 @@ class StripeCourseCheckoutController extends Controller
         }
     }
 
-    protected function handleSessionCompleted(Event $event)
+    protected function handleSessionCompleted(Event $event): JsonResponse
     {
         /** @var CoursePurchasePayment $payment */
         $payment = CoursePurchasePayment::findOrFail($event->data->object->metadata->payment_id);
@@ -78,15 +83,27 @@ class StripeCourseCheckoutController extends Controller
 
         $purchase->update();
 
+        DB::commit();
+
         // Redeem the user's purchases if they already exist
         if ($user) {
             app(RedeemUserCoursePurchasesAction::class)->handle($user);
+        } else {
+            // Send email to customer to register an account
+            dispatch(new ProcessCoursePurchaseRegister($payment));
         }
-
-        DB::commit();
 
         return response()->json([
             'success' => true,
+        ]);
+    }
+
+    protected function handleIgnoredEvent(Event $event): JsonResponse
+    {
+        // We could potentially log/capture these in the future
+        return response()->json([
+            'success' => true,
+            'message' => 'Event ignored'
         ]);
     }
 }

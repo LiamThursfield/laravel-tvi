@@ -21,6 +21,7 @@ class CreateCmsMetadataTable extends Migration
             $table->string('canonical')->nullable();
             $table->string('description')->nullable();
             $table->string('title')->nullable();
+            $table->string('keywords')->nullable();
             $table->string('og_description')->nullable();
             $table->string('og_image')->nullable();
             $table->string('og_title')->nullable();

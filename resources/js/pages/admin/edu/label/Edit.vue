@@ -69,7 +69,7 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
 
     export default {
         name: "AdminEduLabelUpdate",

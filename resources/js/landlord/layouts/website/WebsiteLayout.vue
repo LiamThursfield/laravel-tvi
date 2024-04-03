@@ -1,7 +1,7 @@
 <template>
     <div>
         <main
-            id="landlord-layout"
+            id="website-layout"
             class="bg-white"
         >
             <header-menu />
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import HeaderMenu from "../../components/website/menus/HeaderMenu";
+    import HeaderMenu from "../../components/website/menus/HeaderMenu.vue";
 
     export default {
         name: "LandlordWebsiteLayout",

@@ -125,10 +125,10 @@
                                 }}
                             </td>
                             <td>
-                                {{ purchase.currency | currencySymbol }}{{ purchase.total_price_due | priceDecimal }}
+                                {{ purchase.currency | currencySymbol }} {{ purchase.total_price_due | priceDecimal }}
                             </td>
                             <td>
-                                {{ purchase.currency | currencySymbol }}{{ purchase.total_price_paid | priceDecimal }}
+                                {{ purchase.currency | currencySymbol }} {{ purchase.total_price_paid | priceDecimal }}
                             </td>
                             <td>
                                 <component
@@ -175,11 +175,11 @@
 <script>
     import _ from 'lodash';
     import { router } from '@inertiajs/vue2'
-    import ConfirmationModal from "../../../../../components/core/modals/ConfirmationModal";
-    import SelectGroup from "../../../../../components/core/forms/SelectGroup";
-    import InputGroup from "../../../../../components/core/forms/InputGroup";
-    import IconSave from "../../../../../components/core/icons/IconSave";
-    import IconCheck from "../../../../../components/core/icons/IconCheck";
+    import ConfirmationModal from "../../../../../components/core/modals/ConfirmationModal.vue";
+    import SelectGroup from "../../../../../components/core/forms/SelectGroup.vue";
+    import InputGroup from "../../../../../components/core/forms/InputGroup.vue";
+    import IconSave from "../../../../../components/core/icons/IconSave.vue";
+    import IconCheck from "../../../../../components/core/icons/IconCheck.vue";
 
     export default {
         name: "AdminEDUCoursePurchaseIndex",

@@ -53,7 +53,7 @@
 
 <script>
     import {baseFormGroupMixin} from "../../../mixins/admin/cms/forms/base-form-group";
-    import FormFieldError from "./partials/FormFieldError";
+    import FormFieldError from "./partials/FormFieldError.vue";
 
     export default {
         name: "InputGroup",

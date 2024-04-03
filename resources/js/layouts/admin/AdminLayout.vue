@@ -29,8 +29,8 @@
 <script>
     import { router } from '@inertiajs/vue2'
 
-    import FileManagerModal from "../../components/admin/modals/FileManagerModal";
-    import PageAlerts from "../../components/core/alerts/PageAlerts";
+    import FileManagerModal from "../../components/admin/modals/FileManagerModal.vue";
+    import PageAlerts from "../../components/core/alerts/PageAlerts.vue";
 
     export default {
         name: "AdminLayout",
@@ -118,30 +118,6 @@
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["cms.create", "cms.view"],
                             },
-                            templates: {
-                                activeRoutes: ["admin.cms.templates.index", "admin.cms.templates.create", "admin.cms.templates.edit"],
-                                children: {
-                                    index: {
-                                        icon: false,
-                                        label: "View Templates",
-                                        requiresAllPermissions: ["cms.view"],
-                                        requiresAnyPermissions: [],
-                                        route: "admin.cms.templates.index",
-                                    },
-                                    create: {
-                                        children: false,
-                                        icon: false,
-                                        label: "Create Template",
-                                        requiresAllPermissions: ["cms_advanced.create"],
-                                        requiresAnyPermissions: [],
-                                        route: "admin.cms.templates.create",
-                                    },
-                                },
-                                icon: "icon-template",
-                                label: "Templates",
-                                requiresAllPermissions: [],
-                                requiresAnyPermissions: ["cms.create", "cms.view"],
-                            },
                             menus: {
                                 activeRoutes: ["admin.cms.menus.index", "admin.cms.menus.create", "admin.cms.menus.edit"],
                                 children: {
@@ -170,6 +146,62 @@
                         label: "CMS",
                         requiresAllPermissions: [],
                         requiresAnyPermissions: ["cms.edit", "cms.create", "cms.view"],
+                        showLabel: true,
+                    },
+                    cms_advanced: {
+                        children : {
+                            redirects: {
+                                activeRoutes: ["admin.cms.redirects.index", "admin.cms.redirects.create", "admin.cms.redirects.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Redirects",
+                                        requiresAllPermissions: ["cms_advanced.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.redirects.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Redirects",
+                                        requiresAllPermissions: ["cms_advanced.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.redirects.create",
+                                    },
+                                },
+                                icon: "icon-arrows-shuffle",
+                                label: "Redirects",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["cms_advanced.create", "cms_advanced.view"],
+                            },
+                            templates: {
+                                activeRoutes: ["admin.cms.templates.index", "admin.cms.templates.create", "admin.cms.templates.edit"],
+                                children: {
+                                    index: {
+                                        icon: false,
+                                        label: "View Templates",
+                                        requiresAllPermissions: ["cms_advanced.view"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.templates.index",
+                                    },
+                                    create: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Create Template",
+                                        requiresAllPermissions: ["cms_advanced.create"],
+                                        requiresAnyPermissions: [],
+                                        route: "admin.cms.templates.create",
+                                    },
+                                },
+                                icon: "icon-template",
+                                label: "Templates",
+                                requiresAllPermissions: [],
+                                requiresAnyPermissions: ["cms_advanced.create", "cms_advanced.view"],
+                            },
+                        },
+                        label: "CMS - Advanced",
+                        requiresAllPermissions: [],
+                        requiresAnyPermissions: ["cms_advanced.create", "cms_advanced.view"],
                         showLabel: true,
                     },
                     crm: {
@@ -281,7 +313,7 @@
                                         route: "admin.edu.announcements.create",
                                     }
                                 },
-                                icon: "icon-speaker",
+                                icon: "icon-speaker-phone",
                                 label: "Announcements",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_announcements.create", "edu_announcements.view"],
@@ -370,7 +402,7 @@
                                         route: "admin.edu.course-purchases.index",
                                     }
                                 },
-                                icon: "icon-money-bag",
+                                icon: "icon-moneybag",
                                 label: "Purchases",
                                 requiresAllPermissions: [],
                                 requiresAnyPermissions: ["edu_course_purchases.view"],
@@ -451,6 +483,14 @@
                                         requiresAllPermissions: ["settings.edit"],
                                         requiresAnyPermissions: [],
                                         route: ["admin.settings.edit", 'edu'],
+                                    },
+                                    theme: {
+                                        children: false,
+                                        icon: false,
+                                        label: "Theme",
+                                        requiresAllPermissions: ["settings.edit"],
+                                        requiresAnyPermissions: [],
+                                        route: ["admin.settings.edit", 'theme'],
                                     },
                                     thirdParty: {
                                         children: false,

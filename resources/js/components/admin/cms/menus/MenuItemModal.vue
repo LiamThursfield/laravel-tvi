@@ -132,7 +132,7 @@
 <script>
     import _ from 'lodash';
     import { mixin as clickaway } from 'vue-clickaway';
-    import InputGroup from "../../../core/forms/InputGroup";
+    import InputGroup from "../../../core/forms/InputGroup.vue";
 
     export default {
         name: "MenuItemModal",

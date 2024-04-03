@@ -1,7 +1,7 @@
 <template>
     <div>
         <main
-            id="website-layout"
+            id="customer-layout"
         >
             <slot />
         </main>

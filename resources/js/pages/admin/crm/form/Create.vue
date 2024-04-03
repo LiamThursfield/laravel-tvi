@@ -79,6 +79,17 @@
                     v-model="formData.slug"
                 />
 
+                <input-group
+                    class="mt-4"
+                    :error-message="getPageErrorMessage('submit_button_text')"
+                    input-id="submit_button_text"
+                    input-name="submit_button_text"
+                    input-type="text"
+                    label-text="Submit Button Text (Leave blank for default)"
+                    @errorHidden="clearPageErrorMessage('submit_button_text')"
+                    v-model="formData.submit_button_text"
+                />
+
                 <text-area-group
                     class="mt-4"
                     :error-message="getPageErrorMessage('success_message')"
@@ -162,11 +173,11 @@
 
 <script>
     import slugify from 'slugify';
-    import ArrayGroup from "../../../../components/core/forms/ArrayGroup.";
-    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor";
-    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
+    import ArrayGroup from "../../../../components/core/forms/ArrayGroup.vue";
+    import FormFieldEditor from "../../../../components/admin/crm/forms/FormFieldEditor.vue";
+    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup.vue";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
 
     export default {
         name: "AdminCrmFormCreate",
@@ -204,6 +215,7 @@
                     name: '',
                     redirect_url: '',
                     slug: '',
+                    submit_button_text: '',
                     success_message: '',
                 },
             }

@@ -130,9 +130,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'exists' => 'The email could not be found.',
         ],
+
     ],
 
     /*

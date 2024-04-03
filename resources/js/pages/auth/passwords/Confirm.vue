@@ -61,7 +61,7 @@
 </template>
 
 <script>
-    import InputGroup from "../../../components/core/forms/InputGroup";
+    import InputGroup from "../../../components/core/forms/InputGroup.vue";
 
     export default {
         name: "AuthPasswordConfirm",

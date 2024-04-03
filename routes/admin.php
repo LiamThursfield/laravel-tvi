@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CMS\LayoutController;
 use App\Http\Controllers\Admin\CMS\MenuController;
 use App\Http\Controllers\Admin\CMS\PageController;
+use App\Http\Controllers\Admin\CMS\RedirectController;
 use App\Http\Controllers\Admin\CMS\TemplateController;
 use App\Http\Controllers\Admin\CRM\ContactController;
 use App\Http\Controllers\Admin\CRM\FormController;
@@ -47,6 +48,8 @@ Route::group([
     Route::resource('layouts', LayoutController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('pages', PageController::class);
+    Route::resource('redirects', RedirectController::class)
+        ->parameter('redirects', 'cms_redirect');
     Route::resource('templates', TemplateController::class);
 });
 

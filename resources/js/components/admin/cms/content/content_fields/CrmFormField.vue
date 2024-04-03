@@ -15,6 +15,7 @@
             :input-autocomplete="inputName"
             :input-id="inputName"
             :input-name="inputName"
+            :input-option-force-formatting="true"
             input-option-label-key="name"
             input-option-value-key="id"
             :input-options="forms"
@@ -31,7 +32,7 @@
 <script>
     import _ from "lodash";
     import { contentFieldMixin } from "../../../../../mixins/admin/cms/content-field";
-    import SelectGroup from "../../../../core/forms/SelectGroup";
+    import SelectGroup from "../../../../core/forms/SelectGroup.vue";
 
     export default {
         name: "CmsFormField",

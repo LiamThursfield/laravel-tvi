@@ -224,13 +224,13 @@
 
 <script>
 import slugify from "slugify";
-import InputGroup from "../../../../components/core/forms/InputGroup";
-import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
-import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
-import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
+import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
+import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup.vue";
+import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor.vue";
 import _ from "lodash";
-import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
-import FileManagerFileUploader from "../../../../components/admin/file_manager/partials/FileManagerFileUploader";
+import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField.vue";
+import FileManagerFileUploader from "../../../../components/admin/file_manager/partials/FileManagerFileUploader.vue";
 
 let CancelToken = axios.CancelToken;
 let filesCancelToken = CancelToken.source();

@@ -5,7 +5,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                My Profile
+                {{ __('messages.my-profile') }}
             </h1>
 
             <inertia-link
@@ -24,7 +24,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Edit Profile
+                   {{ __('messages.edit-profile') }}
                 </span>
             </inertia-link>
         </div>
@@ -33,13 +33,13 @@
             <div class="block px-6 w-full">
                 <p>
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                        First Name
+                        {{ __('messages.first-name') }}
                     </span>
                     {{ profile.first_name }}
                 </p>
                 <p class="mt-2">
                     <span class="block font-semibold text-theme-base-subtle-contrast text-xs">
-                        Last Name
+                       {{ __('messages.last-name') }}
                     </span>
                     {{ profile.last_name }}
                 </p>
@@ -50,27 +50,11 @@
                     {{ profile.email }}
                 </p>
 
-                <button
-                    v-if="showRefundButton"
-                    class="
-                    mt-4
-                    button button-default-responsive button-primary-subtle
-                    flex flex-row items-center
-                "
-                    @click="requestRefund"
-                >
-                    <icon-receipt-refund
-                        class="
-                        w-5
-                        md:mr-2
-                    "
-                    />
-                    <span
-                        class="hidden md:inline"
-                    >
-                    Request Refund
-                </span>
-                </button>
+
+                <p class="mt-2">
+                    {{ __('messages.request-refund-text') }}
+                    <a href="mailto:webmaster@example.com" class="font-semibold">info@minducate.us</a>
+                </p>
             </div>
         </div>
     </section>

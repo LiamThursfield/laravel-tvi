@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('cms.create')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Create Page
@@ -165,10 +165,10 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import MetadataEditor from "../../../../components/admin/cms/metadata/MetadataEditor.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import UrlEditor from "../../../../components/admin/cms/urls/UrlEditor.vue";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();

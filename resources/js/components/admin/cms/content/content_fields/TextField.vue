@@ -19,7 +19,7 @@
 
 <script>
     import { contentFieldMixin } from "../../../../../mixins/admin/cms/content-field";
-    import InputGroup from "../../../../core/forms/InputGroup";
+    import InputGroup from "../../../../core/forms/InputGroup.vue";
 
     export default {
         name: "TextField",
