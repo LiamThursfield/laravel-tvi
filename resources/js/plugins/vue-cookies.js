@@ -1,4 +1,4 @@
 import Vue from "vue";
-import "vue-cookies";
+import VueCookies from "vue-cookies";
 
-Vue.use("vue-cookies");
+Vue.use(VueCookies);
