@@ -2268,7 +2268,7 @@ vue-clickaway@^2.2.2:
   dependencies:
     loose-envify "^1.2.0"
 
-vue-cookies@^1.7.4:
+vue-cookies@^1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.8.3.tgz#0c7ce26d150f7ac50356ae17cb4ead1122013b82"
   integrity sha512-VBRsyRMVdahBgFfh389TMHPmDdr4URDJNMk4FKSCfuNITs7+jitBDhwyL4RJd3WUsfOYNNjPAkfbehyH9AFuoA==
