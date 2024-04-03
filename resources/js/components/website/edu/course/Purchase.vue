@@ -41,7 +41,7 @@
                             v-if="course.currency === 'GBP'"
                             class="text-sm"
                         >
-                             {{ course.currency | currencySymbol }} {{ course.current_price | priceDecimalUnlessWhole }}
+                             {{ course.currency | currencySymbol }}{{ course.current_price | priceDecimalUnlessWhole }}
                         </span>
                         <span
                             v-else-if="course.currency === 'RON'"
@@ -75,20 +75,20 @@
                         </span>
 
                         <span
-                            v-if="course.currency === 'GBP'"
+                            v-if="instalmentPlan.currency === 'GBP'"
                             class="text-sm"
                         >
-                             {{ course.currency | currencySymbol }} {{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }}
+                             {{ instalmentPlan.currency | currencySymbol }}{{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }}
                         </span>
                         <span
-                            v-else-if="course.currency === 'RON'"
+                            v-else-if="instalmentPlan.currency === 'RON'"
                             class="text-sm"
                         >
                             {{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }} Lei
                             <small>(TVA inclus)</small>
                         </span>
                         <span
-                            v-else-if="course.currency === 'EUR'"
+                            v-else-if="instalmentPlan.currency === 'EUR'"
                             class="text-sm"
                         >
                              {{ instalmentPlan.instalment_current_price | priceDecimalUnlessWhole }} Euro
@@ -152,6 +152,21 @@
             }
         },
         computed: {
+            coursePurchaseDataLayerData() {
+                try {
+                    let price = this.paymentType === 'full' ? this.course.current_price : this.instalmentSelection.instalment_current_price;
+
+                    return {
+                        'event': 'conversion_course_purchase',
+                        'payment_type': this.paymentType,
+                        'value': this.$options.filters.priceDecimalUnlessWhole(price),
+                        'currency': this.paymentType === 'full' ? this.course.currency : this.instalmentSelection.currency,
+                    };
+                } catch (e) {
+                    console.error(e);
+                    return false;
+                }
+            },
             orderedInstalmentPlans() {
                 try {
                     return _.orderBy(this.course.instalment_plans, 'instalment_count');
@@ -201,6 +216,11 @@
                         return;
                     }
 
+                    // TODO: Move to mixin or similar
+                    if (this.coursePurchaseDataLayerData) {
+                        this.dataLayerPush(this.coursePurchaseDataLayerData);
+                    }
+
                     window.location.href = response.data.url;
                 }).catch(e => {
                     this.checkoutErrors = e?.response?.data?.message || e;
@@ -223,6 +243,13 @@
             selectPaymentType(payment_type, instalment = null) {
                 this.paymentType = payment_type;
                 this.instalmentSelection = instalment;
+            },
+            dataLayerPush(dataLayerData) {
+                try {
+                    dataLayer.push(dataLayerData);
+                } catch (e) {
+                    console.error('GTM Error', e);
+                }
             }
         }
     }
