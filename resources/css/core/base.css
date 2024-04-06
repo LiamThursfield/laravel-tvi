@@ -23,14 +23,6 @@
 }
 
 .sticky-menu {
-    overflow: hidden;
-    background-color: white;
-    position: sticky;
-    top: 0;
-    width: 100%;
+    @apply bg-white overflow-hidden py-3 px-6 shadow-lg sticky rounded-lg top-0 w-full;
     z-index: 2;
-    padding: 10px;
-    border-radius: 3px;
-    border: 1px #d7d6d6;
-    box-shadow: 1px 5px 5px #2663eb38;
 }
