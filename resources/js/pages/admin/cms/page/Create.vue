@@ -375,6 +375,7 @@
                 return slugify(
                     value, {
                         lower: true,
+                        remove: /[^\w\s$*_+~.()'"!/\-:@]+/g,
                     }
                 );
             },
