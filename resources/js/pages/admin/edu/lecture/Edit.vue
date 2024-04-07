@@ -4,7 +4,7 @@
         autocomplete="off"
         @submit.prevent="submit"
     >
-        <div class="flex flex-row space-x-2 text-sm">
+        <div class="flex flex-row space-x-2 text-sm mb-2">
                 <span class="flex flex-row">
                     <template>
                         <inertia-link
@@ -32,7 +32,7 @@
 
         <div
             v-if="userCan('lectures.edit')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit - <b>{{ lecture.title }}</b>
@@ -167,7 +167,7 @@
         </div>
 
         <div class="bg-white p-6 shadow-subtle rounded-lg mt-4">
-            <h2>Files details</h2>
+            <h2>File details</h2>
             <div class="mt-4 px-4 space-y-2" v-if="formData.id">
                 <!-- TODO:: Create a new uploader that only uploads when Add is clicked? -->
                 <label for="file-uploader">Upload lecture PDFs</label>
@@ -261,9 +261,6 @@ export default {
         }
     },
     computed: {
-        showFileUploader() {
-            return this.canUploadFiles && this.userCan('file_manager.edit');
-        },
         uploaderDirectory() {
             let url = 'PDFs';
 

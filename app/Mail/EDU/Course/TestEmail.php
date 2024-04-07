@@ -7,20 +7,19 @@ use App\Models\Settings\ThemeSettings;
 use App\Traits\EDU\Course\CreatesCheckoutSessionForCourse;
 use Exception;
 use Illuminate\Bus\Queueable;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class CoursePurchaseRegister extends Mailable
+class TestEmail extends Mailable
 {
-    use Queueable, SerializesModels, CreatesCheckoutSessionForCourse;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $tenantName;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct(
         private readonly CoursePurchasePayment $payment
     ) {
@@ -33,7 +32,7 @@ class CoursePurchaseRegister extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->tenantName .  ' - '
+            subject: $this->tenantName . ' - '
             . trans('messages.register-for-course') . ' - '
             . $this->payment->purchase->course->name,
         );

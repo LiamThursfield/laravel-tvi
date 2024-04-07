@@ -86,45 +86,6 @@
                     @errorHidden="clearPageErrorMessage('email')"
                     v-model="formData.email"
                 />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('old_password')"
-                    input-autocomplete="old_password"
-                    input-id="old_password"
-                    input-name="old_password"
-                    :input-required="true"
-                    input-type="password"
-                    label-text="Old Password"
-                    @errorHidden="clearPageErrorMessage('old_password')"
-                    v-model="formData.old_password"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('new_password')"
-                    input-autocomplete="new_password"
-                    input-id="new_password"
-                    input-name="new_password"
-                    :input-required="true"
-                    input-type="password"
-                    label-text="New Password"
-                    @errorHidden="clearPageErrorMessage('new_password')"
-                    v-model="formData.new_password"
-                />
-
-                <input-group
-                    class="mt-4"
-                    :error-message="getPageErrorMessage('confirm_password')"
-                    input-autocomplete="confirm_password"
-                    input-id="confirm_password"
-                    input-name="confirm_password"
-                    :input-required="true"
-                    input-type="password"
-                    label-text="Confirm Password"
-                    @errorHidden="clearPageErrorMessage('confirm_password')"
-                    v-model="formData.confirm_password"
-                />
             </div>
         </div>
     </form>
@@ -148,9 +109,6 @@
                     email: null,
                     first_name: null,
                     last_name: null,
-                    old_password: null,
-                    new_password: null,
-                    confirm_password: null,
                 }
             }
         },
@@ -164,19 +122,5 @@
                 this.$inertia.put(this.$route('admin.profile.update'), this.formData);
             }
         },
-        watch: {
-            ['formData.confirm_password']: {
-                immediate: true,
-                handler() {
-                    _.debounce(function () {
-                        if (this.formData.new_password !== this.formData.confirm_password) {
-                            this.$page.props.errors['confirm_password'] = 'Passwords do not match';
-                        } else {
-                            this.clearPageErrorMessage('confirm_password');
-                        }
-                    }, 500)
-                }
-            }
-        }
     }
 </script>

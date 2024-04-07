@@ -5,7 +5,6 @@
 @endphp
 
 <x-mail::message>
-# Crează cont {{ config('app.name') }}
 
 Salut,
 
@@ -17,16 +16,16 @@ Crează-ți contul folosind butonul de mai jos:
 </x-mail::button>
 
 Alternativ, poti crea un cont si accesând acest link:
-<a href="{{ $url }}">{{ $url }}.</a>.
+<a href="{{ $url }}">{{ $url }}</a>.
 
 Bun venit!
 <br>
-Echipa {{ config('app.name') }}
+Echipa {{ $tenantName }}
 <br><br>
 
 <small>
-    Dacă nu ai solicitat crearea unui cont în rețeaua {{ config('app.name') }} și crezi că nu ar trebui să primești acest e-mail,
-    te rugăm contactează-ne la adresa <a href="mailTo:support@minducate.us">support@minducate.us</a>.
+    Dacă nu ai solicitat crearea unui cont în rețeaua {{ $tenantName }} și crezi că nu ar trebui să primești acest e-mail,
+    te rugăm contactează-ne la adresa <a href="mailTo:info@minducate.us">info@minducate.us</a>.
 </small>
 
 <br>
