@@ -61,6 +61,8 @@
                     @errorHidden="clearPageErrorMessage('url_from')"
                 />
 
+                <p class="mt-4 text-sm">Note: URL From should begin with '/'</p>
+
                 <input-group
                     class="mt-4"
                     :error-message="getPageErrorMessage('url_to')"
@@ -73,8 +75,6 @@
                     v-model="formData.url_to"
                     @errorHidden="clearPageErrorMessage('url_to')"
                 />
-
-                <p class="mt-4 text-sm">Note: URL's should begin with '/'</p>
             </div>
         </div>
 
@@ -91,7 +91,7 @@
 
                 <checkbox-group
                     class="mt-4"
-                    :error-message="getPageErrorMessage('is_permanent1')"
+                    :error-message="getPageErrorMessage('is_permanent')"
                     input-id="is_permanent"
                     input-name="is_permanent"
                     label-text="Permanent?"

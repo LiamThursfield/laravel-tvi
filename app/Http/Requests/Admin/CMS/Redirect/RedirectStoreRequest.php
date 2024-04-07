@@ -16,7 +16,7 @@ class RedirectStoreRequest extends BaseRequest
                 'starts_with:/',
                 Rule::unique('cms_redirects')
             ],
-            'url_to'        => 'required|string|starts_with:/',
+            'url_to'        => 'required|string',
             'is_enabled'    => 'required|boolean',
             'is_permanent'  => 'required|boolean',
             'published_at'  => 'nullable|date',
