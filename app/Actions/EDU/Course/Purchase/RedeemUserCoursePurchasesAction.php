@@ -2,6 +2,7 @@
 
 namespace App\Actions\EDU\Course\Purchase;
 
+use App\Interfaces\EDU\Course\CoursePurchaseInterface;
 use App\Models\EDU\Course\CoursePurchase;
 use App\Models\User;
 
@@ -16,7 +17,7 @@ class RedeemUserCoursePurchasesAction
 
         // Attach purchased courses to the user
         $user->coursePurchases()
-            ->where('payment_status', 'PAID')
+            ->whereIn('status', [CoursePurchaseInterface::PAYMENT_STATUS_PARTIALLY_PAID, CoursePurchaseInterface::PAYMENT_STATUS_PARTIALLY_PAID])
             ->whereNull('redeemed_at')
             ->get()->each(function (CoursePurchase $purchase) use ($user) {
                 $purchase->redeem($user);
