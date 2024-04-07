@@ -17,7 +17,7 @@ class RedeemUserCoursePurchasesAction
 
         // Attach purchased courses to the user
         $user->coursePurchases()
-            ->whereIn('status', [CoursePurchaseInterface::PAYMENT_STATUS_PARTIALLY_PAID, CoursePurchaseInterface::PAYMENT_STATUS_PARTIALLY_PAID])
+            ->whereIn('status', [CoursePurchaseInterface::PAYMENT_STATUS_PAID, CoursePurchaseInterface::PAYMENT_STATUS_PARTIALLY_PAID])
             ->whereNull('redeemed_at')
             ->get()->each(function (CoursePurchase $purchase) use ($user) {
                 $purchase->redeem($user);
