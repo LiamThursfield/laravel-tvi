@@ -6,7 +6,7 @@
             <h1
                 class="auth-header"
             >
-                Password Reset
+                Password Reset3232
             </h1>
 
             <form

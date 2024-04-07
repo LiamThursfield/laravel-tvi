@@ -16,21 +16,21 @@
                         focus-visible:ring-2
                         hover:bg-gray-800
                     "
-                    href="#"
+                    href="https://formie.io/form/9eece8a5-d9c0-428e-b447-562cf332d492"
                 >
                     Get Started
                 </a>
 
-                <a
-                    class="
-                        rounded text-center transition ring-offset-2 ring-gray-200 px-5 py-2.5 bg-white border-2 border-black text-black flex gap-1 items-center justify-center
-                        focus-visible:ring-2
-                        hover:bg-gray-100
-                    "
-                    href="#"
-                >
-                    More Info
-                </a>
+<!--                <a-->
+<!--                    class="-->
+<!--                        rounded text-center transition ring-offset-2 ring-gray-200 px-5 py-2.5 bg-white border-2 border-black text-black flex gap-1 items-center justify-center-->
+<!--                        focus-visible:ring-2-->
+<!--                        hover:bg-gray-100-->
+<!--                    "-->
+<!--                    href="#"-->
+<!--                >-->
+<!--                    More Info-->
+<!--                </a>-->
             </template>
         </hero-with-svg>
 
@@ -53,7 +53,7 @@
                 <div class="flex mt-5">
                     <a
                         class="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-5 py-2.5 bg-white text-black border-2 border-transparent"
-                        href="#"
+                        href="https://formie.io/form/9eece8a5-d9c0-428e-b447-562cf332d492"
                     >
                         Get Started
                     </a>

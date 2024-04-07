@@ -27,6 +27,7 @@ return [
     'register' => 'Înregistrează-te',
     'already-registered' => 'Deja înregistrat?',
     'create-a-new-account' => 'Creați un cont nou',
+    'register-for-course' => 'Înregistrează-te la curs',
 
     'profile' => 'Profil',
     'my-profile' => 'Profilul meu',
@@ -56,6 +57,7 @@ return [
     'mark-course-lecture-complete-refund-warning' => 'Sunteți sigur că doriți să marcați ca fiind completa sectiunea :name?
     O rambursare nu va fi disponibilă odată ce treceți la pasul următor.',
     'mark-complete' => 'Completează',
+    'mark-complete-success' => 'Completat cu succes.',
     'minutes' => 'minute',
     'course-preview' => 'Preview program',
     'dates' => 'Data',

@@ -9,7 +9,6 @@ use App\Models\Settings\ThemeSettings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use Spatie\LaravelSettings\Settings;
 
 class PageController extends Controller
 {
