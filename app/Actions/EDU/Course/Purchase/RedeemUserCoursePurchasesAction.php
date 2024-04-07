@@ -12,7 +12,7 @@ class RedeemUserCoursePurchasesAction
         // Set the user id for any existing purchases with the user's email
         CoursePurchase::whereNull('user_id')
             ->where('email_address', $user->email)
-            ->update(['user_id', $user->id]);
+            ->update(['user_id' => $user->id]);
 
         // Attach purchased courses to the user
         $user->coursePurchases()
