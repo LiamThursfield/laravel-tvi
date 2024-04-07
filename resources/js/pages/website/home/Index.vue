@@ -126,8 +126,6 @@
 </template>
 
 <script>
-    import {router} from "@inertiajs/vue2";
-
     export default {
         name: "Index",
         layout: 'home-layout',
@@ -141,9 +139,5 @@
                 isLoading: true
             }
         },
-        mounted() {
-            // TODO:: Temporary fix to redirect to the first course until there is a homepage
-            router.get('/cursuri/' + this.courses[0].slug);
-        }
     }
 </script>
