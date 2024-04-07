@@ -79,6 +79,8 @@ class StripeCourseCheckoutController extends Controller
         if ((int)$purchase->total_price_outstanding === 0) {
             $purchase->status = CoursePurchaseInterface::PAYMENT_STATUS_PAID;
             $purchase->full_price_paid_at = now();
+        } else if ($purchase->status === CoursePurchaseInterface::PAYMENT_STATUS_PENDING) {
+            $purchase->status = CoursePurchaseInterface::PAYMENT_STATUS_PARTIALLY_PAID;
         }
 
         $purchase->update();
