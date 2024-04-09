@@ -108,7 +108,7 @@
                             :key="`purchase-${purchase.id}`"
                         >
                             <td>
-                                {{ purchase.course.created_at | humanFriendlyDateTime }}
+                                {{ purchase.created_at | humanFriendlyDateTime }}
                             </td>
                             <td>
                                 {{ purchase.course.name }}
