@@ -29,27 +29,27 @@
                     return [
                         {
                             header: "Build and manage your website",
-                            description: "Use the best-in-class CMS to update your website in realtime."
+                            description: "All your online presence managed in one place."
                         },
                         {
                             header: "SEO Enabled",
                             description: "Full SEO tooling to set and update meta for all web pages."
                         },
                         {
-                            header: "Sell Courses",
-                            description: "Manage, publish, and sell courses with ease."
+                            header: "Sell Online Courses",
+                            description: "Manage, publish, and sell courses with ease. Video, audio, and text lessons."
                         },
                         {
-                            header: "Build and manage your website",
-                            description: "Use the best-in-class CMS to update your website in realtime."
+                            header: "Online Ads",
+                            description: "Our experts will help you create and manage online ads."
                         },
                         {
-                            header: "SEO Enabled",
-                            description: "Full SEO tooling to set and update meta for all web pages."
+                            header: "Multiple Payment Options",
+                            description: "Yur customers can pay with credit card, PayPal, and more."
                         },
                         {
-                            header: "Sell Courses",
-                            description: "Manage, publish, and sell courses with ease."
+                            header: "24/7 Support",
+                            description: "Our team is here to help you with any questions you may have."
                         },
                     ]
                 }

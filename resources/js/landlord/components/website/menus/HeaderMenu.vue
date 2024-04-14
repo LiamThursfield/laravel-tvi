@@ -81,6 +81,7 @@
         />
     </header>
 </template>
+
 <script>
     import HamburgerButton from "../buttons/HamburgerButton.vue";
     import HeaderMenuMobile from "./HeaderMenuMobile.vue";
@@ -96,18 +97,18 @@
         data() {
             return {
                 headerMenu: [
-                    {
-                        href: "/#",
-                        label: "Pricing",
-                    },
-                    {
-                        href: "/#",
-                        label: "About",
-                    },
-                    {
-                        href: "/#",
-                        label: "Contact",
-                    },
+                    // {
+                    //     href: "/#",
+                    //     label: "Pricing",
+                    // },
+                    // {
+                    //     href: "/#",
+                    //     label: "About",
+                    // },
+                    // {
+                    //     href: "/#",
+                    //     label: "Contact",
+                    // },
                 ],
                 isMobileNavVisible: false,
                 mobileNavScrollClass: 'mobile-nav-scroll-lock',

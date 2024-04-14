@@ -48,7 +48,7 @@ export default {
         metaDescription() {
             return this.getMetaDataField(
                 'description',
-                'SIGI - powered by Laravel, Tailwind, Vue, and Inertia'
+                'SIGI - powering your online presence'
             );
         },
         metaTitle() {
@@ -71,10 +71,7 @@ export default {
             } catch (e) {
                 return fallback;
             }
-        },
-        url() {
-            return location.pathname.substr(1)
-        },
+        }
     }
 }
 </script>
