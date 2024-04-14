@@ -15,11 +15,11 @@
                 <span v-if="!logoUrl">{{__('messages.' + item.label) }}</span>
                 <span
                     v-else
-                    class="flex flex-col md:flex-row md:space-x-4"
+                    class="flex flex-row items-center space-x-3"
                 >
-                    <img :src="logoUrl" class="logo w-12"/>
+                    <img :src="logoUrl" class="h-8 w-8 md:h-12 md:w-12"/>
                     <!-- TODO:: Make this more stylish and pass in the tenant name correctly -->
-                    <span style="justify-content: left; padding-top: 0.6rem; padding-left: 0; font-size: 1.2rem;">
+                    <span class="font-semibold text-lg md:text-xl">
                          {{ tenantName }}
                     </span>
                 </span>

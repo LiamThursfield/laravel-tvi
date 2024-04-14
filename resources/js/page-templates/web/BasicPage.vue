@@ -1,5 +1,5 @@
 <template>
-    <main class="bg-theme-base text-theme-base-contrast">
+    <main class="bg-theme-base px-4 text-theme-base-contrast">
         <div
             class="prose"
             v-html="mainContent"

@@ -91,6 +91,7 @@
                     <table class="table table-hover table-striped w-full">
                         <thead>
                         <tr>
+                            <th>Date</th>
                             <th>Course</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -106,6 +107,9 @@
                             v-for="(purchase) in purchaseData"
                             :key="`purchase-${purchase.id}`"
                         >
+                            <td>
+                                {{ purchase.created_at | humanFriendlyDateTime }}
+                            </td>
                             <td>
                                 {{ purchase.course.name }}
                             </td>
