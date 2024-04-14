@@ -20,26 +20,69 @@
                 </svg>
             </div>
 
-            <div class="flex items-center justify-center min-h-screen min-w-full p-4 relative">
+            <div class="flex items-center min-h-screen min-w-full justify-center p-4 relative">
                 <slot />
             </div>
+
+            <tenant-footer
+                :tenant-name="metaTenantName"
+                :class="'text-white'"
+                :link-class-value="'text-theme-primary hover:text-theme-primary-hover'"
+            ></tenant-footer>
         </main>
     </div>
 </template>
 
 <script>
+import TenantFooter from "../../components/core/footer/Footer.vue";
+
     export default {
         name: "AuthLayout",
         metaInfo() {
             return {
-                title: 'SIGI',
+                title: this.metaTitle,
                 meta: [
                     {
                         name: 'description',
-                        content: 'SIGI',
+                        content: this.metaDescription,
                     }
                 ]
             }
         },
+        components: {
+            TenantFooter
+        },
+        computed: {
+            metaDescription() {
+                return this.getMetaDataField(
+                    'description',
+                    'SIGI - powering your online presence'
+                );
+            },
+            metaTitle() {
+                return this.getMetaDataField(
+                    'title',
+                    'SIGI'
+                );
+            },
+            metaTenantName() {
+                return this.getMetaDataField(
+                    'tenant',
+                    'SIGI'
+                );
+            }
+        },
+        methods: {
+            getMetaDataField(slug, fallback = '') {
+                try {
+                    return this.$page.props.meta[slug] ?? fallback;
+                } catch (e) {
+                    return fallback;
+                }
+            },
+            url() {
+                return location.pathname.substr(1)
+            },
+        }
     }
 </script>

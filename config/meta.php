@@ -2,7 +2,7 @@
 
 return [
     'admin' => [
-        'description' => "SIGI - powered by Laravel, Tailwind, Vue, and Inertia",
+        'description' => "SIGI - powering your online presence",
         'title' => [
             'SIGI',
             'Admin'

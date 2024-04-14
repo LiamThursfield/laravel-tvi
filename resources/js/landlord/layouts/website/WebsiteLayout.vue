@@ -8,7 +8,7 @@
 
             <slot />
 
-            <div class="mt-20">
+            <div class="mt-20 text-center">
                 Copyright © {{ (new Date().getFullYear()) }} SIGI
             </div>
         </main>
@@ -23,14 +23,43 @@
         components: {HeaderMenu},
         metaInfo() {
             return {
-                title: 'SIGI',
+                title: this.metaTitle,
                 meta: [
                     {
                         name: 'description',
-                        content: 'SIGI - powered by Laravel, Tailwind, Vue, and Inertia',
+                        content: this.metaDescription,
                     }
                 ]
             }
         },
+        computed: {
+            metaDescription() {
+                return this.getMetaDataField(
+                    'description',
+                    'SIGI - powering your online presence'
+                );
+            },
+            metaTitle() {
+                return this.getMetaDataField(
+                    'title',
+                    'SIGI'
+                );
+            },
+            metaTenantName() {
+                return this.getMetaDataField(
+                    'tenant',
+                    'SIGI'
+                );
+            }
+        },
+        methods: {
+            getMetaDataField(slug, fallback = '') {
+                try {
+                    return this.$page.props.meta[slug] ?? fallback;
+                } catch (e) {
+                    return fallback;
+                }
+            }
+        }
     }
 </script>
