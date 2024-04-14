@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mb-4">
-            <h1 class="font-semibold mr-auto text-3xl">
+            <h1 class="font-semibold mr-auto text-lg md:text-3xl">
                 {{ course.name }}
             </h1>
             <small>{{ __('messages.created-by') }} <b>{{ course.creator.name }}</b></small>
@@ -366,7 +366,7 @@ export default {
             activeSection: 0,
             activeSectionLecture: 0,
             toggledSections: {
-                0: true
+                0: false
             },
             mountedItems: {},
             toggledItems: {},
@@ -405,12 +405,53 @@ export default {
         },
     },
     mounted() {
-        this.isLoadingLecture = true;
-        this.section = this.course.sections[0];
-        this.lecture = this.course.sections[0].child_items[0];
-        this.isLoadingLecture = false;
+        this.determineActiveLecture();
+
+        this.hideToggledSectionsOnMobile();
     },
     methods: {
+        determineActiveLecture() {
+            this.isLoadingLecture = true;
+            let found = false;
+
+            _.forEach(this.course.sections, (section, sectionIndex) => {
+                if (found) {
+                    return
+                }
+
+                _.forEach(section.child_items, (lecture, lectureIndex) => {
+                    if (found) {
+                        return;
+                    }
+
+                    if (!lecture.completed) {
+                        console.log('not completed')
+                        this.setActiveLecture(sectionIndex, lectureIndex, lecture, section);
+                        found = true;
+                        return;
+                    }
+                });
+
+                if (found) {
+                    console.log('found', found);
+                    return true;
+                }
+            });
+
+            this.isLoadingLecture = false;
+        },
+        hideToggledSectionsOnMobile() {
+            try {
+                // TODO: Move to helper
+                if (window.innerWidth < 1024) {
+                    _.forEach(this.toggledSections, (section, index) => {
+                        this.$set(this.toggledSections, index, false);
+                    })
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        },
         toggleCourseContent() {
             console.log('here');
             this.isCourseContentToggled = !this.isCourseContentToggled;
@@ -428,6 +469,7 @@ export default {
             this.lecture = _.cloneDeep(lecture);
             this.showPDFPanel = false;
             this.showAudioPanel = false;
+            this.$set(this.toggledSections, sectionIndex, true);
 
             // Make it look as if it is loading, as (although counter-intuitive) it's a better UX
             // As it makes it more obvious that the active course has changed
