@@ -62,6 +62,20 @@
                         v-model="formData[key]"
                     />
 
+
+                    <mailer-setting
+                        v-else-if="setting.type === 'mailer'"
+                        class="mt-4"
+                        :colors="setting.colors"
+                        :mailers="setting.mailers"
+                        :mailer-setting-keys="setting.mailerSettingKeys"
+                        :mailer-setting-labels="setting.mailerSettingLabels"
+                        :mailer-setting-types="setting.mailerSettingTypes"
+                        :title="setting.label"
+                        v-model="formData[key]"
+                    />
+
+
                     <input-group
                         v-else
                         class="mt-4"
@@ -86,10 +100,11 @@
     import InputGroup from "../../../components/core/forms/InputGroup.vue";
     import SelectGroup from "../../../components/core/forms/SelectGroup.vue";
     import ColorsSetting from "../../../components/admin/settings/ColorsSetting.vue";
+    import MailerSetting from "../../../components/admin/settings/MailerSetting.vue";
 
     export default {
         name: "AdminSettingEdit",
-        components: {ColorsSetting, SelectGroup, InputGroup},
+        components: {MailerSetting, ColorsSetting, SelectGroup, InputGroup},
         layout: 'admin-layout',
         props: {
             settings: {
@@ -113,6 +128,10 @@
         created() {
             _.forEach(this.settings, (setting, key) => {
                 let value = setting.value === null ? '' : setting.value;
+                if (typeof value === 'object') {
+                    value = _.cloneDeep(value);
+                }
+
                 this.$set(this.formData, key, value);
             });
         },

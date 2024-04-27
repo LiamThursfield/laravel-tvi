@@ -2,8 +2,6 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Support\Arr;
-
 class ThemeInterface {
     const COLOR_BASE = 'COLOR_BASE';
     const COLOR_BASE_CONTRAST = 'COLOR_BASE_CONTRAST';

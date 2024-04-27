@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminApi\CRM\OrganisationUnitController;
 use App\Http\Controllers\AdminApi\EDU\CourseController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerDirectoryController;
 use App\Http\Controllers\AdminApi\FileManager\FileManagerFileController;
+use App\Http\Controllers\AdminApi\Settings\MailerTestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,4 +55,11 @@ Route::group([
     Route::get('/files', [FileManagerFileController::class, 'index'])->name('files.index');
     Route::get('/files/{file}', [FileManagerFileController::class, 'show'])->name('files.show');
     Route::post('/files', [FileManagerFileController::class, 'store'])->name('files.store');
+});
+
+Route::group([
+    'as' => 'settings.',
+    'prefix' => 'settings'
+], function () {
+    Route::post('mailer-test', MailerTestController::class)->name('mailer-test');
 });

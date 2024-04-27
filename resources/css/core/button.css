@@ -24,11 +24,29 @@
         @apply px-2 py-1;
     }
 
-    &.button-primary {
-        @apply bg-theme-primary text-theme-primary-contrast;
+    &.button-outline {
+        @apply bg-transparent border border-white text-white;
 
         &:hover {
-            @apply bg-theme-primary-hover text-theme-primary-hover-contrast;
+            @apply bg-theme-primary border-theme-primary text-theme-primary-contrast;
+        }
+    }
+
+    &.button-primary {
+        &:not(.button-outline) {
+            @apply bg-theme-primary text-theme-primary-contrast;
+
+            &:hover {
+                @apply bg-theme-primary-hover text-theme-primary-hover-contrast;
+            }
+        }
+
+        &.button-outline {
+            @apply border-theme-primary text-theme-primary;
+
+            &:hover {
+                @apply bg-theme-primary text-theme-primary-contrast;
+            }
         }
     }
 

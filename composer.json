@@ -26,6 +26,8 @@
         "spatie/laravel-settings": "^3.2",
         "stancl/tenancy": "^3.7",
         "stripe/stripe-php": "^12.3",
+        "symfony/http-client": "^7.0",
+        "symfony/mailgun-mailer": "^7.0",
         "tightenco/ziggy": "^1.5",
         "vimeo/laravel": "^5.8"
     },
@@ -51,6 +53,9 @@
         }
     },
     "autoload": {
+        "files": [
+            "app/Helpers/Helper.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",

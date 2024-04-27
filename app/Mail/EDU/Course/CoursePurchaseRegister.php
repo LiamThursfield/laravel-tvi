@@ -33,9 +33,14 @@ class CoursePurchaseRegister extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->tenantName .  ' - '
-            . trans('messages.register-for-course') . ' - '
-            . $this->payment->purchase->course->name,
+            subject: implode(
+                " - ",
+                collect([
+                    $this->tenantName,
+                    trans('messages.register-for-course'),
+                    $this->payment->purchase->course->name
+                ])->filter()->toArray()
+            ),
         );
     }
 
