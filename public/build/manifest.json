@@ -1362,25 +1362,13 @@
       "_vendor.21c2b6f5.js"
     ]
   },
-  "MenuItemsEditor.css": {
-    "file": "assets/MenuItemsEditor.d3aee09e.css",
-    "src": "MenuItemsEditor.css"
-  },
-  "FormFieldEditor.css": {
-    "file": "assets/FormFieldEditor.d58a42ba.css",
-    "src": "FormFieldEditor.css"
-  },
-  "SectionItemsEditor.css": {
-    "file": "assets/SectionItemsEditor.60da80fa.css",
-    "src": "SectionItemsEditor.css"
-  },
-  "resources/js/pages/student/admin/home/Index.css": {
-    "file": "assets/Index.1b447e17.css",
-    "src": "resources/js/pages/student/admin/home/Index.css"
-  },
   "LogoLight.css": {
     "file": "assets/LogoLight.fab1a1ae.css",
     "src": "LogoLight.css"
+  },
+  "MenuItemsEditor.css": {
+    "file": "assets/MenuItemsEditor.d3aee09e.css",
+    "src": "MenuItemsEditor.css"
   },
   "resources/js/pages/customer/home/Index.css": {
     "file": "assets/Index.bfedd53e.css",
@@ -1389,6 +1377,18 @@
   "TemplateFieldEditor.css": {
     "file": "assets/TemplateFieldEditor.dae9ac96.css",
     "src": "TemplateFieldEditor.css"
+  },
+  "SectionItemsEditor.css": {
+    "file": "assets/SectionItemsEditor.60da80fa.css",
+    "src": "SectionItemsEditor.css"
+  },
+  "FormFieldEditor.css": {
+    "file": "assets/FormFieldEditor.d58a42ba.css",
+    "src": "FormFieldEditor.css"
+  },
+  "resources/js/pages/student/admin/home/Index.css": {
+    "file": "assets/Index.1b447e17.css",
+    "src": "resources/js/pages/student/admin/home/Index.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.7916e14e.css",
