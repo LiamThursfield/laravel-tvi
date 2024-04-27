@@ -21,7 +21,7 @@
 {{-- Footer --}}
 <x-slot:footer>
 <x-mail::footer>
-© {{ date('Y') }} Minducate.Us. @lang('All rights reserved.')
+© {{ date('Y') }} {{ $tenant_name }}. @lang('All rights reserved.')
     Powered by <a href="https://sigi.ro" style="color: #3d4852;">{{ config('app.name') }}</a>.
 </x-mail::footer>
 </x-slot:footer>
