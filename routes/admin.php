@@ -116,6 +116,16 @@ Route::group([
 
 Route::resource('users', UserController::class);
 
+Route::group([
+    'as' => 'diagnostics.',
+    'prefix' => 'diagnostics'
+], function () {
+    Route::get('/phpinfo', function () {
+        return phpinfo();
+    });
+});
+
+
 /** Fallback admin route - ensures Auth() calls work as expected in the exception handler */
 Route::fallback(function () {
     abort(404);
