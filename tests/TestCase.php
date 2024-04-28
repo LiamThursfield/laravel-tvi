@@ -2,13 +2,14 @@
 
 namespace Tests;
 
+use App\Actions\Landlord\Tenant\TenantStoreAction;
 use App\Interfaces\RoleInterface;
+use App\Models\Tenant;
 use App\Models\User;
 use Faker\Factory as Faker;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Assert;
 
@@ -24,9 +25,10 @@ use PHPUnit\Framework\Assert;
  */
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication,
-        DatabaseMigrations,
-        DatabaseTransactions;
+    use CreatesApplication;
+
+    protected bool $tenancy = false;
+    protected ?Tenant $tenant = null;
 
     /**
      * @var Faker
@@ -38,7 +40,25 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         $this->inertiaSetup();
         $this->faker = Faker::create();
+        config(['tenancy.database.prefix' => 'test_tenant_']);
     }
+
+    protected function createTenant(array $data = [], string $domain = null): Tenant
+    {
+        $data = array_merge(
+            [
+                'id' => 'test'
+            ],
+            $data
+        );
+
+        $domain = $domain ?? Str::random('10');
+
+        $this->tenant = app(TenantStoreAction::class)->handle($data, $domain);
+
+        return $this->tenant;
+    }
+
 
     protected function tearDown(): void
     {

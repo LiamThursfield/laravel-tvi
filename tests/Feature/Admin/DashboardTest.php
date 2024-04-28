@@ -2,27 +2,33 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Interfaces\Landlord\PermissionInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
-use Tests\TestCase;
+use Tests\TenantTestCase;
 
-class DashboardTest extends TestCase
+class DashboardTest extends TenantTestCase
 {
     use RefreshDatabase;
 
-
-    /** @test  */
-    public function authorised_users_can_view_the_dashboard()
+    public function test_authorised_users_can_view_the_dashboard()
     {
         $response = $this
-            ->signIn()
+            ->signInWithPermissions(PermissionInterface::VIEW_ADMIN)
             ->get(route('admin.index'));
 
         $response->assertStatus(200);
     }
 
-    /** @test  */
-    public function unauthorised_users_cannot_view_the_dashboard()
+    public function test_unauthorised_users_cannot_view_the_dashboard()
+    {
+        $response = $this
+            ->signIn()
+            ->get(route('admin.index'));
+
+        $response->assertStatus(403);
+    }
+
+    public function test_guests_cannot_view_the_dashboard()
     {
         $response = $this->get(route('admin.index'));
         $response->assertRedirect(route('login'));

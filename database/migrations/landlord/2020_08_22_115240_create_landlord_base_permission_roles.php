@@ -3,6 +3,8 @@
 use App\Interfaces\Landlord\PermissionInterface;
 use App\Interfaces\Landlord\RoleInterface;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -37,17 +39,19 @@ class CreateLandlordBasePermissionRoles extends Migration
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create the new permissions
-        foreach ($this->getNewPermissions() as $permission) {
-            Permission::create(['guard_name' => 'landlord-web', 'name' => $permission]);
-        }
+        $permissions = $this->getNewPermissions()->map(function ($permission) {
+            return [
+                'name' => $permission,
+                'guard_name' => 'landlord-web'
+            ];
+        });
+        DB::table('permissions')->insert($permissions->toArray());
 
         // Create the new roles and assign any permissions
         foreach ($this->getNewRoles() as $role_name => $permissions) {
             $role = Role::create(['guard_name' => 'landlord-web', 'name' => $role_name]);
             // Assign the permissions to the role
-            foreach ($permissions as $permission) {
-                $role->givePermissionTo($permission);
-            }
+            $role->givePermissionTo($permissions);
         }
 
         auth()->setDefaultDriver($originalDriver);
@@ -61,19 +65,19 @@ class CreateLandlordBasePermissionRoles extends Migration
     public function down(): void
     {
         // Delete the new Permissions and Roles
-        Permission::whereIn('name', $this->getNewPermissions())->delete();
-        Role::whereIn('name', array_keys($this->getNewRoles()))->delete();
+        Permission::whereIn('name', $this->getNewPermissions()->toArray())->delete();
+        Role::whereIn('name', array_keys($this->getNewRoles()->toArray()))->delete();
     }
 
 
     /**
      * New Permissions being added in the migration
      *
-     * @return array
+     * @return Collection<string>
      */
-    protected function getNewPermissions(): array
+    protected function getNewPermissions(): Collection
     {
-        return [
+        return collect([
             // Admin
             PermissionInterface::VIEW_ADMIN,
 
@@ -99,17 +103,17 @@ class CreateLandlordBasePermissionRoles extends Migration
             PermissionInterface::DELETE_USERS,
             PermissionInterface::EDIT_USERS,
             PermissionInterface::VIEW_USERS,
-        ];
+        ]);
     }
 
     /**
      * New Roles with the associated permissions
      *
-     * @return array[]
+     * @return Collection<string, array<string>>
      */
-    protected function getNewRoles(): array
+    protected function getNewRoles(): Collection
     {
-        return [
+        return collect([
             RoleInterface::ADMIN => [
                 // Admin
                 PermissionInterface::VIEW_ADMIN,
@@ -127,6 +131,6 @@ class CreateLandlordBasePermissionRoles extends Migration
                 PermissionInterface::VIEW_USERS,
             ],
             RoleInterface::SUPER => [],
-        ];
+        ]);
     }
 }
