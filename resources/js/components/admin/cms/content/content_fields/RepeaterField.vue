@@ -77,8 +77,8 @@
 
     import { contentFieldMixin } from "../../../../../mixins/admin/cms/content-field";
 
-    import InputGroup from "../../../../core/forms/InputGroup";
-    import ConfirmationModal from "../../../../core/modals/ConfirmationModal";
+    import InputGroup from "../../../../core/forms/InputGroup.vue";
+    import ConfirmationModal from "../../../../core/modals/ConfirmationModal.vue";
 
     export default {
         name: "RepeaterField",

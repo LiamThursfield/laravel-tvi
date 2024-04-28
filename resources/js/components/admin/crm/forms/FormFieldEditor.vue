@@ -99,7 +99,7 @@
 <script>
     import _ from 'lodash';
     import draggable from 'vuedraggable';
-    import FormField from "./form_fields/FormField";
+    import FormField from "./form_fields/FormField.vue";
 
     export default {
         name: 'FormFieldEditor',

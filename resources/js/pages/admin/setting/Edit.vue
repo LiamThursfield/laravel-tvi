@@ -9,7 +9,7 @@
             class="flex flex-row items-center mb-6"
         >
             <h1 class="font-medium mr-auto text-lg">
-                Edit {{ settingsName }} Settings
+                {{ __('settings.edit', {setting: settingsName}) }}
             </h1>
 
             <button
@@ -28,7 +28,7 @@
                 <span
                     class="hidden md:inline"
                 >
-                    Save Changes
+                    {{ __('form.buttons.save') }}
                 </span>
             </button>
         </div>
@@ -53,6 +53,29 @@
                         v-model="formData[key]"
                     />
 
+                    <colors-setting
+                        v-else-if="setting.type === 'colors'"
+                        class="mt-4"
+                        :colors="setting.colors"
+                        :default-colors="setting.defaultColors"
+                        :title="setting.label"
+                        v-model="formData[key]"
+                    />
+
+
+                    <mailer-setting
+                        v-else-if="setting.type === 'mailer'"
+                        class="mt-4"
+                        :colors="setting.colors"
+                        :mailers="setting.mailers"
+                        :mailer-setting-keys="setting.mailerSettingKeys"
+                        :mailer-setting-labels="setting.mailerSettingLabels"
+                        :mailer-setting-types="setting.mailerSettingTypes"
+                        :title="setting.label"
+                        v-model="formData[key]"
+                    />
+
+
                     <input-group
                         v-else
                         class="mt-4"
@@ -76,10 +99,12 @@
     import _ from 'lodash';
     import InputGroup from "../../../components/core/forms/InputGroup.vue";
     import SelectGroup from "../../../components/core/forms/SelectGroup.vue";
+    import ColorsSetting from "../../../components/admin/settings/ColorsSetting.vue";
+    import MailerSetting from "../../../components/admin/settings/MailerSetting.vue";
 
     export default {
         name: "AdminSettingEdit",
-        components: {SelectGroup, InputGroup},
+        components: {MailerSetting, ColorsSetting, SelectGroup, InputGroup},
         layout: 'admin-layout',
         props: {
             settings: {
@@ -103,6 +128,10 @@
         created() {
             _.forEach(this.settings, (setting, key) => {
                 let value = setting.value === null ? '' : setting.value;
+                if (typeof value === 'object') {
+                    value = _.cloneDeep(value);
+                }
+
                 this.$set(this.formData, key, value);
             });
         },
@@ -119,8 +148,12 @@
 
                 this.$inertia.put(
                     this.$route('admin.settings.update', this.settingsGroup),
-                    formattedSettings
-                );
+                    formattedSettings,
+                    {
+                        // Some settings may need a page reload to take effect
+                        onSuccess: () => { window.location.reload() }
+                    }
+                )
             }
         },
     }

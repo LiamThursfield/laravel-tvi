@@ -2,11 +2,7 @@
 
 namespace App\Console\Commands\EDU\Course;
 
-use App\Interfaces\RoleInterface;
-use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 use Stancl\Tenancy\Concerns\HasATenantArgument;
 use Stancl\Tenancy\Concerns\TenantAwareCommand;
 

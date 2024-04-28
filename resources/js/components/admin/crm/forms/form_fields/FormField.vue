@@ -96,12 +96,12 @@
 
 <script>
     import slugify          from "slugify";
-    import CheckboxGroup    from "../../../../core/forms/CheckboxGroup";
-    import InputGroup       from "../../../../core/forms/InputGroup";
-    import NumberSettings   from "./form_field_settings/NumberSettings";
-    import SelectGroup      from "../../../../core/forms/SelectGroup";
-    import TextAreaSettings from "./form_field_settings/TextAreaSettings";
-    import TextSettings     from "./form_field_settings/TextSettings";
+    import CheckboxGroup    from "../../../../core/forms/CheckboxGroup.vue";
+    import InputGroup       from "../../../../core/forms/InputGroup.vue";
+    import NumberSettings   from "./form_field_settings/NumberSettings.vue";
+    import SelectGroup      from "../../../../core/forms/SelectGroup.vue";
+    import TextAreaSettings from "./form_field_settings/TextAreaSettings.vue";
+    import TextSettings     from "./form_field_settings/TextSettings.vue";
 
     export default {
         name: "FormField",

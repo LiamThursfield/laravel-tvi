@@ -17,7 +17,12 @@ class FileManagerDirectoryController extends AbstractFileManagerController
      */
     public function index(Request $request)
     {
-        $directories = collect(Storage::disk($this->storage_disk)->directories($request->get('directory')))
+        //TODO:: see if we want to use this somewhere else in the code?
+//        $dir = $request->get('directory') ?? tenant()->id;
+        $dir = tenant()->id;
+        // TODO:: get the size of all files in this dir and return to FE to allow user to know sizeUsed/SizeLeft in gb
+        $directories = collect(Storage::disk($this->storage_disk)
+            ->directories($dir))
             ->map(function($directory) {
                 $label = explode('/', $directory);
                 $label = $label[count($label) - 1];

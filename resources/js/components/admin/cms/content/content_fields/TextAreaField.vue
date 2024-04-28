@@ -20,7 +20,7 @@
 
 <script>
     import { contentFieldMixin } from "../../../../../mixins/admin/cms/content-field";
-    import TextAreaGroup from "../../../../core/forms/TextAreaGroup";
+    import TextAreaGroup from "../../../../core/forms/TextAreaGroup.vue";
 
     export default {
         name: "TextAreaField",

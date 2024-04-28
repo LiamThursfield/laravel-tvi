@@ -149,10 +149,10 @@
 
 <script>
     import _ from 'lodash';
-    import FileManagerDirectoryList from "./partials/FileManagerDirectoryList";
-    import FileManagerFilesHeader from "./partials/FileManagerFilesHeader";
-    import FileManagerFilesList from "./partials/FileManagerFilesList";
-    import FileManagerFileUploader from "./partials/FileManagerFileUploader";
+    import FileManagerDirectoryList from "./partials/FileManagerDirectoryList.vue";
+    import FileManagerFilesHeader from "./partials/FileManagerFilesHeader.vue";
+    import FileManagerFilesList from "./partials/FileManagerFilesList.vue";
+    import FileManagerFileUploader from "./partials/FileManagerFileUploader.vue";
 
     let CancelToken = axios.CancelToken;
     let filesCancelToken = CancelToken.source();

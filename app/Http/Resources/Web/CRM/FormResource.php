@@ -15,6 +15,7 @@ class FormResource extends JsonResource {
             'marketing_sms'         => $this->marketing_sms,
             'marketing_telephone'   => $this->marketing_telephone,
             'name'                  => $this->name,
+            'submit_button_text'    => $this->submit_button_text,
         ];
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Settings\EduSettings;
 use App\Models\Settings\ThirdPartySettings;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
@@ -161,6 +162,7 @@ trait  CreatesCheckoutSessionForCourse
                 $course,
                 route('website.edu.courses.show', ['course' => $course]) . '?checkout=cancel'
             ),
+            'locale' => App::getLocale(),
         ]);
     }
 }

@@ -18,6 +18,7 @@ class FormResource extends JsonResource
             'name'                  => $this->name,
             'redirect_url'          => $this->redirect_url,
             'slug'                  => $this->slug,
+            'submit_button_text'    => $this->submit_button_text,
             'success_message'       => $this->success_message,
         ];
     }

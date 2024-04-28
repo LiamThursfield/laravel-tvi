@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('cms.edit')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit Menu - {{ menu.name }}
@@ -91,8 +91,8 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import MenuItemsEditor from "../../../../components/admin/cms/menus/MenuItemsEditor.vue";
 
     export default {
         name: "AdminCmsMenuEdit",

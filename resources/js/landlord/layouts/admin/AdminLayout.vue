@@ -25,7 +25,7 @@
 <script>
     import { router } from '@inertiajs/vue2'
 
-    import PageAlerts from "../../../components/core/alerts/PageAlerts";
+    import PageAlerts from "../../../components/core/alerts/PageAlerts.vue";
 
     export default {
         name: "AdminLayout",

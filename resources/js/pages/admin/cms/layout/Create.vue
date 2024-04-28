@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('cms_advanced.create')"
-            class="flex flex-row items-center mb-6"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Create Layout
@@ -114,8 +114,8 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
 
     let CancelToken = axios.CancelToken;
     let templateCancelToken = CancelToken.source();

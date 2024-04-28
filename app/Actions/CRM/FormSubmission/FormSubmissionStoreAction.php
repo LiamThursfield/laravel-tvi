@@ -3,12 +3,14 @@
 namespace App\Actions\CRM\FormSubmission;
 
 use App\Interfaces\CRM\FormFieldInterface;
+use App\Mail\CRM\Form\FormSubmittedInternal;
 use App\Models\CRM\Contact;
 use App\Models\CRM\Form;
 use App\Models\CRM\FormSubmission;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class FormSubmissionStoreAction
@@ -29,8 +31,8 @@ class FormSubmissionStoreAction
         $this->form = $form;
         $this->submissionData = app(ValidateFormSubmissionDataAction::class)->handle($form, $submissionData);
 
-        if (!$form->relationLoaded('formFields')) {
-            $form->load('formFields');
+        if (!$this->form->relationLoaded('formFields')) {
+            $this->form->load('formFields');
         }
 
         try {
@@ -43,6 +45,8 @@ class FormSubmissionStoreAction
                 'data'          => $this->submissionData,
                 'form_id'       => $this->form->id,
             ]);
+
+            $this->sendSubmissionNotification($formSubmission);
 
             DB::commit();
 
@@ -103,5 +107,16 @@ class FormSubmissionStoreAction
         }
 
         return $crmData;
+    }
+
+    protected function sendSubmissionNotification(FormSubmission $formSubmission): void
+    {
+        // TODO: We may want to move to dispatching events going forward
+        if (! $this->form->hasEmailRecipients()) {
+            return;
+        }
+
+        Mail::to($this->form->email_recipients)
+            ->send(new FormSubmittedInternal($formSubmission));
     }
 }

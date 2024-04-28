@@ -92,7 +92,8 @@
 </template>
 
 <script>
-    import InputGroup from "../../../components/core/forms/InputGroup";
+    import InputGroup from "../../../components/core/forms/InputGroup.vue";
+    import _ from "lodash";
 
     export default {
         name: "AdminProfileIndex",
@@ -120,6 +121,6 @@
             submit() {
                 this.$inertia.put(this.$route('admin.profile.update'), this.formData);
             }
-        }
+        },
     }
 </script>

@@ -6,13 +6,22 @@
 
         <title>SIGI</title>
 
-        <link href="{{ mix('/css/app.css') }}" rel="stylesheet"/>
-
         @routes
-        <script src="{{ mix('/js/app.js') }}" defer></script>
+
+        @vite('resources/js/app.js')
+
+        @inertiaHead
+
+        @if(tenant())
+            @include('partials.tenant-head')
+        @endif
+
+        <script>
+            window.locale = '{{ app()->getLocale() }}';
+        </script>
     </head>
 
-    <body>
+    <body class="html-base">
         @inertia
     </body>
 </html>

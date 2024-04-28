@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import PaginationLink from "./PaginationLink";
+    import PaginationLink from "./PaginationLink.vue";
     export default {
         name: "Pagination",
         components: {

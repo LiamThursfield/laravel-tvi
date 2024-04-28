@@ -41,6 +41,7 @@ class RoleInterface
         self::ADMIN,
         self::SUPER,
         self::USER,
+        self::STUDENT
     ];
 
     const USER_SELECTABLE_ROLES = [];

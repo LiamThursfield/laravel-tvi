@@ -155,7 +155,7 @@
                     input-autocomplete="organisation_unit_email"
                     input-id="email"
                     input-name="email"
-                    @input-required="true"
+                    :input-required="true"
                     input-type="email"
                     label-text="Email"
                     @errorHidden="clearPageErrorMessage('email')"
@@ -180,6 +180,21 @@
         <div class="bg-white mt-6 py-6 shadow-subtle rounded-lg">
             <div class="block px-6 w-full">
                 <span class="text-lg">Socials</span>
+
+                <div class="flex flex-col md:flex-row md:space-x-4">
+                    <input-group
+                        class="mt-4 md:flex-1"
+                        :error-message="getPageErrorMessage('socials.youtube')"
+                        input-autocomplete="youtube_account"
+                        input-id="youtube_account"
+                        input-name="youtube_account"
+                        :input-required="false"
+                        input-type="text"
+                        label-text="Youtube"
+                        @errorHidden="clearPageErrorMessage('socials.youtube')"
+                        v-model="formData.socials.youtube"
+                    />
+                </div>
 
                 <div class="flex flex-col md:flex-row md:space-x-4">
                     <input-group
@@ -225,13 +240,41 @@
 
                     <input-group
                         class="mt-4 md:flex-1"
+                        :error-message="getPageErrorMessage('socials.snapchat')"
+                        input-autocomplete="snapchat_account"
+                        input-id="snapchat_account"
+                        input-name="snapchat_account"
+                        :input-required="false"
+                        input-type="text"
+                        label-text="Snapchat"
+                        @errorHidden="clearPageErrorMessage('socials.snapchat')"
+                        v-model="formData.socials.snapchat"
+                    />
+                </div>
+
+                <div class="flex flex-col md:flex-row md:space-x-4">
+                    <input-group
+                        class="mt-4 md:flex-1"
+                        :error-message="getPageErrorMessage('socials.tiktok')"
+                        input-autocomplete="tiktok_account"
+                        input-id="tiktok_account"
+                        input-name="tiktok_account"
+                        :input-required="false"
+                        input-type="text"
+                        label-text="TikTok"
+                        @errorHidden="clearPageErrorMessage('socials.tiktok')"
+                        v-model="formData.socials.tiktok"
+                    />
+
+                    <input-group
+                        class="mt-4 md:flex-1"
                         :error-message="getPageErrorMessage('socials.twitter')"
                         input-autocomplete="twitter_account"
                         input-id="twitter_account"
                         input-name="twitter_account"
                         :input-required="false"
                         input-type="text"
-                        label-text="Twitter"
+                        label-text="Twitter/X"
                         @errorHidden="clearPageErrorMessage('socials.twitter')"
                         v-model="formData.socials.twitter"
                     />
@@ -249,8 +292,8 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
 
     let CancelToken = axios.CancelToken;
     let companiesCancelToken = CancelToken.source();
@@ -285,7 +328,10 @@
                         facebook: '',
                         instagram: '',
                         linkedin: '',
+                        snapchat: '',
+                        tiktok: '',
                         twitter: '',
+                        youtube: '',
                     },
                     telephone: '',
                     type: '',

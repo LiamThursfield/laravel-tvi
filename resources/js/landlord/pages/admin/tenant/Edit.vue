@@ -212,8 +212,8 @@
 </template>
 
 <script>
-    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
+    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup.vue";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
     import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal.vue";
     import GenericModal from "../../../../components/core/modals/GenericModal.vue";
     import {router} from "@inertiajs/vue2";
