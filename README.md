@@ -80,9 +80,9 @@ So the process is inline with the package's documentation.
     ./vendor/bin/sail artisan make:settings SettingsName --group=groupName --path=App/Models/Settings/
     ```
     1. Add the settings properties to the class
-2. Create the settings migration
+2. Create the settings migration (note: the path is important here)
     ```bash
-    ./vendor/bin/sail artisan make:settings-migration CreateSettingsName
+    ./vendor/bin/sail artisan make:settings-migration CreateSettingsName database/migrations/tenant
     ```
     1. Add the settings to the migration
 3. Add the settings class to the `config.settings.settings` config file
