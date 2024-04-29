@@ -26,15 +26,6 @@
                     <p class="mt-4">{{ course.summary }}</p>
                 </section>
             </div>
-
-            <div class="flex flex-row justify-center mt-5">
-                <a
-                    class="button button-primary flex flex-row justify-center max-w-250px mt-6 rounded-full text-xl w-full"
-                    href="#purchase"
-                >
-                    {{ __('messages.sign-up') }}
-                </a>
-            </div>
         </div>
     </header>
 </template>
