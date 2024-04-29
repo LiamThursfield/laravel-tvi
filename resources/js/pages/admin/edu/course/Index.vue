@@ -110,7 +110,7 @@
                                 {{ item.status }}
                             </td>
                             <td>
-                                {{ item.summary.length > 60 ? item.summary.substring(0,60) + ' ...':'' }}
+                                {{ (item.summary && item.summary.length > 60) ? item.summary.substring(0,60) + ' ...' : '' }}
                             </td>
                             <td>
                                 {{ item.creator ? item.creator.first_name + ' ' + item.creator.last_name:'' }}
