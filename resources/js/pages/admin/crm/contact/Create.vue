@@ -159,8 +159,8 @@
 
 <script>
     import _ from "lodash";
-    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
+    import InlineCheckboxGroup from "../../../../components/core/forms/InlineCheckboxGroup.vue";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
 
     export default {
         name: "AdminCrmContactCreate",

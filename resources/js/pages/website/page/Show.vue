@@ -9,10 +9,12 @@
         v-if="layoutComponent"
         :is="layoutComponent"
         :layout="layout"
+        :page="page"
     >
         <component
             v-if="templateComponent"
             :is="templateComponent"
+            :layout="layout"
             :page="page"
         />
     </component>
@@ -20,89 +22,24 @@
 </template>
 
 <script>
+    import { pageWithMetaMixin } from "../../../mixins/website/page-with-meta";
+    import BasicLayout from "../../../layouts/website/BasicLayout.vue";
+    import BasicPage from "../../../page-templates/web/BasicPage.vue";
+    import CourseLayout from "../../../layouts/website/CourseLayout.vue";
+    import CoursePage from "../../../page-templates/web/CoursePage.vue";
 
     export default {
         name: 'PageShow',
-        props: {
-            page: {
-                required: true,
-                type: Object,
-            }
+        mixins: [
+            pageWithMetaMixin
+        ],
+        components: {
+            // Layout Templates
+            BasicLayout,
+            CourseLayout,
+            // Page Templates
+            BasicPage,
+            CoursePage,
         },
-        computed: {
-            content() {
-                try {
-                    return this.page.data.content;
-                } catch (e) {
-                    return null;
-                }
-            },
-            layout() {
-                try {
-                    return this.page.data.layout;
-                } catch (e) {
-                    return null;
-                }
-            },
-            layoutComponent() {
-                // This is just stub code intended to be implemented for the specific website
-                // Note: You will also have to import the components
-
-                /**
-                switch (this.layoutSlug) {
-                    case 'blog-layout':
-                        return 'BlogLayout';
-                    case 'default-layout':
-                    default:
-                        return 'DefaultLayout';
-                }
-                 **/
-            },
-            layoutSlug() {
-                try {
-                    return this.layout.slug;
-                } catch (e) {
-                    return null;
-                }
-            },
-            template() {
-                try {
-                    return this.page.data.template;
-                } catch (e) {
-                    return null;
-                }
-            },
-            templateComponent() {
-                // This is just stub code intended to be implemented for the specific website
-                // Note: You will also have to import the components
-
-                /**
-                 switch (this.templateSlug) {
-                    case 'home-template':
-                        return 'HomeTemplate';
-                    case 'default-template':
-                    default:
-                        return 'DefaultTemplate';
-                }
-                 **/
-            },
-            templateSlug() {
-                try {
-                    return this.template.slug;
-                } catch (e) {
-                    return null;
-                }
-            }
-        },
-        methods: {
-            getContentFieldData(slug, defaultValue = null) {
-                // Example method used to get page content, with a fallback value
-                try {
-                    return this.content[slug].data ? this.content[slug].data : defaultValue;
-                } catch (e) {
-                    return defaultValue;
-                }
-            }
-        }
     }
 </script>

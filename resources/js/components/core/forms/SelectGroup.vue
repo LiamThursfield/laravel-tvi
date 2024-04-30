@@ -43,7 +43,12 @@
                 :selected="isOptionSelected(option.value)"
                 :value="option.value"
             >
-                {{ option.label }}
+                <slot
+                    name="option.label"
+                    :option="inputOptions[key]"
+                >
+                    {{ option.label }}
+                </slot>
             </option>
         </select>
 
@@ -59,7 +64,7 @@
 <script>
     import _ from 'lodash';
     import {baseFormGroupMixin} from "../../../mixins/admin/cms/forms/base-form-group";
-    import FormFieldError from "./partials/FormFieldError";
+    import FormFieldError from "./partials/FormFieldError.vue";
 
     export default {
         name: 'SelectGroup',

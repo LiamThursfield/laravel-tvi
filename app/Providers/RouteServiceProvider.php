@@ -126,7 +126,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapLandlordWebRoutes(): void
     {
         $this->buildLandlordRoutes(
-            ['web', 'landlord.set-guard'],
+            ['landlord-web', 'landlord.set-guard'],
             'landlord',
             'routes/landlord/web.php'
         );

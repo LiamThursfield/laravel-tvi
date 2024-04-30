@@ -1,5 +1,5 @@
 @import './core/theme.css';
-@import './core/fonts.css';
+/*@import './core/fonts.css'; Commented out for now so all font is the same on sales page*/
 
 @import "tailwindcss/base";
 @import './core/base.css';

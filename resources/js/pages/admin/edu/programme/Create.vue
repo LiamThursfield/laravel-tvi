@@ -358,13 +358,13 @@
 </template>
 
 <script>
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
-    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
-    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
-    import SelectMultipleGroup from "../../../../components/core/forms/SelectMultipleGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
+    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup.vue";
+    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor.vue";
+    import SelectMultipleGroup from "../../../../components/core/forms/SelectMultipleGroup.vue";
 
     export default {
         name: "AdminEDUProgrammeCreate",

@@ -27,13 +27,29 @@ class PageQueryAction extends AbstractQueryAction
     protected function addCustomSearchOptions()
     {
         if (Arr::get($this->search_options, 'page_url')) {
-            $this->query->whereHas('url', function ($query) {
+            $this->query->whereHas('url', function (Builder $query) {
                 $url = Arr::get($this->search_options, 'page_url');
                 if (!Str::startsWith($url, '/')) {
                     $url = '/' . $url;
                 }
 
                 $query->where('url_full', $url);
+            });
+        }
+
+        if (Arr::get($this->search_options, 'is_active')) {
+            $this->query->whereHas('url', function (Builder $query) {
+                $query->where('is_enabled', 1);
+
+                $query->where(function (Builder $subQ) {
+                    $subQ->whereNull('published_at')
+                        ->orWhere('published_at', '<=', now());
+                });
+                $query->where(function (Builder $subQ) {
+                    $subQ->whereNull('expired_at')
+                        ->orWhere('expired_at', '>=', now());
+                });
+
             });
         }
     }

@@ -42,7 +42,8 @@ class FormStoreRequest extends BaseRequest
                 'max:' . FormInterface::FIELD_SLUG_MAX_LENGTH,
                 Rule::unique('crm_forms'),
             ],
-            'success_message' => [
+            'submit_button_text'    => 'nullable|string',
+            'success_message'       => [
                 'nullable',
                 'string',
                 'max:' . FormInterface::FIELD_SUCCESS_MESSAGE_MAX_LENGTH,

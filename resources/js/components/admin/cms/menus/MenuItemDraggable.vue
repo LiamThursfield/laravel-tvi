@@ -107,8 +107,8 @@
 <script>
     import _ from 'lodash';
     import draggable from 'vuedraggable';
-    import ConfirmationModal from "../../../core/modals/ConfirmationModal";
-    import MenuItemModal from "./MenuItemModal";
+    import ConfirmationModal from "../../../core/modals/ConfirmationModal.vue";
+    import MenuItemModal from "./MenuItemModal.vue";
 
     export default {
         name: 'MenuItemDraggable',

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import FileManager from "../../../components/admin/file_manager/FileManager";
+    import FileManager from "../../../components/admin/file_manager/FileManager.vue";
 
     export default {
         name: "AdminFileManagerIndex",

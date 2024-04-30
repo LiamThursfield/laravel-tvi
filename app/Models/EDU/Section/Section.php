@@ -38,10 +38,21 @@ class Section extends Model
             ->orderBy('index');
     }
 
+    public function lecturesCompleted(): HasMany
+    {
+        return $this->hasMany(Lecture::class)
+            ->where('');
+    }
+
     public function childItems(): HasMany
     {
         return $this->hasMany(Lecture::class)
             ->with('files')
             ->orderBy('index');
+    }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(SectionFiles::class, 'section_id');
     }
 }

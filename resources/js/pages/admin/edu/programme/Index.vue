@@ -105,7 +105,7 @@
                                 {{ item.status }}
                             </td>
                             <td>
-                                {{ item.summary.length > 60 ? item.summary.substring(0,60) + ' ...':'' }}
+                                {{ (item.summary && item.summary.length > 60) ? item.summary.substring(0,60) + ' ...' : '' }}
                             </td>
                             <td>
                                 {{ item.creator ? item.creator.first_name + ' ' + item.creator.last_name:'' }}
@@ -222,8 +222,8 @@
 <script>
     import _ from 'lodash';
     import { router } from '@inertiajs/vue2'
-    import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
+    import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal.vue";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
 
     export default {
         name: "AdminEDUProgrammeIndex",

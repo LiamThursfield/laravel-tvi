@@ -6,7 +6,7 @@
     >
         <div
             v-if="userCan('courses.edit')"
-            class="flex flex-row items-center mb-6 course-menu"
+            class="flex flex-row items-center mb-6 sticky-menu"
         >
             <h1 class="font-medium mr-auto text-lg">
                 Edit - <b>{{ course.name }}</b>
@@ -404,14 +404,14 @@
 
 <script>
     import slugify from "slugify";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
-    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
-    import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup";
-    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
+    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
+    import DateTimePickerGroup from "../../../../components/core/forms/DateTimePickerGroup.vue";
+    import SectionItemsEditor from "../../../../components/admin/edu/sections/SectionItemsEditor.vue";
     import _ from "lodash";
-    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
+    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField.vue";
 
     export default {
         name: "AdminEduCourseEdit",
@@ -490,14 +490,6 @@
 
                 this.course.sections = sections;
             },
-            /**
-             * We use this to update the sections when the update returns back after submit, avoids strange bug
-             * with duplicated lectures.
-             */
-            updateFormDataSections() {
-                this.transformSections();
-                this.formData.sections = this.course.sections;
-            },
             onNameInput() {
                 if (!this.autoUpdateSlug) {
                     return;
@@ -530,11 +522,6 @@
                     this.formData
                 );
             }
-        },
-        watch: {
-            course: {
-                handler: 'updateFormDataSections'
-            }
-        },
+        }
     }
 </script>

@@ -124,11 +124,11 @@
 </template>
 
 <script>
-    import InputGroup from "../../../../components/core/forms/InputGroup";
-    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup";
-    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup";
-    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField";
-    import SelectGroup from "../../../../components/core/forms/SelectGroup";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
+    import TextAreaGroup from "../../../../components/core/forms/TextAreaGroup.vue";
+    import CheckboxGroup from "../../../../components/core/forms/CheckboxGroup.vue";
+    import WysiwygField from "../../../../components/admin/cms/content/content_fields/WysiwygField.vue";
+    import SelectGroup from "../../../../components/core/forms/SelectGroup.vue";
 
     export default {
         name: "AdminEduAnnouncementEdit",

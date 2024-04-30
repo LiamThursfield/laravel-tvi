@@ -1,21 +1,25 @@
-require('./bootstrap');
+import './bootstrap';
 
 import Vue from 'vue';
 import { store } from '../store/admin'
 
 import { createInertiaApp } from '@inertiajs/vue2'
 
-require('../plugins/toasted');
-require('../plugins/vue2-datepicker');
-require('../plugins/vue-cookies');
-require('../plugins/vue-meta');
-require('../plugins/ziggy');
+import '../plugins/toasted';
+import '../plugins/vue2-datepicker';
+import '../plugins/vue-cookies';
+import '../plugins/vue-meta';
+import '../plugins/ziggy';
 
-require('./component-registration');
+import './component-registration';
 
-require('../filters/date-times');
+import '../filters/date-times';
 
-require('../mixins/page-error');
+import '../mixins/page-error';
+
+import '../../css/landlord/app.css';
+import '../../css/landlord/tinymce/content.css';
+import '../../css/landlord/tinymce/skin.css';
 
 const app = createInertiaApp({
     progress: {
@@ -30,7 +34,11 @@ const app = createInertiaApp({
         showSpinner: false,
 
     },
-    resolve: (name) => require(`./pages/${name}.vue`),
+    resolve: async (name) => {
+        const pages = import.meta.glob('./pages/**/*.vue');
+
+        return (await pages[`./pages/${name}.vue`]()).default;
+    },
     setup({ el, App, props, plugin }) {
         Vue.use(plugin)
 

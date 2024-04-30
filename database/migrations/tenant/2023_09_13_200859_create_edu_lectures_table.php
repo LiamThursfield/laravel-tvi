@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('preview_url')->nullable();
             $table->longText('video_url')->nullable();
             $table->string('content_length')->nullable();
-            $table->string('index')->nullable();
+            $table->integer('index')->nullable();
             $table->string('item_type')->nullable(); // Lecture OR Quiz
             $table->unsignedBigInteger('section_id')->index();
             $table->softDeletes();

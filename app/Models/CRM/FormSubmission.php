@@ -2,11 +2,20 @@
 
 namespace App\Models\CRM;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property int $id
+ * @property int $contact_id
+ * @property int $form_id
+ * @property array $data
+ * @property Carbon $submitted_at
+ * @property ?Contact $contact
+ * @property Form $form
+ */
 class FormSubmission extends Model
 {
     use HasFactory;
@@ -23,12 +32,12 @@ class FormSubmission extends Model
     ];
 
 
-    public function contact() : BelongsTo
+    public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);
     }
 
-    public function form() : BelongsTo
+    public function form(): BelongsTo
     {
         return $this->belongsTo(Form::class);
     }

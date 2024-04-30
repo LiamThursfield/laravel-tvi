@@ -155,8 +155,8 @@
 <script>
     import _ from 'lodash';
     import { router } from '@inertiajs/vue2'
-    import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal";
-    import InputGroup from "../../../../components/core/forms/InputGroup";
+    import ConfirmationModal from "../../../../components/core/modals/ConfirmationModal.vue";
+    import InputGroup from "../../../../components/core/forms/InputGroup.vue";
 
     export default {
         name: "AdminEDULabelsIndex",

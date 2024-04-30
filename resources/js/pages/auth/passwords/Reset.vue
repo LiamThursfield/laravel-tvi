@@ -6,7 +6,7 @@
             <h1
                 class="auth-header"
             >
-                Password Reset
+                Password Reset3232
             </h1>
 
             <form
@@ -100,7 +100,7 @@
 </template>
 
 <script>
-    import InputGroup from "../../../components/core/forms/InputGroup";
+    import InputGroup from "../../../components/core/forms/InputGroup.vue";
 
     export default {
         name: "AuthPasswordReset",

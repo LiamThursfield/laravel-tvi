@@ -13,26 +13,17 @@
                     <slot/>
                 </div>
 
-                <!-- TODO:: Move to component and design it nicer? -->
-                <footer
-                    class="bg-neutral-200 text-center dark:bg-neutral-700 lg:text-left">
-                    <div class="p-4 text-center text-neutral-700 dark:text-neutral-200">
-                        © 2023 Copyright:
-                        <a
-                            class="text-neutral-800 dark:text-neutral-400"
-                            href="/"
-                        >SIGI.RO </a
-                        >
-                    </div>
-                </footer>
+               <tenant-footer
+                    :tenant-name="metaTenantName"
+               ></tenant-footer>
             </div>
         </main>
     </div>
 </template>
 
 <script>
-import PageAlerts from "../../components/core/alerts/PageAlerts";
-
+import PageAlerts from "../../components/core/alerts/PageAlerts.vue";
+import TenantFooter from "../../components/core/footer/Footer.vue";
 import StudentTopMenu from "../../components/student/admin/menus/StudentTopMenu.vue";
 
 export default {
@@ -40,6 +31,7 @@ export default {
     components: {
         PageAlerts,
         StudentTopMenu,
+        TenantFooter
     },
     metaInfo() {
         return {
@@ -52,20 +44,22 @@ export default {
             ]
         }
     },
-    data() {
-        return {
-        }
-    },
     computed: {
         metaDescription() {
             return this.getMetaDataField(
                 'description',
-                'SIGI - powered by Laravel, Tailwind, Vue, and Inertia'
+                'SIGI - powering your online presence'
             );
         },
         metaTitle() {
             return this.getMetaDataField(
                 'title',
+                'SIGI'
+            );
+        },
+        metaTenantName() {
+            return this.getMetaDataField(
+                'tenant',
                 'SIGI'
             );
         }
@@ -75,13 +69,9 @@ export default {
             try {
                 return this.$page.props.meta[slug] ?? fallback;
             } catch (e) {
-                console.log(e);
                 return fallback;
             }
-        },
-        url() {
-            return location.pathname.substr(1)
-        },
+        }
     }
 }
 </script>

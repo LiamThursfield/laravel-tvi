@@ -6,13 +6,11 @@
 
         <title>SIGI</title>
 
-        <link href="{{ mix('/css/landlord/app.css') }}" rel="stylesheet"></link>
-
         @routes
-        <script src="{{ mix('/js/landlord/app.js') }}" defer></script>
+        @vite('resources/js/landlord/app.js')
     </head>
 
-    <body>
+    <body class="html-base">
         @inertia
     </body>
 </html>

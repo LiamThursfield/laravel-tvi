@@ -3,6 +3,8 @@
 use App\Interfaces\PermissionInterface;
 use App\Interfaces\RoleInterface;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -37,17 +39,19 @@ class CreateBasePermissionRoles extends Migration
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create the new permissions
-        foreach ($this->getNewPermissions() as $permission) {
-            Permission::create(['name' => $permission]);
-        }
+        $permissions = $this->getNewPermissions()->map(function ($permission) {
+            return [
+                'name' => $permission,
+                'guard_name' => 'web'
+            ];
+        });
+        DB::table('permissions')->insert($permissions->toArray());
 
         // Create the new roles and assign any permissions
         foreach ($this->getNewRoles() as $role_name => $permissions) {
             $role = Role::create(['name' => $role_name]);
             // Assign the permissions to the role
-            foreach ($permissions as $permission) {
-                $role->givePermissionTo($permission);
-            }
+            $role->givePermissionTo($permissions);
         }
 
         auth()->setDefaultDriver($originalDriver);
@@ -61,19 +65,19 @@ class CreateBasePermissionRoles extends Migration
     public function down(): void
     {
         // Delete the new Permissions and Roles
-        Permission::whereIn('name', $this->getNewPermissions())->delete();
-        Role::whereIn('name', array_keys($this->getNewRoles()))->delete();
+        Permission::whereIn('name', $this->getNewPermissions()->toArray())->delete();
+        Role::whereIn('name', array_keys($this->getNewRoles()->toArray()))->delete();
     }
 
 
     /**
      * New Permissions being added in the migration
      *
-     * @return array
+     * @return Collection<string>
      */
-    protected function getNewPermissions(): array
+    protected function getNewPermissions(): Collection
     {
-        return [
+        return collect([
             // Admin
             PermissionInterface::VIEW_ADMIN,
 
@@ -182,17 +186,17 @@ class CreateBasePermissionRoles extends Migration
             // Student
             PermissionInterface::VIEW_STUDENT_ADMIN,
             PermissionInterface::EDIT_STUDENT_ADMIN,
-        ];
+        ]);
     }
 
     /**
      * New Roles with the associated permissions
      *
-     * @return array[]
+     * @return Collection<string, array<string>>
      */
-    protected function getNewRoles(): array
+    protected function getNewRoles(): Collection
     {
-        return [
+        return collect([
             RoleInterface::ADMIN => [
                 // Admin
                 PermissionInterface::VIEW_ADMIN,
@@ -300,6 +304,6 @@ class CreateBasePermissionRoles extends Migration
                 PermissionInterface::EDIT_PROFILE,
                 PermissionInterface::VIEW_PROFILE,
             ]
-        ];
+        ]);
     }
 }

@@ -21,6 +21,8 @@ class CoursePurchaseQueryAction extends AbstractQueryAction
 
     protected string $order_by = 'id';
 
+    protected string $order_direction = 'desc';
+
     protected function getQueryBuilder(): Builder
     {
         return CoursePurchase::query();

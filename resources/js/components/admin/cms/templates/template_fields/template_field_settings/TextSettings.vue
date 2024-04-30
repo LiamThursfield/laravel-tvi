@@ -15,7 +15,7 @@
 </template>
 <script>
     import { templateFieldSettingsMixin } from "../../../../../../mixins/admin/cms/template-field-settings";
-    import InputGroup from "../../../../../core/forms/InputGroup";
+    import InputGroup from "../../../../../core/forms/InputGroup.vue";
 
     export default {
         name: "TemplateFieldTextSettings",
